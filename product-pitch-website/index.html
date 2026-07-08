@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dependency Rescue Pipeline | Safe dependency updates that prove they build</title>
+  <meta name="description" content="A product pitch site for an automated dependency update pipeline that resolves CVEs, validates builds, checks blocked artifacts, and safely rolls back or downgrades packages when needed.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav" aria-label="Main navigation">
+      <a class="brand" href="#top"><span class="brand-mark" aria-hidden="true">DR</span><span>Dependency Rescue</span></a>
+      <div class="nav-links">
+        <a href="#problem">Problem</a>
+        <a href="#solution">Solution</a>
+        <a href="#workflow">Workflow</a>
+        <a href="#proof">Proof</a>
+        <a href="#cta">Pitch</a>
+      </div>
+      <a class="nav-cta" href="#cta">Schedule a demo</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div>
+        <p class="eyebrow">Secure dependency automation for Node and Gradle</p>
+        <h1>Updates that do not stop at “version changed.”</h1>
+        <p class="hero-copy">
+          Dependency Rescue finds CVE-driven updates, checks JFrog/Xray and Artifactory,
+          fixes blocked versions, validates the real project build, and only keeps changes
+          that still compile.
+        </p>
+        <div class="hero-actions">
+          <a class="button primary" href="#workflow">See the workflow</a>
+          <a class="button secondary" href="#proof">View validation guarantees</a>
+        </div>
+        <div class="hero-proof" aria-label="Product proof points">
+          <span>Node + Gradle</span>
+          <span>Xray CVE filtering</span>
+          <span>Build verified</span>
+          <span>Auto rollback</span>
+        </div>
+      </div>
+
+      <aside class="hero-card" aria-label="Pipeline terminal preview">
+        <div class="terminal">
+          <div class="terminal-bar" aria-hidden="true">
+            <span></span><span></span><span></span>
+          </div>
+          <pre><code>$ dependency-rescue update --story 9055702
+
+✓ Pulled ADO child tasks
+✓ Mapped CVEs to known dependencies
+✓ Filtered vulnerable candidate versions
+✓ Replaced blocked artifacts safely
+✓ Ran final Gradle build
+
+BUILD SUCCESSFUL
+9 actionable tasks: 9 executed</code></pre>
+        </div>
+      </aside>
+    </section>
+    <section id="problem" class="section">
+      <div class="section-heading">
+        <p class="eyebrow">The problem</p>
+        <h2>Most dependency bots stop before the risky part.</h2>
+        <p>
+          They open a version bump and leave developers to discover blocked artifacts,
+          transitive dependency conflicts, missing Maven mappings, and compile failures.
+          That turns “automation” into manual cleanup.
+        </p>
+      </div>
+      <div class="grid three">
+        <article class="card">
+          <div class="icon">!</div>
+          <h3>CVE tasks are ambiguous</h3>
+          <p>Security work items often reference CVEs, products, or prose instead of exact package coordinates.</p>
+        </article>
+
+        <article class="card">
+          <div class="icon">403</div>
+          <h3>Repositories block versions</h3>
+          <p>JFrog or Artifactory can reject a version even when public metadata says it exists.</p>
+        </article>
+
+        <article class="card">
+          <div class="icon">⌁</div>
+          <h3>Transitives break builds</h3>
+          <p>Gradle can resolve blocked artifacts through BOMs, strict declarations, or compileClasspath after an update looks safe.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="solution" class="section split">
+      <div class="feature-detail">
+        <p class="eyebrow">The solution</p>
+        <h2>A pipeline that behaves like a senior engineer reviewing the change.</h2>
+        <p>
+          Dependency Rescue combines deterministic CVE resolution, constrained AI assistance,
+          Xray vulnerability checks, artifact block checks, safe forward/backward version search,
+          and final build validation.
+        </p>
+        <ul class="feature-bullets">
+          <li>Claude resolver is constrained to known project dependencies.</li>
+          <li>Xray eliminates versions with CVEs before Artifactory accessibility checks.</li>
+          <li>Node checks all package dependencies, not only ADO-mentioned packages.</li>
+          <li>Gradle checks resolved dependencies across key configurations and final build failures.</li>
+          <li>If a candidate breaks the build, the pipeline isolates it, rolls it back, or marks it manual.</li>
+        </ul>
+      </div>
+
+      <div class="metric-stack" aria-label="Product capabilities">
+        <div class="metric">
+          <strong>2</strong>
+          <span>ecosystems supported</span>
+        </div>
+        <div class="metric">
+          <strong>all</strong>
+          <span>dependencies block checked</span>
+        </div>
+        <div class="metric">
+          <strong>0</strong>
+          <span>blind writes kept after failed validation</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="workflow" class="section">
+      <div class="section-heading">
+        <p class="eyebrow">Workflow</p>
+        <h2>From work item to validated build.</h2>
+        <p>The pipeline turns security tasks into dependency changes, but the build is the final authority.</p>
+      </div>
+
+      <div class="flow-panel">
+        <div class="flow">
+          <div class="flow-step active"><span>1</span><p>Import ADO story and child CVE tasks.</p></div>
+          <div class="flow-step"><span>2</span><p>Resolve packages deterministically with OSV/NVD, Maven product matching, and cached Claude fallback.</p></div>
+          <div class="flow-step"><span>3</span><p>Generate available version candidates for Node or Gradle.</p></div>
+          <div class="flow-step"><span>4</span><p>Filter candidates through JFrog Xray CVE search.</p></div>
+          <div class="flow-step"><span>5</span><p>Run block/accessibility checks against package registries and Artifactory.</p></div>
+          <div class="flow-step"><span>6</span><p>Try forward versions first, then safe same-major backward fallbacks when needed.</p></div>
+          <div class="flow-step"><span>7</span><p>Write dependency updates, direct rewrites, lockfile changes, and Gradle force overrides.</p></div>
+          <div class="flow-step"><span>8</span><p>Run the real project build and auto-remediate blocked final-build artifacts.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="proof" class="section">
+      <div class="section-heading">
+        <p class="eyebrow">Why teams trust it</p>
+        <h2>Safety rails are built into every stage.</h2>
+      </div>
+
+      <div class="grid three">
+        <article class="card">
+          <h3>Known-package AI</h3>
+          <p>Claude can help interpret vague CVE task text, but results are validated against the project dependency universe before use.</p>
+        </article>
+
+        <article class="card">
+          <h3>Vulnerability-first filtering</h3>
+          <p>Xray search removes vulnerable candidate versions before the pipeline even attempts a block check.</p>
+        </article>
+
+        <article class="card">
+          <h3>Build-backed confidence</h3>
+          <p>The update is not considered successful until npm or Gradle validation passes in the target project.</p>
+        </article>
+
+        <article class="card">
+          <h3>Automatic recovery</h3>
+          <p>When a build fails, the pipeline identifies the package, tries safe alternatives, rolls back isolated offenders, or marks manual updates.</p>
+        </article>
+
+        <article class="card">
+          <h3>Gradle transitive coverage</h3>
+          <p>Blocked artifacts discovered during compileClasspath or final build are treated as block-check events, not ignored as generic failures.</p>
+        </article>
+
+        <article class="card">
+          <h3>Actionable reporting</h3>
+          <p>CSV and spreadsheet outputs show auto fixes, external blockers, skipped packages, and manual-update requirements.</p>
+        </article>
+      </div>
+    </section>
+    <section class="section split">
+      <div class="feature-detail">
+        <p class="eyebrow">What it replaces</p>
+        <h2>No more dependency whack-a-mole.</h2>
+        <p>
+          Instead of pushing a version bump and waiting for developers to discover the next blocked artifact,
+          Dependency Rescue keeps iterating inside the pipeline until it reaches a safe, buildable state or
+          produces a precise manual action list.
+        </p>
+      </div>
+      <div class="comparison-card">
+        <div class="comparison-row bad">
+          <span>Traditional bot</span>
+          <strong>Version bumped, build unknown</strong>
+        </div>
+        <div class="comparison-row bad">
+          <span>Manual cleanup</span>
+          <strong>Developer chases 403s</strong>
+        </div>
+        <div class="comparison-row good">
+          <span>Dependency Rescue</span>
+          <strong>Safe version selected and build verified</strong>
+        </div>
+      </div>
+    </section>
+
+    <section id="cta" class="section">
+      <div class="cta-card">
+        <p class="eyebrow">The pitch</p>
+        <h2>Ship security updates with proof, not hope.</h2>
+        <p>
+          Dependency Rescue gives platform, AppSec, and engineering teams a repeatable path from CVE backlog
+          to validated dependency updates for Node and Gradle projects.
+        </p>
+        <div class="hero-actions center">
+          <a class="button primary" href="mailto:team@example.com?subject=Dependency Rescue demo">Request a demo</a>
+          <a class="button secondary" href="#workflow">Review workflow</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>Dependency Rescue Pipeline — CVE-aware updates, block checks, and build validation for Node and Gradle.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

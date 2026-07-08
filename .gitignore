@@ -1,0 +1,26 @@
+logs
+*.json
+*.csv
+*.txt
+*.xml
+*.bak
+.venv
+**/__pycache__
+.coverage
+**/.DS_Store
+.copilot
+.pytest_cache
+package_update.egg-info
+
+# Generated artifacts
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+coverage.xml
+htmlcov/
+build/
+dist/
+~$*.xlsx
+.ruff_cache
