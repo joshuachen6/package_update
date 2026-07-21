@@ -243,26 +243,55 @@ def _gradle_test(
         # system `gradle` — get_gradle_cmd checks os.access(..., X_OK) too.
         gradle_cmd = get_gradle_cmd(str(build_file.resolve().parent))
 
-    result = _run(
-        [
-            gradle_cmd,
-            "test",
-            "--rerun-tasks",
-            "--console=plain",
-            # Batch runs execute many repos in parallel, each spawning its own
-            # background daemon under --daemon; live data showed daemons
-            # getting killed mid-build ("daemon disappeared unexpectedly")
-            # under that contention, misreporting an otherwise-passing repo
-            # as Failed. shared.build_validation.validate_gradle_project
-            # already uses --no-daemon for the same reason (see its comment)
-            # — match that here so this one-shot test run doesn't leave a
-            # persistent daemon competing with everything else in the batch.
-            "--no-daemon",
-        ],
-        build_file.resolve().parent,
-        max(int(cfg.get("gradle_timeout", 30)), 600),
-        "Gradle tests",
-    )
+    from shared.build_validation import _extract_failing_tests, _is_transient_daemon_crash
+
+    project_dir = build_file.resolve().parent
+    timeout = max(int(cfg.get("gradle_timeout", 30)), 600)
+    command = [
+        gradle_cmd,
+        "test",
+        "--rerun-tasks",
+        "--console=plain",
+        # Batch runs execute many repos in parallel, each spawning its own
+        # background daemon under --daemon; live data showed daemons
+        # getting killed mid-build ("daemon disappeared unexpectedly")
+        # under that contention, misreporting an otherwise-passing repo
+        # as Failed. shared.build_validation.validate_gradle_project
+        # already uses --no-daemon for the same reason (see its comment)
+        # — match that here so this one-shot test run doesn't leave a
+        # persistent daemon competing with everything else in the batch.
+        "--no-daemon",
+    ]
+
+    def _crashed_with_no_test_result(candidate: dict[str, Any]) -> bool:
+        candidate_output = candidate.get("output", "")
+        return (
+            candidate["status"] == "failed"
+            and _is_transient_daemon_crash(candidate_output)
+            and not _extract_failing_tests(candidate_output)
+        )
+
+    result = _run(command, project_dir, timeout, "Gradle tests")
+    if _crashed_with_no_test_result(result):
+        # --no-daemon only stops a *persistent* daemon from being reused; the
+        # single-use worker Gradle still forks for this run can itself be
+        # killed under the same batch-parallelism memory contention. Live
+        # data: this one-shot verification test run crashed with zero test
+        # output while the earlier build-validation run against the exact
+        # same code had already run :test successfully moments before —
+        # retry once with a longer timeout, matching build_validation's own
+        # handling of this same crash class, before accepting it.
+        result = _run(command, project_dir, max(300, timeout * 3), "Gradle tests")
+        if _crashed_with_no_test_result(result):
+            result["status"] = "not_run"
+            result["reason"] = (
+                "Gradle's build worker crashed (OOM/resource contention "
+                "under parallel batch execution) before producing any test "
+                "result, twice in a row — unrelated to the dependency "
+                "update, so not counted as a test failure"
+            )
+            return result
+
     if result["status"] != "passed":
         return result
     output = result.get("output", "")

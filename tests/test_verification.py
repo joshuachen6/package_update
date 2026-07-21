@@ -722,6 +722,93 @@ def test_gradle_test_runs_without_a_reusable_daemon(tmp_path, monkeypatch):
     assert "--daemon" not in captured_cmd["cmd"]
 
 
+_DAEMON_CRASH_OUTPUT = (
+    "FAILURE: Build failed with an exception.\n\n"
+    "* What went wrong:\n"
+    "Gradle build daemon disappeared unexpectedly (it may have been killed "
+    "or may have crashed)\n"
+)
+
+
+def test_gradle_test_retries_and_recovers_from_transient_daemon_crash(
+    tmp_path, monkeypatch,
+):
+    """Live bug: cwih-cnp-mgmt-preference-api's build validation already ran
+    :test successfully (BUILD SUCCESSFUL, real test output) but this separate,
+    later verification re-run crashed with zero test output ("Gradle build
+    daemon disappeared unexpectedly") and got reported as "tests did not
+    pass" -- an infra crash, not a real test failure. Retrying once (matching
+    build_validation.py's own handling of this exact crash class) should
+    recover instead of failing the whole repo.
+    """
+    from shared.verification import _gradle_test
+
+    build_file = tmp_path / "build.gradle"
+    build_file.write_text("", encoding="utf-8")
+
+    calls = []
+
+    def fake_run(cmd, cwd, timeout, label):
+        calls.append(timeout)
+        if len(calls) == 1:
+            return {"label": label, "status": "failed", "output": _DAEMON_CRASH_OUTPUT}
+        return {"label": label, "status": "passed", "output": "> Task :test\n"}
+
+    monkeypatch.setattr("shared.verification._run", fake_run)
+
+    result = _gradle_test({"file_path": str(build_file)}, {"gradle_cmd": "gradle"})
+
+    assert result["status"] == "passed"
+    assert len(calls) == 2
+    assert calls[1] > calls[0]
+
+
+def test_gradle_test_reports_not_run_when_daemon_crash_persists(tmp_path, monkeypatch):
+    """If the retry also crashes with zero test output, this must not be
+    counted as a failed test -- it's still unrelated infra flakiness, twice.
+    Reporting it as "failed" (as before this fix) marked otherwise-passing
+    repos Failed for a reason that had nothing to do with the code.
+    """
+    from shared.verification import _gradle_test
+
+    build_file = tmp_path / "build.gradle"
+    build_file.write_text("", encoding="utf-8")
+
+    def fake_run(cmd, cwd, timeout, label):
+        return {"label": label, "status": "failed", "output": _DAEMON_CRASH_OUTPUT}
+
+    monkeypatch.setattr("shared.verification._run", fake_run)
+
+    result = _gradle_test({"file_path": str(build_file)}, {"gradle_cmd": "gradle"})
+
+    assert result["status"] == "not_run"
+    assert "crashed" in result["reason"]
+
+
+def test_gradle_test_does_not_mask_real_failure_alongside_daemon_crash_text(
+    tmp_path, monkeypatch,
+):
+    """Guard against over-matching: if genuine per-test failures are present
+    in the output alongside daemon-crash-sounding text, this must stay
+    "failed" -- only a crash with zero test evidence gets excused.
+    """
+    from shared.verification import _gradle_test
+
+    build_file = tmp_path / "build.gradle"
+    build_file.write_text("", encoding="utf-8")
+
+    output = _DAEMON_CRASH_OUTPUT + "\nSomeRealTest > breaksOnNewJackson() FAILED\n"
+
+    def fake_run(cmd, cwd, timeout, label):
+        return {"label": label, "status": "failed", "output": output}
+
+    monkeypatch.setattr("shared.verification._run", fake_run)
+
+    result = _gradle_test({"file_path": str(build_file)}, {"gradle_cmd": "gradle"})
+
+    assert result["status"] == "failed"
+
+
 _GRADLE_VAULT_FAIL_OUTPUT = (
     "SomeConfigTest > loadsVaultContext() FAILED\n"
     "    com.example.VaultUnavailableException\n"
