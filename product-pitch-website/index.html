@@ -1,240 +1,376 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Dependency Rescue Pipeline | Safe dependency updates that prove they build</title>
-  <meta name="description" content="A product pitch site for an automated dependency update pipeline that resolves CVEs, validates builds, checks blocked artifacts, and safely rolls back or downgrades packages when needed.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Package Update | Automated CVE remediation for npm, Gradle, and Python</title>
+<meta content="Package Update scans a GitHub repository for CVE-affected dependencies, finds safe replacement versions, validates the build, and rolls back anything that breaks." name="description"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="styles.css" rel="stylesheet"/>
 </head>
 <body>
-  <header class="site-header">
-    <nav class="nav" aria-label="Main navigation">
-      <a class="brand" href="#top"><span class="brand-mark" aria-hidden="true">DR</span><span>Dependency Rescue</span></a>
-      <div class="nav-links">
-        <a href="#problem">Problem</a>
-        <a href="#solution">Solution</a>
-        <a href="#workflow">Workflow</a>
-        <a href="#proof">Proof</a>
-        <a href="#cta">Pitch</a>
-      </div>
-      <a class="nav-cta" href="#cta">Schedule a demo</a>
-    </nav>
-  </header>
-
-  <main id="top">
-    <section class="hero">
-      <div>
-        <p class="eyebrow">Secure dependency automation for Node and Gradle</p>
-        <h1>Updates that do not stop at “version changed.”</h1>
-        <p class="hero-copy">
-          Dependency Rescue finds CVE-driven updates, checks JFrog/Xray and Artifactory,
-          fixes blocked versions, validates the real project build, and only keeps changes
-          that still compile.
-        </p>
-        <div class="hero-actions">
-          <a class="button primary" href="#workflow">See the workflow</a>
-          <a class="button secondary" href="#proof">View validation guarantees</a>
-        </div>
-        <div class="hero-proof" aria-label="Product proof points">
-          <span>Node + Gradle</span>
-          <span>Xray CVE filtering</span>
-          <span>Build verified</span>
-          <span>Auto rollback</span>
-        </div>
-      </div>
-
-      <aside class="hero-card" aria-label="Pipeline terminal preview">
-        <div class="terminal">
-          <div class="terminal-bar" aria-hidden="true">
-            <span></span><span></span><span></span>
-          </div>
-          <pre><code>$ dependency-rescue update --story 9055702
-
-✓ Pulled ADO child tasks
-✓ Mapped CVEs to known dependencies
-✓ Filtered vulnerable candidate versions
-✓ Replaced blocked artifacts safely
-✓ Ran final Gradle build
-
-BUILD SUCCESSFUL
-9 actionable tasks: 9 executed</code></pre>
-        </div>
-      </aside>
-    </section>
-    <section id="problem" class="section">
-      <div class="section-heading">
-        <p class="eyebrow">The problem</p>
-        <h2>Most dependency bots stop before the risky part.</h2>
-        <p>
-          They open a version bump and leave developers to discover blocked artifacts,
-          transitive dependency conflicts, missing Maven mappings, and compile failures.
-          That turns “automation” into manual cleanup.
-        </p>
-      </div>
-      <div class="grid three">
-        <article class="card">
-          <div class="icon">!</div>
-          <h3>CVE tasks are ambiguous</h3>
-          <p>Security work items often reference CVEs, products, or prose instead of exact package coordinates.</p>
-        </article>
-
-        <article class="card">
-          <div class="icon">403</div>
-          <h3>Repositories block versions</h3>
-          <p>JFrog or Artifactory can reject a version even when public metadata says it exists.</p>
-        </article>
-
-        <article class="card">
-          <div class="icon">⌁</div>
-          <h3>Transitives break builds</h3>
-          <p>Gradle can resolve blocked artifacts through BOMs, strict declarations, or compileClasspath after an update looks safe.</p>
-        </article>
-      </div>
-    </section>
-
-    <section id="solution" class="section split">
-      <div class="feature-detail">
-        <p class="eyebrow">The solution</p>
-        <h2>A pipeline that behaves like a senior engineer reviewing the change.</h2>
-        <p>
-          Dependency Rescue combines deterministic CVE resolution, constrained AI assistance,
-          Xray vulnerability checks, artifact block checks, safe forward/backward version search,
-          and final build validation.
-        </p>
-        <ul class="feature-bullets">
-          <li>Claude resolver is constrained to known project dependencies.</li>
-          <li>Xray eliminates versions with CVEs before Artifactory accessibility checks.</li>
-          <li>Node checks all package dependencies, not only ADO-mentioned packages.</li>
-          <li>Gradle checks resolved dependencies across key configurations and final build failures.</li>
-          <li>If a candidate breaks the build, the pipeline isolates it, rolls it back, or marks it manual.</li>
-        </ul>
-      </div>
-
-      <div class="metric-stack" aria-label="Product capabilities">
-        <div class="metric">
-          <strong>2</strong>
-          <span>ecosystems supported</span>
-        </div>
-        <div class="metric">
-          <strong>all</strong>
-          <span>dependencies block checked</span>
-        </div>
-        <div class="metric">
-          <strong>0</strong>
-          <span>blind writes kept after failed validation</span>
-        </div>
-      </div>
-    </section>
-
-    <section id="workflow" class="section">
-      <div class="section-heading">
-        <p class="eyebrow">Workflow</p>
-        <h2>From work item to validated build.</h2>
-        <p>The pipeline turns security tasks into dependency changes, but the build is the final authority.</p>
-      </div>
-
-      <div class="flow-panel">
-        <div class="flow">
-          <div class="flow-step active"><span>1</span><p>Import ADO story and child CVE tasks.</p></div>
-          <div class="flow-step"><span>2</span><p>Resolve packages deterministically with OSV/NVD, Maven product matching, and cached Claude fallback.</p></div>
-          <div class="flow-step"><span>3</span><p>Generate available version candidates for Node or Gradle.</p></div>
-          <div class="flow-step"><span>4</span><p>Filter candidates through JFrog Xray CVE search.</p></div>
-          <div class="flow-step"><span>5</span><p>Run block/accessibility checks against package registries and Artifactory.</p></div>
-          <div class="flow-step"><span>6</span><p>Try forward versions first, then safe same-major backward fallbacks when needed.</p></div>
-          <div class="flow-step"><span>7</span><p>Write dependency updates, direct rewrites, lockfile changes, and Gradle force overrides.</p></div>
-          <div class="flow-step"><span>8</span><p>Run the real project build and auto-remediate blocked final-build artifacts.</p></div>
-        </div>
-      </div>
-    </section>
-
-    <section id="proof" class="section">
-      <div class="section-heading">
-        <p class="eyebrow">Why teams trust it</p>
-        <h2>Safety rails are built into every stage.</h2>
-      </div>
-
-      <div class="grid three">
-        <article class="card">
-          <h3>Known-package AI</h3>
-          <p>Claude can help interpret vague CVE task text, but results are validated against the project dependency universe before use.</p>
-        </article>
-
-        <article class="card">
-          <h3>Vulnerability-first filtering</h3>
-          <p>Xray search removes vulnerable candidate versions before the pipeline even attempts a block check.</p>
-        </article>
-
-        <article class="card">
-          <h3>Build-backed confidence</h3>
-          <p>The update is not considered successful until npm or Gradle validation passes in the target project.</p>
-        </article>
-
-        <article class="card">
-          <h3>Automatic recovery</h3>
-          <p>When a build fails, the pipeline identifies the package, tries safe alternatives, rolls back isolated offenders, or marks manual updates.</p>
-        </article>
-
-        <article class="card">
-          <h3>Gradle transitive coverage</h3>
-          <p>Blocked artifacts discovered during compileClasspath or final build are treated as block-check events, not ignored as generic failures.</p>
-        </article>
-
-        <article class="card">
-          <h3>Actionable reporting</h3>
-          <p>CSV and spreadsheet outputs show auto fixes, external blockers, skipped packages, and manual-update requirements.</p>
-        </article>
-      </div>
-    </section>
-    <section class="section split">
-      <div class="feature-detail">
-        <p class="eyebrow">What it replaces</p>
-        <h2>No more dependency whack-a-mole.</h2>
-        <p>
-          Instead of pushing a version bump and waiting for developers to discover the next blocked artifact,
-          Dependency Rescue keeps iterating inside the pipeline until it reaches a safe, buildable state or
-          produces a precise manual action list.
-        </p>
-      </div>
-      <div class="comparison-card">
-        <div class="comparison-row bad">
-          <span>Traditional bot</span>
-          <strong>Version bumped, build unknown</strong>
-        </div>
-        <div class="comparison-row bad">
-          <span>Manual cleanup</span>
-          <strong>Developer chases 403s</strong>
-        </div>
-        <div class="comparison-row good">
-          <span>Dependency Rescue</span>
-          <strong>Safe version selected and build verified</strong>
-        </div>
-      </div>
-    </section>
-
-    <section id="cta" class="section">
-      <div class="cta-card">
-        <p class="eyebrow">The pitch</p>
-        <h2>Ship security updates with proof, not hope.</h2>
-        <p>
-          Dependency Rescue gives platform, AppSec, and engineering teams a repeatable path from CVE backlog
-          to validated dependency updates for Node and Gradle projects.
-        </p>
-        <div class="hero-actions center">
-          <a class="button primary" href="mailto:team@example.com?subject=Dependency Rescue demo">Request a demo</a>
-          <a class="button secondary" href="#workflow">Review workflow</a>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="footer">
-    <p>Dependency Rescue Pipeline — CVE-aware updates, block checks, and build validation for Node and Gradle.</p>
-  </footer>
-
-  <script src="script.js"></script>
+<header class="site-header">
+<nav aria-label="Main navigation" class="nav">
+<a class="brand" href="#top">
+<span aria-hidden="true" class="brand-mark">PU</span>
+<span>Package Update</span>
+</a>
+<div class="nav-links">
+<a href="#background">Background</a>
+<a href="#solution">Solution</a><a href="#sample-report">Sample report</a>
+<a href="#safety">Safety</a>
+<a href="#ecosystems">Ecosystems</a>
+<a href="#comparison">Comparison</a>
+<a href="#cicd">CI/CD</a>
+</div>
+<a class="nav-cta" href="#solution">See how it works</a>
+</nav>
+</header>
+<main id="top">
+<!-- HERO -->
+<section class="hero">
+<div class="hero-content">
+<p class="eyebrow">npm · Gradle · Python</p>
+<h1>CVE found.<br/>Fix applied.</h1>
+<p class="hero-copy">Automated dependency remediation — from scanner report to validated, build-passing fix.</p>
+<div class="hero-actions">
+<a class="button primary" href="#solution">See the workflow</a>
+<a class="button secondary" href="#comparison">Compare to manual</a>
+</div>
+</div>
+<aside aria-label="Package Update UI preview" class="hero-card">
+<img alt="Package Update product interface screenshot" class="ui-screenshot" src="ui.png"/>
+</aside>
+</section>
+<!-- BACKGROUND -->
+<section class="section" id="background">
+<div class="section-heading">
+<p class="eyebrow">Background</p>
+<h2>How CVE remediation works today.</h2>
+<p>JFrog Xray flags vulnerabilities on a taskboard. Getting from report to committed fix is entirely manual.</p>
+</div>
+<div class="flow-panel">
+<div class="flow">
+<div class="flow-step active"><span>1</span>
+<p><strong>Scanner reports</strong><br/>App + deployment CVEs mixed in one list</p>
+</div>
+<div class="flow-step"><span>2</span>
+<p><strong>Manual triage</strong><br/>Separate app CVEs from container/OS CVEs</p>
+</div>
+<div class="flow-step"><span>3</span>
+<p><strong>Version hunting</strong><br/>Find a safe, accessible version manually</p>
+</div>
+<div class="flow-step"><span>4</span>
+<p><strong>Write · build · debug</strong><br/>If the build breaks, find the culprit by hand</p>
+</div>
+</div>
+</div>
+</section>
+<!-- SOLUTION -->
+<section class="section" id="solution">
+<div class="section-heading">
+<p class="eyebrow">The solution</p>
+<h2>Every step automated.</h2>
+</div>
+<div class="flow-panel">
+<div class="flow">
+<div class="flow-step active"><span>1</span>
+<p><strong>Clone repo</strong></p>
+</div>
+<div class="flow-step"><span>2</span>
+<p><strong>Detect dependency files</strong></p>
+</div>
+<div class="flow-step"><span>3</span>
+<p><strong>Resolve full graph</strong><br/>including transitives</p>
+</div>
+<div class="flow-step"><span>4</span>
+<p><strong>JFrog CVE audit</strong><br/>app packages only</p>
+</div>
+<div class="flow-step"><span>5</span>
+<p><strong>Find safe version</strong><br/>registry-confirmed, Xray-filtered</p>
+</div>
+<div class="flow-step"><span>6</span>
+<p><strong>Write updates</strong><br/>format preserved</p>
+</div>
+<div class="flow-step"><span>7</span>
+<p><strong>Validate build</strong><br/>auto-isolate on failure</p>
+</div>
+<div class="flow-step"><span>8</span>
+<p><strong>Report</strong><br/>fixed · skipped · manual review</p>
+</div>
+</div>
+</div>
+</section>
+<!-- SAFETY -->
+<section class="section" id="sample-report">
+<div class="section-heading report-heading">
+<div>
+<p class="eyebrow">Proof of remediation</p>
+<h2>See exactly what was fixed.</h2>
+<p>The generated report records dependency changes, validation evidence, the secondary JFrog scan, and anything that still needs manual review.</p>
+</div>
+<a class="button secondary report-source-link" href="report.md" rel="noopener" target="_blank">Open raw report</a>
+</div>
+<article aria-label="Rendered sample remediation report" class="report-shell">
+<div class="report-toolbar">
+<div aria-hidden="true" class="report-window-controls">
+<span></span><span></span><span></span>
+</div>
+<span class="report-filename">report.md</span>
+<span class="report-status" id="report-status">Loading sample report...</span>
+</div>
+<div aria-live="polite" class="markdown-body" id="report-content">
+<div class="report-loading">
+<span aria-hidden="true" class="report-spinner"></span>
+                Rendering report.md...
+              </div>
+</div>
+</article>
+</section><section class="section" id="safety">
+<div class="section-heading">
+<p class="eyebrow">Safety</p>
+<h2>Checks its own work at every step.</h2>
+</div>
+<div class="grid two">
+<article class="card wide">
+<h3>Version selection</h3>
+<ul class="feature-bullets">
+<li>Lowest safe version within the same major first</li>
+<li>Cross-major only as a last resort</li>
+<li>Registry-confirmed before selection (npm &amp; Gradle)*</li>
+<li>Xray re-scanned for new CVEs</li>
+<li>No safe version found → manual review, not a guess</li>
+</ul>
+</article>
+<article class="card wide">
+<h3>Build isolation</h3>
+<ul class="feature-bullets">
+<li>Build fails → steps down to an intermediate safe version before reverting entirely</li>
+<li>No single culprit → accumulates reverts until build passes</li>
+<li>Rescue pass removes unnecessary reverts</li>
+<li>Result: minimal revert set, maximum fixes kept</li>
+</ul>
+</article>
+</div>
+<div class="grid two" style="margin-top:24px;">
+<article class="card wide">
+<h3>Real failures vs. pre-existing ones</h3>
+<ul class="feature-bullets">
+<li>A failing test after the update isn't automatically blamed on it</li>
+<li>Gradle: rebuilds against the original file — same test already failing there? Kept, not rolled back</li>
+<li>Node: reruns the suite against the pre-remediation <code>package.json</code> (git HEAD) — same failing suite there? Same treatment</li>
+<li>Only genuinely new failures trigger isolation/rollback</li>
+</ul>
+</article>
+<article class="card wide">
+<h3>Two-phase execution</h3>
+<ul class="feature-bullets">
+<li>Phase 1: fast pass across every repo — no isolation trials, so one slow build never blocks the batch</li>
+<li>Phase 2: opt-in deep pass — replays the cached plan with isolation enabled for repos still needing review</li>
+<li>Phase 2 replay re-clones automatically if the original checkout is gone</li>
+</ul>
+</article>
+</div>
+</section>
+<!-- ECOSYSTEMS -->
+<section class="section" id="ecosystems">
+<div class="section-heading">
+<p class="eyebrow">Ecosystems</p>
+<h2>Each one handled natively.</h2>
+</div>
+<div class="ecosystem-block ecosystem-npm">
+<div class="ecosystem-header">
+<h3>npm</h3>
+<p class="ecosystem-sub">package.json · package-lock.json · overrides</p>
+</div>
+<div class="ecosystem-body">
+<div class="ecosystem-challenge">
+<h4>The problem</h4>
+<ul class="feature-bullets">
+<li>Multiple versions of the same package can coexist in the lockfile</li>
+<li>Registry blocks surface as 403 at install time, post-merge</li>
+</ul>
+</div>
+<div class="ecosystem-solution">
+<h4>What it does</h4>
+<ul class="feature-bullets">
+<li>Reads the full lockfile including all transitives</li>
+<li>Probes each candidate for registry block status</li>
+<li>Writes a direct pin or override to reach the vulnerable copy</li>
+<li>Runs <code>npm install</code>; rolls back on failure</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="ecosystem-block ecosystem-gradle">
+<div class="ecosystem-header">
+<h3>Gradle</h3>
+<p class="ecosystem-sub">build.gradle · resolution strategy · Artifactory Maven</p>
+</div>
+<div class="ecosystem-body">
+<div class="ecosystem-challenge">
+<h4>The problem</h4>
+<ul class="feature-bullets">
+<li>Each configuration resolves independently — clean compile ≠ clean runtime</li>
+<li>Most scanners only check one configuration</li>
+</ul>
+</div>
+<div class="ecosystem-solution">
+<h4>What it does</h4>
+<ul class="feature-bullets">
+<li>Resolves all four: <code>runtimeClasspath</code>, <code>compileClasspath</code>,
+                <code>testRuntimeClasspath</code>, <code>testCompileClasspath</code></li>
+<li>Queries Artifactory Maven metadata; confirms accessibility before selecting</li>
+<li>Runs <code>./gradlew build</code>; rolls back on failure</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="ecosystem-block ecosystem-python">
+<div class="ecosystem-header">
+<h3>Python</h3>
+<p class="ecosystem-sub">requirements.txt · pyproject.toml · Poetry · pip</p>
+</div>
+<div class="ecosystem-body">
+<div class="ecosystem-challenge">
+<h4>The problem</h4>
+<ul class="feature-bullets">
+<li>Three formats, each with different pinning syntax</li>
+<li>Private pip indexes can block versions silently</li>
+</ul>
+</div>
+<div class="ecosystem-solution">
+<h4>What it does</h4>
+<ul class="feature-bullets">
+<li>Detects and parses all three formats</li>
+<li>Applies same semver selection logic as npm and Gradle</li>
+<li>Runs <code>pip install</code>; rolls back on failure</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<!-- COMPARISON -->
+<section class="section" id="comparison">
+<div class="section-heading">
+<p class="eyebrow">Comparison</p>
+<h2>The full workflow, not just the version bump.</h2>
+</div>
+<div class="comparison-table-wrap">
+<table class="comparison-table">
+<thead>
+<tr>
+<th></th>
+<th>Manual</th>
+<th>Dependabot / Renovate</th>
+<th>Package Update</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="row-label">Input</td>
+<td>Mixed app + deployment CVEs</td>
+<td>Direct declared deps</td>
+<td>Resolved graph — app only</td>
+</tr>
+<tr>
+<td class="row-label">Filters deployment CVEs</td>
+<td class="cell-bad">✗  Manual triage</td>
+<td class="cell-na">—  N/A</td>
+<td class="cell-good">✓  Structural</td>
+</tr>
+<tr>
+<td class="row-label">Transitive vulnerabilities</td>
+<td class="cell-warn">⚠  Easy to miss</td>
+<td class="cell-bad">✗  Direct deps only</td>
+<td class="cell-good">✓  Full resolved tree</td>
+</tr>
+<tr>
+<td class="row-label">Registry availability</td>
+<td class="cell-warn">⚠  Trial and error</td>
+<td class="cell-bad">✗  Fails at CI</td>
+<td class="cell-good">✓  Checked before selection*</td>
+</tr>
+<tr>
+<td class="row-label">Build validation</td>
+<td class="cell-warn">⚠  Manual; developer finds culprit</td>
+<td class="cell-bad">✗  None</td>
+<td class="cell-good">✓  Automated isolation &amp; rollback</td>
+</tr>
+<tr>
+<td class="row-label">Output</td>
+<td>Best-effort fix</td>
+<td>Unvalidated PR</td>
+<td>Validated fixes + manual review list</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<!-- CI/CD -->
+<section class="section" id="cicd">
+<div class="section-heading">
+<p class="eyebrow">Future integration</p>
+<h2>One step in your pipeline.</h2>
+</div>
+<div class="gh-flow">
+<div class="gh-hrow">
+<div class="gh-node trigger">⏰  on: schedule</div>
+<div class="gh-connector"></div>
+<div class="gh-node"><span class="gh-dot"></span>clone</div>
+<div class="gh-connector"></div>
+</div>
+<div class="gh-split-wrap">
+<div class="gh-branch">
+<div class="gh-node"><span class="gh-dot"></span>remediate</div>
+<div class="gh-connector"></div>
+<div class="gh-node"><span class="gh-dot"></span>commit</div>
+<div class="gh-connector"></div>
+<div class="gh-node"><span class="gh-dot"></span>artifacts</div>
+<div class="gh-connector"></div>
+<div class="gh-node"><span class="gh-dot"></span>open-pr</div>
+</div>
+<div class="gh-branch">
+<div class="gh-node muted"><span class="gh-dot muted"></span>skip</div>
+<span class="gh-fork-label">if: nothing_to_fix</span>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA -->
+<section class="section">
+<div class="cta-card">
+<p class="eyebrow">Who it's for</p>
+<h2>Built for teams that own the fix, not just the finding.</h2>
+<div class="grid three" style="text-align:left; margin: 28px 0;">
+<div>
+<h3>AppSec</h3>
+<p>Deliver validated fix sets, not raw Xray exports.</p>
+</div>
+<div>
+<h3>Platform / DevSecOps</h3>
+<p>Repeatable remediation across repos, no senior engineer per CVE.</p>
+</div>
+<div>
+<h3>Engineering</h3>
+<p>No more version hunting, registry checks, or manual rollbacks.</p>
+</div>
+</div>
+<div class="hero-actions center">
+<a class="button primary" href="#solution">See the workflow</a>
+<a class="button secondary" href="#safety">Review the safety model</a>
+</div>
+</div>
+</section>
+</main>
+<footer class="footer">
+<p>Package Update — automated CVE remediation for npm, Gradle, and Python.</p>
+<p class="footnote">* Registry accessibility probing implemented for npm (<code>npm pack</code>) and Gradle
+      (Artifactory HTTP check). Python relies on pip index listing; blocked versions surface at build validation.</p>
+</footer>
+<script src="script.js"></script>
 </body>
 </html>

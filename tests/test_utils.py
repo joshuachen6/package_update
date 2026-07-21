@@ -106,3 +106,24 @@ class TestProgressBar:
         pb.render()
         out = capsys.readouterr().out
         assert "done" in out.lower() or out == ""
+
+class TestNormalizeLogDir:
+    def test_default_is_base_logs(self, tmp_path):
+        from shared.utils import normalize_log_dir
+        assert normalize_log_dir(None, str(tmp_path)) == str(tmp_path / "logs")
+
+    def test_project_dir_maps_to_logs_child(self, tmp_path):
+        from shared.utils import normalize_log_dir
+
+        assert normalize_log_dir(str(tmp_path), str(tmp_path)) == str(tmp_path / "logs")
+
+    def test_existing_logs_dir_is_preserved(self, tmp_path):
+        from shared.utils import normalize_log_dir
+
+        logs = tmp_path / "logs"
+        assert normalize_log_dir(str(logs), str(tmp_path)) == str(logs)
+
+    def test_custom_parent_maps_to_logs_child(self, tmp_path):
+        from shared.utils import normalize_log_dir
+        custom = tmp_path / "artifacts"
+        assert normalize_log_dir(str(custom), str(tmp_path)) == str(custom / "logs")

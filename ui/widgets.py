@@ -19,14 +19,17 @@ APP_STYLESHEET = """
         padding: 0 4px;
         left: 8px;
     }
-    QLineEdit, QSpinBox {
+    QLineEdit, QSpinBox, QComboBox {
         background: #1e1e1e;
         color: #d4d4d4;
         border: 1px solid #555;
         border-radius: 3px;
         padding: 3px 6px;
     }
-    QLineEdit:focus, QSpinBox:focus {
+    QComboBox {
+        padding-right: 24px;
+    }
+    QLineEdit:focus, QSpinBox:focus, QComboBox:focus {
         border: 1px solid #569cd6;
     }
     QPushButton {
@@ -39,6 +42,28 @@ APP_STYLESHEET = """
     QPushButton:hover  { background: #4a4a4a; }
     QPushButton:pressed { background: #264f78; }
     QPushButton:disabled { color: #666; }
+    QComboBox::drop-down {
+        subcontrol-origin: padding;
+        subcontrol-position: top right;
+        background: #2d2d2d;
+        border-left: 1px solid #555;
+        border-top-right-radius: 3px;
+        border-bottom-right-radius: 3px;
+        width: 22px;
+    }
+    QComboBox::down-arrow {
+        image: url(ui/assets/chevron-down.svg);
+        width: 12px;
+        height: 8px;
+    }
+    QComboBox QAbstractItemView {
+        background: #1e1e1e;
+        color: #d4d4d4;
+        selection-background-color: #264f78;
+        selection-color: #ffffff;
+        border: 1px solid #555;
+        outline: none;
+    }
     QCheckBox, QRadioButton { color: #d4d4d4; }
     QScrollArea { border: 1px solid #555; border-radius: 3px; }
     QScrollBar:vertical {
@@ -106,6 +131,8 @@ def make_table(cols: list) -> QTableWidget:
 def mono_textedit(placeholder: str = "") -> QTextEdit:
     t = QTextEdit()
     t.setReadOnly(True)
+    t.document().setMaximumBlockCount(5000)
+    t.setUndoRedoEnabled(False)
     t.setFont(
         QFont(
             "Menlo"

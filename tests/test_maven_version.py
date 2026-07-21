@@ -108,3 +108,5 @@ class TestMavenVersionRegex:
 
     def test_no_match_single_number(self):
         assert not MAVEN_VERSION_RE.search("version 5")
+
+

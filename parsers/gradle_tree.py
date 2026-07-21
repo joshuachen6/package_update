@@ -24,13 +24,88 @@ def get_gradle_cmd(project_dir: str) -> str:
     return "gradle"
 
 
+_REPO_URL_MARKER = "PKGUPDATE_REPO_URL::"
+# This rides along on the `gradle dependencies` call already made for tree
+# resolution — a nice-to-have addition on top of critical infrastructure, so
+# it must never be able to fail that call. Every repo is wrapped in its own
+# try/catch (an odd repository type, or evaluation order weirdness, must not
+# take down the whole configuration phase), and repo.url is guarded with a
+# null check (hasProperty('url') can be true with a null getter for some
+# repository implementations).
+_REPO_URL_INIT_SCRIPT = """\
+allprojects { proj ->
+    afterEvaluate {
+        try {
+            proj.repositories.each { repo ->
+                try {
+                    if (repo.hasProperty('url') && repo.url != null) {
+                        println("%s" + repo.url.toString())
+                    }
+                } catch (Throwable ignoredRepo) {
+                    // Never let one odd repository break tree resolution.
+                }
+            }
+        } catch (Throwable ignoredProject) {
+            // Never let this best-effort print break tree resolution.
+        }
+    }
+}
+""" % _REPO_URL_MARKER
+
+
+def _repo_url_init_script_path() -> str:
+    """Path to a cached init script that prints each project's resolved Maven
+    repository URLs to stdout, one per line, prefixed with _REPO_URL_MARKER.
+
+    Repository declarations can reference Gradle/env properties we can't
+    statically resolve (e.g. url "${ARTIFACTORY_SOURCE}/repo") — a raw regex
+    parse of the build file returns that literal, unresolved string, which
+    then breaks every accessibility probe run against it. Piggybacking this
+    onto the `gradle dependencies` call we already make for tree resolution
+    lets Gradle itself do the resolution (env vars, gradle.properties, -P
+    flags, whatever the project actually uses) at the cost of a few extra
+    seconds, rather than guessing.
+    """
+    path = os.path.join(tempfile.gettempdir(), "pkg_update_gradle_repo_urls.gradle")
+    if not os.path.exists(path):
+        with open(path, "w", encoding="utf-8") as fh:
+            fh.write(_REPO_URL_INIT_SCRIPT)
+    return path
+
+
+def extract_resolved_repo_urls(output: str) -> list[str]:
+    """Pull the Gradle-resolved repository URLs printed by the init script
+    out of `gradle dependencies` stdout. Order-preserving, deduplicated.
+    """
+    urls: list[str] = []
+    for line in (output or "").splitlines():
+        line = line.strip()
+        if not line.startswith(_REPO_URL_MARKER):
+            continue
+        url = line[len(_REPO_URL_MARKER):].strip().rstrip("/")
+        if url and url not in urls:
+            urls.append(url)
+    return urls
+
+
 def run_gradle_dependencies(
     project_dir: str,
     gradle_cmd: str,
     timeout: int,
     configuration: str = "runtimeClasspath",
+    resolve_repo_urls: bool = False,
 ) -> tuple[str | None, str | None]:
-    """Returns (stdout, error_message). On success error_message is None."""
+    """Returns (stdout, error_message). On success error_message is None.
+
+    resolve_repo_urls injects an init script that has Gradle print each
+    project's resolved repository URLs (see extract_resolved_repo_urls) —
+    off by default since --init-script invalidates Gradle's configuration
+    cache on every run (confirmed locally: "entry reused" without it,
+    "entry stored" i.e. fully reconfigured with it), which is enough
+    overhead to tip a marginal tree resolution over its timeout on a large
+    project. Callers should only set this when the build file actually has
+    an unresolved repo URL worth resolving (parsers.gradle.has_unresolved_repo_url).
+    """
     cmd = [
         gradle_cmd,
         "dependencies",
@@ -38,6 +113,8 @@ def run_gradle_dependencies(
         "--no-daemon",
         "--console=plain",
     ]
+    if resolve_repo_urls:
+        cmd.extend(["--init-script", _repo_url_init_script_path()])
     try:
         result = subprocess.run(
             cmd,
@@ -123,9 +200,11 @@ def parse_gradle_dep_tree(
 
         stack.append((depth, key))
 
-        # Skip already-resolved duplicates marked with (*) for parent tracking,
-        # but still record the installed version if not yet seen.
-        is_duplicate = raw_line.rstrip().endswith("(*)")
+        # Gradle marks repeated dependencies with "(*)" when the subtree was
+        # already rendered elsewhere. The dependency edge is still real, so keep
+        # parent tracking for duplicate lines; otherwise a component can appear
+        # in the resolved dependency tree but have no parent entry, which later
+        # makes a scanned CVE dependency look "not found in dependency tree".
         is_failed = "FAILED" in raw_line
 
         if not is_failed:
@@ -133,7 +212,7 @@ def parse_gradle_dep_tree(
             if v and key not in installed:
                 installed[key] = v
 
-        if not is_duplicate and not is_failed and depth > 0:
+        if not is_failed and depth > 0:
             # Direct parent is depth-0 entry on the stack
             direct = next((k for d, k in stack if d == 0), None)
             if direct and direct != key:
@@ -201,7 +280,7 @@ def resolve_transitive_with_gradle(
 
 _RESOLVE_RE = re.compile(r"Could not resolve\s+([^:\s]+):([^:\s]+):([^\s,()]+)")
 _DOWNLOAD_RE = re.compile(r"Could not download [^\(]*\(([^:\s]+):([^:\s]+):([^\s,()]+)\)")
-_GET_URL_RE = re.compile(r"Could not GET '(https://[^']+)'")
+_GET_URL_RE = re.compile(r"Could not (?:GET|HEAD) '(https://[^']+)'")
 
 
 def _parse_blocked_packages(
@@ -339,6 +418,7 @@ def run_gradle_dependencies_with_fallback(
     gradle_cmd: str,
     timeout: int,
     configuration: str = "runtimeClasspath",
+    resolve_repo_urls: bool = False,
 ) -> tuple[str | None, str | None, dict[str, str]]:
     """Run gradle dependencies, unblocking 403'd packages by forcing accessible versions.
 
@@ -356,7 +436,10 @@ def run_gradle_dependencies_with_fallback(
     """
     from parsers.gradle import get_available_versions, version_accessible
 
-    stdout, err = run_gradle_dependencies(project_dir, gradle_cmd, timeout, configuration)
+    stdout, err = run_gradle_dependencies(
+        project_dir, gradle_cmd, timeout, configuration,
+        resolve_repo_urls=resolve_repo_urls,
+    )
     if stdout:
         return stdout, err, {}
 
@@ -449,7 +532,10 @@ def run_gradle_dependencies_with_fallback(
             except Exception as exc:
                 return None, str(exc), all_bumped
 
-            stdout2, err2 = run_gradle_dependencies(tmp, gradle_cmd, timeout, configuration)
+            stdout2, err2 = run_gradle_dependencies(
+                tmp, gradle_cmd, timeout, configuration,
+                resolve_repo_urls=resolve_repo_urls,
+            )
             last_err = err2
 
             if stdout2:

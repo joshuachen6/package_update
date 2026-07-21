@@ -16,7 +16,6 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from shared.cache import cache_by_subprocess_run
 from shared.semver import SemVer
 from shared.utils import ProgressBar
-from shared.xray import filter_versions_without_cves
 
 
 def parse_npm_versions_stdout(stdout: str) -> list[SemVer]:
@@ -176,7 +175,14 @@ def find_unblocked_version(
     nearest to oldest. Lower candidates are only accepted when the registry pack
     check succeeds; the caller's later build validation remains responsible for
     proving the resulting project still compiles before the update is kept.
+
+    Thin npm-specific adapter over `shared.version_search.find_safe_version`:
+    builds the same-major forward/backward candidate lists and the `npm pack`
+    accessibility probe, then delegates the CVE-filter + concurrent-probe
+    orchestration to the shared implementation (also used by Maven and PyPI).
     """
+    from shared.version_search import find_safe_version
+
     forward_candidates = sorted(
         v for v in available if v.major == blocked.major and v > blocked
     )
@@ -185,44 +191,19 @@ def find_unblocked_version(
         reverse=True,
     )
 
-    forward_candidates, forward_cves, forward_xray_error = filter_versions_without_cves(
-        "npm", package, forward_candidates, xray_host=xray_host, auth=xray_auth, timeout=timeout
-    )
-    backward_candidates, backward_cves, backward_xray_error = filter_versions_without_cves(
-        "npm", package, backward_candidates, xray_host=xray_host, auth=xray_auth, timeout=timeout
-    )
-
-    checked_forward = 0
-    checked_backward = 0
-    for candidate in forward_candidates:
-        checked_forward += 1
+    def _accessible(candidate: SemVer) -> bool:
         blocked_flag, _snippet = is_version_blocked(
             package, str(candidate), registry, npm_cmd, timeout, project_dir
         )
-        if not blocked_flag:
-            return candidate, ""
-    for candidate in backward_candidates:
-        checked_backward += 1
-        blocked_flag, _snippet = is_version_blocked(
-            package, str(candidate), registry, npm_cmd, timeout, project_dir
-        )
-        if not blocked_flag:
-            return candidate, ""
+        return not blocked_flag
 
-    return (
-        None,
-        (
-            f"all {checked_forward} candidates above {blocked} and "
-            f"{checked_backward} candidates below {blocked} are blocked or unavailable"
-            + (
-                f"; Xray lookup warning: {forward_xray_error or backward_xray_error}"
-                if (forward_xray_error or backward_xray_error)
-                else ""
-            )
-            + (
-                f"; CVE-filtered candidates: {len(forward_cves) + len(backward_cves)}"
-                if (forward_cves or backward_cves)
-                else ""
-            )
-        ),
+    return find_safe_version(
+        forward_candidates,
+        backward_candidates,
+        _accessible,
+        "npm",
+        package,
+        xray_host=xray_host,
+        xray_auth=xray_auth,
+        timeout=timeout,
     )

@@ -1,0 +1,14 @@
+[run]
+omit =
+    tests/*\n    gui.py
+    quick_update.py
+    ui/window.py
+    ui/widgets.py
+    ui/highlighter.py
+    ui/write_worker.py
+    output/node.py
+    output/gradle.py
+    parsers/node.py
+    parsers/gradle.py
+    parsers/gradle_tree.py
+    registry/npm.py

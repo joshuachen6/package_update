@@ -22,7 +22,10 @@ runtimeClasspath - Runtime classpath of source set 'main'.
     assert str(installed["org.example:parent-b"]) == "3.0.0"
     assert str(installed["org.example:child"]) == "1.2.3"
     assert str(installed["org.example:sibling"]) == "2.0.0"
-    assert parents_of["org.example:child"] == {"org.example:parent-a"}
+    assert parents_of["org.example:child"] == {
+        "org.example:parent-a",
+        "org.example:parent-b",
+    }
     assert parents_of["org.example:sibling"] == {"org.example:parent-a"}
 
 
@@ -42,6 +45,14 @@ def test_parse_gradle_dep_tree_records_multiple_direct_parents_for_non_duplicate
     }
 
 
+
+def test_parse_gradle_dep_tree_records_parent_for_duplicate_after_top_level_entry():
+    output = r"""+--- org.example:shared:1.0.0
+\--- org.example:parent:2.0.0
+     \--- org.example:shared:1.0.0 (*)"""
+    installed, parents_of = parse_gradle_dep_tree(output)
+    assert str(installed["org.example:shared"]) == "1.0.0"
+    assert parents_of["org.example:shared"] == {"org.example:parent"}
 def test_parse_gradle_dep_tree_skips_failed_dependencies():
     output = """
 +--- org.example:parent:1.0.0
@@ -222,3 +233,164 @@ def test_resolve_transitive_with_gradle_caches_identical_calls(monkeypatch, tmp_
 
     if hasattr(gradle_tree.resolve_transitive_with_gradle, "cache_clear"):
         gradle_tree.resolve_transitive_with_gradle.cache_clear()
+
+
+def test_gradle_repository_parser_excludes_plugin_repositories():
+    from parsers.gradle import parse_gradle_repositories
+
+    text = """
+    buildscript {
+        repositories {
+            maven {
+                url "https://repo.example/plugins-release"
+            }
+        }
+    }
+
+    repositories {
+        maven {
+            url "https://repo.example/app-virtual"
+        }
+    }
+    """
+
+    assert parse_gradle_repositories(text) == [
+        "https://repo.example/app-virtual"
+    ]
+
+
+def test_gradle_repository_parser_skips_unresolved_property_urls():
+    """Live bug: a repo declared as url "${ARTIFACTORY_SOURCE}/repo-name" was
+    extracted verbatim and used as the sole accessibility-check URL, so
+    find_accessible_version returned None for jackson-databind even though an
+    accessible, non-vulnerable version existed — every HEAD request against
+    the literal, unresolved "${ARTIFACTORY_SOURCE}" string failed, and there
+    was no real URL left to fall back to. We don't evaluate Gradle
+    expressions, so these must be dropped instead of returned as if they were
+    usable URLs, letting callers fall back to the pipeline's own configured
+    Artifactory base_url.
+    """
+    from parsers.gradle import parse_gradle_repositories
+
+    text = """
+    repositories {
+        maven {
+            url "${ARTIFACTORY_SOURCE}/repo-name"
+        }
+        maven {
+            url "https://repo.example/app-virtual"
+        }
+    }
+    """
+
+    assert parse_gradle_repositories(text) == [
+        "https://repo.example/app-virtual"
+    ]
+
+
+def test_extract_resolved_repo_urls_parses_marker_lines():
+    from parsers.gradle_tree import extract_resolved_repo_urls
+
+    output = (
+        "PKGUPDATE_REPO_URL::https://real.example/artifactory/repo-a\n"
+        "+--- org.example:lib:1.0.0\n"
+        "PKGUPDATE_REPO_URL::https://real.example/artifactory/repo-b/\n"
+        "PKGUPDATE_REPO_URL::https://real.example/artifactory/repo-a\n"
+        "\\--- org.example:lib2:2.0.0\n"
+    )
+
+    assert extract_resolved_repo_urls(output) == [
+        "https://real.example/artifactory/repo-a",
+        "https://real.example/artifactory/repo-b",
+    ]
+
+
+def test_extract_resolved_repo_urls_empty_when_no_marker():
+    from parsers.gradle_tree import extract_resolved_repo_urls
+
+    assert extract_resolved_repo_urls("+--- org.example:lib:1.0.0\n") == []
+    assert extract_resolved_repo_urls("") == []
+
+
+def test_run_gradle_dependencies_injects_repo_url_init_script_when_requested(monkeypatch, tmp_path):
+    """The repo-URL-resolving init script can ride along on the same
+    `gradle dependencies` call already made for tree resolution, so
+    discovering real repo URLs costs nothing extra beyond what's already run
+    — but only when a caller actually asks for it via resolve_repo_urls=True.
+    """
+    import subprocess
+
+    import parsers.gradle_tree as gradle_tree
+
+    captured_cmd = {}
+
+    def fake_run(cmd, **kwargs):
+        captured_cmd["cmd"] = cmd
+        return subprocess.CompletedProcess(cmd, 0, stdout="+--- org.example:lib:1.0.0\n", stderr="")
+
+    monkeypatch.setattr(gradle_tree.subprocess, "run", fake_run)
+
+    gradle_tree.run_gradle_dependencies(str(tmp_path), "gradle", 30, resolve_repo_urls=True)
+
+    cmd = captured_cmd["cmd"]
+    assert "--init-script" in cmd
+    script_path = cmd[cmd.index("--init-script") + 1]
+    assert "PKGUPDATE_REPO_URL::" in open(script_path, encoding="utf-8").read()
+
+
+def test_run_gradle_dependencies_skips_init_script_by_default(monkeypatch, tmp_path):
+    """--init-script invalidates Gradle's configuration cache on every run
+    (confirmed locally: "entry reused" without it, "entry stored" — i.e. a
+    full reconfigure — with it), which is enough overhead to tip a marginal
+    tree resolution over its timeout on a large project. Must be opt-in, not
+    unconditional, so the common case (no unresolved repo URL to resolve)
+    pays nothing extra.
+    """
+    import subprocess
+
+    import parsers.gradle_tree as gradle_tree
+
+    captured_cmd = {}
+
+    def fake_run(cmd, **kwargs):
+        captured_cmd["cmd"] = cmd
+        return subprocess.CompletedProcess(cmd, 0, stdout="+--- org.example:lib:1.0.0\n", stderr="")
+
+    monkeypatch.setattr(gradle_tree.subprocess, "run", fake_run)
+
+    gradle_tree.run_gradle_dependencies(str(tmp_path), "gradle", 30)
+
+    assert "--init-script" not in captured_cmd["cmd"]
+
+
+def test_has_unresolved_repo_url_detects_property_interpolation():
+    from parsers.gradle import has_unresolved_repo_url
+
+    assert has_unresolved_repo_url(
+        'repositories { maven { url "${ARTIFACTORY_SOURCE}/repo" } }'
+    )
+    assert not has_unresolved_repo_url(
+        'repositories { maven { url "https://repo.example/artifactory" } }'
+    )
+    assert not has_unresolved_repo_url("")
+
+
+def test_gradle_probe_version_normalizes_exact_constraint():
+    from parsers.gradle import (
+        normalize_gradle_version_for_probe,
+    )
+
+    assert (
+        normalize_gradle_version_for_probe("[4.31.1]")
+        == "4.31.1"
+    )
+    assert (
+        normalize_gradle_version_for_probe("[4.31.1,5.0)")
+        is None
+    )
+    assert (
+        normalize_gradle_version_for_probe(
+            "${protobufVersion}"
+        )
+        is None
+    )

@@ -1,8 +1,8 @@
 """Version selection utilities shared by the Node and Gradle pipelines.
 
 select_best_version picks the single best registry version to target given a set
-of ADO-mentioned versions and the list of all available versions for that major.
-highest_ado_criteria_by_major reduces a flat set of ADO mentions to one minimum
+of remediation-mentioned versions and the list of all available versions for that major.
+highest_remediation_criteria_by_major reduces a flat set of remediation mentions to one minimum
 per major, which is the input format expected by both apply_updates functions.
 """
 
@@ -12,7 +12,7 @@ from typing import Any
 
 
 def select_best_version(
-    ado_versions: set[Any],
+    remediation_versions: set[Any],
     available: list,
     major: int,
     constraint: str = ">=",
@@ -24,30 +24,30 @@ def select_best_version(
     Existing behavior is preserved when current is not provided: choose the best
     version within the requested major.
 
-    When current is provided, never cross its major. If ADO also mentions a
+    When current is provided, never cross its major. If remediation also mentions a
     version in the current minor line, prefer that minor line first. For example,
-    current 4.1.x with ADO mentions 4.1.133 and 4.2.13 should try 4.1.x first.
-    If ADO has no version in the current minor line, a newer minor within the
+    current 4.1.x with remediation mentions 4.1.133 and 4.2.13 should try 4.1.x first.
+    If remediation has no version in the current minor line, a newer minor within the
     same major is allowed. The major is never changed.
     """
-    ado_for_major = {v for v in ado_versions if v.major == major}
-    if not ado_for_major:
+    remediation_for_major = {v for v in remediation_versions if v.major == major}
+    if not remediation_for_major:
         return None
 
     current_minor = getattr(current, "minor", None)
     if current_minor is None:
-        ado_candidates = ado_for_major
+        remediation_candidates = remediation_for_major
         selected_minor = None
     else:
-        ado_for_current_minor = {
-            v for v in ado_for_major if getattr(v, "minor", None) == current_minor
+        remediation_for_current_minor = {
+            v for v in remediation_for_major if getattr(v, "minor", None) == current_minor
         }
-        ado_candidates = ado_for_current_minor or ado_for_major
+        remediation_candidates = remediation_for_current_minor or remediation_for_major
         selected_minor = (
-            current_minor if ado_for_current_minor else getattr(max(ado_candidates), "minor", None)
+            current_minor if remediation_for_current_minor else getattr(max(remediation_candidates), "minor", None)
         )
 
-    minimum = max(ado_candidates)
+    minimum = max(remediation_candidates)
     available_strs = {str(v) for v in available}
 
     def allowed_available(v: Any) -> bool:
@@ -61,7 +61,7 @@ def select_best_version(
         exact = sorted(
             (
                 v
-                for v in ado_candidates
+                for v in remediation_candidates
                 if str(v) in available_strs and allowed_available(v) and v > minimum
             ),
             reverse=True,
@@ -69,21 +69,21 @@ def select_best_version(
         candidates = [v for v in available if allowed_available(v) and v > minimum]
     else:
         exact = sorted(
-            (v for v in ado_candidates if str(v) in available_strs and allowed_available(v)),
+            (v for v in remediation_candidates if str(v) in available_strs and allowed_available(v)),
             reverse=True,
         )
         candidates = [v for v in available if allowed_available(v) and v >= minimum]
 
     if exact:
         return exact[0]
-    return max(candidates) if candidates else None
+    return min(candidates) if candidates else None
 
 
-def highest_ado_criteria_by_major(
+def highest_remediation_criteria_by_major(
     package_versions: dict[str, set[Any]],
 ) -> dict[str, dict[int, Any]]:
     """
-    For each package, returns the highest ADO-mentioned version per major.
+    For each package, returns the highest remediation-mentioned version per major.
     Result: {package: {major: highest_version}}
     """
     criteria: dict[str, dict[int, Any]] = {}

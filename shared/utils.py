@@ -45,7 +45,7 @@ class ProgressBar:
             flush=True,
         )
         if self.current >= self.total:
-            print()
+            print(flush=True)
 
 
 def write_csv_rows(path: str, rows: list[dict], columns: list[str]) -> None:
@@ -56,6 +56,21 @@ def write_csv_rows(path: str, rows: list[dict], columns: list[str]) -> None:
             writer.writerow({col: row.get(col, "") for col in columns})
 
 
+def normalize_log_dir(log_dir: str | None, base_dir: str) -> str:
+    """Return the only directory that may receive logs for a run.
+
+    A configured log path can be either the logs directory itself or the run's
+    base/project directory. In both cases, artifacts must land in a directory
+    named ``logs`` rather than directly in the project root.
+    """
+    base_dir = os.path.abspath(base_dir)
+    raw = (log_dir or "").strip()
+    path = os.path.abspath(raw) if raw else os.path.join(base_dir, "logs")
+    if os.path.basename(os.path.normpath(path)) != "logs":
+        path = os.path.join(path, "logs")
+    return path
+
+
 def ensure_dir(path: str) -> None:
     os.makedirs(path, exist_ok=True)
 
@@ -64,3 +79,35 @@ def parse_columns(value: str | None) -> list[str] | None:
     if not value:
         return None
     return [part.strip() for part in value.split(",") if part.strip()]
+
+
+def build_display_change(
+    package: str,
+    old: str,
+    new: str,
+    change_type: str,
+    remediation_guided: bool = False,
+) -> dict:
+    return {
+        "package": package,
+        "change_type": change_type,
+        "old": old,
+        "new": new,
+        "remediation_guided": remediation_guided,
+    }
+
+
+def build_skipped_entry(
+    package: str,
+    current: str = "",
+    target: str = "",
+    reason: str = "",
+    detail: str = "",
+) -> dict:
+    return {
+        "package": package,
+        "current": current,
+        "target": target,
+        "reason": reason,
+        "detail": detail,
+    }

@@ -1,14 +1,4 @@
-"""npm-specific parsers, subprocess helpers, and ADO version extraction.
-
-Three responsibilities:
-  1. Parse package.json into typed entries — DirectEntry, collect_direct_entries,
-     collect_known_packages, extract_prefix_and_version, etc.
-  2. Query npm and verify registry accessibility in parallel — npm_view_versions,
-     parallel_npm_versions, is_version_blocked, find_unblocked_version.
-  3. Extract package/version pairs from ADO task CSV rows — CVE/GHSA lookup
-     (via shared.cve_lookup) runs first; unresolved rows fall back to Claude NLP
-     (via resolver.claude_resolver.batch_resolve).
-"""
+"""npm-specific parsers, subprocess helpers, and registry version lookup."""
 
 from __future__ import annotations
 
@@ -18,16 +8,12 @@ import re
 import shutil
 import subprocess
 import tempfile
-from concurrent.futures import ThreadPoolExecutor, as_completed
 from dataclasses import dataclass, field
 from typing import Any
 
-from ado.extractor import read_csv_full_rows
 from registry import npm as npm_registry
 from shared.cache import cache_by_subprocess_run
-from shared.semver import SEMVER_RE, SemVer
-from shared.utils import ProgressBar
-from shared.xray import filter_versions_without_cves
+from shared.semver import SemVer
 
 DEFAULT_DIRECT_SECTIONS = ["dependencies", "devDependencies"]
 
@@ -200,31 +186,20 @@ def parallel_npm_versions(
     show_progress: bool,
     cwd: str = ".",
 ) -> tuple[dict[str, list[SemVer]], list[dict[str, str]]]:
-    """Fetch available npm versions for all packages in parallel.
+    """Fetch available npm versions for all packages in parallel."""
+    from shared.parallel import parallel_fetch
 
-    Kept in parsers.node for backwards compatibility and monkeypatch-friendly
-    tests; the canonical implementation also exists in registry.npm.
-    """
-    versions_by_package: dict[str, list[SemVer]] = {}
-    error_rows: list[dict[str, str]] = []
-    progress = ProgressBar(
-        len(packages),
+    def fetch(pkg: str) -> tuple[str, list[SemVer], str]:
+        return npm_view_versions(pkg, registry, npm_cmd, timeout, cwd)
+
+    results, raw_errors = parallel_fetch(
+        fetch,
+        packages,
         f"Querying npm/JFrog versions ({workers} workers)",
-        enabled=show_progress,
+        workers,
     )
-
-    with ThreadPoolExecutor(max_workers=max(1, workers)) as executor:
-        futures = {
-            executor.submit(npm_view_versions, pkg, registry, npm_cmd, timeout, cwd): pkg
-            for pkg in packages
-        }
-        for future in as_completed(futures):
-            package, versions, error = future.result()
-            progress.update()
-            versions_by_package[package] = versions
-            if error:
-                error_rows.append({"package": package, "error": error})
-    return versions_by_package, error_rows
+    error_rows = [{"package": k, "error": e} for k, e in raw_errors]
+    return results, error_rows
 
 
 def is_version_blocked(
@@ -254,11 +229,10 @@ def find_unblocked_version(
 ) -> tuple[SemVer | None, str]:
     """Return a same-major version that passes the npm pack check.
 
-    Forward candidates are preferred. If they are all blocked or unavailable,
-    fall back to lower same-major versions from nearest to oldest. The lower
-    fallback is only accepted when the package is accessible; build validation
-    verifies the project still compiles before the written update is retained.
+    Forward candidates (above blocked) are preferred; falls back to lower
+    same-major versions if all forward candidates are blocked.
     """
+    from shared.version_search import find_safe_version
 
     forward_candidates = sorted(
         v for v in available if v.major == blocked.major and v > blocked
@@ -268,47 +242,21 @@ def find_unblocked_version(
         reverse=True,
     )
 
-    forward_candidates, forward_cves, forward_xray_error = filter_versions_without_cves(
-        "npm", package, forward_candidates, xray_host=xray_host, auth=xray_auth, timeout=timeout
-    )
-    backward_candidates, backward_cves, backward_xray_error = filter_versions_without_cves(
-        "npm", package, backward_candidates, xray_host=xray_host, auth=xray_auth, timeout=timeout
-    )
-
-    checked_forward = 0
-    checked_backward = 0
-    for candidate in forward_candidates:
-        checked_forward += 1
-        blocked_flag, _snippet = is_version_blocked(
-            package, str(candidate), registry, npm_cmd, timeout, project_dir
+    def _accessible(v: SemVer) -> bool:
+        blocked_flag, _ = is_version_blocked(
+            package, str(v), registry, npm_cmd, timeout, project_dir
         )
-        if not blocked_flag:
-            return candidate, ""
+        return not blocked_flag
 
-    for candidate in backward_candidates:
-        checked_backward += 1
-        blocked_flag, _snippet = is_version_blocked(
-            package, str(candidate), registry, npm_cmd, timeout, project_dir
-        )
-        if not blocked_flag:
-            return candidate, ""
-
-    return (
-        None,
-        (
-            f"all {checked_forward} candidates above {blocked} and "
-            f"{checked_backward} candidates below {blocked} are blocked or unavailable"
-            + (
-                f"; Xray lookup warning: {forward_xray_error or backward_xray_error}"
-                if (forward_xray_error or backward_xray_error)
-                else ""
-            )
-            + (
-                f"; CVE-filtered candidates: {len(forward_cves) + len(backward_cves)}"
-                if (forward_cves or backward_cves)
-                else ""
-            )
-        ),
+    return find_safe_version(
+        forward_candidates,
+        backward_candidates,
+        _accessible,
+        "npm",
+        package,
+        xray_host=xray_host,
+        xray_auth=xray_auth,
+        timeout=timeout,
     )
 
 
@@ -737,137 +685,3 @@ def collect_lockfile_packages(
 
     return _package_names_from_lockfile(lock)
 
-
-def extract_ado_package_versions(
-    csv_path: str,
-    columns: list[str] | None,
-    known_packages: set[str],
-    show_progress: bool,
-    package_json: dict[str, Any] | None = None,
-    claude_model: str = "haiku",
-    claude_effort: str = "low",
-    claude_timeout: int = 120,
-    claude_workers: int = 4,
-    claude_cmd: str = "claude",
-    claude_batch_size: int = 40,
-    npm_cmd: str = "npm",
-    project_dir: str = ".",
-) -> tuple[dict[str, set[SemVer]], dict[str, set[int]], dict[str, str], set[str]]:
-    """Returns (package_versions, package_task_ids, package_constraints, osv_packages).
-
-    Every row that contains a version number is sent to Claude in batched
-    prompts.  When package_json is provided, the full transitive dependency
-    tree is resolved via `npm install --package-lock-only` so packages not
-    declared in package.json (e.g. tar, ip-address) are visible to the
-    pattern matcher and Claude.
-
-    package_constraints maps package name to ">=" or ">" (most restrictive
-    constraint seen across all tasks mentioning that package).
-    """
-    rows = read_csv_full_rows(csv_path, columns)
-
-    # Augment known_packages with the full transitive tree from the lock file
-    # so transitive-only packages (e.g. tar, ip-address) are visible to Claude.
-    all_packages = set(known_packages)
-    if package_json is not None:
-        if ProgressBar._gui_callback is not None:
-            ProgressBar._gui_callback("Resolving transitive dependency tree…", 0, 0)
-        print("Resolving transitive dependency tree…")
-        lockfile_pkgs = collect_lockfile_packages(
-            package_json,
-            npm_cmd,
-            max(claude_timeout, 180),
-            project_dir,
-        )
-        new_count = len(lockfile_pkgs - known_packages)
-        if lockfile_pkgs:
-            print(f"  {len(lockfile_pkgs)} packages in lock file ({new_count} beyond package.json)")
-        else:
-            print("  lock file resolution failed — falling back to package.json only")
-        all_packages |= lockfile_pkgs
-
-    progress = ProgressBar(len(rows), "Extracting ADO package/version pairs", enabled=show_progress)
-    package_versions: dict[str, set[SemVer]] = {}
-    package_task_ids: dict[str, set[int]] = {}
-    package_constraints: dict[str, str] = {}
-    pending: list[tuple[int | None, str, set[SemVer]]] = []
-
-    def _commit(task_id: int | None, pkg_map: dict[str, str], versions: set[SemVer]) -> None:
-        for pkg, constraint in pkg_map.items():
-            for v in versions:
-                package_versions.setdefault(pkg, set()).add(v)
-            if task_id is not None:
-                package_task_ids.setdefault(pkg, set()).add(task_id)
-            # ">" is more restrictive; keep it once seen
-            if package_constraints.get(pkg) != ">":
-                package_constraints[pkg] = constraint
-
-    # CVE/GHSA pre-pass: look up canonical package names + fixed versions from OSV.
-    # Tasks resolved this way skip the NLP/Claude path entirely.
-    from shared.cve_lookup import extract_advisory_id, prefetch_advisories
-
-    _advisory_cache = prefetch_advisories(rows, "npm")
-    handled_task_ids: set[int | None] = set()
-    osv_packages: set[str] = set()  # packages identified via OSV/NVD (not NLP)
-
-    for task_id, title, _text in rows:
-        aid = extract_advisory_id(title)
-        if not aid or aid not in _advisory_cache:
-            continue
-        pkg_fixed = _advisory_cache[aid]
-        if not pkg_fixed:
-            continue
-        for pkg_name, fixed_strs in pkg_fixed.items():
-            for fixed_str in fixed_strs:
-                v = SemVer.parse(fixed_str)
-                if v:
-                    package_versions.setdefault(pkg_name, set()).add(v)
-            if task_id is not None:
-                package_task_ids.setdefault(pkg_name, set()).add(task_id)
-            if package_constraints.get(pkg_name) != ">":
-                package_constraints[pkg_name] = ">="
-            osv_packages.add(pkg_name)
-        # Only skip NLP if at least one resolved name is a known package.
-        # If none match (e.g. NVD uses "next.js" but npm name is "next"), let
-        # NLP run to find the correct name.
-        if any(p in all_packages for p in pkg_fixed):
-            handled_task_ids.add(task_id)
-
-    for task_id, _title, text in rows:
-        if task_id in handled_task_ids:
-            progress.update()
-            continue
-        progress.update()
-        if not text.strip():
-            continue
-
-        row_versions: set[SemVer] = set()
-        for m in SEMVER_RE.finditer(text):
-            v = SemVer.parse(m.group(1))
-            if v:
-                row_versions.add(v)
-
-        if not row_versions:
-            continue
-
-        pending.append((task_id, text, row_versions))
-
-    if pending:
-        from resolver.claude_resolver import batch_resolve
-
-        claude_tasks = [(tid, txt) for tid, txt, _ in pending]
-        resolved_by_idx, _ = batch_resolve(
-            claude_tasks,
-            all_packages,
-            model=claude_model,
-            effort=claude_effort,
-            timeout=claude_timeout,
-            workers=claude_workers,
-            claude_cmd=claude_cmd,
-            batch_size=claude_batch_size,
-            allow_unlisted=False,
-        )
-        for i, (task_id, _, row_versions) in enumerate(pending):
-            _commit(task_id, resolved_by_idx.get(i, {}), row_versions)
-
-    return package_versions, package_task_ids, package_constraints, osv_packages

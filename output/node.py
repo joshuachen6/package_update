@@ -1,9 +1,10 @@
 """Apply computed version updates to package.json and write diagnostic artefacts.
 
-apply_updates is the core mutator: it works through the resolved ADO criteria and
+apply_updates is the core mutator: it works through the resolved criteria and
 edits the package_json dict in place — updating direct dep specs or writing/refreshing
-overrides entries.  check_and_fix_blocked_versions is a second pass that replaces
-any 403-blocked version with the nearest accessible alternative.
+overrides entries. Each selected version's registry accessibility is verified
+inline, before it is written (see apply_updates' docstring), the same timing
+Gradle and PyPI use — there is no separate post-write block-check pass.
 
 Callers are responsible for serialising the mutated dict with write_package_json.
 """
@@ -13,7 +14,6 @@ from __future__ import annotations
 import json
 import os
 import shutil
-from concurrent.futures import ThreadPoolExecutor, as_completed
 from typing import Any
 
 from parsers.node import (
@@ -34,7 +34,6 @@ from registry.npm import (
 )
 from resolver.resolver import select_best_version
 from shared.semver import SemVer
-from shared.utils import ProgressBar
 
 
 def write_package_versions_txt(
@@ -42,7 +41,7 @@ def write_package_versions_txt(
     package_versions: dict[str, set[SemVer]],
     criteria: dict[str, dict[int, SemVer]],
 ) -> None:
-    """Write ADO-extracted versions and per-major resolved criteria to a human-readable text file."""
+    """Write extracted versions and per-major resolved criteria to a human-readable text file."""
     with open(path, "w", encoding="utf-8") as f:
         for package in sorted(package_versions.keys(), key=str.lower):
             versions = sorted(package_versions[package])
@@ -80,8 +79,12 @@ def apply_updates(
     package_json_dir: str = ".",
     registry: str | None = None,
     lockfile: dict[str, Any] | None = None,
-) -> tuple[list[dict[str, str]], list[dict[str, str]], list[dict[str, str]]]:
-    """Mutate package_json in place to satisfy ADO criteria; return (direct_changes, override_changes, skipped).
+    skip_block_check: bool = False,
+    xray_host: str | None = None,
+    xray_auth: tuple[str, str] | None = None,
+) -> tuple[list[dict[str, str]], list[dict[str, str]], list[dict[str, str]], list[dict[str, str]]]:
+    """Mutate package_json in place to satisfy criteria; return
+    (direct_changes, override_changes, skipped, block_changes).
 
     Resolution priority for each criteria package:
       1. Direct dep — update the version spec in dependencies/devDependencies.
@@ -92,12 +95,27 @@ def apply_updates(
       4. Fallback — write or update a flat overrides entry.
 
     Stale flat overrides that would downgrade an already-compliant direct dep are removed.
+
+    Every write path below reads its version only via `selected_by_major`, so the
+    CVE-remediation target's accessibility is verified once, right after it is
+    selected below -- matching Gradle/PyPI's inline (write-time, not a separate
+    post-write pass) accessibility check. If no accessible same-major substitute
+    exists, the original (possibly blocked) target is kept as-is rather than
+    dropping the major entirely: unlike Gradle's flatter per-key model, several
+    branches below assume every major in `major_map` has a `selected_by_major`
+    entry, so dropping one here would risk `next(iter(selected_by_major))`
+    crashing downstream on an empty dict for packages with no direct dependency
+    and no actionable override. This mirrors today's behavior when nothing
+    accessible is found (write the target and let build validation / isolation
+    catch it), while every accessible substitute found is now applied here
+    instead of reactively.
     """
     direct_by_package = {entry.package: entry for entry in direct_entries}
     direct_dep_names = set(direct_by_package.keys())
     direct_changes: list[dict[str, str]] = []
     override_changes: list[dict[str, str]] = []
     skipped: list[dict[str, str]] = []
+    block_changes: list[dict[str, str]] = []
 
     overrides = package_json.setdefault("overrides", {})
     if not isinstance(overrides, dict):
@@ -108,7 +126,7 @@ def apply_updates(
                 "details": str(type(overrides)),
             }
         )
-        return direct_changes, override_changes, skipped
+        return direct_changes, override_changes, skipped, block_changes
 
     # Use the pre-loaded lockfile if provided, otherwise load lazily on first use.
     _lockfile: dict[str, Any] | None = lockfile
@@ -127,16 +145,44 @@ def apply_updates(
 
     for package in sorted(criteria.keys(), key=str.lower):
         major_map = criteria[package]
-        all_ado_versions = package_versions.get(package, set())
+        all_remediation_versions = package_versions.get(package, set())
         available = versions_by_package.get(package, [])
         constraint = package_constraints.get(package, ">=")
 
         selected_by_major: dict[int, SemVer] = {}
         for major, minimum_required in major_map.items():
             selected = (
-                select_best_version(all_ado_versions, available, major, constraint)
+                select_best_version(all_remediation_versions, available, major, constraint)
                 or minimum_required
             )
+            if not skip_block_check:
+                blocked_flag, _snippet = is_version_blocked(
+                    package, str(selected), registry, npm_cmd, npm_timeout, package_json_dir
+                )
+                if blocked_flag:
+                    substitute, _fallback_err = find_unblocked_version(
+                        package,
+                        selected,
+                        available,
+                        registry,
+                        npm_cmd,
+                        npm_timeout,
+                        package_json_dir,
+                        xray_host=xray_host,
+                        xray_auth=xray_auth,
+                    )
+                    if substitute:
+                        block_changes.append(
+                            {
+                                "package": package,
+                                "blocked_version": str(selected),
+                                "unblocked_version": str(substitute),
+                            }
+                        )
+                        selected = substitute
+                    # else: no accessible same-major substitute exists. Keep the
+                    # original (blocked) target -- see the module docstring for
+                    # why this major is not dropped from selected_by_major.
             selected_by_major[major] = selected
 
         if package in direct_by_package:
@@ -170,6 +216,8 @@ def apply_updates(
                     npm_cmd,
                     npm_timeout,
                     package_json_dir,
+                    xray_host=xray_host,
+                    xray_auth=xray_auth,
                 )
                 if fallback:
                     selected = fallback
@@ -179,7 +227,7 @@ def apply_updates(
                     skipped.append(
                         {
                             "package": package,
-                            "reason": "no ADO criteria for direct dependency current major and no unblocked same-major update found",
+                            "reason": "no criteria for direct dependency current major and no unblocked same-major update found",
                             "details": f"current={current}; {fallback_err}",
                             "current": str(current),
                             "target": "",
@@ -257,9 +305,15 @@ def apply_updates(
             best_available_entries = []
             for override_entry, existing_v in actionable_override_entries:
                 min_req = major_map[existing_v.major]
-                already_ok = (
-                    (existing_v > min_req) if constraint == ">" else (existing_v >= min_req)
-                )
+                spec_prefix, _ = extract_prefix_and_version(override_entry.spec)
+                if spec_prefix:
+                    # Range spec (>=, >, ^, ~): npm resolves to the highest matching version,
+                    # so if the range lower-bound already meets the minimum, leave it alone.
+                    already_ok = existing_v >= min_req
+                else:
+                    already_ok = (
+                        (existing_v > min_req) if constraint == ">" else (existing_v >= min_req)
+                    )
                 if already_ok:
                     already_ok_entries.append((override_entry, existing_v, min_req))
                     continue
@@ -310,11 +364,11 @@ def apply_updates(
                 current = ";".join(str(existing_v) for _, existing_v, _ in already_ok_entries)
                 target = ";".join(str(min_req) for _, _, min_req in already_ok_entries)
                 reason = (
-                    "flat override already satisfies ADO criteria"
+                    "flat override already satisfies guidance criteria"
                     if all(
                         entry.path == f"overrides.{package}" for entry, _, _ in already_ok_entries
                     )
-                    else "override already satisfies ADO criteria"
+                    else "override already satisfies guidance criteria"
                 )
                 skipped.append(
                     {
@@ -380,7 +434,7 @@ def apply_updates(
                     skipped.append(
                         {
                             "package": package,
-                            "reason": "installed version already satisfies ADO criteria",
+                            "reason": "installed version already satisfies guidance criteria",
                             "details": ", ".join(
                                 f"{m}.x installed>={v}" for m, v in sorted(major_map.items())
                             ),
@@ -393,7 +447,7 @@ def apply_updates(
                 skipped.append(
                     {
                         "package": package,
-                        "reason": "multiple ADO majors; lockfile returned no dependents, global override would be ambiguous",
+                        "reason": "multiple majors; lockfile returned no dependents, global override would be ambiguous",
                         "details": ", ".join(
                             f"{m}.x -> {v}" for m, v in sorted(selected_by_major.items())
                         ),
@@ -420,6 +474,8 @@ def apply_updates(
                 npm_cmd,
                 npm_timeout,
                 package_json_dir,
+                xray_host=xray_host,
+                xray_auth=xray_auth,
             )
             if fallback:
                 major = installed_v_for_fallback.major
@@ -431,7 +487,7 @@ def apply_updates(
                 skipped.append(
                     {
                         "package": package,
-                        "reason": "no ADO criteria for installed major and no unblocked same-major update found",
+                        "reason": "no criteria for installed major and no unblocked same-major update found",
                         "details": f"current={installed_v_for_fallback}; {fallback_err}",
                         "current": str(installed_v_for_fallback),
                         "target": "",
@@ -462,6 +518,8 @@ def apply_updates(
                     npm_cmd,
                     npm_timeout,
                     package_json_dir,
+                    xray_host=xray_host,
+                    xray_auth=xray_auth,
                 )
                 if fallback:
                     installed_candidates.append((installed_v.major, fallback))
@@ -473,7 +531,7 @@ def apply_updates(
                 skipped.append(
                     {
                         "package": package,
-                        "reason": "no ADO criteria for installed major and no unblocked same-major update found",
+                        "reason": "no criteria for installed major and no unblocked same-major update found",
                         "details": "",
                     }
                 )
@@ -497,30 +555,36 @@ def apply_updates(
                     _, avail, _ = npm_view_versions(
                         top_dep, registry, npm_cmd, npm_timeout, package_json_dir
                     )
-                candidates = sorted(v for v in avail if v.major == pcurrent.major and v > pcurrent)
+                candidates = sorted(
+                    (v for v in avail if v.major == pcurrent.major and v > pcurrent),
+                    reverse=True,
+                )
                 if not candidates:
                     continue
-                ptarget = candidates[-1]  # latest same-major; if this doesn't help, nothing will
-                new_spec = f"{prefix}{ptarget}"
-                resolved = resolve_transitive_with_parent(
-                    top_dep,
-                    new_spec,
-                    pentry.section,
-                    package,
-                    package_json,
-                    npm_cmd,
-                    lock_timeout,
-                    package_json_dir,
-                    registry=registry,
-                )
-                if resolved is None:
-                    continue
+
                 op = ">" if constraint == ">" else ">="
-                all_satisfied = all(
-                    v > minimum_required if constraint == ">" else v >= minimum_required
-                    for v in resolved
-                )
-                if all_satisfied:
+                for ptarget in candidates:
+                    new_spec = f"{prefix}{ptarget}"
+                    resolved = resolve_transitive_with_parent(
+                        top_dep,
+                        new_spec,
+                        pentry.section,
+                        package,
+                        package_json,
+                        npm_cmd,
+                        lock_timeout,
+                        package_json_dir,
+                        registry=registry,
+                    )
+                    if resolved is None:
+                        continue
+                    all_satisfied = all(
+                        v > minimum_required if constraint == ">" else v >= minimum_required
+                        for v in resolved
+                    )
+                    if not all_satisfied:
+                        continue
+
                     pentry.container[pentry.key] = new_spec
                     direct_changes.append(
                         {
@@ -534,6 +598,9 @@ def apply_updates(
                         }
                     )
                     did_parent_update = True
+                    break
+
+                if did_parent_update:
                     break
 
         if did_parent_update:
@@ -558,7 +625,7 @@ def apply_updates(
                 skipped.append(
                     {
                         "package": package,
-                        "reason": "override already satisfies ADO criteria",
+                        "reason": "override already satisfies guidance criteria",
                         "details": details,
                         "current": details,
                         "target": str(selected),
@@ -567,16 +634,26 @@ def apply_updates(
                 continue
         installed_v = get_lockfile_installed_version(_get_lockfile(), package)
         if installed_v is not None and installed_v >= selected:
-            skipped.append(
-                {
-                    "package": package,
-                    "reason": "installed version already satisfies ADO criteria",
-                    "details": str(installed_v),
-                    "current": str(installed_v),
-                    "target": str(selected),
-                }
-            )
-            continue
+            hoisted_key = f"node_modules/{package}"
+            has_vulnerable_nested = False
+            for lock_pkg, meta in (_get_lockfile().get("packages") or {}).items():
+                if lock_pkg == hoisted_key or not lock_pkg.endswith(hoisted_key):
+                    continue
+                nested_v = SemVer.parse(str((meta or {}).get("version", "")))
+                if nested_v is not None and nested_v < selected:
+                    has_vulnerable_nested = True
+                    break
+            if not has_vulnerable_nested:
+                skipped.append(
+                    {
+                        "package": package,
+                        "reason": "installed version already satisfies guidance criteria",
+                        "details": str(installed_v),
+                        "current": str(installed_v),
+                        "target": str(selected),
+                    }
+                )
+                continue
         old_override = ";".join(
             f"{override_entry.path}={override_entry.spec}"
             for override_entry in existing_override_entries
@@ -605,157 +682,7 @@ def apply_updates(
             }
         )
 
-    return direct_changes, override_changes, skipped
-
-
-def check_and_fix_blocked_versions(
-    package_json: dict[str, Any],
-    direct_sections: list[str],
-    versions_by_package: dict[str, list[SemVer]],
-    registry: str | None,
-    npm_cmd: str,
-    timeout: int,
-    workers: int,
-    show_progress: bool,
-    project_dir: str = ".",
-    xray_host: str | None = None,
-    xray_auth: tuple[str, str] | None = None,
-) -> tuple[list[dict[str, str]], list[dict[str, str]]]:
-    """Scan all direct deps and overrides for 403-blocked versions and replace each with the nearest unblocked one.
-
-    Returns (changes, errors).  changes records each substitution; errors records
-    packages where every candidate above the blocked version is also blocked or unavailable.
-    Mutations are applied in place on the package_json dict via per-entry updater closures.
-    """
-    candidates: list[tuple[str, str, Any]] = []
-
-    for section in direct_sections:
-        for pkg, spec in (package_json.get(section) or {}).items():
-            if isinstance(spec, str) and not should_skip_spec(spec):
-                _, v = extract_prefix_and_version(spec)
-                if v:
-                    section_ref = package_json[section]
-
-                    def make_direct_updater(s, k, prefix):
-                        def updater(new_ver):
-                            s[k] = f"{prefix}{new_ver}"
-
-                        return updater
-
-                    prefix, _ = extract_prefix_and_version(spec)
-                    candidates.append((pkg, str(v), make_direct_updater(section_ref, pkg, prefix)))
-
-    def scan_overrides(obj: Any, path: str) -> None:
-        if not isinstance(obj, dict):
-            return
-        for key, value in obj.items():
-            if isinstance(value, str):
-                v = SemVer.parse(value)
-                if v:
-                    captured_obj, captured_key = obj, key
-
-                    def make_override_updater(o, k):
-                        def updater(new_ver):
-                            o[k] = new_ver
-
-                        return updater
-
-                    candidates.append(
-                        (key, str(v), make_override_updater(captured_obj, captured_key))
-                    )
-            elif isinstance(value, dict):
-                scan_overrides(value, f"{path}.{key}")
-
-    scan_overrides(package_json.get("overrides") or {}, "overrides")
-
-    if not candidates:
-        return [], []
-
-    candidates_by_version: dict[tuple[str, str], list[Any]] = {}
-    for pkg, ver_str, updater in candidates:
-        candidates_by_version.setdefault((pkg, ver_str), []).append(updater)
-
-    unique_candidates = list(candidates_by_version)
-    progress = ProgressBar(
-        len(unique_candidates),
-        f"Block-checking {len(unique_candidates)} unique package versions ({workers} workers)",
-        enabled=show_progress,
-    )
-    changes: list[dict[str, str]] = []
-    errors: list[dict[str, str]] = []
-
-    def check_one(pkg: str, ver_str: str) -> tuple[str, str, bool, str]:
-        blocked, snippet = is_version_blocked(pkg, ver_str, registry, npm_cmd, timeout, project_dir)
-        return pkg, ver_str, blocked, snippet
-
-    with ThreadPoolExecutor(max_workers=max(1, workers)) as executor:
-        futures = [executor.submit(check_one, pkg, ver) for pkg, ver in unique_candidates]
-        for future in as_completed(futures):
-            pkg, ver_str, blocked, snippet = future.result()
-            progress.update()
-            if not blocked:
-                continue
-
-            if pkg not in versions_by_package:
-                _, avail, _ = npm_view_versions(pkg, registry, npm_cmd, timeout, project_dir)
-                versions_by_package[pkg] = avail
-
-            blocked_v = SemVer.parse(ver_str)
-            if not blocked_v:
-                for _updater in candidates_by_version[(pkg, ver_str)]:
-                    errors.append(
-                        {
-                            "package": pkg,
-                            "blocked_version": ver_str,
-                            "status": "parse_error",
-                            "error": snippet,
-                        }
-                    )
-                continue
-
-            try:
-                unblocked, err = find_unblocked_version(
-                    pkg,
-                    blocked_v,
-                    versions_by_package[pkg],
-                    registry,
-                    npm_cmd,
-                    timeout,
-                    project_dir,
-                    xray_host=xray_host,
-                    xray_auth=xray_auth,
-                )
-            except TypeError:
-                unblocked, err = find_unblocked_version(
-                    pkg,
-                    blocked_v,
-                    versions_by_package[pkg],
-                    registry,
-                    npm_cmd,
-                    timeout,
-                    project_dir,
-                )
-            if unblocked:
-                for updater in candidates_by_version[(pkg, ver_str)]:
-                    updater(str(unblocked))
-                changes.append(
-                    {
-                        "package": pkg,
-                        "blocked_version": ver_str,
-                        "unblocked_version": str(unblocked),
-                    }
-                )
-            else:
-                errors.append(
-                    {
-                        "package": pkg,
-                        "blocked_version": ver_str,
-                        "status": "all_blocked",
-                        "error": err,
-                    }
-                )
-
-    return changes, errors
+    return direct_changes, override_changes, skipped, block_changes
 
 
 def write_package_json(

@@ -1,59 +1,14 @@
 from __future__ import annotations
 
 import re
-import xml.etree.ElementTree as ET
-from concurrent.futures import ThreadPoolExecutor, as_completed
+import time
 from dataclasses import dataclass
 
-from ado.extractor import (
-    build_fuzzy_patterns,
-    build_package_patterns,
-    read_csv_full_rows,
-)
-from shared.cache import cache_by_requests_transport
-from shared.maven_version import MAVEN_VERSION_RE, MavenVersion
-from shared.utils import ProgressBar
-from shared.xray import filter_versions_without_cves
-
-DEPENDENCY_PATTERN = re.compile(
-    r"""(?P<config>implementation|api|compileOnly|runtimeOnly|annotationProcessor
-                  |testImplementation|testRuntimeOnly|testCompileOnly)\s+
-        ['"](?P<group>[^:'"]+):(?P<artifact>[^:'"]+):(?P<version>[^'"]+)['"]""",
-    re.VERBOSE,
-)
-
-_FUZZY_STOPWORDS: frozenset = frozenset(
-    {
-        "apache",
-        "google",
-        "amazon",
-        "eclipse",
-        "sonatype",
-        "embed",
-        "extra",
-        "build",
-        "utils",
-        "tools",
-        "model",
-        "types",
-        "proxy",
-        "plugin",
-        "starter",
-        "support",
-        "client",
-        "server",
-        "service",
-        "platform",
-        "framework",
-        "javax",
-        "jakarta",
-        "compile",
-        "runtime",
-    }
-)
+from registry.maven import get_available_versions, version_accessible
+from shared.maven_version import MavenVersion
 
 
-@dataclass
+@dataclass(frozen=True)
 class GradleDep:
     config: str
     group: str
@@ -64,99 +19,12 @@ class GradleDep:
     match_end: int
 
 
-def _fuzzy_keywords(name: str) -> list[str]:
-    """Splits an artifact or group:artifact name into significant keywords for fuzzy ADO text matching."""
-    parts = re.split(r"[-._:]", name.lower())
-    return list({p for p in parts if len(p) >= 5 and p not in _FUZZY_STOPWORDS and not p.isdigit()})
-
-
-_JAVA_FQCN_RE = re.compile(
-    r"\b(?:[a-z_][a-z0-9_]*\.){2,}[A-Z][A-Za-z0-9_$]*(?:\.[A-Za-z_$][A-Za-z0-9_$]*)?\b"
+DEPENDENCY_PATTERN = re.compile(
+    r"""(?P<config>implementation|api|compileOnly|runtimeOnly|annotationProcessor
+                  |testImplementation|testRuntimeOnly|testCompileOnly)\s+
+        ['"](?P<group>[^:'"]+):(?P<artifact>[^:'"]+):(?P<version>[^'"]+)['"]""",
+    re.VERBOSE,
 )
-
-_IN_LIBRARY_RE = re.compile(
-    r"\bin\s+([A-Za-z0-9_.-]+)(?:\s+(?:before|prior\s+to|versions?|package|library|module)\b|[\s,.;)])",
-    re.IGNORECASE,
-)
-
-
-def _artifact_alias(value: str) -> str:
-    return re.sub(r"[^a-z0-9]+", "-", value.lower()).strip("-")
-
-
-def _java_advisory_candidates(text: str, known_packages: set[str]) -> set:
-    """Return strong Gradle candidate hints from Java class/library advisory text.
-    This is intentionally conservative: it only creates Claude hints. It does
-    not commit package/version mappings directly.
-    """
-    if not text:
-        return set()
-
-    by_artifact: dict[str, set[str]] = {}
-    by_group: dict[str, set[str]] = {}
-    artifact_aliases: dict[str, set[str]] = {}
-
-    for pkg in known_packages:
-        if ":" not in pkg:
-            continue
-        group, artifact = pkg.split(":", 1)
-        by_artifact.setdefault(artifact.lower(), set()).add(pkg)
-        by_group.setdefault(group.lower(), set()).add(pkg)
-        artifact_aliases.setdefault(_artifact_alias(artifact), set()).add(pkg)
-    candidates: set[str] = set()
-    explicit_artifacts: list[str] = []
-
-    # Explicit artifact/library names, e.g. "in plexus-utils before ..."
-    for m in _IN_LIBRARY_RE.finditer(text):
-        raw = m.group(1).strip(". ,;:()[]{}")
-        alias = _artifact_alias(raw)
-        if alias:
-            explicit_artifacts.append(alias)
-        candidates.update(artifact_aliases.get(alias, set()))
-        candidates.update(by_artifact.get(raw.lower(), set()))
-
-    # Fully qualified Java classes, e.g. org.codehaus.plexus.util.Expand.
-    # Map longest matching Maven group prefix first, then fall back to artifact
-    # tokens in the class/package name.
-    for m in _JAVA_FQCN_RE.finditer(text):
-        fqcn = m.group(0).lower()
-        parts = fqcn.split(".")
-        package_parts = parts[:-1]
-        for i in range(len(package_parts), 1, -1):
-            group = ".".join(package_parts[:i])
-            if group in by_group:
-                candidates.update(by_group[group])
-                break
-
-        tokens = set(package_parts)
-        for artifact, pkgs in by_artifact.items():
-            artifact_tokens = {t for t in re.split(r"[-._]+", artifact.lower()) if t}
-            if artifact_tokens and artifact_tokens.issubset(tokens):
-                candidates.update(pkgs)
-
-        # If advisory lookup failed and the dependency is not already in the
-        # tree, synthesize a high-confidence Maven coordinate from explicit
-        # artifact text plus the Java package namespace. Example:
-        # org.codehaus.plexus.util.Expand in plexus-utils
-        # becomes org.codehaus.plexus:plexus-utils.
-        # This remains only a Claude hint; it is not committed unless Claude
-        # returns it, and apply_updates will still skip it if absent from
-        # build.gradle/dependency tree.
-        for artifact_alias in explicit_artifacts:
-            artifact_tokens = [t for t in artifact_alias.split("-") if t]
-            if not artifact_tokens:
-                continue
-            anchor = artifact_tokens[0]
-            if anchor not in package_parts:
-                continue
-            anchor_idx = package_parts.index(anchor)
-            if anchor_idx < 1:
-                continue
-            group = ".".join(package_parts[: anchor_idx + 1])
-            candidates.add(f"{group}:{artifact_alias}")
-
-    return candidates
-
 
 _STRICT_DEP_HEADER_RE = re.compile(
     r"\b(implementation|api|compileOnly|runtimeOnly|annotationProcessor|testImplementation|testRuntimeOnly|testCompileOnly)\s*\(([^)]*)\)\s*\{",
@@ -190,6 +58,183 @@ def _find_matching_brace(text, open_idx):
             if depth == 0:
                 return idx
     return -1
+
+
+_REPOSITORIES_BLOCK_RE = re.compile(r"\brepositories\s*\{")
+_MAVEN_URL_RE = re.compile(
+    r"""
+    url \s* = \s* uri \s* \( \s* ["']([^"'\s]+)["'] \s* \)  # url = uri("...")
+    | url \s* = \s* ["']([^"'\s]+)["']                       # url = "..."
+    | url \s+ ["']([^"'\s]+)["']                             # url "..."
+    | maven \s* \( \s* ["']([^"'\s]+)["'] \s* \)            # maven("...")
+    """,
+    re.VERBOSE,
+)
+
+
+def _named_block_spans(text, names):
+    """Return source ranges occupied by named Gradle blocks."""
+    spans = []
+
+    for name in names:
+        pattern = re.compile(
+            r"\b" + re.escape(name) + r"\s*\{"
+        )
+        for match in pattern.finditer(text):
+            open_idx = text.find(
+                "{",
+                match.start(),
+                match.end(),
+            )
+            if open_idx < 0:
+                continue
+
+            close_idx = _find_matching_brace(text, open_idx)
+            if close_idx >= 0:
+                spans.append((match.start(), close_idx + 1))
+
+    return spans
+
+
+def parse_gradle_repositories(
+    build_text,
+    include_plugin_repositories=False,
+):
+    """Extract repositories used for project dependencies.
+
+    Repositories inside buildscript and pluginManagement blocks are
+    excluded by default because those repositories resolve plugins and
+    build-classpath dependencies, not normal application dependencies.
+    """
+    excluded_spans = (
+        []
+        if include_plugin_repositories
+        else _named_block_spans(
+            build_text,
+            ("buildscript", "pluginManagement"),
+        )
+    )
+
+    urls = []
+
+    for match in _REPOSITORIES_BLOCK_RE.finditer(build_text):
+        if any(
+            block_start <= match.start() < block_end
+            for block_start, block_end in excluded_spans
+        ):
+            continue
+
+        open_idx = build_text.find(
+            "{",
+            match.start(),
+            match.end(),
+        )
+        if open_idx < 0:
+            continue
+
+        close_idx = _find_matching_brace(build_text, open_idx)
+        if close_idx < 0:
+            continue
+        block = build_text[open_idx : close_idx + 1]
+
+        for url_match in _MAVEN_URL_RE.finditer(block):
+            url = next(
+                group
+                for group in url_match.groups()
+                if group
+            ).rstrip("/")
+
+            # An unresolved Gradle property/env interpolation, e.g.
+            # url "${ARTIFACTORY_SOURCE}/repo-name" — we don't evaluate
+            # Gradle expressions, and using the literal placeholder string
+            # as an HTTP URL breaks every accessibility probe against it
+            # silently. Confirmed live: find_accessible_version returned None
+            # for an otherwise-accessible jackson-databind version because
+            # the only "repo URL" on offer was the literal text
+            # "${ARTIFACTORY_SOURCE}". Skip it so callers fall back to the
+            # pipeline's own configured Artifactory base_url instead.
+            if "$" in url:
+                continue
+
+            if url not in urls:
+                urls.append(url)
+
+    return urls
+
+
+def has_unresolved_repo_url(build_text):
+    """True when a repository declaration references a Gradle/env property
+    we can't statically resolve, e.g. url "${ARTIFACTORY_SOURCE}/repo-name".
+
+    Used to gate a real, but not free, fix: resolving the actual URL via a
+    `--init-script` piggybacked on `gradle dependencies` (see
+    parsers.gradle_tree.run_gradle_dependencies). That flag invalidates
+    Gradle's configuration cache on every run — confirmed locally
+    ("Configuration cache entry reused" without it, "entry stored" i.e.
+    fully reconfigured with it) — which is enough overhead to tip a
+    marginal tree resolution over its timeout on a large project. Only pay
+    for it on repos that actually have something worth resolving.
+    """
+    for url_match in _MAVEN_URL_RE.finditer(build_text or ""):
+        url = next((group for group in url_match.groups() if group), "")
+        if "$" in url:
+            return True
+    return False
+
+
+def normalize_gradle_version_for_probe(version):
+    """Return a literal version suitable for an HTTP artifact probe.
+
+    Exact Maven constraints such as ``[4.31.1]`` become ``4.31.1``.
+    Ranges, dynamic versions, and variables return None because they
+    must be resolved by Gradle rather than used as literal URL paths.
+    """
+    value = str(version or "").strip()
+    if not value:
+        return None
+
+    # Avoid regex here. Exact constraints contain one value enclosed
+    # by square brackets, while real ranges contain a comma.
+    if value.startswith("[") and value.endswith("]"):
+        inner = value[1:-1].strip()
+        if inner and "," not in inner:
+            value = inner
+        else:
+            return None
+
+    if any(
+        token in value
+        for token in (
+            ",",
+            "[",
+            "]",
+            "(",
+            ")",
+            "$",
+            "{",
+            "}",
+        )
+    ):
+        return None
+
+    if value.endswith("+"):
+        return None
+
+    if value.lower() in {
+        "latest",
+        "release",
+        "latest.release",
+        "latest.integration",
+    }:
+        return None
+
+    if not re.fullmatch(
+        r"[0-9A-Za-z][0-9A-Za-z._+\-]*",
+        value,
+    ):
+        return None
+
+    return value
 
 
 def parse_gradle_deps(build_text):
@@ -275,11 +320,7 @@ def collect_known_packages(
     deps: list[GradleDep],
     dep_tree_installed: dict | None = None,
 ) -> set[str]:
-    """Returns artifact names and group:artifact strings for ADO matching.
-
-    If dep_tree_installed is provided (from parse_gradle_dep_tree), transitive
-    dep keys are included so Claude can match CVE tasks that mention them.
-    """
+    """Return artifact names and group:artifact strings from declared/resolved Gradle dependencies."""
     known: set[str] = set()
     for dep in deps:
         known.add(dep.artifact)
@@ -292,57 +333,6 @@ def collect_known_packages(
     return known
 
 
-@cache_by_requests_transport
-def get_available_versions(
-    group: str,
-    artifact: str,
-    base_url: str,
-    auth: tuple[str, str] | None,
-    timeout: int,
-) -> tuple[list[MavenVersion], str]:
-    import requests
-
-    group_path = group.replace(".", "/")
-    url = f"{base_url}/{group_path}/{artifact}/maven-metadata.xml"
-    try:
-        resp = requests.get(url, auth=auth, timeout=timeout)
-    except Exception as exc:
-        return [], f"request failed: {exc}"
-    if resp.status_code != 200:
-        return [], f"HTTP {resp.status_code} for {url}"
-    try:
-        root = ET.fromstring(resp.text)
-    except ET.ParseError as exc:
-        return [], f"XML parse error: {exc}"
-    versions = []
-    for node in root.findall(".//version"):
-        raw = (node.text or "").strip()
-        v = MavenVersion.parse(raw)
-        if v:
-            versions.append(v)
-    return sorted(versions), ""
-
-
-@cache_by_requests_transport
-def version_accessible(
-    group: str,
-    artifact: str,
-    version: str,
-    base_url: str,
-    auth: tuple[str, str] | None,
-    timeout: int,
-) -> bool:
-    import requests
-
-    group_path = group.replace(".", "/")
-    url = f"{base_url}/{group_path}/{artifact}/{version}/{artifact}-{version}.jar"
-    try:
-        resp = requests.head(url, auth=auth, allow_redirects=True, timeout=timeout)
-    except Exception:
-        return False
-    return resp.status_code == 200
-
-
 def parallel_fetch_versions(
     deps: list[GradleDep],
     base_url: str,
@@ -351,36 +341,40 @@ def parallel_fetch_versions(
     workers: int,
     show_progress: bool,
 ) -> tuple[dict[str, list[MavenVersion]], list[dict]]:
-    results: dict[str, list[MavenVersion]] = {}
-    errors: list[dict] = []
+    from shared.parallel import parallel_fetch
 
-    # Maven metadata lookup is keyed by group:artifact. Duplicate dependency
-    # declarations or repeated strict/version blocks should not trigger
-    # duplicate network calls during the same fetch phase.
+    # Deduplicate: Maven metadata lookup is keyed by group:artifact.
     unique_deps: dict[str, GradleDep] = {}
     for dep in deps:
         unique_deps.setdefault(f"{dep.group}:{dep.artifact}", dep)
-
-    progress = ProgressBar(
-        len(unique_deps),
-        f"Fetching Artifactory versions ({workers} workers)",
-        enabled=show_progress,
-    )
 
     def fetch(dep: GradleDep) -> tuple[str, list[MavenVersion], str]:
         key = f"{dep.group}:{dep.artifact}"
         versions, error = get_available_versions(dep.group, dep.artifact, base_url, auth, timeout)
         return key, versions, error
 
-    with ThreadPoolExecutor(max_workers=max(1, workers)) as executor:
-        futures = {executor.submit(fetch, dep): key for key, dep in unique_deps.items()}
-        for future in as_completed(futures):
-            key, versions, error = future.result()
-            progress.update()
-            results[key] = versions
-            if error:
-                errors.append({"dependency": key, "error": error})
-    return results, errors
+    results, raw_errors = parallel_fetch(
+        fetch,
+        list(unique_deps.values()),
+        f"Fetching Artifactory versions ({workers} workers)",
+        workers,
+    )
+    error_rows = [{"dependency": k, "error": e} for k, e in raw_errors]
+    return results, error_rows
+
+
+_PRERELEASE_RE = re.compile(
+    r"[-.](?:m\d+|rc\d*|alpha\d*|beta\d*|snapshot|milestone)",
+    re.IGNORECASE,
+)
+
+
+_ACCESSIBILITY_CACHE = {}
+MAX_VERSION_PROBES = 50
+
+
+def _is_prerelease(v: MavenVersion) -> bool:
+    return bool(_PRERELEASE_RE.search(v.raw))
 
 
 def find_accessible_version(
@@ -392,200 +386,87 @@ def find_accessible_version(
     auth: tuple[str, str] | None,
     timeout: int,
     xray_host: str | None = None,
+    repo_urls: list[str] | None = None,
+    log_dir: str | None = None,
 ) -> str | None:
     """Return a non-vulnerable accessible same-major Maven version.
 
-    Prefer the normal forward path first: same-major versions at or above the
-    selected target, ordered from nearest to highest. If Xray filtering and
-    Artifactory accessibility checks leave no usable forward candidate, fall
-    back to lower same-major versions from nearest to oldest. The caller's build
-    validation is still responsible for proving a lower fallback compiles before
-    the written update is kept.
+    Forward candidates are preferred in ascending order. If none are accessible,
+    backward candidates are tried in descending order. Repository accessibility
+    probes within each direction run concurrently while preserving that ordering.
+
+    Thin Maven-specific adapter over `shared.version_search.find_safe_version`:
+    builds the same-major forward/backward candidate lists and the multi-repo-URL
+    accessibility probe, then delegates the CVE-filter + concurrent-probe
+    orchestration to the shared implementation (also used by npm and PyPI).
     """
+    from shared.version_search import find_safe_version
+
+    # `timeout` here is gradle_timeout, sized for a real Gradle build (this
+    # session raised it to 150-180s specifically so slow builds wouldn't be
+    # mistaken for hangs). A version-accessibility probe is just an HTTP HEAD
+    # and an Xray metadata POST -- reusing the build-scale timeout let a single
+    # slow/hanging probe block for the full 150-180s, and with several related
+    # packages needing their own probe (e.g. 8 io.netty:* artifacts flagged
+    # together by one JFrog audit), that stacked into multi-minute stalls
+    # confirmed live: a single package's proactive-check replacement search
+    # measured ~90s while only 2 packages were probing concurrently against 8
+    # available Artifactory slots -- concurrency headroom was never the
+    # constraint, per-probe latency was. Cap it independently so a hung probe
+    # fails fast instead of borrowing the build's patience.
+    probe_timeout = min(timeout, 20)
 
     package = f"{group}:{artifact}"
     forward_candidates = sorted(
-        v for v in available if v.major == start.major and v >= start
-    )
+        v
+        for v in available
+        if v.major == start.major and v >= start and not _is_prerelease(v)
+    )[:10]
     backward_candidates = sorted(
-        (v for v in available if v.major == start.major and v < start),
+        (
+            v
+            for v in available
+            if v.major == start.major and v < start and not _is_prerelease(v)
+        ),
         reverse=True,
+    )[:10]
+
+    check_urls = list(
+        dict.fromkeys((repo_urls or []) + ([base_url] if base_url else []))
     )
-
-    forward_candidates, _forward_cves, _forward_xray_error = filter_versions_without_cves(
-        "maven",
-        package,
-        forward_candidates,
-        xray_host=xray_host,
-        auth=auth,
-        timeout=timeout,
-    )
-    backward_candidates, _backward_cves, _backward_xray_error = filter_versions_without_cves(
-        "maven",
-        package,
-        backward_candidates,
-        xray_host=xray_host,
-        auth=auth,
-        timeout=timeout,
-    )
-
-    for candidate in forward_candidates:
-        if version_accessible(group, artifact, str(candidate), base_url, auth, timeout):
-            return str(candidate)
-
-    for candidate in backward_candidates:
-        if version_accessible(group, artifact, str(candidate), base_url, auth, timeout):
-            return str(candidate)
-
-    return None
-
-
-def extract_ado_versions(
-    csv_path: str,
-    columns: list[str] | None,
-    known_packages: set[str],
-    show_progress: bool,
-    claude_model: str = "haiku",
-    claude_effort: str = "low",
-    claude_timeout: int = 120,
-    claude_workers: int = 4,
-    claude_cmd: str = "claude",
-    claude_batch_size: int = 40,
-) -> tuple[dict[str, set[MavenVersion]], dict[str, set[int]], dict[str, str], set[str]]:
-    """
-    Returns (package_versions, package_task_ids, package_constraints, osv_packages).
-    package_versions: {package_key: {MavenVersion, ...}}
-    package_task_ids: {package_key: {task_id, ...}}
-    package_constraints: {package_key: ">=" | ">"}
-    Every row with version numbers is sent to Claude in batched prompts;
-    pattern matching provides candidates as hints.
-    """
-    rows = read_csv_full_rows(csv_path, columns)
-    pkg_patterns = build_package_patterns(known_packages)
-    fuzzy_patterns = build_fuzzy_patterns(known_packages, _FUZZY_STOPWORDS)
-    progress = ProgressBar(len(rows), "Extracting ADO package/version pairs", enabled=show_progress)
-    package_versions: dict[str, set[MavenVersion]] = {}
-    package_task_ids: dict[str, set[int]] = {}
-    package_constraints: dict[str, str] = {}
-    pending: list[tuple[int | None, str, list[str], set[MavenVersion]]] = []
-
-    def _commit(task_id: int | None, pkg_map: dict[str, str], versions: set[MavenVersion]) -> None:
-        for pkg, constraint in pkg_map.items():
-            for v in versions:
-                package_versions.setdefault(pkg, set()).add(v)
-            if task_id is not None:
-                package_task_ids.setdefault(pkg, set()).add(task_id)
-            # ">" is more restrictive; keep it once seen
-            if package_constraints.get(pkg) != ">":
-                package_constraints[pkg] = constraint
-
-    # CVE/GHSA pre-pass: look up canonical package names + fixed versions from OSV.
-    # Tasks resolved this way skip the NLP/Claude path entirely.
-    from shared.cve_lookup import extract_advisory_id, prefetch_advisories
-
-    _advisory_cache = prefetch_advisories(rows, "Maven")
-    handled_task_ids: set[int | None] = set()
-    osv_packages: set[str] = set()  # packages identified via OSV/NVD (not NLP)
-
-    for task_id, title, _text in rows:
-        aid = extract_advisory_id(title)
-        if not aid or aid not in _advisory_cache:
-            continue
-        pkg_fixed = _advisory_cache[aid]
-        if not pkg_fixed:
-            continue
-        for pkg_name, fixed_strs in pkg_fixed.items():
-            for fixed_str in fixed_strs:
-                v = MavenVersion.parse(fixed_str)
-                if v:
-                    package_versions.setdefault(pkg_name, set()).add(v)
-            if task_id is not None:
-                package_task_ids.setdefault(pkg_name, set()).add(task_id)
-            if package_constraints.get(pkg_name) != ">":
-                package_constraints[pkg_name] = ">="
-            osv_packages.add(pkg_name)
-        # Only skip NLP if at least one resolved name is a known package.
-        # If none match (e.g. NVD product name differs from Maven coordinate),
-        # let NLP run to find the correct name.
-        if any(p in known_packages for p in pkg_fixed):
-            handled_task_ids.add(task_id)
-
-    for task_id, _title, text in rows:
-        if task_id in handled_task_ids:
-            progress.update()
-            continue
-        progress.update()
-        if not text.strip():
-            continue
-
-        row_versions: set[MavenVersion] = set()
-        for m in MAVEN_VERSION_RE.finditer(text):
-            v = MavenVersion.parse(m.group(1))
-            if v:
-                row_versions.add(v)
-
-        candidates = [
-            pkg
-            for pkg, pattern in pkg_patterns.items()
-            if pattern.search(text)
-            or (pkg in fuzzy_patterns and any(fp.search(text) for fp in fuzzy_patterns[pkg]))
-        ]
-        java_candidates = _java_advisory_candidates(text, known_packages)
-        if java_candidates:
-            candidates = sorted(set(candidates) | java_candidates)
-
-        # Some ADO CVE tasks name an affected framework/package but omit the fixed
-        # version. Still send those rows to Claude when dependency-tree candidates
-        # exist; apply_updates can then use same-major Artifactory/JFrog fallback
-        # for packages Claude identifies. Rows with neither versions nor
-        # candidates remain unhelpful and are skipped.
-        if not row_versions and not candidates:
-            continue
-
-        # Regex/fuzzy matches are only candidate hints for Claude. They must not
-        # create final package/version mappings by themselves. Claude is the
-        # authority for NLP extraction; OSV/NVD advisory lookup above remains the
-        # deterministic path for canonical vulnerability data.
-        pending.append((task_id, text, candidates, row_versions))
-
-    if pending:
-        from resolver.claude_resolver import batch_resolve
-
-        def _with_candidate_hints(text: str, candidates: list[str]) -> str:
-            if not candidates:
-                return text
-            candidate_set = set(candidates)
-            full_artifacts = {pkg.split(":")[-1] for pkg in candidate_set if ":" in pkg}
-            preferred = sorted(
-                pkg for pkg in candidate_set if ":" in pkg or pkg not in full_artifacts
+    def _accessible(version: MavenVersion) -> bool:
+        return any(
+            version_accessible(
+                group,
+                artifact,
+                str(version),
+                url,
+                auth,
+                probe_timeout,
             )
-            if not preferred:
-                return text
-            hints = "\n".join(f"- {pkg}" for pkg in preferred)
-            return (
-                f"{text}\n\n"
-                "Candidate package hints from exact/fuzzy matching. "
-                "Use these only if the task actually discusses that package; "
-                "do not return a package solely because it appears in this hint list.\n"
-                f"{hints}"
-            )
-
-        claude_tasks = [(tid, _with_candidate_hints(txt, cands)) for tid, txt, cands, _ in pending]
-        claude_known_packages = set(known_packages)
-        for _, _, cands, _ in pending:
-            claude_known_packages.update(cands)
-        resolved_by_idx, _ = batch_resolve(
-            claude_tasks,
-            claude_known_packages,
-            model=claude_model,
-            effort=claude_effort,
-            timeout=claude_timeout,
-            workers=claude_workers,
-            claude_cmd=claude_cmd,
-            batch_size=claude_batch_size,
-            allow_unlisted=False,
+            for url in check_urls
         )
-        for i, (task_id, _, _, row_versions) in enumerate(pending):
-            _commit(task_id, resolved_by_idx.get(i, {}), row_versions)
 
-    return package_versions, package_task_ids, package_constraints, osv_packages
+    search_start = time.perf_counter()
+
+    result, _diagnostic = find_safe_version(
+        forward_candidates,
+        backward_candidates,
+        _accessible,
+        "maven",
+        package,
+        xray_host=xray_host,
+        xray_auth=auth,
+        timeout=probe_timeout,
+    )
+
+    from shared.build_validation import _dbg
+
+    _dbg(
+        log_dir,
+        f"[perf] concurrent version search ({package}) completed in "
+        f"{time.perf_counter() - search_start:.2f}s",
+    )
+    return str(result) if result is not None else None
+
+
