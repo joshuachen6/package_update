@@ -1,0 +1,30 @@
+{
+  "component_count": 1008,
+  "ecosystems": [
+    "npm"
+  ],
+  "errors": [],
+  "vulnerability_count": 2,
+  "vulnerable_component_count": 2,
+  "vulnerable_components": [
+    {
+      "component_id": "npm://quill:2.0.3",
+      "cves": [
+        "CVE-2025-15056"
+      ],
+      "ecosystem": "npm",
+      "package": "quill",
+      "version": "2.0.3"
+    },
+    {
+      "component_id": "npm://ws:8.21.0",
+      "cves": [
+        "CVE-2026-62389"
+      ],
+      "ecosystem": "npm",
+      "package": "ws",
+      "version": "8.21.0"
+    }
+  ],
+  "xray_host": "https://humana.jfrog.io"
+}
