@@ -2,6 +2,18 @@ from __future__ import annotations
 
 import csv
 import os
+import re
+
+
+def safe_branch_dir(branch: str | None) -> str:
+    """A branch name isn't a safe path component as-is (slashes are common,
+    e.g. "feature/foo") -- sanitize it for use as a directory name.
+    """
+    branch = (branch or "").strip()
+    if not branch:
+        return "default-branch"
+    safe = re.sub(r"[^A-Za-z0-9._-]+", "-", branch).strip("-.")
+    return safe or "default-branch"
 
 
 class ProgressBar:

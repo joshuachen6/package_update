@@ -547,6 +547,49 @@ def test_refresh_syncs_after_tree_snapshot_on_success(tmp_path, monkeypatch):
     assert "1.5.38" in after
 
 
+def test_refresh_syncs_node_after_tree_snapshot_on_success(tmp_path, monkeypatch):
+    """Live bug: Gradle's post-remediation resolve_tree here got copied to an
+    -after snapshot, but Node's never did -- the report's node "after" row
+    was always missing entirely, matching real batch data (npm-dependency-
+    tree-after.json simply never existed for any repo).
+    """
+    from types import SimpleNamespace
+
+    from shared.verification import refresh_dependency_evidence
+
+    def fake_resolve_tree(file_path, parsed, cfg, log_dir):
+        # Simulates resolve_tree's own side effect of overwriting the flat
+        # file with the freshly re-resolved post-remediation lockfile.
+        Path(log_dir, "npm-dependency-tree.json").write_text(
+            '{"packages": {"": {}, "node_modules/ws": {"version": "8.21.0"}}}',
+            encoding="utf-8",
+        )
+        return SimpleNamespace(tree_failed=False)
+
+    spec = SimpleNamespace(
+        parser=SimpleNamespace(
+            parse=lambda file_path: object(),
+            resolve_tree=fake_resolve_tree,
+        )
+    )
+    monkeypatch.setattr("managers.get_manager_spec", lambda dm_type: spec)
+
+    errors = refresh_dependency_evidence({
+        "cfg": {"log_dir": str(tmp_path)},
+        "file_results": [{
+            "dm_type": "node",
+            "file_path": str(tmp_path / "package.json"),
+            "display_changes": [{"package": "x"}],
+            "write_status": "Written",
+        }],
+    })
+
+    assert errors == []
+    after_path = tmp_path / "npm-dependency-tree-after.json"
+    assert after_path.is_file()
+    assert "8.21.0" in after_path.read_text(encoding="utf-8")
+
+
 def test_gradle_test_skips_non_executable_wrapper(tmp_path, monkeypatch):
     """Live bug: a checked-out gradlew without the executable bit (git
     doesn't always preserve it) raised PermissionError when exec'd directly,
@@ -693,6 +736,50 @@ def test_node_verification_reports_failure_when_baseline_passes(tmp_path, monkey
 
     assert tests["status"] == "failed"
     assert package_json.read_text(encoding="utf-8") == current_text
+
+
+def test_capture_node_build_logs_writes_both_before_and_after(tmp_path, monkeypatch):
+    """cfg.capture_build_logs opt-in: an extra install/build against the
+    pre-remediation package.json/lockfile, plus the already-written
+    post-remediation state, purely to leave clean log artifacts.
+    """
+    from shared.verification import capture_node_build_logs
+
+    original_text = json.dumps({"name": "x", "version": "1.0.0", "scripts": {}})
+    package_json = _init_git_repo_with_package_json(tmp_path, original_text)
+    current_text = json.dumps({"name": "x", "version": "1.0.1", "scripts": {}})
+    package_json.write_text(current_text, encoding="utf-8")
+
+    def fake_run(command, cwd, timeout, label):
+        text = (tmp_path / "package.json").read_text(encoding="utf-8")
+        return {"label": label, "status": "passed", "output": f"installed ({text})"}
+
+    monkeypatch.setattr("shared.verification._run", fake_run)
+
+    capture_node_build_logs(tmp_path, "npm", 30, str(tmp_path))
+
+    before = (tmp_path / "build-log-before.txt").read_text(encoding="utf-8")
+    after = (tmp_path / "build-log-after.txt").read_text(encoding="utf-8")
+    assert "1.0.0" in before
+    assert "1.0.1" in after
+    assert package_json.read_text(encoding="utf-8") == current_text
+
+
+def test_capture_node_build_logs_skips_before_when_text_unchanged(tmp_path, monkeypatch):
+    from shared.verification import capture_node_build_logs
+
+    text = json.dumps({"name": "x", "version": "1.0.0", "scripts": {}})
+    _init_git_repo_with_package_json(tmp_path, text)
+
+    def fake_run(command, cwd, timeout, label):
+        return {"label": label, "status": "passed", "output": "installed"}
+
+    monkeypatch.setattr("shared.verification._run", fake_run)
+
+    capture_node_build_logs(tmp_path, "npm", 30, str(tmp_path))
+
+    assert not (tmp_path / "build-log-before.txt").exists()
+    assert (tmp_path / "build-log-after.txt").exists()
 
 
 def test_gradle_test_runs_without_a_reusable_daemon(tmp_path, monkeypatch):

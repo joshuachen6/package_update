@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import contextlib
 import json
 import re
 import subprocess
@@ -226,6 +227,87 @@ def _node_baseline_failure(
             timeout,
             "npm restore install",
         )
+
+
+def _node_build_once(project_dir: Path, npm_cmd: str, timeout: int, label: str) -> str:
+    parts = []
+    install = _run(
+        [npm_cmd, "install", "--no-audit", "--no-fund"],
+        project_dir,
+        timeout,
+        f"{label} npm install",
+    )
+    parts.append(install.get("output", ""))
+    if install["status"] == "passed":
+        try:
+            package_json = json.loads((project_dir / "package.json").read_text(encoding="utf-8"))
+        except Exception:
+            package_json = {}
+        scripts = package_json.get("scripts") if isinstance(package_json, dict) else None
+        if isinstance(scripts, dict) and scripts.get("build"):
+            build = _run([npm_cmd, "run", "build"], project_dir, timeout, f"{label} npm build")
+            parts.append(build.get("output", ""))
+    return "\n".join(part for part in parts if part)
+
+
+def capture_node_build_logs(
+    project_dir: Path,
+    npm_cmd: str,
+    timeout: int,
+    log_dir: str,
+) -> None:
+    """Opt-in diagnostic (cfg.capture_build_logs): run `npm install` (plus
+    `npm run build` if declared) twice -- once against the pre-remediation
+    package.json/lockfile, once against the already-written post-remediation
+    state -- purely to leave clean build-log-before.txt/build-log-after.txt
+    artifacts. An extra full install (and possibly build) per repo; meant for
+    verification runs, not production batches, hence gated behind a config
+    flag rather than always-on. Lockfile swap/restore mirrors
+    _node_baseline_failure. Best-effort: any git/install hiccup on the
+    "before" side just skips that file rather than raising.
+    """
+    pkg_path = project_dir / "package.json"
+    current_pkg_text = pkg_path.read_text(encoding="utf-8")
+
+    after_output = _node_build_once(project_dir, npm_cmd, timeout, "after")
+    with contextlib.suppress(Exception):
+        Path(log_dir, "build-log-after.txt").write_text(after_output, encoding="utf-8")
+
+    original_pkg_text = _git_show(project_dir, "package.json")
+    if original_pkg_text is None or original_pkg_text == current_pkg_text:
+        return
+
+    lock_paths = [
+        project_dir / "package-lock.json",
+        project_dir / "npm-shrinkwrap.json",
+    ]
+    snapshots: dict[Path, tuple[str, str]] = {}
+    for lock_path in lock_paths:
+        if not lock_path.is_file():
+            continue
+        original_lock_text = _git_show(project_dir, lock_path.name)
+        if original_lock_text is None:
+            continue
+        snapshots[lock_path] = (lock_path.read_text(encoding="utf-8"), original_lock_text)
+
+    try:
+        pkg_path.write_text(original_pkg_text, encoding="utf-8")
+        for lock_path, (_current, original_text) in snapshots.items():
+            lock_path.write_text(original_text, encoding="utf-8")
+        before_output = _node_build_once(project_dir, npm_cmd, timeout, "before")
+    finally:
+        pkg_path.write_text(current_pkg_text, encoding="utf-8")
+        for lock_path, (current_text, _original) in snapshots.items():
+            lock_path.write_text(current_text, encoding="utf-8")
+        _run(
+            [npm_cmd, "install", "--no-audit", "--no-fund"],
+            project_dir,
+            timeout,
+            "npm restore install",
+        )
+
+    with contextlib.suppress(Exception):
+        Path(log_dir, "build-log-before.txt").write_text(before_output, encoding="utf-8")
 
 
 def _gradle_test(
@@ -539,6 +621,18 @@ def refresh_dependency_evidence(
                 fresh = Path(log_dir) / "gradle-dependency-tree.txt"
                 if fresh.is_file():
                     (Path(log_dir) / "gradle-dependency-tree-after.txt").write_text(
+                        fresh.read_text(encoding="utf-8"),
+                        encoding="utf-8",
+                    )
+            elif file_result.get("dm_type") == "node":
+                # Node has no equivalent of this at all today: resolve_tree
+                # above just overwrote the flat npm-dependency-tree.json with
+                # the post-remediation lockfile, but nothing ever copied it to
+                # an -after snapshot -- the report's node "after" row was
+                # always missing.
+                fresh = Path(log_dir) / "npm-dependency-tree.json"
+                if fresh.is_file():
+                    (Path(log_dir) / "npm-dependency-tree-after.json").write_text(
                         fresh.read_text(encoding="utf-8"),
                         encoding="utf-8",
                     )

@@ -60,6 +60,7 @@ _PARAM_LINES = [
 ]
 _PARAM_CHECKS = [
     ("_skip_bc", "skip_block_check", False),
+    ("_capture_build_logs", "capture_build_logs", False),
 ]
 _PARAM_SPINS = [
     ("_workers", "workers", 8),
@@ -429,6 +430,15 @@ class MainWindow(QMainWindow):
         fl.setContentsMargins(0, 0, 0, 0)
         self._skip_bc = QCheckBox("Skip Block Check")
         fl.addWidget(self._skip_bc)
+        self._capture_build_logs = QCheckBox("Capture Before/After Build Logs (batch only)")
+        self._capture_build_logs.setToolTip(
+            "Batch runs only. Runs an extra full build against the "
+            "pre-remediation file to leave clean build-log-before.txt/"
+            "build-log-after.txt artifacts. Slower per repo -- intended for "
+            "verification runs, not routine production batches. Has no "
+            "effect on the single-repo Analyze action."
+        )
+        fl.addWidget(self._capture_build_logs)
         fl.addStretch()
         lay.addRow("Flags:", flags)
 
@@ -555,6 +565,7 @@ class MainWindow(QMainWindow):
             "gradle_timeout": self._gradle_timeout.value(),
             "enable_failure_isolation": False,
             "skip_block_check": self._skip_bc.isChecked(),
+            "capture_build_logs": self._capture_build_logs.isChecked(),
             "artifactory_source": self._art_src.text().strip(),
             "artifactory_repo": self._art_repo.text().strip(),
             "artifactory_username": self._art_user.text().strip(),
@@ -585,6 +596,11 @@ class MainWindow(QMainWindow):
             "dep_managers": [],
             "proj_dir": self._repo_project_dir(),
             "skip_block_check": self._skip_bc.isChecked(),
+            # capture_build_logs is intentionally omitted here: the single-
+            # repo "Analyze" path (ui/worker.py) is a separate implementation
+            # that never calls quick_update.py's write/validate flow where
+            # build-log capture is wired in -- setting the key here would be
+            # silently ignored rather than doing anything.
             "workers": self._workers.value(),
             "columns": self._columns_edit.text().strip(),
             "log_dir": log_dir,

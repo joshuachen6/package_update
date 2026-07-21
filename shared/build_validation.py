@@ -1725,6 +1725,55 @@ def _gradle_baseline_failure(
         build_path.write_text(current_text, encoding="utf-8")
 
 
+def capture_gradle_build_logs(
+    build_path: Path,
+    original_text: str,
+    current_text: str,
+    gradle_cmd: str,
+    timeout: int,
+    log_dir: str,
+) -> None:
+    """Opt-in diagnostic (cfg.capture_build_logs): run two explicit gradle
+    builds -- one against the pre-remediation file, one against the
+    already-written post-remediation file -- purely to leave clean
+    build-log-before.txt/build-log-after.txt artifacts. An extra full build
+    per repo; meant for verification runs, not production batches, hence
+    gated behind a config flag rather than always-on.
+    """
+    cmd = [gradle_cmd, "build", "--no-daemon", "--init-script", _gradle_init_script_path()]
+    cwd = str(build_path.resolve().parent)
+
+    def _run_once(build_timeout: int) -> tuple[bool, str]:
+        try:
+            result = _run_build_command(cmd, cwd, build_timeout, "build log capture")
+            return True, "\n".join(part for part in (result.stdout, result.stderr) if part)
+        except BuildValidationError as exc:
+            return False, str(exc)
+
+    def _run_with_retry() -> str:
+        passed, output = _run_once(timeout)
+        # Same transient-worker-crash retry _run_candidate_trials already
+        # applies elsewhere -- without it this diagnostic build would
+        # reintroduce the exact false "failure" a crashed (not broken) worker
+        # produces under batch memory contention.
+        if not passed and _is_transient_daemon_crash(output):
+            _, output = _run_once(max(300, timeout * 3))
+        return output
+
+    if original_text != current_text:
+        build_path.write_text(original_text, encoding="utf-8")
+        try:
+            before_output = _run_with_retry()
+        finally:
+            build_path.write_text(current_text, encoding="utf-8")
+        with contextlib.suppress(Exception):
+            Path(log_dir, "build-log-before.txt").write_text(before_output, encoding="utf-8")
+
+    after_output = _run_with_retry()
+    with contextlib.suppress(Exception):
+        Path(log_dir, "build-log-after.txt").write_text(after_output, encoding="utf-8")
+
+
 def _record_preexisting_failure(log_dir: str | None, baseline_failure: str) -> None:
     if not log_dir:
         return
