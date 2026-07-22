@@ -1,0 +1,4 @@
+package,old_override,new_override,minimum_required,removed_nested_override_paths
+immutable,,5.1.8,5.1.7,
+js-yaml,,4.3.0,4.2.0,
+postcss,,8.4.32,8.4.31,

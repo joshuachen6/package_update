@@ -1,0 +1,2 @@
+package,section,old_spec,new_spec,minimum_required,selected_version,path
+dompurify,dependencies,3.4.0,3.4.3,3.4.0,3.4.3,dependencies.dompurify
