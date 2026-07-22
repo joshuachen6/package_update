@@ -378,6 +378,10 @@ def run_quick_update(cfg: QuickUpdateConfig) -> dict:
                 vulnerable_packages,
                 prefetched_gradle.get(manager["file_path"]),
             )
+            if manager["type"] == "gradle":
+                result["preaudit_gradle_tree_path"] = gradle_tree_by_file.get(
+                    manager["file_path"], ""
+                )
             _snapshot_before(manager)
             fixed_results.append(result)
 

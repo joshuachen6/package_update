@@ -641,6 +641,43 @@ def refresh_dependency_evidence(
                 f"{file_result.get('file_path', '')}: {exc}"
             )
 
+    # A Gradle write that fully reverted (write_status == "Failed", isolation
+    # disabled) is deliberately excluded from _changed_file_results above --
+    # there's nothing changed to refresh. But the on-disk build.gradle is
+    # back to its exact pre-remediation state in that case, and the after-
+    # scan below still runs unconditionally, expecting some tree to read. Left
+    # unhandled, it finds nothing and reports "Error - secondary verification
+    # scan incomplete" -- indistinguishable from a real scan/infra failure --
+    # instead of the real, honest answer: the build broke, everything reverted,
+    # and the repo's CVE state is unchanged from before. Falling back to the
+    # already-resolved preaudit tree (captured before any edits) is safe here
+    # specifically because a full revert makes that tree accurate again.
+    if not (Path(log_dir) / "gradle-dependency-tree.txt").is_file():
+        for file_result in results.get("file_results", []) or []:
+            if (
+                file_result.get("dm_type") != "gradle"
+                or not file_result.get("display_changes")
+                or file_result.get("write_status") != "Failed"
+            ):
+                continue
+            preaudit_path = file_result.get("preaudit_gradle_tree_path")
+            if not preaudit_path or not Path(preaudit_path).is_file():
+                continue
+            try:
+                tree_text = Path(preaudit_path).read_text(encoding="utf-8")
+                (Path(log_dir) / "gradle-dependency-tree.txt").write_text(
+                    tree_text, encoding="utf-8"
+                )
+                (Path(log_dir) / "gradle-dependency-tree-after.txt").write_text(
+                    tree_text, encoding="utf-8"
+                )
+            except Exception as exc:
+                errors.append(
+                    f"{file_result.get('file_path', '')}: reverted-write tree "
+                    f"fallback failed: {exc}"
+                )
+            break
+
     return errors
 
 

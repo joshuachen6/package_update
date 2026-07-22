@@ -547,6 +547,86 @@ def test_refresh_syncs_after_tree_snapshot_on_success(tmp_path, monkeypatch):
     assert "1.5.38" in after
 
 
+def test_refresh_falls_back_to_preaudit_tree_when_gradle_write_fully_reverted(
+    tmp_path, monkeypatch
+):
+    """Live bug: when a Gradle write fully reverts (write_status == "Failed",
+    isolation disabled), _changed_file_results correctly skips refreshing --
+    nothing changed. But the after-scan still runs unconditionally, expecting
+    a tree file, and finds none -- misclassifying a legitimate build failure
+    (reverted to the original, still-vulnerable state) as "Error - secondary
+    verification scan incomplete" instead of the real, unchanged CVE state.
+    Observed live across 13 real repos in one batch (cds-api, dnc-publish-api,
+    rule-api, etc.) -- all Gradle, all write_status=Failed, all missing
+    gradle-dependency-tree.txt.
+    """
+    from shared.verification import refresh_dependency_evidence
+
+    preaudit_dir = tmp_path / "preaudit-gradle" / "1"
+    preaudit_dir.mkdir(parents=True)
+    (preaudit_dir / "gradle-dependency-tree.txt").write_text(
+        "+--- com.fasterxml.jackson.core:jackson-databind:2.19.0\n",
+        encoding="utf-8",
+    )
+
+    errors = refresh_dependency_evidence({
+        "cfg": {"log_dir": str(tmp_path)},
+        "file_results": [{
+            "dm_type": "gradle",
+            "file_path": str(tmp_path / "build.gradle"),
+            "display_changes": [{"package": "x"}],
+            "write_status": "Failed",
+            "preaudit_gradle_tree_path": str(preaudit_dir / "gradle-dependency-tree.txt"),
+        }],
+    })
+
+    assert errors == []
+    tree = (tmp_path / "gradle-dependency-tree.txt").read_text(encoding="utf-8")
+    assert "jackson-databind:2.19.0" in tree
+    after = (tmp_path / "gradle-dependency-tree-after.txt").read_text(encoding="utf-8")
+    assert "jackson-databind:2.19.0" in after
+
+
+def test_refresh_does_not_fall_back_when_write_succeeded_with_no_tree(
+    tmp_path, monkeypatch
+):
+    """The reverted-write fallback must only fire for a genuine full revert
+    (write_status == "Failed"), not silently mask an unrelated case where a
+    successful write's own resolve_tree happened not to produce a tree file.
+    """
+    from types import SimpleNamespace
+
+    from shared.verification import refresh_dependency_evidence
+
+    preaudit_dir = tmp_path / "preaudit-gradle" / "1"
+    preaudit_dir.mkdir(parents=True)
+    (preaudit_dir / "gradle-dependency-tree.txt").write_text(
+        "+--- some:thing:1.0.0\n", encoding="utf-8"
+    )
+
+    spec = SimpleNamespace(
+        parser=SimpleNamespace(
+            parse=lambda file_path: object(),
+            resolve_tree=lambda file_path, parsed, cfg, log_dir: SimpleNamespace(tree_failed=False),
+        )
+    )
+    monkeypatch.setattr("managers.get_manager_spec", lambda dm_type: spec)
+
+    errors = refresh_dependency_evidence({
+        "cfg": {"log_dir": str(tmp_path)},
+        "file_results": [{
+            "dm_type": "gradle",
+            "file_path": str(tmp_path / "build.gradle"),
+            "display_changes": [{"package": "x"}],
+            "write_status": "Written",
+            "preaudit_gradle_tree_path": str(preaudit_dir / "gradle-dependency-tree.txt"),
+        }],
+    })
+
+    assert errors == []
+    assert not (tmp_path / "gradle-dependency-tree.txt").is_file()
+
+
 def test_refresh_syncs_node_after_tree_snapshot_on_success(tmp_path, monkeypatch):
     """Live bug: Gradle's post-remediation resolve_tree here got copied to an
     -after snapshot, but Node's never did -- the report's node "after" row

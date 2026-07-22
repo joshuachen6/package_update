@@ -406,7 +406,7 @@ def apply_updates(
                 force_entries.extend(kf)
 
     force_entries.extend(
-        _sibling_family_forces(changes, force_entries, installed)
+        _sibling_family_forces(changes, force_entries, installed, available_by_key)
     )
     changes.extend(
         _align_competing_pins(build_text_for_strategy, changes, force_entries)
@@ -496,6 +496,7 @@ def _sibling_family_forces(
     changes: list[dict],
     force_entries: list[dict],
     installed: dict[str, MavenVersion],
+    available_by_key: dict[str, list[MavenVersion]],
 ) -> list[dict]:
     """Keep version-locked dependency families (Netty, Spring, Jackson, ...) consistent.
 
@@ -535,11 +536,33 @@ def _sibling_family_forces(
                 continue
             if sibling_version != old_version:
                 continue
+
+            # The trigger's exact version string doesn't necessarily exist for
+            # every sibling -- Jackson's own annotations module releases on a
+            # coarser cadence than databind/core (no patch digit some minors),
+            # so stamping databind's "2.22.1" onto jackson-annotations forced a
+            # version that was never published. Gradle can't resolve it
+            # ("jackson-annotations:2.22.1 FAILED" in the tree, confirmed live)
+            # and the real build never gets far enough to blame the actual
+            # cause. Only force to a version confirmed to exist for THIS
+            # sibling; fall back to the closest existing one below the
+            # trigger's target, and skip forcing entirely if none exists.
+            sibling_available = available_by_key.get(sibling_key, [])
+            if target_version in sibling_available:
+                resolved_target = target_version
+            else:
+                lower_candidates = [
+                    v for v in sibling_available if old_version < v <= target_version
+                ]
+                resolved_target = max(lower_candidates) if lower_candidates else None
+            if resolved_target is None:
+                continue
+
             sibling_forces[sibling_key] = {
                 "dependency": sibling_key,
                 "old_version": str(sibling_version),
-                "new_version": str(target_version),
-                "minimum_required": str(target_version),
+                "new_version": str(resolved_target),
+                "minimum_required": str(resolved_target),
                 "remediation_guided": f"version-locked sibling of {dependency}",
             }
 
