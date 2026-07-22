@@ -102,6 +102,9 @@ def apply_updates(
                     written as resolutionStrategy.force lines
     """
     direct_by_key: dict[str, GradleDep] = {f"{d.group}:{d.artifact}": d for d in deps}
+    direct_occurrences_by_key: dict[str, list[GradleDep]] = {}
+    for d in deps:
+        direct_occurrences_by_key.setdefault(f"{d.group}:{d.artifact}", []).append(d)
     all_criteria_keys: set[str] = set(remediation_by_key.keys()) | set(package_constraints.keys())
 
     try:
@@ -245,20 +248,32 @@ def apply_updates(
             # Already confirmed accessible above (unless skip_block_check).
             final = str(target)
 
-            if final == dep.version:
-                ks.append({"dependency": key, "reason": "selected version equals current", "current": str(current), "target": ""})
-                return kc, ks, kf
+            # A build.gradle can declare the same group:artifact more than
+            # once (e.g. two identical strict-version blocks at different
+            # locations). direct_by_key only keeps one representative entry
+            # per key, so iterate every parsed occurrence here -- otherwise
+            # only the first textual occurrence gets patched and the rest
+            # stay at the vulnerable version even though the pipeline
+            # believes the package was fixed.
+            occurrences = direct_occurrences_by_key.get(key, [dep])
+            changed_any = False
+            for occurrence in occurrences:
+                if occurrence.version == final:
+                    continue
+                new_decl = occurrence.original.replace(occurrence.version, final, 1)
+                kc.append({
+                    "dependency": key,
+                    "config": occurrence.config,
+                    "old_version": occurrence.version,
+                    "new_version": final,
+                    "remediation_guided": "yes",
+                    "original": occurrence.original,
+                    "replacement": new_decl,
+                })
+                changed_any = True
 
-            new_decl = dep.original.replace(dep.version, final, 1)
-            kc.append({
-                "dependency": key,
-                "config": dep.config,
-                "old_version": dep.version,
-                "new_version": final,
-                "remediation_guided": "yes",
-                "original": dep.original,
-                "replacement": new_decl,
-            })
+            if not changed_any:
+                ks.append({"dependency": key, "reason": "selected version equals current", "current": str(current), "target": ""})
             return kc, ks, kf
 
         # -----------------------------------------------------------------
