@@ -26,6 +26,13 @@ DEPENDENCY_PATTERN = re.compile(
     re.VERBOSE,
 )
 
+DEPENDENCY_PAREN_STRING_PATTERN = re.compile(
+    r"""(?P<config>implementation|api|compileOnly|runtimeOnly|annotationProcessor
+                  |testImplementation|testRuntimeOnly|testCompileOnly)\s*
+        \(\s*['"](?P<group>[^:'"]+):(?P<artifact>[^:'"]+):(?P<version>[^'"]+)['"]\s*\)""",
+    re.VERBOSE,
+)
+
 _STRICT_DEP_HEADER_RE = re.compile(
     r"\b(implementation|api|compileOnly|runtimeOnly|annotationProcessor|testImplementation|testRuntimeOnly|testCompileOnly)\s*\(([^)]*)\)\s*\{",
     re.DOTALL,
@@ -241,6 +248,19 @@ def parse_gradle_deps(build_text):
     deps = []
 
     for m in DEPENDENCY_PATTERN.finditer(build_text):
+        deps.append(
+            GradleDep(
+                config=m.group("config"),
+                group=m.group("group"),
+                artifact=m.group("artifact"),
+                version=m.group("version"),
+                original=m.group(0),
+                match_start=m.start(),
+                match_end=m.end(),
+            )
+        )
+
+    for m in DEPENDENCY_PAREN_STRING_PATTERN.finditer(build_text):
         deps.append(
             GradleDep(
                 config=m.group("config"),
