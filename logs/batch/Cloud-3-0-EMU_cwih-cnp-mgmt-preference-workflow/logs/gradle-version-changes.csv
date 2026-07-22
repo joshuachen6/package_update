@@ -1,7 +1,0 @@
-dependency,config,old_version,new_version,remediation_guided
-org.apache.tomcat.embed:tomcat-embed-core,implementation,11.0.21,11.0.24,yes
-ch.qos.logback:logback-core,implementation,1.5.25,1.5.38,yes
-org.springframework:spring-framework.version,ext,6.2.17,6.2.19,transitive org.springframework:spring-expression>=6.2.19
-org.springframework:spring-webflux,implementation,6.2.17,6.2.19,yes
-ch.qos.logback:logback-classic,implementation,1.5.25,1.5.38,competing pin realigned
-com.fasterxml.jackson.core:jackson-core,implementation,2.21.2,2.22.1,competing pin realigned
