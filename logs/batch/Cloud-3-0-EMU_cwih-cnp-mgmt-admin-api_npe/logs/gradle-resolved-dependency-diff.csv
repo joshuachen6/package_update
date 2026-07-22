@@ -28,6 +28,9 @@ io.netty:netty-transport,4.1.132.Final,4.2.16.Final,changed
 io.netty:netty-transport-classes-epoll,4.1.132.Final,4.2.16.Final,changed
 io.netty:netty-transport-native-epoll,4.1.132.Final,4.2.16.Final,changed
 io.netty:netty-transport-native-unix-common,4.1.132.Final,4.2.16.Final,changed
+org.apache.tomcat.embed:tomcat-embed-core,10.1.52,10.1.57,changed
+org.apache.tomcat.embed:tomcat-embed-el,10.1.52,10.1.57,changed
+org.apache.tomcat.embed:tomcat-embed-websocket,10.1.52,10.1.57,changed
 org.apache.tomcat:tomcat-annotations-api,10.1.54,10.1.57,changed
 org.springframework.data:spring-data-commons,3.5.11,3.5.13,changed
 org.springframework.data:spring-data-mongodb,4.5.11,4.5.13,changed

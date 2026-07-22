@@ -4,7 +4,7 @@
     "maven"
   ],
   "errors": [],
-  "vulnerability_count": 60,
+  "vulnerability_count": 64,
   "vulnerable_component_count": 20,
   "vulnerable_components": [
     {
@@ -26,7 +26,9 @@
         "CVE-2026-54515",
         "CVE-2026-54516",
         "CVE-2026-54517",
-        "CVE-2026-54518"
+        "CVE-2026-54518",
+        "CVE-2026-59888",
+        "CVE-2026-59889"
       ],
       "ecosystem": "maven",
       "package": "com.fasterxml.jackson.core:jackson-databind",
@@ -62,7 +64,9 @@
         "CVE-2026-42584",
         "CVE-2026-42585",
         "CVE-2026-42587",
-        "CVE-2026-50020"
+        "CVE-2026-50020",
+        "CVE-2026-55831",
+        "CVE-2026-55833"
       ],
       "ecosystem": "maven",
       "package": "io.netty:netty-codec-http",

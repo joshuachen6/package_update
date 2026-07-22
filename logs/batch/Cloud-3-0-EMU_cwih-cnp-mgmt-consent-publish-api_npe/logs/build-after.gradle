@@ -8,9 +8,9 @@ buildscript {
     configurations.all {
         resolutionStrategy {
             force 'org.springframework.data:spring-data-commons:3.5.13'
+            force 'org.springframework.data:spring-data-mongodb:4.5.13'
             force 'org.springframework.hateoas:spring-hateoas:2.5.3'
             force 'org.apache.cxf:cxf-core:4.2.2'
-            force 'org.springframework.data:spring-data-mongodb:4.5.13'
             force 'org.springframework.data:spring-data-redis:3.5.13'
             force 'org.springframework.data:spring-data-keyvalue:3.5.13'
             force 'org.apache.cxf:cxf-spring-boot-starter-jaxws:4.2.2'
@@ -72,9 +72,9 @@ configurations.all {
 configurations.all {
     resolutionStrategy {
             force 'org.springframework.data:spring-data-commons:3.5.13'
+            force 'org.springframework.data:spring-data-mongodb:4.5.13'
             force 'org.springframework.hateoas:spring-hateoas:2.5.3'
             force 'org.apache.cxf:cxf-core:4.2.2'
-            force 'org.springframework.data:spring-data-mongodb:4.5.13'
             force 'org.springframework.data:spring-data-redis:3.5.13'
             force 'org.springframework.data:spring-data-keyvalue:3.5.13'
             force 'org.apache.cxf:cxf-spring-boot-starter-jaxws:4.2.2'
@@ -288,7 +288,7 @@ dependencies {
         }
     }
     implementation(group: 'io.netty', name: 'netty-codec-compression') {
-        version { strictly '4.2.5.Final' }//CVE-2025-58057
+        version { strictly '4.2.16.Final' }//CVE-2025-58057
     }
 
     implementation("at.yawk.lz4:lz4-java") {// fix of  CVE-2025-66566 and  CVE-2025-12183

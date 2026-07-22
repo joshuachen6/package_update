@@ -4,18 +4,8 @@
     "maven"
   ],
   "errors": [],
-  "vulnerability_count": 1,
-  "vulnerable_component_count": 1,
-  "vulnerable_components": [
-    {
-      "component_id": "gav://io.netty:netty-codec-compression:4.2.5.Final",
-      "cves": [
-        "CVE-2026-42583"
-      ],
-      "ecosystem": "maven",
-      "package": "io.netty:netty-codec-compression",
-      "version": "4.2.5.Final"
-    }
-  ],
+  "vulnerability_count": 0,
+  "vulnerable_component_count": 0,
+  "vulnerable_components": [],
   "xray_host": "https://humana.jfrog.io"
 }

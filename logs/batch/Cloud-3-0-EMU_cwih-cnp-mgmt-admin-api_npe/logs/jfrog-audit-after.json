@@ -4,44 +4,8 @@
     "maven"
   ],
   "errors": [],
-  "vulnerability_count": 19,
-  "vulnerable_component_count": 2,
-  "vulnerable_components": [
-    {
-      "component_id": "gav://org.apache.tomcat.embed:tomcat-embed-core:10.1.52",
-      "cves": [
-        "CVE-2026-25854",
-        "CVE-2026-29129",
-        "CVE-2026-32990",
-        "CVE-2026-34483",
-        "CVE-2026-41284",
-        "CVE-2026-41293",
-        "CVE-2026-43512",
-        "CVE-2026-43513",
-        "CVE-2026-43514",
-        "CVE-2026-43515",
-        "CVE-2026-50229",
-        "CVE-2026-53404",
-        "CVE-2026-53434",
-        "CVE-2026-55276",
-        "CVE-2026-55955",
-        "CVE-2026-55956",
-        "CVE-2026-59083",
-        "CVE-2026-59084"
-      ],
-      "ecosystem": "maven",
-      "package": "org.apache.tomcat.embed:tomcat-embed-core",
-      "version": "10.1.52"
-    },
-    {
-      "component_id": "gav://org.apache.tomcat.embed:tomcat-embed-websocket:10.1.52",
-      "cves": [
-        "CVE-2026-42498"
-      ],
-      "ecosystem": "maven",
-      "package": "org.apache.tomcat.embed:tomcat-embed-websocket",
-      "version": "10.1.52"
-    }
-  ],
+  "vulnerability_count": 0,
+  "vulnerable_component_count": 0,
+  "vulnerable_components": [],
   "xray_host": "https://humana.jfrog.io"
 }
