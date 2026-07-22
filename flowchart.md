@@ -52,7 +52,7 @@ flowchart TD
 
     REPORT --> PHASE2{"Phase 2 replay requested?\n(--phase2-results)"}
     PHASE2 -->|checkout still on disk| REPLAY["re-run write+validate with\nenable_failure_isolation=True"]
-    PHASE2 -->|checkout missing\n(reused/cleaned indexed dir)| RECLONE["re-clone to the recorded checkout_dir\n(same path, same repo name)"] --> REPLAY
+    PHASE2 -->|checkout missing — reused/cleaned indexed dir| RECLONE["re-clone to the recorded checkout_dir\n(same path, same repo name)"] --> REPLAY
     REPLAY --> REPORT
 ```
 
@@ -69,7 +69,7 @@ lists and its own `is_accessible` probe around it.
 flowchart TD
     START(["forward_candidates, backward_candidates\n(order = preference, e.g. ascending from current)"]) --> CVEFWD["shared.xray.filter_versions_without_cves(forward)\nbatch-query Xray per candidate version,\ndrop any still CVE-flagged"]
     CVEFWD --> PROBEFWD["probe_candidates_concurrently(forward, is_accessible)\nall candidates probed in parallel (≤8 workers);\nfirst accessible one BY LIST ORDER wins —\nlater probes cancelled once an earlier one succeeds,\nbut earlier in-flight probes are always awaited"]
-    PROBEFWD -->|found| RESULT(["return version, \"\""])
+    PROBEFWD -->|found| RESULT(["return version, empty diagnostic"])
     PROBEFWD -->|none accessible| CVEBACK["filter_versions_without_cves(backward)\n(only paid for when forward comes up empty —\nan extra Xray round-trip skipped in the common case)"]
     CVEBACK --> PROBEBACK["probe_candidates_concurrently(backward, is_accessible)"]
     PROBEBACK -->|found| RESULT
@@ -130,13 +130,13 @@ flowchart TD
 
 ```mermaid
 flowchart TD
-    REQ["JFrog-flagged package in requirements.txt / pyproject.toml"] --> CONSTRAIN["keep registry versions matching the\ndeclared constraint (e.g. '>=1.2,<2.0')"]
+    REQ["JFrog-flagged package in requirements.txt / pyproject.toml"] --> CONSTRAIN["keep registry versions matching the\ndeclared constraint, e.g. at least 1.2 and below 2.0"]
     CONSTRAIN -->|none satisfy| SKIP(["skipped: no registry version satisfies constraint"])
     CONSTRAIN --> SPLIT["forward = same major, above current\nbackward = next major up\n(PyPI search never considers a downgrade\nbelow current, unlike Maven/npm's true\nforward/backward-of-target search)"]
 
     SPLIT --> BLOCKCHECK{"skip_block_check?"}
     BLOCKCHECK -->|yes| FIRST["candidate = first of forward, else backward"]
-    BLOCKCHECK -->|no| SAFE["find_safe_version(forward, backward, is_accessible)\nis_accessible = registry.pypi.is_version_blocked:\npip download pkg==version --no-deps --dest <tmp>\n403 / 404 / forbidden / \"no matching distribution\"\nin stderr ⇒ blocked"]
+    BLOCKCHECK -->|no| SAFE["find_safe_version(forward, backward, is_accessible)\nis_accessible = registry.pypi.is_version_blocked:\npip download pkg==version --no-deps --dest a temp dir\n403 / 404 / forbidden / 'no matching distribution'\nin stderr ⇒ blocked"]
 
     FIRST --> RESULT{"candidate found?"}
     SAFE --> RESULT
