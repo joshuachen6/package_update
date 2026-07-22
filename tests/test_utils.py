@@ -127,3 +127,29 @@ class TestNormalizeLogDir:
         from shared.utils import normalize_log_dir
         custom = tmp_path / "artifacts"
         assert normalize_log_dir(str(custom), str(tmp_path)) == str(custom / "logs")
+
+
+class TestSafeBranchDir:
+    """Batch runs used a bare row index ("0", "1", "6") for both the checkout
+    and log subdirectory, which told you nothing about which branch a
+    directory actually held -- and different branches of the same repo
+    sharing one batch could clobber each other's logs since branch wasn't
+    part of the log path at all. safe_branch_dir replaces the index.
+    """
+
+    def test_plain_branch_name_passthrough(self):
+        from shared.utils import safe_branch_dir
+        assert safe_branch_dir("main") == "main"
+
+    def test_slashes_are_sanitized(self):
+        from shared.utils import safe_branch_dir
+        assert safe_branch_dir("feature/foo-bar") == "feature-foo-bar"
+
+    def test_empty_or_none_falls_back_to_default(self):
+        from shared.utils import safe_branch_dir
+        assert safe_branch_dir("") == "default-branch"
+        assert safe_branch_dir(None) == "default-branch"
+
+    def test_only_unsafe_characters_falls_back_to_default(self):
+        from shared.utils import safe_branch_dir
+        assert safe_branch_dir("///") == "default-branch"

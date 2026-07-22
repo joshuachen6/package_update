@@ -319,6 +319,9 @@ class GradleOutput:
 
         bumped_items = sorted(tree.bumped.items()) if isinstance(tree.bumped, dict) else []
         direct_by_key = {f"{dep.group}:{dep.artifact}": dep for dep in parsed.deps}
+        direct_occurrences_by_key: dict[str, list] = {}
+        for dep in parsed.deps:
+            direct_occurrences_by_key.setdefault(f"{dep.group}:{dep.artifact}", []).append(dep)
         existing_changes = {row.get("dependency") for row in changes}
         existing_forces = {row.get("dependency") for row in force_entries}
 
@@ -327,16 +330,23 @@ class GradleOutput:
                 continue
             direct_dep = direct_by_key.get(dependency)
             if direct_dep is not None:
-                replacement = direct_dep.original.replace(direct_dep.version, forced_version, 1)
-                changes.append({
-                    "dependency": dependency,
-                    "config": direct_dep.config,
-                    "old_version": direct_dep.version,
-                    "new_version": forced_version,
-                    "remediation_guided": "blocked-version-fallback",
-                    "original": direct_dep.original,
-                    "replacement": replacement,
-                })
+                # Same duplicate-declaration hazard as output/gradle.py's
+                # Case 1: patch every parsed occurrence of this key, not just
+                # one representative, so a second identical declaration
+                # elsewhere in the file doesn't stay at the old version.
+                for occurrence in direct_occurrences_by_key.get(dependency, [direct_dep]):
+                    if occurrence.version == forced_version:
+                        continue
+                    replacement = occurrence.original.replace(occurrence.version, forced_version, 1)
+                    changes.append({
+                        "dependency": dependency,
+                        "config": occurrence.config,
+                        "old_version": occurrence.version,
+                        "new_version": forced_version,
+                        "remediation_guided": "blocked-version-fallback",
+                        "original": occurrence.original,
+                        "replacement": replacement,
+                    })
                 existing_changes.add(dependency)
             old_version = (
                 direct_dep.version if direct_dep is not None

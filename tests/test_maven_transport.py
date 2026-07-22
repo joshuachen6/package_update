@@ -58,14 +58,17 @@ def test_maven_bom_is_accessible_when_pom_packaging_is_pom(monkeypatch):
             self.status_code = status_code
             self.text = text
 
+        def close(self):
+            pass
+
     def fake_head(url, **kwargs):
         if url.endswith(".module"):
-            return Response(404)
-        if url.endswith(".jar"):
             return Response(404)
         raise AssertionError(url)
 
     def fake_get(url, **kwargs):
+        if url.endswith(".jar"):
+            return Response(404)
         assert url.endswith(".pom")
         return Response(
             200,
@@ -101,18 +104,21 @@ def test_maven_does_not_accept_readable_pom_when_jar_is_blocked(
             self.status_code = status_code
             self.text = text
 
+        def close(self):
+            pass
+
     def fake_head(url, **kwargs):
         if url.endswith(".module"):
             return Response(404)
-        if url.endswith(".jar"):
-            return Response(403)
         raise AssertionError(url)
 
-    def fail_get(url, **kwargs):
+    def fake_get(url, **kwargs):
+        if url.endswith(".jar"):
+            return Response(403)
         raise AssertionError("POM must not bypass a blocked JAR")
 
     monkeypatch.setattr(maven, "_head", fake_head)
-    monkeypatch.setattr(maven, "_get", fail_get)
+    monkeypatch.setattr(maven, "_get", fake_get)
     maven.version_accessible.cache_clear()
 
     assert not maven.version_accessible(
@@ -125,6 +131,57 @@ def test_maven_does_not_accept_readable_pom_when_jar_is_blocked(
     )
 
 
+def test_maven_jar_check_uses_get_not_head_so_download_policy_blocks_are_caught(
+    monkeypatch,
+):
+    """Real-world bug: a HEAD request for jackson-databind's jar came back 200
+    (accessible) on a real batch run, but the actual Gradle build then hit a
+    403 downloading the same jar/version -- Xray's download-policy enforcement
+    only triggers on the real retrieval, not a HEAD existence check. The probe
+    must use the same request method (GET) Gradle's real resolution uses, or
+    it silently selects/writes a version that's blocked in practice.
+    """
+    from registry import maven
+
+    class Response:
+        def __init__(self, status_code, text=""):
+            self.status_code = status_code
+            self.text = text
+            self.closed = False
+
+        def close(self):
+            self.closed = True
+
+    def fake_head(url, **kwargs):
+        if url.endswith(".module"):
+            return Response(404)
+        raise AssertionError("Only .module should ever be HEAD-checked")
+
+    jar_response = Response(403)
+
+    def fake_get(url, **kwargs):
+        if url.endswith(".jar"):
+            # A HEAD for this exact artifact would return 200 in the real
+            # incident; the fix must not rely on HEAD at all for the jar.
+            assert kwargs.get("stream") is True
+            return jar_response
+        raise AssertionError(url)
+
+    monkeypatch.setattr(maven, "_head", fake_head)
+    monkeypatch.setattr(maven, "_get", fake_get)
+    maven.version_accessible.cache_clear()
+
+    assert not maven.version_accessible(
+        "com.fasterxml.jackson.core",
+        "jackson-databind",
+        "2.22.1",
+        "https://repo.example",
+        None,
+        30,
+    )
+    assert jar_response.closed, "streamed GET response must be closed after status check"
+
+
 def test_maven_missing_jar_requires_explicit_pom_packaging(monkeypatch):
     from registry import maven
 
@@ -133,19 +190,24 @@ def test_maven_missing_jar_requires_explicit_pom_packaging(monkeypatch):
             self.status_code = status_code
             self.text = text
 
+        def close(self):
+            pass
+
     monkeypatch.setattr(
         maven,
         "_head",
         lambda url, **kwargs: Response(404),
     )
-    monkeypatch.setattr(
-        maven,
-        "_get",
-        lambda url, **kwargs: Response(
+
+    def fake_get(url, **kwargs):
+        if url.endswith(".jar"):
+            return Response(404)
+        return Response(
             200,
             "<project><modelVersion>4.0.0</modelVersion></project>",
-        ),
-    )
+        )
+
+    monkeypatch.setattr(maven, "_get", fake_get)
     maven.version_accessible.cache_clear()
 
     assert not maven.version_accessible(

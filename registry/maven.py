@@ -178,19 +178,29 @@ def version_accessible(
 
     # Normal Maven libraries must have an accessible JAR. A 403 means Xray or
     # repository policy rejected the actual binary and must not be bypassed just
-    # because its POM remains readable.
+    # because its POM remains readable. Deliberately a GET, not a HEAD: observed
+    # live (jackson-databind on a real batch run) that Xray's download-policy
+    # block only triggers on the real retrieval Gradle performs, not on a HEAD --
+    # a HEAD came back 200 for a version that then 403'd during the real build,
+    # so the version got selected, written, and only caught reactively by the
+    # proactive pre-build scan. stream=True avoids pulling the full jar body just
+    # to read the status line; the connection is closed immediately after.
     jar_url = f"{base}.jar"
     try:
-        response = _head(
+        response = _get(
             jar_url,
             auth=auth,
             allow_redirects=True,
             timeout=timeout,
+            stream=True,
         )
-        if response.status_code == 200:
-            return True
-        if response.status_code == 403:
-            return False
+        try:
+            if response.status_code == 200:
+                return True
+            if response.status_code == 403:
+                return False
+        finally:
+            response.close()
     except Exception:
         pass
 

@@ -34,6 +34,7 @@ from registry.npm import (
 )
 from resolver.resolver import select_best_version
 from shared.semver import SemVer
+from shared.version_search import find_safe_version
 
 
 def write_package_versions_txt(
@@ -156,33 +157,54 @@ def apply_updates(
                 or minimum_required
             )
             if not skip_block_check:
-                blocked_flag, _snippet = is_version_blocked(
-                    package, str(selected), registry, npm_cmd, npm_timeout, package_json_dir
-                )
-                if blocked_flag:
-                    substitute, _fallback_err = find_unblocked_version(
-                        package,
-                        selected,
-                        available,
-                        registry,
-                        npm_cmd,
-                        npm_timeout,
-                        package_json_dir,
-                        xray_host=xray_host,
-                        xray_auth=xray_auth,
+                # select_best_version only reasons about version numbers -- it
+                # has no way to know whether Xray still flags the candidate it
+                # picked. Verifying only when that candidate happens to also be
+                # registry-blocked used to leave plenty of accessible-but-still
+                # -vulnerable picks unverified (observed live: dompurify,
+                # fast-uri, js-yaml all landed on a version Xray still flagged
+                # after the write, because nothing here ever asked). Same-major
+                # forward/backward candidates around `selected`, CVE-filtered
+                # then accessibility-probed, mirrors Gradle's inline Case 1
+                # check (parsers/gradle.py::find_accessible_version) via the
+                # same shared shared.version_search.find_safe_version.
+                forward_candidates = sorted(
+                    v for v in available if v.major == selected.major and v >= selected
+                )[:10]
+                backward_candidates = sorted(
+                    (v for v in available if v.major == selected.major and v < selected),
+                    reverse=True,
+                )[:10]
+
+                def _accessible(candidate: SemVer, _package: str = package) -> bool:
+                    blocked_flag, _snippet = is_version_blocked(
+                        _package, str(candidate), registry, npm_cmd, npm_timeout, package_json_dir
                     )
-                    if substitute:
+                    return not blocked_flag
+
+                verified, _search_err = find_safe_version(
+                    forward_candidates,
+                    backward_candidates,
+                    _accessible,
+                    "npm",
+                    package,
+                    xray_host=xray_host,
+                    xray_auth=xray_auth,
+                    timeout=npm_timeout,
+                )
+                if verified is not None:
+                    if verified != selected:
                         block_changes.append(
                             {
                                 "package": package,
                                 "blocked_version": str(selected),
-                                "unblocked_version": str(substitute),
+                                "unblocked_version": str(verified),
                             }
                         )
-                        selected = substitute
-                    # else: no accessible same-major substitute exists. Keep the
-                    # original (blocked) target -- see the module docstring for
-                    # why this major is not dropped from selected_by_major.
+                    selected = verified
+                # else: nothing in this major is both CVE-clean and accessible.
+                # Keep the original target -- see the module docstring for why
+                # this major is not dropped from selected_by_major.
             selected_by_major[major] = selected
 
         if package in direct_by_package:

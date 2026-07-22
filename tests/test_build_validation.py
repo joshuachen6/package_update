@@ -1915,3 +1915,82 @@ def test_revert_gradle_package_to_version_refuses_to_step_boot_platform():
     )
 
     assert result is None
+
+
+def test_capture_gradle_build_logs_writes_both_before_and_after(tmp_path, monkeypatch):
+    """cfg.capture_build_logs opt-in: an extra build against the
+    pre-remediation file, plus the already-written post-remediation file,
+    purely to leave clean log artifacts distinct from the append-forever
+    debug log.
+    """
+    build_file = tmp_path / "build.gradle"
+    original = "dependencies { implementation 'org.example:parent:1.0.0' }\n"
+    current = "dependencies { implementation 'org.example:parent:2.0.0' }\n"
+    build_file.write_text(current, encoding="utf-8")
+
+    seen_versions = []
+
+    def fake_run_build_command(cmd, cwd, timeout, label):
+        text = build_file.read_text(encoding="utf-8")
+        seen_versions.append(text)
+        return subprocess.CompletedProcess(cmd, 0, f"BUILD SUCCESSFUL ({text})", "")
+
+    monkeypatch.setattr(bv, "_run_build_command", fake_run_build_command)
+
+    bv.capture_gradle_build_logs(
+        build_file, original, current, "gradle", 30, str(tmp_path)
+    )
+
+    before = (tmp_path / "build-log-before.txt").read_text(encoding="utf-8")
+    after = (tmp_path / "build-log-after.txt").read_text(encoding="utf-8")
+    assert "1.0.0" in before
+    assert "2.0.0" in after
+    # The file must end up back at the post-remediation content, not left on
+    # the baseline snapshot used mid-capture.
+    assert build_file.read_text(encoding="utf-8") == current
+
+
+def test_capture_gradle_build_logs_skips_before_when_text_unchanged(tmp_path, monkeypatch):
+    build_file = tmp_path / "build.gradle"
+    text = "dependencies { implementation 'org.example:parent:1.0.0' }\n"
+    build_file.write_text(text, encoding="utf-8")
+
+    def fake_run_build_command(cmd, cwd, timeout, label):
+        return subprocess.CompletedProcess(cmd, 0, "BUILD SUCCESSFUL", "")
+
+    monkeypatch.setattr(bv, "_run_build_command", fake_run_build_command)
+
+    bv.capture_gradle_build_logs(build_file, text, text, "gradle", 30, str(tmp_path))
+
+    assert not (tmp_path / "build-log-before.txt").exists()
+    assert (tmp_path / "build-log-after.txt").exists()
+
+
+def test_capture_gradle_build_logs_retries_transient_daemon_crash(tmp_path, monkeypatch):
+    """A crashed single-use build worker (OOM/contention, not a real
+    problem with the file) must not silently poison this diagnostic build --
+    same retry _run_candidate_trials already applies elsewhere.
+    """
+    build_file = tmp_path / "build.gradle"
+    text = "dependencies { implementation 'org.example:parent:1.0.0' }\n"
+    build_file.write_text(text, encoding="utf-8")
+
+    calls = []
+
+    def fake_run_build_command(cmd, cwd, timeout, label):
+        calls.append(timeout)
+        if len(calls) == 1:
+            raise bv.BuildValidationError(
+                "Gradle build daemon disappeared unexpectedly (it may have "
+                "been killed or may have crashed)"
+            )
+        return subprocess.CompletedProcess(cmd, 0, "BUILD SUCCESSFUL", "")
+
+    monkeypatch.setattr(bv, "_run_build_command", fake_run_build_command)
+
+    bv.capture_gradle_build_logs(build_file, text, text, "gradle", 30, str(tmp_path))
+
+    after = (tmp_path / "build-log-after.txt").read_text(encoding="utf-8")
+    assert "BUILD SUCCESSFUL" in after
+    assert len(calls) == 2
+    assert calls[1] > calls[0]

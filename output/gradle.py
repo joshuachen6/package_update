@@ -102,6 +102,9 @@ def apply_updates(
                     written as resolutionStrategy.force lines
     """
     direct_by_key: dict[str, GradleDep] = {f"{d.group}:{d.artifact}": d for d in deps}
+    direct_occurrences_by_key: dict[str, list[GradleDep]] = {}
+    for d in deps:
+        direct_occurrences_by_key.setdefault(f"{d.group}:{d.artifact}", []).append(d)
     all_criteria_keys: set[str] = set(remediation_by_key.keys()) | set(package_constraints.keys())
 
     try:
@@ -245,20 +248,32 @@ def apply_updates(
             # Already confirmed accessible above (unless skip_block_check).
             final = str(target)
 
-            if final == dep.version:
-                ks.append({"dependency": key, "reason": "selected version equals current", "current": str(current), "target": ""})
-                return kc, ks, kf
+            # A build.gradle can declare the same group:artifact more than
+            # once (e.g. two identical strict-version blocks at different
+            # locations). direct_by_key only keeps one representative entry
+            # per key, so iterate every parsed occurrence here -- otherwise
+            # only the first textual occurrence gets patched and the rest
+            # stay at the vulnerable version even though the pipeline
+            # believes the package was fixed.
+            occurrences = direct_occurrences_by_key.get(key, [dep])
+            changed_any = False
+            for occurrence in occurrences:
+                if occurrence.version == final:
+                    continue
+                new_decl = occurrence.original.replace(occurrence.version, final, 1)
+                kc.append({
+                    "dependency": key,
+                    "config": occurrence.config,
+                    "old_version": occurrence.version,
+                    "new_version": final,
+                    "remediation_guided": "yes",
+                    "original": occurrence.original,
+                    "replacement": new_decl,
+                })
+                changed_any = True
 
-            new_decl = dep.original.replace(dep.version, final, 1)
-            kc.append({
-                "dependency": key,
-                "config": dep.config,
-                "old_version": dep.version,
-                "new_version": final,
-                "remediation_guided": "yes",
-                "original": dep.original,
-                "replacement": new_decl,
-            })
+            if not changed_any:
+                ks.append({"dependency": key, "reason": "selected version equals current", "current": str(current), "target": ""})
             return kc, ks, kf
 
         # -----------------------------------------------------------------
@@ -391,7 +406,7 @@ def apply_updates(
                 force_entries.extend(kf)
 
     force_entries.extend(
-        _sibling_family_forces(changes, force_entries, installed)
+        _sibling_family_forces(changes, force_entries, installed, available_by_key)
     )
     changes.extend(
         _align_competing_pins(build_text_for_strategy, changes, force_entries)
@@ -481,6 +496,7 @@ def _sibling_family_forces(
     changes: list[dict],
     force_entries: list[dict],
     installed: dict[str, MavenVersion],
+    available_by_key: dict[str, list[MavenVersion]],
 ) -> list[dict]:
     """Keep version-locked dependency families (Netty, Spring, Jackson, ...) consistent.
 
@@ -520,11 +536,33 @@ def _sibling_family_forces(
                 continue
             if sibling_version != old_version:
                 continue
+
+            # The trigger's exact version string doesn't necessarily exist for
+            # every sibling -- Jackson's own annotations module releases on a
+            # coarser cadence than databind/core (no patch digit some minors),
+            # so stamping databind's "2.22.1" onto jackson-annotations forced a
+            # version that was never published. Gradle can't resolve it
+            # ("jackson-annotations:2.22.1 FAILED" in the tree, confirmed live)
+            # and the real build never gets far enough to blame the actual
+            # cause. Only force to a version confirmed to exist for THIS
+            # sibling; fall back to the closest existing one below the
+            # trigger's target, and skip forcing entirely if none exists.
+            sibling_available = available_by_key.get(sibling_key, [])
+            if target_version in sibling_available:
+                resolved_target = target_version
+            else:
+                lower_candidates = [
+                    v for v in sibling_available if old_version < v <= target_version
+                ]
+                resolved_target = max(lower_candidates) if lower_candidates else None
+            if resolved_target is None:
+                continue
+
             sibling_forces[sibling_key] = {
                 "dependency": sibling_key,
                 "old_version": str(sibling_version),
-                "new_version": str(target_version),
-                "minimum_required": str(target_version),
+                "new_version": str(resolved_target),
+                "minimum_required": str(resolved_target),
                 "remediation_guided": f"version-locked sibling of {dependency}",
             }
 

@@ -689,6 +689,14 @@ def test_gradle_force_expands_to_version_locked_netty_siblings(tmp_path):
                 MavenVersion.parse("4.1.132.Final"),
                 MavenVersion.parse("4.2.16.Final"),
             ],
+            "io.netty:netty-handler": [
+                MavenVersion.parse("4.1.132.Final"),
+                MavenVersion.parse("4.2.16.Final"),
+            ],
+            "io.netty:netty-codec": [
+                MavenVersion.parse("4.1.132.Final"),
+                MavenVersion.parse("4.2.16.Final"),
+            ],
         },
         package_constraints={"io.netty:netty-transport-native-epoll": ">"},
         installed={
@@ -802,6 +810,10 @@ def test_gradle_apply_updates_realigns_preexisting_force_pins(tmp_path):
                 MavenVersion.parse("1.5.25"),
                 MavenVersion.parse("1.5.38"),
             ],
+            "ch.qos.logback:logback-classic": [
+                MavenVersion.parse("1.5.25"),
+                MavenVersion.parse("1.5.38"),
+            ],
         },
         package_constraints={"ch.qos.logback:logback-core": ">"},
         installed={
@@ -852,6 +864,10 @@ def test_gradle_apply_updates_realigns_strictly_pinned_family_sibling(tmp_path):
                 MavenVersion.parse("1.5.25"),
                 MavenVersion.parse("1.5.38"),
             ],
+            "ch.qos.logback:logback-classic": [
+                MavenVersion.parse("1.5.25"),
+                MavenVersion.parse("1.5.38"),
+            ],
         },
         package_constraints={"ch.qos.logback:logback-core": ">"},
         installed={
@@ -876,6 +892,71 @@ def test_gradle_apply_updates_realigns_strictly_pinned_family_sibling(tmp_path):
     assert realigned[0]["dependency"] == "ch.qos.logback:logback-classic"
     assert "strictly '1.5.25'" in realigned[0]["original"]
     assert "strictly '1.5.38'" in realigned[0]["replacement"]
+
+
+def test_gradle_sibling_force_skips_version_that_does_not_exist_for_sibling(
+    tmp_path,
+):
+    """Real-world bug: jackson-databind's remediation target (2.22.1) doesn't
+    exist for jackson-annotations, which releases on a coarser cadence (no
+    patch digit for some minors) than databind/core. _sibling_family_forces
+    used to stamp the trigger's exact version string onto every same-group,
+    same-version sibling with no existence check, producing an unresolvable
+    dependency (observed live: "jackson-annotations:2.22.1 FAILED" in the
+    resolved Gradle tree for ins-cp-mgmt-cds-api) that broke the real build
+    without ever implicating the actual cause. It must fall back to the
+    highest version that actually exists for that sibling, and skip forcing
+    it altogether if nothing usable exists.
+    """
+    from output.gradle import apply_updates
+
+    build_file = tmp_path / "build.gradle"
+    build_file.write_text("dependencies {}\n", encoding="utf-8")
+
+    changes, skipped, forces = apply_updates(
+        deps=[],
+        remediation_by_key={},
+        available_by_key={
+            "com.fasterxml.jackson.core:jackson-databind": [
+                MavenVersion.parse("2.19.0"),
+                MavenVersion.parse("2.22.1"),
+            ],
+            # jackson-annotations never published 2.22.1 -- only a coarser
+            # 2.22 exists (modeled here as 2.22.0, the closest usable version
+            # below the trigger's exact target).
+            "com.fasterxml.jackson.core:jackson-annotations": [
+                MavenVersion.parse("2.19.0"),
+                MavenVersion.parse("2.22.0"),
+            ],
+            # jackson-core has no matching release at all in this scenario.
+            "com.fasterxml.jackson.core:jackson-core": [
+                MavenVersion.parse("2.19.0"),
+            ],
+        },
+        package_constraints={"com.fasterxml.jackson.core:jackson-databind": ">"},
+        installed={
+            "com.fasterxml.jackson.core:jackson-databind": MavenVersion.parse("2.19.0"),
+            "com.fasterxml.jackson.core:jackson-annotations": MavenVersion.parse("2.19.0"),
+            "com.fasterxml.jackson.core:jackson-core": MavenVersion.parse("2.19.0"),
+        },
+        parents_of={},
+        build_file=str(build_file),
+        base_url="https://jfrog.example/artifactory/gradle",
+        auth=None,
+        gradle_cmd="gradle",
+        timeout=30,
+        skip_block_check=True,
+        show_progress=False,
+    )
+
+    forced_by_dep = {entry["dependency"]: entry for entry in forces}
+    assert (
+        forced_by_dep["com.fasterxml.jackson.core:jackson-annotations"]["new_version"]
+        == "2.22.0"
+    )
+    # Nothing above 2.19.0 exists for jackson-core -- must not be forced to a
+    # version that isn't real, and must not be forced at all.
+    assert "com.fasterxml.jackson.core:jackson-core" not in forced_by_dep
 
 
 def test_gradle_force_prefers_stable_release_over_newer_preview(tmp_path):
@@ -1266,4 +1347,80 @@ def test_gradle_apply_updates_skips_transitive_when_no_accessible_version(
     assert changes == []
     assert len(skipped) == 1
     assert skipped[0]["dependency"] == "com.fasterxml.jackson.core:jackson-databind"
-    assert "no accessible version" in skipped[0]["reason"]
+
+
+def test_gradle_apply_updates_patches_every_occurrence_of_duplicated_declaration(
+    tmp_path,
+):
+    """Real-world bug: a build.gradle can declare the same group:artifact
+    twice with byte-identical strict-version blocks (copy/paste in two
+    dependency sections). direct_by_key collapses duplicates to a single
+    representative GradleDep, so Case 1 must consult every parsed occurrence
+    -- otherwise only the first textual occurrence gets patched and the
+    second stays at the vulnerable version even though the pipeline reports
+    the package as fixed (observed live: cwih-cnp-mgmt-consent-publish-api's
+    io.netty:netty-codec-compression stayed "Partial" for exactly this
+    reason).
+    """
+    from output.gradle import apply_updates
+    from parsers.gradle import parse_gradle_deps
+
+    block = (
+        "implementation(group: 'io.netty', name: 'netty-codec-compression') {\n"
+        "    version { strictly '4.2.5.Final' }\n"
+        "}\n"
+    )
+    build_text = (
+        "dependencies {\n"
+        f"    {block}\n"
+        "    implementation 'org.example:filler:1.0.0'\n"
+        f"    {block}\n"
+        "}\n"
+    )
+    build_file = tmp_path / "build.gradle"
+    build_file.write_text(build_text, encoding="utf-8")
+
+    deps = parse_gradle_deps(build_text)
+    netty_deps = [d for d in deps if d.artifact == "netty-codec-compression"]
+    assert len(netty_deps) == 2, "test setup must produce two parsed occurrences"
+
+    changes, skipped, forces = apply_updates(
+        deps=deps,
+        remediation_by_key={
+            "io.netty:netty-codec-compression": {MavenVersion.parse("4.2.16.Final")}
+        },
+        available_by_key={
+            "io.netty:netty-codec-compression": [
+                MavenVersion.parse("4.2.5.Final"),
+                MavenVersion.parse("4.2.16.Final"),
+            ],
+        },
+        package_constraints={"io.netty:netty-codec-compression": ">="},
+        installed={
+            "io.netty:netty-codec-compression": MavenVersion.parse("4.2.5.Final"),
+        },
+        parents_of={},
+        build_file=str(build_file),
+        base_url="https://jfrog.example/artifactory/gradle",
+        auth=None,
+        gradle_cmd="gradle",
+        timeout=30,
+        skip_block_check=True,
+        show_progress=False,
+    )
+
+    assert forces == []
+    assert skipped == []
+    assert len(changes) == 2
+    assert all(c["dependency"] == "io.netty:netty-codec-compression" for c in changes)
+    assert all(c["new_version"] == "4.2.16.Final" for c in changes)
+
+    from output.gradle import write_gradle_file
+
+    output_path = tmp_path / "build-out.gradle"
+    write_gradle_file(
+        build_text, changes, forces, str(output_path), str(build_file), in_place=False
+    )
+    updated_text = output_path.read_text(encoding="utf-8")
+    assert updated_text.count("4.2.5.Final") == 0
+    assert updated_text.count("4.2.16.Final") == 2

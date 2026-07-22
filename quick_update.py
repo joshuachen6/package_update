@@ -9,6 +9,7 @@ import json
 import os
 import sys
 from dataclasses import dataclass
+from pathlib import Path
 
 from pipeline.runner import run_write_validate
 
@@ -30,6 +31,12 @@ class QuickUpdateConfig:
     skip_block_check: bool = False
     skip_build_validation: bool = False
     enable_failure_isolation: bool = False
+    # Runs an extra full build against the pre-remediation file (on top of
+    # the build remediation already runs) purely to leave clean
+    # build-log-before.txt/build-log-after.txt artifacts. Meaningfully slower
+    # per repo -- intended for one-off verification runs, not routine
+    # production batches.
+    capture_build_logs: bool = False
     artifactory_source: str = ""
     artifactory_repo: str = "ins-cp-mgmt-gradle-virtual"
     artifactory_username: str = ""
@@ -98,16 +105,101 @@ def _analyze_file(
     return result
 
 
+def _tracked_dependency_paths(manager: dict) -> list[str]:
+    """Files to snapshot before/after remediation for one manager. Node's
+    lockfile carries the actual resolved-version delta -- package.json alone
+    often only shows an `overrides` entry -- so both are tracked when the
+    lockfile exists.
+    """
+    file_path = manager["file_path"]
+    paths = [file_path]
+    if manager["type"] == "node":
+        project_dir = os.path.dirname(file_path)
+        for lock_name in ("package-lock.json", "npm-shrinkwrap.json"):
+            lock_path = os.path.join(project_dir, lock_name)
+            if os.path.isfile(lock_path):
+                paths.append(lock_path)
+    return paths
+
+
+def _save_before_after_dependency_file(
+    file_path: str,
+    project_dir: str,
+    before_text: str,
+    after_text: str,
+    log_dir: str,
+) -> None:
+    """Copy the actual dependency file's pre/post-remediation content into
+    log_dir -- so the whole log_dir can be zipped and handed to someone else
+    as a self-contained debugging bundle, without them needing repo access to
+    see what build.gradle/package.json/pyproject.toml actually looked like
+    before and after.
+    """
+    try:
+        rel = os.path.relpath(file_path, project_dir)
+    except ValueError:
+        rel = os.path.basename(file_path)
+    flat = rel.replace(os.sep, "__")
+    stem, ext = os.path.splitext(flat)
+    Path(log_dir).mkdir(parents=True, exist_ok=True)
+    Path(log_dir, f"{stem}-before{ext}").write_text(before_text, encoding="utf-8")
+    Path(log_dir, f"{stem}-after{ext}").write_text(after_text, encoding="utf-8")
+
+
+def _capture_build_logs(
+    cfg: QuickUpdateConfig,
+    manager: dict,
+    result: dict,
+    log_dir: str,
+) -> None:
+    """cfg.capture_build_logs opt-in: run an extra build against the
+    pre-remediation file solely to leave clean before/after log artifacts.
+    Best-effort -- called from inside a try/except at the call site.
+    """
+    file_path = manager["file_path"]
+
+    if manager["type"] == "gradle":
+        from parsers.gradle_tree import get_gradle_cmd
+        from shared.build_validation import capture_gradle_build_logs
+
+        build_path = Path(file_path)
+        capture_gradle_build_logs(
+            build_path,
+            result.get("build_text", ""),
+            build_path.read_text(encoding="utf-8"),
+            get_gradle_cmd(str(build_path.resolve().parent)),
+            max(cfg.gradle_timeout, 600),
+            log_dir,
+        )
+    elif manager["type"] == "node":
+        from shared.verification import capture_node_build_logs
+
+        capture_node_build_logs(
+            Path(file_path).resolve().parent,
+            cfg.npm_cmd,
+            max(cfg.npm_timeout, 600),
+            log_dir,
+        )
+
+
 def _pre_resolve_gradle_managers(
     cfg: QuickUpdateConfig,
     managers: list[dict],
     log_dir: str,
-) -> tuple[dict[str, tuple[object, object]], list[str]]:
-    """Resolve Gradle trees before Xray so fresh CLI runs have Maven components."""
+) -> tuple[dict[str, tuple[object, object]], list[str], dict[str, str]]:
+    """Resolve Gradle trees before Xray so fresh CLI runs have Maven components.
+
+    This preaudit resolution is the only pre-remediation Gradle tree Gradle
+    ever produces -- the flat log_dir/gradle-dependency-tree.txt only gets
+    written later, post-remediation (for the after-audit). The returned
+    tree_by_file map lets callers snapshot a genuine "before" tree per file
+    instead of accidentally reading the (not-yet-written) flat path.
+    """
     from managers import get_manager_spec
 
     cache: dict[str, tuple[object, object]] = {}
     tree_paths: list[str] = []
+    tree_by_file: dict[str, str] = {}
     gradle_index = 0
 
     for manager in managers:
@@ -141,8 +233,9 @@ def _pre_resolve_gradle_managers(
         )
         if os.path.isfile(tree_path):
             tree_paths.append(tree_path)
+            tree_by_file[file_path] = tree_path
 
-    return cache, tree_paths
+    return cache, tree_paths, tree_by_file
 
 
 def _enabled_ecosystems(managers: list[dict]) -> set:
@@ -199,7 +292,7 @@ def run_quick_update(cfg: QuickUpdateConfig) -> dict:
 
     auth = (cfg.artifactory_username, cfg.artifactory_password) if cfg.artifactory_username else None
 
-    prefetched_gradle, gradle_tree_paths = _pre_resolve_gradle_managers(
+    prefetched_gradle, gradle_tree_paths, gradle_tree_by_file = _pre_resolve_gradle_managers(
         cfg,
         managers,
         log_dir,
@@ -254,6 +347,23 @@ def run_quick_update(cfg: QuickUpdateConfig) -> dict:
     print("Fix JFrog CVEs")
     print("-" * 60)
 
+    from shared.report import snapshot_before_dependency_tree
+
+    def _snapshot_before(manager: dict) -> None:
+        # Must run right after this manager's own pre-remediation analysis and
+        # before spec.write_result() touches anything -- Gradle's flat
+        # gradle-dependency-tree.txt only ever holds the POST-remediation tree
+        # (written later, for the after-audit), so its "before" snapshot has to
+        # come from the preaudit resolution instead of the default flat path.
+        # Node has no such split: its flat npm-dependency-tree.json is
+        # genuinely pre-remediation at this exact point, before any write.
+        if manager["type"] == "gradle":
+            snapshot_before_dependency_tree(
+                log_dir, "gradle", source_path=gradle_tree_by_file.get(manager["file_path"])
+            )
+        elif manager["type"] == "node":
+            snapshot_before_dependency_tree(log_dir, "node")
+
     for manager in managers:
         spec = get_manager_spec(manager["type"])
         vulnerable_packages = vulnerable_by_ecosystem.get(spec.ecosystem, set())
@@ -268,6 +378,11 @@ def run_quick_update(cfg: QuickUpdateConfig) -> dict:
                 vulnerable_packages,
                 prefetched_gradle.get(manager["file_path"]),
             )
+            if manager["type"] == "gradle":
+                result["preaudit_gradle_tree_path"] = gradle_tree_by_file.get(
+                    manager["file_path"], ""
+                )
+            _snapshot_before(manager)
             fixed_results.append(result)
 
             summary = spec.summarize(result)
@@ -307,6 +422,12 @@ def run_quick_update(cfg: QuickUpdateConfig) -> dict:
             except Exception as exc:
                 print(f"Phase2 cache generation skipped: {exc}")
 
+            tracked_paths = _tracked_dependency_paths(manager)
+            before_file_texts = {
+                p: Path(p).read_text(encoding="utf-8") if os.path.isfile(p) else ""
+                for p in tracked_paths
+            }
+
             try:
                 spec.write_result(cfg, result, log_dir)
                 result["write_status"] = (
@@ -324,6 +445,41 @@ def run_quick_update(cfg: QuickUpdateConfig) -> dict:
                 result["validation_status"] = "Failed"
                 result["validation_message"] = str(exc)
                 print(f"Write/validation failed: {exc}")
+
+            # Always on (unlike capture_build_logs) -- these are just the two
+            # states of a file already on disk, not an extra build, so there's
+            # no cost reason to gate this behind a flag. The whole point is a
+            # self-contained debugging bundle: zip up log_dir and you have the
+            # actual dependency file(s) before/after, not just their diff
+            # summary. For npm this includes package-lock.json alongside
+            # package.json -- the manifest alone often only shows an
+            # `overrides` entry; the lockfile carries the actual resolved-
+            # version delta.
+            if result.get("display_changes"):
+                for p, before_text in before_file_texts.items():
+                    try:
+                        after_text = (
+                            Path(p).read_text(encoding="utf-8")
+                            if os.path.isfile(p)
+                            else ""
+                        )
+                        _save_before_after_dependency_file(
+                            p, project_dir, before_text, after_text, log_dir,
+                        )
+                    except Exception as exc:
+                        print(f"Dependency file before/after capture skipped ({p}): {exc}")
+
+            # Runs regardless of write/validation outcome -- capture_gradle_
+            # build_logs/capture_node_build_logs run their own independent
+            # builds and don't depend on write_result having succeeded. A
+            # "for verification" feature that went silent exactly on the
+            # repos that failed (isolation off, validation raised) would be
+            # backwards -- those are the ones this exists to explain.
+            if cfg.capture_build_logs and result.get("display_changes"):
+                try:
+                    _capture_build_logs(cfg, manager, result, log_dir)
+                except Exception as exc:
+                    print(f"Build log capture skipped: {exc}")
         else:
             print()
             print(f"No JFrog CVEs for {manager['label']} — baseline analysis")
@@ -336,6 +492,7 @@ def run_quick_update(cfg: QuickUpdateConfig) -> dict:
                     prefetched_gradle.get(manager["file_path"]),
                 )
             )
+            _snapshot_before(manager)
 
     print()
     print(f"Totals: {_format_totals(totals)}")
@@ -436,15 +593,13 @@ def run_quick_update(cfg: QuickUpdateConfig) -> dict:
         print(f"Phase2 cache generation skipped: {exc}")
 
     try:
-        from shared.report import (
-            generate_report,
-            snapshot_before_dependency_tree,
-        )
+        from shared.report import generate_report
 
-        snapshot_before_dependency_tree(log_dir, "gradle")
-        snapshot_before_dependency_tree(log_dir, "node")
-
-
+        # Before-snapshots are already captured per-manager, right after each
+        # file's own pre-remediation analysis (see _snapshot_before above) --
+        # doing it here instead, after write/validate/verify have all already
+        # run, was copying the POST-remediation tree into the "before" file
+        # (confirmed live: before/after ended up byte-identical).
         report_path = generate_report(result, log_dir=log_dir)
         print(f"Report generated → {report_path}")
     except Exception as exc:
@@ -564,6 +719,16 @@ def _add_cli_args(parser: argparse.ArgumentParser) -> None:
         help="Do not run npm/Gradle/Python validation after writing updates",
     )
     parser.add_argument(
+        "--capture-build-logs",
+        action="store_true",
+        help=(
+            "Run an extra full build against the pre-remediation file to "
+            "leave clean build-log-before.txt/build-log-after.txt artifacts. "
+            "An extra build per repo -- intended for verification runs, not "
+            "routine production batches."
+        ),
+    )
+    parser.add_argument(
         "--artifactory-source",
         default=os.environ.get("ARTIFACTORY_SOURCE", ""),
         help="JFrog base URL used for Artifactory and Xray API calls",
@@ -605,6 +770,7 @@ def _config_from_args(args: argparse.Namespace) -> QuickUpdateConfig:
         pip_index_url=args.pip_index_url,
         skip_block_check=args.skip_block_check,
         skip_build_validation=args.skip_build_validation,
+        capture_build_logs=args.capture_build_logs,
         enable_failure_isolation=args.enable_failure_isolation,
         artifactory_source=args.artifactory_source,
         artifactory_repo=args.artifactory_repo,

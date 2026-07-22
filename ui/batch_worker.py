@@ -11,6 +11,8 @@ from urllib.parse import urlparse
 
 from PyQt6.QtCore import QThread, pyqtSignal
 
+from shared.utils import safe_branch_dir as _safe_branch_dir
+
 
 class BatchWorker(QThread):
     row_status = pyqtSignal(int, str)
@@ -56,7 +58,7 @@ class BatchWorker(QThread):
             url = url + ".git"
         return url
 
-    def _repo_log_dir(self, url: str) -> str:
+    def _repo_log_dir(self, url: str, branch: str = "") -> str:
         base = self._settings.get("log_dir") or "logs"
         parsed = urlparse(url)
         parts = [p for p in parsed.path.split("/") if p]
@@ -66,6 +68,10 @@ class BatchWorker(QThread):
             dir_name = parts[-1].replace(".git", "")
         else:
             dir_name = "repo"
+        # Different branches of the same repo in one batch used to share this
+        # exact directory and clobber each other's logs -- the branch name is
+        # now part of the path instead of being invisible.
+        dir_name = f"{dir_name}_{_safe_branch_dir(branch)}"
         return os.path.join(base, "batch", dir_name)
 
     def _run_repo(self, index: int, row: dict):
@@ -81,7 +87,7 @@ class BatchWorker(QThread):
         self.row_status.emit(index, "Running...")
         branch = row.get("branch", "").strip()
         cves = row.get("cves", "").strip()
-        log_dir = self._repo_log_dir(url)
+        log_dir = self._repo_log_dir(url, branch)
         s = self._settings
 
         script = os.path.join(
@@ -114,7 +120,12 @@ class BatchWorker(QThread):
             # Isolate checkouts by batch row. clone_github_repo derives the
             # destination from only the repository name, so parallel rows
             # sharing a checkout root can otherwise remove or clone into
-            # one another's directories.
+            # one another's directories. This used to be the bare batch-row
+            # index ("0", "1", "6", ...), which told you nothing about which
+            # branch was actually checked out there -- the branch name now
+            # does that job instead. (Two rows for the exact same repo+branch
+            # would still collide, but that's a genuine duplicate row, not a
+            # case this needs to disambiguate.)
             checkout_root = (
                 os.path.abspath(os.path.expanduser(s["checkout_dir"]))
                 if s.get("checkout_dir")
@@ -127,7 +138,7 @@ class BatchWorker(QThread):
             checkout_dir = os.path.join(
                 checkout_root,
                 os.path.basename(os.path.normpath(log_dir)),
-                str(index),
+                _safe_branch_dir(branch),
             )
             cmd = [
                 sys.executable,
@@ -163,6 +174,8 @@ class BatchWorker(QThread):
             cmd += ["--npm-registry", s["npm_registry"]]
         if s.get("skip_block_check"):
             cmd += ["--skip-block-check"]
+        if s.get("capture_build_logs"):
+            cmd += ["--capture-build-logs"]
         if s.get("workers"):
             cmd += ["--workers", str(s["workers"])]
         if s.get("npm_timeout"):
