@@ -1,0 +1,8 @@
+dependency,config,old_version,new_version,remediation_guided
+com.github.jknack:handlebars,implementation,4.4.0,4.5.3,yes
+org.apache.tomcat.embed:tomcat-embed-core,implementation,11.0.18,11.0.24,yes
+org.bouncycastle:bcprov-jdk18on,implementation,1.80,1.85,yes
+org.apache.kafka:kafka-clients,implementation,4.0.0,4.3.1,yes
+org.springframework:spring-framework.version,ext,6.2.17,6.2.19,transitive org.springframework:spring-core>=6.2.19
+org.springframework.kafka:spring-kafka,implementation,3.3.6,3.3.16,yes
+org.apache.cxf:cxf-rt-transports-http,implementation,4.1.3,4.2.2,competing pin realigned

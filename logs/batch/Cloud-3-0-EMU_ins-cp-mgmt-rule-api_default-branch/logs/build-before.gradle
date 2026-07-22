@@ -1,0 +1,128 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.3.12'
+    id 'io.spring.dependency-management' version '1.1.7'
+    id 'application'
+    id 'jacoco'
+    id "org.sonarqube" version "5.1.0.4882"
+
+}
+
+group = 'com.ins.cnp'
+version = '0.0.1-SNAPSHOT'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenLocal()
+    maven {
+        url 'https://humana.jfrog.io/artifactory/plugins-release'
+        credentials {
+            username System.getenv('ARTIFACTORY_USERNAME')
+            password System.getenv('ARTIFACTORY_PASSWORD')
+        }
+
+    }
+
+}
+
+ext {
+    set('springCloudVersion', "2023.0.5")
+    set('spring-security.version', "6.2.3")
+    set('spring-framework.version', "6.2.0")
+}
+
+dependencies {
+
+    implementation ('org.springframework.boot:spring-boot-starter-web') {
+        exclude group: 'org.springframework', module: 'spring-webmvc:6.2.7'
+        exclude group: 'org.springframework', module: 'spring-web:6.2.7'
+    }
+    implementation('org.springframework:spring-webmvc:6.2.10')
+    implementation('org.springframework:spring-web:6.2.10')
+    implementation 'org.springframework.boot:spring-boot-starter-aop'
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.6.0'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    testImplementation 'org.mockito:mockito-core:5.15.2'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.10.5'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.10.5'
+    implementation 'org.springframework.boot:spring-boot-starter-validation:3.3.8'
+    implementation('org.kie:kie-spring:7.74.1.Final') {
+        exclude group: 'com.google.protobuf', module: 'protobuf-java'
+        exclude group: 'org.apache.commons', module: 'commons-compress'
+        exclude group: 'com.thoughtworks.xstream', module: 'xstream'
+    }
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+
+}
+
+application {
+    mainClass = 'com.ins.cnp.DroolsServiceApplication'
+}
+
+sonarqube {
+    properties {
+        property "sonar.projectKey", "MACS.ConsentAndPreferences.rule-api"
+        property "sonar.host.url", "http://analysis-devops.humana.com"
+        property "sonar.login", System.getenv("SONARQUBE_TOKEN")
+        property "sonar.java.binaries", "${layout.buildDirectory.get()}/classes/java/main"
+        property "sonar.junit.reportsPath", "${layout.buildDirectory.get()}/test-results/test/"
+        property "sonar.jacoco.reportPaths", "${layout.buildDirectory.get()}/reports/jacoco/test/jacocoTestReport.xml"
+        property 'sonar.coverage.exclusions',
+                "**/com/ins/cnp/DroolsServiceApplication.java," +
+                        "**/com/ins/cnp/constants/**," +
+                        "**/com/ins/cnp/dto/**," +
+                        "**/com/ins/cnp/entity/**," +
+                        "**/com/ins/cnp/exceptions/**," +
+                        "**/com/ins/cnp/logging/**,"
+    }
+}
+
+apply plugin: 'jacoco'
+
+test {
+    useJUnitPlatform()
+
+    jacocoTestReport {
+        reports {
+            xml.required.set(true)
+            html.required.set(true)
+            xml.destination file("${layout.buildDirectory.get()}/reports/jacoco/test/jacocoTestReport.xml")
+            html.destination file("${layout.buildDirectory.get()}/jacocoReport")
+        }
+        finalizedBy jacocoTestCoverageVerification
+        afterEvaluate {
+            classDirectories.setFrom(files(classDirectories.files.collect {
+                fileTree(dir: it, exclude: [
+                        "**/com/ins/cnp/DroolsServiceApplication.java," +
+                                "**/com/ins/cnp/constants/**," +
+                                "**/com/ins/cnp/dto/**," +
+                                "**/com/ins/cnp/entity/**," +
+                                "**/com/ins/cnp/exceptions/**," +
+                                "**/com/ins/cnp/logging/**,"
+                ])
+            }))
+        }
+    }
+    test.finalizedBy jacocoTestReport
+}
+
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
+
+tasks.sonarqube.dependsOn = []

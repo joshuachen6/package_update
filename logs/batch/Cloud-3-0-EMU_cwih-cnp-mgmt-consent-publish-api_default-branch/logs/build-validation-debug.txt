@@ -1,0 +1,88 @@
+[2026-07-22 11:34:29] [perf] concurrent version search (io.netty:netty-codec-compression) completed in 0.54s
+[2026-07-22 11:34:29] [perf] concurrent version search (io.netty:netty-codec) completed in 0.68s
+[2026-07-22 11:34:29] [perf] concurrent version search (io.netty:netty-handler-proxy) completed in 0.70s
+[2026-07-22 11:34:29] [perf] transitive-parent search (io.netty:netty-handler-proxy) ran 0 gradle probe(s) in 0.00s (resolved=False)
+[2026-07-22 11:34:29] [perf] concurrent version search (io.netty:netty-codec-compression) completed in 0.18s
+[2026-07-22 11:34:29] [perf] concurrent version search (com.fasterxml.jackson.core:jackson-databind) completed in 0.77s
+[2026-07-22 11:34:29] [perf] concurrent version search (io.micrometer:micrometer-core) completed in 1.01s
+[2026-07-22 11:34:29] [perf] transitive-parent search (io.micrometer:micrometer-core) ran 0 gradle probe(s) in 0.00s (resolved=False)
+[2026-07-22 11:34:29] [perf] concurrent version search (io.netty:netty-codec-http) completed in 1.16s
+[2026-07-22 11:34:29] [perf] transitive-parent search (io.netty:netty-codec-http) ran 0 gradle probe(s) in 0.00s (resolved=False)
+[2026-07-22 11:34:29] [perf] concurrent version search (io.netty:netty-codec-http2) completed in 1.20s
+[2026-07-22 11:34:30] [perf] concurrent version search (com.fasterxml.jackson.core:jackson-databind) completed in 0.63s
+[2026-07-22 11:34:30] [perf] concurrent version search (ch.qos.logback:logback-core) completed in 1.53s
+[2026-07-22 11:34:30] [perf] concurrent version search (org.springframework.boot:spring-boot) completed in 0.52s
+[2026-07-22 11:34:30] [perf] transitive-parent search (org.springframework.boot:spring-boot) ran 0 gradle probe(s) in 0.00s (resolved=False)
+[2026-07-22 11:34:30] [perf] concurrent version search (io.netty:netty-resolver-dns) completed in 1.68s
+[2026-07-22 11:34:30] [perf] transitive-parent search (io.netty:netty-resolver-dns) ran 0 gradle probe(s) in 0.00s (resolved=False)
+[2026-07-22 11:34:30] [perf] concurrent version search (ch.qos.logback:logback-core) completed in 0.17s
+[2026-07-22 11:34:30] [perf] concurrent version search (io.netty:netty-codec-http2) completed in 0.56s
+[2026-07-22 11:34:30] [perf] concurrent version search (io.netty:netty-codec) completed in 1.11s
+[2026-07-22 11:34:30] [perf] concurrent version search (io.netty:netty-transport-native-epoll) completed in 1.84s
+[2026-07-22 11:34:30] [perf] transitive-parent search (io.netty:netty-transport-native-epoll) ran 0 gradle probe(s) in 0.00s (resolved=False)
+[2026-07-22 11:34:30] [perf] concurrent version search (org.springframework.data:spring-data-mongodb) completed in 0.63s
+[2026-07-22 11:34:30] [perf] transitive-parent search (org.springframework.data:spring-data-mongodb) ran 0 gradle probe(s) in 0.00s (resolved=False)
+[2026-07-22 11:34:30] [perf] concurrent version search (org.apache.neethi:neethi) completed in 1.35s
+[2026-07-22 11:34:30] [perf] transitive-parent search (org.apache.neethi:neethi) ran 0 gradle probe(s) in 0.00s (resolved=False)
+[2026-07-22 11:34:30] [perf] concurrent version search (org.springframework.hateoas:spring-hateoas) completed in 0.59s
+[2026-07-22 11:34:30] [perf] transitive-parent search (org.springframework.hateoas:spring-hateoas) ran 0 gradle probe(s) in 0.00s (resolved=False)
+[2026-07-22 11:34:30] [perf] concurrent version search (org.springframework:spring-core) completed in 0.54s
+[2026-07-22 11:34:30] [perf] concurrent version search (io.netty:netty-handler) completed in 2.25s
+[2026-07-22 11:34:30] [perf] concurrent version search (org.springframework:spring-web) completed in 0.51s
+[2026-07-22 11:34:30] [perf] concurrent version search (org.springframework.data:spring-data-commons) completed in 1.14s
+[2026-07-22 11:34:31] [perf] concurrent version search (io.netty:netty-codec-dns) completed in 2.32s
+[2026-07-22 11:34:31] [perf] transitive-parent search (io.netty:netty-codec-dns) ran 0 gradle probe(s) in 0.00s (resolved=False)
+[2026-07-22 11:34:31] [perf] concurrent version search (org.springframework.kafka:spring-kafka) completed in 1.00s
+[2026-07-22 11:34:31] [perf] concurrent version search (org.springframework:spring-webflux) completed in 1.37s
+[2026-07-22 11:34:32] [perf] concurrent version search (io.netty:netty-handler) completed in 1.39s
+[2026-07-22 11:34:33] [perf] concurrent version search (org.springframework:spring-expression) completed in 2.57s
+[2026-07-22 11:34:33] [perf] concurrent version search (org.apache.cxf:cxf-core) completed in 3.63s
+[2026-07-22 11:34:38] [perf] transitive-parent search (org.apache.cxf:cxf-core) ran 1 gradle probe(s) in 5.46s (resolved=False)
+[2026-07-22 11:34:38] proactive check: resolving post-change dependency tree...
+[2026-07-22 11:34:53] proactive check: forced 1 artifact(s) just to make the dependency tree resolve: com.fasterxml.jackson.core:jackson-databind:2.21.5
+[2026-07-22 11:34:53] proactive check: 217 resolved artifacts — checking accessibility...
+[2026-07-22 11:35:03] proactive check: all artifacts accessible — no pre-flight forces needed
+[2026-07-22 13:02:48] [perf] concurrent version search (io.micrometer:micrometer-core) completed in 1.04s
+[2026-07-22 13:02:48] [perf] transitive-parent search (io.micrometer:micrometer-core) ran 0 gradle probe(s) in 0.00s (resolved=False)
+[2026-07-22 13:02:48] [perf] concurrent version search (ch.qos.logback:logback-core) completed in 1.06s
+[2026-07-22 13:02:48] [perf] concurrent version search (com.fasterxml.jackson.core:jackson-databind) completed in 1.54s
+[2026-07-22 13:02:48] [perf] concurrent version search (io.netty:netty-handler-proxy) completed in 1.55s
+[2026-07-22 13:02:48] [perf] transitive-parent search (io.netty:netty-handler-proxy) ran 0 gradle probe(s) in 0.00s (resolved=False)
+[2026-07-22 13:02:48] [perf] concurrent version search (io.netty:netty-handler) completed in 1.64s
+[2026-07-22 13:02:49] [perf] concurrent version search (io.netty:netty-codec-http2) completed in 1.83s
+[2026-07-22 13:02:49] [perf] concurrent version search (ch.qos.logback:logback-core) completed in 0.83s
+[2026-07-22 13:02:49] [perf] concurrent version search (io.netty:netty-codec-compression) completed in 1.92s
+[2026-07-22 13:02:49] [perf] concurrent version search (com.fasterxml.jackson.core:jackson-databind) completed in 0.40s
+[2026-07-22 13:02:49] [perf] concurrent version search (io.netty:netty-codec-http2) completed in 0.57s
+[2026-07-22 13:02:49] [perf] concurrent version search (io.netty:netty-codec-compression) completed in 0.68s
+[2026-07-22 13:02:49] [perf] concurrent version search (io.netty:netty-codec-http) completed in 2.60s
+[2026-07-22 13:02:49] [perf] transitive-parent search (io.netty:netty-codec-http) ran 0 gradle probe(s) in 0.00s (resolved=False)
+[2026-07-22 13:02:49] [perf] concurrent version search (io.netty:netty-transport-native-epoll) completed in 2.63s
+[2026-07-22 13:02:49] [perf] transitive-parent search (io.netty:netty-transport-native-epoll) ran 0 gradle probe(s) in 0.00s (resolved=False)
+[2026-07-22 13:02:50] [perf] concurrent version search (io.netty:netty-handler) completed in 1.35s
+[2026-07-22 13:02:50] [perf] concurrent version search (io.netty:netty-codec) completed in 3.08s
+[2026-07-22 13:02:50] [perf] concurrent version search (io.netty:netty-resolver-dns) completed in 3.28s
+[2026-07-22 13:02:50] [perf] transitive-parent search (io.netty:netty-resolver-dns) ran 0 gradle probe(s) in 0.00s (resolved=False)
+[2026-07-22 13:02:50] [perf] concurrent version search (io.netty:netty-codec) completed in 0.41s
+[2026-07-22 13:02:50] [perf] concurrent version search (org.apache.cxf:cxf-core) completed in 2.71s
+[2026-07-22 13:02:51] [perf] concurrent version search (org.apache.neethi:neethi) completed in 2.28s
+[2026-07-22 13:02:51] [perf] transitive-parent search (org.apache.neethi:neethi) ran 0 gradle probe(s) in 0.00s (resolved=False)
+[2026-07-22 13:02:51] [perf] concurrent version search (io.netty:netty-codec-dns) completed in 3.89s
+[2026-07-22 13:02:51] [perf] transitive-parent search (io.netty:netty-codec-dns) ran 0 gradle probe(s) in 0.00s (resolved=False)
+[2026-07-22 13:02:51] [perf] concurrent version search (org.springframework.data:spring-data-mongodb) completed in 1.65s
+[2026-07-22 13:02:51] [perf] transitive-parent search (org.springframework.data:spring-data-mongodb) ran 0 gradle probe(s) in 0.00s (resolved=False)
+[2026-07-22 13:02:51] [perf] concurrent version search (org.springframework.boot:spring-boot) completed in 2.37s
+[2026-07-22 13:02:51] [perf] transitive-parent search (org.springframework.boot:spring-boot) ran 0 gradle probe(s) in 0.00s (resolved=False)
+[2026-07-22 13:02:51] [perf] concurrent version search (org.springframework.data:spring-data-commons) completed in 2.71s
+[2026-07-22 13:02:52] [perf] concurrent version search (org.springframework.kafka:spring-kafka) completed in 3.02s
+[2026-07-22 13:02:53] [perf] concurrent version search (org.springframework:spring-web) completed in 2.55s
+[2026-07-22 13:02:53] [perf] concurrent version search (org.springframework:spring-expression) completed in 3.03s
+[2026-07-22 13:02:53] [perf] concurrent version search (org.springframework:spring-core) completed in 3.69s
+[2026-07-22 13:02:54] [perf] concurrent version search (org.springframework.hateoas:spring-hateoas) completed in 4.48s
+[2026-07-22 13:02:54] [perf] transitive-parent search (org.springframework.hateoas:spring-hateoas) ran 0 gradle probe(s) in 0.00s (resolved=False)
+[2026-07-22 13:02:54] [perf] concurrent version search (org.springframework:spring-webflux) completed in 3.63s
+[2026-07-22 13:02:55] [perf] transitive-parent search (org.apache.cxf:cxf-core) ran 1 gradle probe(s) in 4.76s (resolved=False)
+[2026-07-22 13:02:55] proactive check: resolving post-change dependency tree...
+[2026-07-22 13:03:08] proactive check: forced 1 artifact(s) just to make the dependency tree resolve: com.fasterxml.jackson.core:jackson-databind:2.21.5
+[2026-07-22 13:03:08] proactive check: 217 resolved artifacts — checking accessibility...
+[2026-07-22 13:03:46] proactive check: all artifacts accessible — no pre-flight forces needed

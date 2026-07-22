@@ -1,0 +1,206 @@
+buildscript {
+    repositories {
+        maven {
+            url 'https://humana.jfrog.io/artifactory/ins-cp-mgmt-gradle-virtual'
+            credentials {
+                username System.getenv('ARTIFACTORY_USERNAME')
+                password System.getenv('ARTIFACTORY_PASSWORD')
+            }
+        }
+
+    }
+    dependencies {
+        //Check for the latest version here: http://plugins.gradle.org/plugin/com.jfrog.artifactory
+        classpath "org.jfrog.buildinfo:build-info-extractor-gradle:4+"
+    }
+}
+
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.3.12'
+    id 'io.spring.dependency-management' version '1.1.6'
+    id 'application'
+    id 'jacoco'
+    id "org.sonarqube" version "5.1.0.4882"
+
+}
+
+group = 'com.humana.domain.phone.attributes'
+version = '0.0.1-SNAPSHOT'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+allprojects {
+    apply plugin: "com.jfrog.artifactory"
+}
+artifactory {
+    contextUrl = "${System.getenv('ARTIFACTORY_SOURCE')}"   //The base Artifactory URL if not overridden by the publisher/resolver
+    publish {
+        repository {
+            repoKey = 'ins-cp-mgmt-gradle-local'
+            username = "${System.getenv('ARTIFACTORY_USERNAME')}"
+            password = "${System.getenv('ARTIFACTORY_PASSWORD')}"
+            maven = true
+        }
+    }
+    resolve {
+        repository {
+            repoKey = 'ins-cp-mgmt-gradle-virtual'
+            username = "${System.getenv('ARTIFACTORY_USERNAME')}"
+            password = "${System.getenv('ARTIFACTORY_PASSWORD')}"
+            maven = true
+        }
+    }
+}
+repositories {
+    mavenLocal()
+    maven {
+        url 'https://humana.jfrog.io/artifactory/ins-cp-mgmt-gradle-virtual'
+        credentials {
+            username System.getenv('ARTIFACTORY_USERNAME')
+            password System.getenv('ARTIFACTORY_PASSWORD')
+        }
+    }
+}
+
+ext {
+    set('springCloudVersion', "2023.0.4")
+}
+
+dependencies {
+
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation('org.springframework.boot:spring-boot-starter-data-mongodb') {
+        exclude group: 'org.springframework', module: 'spring-beans'
+        exclude group: 'org.springframework', module: 'spring-context'
+        exclude group: 'org.springframework', module: 'spring-core'
+        exclude group: 'org.springframework', module: 'spring-expression'
+    }
+    implementation 'org.springframework:spring-beans:6.2.0'
+    implementation 'org.springframework:spring-context:6.2.0'
+    implementation 'org.springframework:spring-core:6.2.0'
+    implementation 'org.springframework:spring-expression:6.2.0'
+
+
+    implementation('org.springframework.boot:spring-boot-starter-web:3.4.0')
+            {
+                exclude group: 'org.springframework', module: 'spring-webmvc'
+                exclude group: 'org.springframework', module: 'spring-web'
+                exclude group: 'org.apache.tomcat.embed', module: 'tomcat-embed-core'
+                //exclude group: 'com.fasterxml.jackson.core', module: 'jackson-core'
+            }
+    implementation('org.springframework:spring-webmvc:6.2.10')
+    implementation('org.springframework:spring-web:6.2.10')
+    implementation 'org.springframework.boot:spring-boot-starter-aop:3.4.0'
+    implementation('org.springframework.kafka:spring-kafka:3.3.0') {
+        exclude group: 'org.xerial.snappy', module: 'snappy-java'
+        exclude group: 'org.apache.kafka', module: 'kafka-clients'
+    }
+    implementation 'org.apache.kafka:kafka-clients:3.9.1'
+    implementation 'org.apache.tomcat.embed:tomcat-embed-core'
+    implementation('org.apache.avro:avro:1.12.0') {
+        //exclude group: 'com.fasterxml.jackson.core', module: 'jackson-core'
+    }
+    implementation 'org.springframework:spring-webflux'
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation('org.springframework.boot:spring-boot-starter-test:3.4.0') {
+        exclude group: 'org.xmlunit', module: 'xmlunit-core'
+    }
+    testImplementation 'org.xmlunit:xmlunit-core:2.10.0'
+    testImplementation 'org.mockito:mockito-core:5.1.1'
+    implementation 'org.xerial.snappy:snappy-java:1.1.10.7'
+    implementation 'org.springframework.boot:spring-boot-starter-validation:3.4.0'
+}
+
+application {
+    mainClass = 'com.humana.domain.phone.attributes.IngestionServiceApplication'
+}
+
+
+sonarqube {
+    properties {
+        property "sonar.projectKey", "MACS.ConsentAndPreferences.MACS.ConsentAndPreferences.PhoneAttributeWorkflow"
+        property "sonar.host.url", "http://analysis-devops.humana.com"
+        property "sonar.login", System.getenv("SONARQUBE_TOKEN")
+        property "sonar.java.binaries", "${layout.buildDirectory.get()}/classes/java/main"
+        property "sonar.junit.reportsPath", "${layout.buildDirectory.get()}/test-results/test/"
+        property "sonar.jacoco.reportPaths", "${layout.buildDirectory.get()}/reports/jacoco/test/jacocoTestReport.xml"
+        property 'sonar.coverage.exclusions',
+                "**/com/humana/domain/phone/attributes/App.java," +
+                        "**/com/humana/domain/phone/attributes/client/**," +
+                        "**/com/humana/domain/phone/attributes/config/**," +
+                        "**/com/humana/domain/phone/attributes/contract/**," +
+                        "**/com/humana/domain/phone/attributes/constants/**," +
+                        "**/com/humana/domain/phone/attributes/dto/**," +
+                        "**/com/humana/domain/phone/attributes/entity/**," +
+                        "**/com/humana/domain/phone/attributes/exceptions/**," +
+                        "**/com/humana/domain/phone/attributes/repository/**," +
+                        "**/com/humana/domain/phone/attributes/interfaces/**," +
+                        "**/com/humana/domain/phone/attributes/model/**," +
+                        "**/com/humana/domain/phone/attributes/service/avro/**," +
+                        "**/com/humana/domain/phone/attributes/util/**"
+    }
+}
+
+apply plugin: 'jacoco'
+
+test {
+    useJUnitPlatform()
+
+    jacocoTestReport {
+        reports {
+            xml.required.set(true)
+            html.required.set(true)
+            xml.destination file("${layout.buildDirectory.get()}/reports/jacoco/test/jacocoTestReport.xml")
+            html.destination file("${layout.buildDirectory.get()}/jacocoReport")
+        }
+        finalizedBy jacocoTestCoverageVerification
+        afterEvaluate {
+            classDirectories.setFrom(files(classDirectories.files.collect {
+                fileTree(dir: it, exclude: [
+                        "**/com/humana/domain/phone/attributes/App.java," +
+                                "**/com/humana/domain/phone/attributes/client/**," +
+                                "**/com/humana/domain/phone/attributes/config/**," +
+                                "**/com/humana/domain/phone/attributes/contract/**," +
+                                "**/com/humana/domain/phone/attributes/constants/**," +
+                                "**/com/humana/domain/phone/attributes/dto/**," +
+                                "**/com/humana/domain/phone/attributes/entity/**," +
+                                "**/com/humana/domain/phone/attributes/exceptions/**," +
+                                "**/com/humana/domain/phone/attributes/repository/**," +
+                                "**/com/humana/domain/phone/attributes/interfaces/**," +
+                                "**/com/humana/domain/phone/attributes/model/**," +
+                                "**/com/humana/domain/phone/attributes/util/VaultPropertySourceFactory.java"
+                ])
+            }))
+        }
+    }
+    test.finalizedBy jacocoTestReport
+    //jvmArgs '--add-opens', 'java.base/java.lang=ALL-UNNAMED'
+    jvmArgs += [
+            "--add-opens", "java.base/java.lang=ALL-UNNAMED",
+            "--add-opens", "java.base/java.lang.reflect=ALL-UNNAMED",
+            "--add-opens", "java.base/java.util=ALL-UNNAMED"
+    ]
+}
+tasks.named('test') {
+    useJUnitPlatform()
+}
+
+tasks.sonarqube.dependsOn = []
+
+tasks.register('ins-cp-mgmt-phone-attributes-workflow') {
+    doLast {
+        println 'Running ins-cp-mgmt-phone-attributes-workflow task'
+    }
+}

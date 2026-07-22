@@ -4,8 +4,8 @@
     "npm"
   ],
   "errors": [],
-  "vulnerability_count": 6,
-  "vulnerable_component_count": 5,
+  "vulnerability_count": 8,
+  "vulnerable_component_count": 6,
   "vulnerable_components": [
     {
       "component_id": "npm://immutable:5.1.7",
@@ -29,7 +29,8 @@
     {
       "component_id": "npm://postcss:8.4.31",
       "cves": [
-        "CVE-2026-41305"
+        "CVE-2026-41305",
+        "CVE-2026-45623"
       ],
       "ecosystem": "npm",
       "package": "postcss",
@@ -43,6 +44,15 @@
       "ecosystem": "npm",
       "package": "quill",
       "version": "2.0.3"
+    },
+    {
+      "component_id": "npm://unzipper:0.10.14",
+      "cves": [
+        "CVE-2026-59972"
+      ],
+      "ecosystem": "npm",
+      "package": "unzipper",
+      "version": "0.10.14"
     },
     {
       "component_id": "npm://ws:8.21.0",

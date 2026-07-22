@@ -1,0 +1,178 @@
+buildscript {
+    repositories {
+        maven {
+            url 'https://humana.jfrog.io/artifactory/cwih-cnp-mgmt-gradle-virtual'
+            credentials {
+                username System.getenv('ARTIFACTORY_USERNAME')
+                password System.getenv('ARTIFACTORY_PASSWORD')
+            }
+        }
+
+    }
+    dependencies {
+        //Check for the latest version here: http://plugins.gradle.org/plugin/com.jfrog.artifactory
+        classpath "org.jfrog.buildinfo:build-info-extractor-gradle:4+"
+    }
+}
+
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.5.13'
+    id 'io.spring.dependency-management' version '1.1.7'
+    id 'application'
+    id 'jacoco'
+    id "org.sonarqube" version "4.3.1.3277"
+
+}
+
+group = 'com.humana.domain.consents'
+version = '0.0.1-SNAPSHOT'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+allprojects {
+    apply plugin: "com.jfrog.artifactory"
+}
+repositories {
+    mavenLocal()
+    maven {
+        url 'https://humana.jfrog.io/artifactory/cwih-cnp-mgmt-gradle-virtual'
+        credentials {
+            username System.getenv('ARTIFACTORY_USERNAME')
+            password System.getenv('ARTIFACTORY_PASSWORD')
+        }
+
+    }
+
+}
+
+ext {
+    set('springCloudVersion', "2025.0.0")
+    set('spring-framework.version', "6.2.17")
+}
+
+dependencies {
+
+    implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
+    implementation ('org.springframework.boot:spring-boot-starter-web') {
+        exclude group: 'tools.jackson.core', module: 'jackson-core'
+    }
+    implementation 'tools.jackson.core:jackson-core:3.1.2'
+    implementation 'org.springframework.boot:spring-boot-starter-aop'
+
+    implementation 'org.springframework.kafka:spring-kafka'
+    implementation 'org.apache.kafka:kafka-clients'
+    implementation 'org.apache.tomcat.embed:tomcat-embed-core:11.0.21'
+    implementation 'org.apache.avro:avro:1.12.0'
+    implementation 'org.springframework:spring-webflux:6.2.17'
+    implementation 'io.projectreactor.netty:reactor-netty-http:1.2.9'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    implementation "ch.qos.logback:logback-core:1.5.25"//Vit Fix CVE-2025-11226
+    implementation "ch.qos.logback:logback-classic:1.5.25"//Vit Fix CVE-2025-11226
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.xmlunit', module: 'xmlunit-core'
+    }
+    testImplementation 'org.xmlunit:xmlunit-core:2.10.3'
+    testImplementation 'org.mockito:mockito-core:5.19.0'
+    implementation 'org.xerial.snappy:snappy-java:1.1.10.7'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+    implementation 'redis.clients:jedis:5.2.0'
+    implementation 'com.humana.cpms.cds:cds-utilities:1.0.0'
+    implementation(group: 'org.apache.commons', name: 'commons-lang3') {
+        version {
+            strictly '3.20.0'
+        }
+    }
+    implementation('com.fasterxml.jackson.core:jackson-core') {
+        version {
+            strictly '2.21.2'
+        }
+    }
+}
+
+application {
+    mainClass = 'com.humana.domain.consents.ConsentIngestionServiceApplication'
+}
+
+sonarqube {
+    properties {
+        property "sonar.projectKey", "IntegratedHealth.ConsentAndPreferences.consent-workflow"
+        property "sonar.host.url", "http://analysis-devops.humana.com"
+        property "sonar.login", System.getenv("SONARQUBE_TOKEN")
+        property "sonar.java.binaries", "${layout.buildDirectory.get()}/classes/java/main"
+        property "sonar.junit.reportsPath", "${layout.buildDirectory.get()}/test-results/test/"
+        property "sonar.jacoco.reportPaths", "${layout.buildDirectory.get()}/reports/jacoco/test/jacocoTestReport.xml"
+        property 'sonar.coverage.exclusions',
+                "**/com/humana/domain/consents/ConsentIngestionServiceApplication.java," +
+                        "**/com/humana/domain/consents/service/CacheService.java," +
+                        "**/com/humana/domain/consents/config/**," +
+                        "**/com/humana/domain/consents/constants/**," +
+                        "**/com/humana/domain/consents/contract/**," +
+                        "**/com/humana/domain/consents/dto/**," +
+                        "**/com/humana/domain/consents/entity/**," +
+                        "**/com/humana/domain/consents/enums/**," +
+                        "**/com/humana/domain/consents/exceptions/**," +
+                        "**/com/humana/domain/consents/logging/**," +
+                        "**/com/humana/domain/consents/model/**," +
+                        "**/com/humana/domain/consents/repository/**," +
+                        "**/com/humana/domain/consents/service/avro/**," +
+                        "**/com/humana/domain/consents/util/VaultPropertySourceFactory.java"
+    }
+}
+
+apply plugin: 'jacoco'
+
+test {
+    useJUnitPlatform()
+
+    jacocoTestReport {
+        reports {
+            xml.required.set(true)
+            html.required.set(true)
+            xml.destination file("${layout.buildDirectory.get()}/reports/jacoco/test/jacocoTestReport.xml")
+            html.destination file("${layout.buildDirectory.get()}/jacocoReport")
+        }
+        finalizedBy jacocoTestCoverageVerification
+        afterEvaluate {
+            classDirectories.setFrom(files(classDirectories.files.collect {
+                fileTree(dir: it, exclude: [
+                        "**/com/humana/domain/consents/entity/**," +
+                                "**/com/humana/domain/consents/service/CacheService.java," +
+                                "**/com/humana/domain/consents/config/**," +
+                                "**/com/humana/domain/consents/constants/**," +
+                                "**/com/humana/domain/consents/contract/**," +
+                                "**/com/humana/domain/consents/dto/**," +
+                                "**/com/humana/domain/consents/entity/**," +
+                                "**/com/humana/domain/consents/enums/**," +
+                                "**/com/humana/domain/consents/exceptions/**," +
+                                "**/com/humana/domain/consents/logging/**," +
+                                "**/com/humana/domain/consents/model/**," +
+                                "**/com/humana/domain/consents/repository/**," +
+                                "**/com/humana/domain/consents/service/avro/**," +
+                                "**/com/humana/domain/consents/util/VaultPropertySourceFactory.java"
+                ])
+            }))
+        }
+    }
+    test.finalizedBy jacocoTestReport
+}
+
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
+
+tasks.sonarqube.dependsOn = []

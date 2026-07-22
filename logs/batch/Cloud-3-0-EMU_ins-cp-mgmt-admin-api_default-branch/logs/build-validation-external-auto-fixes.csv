@@ -1,0 +1,2 @@
+dependency,blocked_version,forced_version,status,reason
+io.netty:netty-codec,4.1.133.Final,4.1.136.Final,proactive_force,blocked transitive detected in post-change dependency tree

@@ -1,0 +1,66 @@
+[2026-07-22 11:55:49] [perf] concurrent version search (io.netty:netty-codec) completed in 0.48s
+[2026-07-22 11:55:49] [perf] concurrent version search (org.apache.tomcat.embed:tomcat-embed-core) completed in 0.51s
+[2026-07-22 11:55:49] [perf] concurrent version search (org.apache.kafka:kafka-clients) completed in 0.73s
+[2026-07-22 11:55:49] [perf] concurrent version search (org.apache.tomcat.embed:tomcat-embed-websocket) completed in 0.73s
+[2026-07-22 11:55:49] [perf] concurrent version search (org.apache.tomcat.embed:tomcat-embed-core) completed in 0.25s
+[2026-07-22 11:55:49] [perf] concurrent version search (org.springframework:spring-webmvc) completed in 0.93s
+[2026-07-22 11:55:49] [perf] concurrent version search (org.apache.kafka:kafka-clients) completed in 0.21s
+[2026-07-22 11:55:50] [perf] concurrent version search (org.springframework:spring-webmvc) completed in 0.29s
+[2026-07-22 11:55:50] [perf] concurrent version search (org.springframework:spring-context) completed in 1.50s
+[2026-07-22 11:55:50] [perf] concurrent version search (org.assertj:assertj-core) completed in 1.57s
+[2026-07-22 11:55:50] [perf] concurrent version search (org.apache.commons:commons-lang3) completed in 1.60s
+[2026-07-22 11:55:50] [perf] concurrent version search (ch.qos.logback:logback-core) completed in 1.70s
+[2026-07-22 11:55:50] [perf] transitive-parent search (ch.qos.logback:logback-core) ran 0 gradle probe(s) in 0.00s (resolved=False)
+[2026-07-22 11:55:50] [perf] concurrent version search (org.lz4:lz4-java) completed in 1.90s
+[2026-07-22 11:55:50] [perf] transitive-parent search (org.lz4:lz4-java) ran 0 gradle probe(s) in 0.00s (resolved=False)
+[2026-07-22 11:55:52] [perf] concurrent version search (org.springframework.boot:spring-boot-starter-actuator) completed in 3.14s
+[2026-07-22 11:55:52] [perf] concurrent version search (io.micrometer:micrometer-core) completed in 3.65s
+[2026-07-22 11:55:52] [perf] transitive-parent search (io.micrometer:micrometer-core) ran 0 gradle probe(s) in 0.00s (resolved=False)
+[2026-07-22 11:55:52] [perf] concurrent version search (org.springframework:spring-context) completed in 2.29s
+[2026-07-22 11:56:04] [perf] transitive-parent search (io.netty:netty-codec) ran 1 gradle probe(s) in 14.78s (resolved=False)
+[2026-07-22 11:56:08] [perf] transitive-parent search (org.apache.tomcat.embed:tomcat-embed-websocket) ran 1 gradle probe(s) in 18.87s (resolved=False)
+[2026-07-22 11:56:09] [perf] transitive-parent search (org.assertj:assertj-core) ran 1 gradle probe(s) in 19.22s (resolved=False)
+[2026-07-22 11:56:11] [perf] transitive-parent search (org.apache.commons:commons-lang3) ran 1 gradle probe(s) in 20.55s (resolved=False)
+[2026-07-22 11:56:11] proactive check: resolving post-change dependency tree...
+[2026-07-22 11:56:24] proactive check: runtimeClasspath failed — exit code 1
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+A problem occurred configuring root project 'ecrdnc-workflow'.
+> Could not resolve all artifacts for configuration 'classpath'.
+[2026-07-22 11:56:33] proactive check: compileClasspath failed — exit code 1
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+A problem occurred configuring root project 'ecrdnc-workflow'.
+> Could not resolve all artifacts for configuration 'classpath'.
+[2026-07-22 11:56:33] proactive check: forced 1 artifact(s) just to make the dependency tree resolve: com.fasterxml.jackson.core:jackson-databind:2.21.5
+[2026-07-22 11:56:33] proactive check: could not resolve dependency tree even after forcing accessible replacements, skipping
+[2026-07-22 11:56:37] round 1: 1 new blocked packages
+[2026-07-22 11:56:37] com.fasterxml.jackson.core:jackson-databind:2.21.4 — listing from https://humana.jfrog.io/artifactory/ins-cp-mgmt-gradle-virtual, checking access via https://humana.jfrog.io/artifactory/plugins-release
+[2026-07-22 11:56:37] com.fasterxml.jackson.core:jackson-databind:2.21.4 — 229 versions available
+[2026-07-22 11:56:39] [perf] concurrent version search (com.fasterxml.jackson.core:jackson-databind) completed in 2.14s
+[2026-07-22 11:56:39] com.fasterxml.jackson.core:jackson-databind:2.21.4 — find_accessible_version -> '2.21.5'
+[2026-07-22 11:56:55] round 1 build still failed: an use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/8.14.1/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+A problem occurred configuring root project 'ecrdnc-workflow'.
+> Could not resolve all artifacts for configuration 'classpath'.
+   > Could not download jackson-databind-2.21.4.jar (com.fasterxml.jackson.core:jackson-databind:2.21.4)
+      > Could not get resource 'https://humana.jfrog.io/artifactory/ins-cp-mgmt-gradle-virtual/com/fasterxml/jackson/core/jackson-databind/2.21.4/jackson-databind-2.21.4.jar'.
+         > Could not GET 'https://humana.jfrog.io/artifactory/ins-cp-mgmt-gradle-virtual/com/fasterxml/jackson/core/jackson-databind/2.21.4/jackson-databind-2.21.4.jar'. Received status code 403 from server: 
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+> Get more help at https://help.gradle.org.
+
+BUILD FAILED in 14s
+[2026-07-22 11:56:55] round 2: 0 new blocked packages
+[2026-07-22 11:56:55] 403s cleared; returning partial-fix state for candidate rollback

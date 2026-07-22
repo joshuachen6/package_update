@@ -1,0 +1,203 @@
+buildscript {
+    repositories {
+        mavenLocal()
+        maven {
+            url = "${ARTIFACTORY_SOURCE}"
+            credentials {
+                username System.getenv('ARTIFACTORY_USERNAME')
+                password System.getenv('ARTIFACTORY_PASSWORD')
+            }
+        }
+    }
+    configurations.all {
+        resolutionStrategy {
+            force 'com.fasterxml.jackson.core:jackson-core:2.21.1'
+        }
+    }
+
+}
+plugins {
+    id 'org.springframework.boot' version '3.5.12'
+    id 'io.spring.dependency-management' version '1.1.7'
+    id 'java'
+    id 'maven-publish'
+    id 'jacoco'
+    id "org.sonarqube" version "5.1.0.4882"
+}
+
+
+group = 'com.humana.enterprise'
+version = '2.0.739'
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+repositories {
+    mavenLocal()
+    maven {
+        url = "${ARTIFACTORY_SOURCE}"
+        credentials {
+            username System.getenv('ARTIFACTORY_USERNAME')
+            password System.getenv('ARTIFACTORY_PASSWORD')
+        }
+    }
+}
+ext {
+    set('springCloudVersion', "2025.0.0")
+    set('spring-framework.version', "6.2.17")
+}
+
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-webflux'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+
+    implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
+    // micrometer for sluth migration
+    implementation 'io.micrometer:micrometer-tracing-bridge-brave'
+
+    implementation 'org.springdoc:springdoc-openapi-starter-webflux-ui:2.8.8'
+    implementation 'org.webjars:webjars-locator-core:0.59'
+
+
+    implementation 'com.google.code.findbugs:jsr305:3.0.2'
+    implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.21.1'
+    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.21.1'
+    implementation 'org.openapitools:jackson-databind-nullable:0.2.6'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+
+    implementation 'jakarta.validation:jakarta.validation-api:3.1.1'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    implementation 'com.humana.enterprise:consume-member-preferences-model-v20:2.0.739'
+    implementation 'com.humana.enterprise:consume-member-preferences-api-v20:2.0.739'
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    implementation 'com.humana.eai:eai-chassis-rest:2.8.5'
+    //********************** Resilience ***************************
+    implementation 'org.springframework.cloud:spring-cloud-starter-circuitbreaker-reactor-resilience4j'
+    implementation 'org.springframework.boot:spring-boot-starter-aop'
+    implementation 'org.apache.avro:avro:1.12.0'
+    implementation 'io.projectreactor.netty:reactor-netty:1.2.12'
+
+    implementation 'io.projectreactor.netty:reactor-netty-core:1.2.12'
+
+    implementation 'io.projectreactor.netty:reactor-netty-http:1.2.12'
+    implementation 'io.netty:netty-codec-http:4.1.132.Final'
+    implementation 'io.netty:netty-codec-http2:4.1.132.Final'
+
+    //**************** Container Security Vulnerability Fixes *********************
+    implementation 'org.springframework.cloud:spring-cloud-contract-shade:4.3.1'
+
+    implementation 'org.springframework.kafka:spring-kafka'
+    implementation 'org.apache.kafka:kafka-clients:4.1.1'
+    implementation 'io.swagger.core.v3:swagger-annotations:2.2.32'
+
+    testImplementation 'org.junit.platform:junit-platform-launcher'
+
+    implementation(group: 'org.bouncycastle', name: 'bcprov-jdk18on') {
+        version {
+            strictly '1.83'
+        }
+    }
+    implementation('com.fasterxml.jackson.core:jackson-annotations') {
+        version {
+            strictly '2.21'
+        }
+    }
+    implementation('com.fasterxml.jackson.core:jackson-core') {
+        version {
+            strictly '2.21.1'
+        }
+    }
+
+    implementation(group: 'ch.qos.logback', name: 'logback-core') {
+        version {
+            strictly '1.5.25'
+        }
+    }
+    implementation(group: 'ch.qos.logback', name: 'logback-classic') {
+        version {
+            strictly '1.5.25'
+        }
+    }
+    implementation(group: 'org.apache.commons', name: 'commons-lang3') {
+        version {
+            strictly '3.18.0'
+        }
+    }
+
+}
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+    }
+}
+
+configurations.all {
+    exclude group:"org.lz4" , module:"lz4-java"
+}
+
+sonarqube {
+    properties {
+        property "sonar.projectKey", "MACS.ConsentAndPreferences.MACS.ConsentAndPreferences.preference-api"
+        property "sonar.host.url", "http://analysis-devops.humana.com"
+        property "sonar.login", System.getenv("SONARQUBE_TOKEN")
+        property "sonar.java.binaries", "${layout.buildDirectory.get()}/classes/java/main"
+        property "sonar.junit.reportsPath", "${layout.buildDirectory.get()}/test-results/test/"
+        property "sonar.jacoco.reportPaths", "${layout.buildDirectory.get()}/reports/jacoco/test/jacocoTestReport.xml"
+        property 'sonar.coverage.exclusions',
+                "**/com/humana/enterprise/preference/App.java," +
+                        "**/com/humana/enterprise/preference/client/**," +
+                        "**/com/humana/enterprise/preference/config/**," +
+                        "**/com/humana/enterprise/preference/constants/**," +
+                        "**/com/humana/enterprise/preference/dto/**," +
+                        "**/com/humana/enterprise/preference/entity/**," +
+                        "**/com/humana/enterprise/preference/exceptions/**," +
+                        "**/com/humana/enterprise/preference/repository/**," +
+                        "**/com/humana/enterprise/preference/service/v20/avro/**," +
+                        "**/com/humana/enterprise/preference/contract/**," +
+                        "**/com/humana/enterprise/preference/util/VaultPropertySourceFactory.java"
+    }
+}
+
+apply plugin: 'jacoco'
+
+test {
+    useJUnitPlatform()
+
+    jacocoTestReport {
+        reports {
+            xml.required.set(true)
+            html.required.set(true)
+            xml.destination file("${layout.buildDirectory.get()}/reports/jacoco/test/jacocoTestReport.xml")
+            html.destination file("${layout.buildDirectory.get()}/jacocoReport")
+        }
+        finalizedBy jacocoTestCoverageVerification
+        afterEvaluate {
+            classDirectories.setFrom(files(classDirectories.files.collect {
+                fileTree(dir: it, exclude: [
+                        "**/com/humana/enterprise/preference/entity/**," +
+                                "**/com/humana/enterprise/preference/client/**," +
+                                "**/com/humana/enterprise/preference/config/**," +
+                                "**/com/humana/enterprise/preference/constants/**," +
+                                "**/com/humana/enterprise/preference/dto/**," +
+                                "**/com/humana/enterprise/preference/entity/**," +
+                                "**/com/humana/enterprise/preference/exceptions/**," +
+                                "**/com/humana/enterprise/preference/repository/**," +
+                                "**/com/humana/enterprise/preference/service/v20/avro/**," +
+                                "**/com/humana/enterprise/preference/contract/**," +
+                                "**/com/humana/enterprise/preference/util/VaultPropertySourceFactory.java"
+                ])
+            }))
+        }
+    }
+    test.finalizedBy jacocoTestReport
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
+
+

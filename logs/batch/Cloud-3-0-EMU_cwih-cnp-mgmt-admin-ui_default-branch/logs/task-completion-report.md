@@ -4,20 +4,20 @@
 |metric|value|
 |---|---|
 |Overall Status|🟡 Needs Review|
-|Generated at|2026-07-22T11:11:38|
+|Generated at|2026-07-22T12:41:43|
 |GitHub URL|https://github.com/Cloud-3-0-EMU/cwih-cnp-mgmt-admin-ui.git|
 |Project directory|/Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_cwih-cnp-mgmt-admin-ui_default-branch/default-branch/cwih-cnp-mgmt-admin-ui|
 |Dependency files|1|
-|Changed packages|4|
+|Changed packages|5|
 |Skipped packages|1|
 |Validation records|0|
 |Taskboard CVEs tracked|13|
 |Resolved dependency changes|0|
-|Verification classification|Partial - build passed but 2 CVE record(s) remain|
+|Verification classification|Partial - build passed but 11 CVE record(s) remain|
 |Test verification|not_run|
-|Original CVEs remaining|2|
-|JFrog vulnerabilities before|6|
-|JFrog vulnerabilities after|2|
+|Original CVEs remaining|3|
+|JFrog vulnerabilities before|8|
+|JFrog vulnerabilities after|11|
 |JFrog audit before JSON|/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_cwih-cnp-mgmt-admin-ui_default-branch/logs/jfrog-audit.json|
 |JFrog audit after JSON|/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_cwih-cnp-mgmt-admin-ui_default-branch/logs/jfrog-audit-after.json|
 
@@ -34,7 +34,7 @@ Review:
 ## Dependency Files
 |file|ecosystem|changes|skipped|write_status|validation_status|validation_message|verification_status|test_status|
 |---|---|---|---|---|---|---|---|---|
-|package.json|node|4|1|Written|Passed||Partial - build passed but 2 CVE record(s) remain|not_run|
+|package.json|node|5|1|Written|Passed||Partial - build passed but 11 CVE record(s) remain|not_run|
 
 ## Applied / Planned Changes
 |file|ecosystem|package|type|old|new|status|remediation_guided|
@@ -43,6 +43,7 @@ Review:
 |package.json|node|immutable|override||5.1.8|Passed|True|
 |package.json|node|js-yaml|override||4.3.0|Passed|True|
 |package.json|node|postcss|override||8.4.32|Passed|True|
+|package.json|node|unzipper|override||0.11.2|Passed|True|
 
 ## Skipped / Resolved / Could Not Update
 |file|ecosystem|package|current|target|status|reason|detail|
@@ -58,7 +59,7 @@ _No rows._
 |gradle|before|/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_cwih-cnp-mgmt-admin-ui_default-branch/logs/gradle-dependency-tree-before.txt|False|0|0|0|
 |gradle|after|/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_cwih-cnp-mgmt-admin-ui_default-branch/logs/gradle-dependency-tree-after.txt|False|0|0|0|
 |node|before|/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_cwih-cnp-mgmt-admin-ui_default-branch/logs/npm-dependency-tree-before.json|True|1|1013|455519|
-|node|after|/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_cwih-cnp-mgmt-admin-ui_default-branch/logs/npm-dependency-tree-after.json|True|1|1009|454261|
+|node|after|/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_cwih-cnp-mgmt-admin-ui_default-branch/logs/npm-dependency-tree-after.json|True|1|999|450522|
 
 ## Resolved Dependency Changes
 _No rows._

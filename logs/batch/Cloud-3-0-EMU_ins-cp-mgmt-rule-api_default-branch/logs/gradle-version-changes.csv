@@ -1,0 +1,3 @@
+dependency,config,old_version,new_version,remediation_guided
+org.springframework:spring-webmvc,implementation,6.2.10,6.2.19,yes
+org.springframework:spring-framework.version,ext,6.2.0,6.2.19,transitive org.springframework:spring-context>=6.2.19

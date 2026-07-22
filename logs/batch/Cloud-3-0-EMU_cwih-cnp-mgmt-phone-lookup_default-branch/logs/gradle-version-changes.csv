@@ -1,0 +1,14 @@
+dependency,config,old_version,new_version,remediation_guided
+io.netty:netty-codec-http,implementation,4.1.131.Final,4.2.16.Final,yes
+com.fasterxml.jackson.core:jackson-databind,implementation,2.19.2,2.22.1,yes
+io.netty:netty-handler,implementation,4.1.125.Final,4.2.16.Final,yes
+io.netty:netty-codec,implementation,4.1.125.Final,4.2.16.Final,yes
+ch.qos.logback:logback-core,implementation,1.5.19,1.5.38,yes
+io.netty:netty-codec-http2,implementation,4.2.9.Final,4.2.16.Final,yes
+org.apache.kafka:kafka-clients,implementation,4.1.0,4.3.1,yes
+org.springframework:spring-framework.version,ext,6.2.11,6.2.19,transitive org.springframework:spring-expression>=6.2.19
+org.bouncycastle:bcprov-jdk18on,implementation,1.81,1.85,yes
+org.springframework.boot:spring-boot-starter-validation,implementation,3.4.5,3.5.16,competing pin realigned
+org.apache.cxf:cxf-rt-transports-http,implementation,4.1.3,4.2.2,competing pin realigned
+com.fasterxml.jackson.core:jackson-annotations,implementation,2.19.2,2.22.1,competing pin realigned
+ch.qos.logback:logback-classic,implementation,1.5.19,1.5.38,competing pin realigned

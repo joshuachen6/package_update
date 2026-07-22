@@ -1,0 +1,11 @@
+dependency,config,old_version,new_version,remediation_guided
+org.apache.tomcat.embed:tomcat-embed-core,implementation,10.1.25,10.1.57,yes
+org.apache.kafka:kafka-clients,implementation,4.0.0,4.3.1,yes
+org.springframework:spring-context,implementation,6.2.0,6.2.19,yes
+org.springframework.kafka:spring-kafka,implementation,3.3.0,3.3.16,yes
+org.springframework:spring-expression,implementation,6.2.0,6.2.19,yes
+org.springframework:spring-core,implementation,6.2.0,6.2.19,yes
+org.springframework:spring-web,implementation,6.2.10,6.2.19,yes
+org.springframework:spring-webflux,implementation,6.2.0,6.2.19,yes
+org.springframework:spring-webmvc,implementation,6.2.10,6.2.19,yes
+org.springframework:spring-beans,implementation,6.2.0,6.2.19,competing pin realigned

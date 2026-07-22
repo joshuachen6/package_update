@@ -1,0 +1,4 @@
+dependency,config,old_version,new_version,remediation_guided
+org.apache.tomcat.embed:tomcat-embed-core,implementation,11.0.18,11.0.24,yes
+ch.qos.logback:logback-core,implementation,1.5.25,1.5.38,yes
+ch.qos.logback:logback-classic,implementation,1.5.25,1.5.38,competing pin realigned

@@ -1,0 +1,134 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.5.12'
+    id 'io.spring.dependency-management' version '1.1.7'
+    id 'application'
+    id 'jacoco'
+    id "org.sonarqube" version "6.3.1.5724"
+
+}
+
+group = 'com.cwih.cnp'
+version = '0.0.1-SNAPSHOT'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenLocal()
+    maven {
+        url 'https://humana.jfrog.io/artifactory/plugins-release'
+        credentials {
+            username System.getenv('ARTIFACTORY_USERNAME')
+            password System.getenv('ARTIFACTORY_PASSWORD')
+        }
+
+    }
+
+}
+
+ext {
+    set('springCloudVersion', "2025.0.0")
+    set('spring-framework.version', "6.2.17")
+}
+
+dependencies {
+
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-aop'
+    implementation 'org.apache.poi:poi-scratchpad:5.2.2'
+    implementation 'commons-io:commons-io:2.15.1'
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.13'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    testImplementation 'org.mockito:mockito-core:5.19.0'
+    implementation 'org.apache.poi:poi-ooxml:5.4.0'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation "ch.qos.logback:logback-core:1.5.25"//Vit Fix CVE-2025-11226
+    implementation "ch.qos.logback:logback-classic:1.5.25"//Vit Fix CVE-2025-11226
+    implementation('org.kie:kie-spring:7.74.1.Final') {
+        exclude group: 'com.google.protobuf', module: 'protobuf-java'
+        exclude group: 'org.apache.commons', module: 'commons-compress'
+        exclude group: 'com.thoughtworks.xstream', module: 'xstream'
+    }
+    implementation(group: 'org.apache.commons', name: 'commons-lang3') {
+        version {
+            strictly '3.18.0'
+        }
+    }
+    implementation(group: 'org.apache.tomcat.embed', name: 'tomcat-embed-core') {
+        version {
+            strictly '11.0.18'
+        }
+    }
+
+}
+
+application {
+    mainClass = 'com.cwih.cnp.DroolsServiceApplication'
+}
+
+sonarqube {
+    properties {
+        property "sonar.projectKey", "IntegratedHealth.ConsentAndPreferences.rule-api"
+        property "sonar.host.url", "http://analysis-devops.humana.com"
+        property "sonar.login", System.getenv("SONARQUBE_TOKEN")
+        property "sonar.java.binaries", "${layout.buildDirectory.get()}/classes/java/main"
+        property "sonar.junit.reportsPath", "${layout.buildDirectory.get()}/test-results/test/"
+        property "sonar.jacoco.reportPaths", "${layout.buildDirectory.get()}/reports/jacoco/test/jacocoTestReport.xml"
+        property 'sonar.coverage.exclusions',
+                "**/com/cwih/cnp/DroolsServiceApplication.java," +
+                        "**/com/cwih/cnp/constants/**," +
+                        "**/com/cwih/cnp/dto/**," +
+                        "**/com/cwih/cnp/entity/**," +
+                        "**/com/cwih/cnp/exceptions/**," +
+                        "**/com/cwih/cnp/logging/**,"
+    }
+}
+
+apply plugin: 'jacoco'
+
+test {
+    useJUnitPlatform()
+
+    jacocoTestReport {
+        reports {
+            xml.required.set(true)
+            html.required.set(true)
+            xml.destination file("${layout.buildDirectory.get()}/reports/jacoco/test/jacocoTestReport.xml")
+            html.destination file("${layout.buildDirectory.get()}/jacocoReport")
+        }
+        finalizedBy jacocoTestCoverageVerification
+        afterEvaluate {
+            classDirectories.setFrom(files(classDirectories.files.collect {
+                fileTree(dir: it, exclude: [
+                        "**/com/cwih/cnp/DroolsServiceApplication.java," +
+                                "**/com/cwih/cnp/constants/**," +
+                                "**/com/cwih/cnp/dto/**," +
+                                "**/com/cwih/cnp/entity/**," +
+                                "**/com/cwih/cnp/exceptions/**," +
+                                "**/com/cwih/cnp/logging/**,"
+                ])
+            }))
+        }
+    }
+    test.finalizedBy jacocoTestReport
+}
+
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
+
+tasks.sonarqube.dependsOn = []
