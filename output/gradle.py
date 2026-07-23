@@ -4,6 +4,7 @@ import os
 import re
 import threading
 import time
+from collections.abc import Callable
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 
@@ -446,6 +447,20 @@ def _align_competing_pins(
         if dependency and new_version:
             targets.setdefault(dependency, new_version)
 
+    # Read-only membership check against text Case 1 already patched. This
+    # must NOT be mutated as the loops below run: a build.gradle can declare
+    # the very SAME group:artifact:version twice (byte-identical text at two
+    # different physical locations) -- adding the first occurrence's text
+    # here would make the set membership check below wrongly treat the
+    # SECOND, still-unpatched occurrence as "already handled" too, since the
+    # check is by text content, not position. Observed live:
+    # org.apache.cxf:cxf-rt-transports-http declared twice at 4.1.3; this
+    # loop patched the first to 4.2.2 and then, because that exact text was
+    # now in handled_originals, skipped the second -- leaving the old
+    # vulnerable version sitting right next to the new one in the file.
+    # parse_gradle_deps/finditer already return each physical occurrence
+    # separately, so nothing here needs to track "have I emitted a row for
+    # this text already" -- every occurrence not covered by Case 1 gets one.
     handled_originals = {row.get("original") for row in changes}
     rows: list[dict] = []
 
@@ -466,7 +481,6 @@ def _align_competing_pins(
             "original": dep.original,
             "replacement": dep.original.replace(dep.version, target, 1),
         })
-        handled_originals.add(dep.original)
 
     # Pre-existing resolutionStrategy force lines pinning an old version.
     for match in _EXISTING_FORCE_LINE_RE.finditer(build_text):
@@ -487,7 +501,6 @@ def _align_competing_pins(
             "original": original,
             "replacement": original.replace(f"{key}:{old_version}", f"{key}:{target}", 1),
         })
-        handled_originals.add(original)
 
     return rows
 
@@ -839,50 +852,147 @@ def write_spring_boot_managed_properties(
     return build_text, remaining_forces
 
 
+_FORCE_BLOCK_MARKER_BUILDSCRIPT = (
+    "// package-update: managed buildscript force block (safe to regenerate)"
+)
+_FORCE_BLOCK_MARKER_PROJECT = (
+    "// package-update: managed force block (safe to regenerate)"
+)
+_SUBSTITUTION_BLOCK_MARKER = (
+    "// package-update: managed dependencySubstitution block (safe to regenerate)"
+)
+
+
+def _buildscript_has_dependencies(build_text: str) -> bool:
+    """Whether buildscript{} itself declares any dependencies to force.
+
+    A CVE-flagged package is almost always an application dependency, not a
+    build-tool/plugin classpath one -- forcing it in buildscript scope
+    unconditionally added a block that could never do anything (confirmed
+    live: a real repo's buildscript had no dependencies{} at all).
+    """
+    match = re.search(r"buildscript\s*\{", build_text)
+    if not match:
+        return False
+    open_brace = build_text.find("{", match.start(), match.end())
+    if open_brace < 0:
+        return False
+    body = build_text[open_brace : _find_block_end(build_text, open_brace)]
+    return re.search(r"(?m)^\s*dependencies\s*\{", body) is not None
+
+
+def _enclosing_block_end(text: str, pos: int) -> int:
+    """Index just past the '}' closing the block that contains position pos."""
+    depth = 0
+    i = pos
+    while i >= 0:
+        ch = text[i]
+        if ch == "}":
+            depth += 1
+        elif ch == "{":
+            if depth == 0:
+                return _find_block_end(text, i)
+            depth -= 1
+        i -= 1
+    return pos
+
+
+def _append_or_insert_block(
+    build_text: str,
+    marker: str,
+    body_lines: list[str],
+    insert_new: Callable[[str, str], str],
+    body_indent: str,
+) -> str:
+    """Append body_lines into the block already tagged with marker, or
+    create a fresh marked block via insert_new if none exists yet.
+
+    A single pipeline run can call the writer more than once (a pre-build
+    check may force one blocked artifact, the main CVE write forces
+    everything else, a later reactive retry may force still more) -- each
+    call used to insert a brand-new configurations.all block rather than
+    reusing the one already written this run, so one repo could end up with
+    several near-identical blocks (confirmed live: 4 blocks from 2 calls on
+    the same file). The marker tags only blocks this function itself wrote,
+    so later calls extend that exact block and never touch a hand-authored
+    one -- preserving the original "never merge into unrecognized blocks"
+    safety this design started from.
+    """
+    marker_idx = build_text.find(marker)
+    if marker_idx == -1:
+        return insert_new(build_text, marker)
+
+    close_idx = _enclosing_block_end(build_text, marker_idx) - 1
+    # Re-running the same write (Phase 2 replay, a repeated batch pass) must
+    # not keep growing the block with lines it already contains.
+    existing_body = build_text[marker_idx:close_idx]
+    new_lines = [line for line in body_lines if line not in existing_body]
+    if not new_lines:
+        return build_text
+    insertion = "\n" + "\n".join(f"{body_indent}{line}" for line in new_lines)
+    return build_text[:close_idx] + insertion + "\n" + build_text[close_idx:]
+
+
 def write_resolution_forces(build_text: str, forces: list[dict]) -> str:
     """Insert resolutionStrategy.force entries into build_text.
 
-    Forces are written in both places Gradle can need them:
-    - buildscript configurations for classpath/plugin artifacts
-    - project configurations for compile/runtime artifacts
-
-    Always add a new project-level configurations.all block instead of trying to
-    merge into an existing one. Some legacy build.gradle files have compact or
-    non-standard formatting that makes safely identifying scope-sensitive
-    existing blocks unreliable, and duplicate resolutionStrategy.force entries
-    are safer than missing the force entirely.
+    Forces are written in project scope always, and in buildscript scope only
+    when buildscript actually declares dependencies (classpath/plugin
+    artifacts) -- see _buildscript_has_dependencies. Repeated calls within
+    (or across) a run extend the block this function already wrote instead
+    of inserting a new one each time -- see _append_or_insert_block.
     """
     if not forces:
         return build_text
 
-    force_lines = "\n".join(
-        f"            force '{f['dependency']}:{f['new_version']}'" for f in forces
-    )
+    force_lines = [f"force '{f['dependency']}:{f['new_version']}'" for f in forces]
 
-    buildscript_snippet = (
-        "\n    configurations.all {\n"
-        "        resolutionStrategy {\n"
-        f"{force_lines}\n"
-        "        }\n"
-        "    }\n"
-    )
+    if _buildscript_has_dependencies(build_text):
+        def _insert_buildscript(text: str, marker: str) -> str:
+            snippet = (
+                "\n    configurations.all {\n"
+                "        resolutionStrategy {\n"
+                f"            {marker}\n"
+                + "\n".join(f"            {line}" for line in force_lines)
+                + "\n        }\n"
+                "    }\n"
+            )
+            buildscript_match = re.search(r"buildscript\s*\{", text)
+            if not buildscript_match:
+                return text
+            return (
+                text[: buildscript_match.end()]
+                + snippet
+                + text[buildscript_match.end() :]
+            )
 
-    buildscript_match = re.search(r"buildscript\s*\{", build_text)
-    if buildscript_match:
-        build_text = (
-            build_text[: buildscript_match.end()]
-            + buildscript_snippet
-            + build_text[buildscript_match.end() :]
+        build_text = _append_or_insert_block(
+            build_text,
+            _FORCE_BLOCK_MARKER_BUILDSCRIPT,
+            force_lines,
+            _insert_buildscript,
+            body_indent="            ",
         )
 
-    project_block = (
-        "configurations.all {\n"
-        "    resolutionStrategy {\n"
-        f"{force_lines}\n"
-        "    }\n"
-        "}\n"
+    def _insert_project(text: str, marker: str) -> str:
+        project_block = (
+            "configurations.all {\n"
+            "    resolutionStrategy {\n"
+            f"        {marker}\n"
+            + "\n".join(f"        {line}" for line in force_lines)
+            + "\n    }\n"
+            "}\n"
+        )
+        return _insert_project_forces(text, project_block)
+
+    build_text = _append_or_insert_block(
+        build_text,
+        _FORCE_BLOCK_MARKER_PROJECT,
+        force_lines,
+        _insert_project,
+        body_indent="        ",
     )
-    return _insert_project_forces(build_text, project_block).rstrip() + "\n"
+    return build_text.rstrip() + "\n"
 
 
 def write_dependency_substitutions(build_text: str, forces: list[dict]) -> str:
@@ -890,25 +1000,38 @@ def write_dependency_substitutions(build_text: str, forces: list[dict]) -> str:
     cannot override (e.g. Gradle Module Metadata strict version constraints).
 
     dependencySubstitution runs before version conflict resolution, substituting the
-    entire module reference before strict constraints from component metadata are applied.
+    entire module reference before strict constraints from component metadata are
+    applied. Repeated calls extend the block this function already wrote --
+    see _append_or_insert_block.
     """
     if not forces:
         return build_text
 
-    sub_lines = "\n".join(
-        f"        substitute module('{f['dependency']}') "
+    sub_lines = [
+        f"substitute module('{f['dependency']}') "
         f"using module('{f['dependency']}:{f['new_version']}')"
         for f in forces
-    )
+    ]
 
-    project_block = (
-        "configurations.all {\n"
-        "    resolutionStrategy.dependencySubstitution {\n"
-        f"{sub_lines}\n"
-        "    }\n"
-        "}\n"
+    def _insert_project(text: str, marker: str) -> str:
+        project_block = (
+            "configurations.all {\n"
+            "    resolutionStrategy.dependencySubstitution {\n"
+            f"        {marker}\n"
+            + "\n".join(f"        {line}" for line in sub_lines)
+            + "\n    }\n"
+            "}\n"
+        )
+        return _insert_project_forces(text, project_block)
+
+    build_text = _append_or_insert_block(
+        build_text,
+        _SUBSTITUTION_BLOCK_MARKER,
+        sub_lines,
+        _insert_project,
+        body_indent="        ",
     )
-    return _insert_project_forces(build_text, project_block).rstrip() + "\n"
+    return build_text.rstrip() + "\n"
 
 
 def write_gradle_file(
