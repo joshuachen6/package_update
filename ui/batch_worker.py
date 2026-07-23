@@ -6,11 +6,13 @@ import queue
 import subprocess
 import sys
 import threading
+import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from urllib.parse import urlparse
 
 from PyQt6.QtCore import QThread, pyqtSignal
 
+from shared.batch_summary import aggregate_batch_summary, read_repo_evidence
 from shared.utils import safe_branch_dir as _safe_branch_dir
 
 
@@ -18,6 +20,7 @@ class BatchWorker(QThread):
     row_status = pyqtSignal(int, str)
     row_log = pyqtSignal(int, str)
     all_done = pyqtSignal()
+    batch_summary = pyqtSignal(dict)
 
     def __init__(self, rows: list[dict], settings: dict, parent=None):
         super().__init__(parent)
@@ -25,6 +28,8 @@ class BatchWorker(QThread):
         self._settings = settings
         self._abort = False
         self._procs: list[subprocess.Popen] = []
+        self._repo_results: list[dict] = []
+        self._repo_results_lock = threading.Lock()
 
     def abort(self):
         self._abort = True
@@ -46,6 +51,13 @@ class BatchWorker(QThread):
                 except Exception as exc:
                     self.row_log.emit(idx, f"[error] {exc}")
                     self.row_status.emit(idx, "Error")
+        repo_results = list(self._repo_results)
+        self.batch_summary.emit(
+            {
+                "summary": aggregate_batch_summary(repo_results),
+                "repos": repo_results,
+            }
+        )
         self.all_done.emit()
 
     def _expand_url(self, url: str) -> str:
@@ -85,6 +97,7 @@ class BatchWorker(QThread):
             return
 
         self.row_status.emit(index, "Running...")
+        started_at = time.monotonic()
         branch = row.get("branch", "").strip()
         cves = row.get("cves", "").strip()
         log_dir = self._repo_log_dir(url, branch)
@@ -237,20 +250,49 @@ class BatchWorker(QThread):
                 self._procs.remove(proc)
 
             if timed_out:
+                status = "Error"
                 self.row_status.emit(index, "Error")
             elif self._abort:
+                status = "Aborted"
                 self.row_status.emit(index, "Aborted")
             elif proc.returncode == 0:
+                status = "Success"
                 self.row_status.emit(index, "Success")
             elif proc.returncode == 2:
+                status = "Partial"
                 self.row_status.emit(index, "Partial")
             elif proc.returncode == 3:
+                status = "Failed"
                 self.row_status.emit(index, "Failed")
             else:
+                status = "Error"
                 self.row_status.emit(index, "Error")
         except Exception as exc:
             self.row_log.emit(index, f"[error] {exc}")
+            status = "Error"
             self.row_status.emit(index, "Error")
+
+        self._record_repo_result(index, url, branch, log_dir, status, started_at)
+
+    def _record_repo_result(
+        self,
+        index: int,
+        url: str,
+        branch: str,
+        log_dir: str,
+        status: str,
+        started_at: float,
+    ) -> None:
+        result = {
+            "index": index,
+            "url": url,
+            "branch": branch,
+            "status": status,
+            "duration_seconds": time.monotonic() - started_at,
+            "evidence": read_repo_evidence(log_dir),
+        }
+        with self._repo_results_lock:
+            self._repo_results.append(result)
 
 
 class suppress_exc:

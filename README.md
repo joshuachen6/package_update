@@ -46,7 +46,7 @@ Set these environment variables, or pass the equivalent `--artifactory-*` CLI op
 
     make gui
 
-Opens the full PyQt6 app (`gui.py`): Log / Changes / CVEs tabs for a single project, plus a **Batch** tab that reads a spreadsheet of repo URLs (or a directory of already-cloned repos) and runs remediation across all of them, writing one `logs/batch/<repo>_<branch>/logs/` directory per target.
+Opens the full PyQt6 app (`gui.py`): Log / Changes / CVEs tabs for a single project, plus a **Batch** tab that reads a spreadsheet of repo URLs (or a directory of already-cloned repos) and runs remediation across all of them, writing one `logs/batch/<repo>_<branch>/logs/` directory per target. When the batch finishes, a popup summarizes repos processed/successful/partial/failed, full and useful remediation rates, unique vs. total (duplicate-counted) CVEs cleared, vulnerable-package before/after/clearance-rate, and average repo fix time — the same summary plus a per-repo time breakdown is appended to `logs/batch/batch-summary.log`.
 
 ## CLI
 
@@ -132,6 +132,7 @@ Logs are written under `<project-dir>/logs` by default (or `logs/batch/<repo>_<b
 - `task-completion-report.md` / `task-completion-report.xlsx` — the human-readable report; Overall Status (Success / Partial / Manual Update Required / Error) is driven by `remediation-evidence.json`'s verification outcome.
 - `jfrog-audit.json` / `jfrog-audit-after.json` — the Xray scan before and after remediation.
 - `phase2-results.json` — cached write/validate state for a `--phase2-results` replay.
+- `logs/batch/batch-summary.log` — one appended entry per GUI batch run: aggregate statistics plus a per-repo status/time line (see GUI section above).
 
 **npm:**
 - `npm-available-versions.txt`, `npm-view-errors.csv`
