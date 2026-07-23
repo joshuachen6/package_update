@@ -781,6 +781,89 @@ def test_gradle_force_does_not_group_unrelated_same_group_artifacts(tmp_path):
     }
 
 
+def test_gradle_align_competing_pins_realigns_every_duplicate_occurrence(
+    tmp_path,
+):
+    """Real-world bug distinct from the Case 1 duplicate fix: a package that
+    is only realigned via _sibling_family_forces (never a direct CVE target
+    itself) can ALSO be declared twice in build.gradle. _align_competing_pins
+    re-scans the whole file for such declarations, but used to mutate the
+    same "already handled" set it was checking against text content -- so
+    after patching the first of two byte-identical declarations, it treated
+    the second as already handled purely because the TEXT matched, and left
+    it at the old vulnerable version. Observed live: cwih-cnp-mgmt-consent-
+    publish-api's org.apache.cxf:cxf-rt-transports-http was declared twice at
+    4.1.3; only the first became 4.2.2, the second stayed at 4.1.3 right next
+    to it.
+    """
+    from output.gradle import apply_updates
+
+    declaration = "implementation 'org.apache.cxf:cxf-rt-transports-http:4.1.3'"
+    build_file = tmp_path / "build.gradle"
+    build_file.write_text(
+        "dependencies {\n"
+        f"    {declaration}\n"
+        "    implementation 'org.example:filler:1.0.0'\n"
+        f"    {declaration}\n"
+        "}\n",
+        encoding="utf-8",
+    )
+
+    changes, skipped, forces = apply_updates(
+        deps=[],
+        remediation_by_key={},
+        available_by_key={
+            "org.apache.cxf:cxf-core": [
+                MavenVersion.parse("4.1.3"),
+                MavenVersion.parse("4.2.2"),
+            ],
+            "org.apache.cxf:cxf-rt-transports-http": [
+                MavenVersion.parse("4.1.3"),
+                MavenVersion.parse("4.2.2"),
+            ],
+        },
+        package_constraints={"org.apache.cxf:cxf-core": ">"},
+        installed={
+            "org.apache.cxf:cxf-core": MavenVersion.parse("4.1.3"),
+            "org.apache.cxf:cxf-rt-transports-http": MavenVersion.parse("4.1.3"),
+        },
+        parents_of={},
+        build_file=str(build_file),
+        base_url="https://jfrog.example/artifactory/gradle",
+        auth=None,
+        gradle_cmd="gradle",
+        timeout=30,
+        skip_block_check=True,
+        show_progress=False,
+    )
+
+    realigned = [
+        row for row in changes
+        if row.get("dependency") == "org.apache.cxf:cxf-rt-transports-http"
+        and row.get("remediation_guided") == "competing pin realigned"
+    ]
+    assert len(realigned) == 2
+    assert all(row["new_version"] == "4.2.2" for row in realigned)
+
+    from output.gradle import write_gradle_file
+
+    output_path = tmp_path / "build-out.gradle"
+    write_gradle_file(
+        build_file.read_text(encoding="utf-8"),
+        changes,
+        forces,
+        str(output_path),
+        str(build_file),
+        in_place=False,
+    )
+    updated_text = output_path.read_text(encoding="utf-8")
+    assert updated_text.count("cxf-rt-transports-http:4.1.3") == 0
+    assert (
+        updated_text.count("implementation 'org.apache.cxf:cxf-rt-transports-http:4.2.2'")
+        == 2
+    )
+
+
 def test_gradle_apply_updates_realigns_preexisting_force_pins(tmp_path):
     """Mirrors cwih-cnp-mgmt-cds-workflow: the project carries a stale
     resolutionStrategy force from an earlier manual CVE fix. Left alone it
@@ -1225,6 +1308,158 @@ def test_gradle_writer_does_not_substitute_ordinary_force(tmp_path):
 
     assert "force 'org.example:ordinary:1.0.1'" in updated
     assert "substitute module('org.example:ordinary')" not in updated
+
+
+def test_gradle_writer_skips_buildscript_force_block_without_buildscript_deps(
+    tmp_path,
+):
+    """A CVE-flagged package is almost always an application dependency, not
+    a build-tool/plugin classpath one -- inserting a buildscript-scope force
+    block unconditionally added a block that could never do anything when
+    buildscript{} has no dependencies{} at all (confirmed live: a real
+    repo's build.gradle had exactly this empty-purpose block, pure clutter).
+    """
+    from output.gradle import write_gradle_file
+
+    build_text = (
+        "buildscript {\n"
+        "    repositories { mavenLocal() }\n"
+        "}\n"
+        "dependencies {}\n"
+    )
+    output_path = tmp_path / "updated.gradle"
+
+    write_gradle_file(
+        build_text,
+        changes=[],
+        force_entries=[
+            {
+                "dependency": "org.example:ordinary",
+                "old_version": "1.0.0",
+                "new_version": "1.0.1",
+                "minimum_required": "1.0.1",
+            }
+        ],
+        output_path=str(output_path),
+        source_path=str(output_path),
+        in_place=False,
+    )
+
+    updated = output_path.read_text(encoding="utf-8")
+    assert updated.count("configurations.all") == 1
+    assert "force 'org.example:ordinary:1.0.1'" in updated
+
+
+def test_gradle_writer_keeps_buildscript_force_block_when_buildscript_has_deps(
+    tmp_path,
+):
+    from output.gradle import write_gradle_file
+
+    build_text = (
+        "buildscript {\n"
+        "    dependencies { classpath 'org.example:plugin:1.0.0' }\n"
+        "}\n"
+        "dependencies {}\n"
+    )
+    output_path = tmp_path / "updated.gradle"
+
+    write_gradle_file(
+        build_text,
+        changes=[],
+        force_entries=[
+            {
+                "dependency": "org.example:ordinary",
+                "old_version": "1.0.0",
+                "new_version": "1.0.1",
+                "minimum_required": "1.0.1",
+            }
+        ],
+        output_path=str(output_path),
+        source_path=str(output_path),
+        in_place=False,
+    )
+
+    updated = output_path.read_text(encoding="utf-8")
+    assert updated.count("configurations.all") == 2
+
+
+def test_gradle_writer_merges_repeated_force_calls_into_one_block(tmp_path):
+    """Real-world bug: a single pipeline run can call write_resolution_forces
+    more than once (a pre-build check forces one blocked artifact, the main
+    CVE write forces everything else) -- each call used to insert a brand
+    new configurations.all block, so one repo could end up with several
+    near-identical blocks (confirmed live: 4 blocks from 2 calls on the same
+    file, none of which existed in the original build.gradle). Repeated
+    calls must extend the block already written this run instead.
+    """
+    from output.gradle import write_resolution_forces
+
+    build_text = "dependencies {}\n"
+
+    once = write_resolution_forces(
+        build_text,
+        [{"dependency": "com.fasterxml.jackson.core:jackson-databind", "new_version": "2.21.5"}],
+    )
+    twice = write_resolution_forces(
+        once,
+        [{"dependency": "org.apache.cxf:cxf-core", "new_version": "4.2.2"}],
+    )
+
+    assert twice.count("configurations.all") == 1
+    assert "force 'com.fasterxml.jackson.core:jackson-databind:2.21.5'" in twice
+    assert "force 'org.apache.cxf:cxf-core:4.2.2'" in twice
+
+
+def test_gradle_writer_merges_repeated_substitution_calls_into_one_block(tmp_path):
+    from output.gradle import write_dependency_substitutions
+
+    build_text = "dependencies {}\n"
+
+    once = write_dependency_substitutions(
+        build_text,
+        [{"dependency": "org.springframework.data:spring-data-mongodb", "new_version": "4.5.13"}],
+    )
+    twice = write_dependency_substitutions(
+        once,
+        [{"dependency": "org.springframework.data:spring-data-commons", "new_version": "3.5.13"}],
+    )
+
+    assert twice.count("resolutionStrategy.dependencySubstitution") == 1
+    assert "substitute module('org.springframework.data:spring-data-mongodb') using module('org.springframework.data:spring-data-mongodb:4.5.13')" in twice
+    assert "substitute module('org.springframework.data:spring-data-commons') using module('org.springframework.data:spring-data-commons:3.5.13')" in twice
+
+
+def test_gradle_writer_force_block_is_idempotent_on_repeated_full_write(tmp_path):
+    """Writing the same force entries through write_gradle_file twice in a
+    row must produce byte-identical output -- the direct check that repeated
+    processing of the same repo doesn't keep growing the file.
+    """
+    from output.gradle import write_gradle_file
+
+    build_text = "dependencies {}\n"
+    force_entries = [
+        {
+            "dependency": "org.example:ordinary",
+            "old_version": "1.0.0",
+            "new_version": "1.0.1",
+            "minimum_required": "1.0.1",
+        }
+    ]
+
+    first_path = tmp_path / "first.gradle"
+    write_gradle_file(
+        build_text, [], force_entries, str(first_path), str(first_path), in_place=False
+    )
+    first_text = first_path.read_text(encoding="utf-8")
+
+    second_path = tmp_path / "second.gradle"
+    write_gradle_file(
+        first_text, [], force_entries, str(second_path), str(second_path), in_place=False
+    )
+    second_text = second_path.read_text(encoding="utf-8")
+
+    assert second_text.count("configurations.all") == 1
+    assert second_text.count("force 'org.example:ordinary:1.0.1'") == 1
 
 
 def test_gradle_apply_updates_checks_accessibility_before_forcing_transitive(tmp_path, monkeypatch):
