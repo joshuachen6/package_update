@@ -1018,7 +1018,7 @@ def test_gradle_verification_keeps_updates_when_failure_predates_remediation(
 
     monkeypatch.setattr("shared.verification._run", fake_run)
     monkeypatch.setattr(
-        "shared.build_validation.validate_gradle_project",
+        "shared.build_validation.gradle.validate_gradle_project",
         fake_validate_gradle_project,
     )
     monkeypatch.setattr(
@@ -1066,7 +1066,7 @@ def test_gradle_verification_reports_failure_when_baseline_passes(tmp_path, monk
 
     monkeypatch.setattr("shared.verification._run", fake_run)
     monkeypatch.setattr(
-        "shared.build_validation.validate_gradle_project",
+        "shared.build_validation.gradle.validate_gradle_project",
         fake_validate_gradle_project,
     )
     monkeypatch.setattr(

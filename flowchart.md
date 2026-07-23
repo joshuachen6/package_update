@@ -102,8 +102,9 @@ flowchart TD
 
     CHANGE --> SIBLING
     FORCE --> SIBLING["_sibling_family_forces:\nany OTHER same-group artifact currently at the\nEXACT SAME resolved version as the one just changed\nis treated as version-locked and forced to match —\nbut ONLY to a version confirmed to exist for THAT\nsibling (checked against available_by_key); falls back\nto the closest existing version below the trigger's\ntarget, or skips the sibling entirely if nothing exists\n(jackson-annotations has no patch releases, so it can't\njust inherit jackson-databind's exact '2.22.1')"]
-    SIBLING --> COMPETE["_align_competing_pins:\nre-scan the WHOLE file for any other declaration\n(strict version block or resolutionStrategy.force line)\nof a package now in changes/force_entries that's\nstill pinned to something else — realign it too"]
-    COMPETE --> WRITE(["write_gradle_file: changes, then forces, then\nSpring Boot managed properties / plugin version /\ndependency substitutions"])
+    SIBLING --> COMPETE["_align_competing_pins:\nre-scan the WHOLE file for any other declaration\n(strict version block, resolutionStrategy.force line, or\ncapabilitiesResolution.withCapability select(...) pin)\nof a package now in changes/force_entries that's\nstill pinned to something else — realign it too"]
+    COMPETE --> DEDUP["_drop_redundant_forces:\ndrop a sibling force entry when every direct\ndeclaration occurrence for that package is already\nat the target version (via Case 1 or a COMPETE\nrealignment) — the force would pin nothing new"]
+    DEDUP --> WRITE(["write_gradle_file: changes, then forces\n(project scope always, buildscript scope whenever\na buildscript{} block exists), then Spring Boot\nmanaged properties / plugin version / dependency\nsubstitutions — force/substitution blocks are\nmarker-tagged so repeated calls extend one block\ninstead of duplicating it"])
 ```
 
 ## Node (`output/node.py::apply_updates`)
