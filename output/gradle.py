@@ -8,7 +8,12 @@ from collections.abc import Callable
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 
-from parsers.gradle import GradleDep, _is_prerelease, find_accessible_version
+from parsers.gradle import (
+    GradleDep,
+    _is_prerelease,
+    find_accessible_version,
+    parse_gradle_deps,
+)
 from parsers.gradle_tree import resolve_transitive_with_gradle
 from resolver.resolver import select_best_version
 from shared.maven_version import MavenVersion
@@ -412,6 +417,9 @@ def apply_updates(
     changes.extend(
         _align_competing_pins(build_text_for_strategy, changes, force_entries)
     )
+    force_entries = _drop_redundant_forces(
+        build_text_for_strategy, changes, force_entries
+    )
 
     return changes, skipped, force_entries
 
@@ -442,8 +450,6 @@ def _align_competing_pins(
     original/replacement like any direct change, so writing, reporting, and
     rollback all treat them uniformly.
     """
-    from parsers.gradle import parse_gradle_deps
-
     targets: dict[str, str] = {}
     for row in list(changes) + list(force_entries):
         dependency = row.get("dependency", "")
@@ -536,6 +542,49 @@ def _align_competing_pins(
         })
 
     return rows
+
+
+def _drop_redundant_forces(
+    build_text: str,
+    changes: list[dict],
+    force_entries: list[dict],
+) -> list[dict]:
+    """Drop a force entry when the package's own direct declaration(s)
+    already pin the identical target version.
+
+    _sibling_family_forces adds a resolutionStrategy.force entry for any
+    same-group sibling sitting at the trigger's old version, without regard
+    for whether that sibling also has its own direct `implementation(...)`
+    declaration(s) -- which _align_competing_pins then separately realigns
+    to the exact same target. The force line changes nothing once every
+    direct occurrence already carries the target version; it's pure clutter
+    (confirmed live: org.apache.cxf:cxf-rt-transports-http ended up pinned
+    three ways to the identical 4.2.2 -- two realigned strictly() blocks
+    plus a fully redundant force entry, in both buildscript and project
+    scope).
+    """
+    if not force_entries or not build_text:
+        return force_entries
+
+    occurrences_by_key: dict[str, list[GradleDep]] = {}
+    for dep in parse_gradle_deps(build_text):
+        occurrences_by_key.setdefault(f"{dep.group}:{dep.artifact}", []).append(dep)
+
+    changed_originals = {row.get("original") for row in changes}
+
+    kept: list[dict] = []
+    for entry in force_entries:
+        key = entry.get("dependency", "")
+        target = entry.get("new_version", "")
+        occurrences = occurrences_by_key.get(key)
+        if occurrences and target and all(
+            occ.version == target or occ.original in changed_originals
+            for occ in occurrences
+        ):
+            continue
+        kept.append(entry)
+
+    return kept
 
 
 def _sibling_family_forces(

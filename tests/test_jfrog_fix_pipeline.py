@@ -781,6 +781,76 @@ def test_gradle_force_does_not_group_unrelated_same_group_artifacts(tmp_path):
     }
 
 
+def test_gradle_sibling_force_dropped_when_direct_declaration_already_realigned(
+    tmp_path,
+):
+    """A sibling swept up by _sibling_family_forces can also have its own
+    direct declaration in build.gradle -- which _align_competing_pins
+    separately realigns to the identical target version. Once every direct
+    occurrence carries the correct version, the sibling's force entry pins
+    nothing new; it's pure clutter. Observed live: cwih-cnp-mgmt-consent-
+    publish-api's org.apache.cxf:cxf-rt-transports-http (sibling of
+    cxf-core) ended up forced to 4.2.2 in both buildscript and project
+    scope AND had its own strictly() blocks realigned to the identical
+    4.2.2 -- three redundant pins for one already-correctly-handled change.
+    """
+    from output.gradle import apply_updates
+
+    declaration = (
+        "implementation(group: 'org.apache.cxf', name: 'cxf-rt-transports-http') {\n"
+        "        version { strictly '4.1.3' }\n"
+        "    }"
+    )
+    build_file = tmp_path / "build.gradle"
+    build_file.write_text(
+        "dependencies {\n"
+        f"    {declaration}\n"
+        "}\n",
+        encoding="utf-8",
+    )
+
+    changes, skipped, forces = apply_updates(
+        deps=[],
+        remediation_by_key={},
+        available_by_key={
+            "org.apache.cxf:cxf-core": [
+                MavenVersion.parse("4.1.3"),
+                MavenVersion.parse("4.2.2"),
+            ],
+            "org.apache.cxf:cxf-rt-transports-http": [
+                MavenVersion.parse("4.1.3"),
+                MavenVersion.parse("4.2.2"),
+            ],
+        },
+        package_constraints={"org.apache.cxf:cxf-core": ">"},
+        installed={
+            "org.apache.cxf:cxf-core": MavenVersion.parse("4.1.3"),
+            "org.apache.cxf:cxf-rt-transports-http": MavenVersion.parse("4.1.3"),
+        },
+        parents_of={},
+        build_file=str(build_file),
+        base_url="https://jfrog.example/artifactory/gradle",
+        auth=None,
+        gradle_cmd="gradle",
+        timeout=30,
+        skip_block_check=True,
+        show_progress=False,
+    )
+
+    # The direct declaration got realigned...
+    realigned = [
+        row for row in changes
+        if row["dependency"] == "org.apache.cxf:cxf-rt-transports-http"
+    ]
+    assert len(realigned) == 1
+    assert realigned[0]["new_version"] == "4.2.2"
+
+    # ...so the sibling force for the SAME package must not also be emitted.
+    forced_keys = {entry["dependency"] for entry in forces}
+    assert "org.apache.cxf:cxf-rt-transports-http" not in forced_keys
+    assert "org.apache.cxf:cxf-core" in forced_keys
+
+
 def test_gradle_align_competing_pins_realigns_every_duplicate_occurrence(
     tmp_path,
 ):
