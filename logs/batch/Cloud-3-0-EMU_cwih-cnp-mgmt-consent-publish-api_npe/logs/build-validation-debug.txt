@@ -54,3 +54,63 @@
 [2026-07-22 10:55:41] proactive check: forced 1 artifact(s) just to make the dependency tree resolve: com.fasterxml.jackson.core:jackson-databind:2.21.5
 [2026-07-22 10:55:41] proactive check: 219 resolved artifacts — checking accessibility...
 [2026-07-22 10:55:59] proactive check: all artifacts accessible — no pre-flight forces needed
+[2026-07-23 14:14:05] [perf] concurrent version search (com.fasterxml.jackson.core:jackson-databind) completed in 1.04s
+[2026-07-23 14:14:05] [perf] concurrent version search (org.springframework.kafka:spring-kafka) completed in 1.06s
+[2026-07-23 14:14:05] [perf] concurrent version search (org.springframework.boot:spring-boot) completed in 1.11s
+[2026-07-23 14:14:05] [perf] transitive-parent search (org.springframework.boot:spring-boot) ran 0 gradle probe(s) in 0.00s (resolved=False)
+[2026-07-23 14:14:05] [perf] concurrent version search (org.apache.cxf:cxf-core) completed in 1.13s
+[2026-07-23 14:14:05] [perf] transitive-parent search (org.apache.cxf:cxf-core) ran 0 gradle probe(s) in 0.00s (resolved=False)
+[2026-07-23 14:14:06] [perf] concurrent version search (io.netty:netty-codec-compression) completed in 1.51s
+[2026-07-23 14:14:06] [perf] concurrent version search (ch.qos.logback:logback-core) completed in 1.54s
+[2026-07-23 14:14:06] [perf] concurrent version search (org.springframework.data:spring-data-commons) completed in 1.60s
+[2026-07-23 14:14:06] [perf] concurrent version search (com.fasterxml.jackson.core:jackson-databind) completed in 0.63s
+[2026-07-23 14:14:06] [perf] concurrent version search (io.micrometer:micrometer-core) completed in 1.75s
+[2026-07-23 14:14:06] [perf] transitive-parent search (io.micrometer:micrometer-core) ran 0 gradle probe(s) in 0.00s (resolved=False)
+[2026-07-23 14:14:06] [perf] concurrent version search (org.springframework.hateoas:spring-hateoas) completed in 1.84s
+[2026-07-23 14:14:06] [perf] transitive-parent search (org.springframework.hateoas:spring-hateoas) ran 0 gradle probe(s) in 0.00s (resolved=False)
+[2026-07-23 14:14:06] [perf] concurrent version search (org.springframework.data:spring-data-mongodb) completed in 1.90s
+[2026-07-23 14:14:06] [perf] concurrent version search (ch.qos.logback:logback-core) completed in 0.36s
+[2026-07-23 14:14:06] [perf] transitive-parent search (org.springframework.data:spring-data-mongodb) ran 0 gradle probe(s) in 0.00s (resolved=False)
+[2026-07-23 14:14:06] [perf] concurrent version search (org.springframework:spring-core) completed in 0.95s
+[2026-07-23 14:14:06] [perf] concurrent version search (org.springframework:spring-expression) completed in 0.89s
+[2026-07-23 14:14:06] [perf] concurrent version search (at.yawk.lz4:lz4-java) completed in 2.04s
+[2026-07-23 14:14:06] [perf] concurrent version search (org.springframework:spring-web) completed in 0.99s
+[2026-07-23 14:14:07] [perf] concurrent version search (io.netty:netty-codec-http) completed in 2.26s
+[2026-07-23 14:14:07] [perf] transitive-parent search (io.netty:netty-codec-http) ran 0 gradle probe(s) in 0.00s (resolved=False)
+[2026-07-23 14:14:07] [perf] concurrent version search (io.netty:netty-codec-compression) completed in 0.86s
+[2026-07-23 14:14:07] [perf] concurrent version search (org.springframework:spring-webflux) completed in 1.13s
+[2026-07-23 14:14:11] [perf] transitive-parent search (at.yawk.lz4:lz4-java) ran 1 gradle probe(s) in 5.03s (resolved=False)
+[2026-07-23 14:14:11] proactive check: resolving post-change dependency tree...
+[2026-07-23 14:14:22] proactive check: forced 1 artifact(s) just to make the dependency tree resolve: com.fasterxml.jackson.core:jackson-databind:2.21.5
+[2026-07-23 14:14:22] proactive check: 219 resolved artifacts — checking accessibility...
+[2026-07-23 14:14:57] proactive check: all artifacts accessible — no pre-flight forces needed
+[2026-07-23 14:15:01] round 1: 1 new blocked packages
+[2026-07-23 14:15:01] com.fasterxml.jackson.core:jackson-databind:2.21.4 — listing from https://humana.jfrog.io/artifactory/ins-cp-mgmt-gradle-virtual, checking access via file:/Users/jchen18/.m2/repository, https://humana.jfrog.io/artifactory/eai-gradle-virtual
+[2026-07-23 14:15:01] com.fasterxml.jackson.core:jackson-databind:2.21.4 — 229 versions available
+[2026-07-23 14:15:02] [perf] concurrent version search (com.fasterxml.jackson.core:jackson-databind) completed in 0.58s
+[2026-07-23 14:15:02] com.fasterxml.jackson.core:jackson-databind:2.21.4 — find_accessible_version -> '2.21.5'
+[2026-07-23 14:15:06] round 1 build still failed: adle 9.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/8.14.1/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+A problem occurred configuring root project 'publish-consents'.
+> Could not resolve all artifacts for configuration 'classpath'.
+   > Could not download jackson-databind-2.21.4.jar (com.fasterxml.jackson.core:jackson-databind:2.21.4)
+      > Could not get resource 'https://humana.jfrog.io/artifactory/eai-gradle-virtual/com/fasterxml/jackson/core/jackson-databind/2.21.4/jackson-databind-2.21.4.jar'.
+         > Could not GET 'https://humana.jfrog.io/artifactory/eai-gradle-virtual/com/fasterxml/jackson/core/jackson-databind/2.21.4/jackson-databind-2.21.4.jar'. Received status code 403 from server: 
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+> Get more help at https://help.gradle.org.
+
+BUILD FAILED in 3s
+[2026-07-23 14:15:06] round 2: 0 new blocked packages
+[2026-07-23 14:15:06] 403s cleared; returning partial-fix state for candidate rollback
