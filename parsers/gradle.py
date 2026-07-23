@@ -50,7 +50,7 @@ def _extract_gradle_attr(attrs, name):
 
 
 def _extract_strict_version(block):
-    m = re.search(r"\bstrictly\s+(['\"])(.*?)\1", block)
+    m = re.search(r"\bstrictly\s*\(?\s*(['\"])(.*?)\1", block)
     return m.group(2) if m else None
 
 

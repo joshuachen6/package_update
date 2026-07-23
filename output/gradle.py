@@ -420,6 +420,10 @@ _EXISTING_FORCE_LINE_RE = re.compile(
     r"""force\s*\(?\s*(['"])([^'"$]+):([^'"$]+):([^'"$]+)\1(?:\s*\))?"""
 )
 
+_CAPABILITIES_SELECT_RE = re.compile(
+    r"""select\s*\(\s*(['"])([^'"$]+):([^'"$]+):([^'"$]+)\1\s*\)"""
+)
+
 
 def _align_competing_pins(
     build_text: str,
@@ -495,6 +499,35 @@ def _align_competing_pins(
         rows.append({
             "dependency": key,
             "config": "force",
+            "old_version": old_version,
+            "new_version": target,
+            "remediation_guided": "competing pin realigned",
+            "original": original,
+            "replacement": original.replace(f"{key}:{old_version}", f"{key}:{target}", 1),
+        })
+
+    # Pre-existing capabilitiesResolution.withCapability { select('g:a:v') }
+    # pins -- a mechanism for resolving conflicts between two modules that
+    # provide the same capability (e.g. org.lz4:lz4-java vs
+    # at.yawk.lz4:lz4-java). select() is authoritative for that capability
+    # conflict and outranks both a version{strictly} constraint and
+    # resolutionStrategy.force on the losing module, so a stale select()
+    # silently keeps the vulnerable version even after both of those are
+    # realigned (confirmed live: lz4-java forced to 1.11.1 and its own
+    # strictly() block realigned, but a stale select("...:1.10.1") still won
+    # real Gradle resolution).
+    for match in _CAPABILITIES_SELECT_RE.finditer(build_text):
+        key = f"{match.group(2)}:{match.group(3)}"
+        old_version = match.group(4)
+        target = targets.get(key)
+        if not target or old_version == target:
+            continue
+        original = match.group(0)
+        if original in handled_originals:
+            continue
+        rows.append({
+            "dependency": key,
+            "config": "capabilitiesResolution",
             "old_version": old_version,
             "new_version": target,
             "remediation_guided": "competing pin realigned",

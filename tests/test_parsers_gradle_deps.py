@@ -59,3 +59,34 @@ def test_parse_gradle_deps_does_not_double_count_bare_and_map_style():
     assert len(deps) == 2
     assert by_artifact["bare-dep"].version == "1.0.0"
     assert by_artifact["map-dep"].version == "2.0.0"
+
+
+def test_parse_gradle_deps_recognizes_parenthesized_strictly_call():
+    """Real-world gap: `version { strictly("1.10.1") }` -- strictly as a
+    parenthesized call rather than `strictly 'v'` with bare whitespace --
+    was invisible to _extract_strict_version's `\\bstrictly\\s+(['"])`
+    regex, which requires the quote to follow whitespace directly. The
+    whole GradleDep got dropped (version came back None), so this direct
+    dependency never became a Case 1 write target and instead only got a
+    resolutionStrategy.force entry -- which loses to the very
+    `strictly(...)` constraint the parser couldn't see, leaving the old
+    vulnerable version in place (observed live: cwih-cnp-mgmt-consent-
+    publish-api's at.yawk.lz4:lz4-java stayed on 1.10.1 despite a force to
+    1.11.1).
+    """
+    build_text = (
+        "dependencies {\n"
+        "    implementation(\"at.yawk.lz4:lz4-java\") {"
+        "// fix of CVE-2025-66566\n"
+        '        version { strictly("1.10.1") }\n'
+        "    }\n"
+        "}\n"
+    )
+
+    deps = parse_gradle_deps(build_text)
+    by_artifact = {d.artifact: d for d in deps}
+
+    assert "lz4-java" in by_artifact
+    lz4 = by_artifact["lz4-java"]
+    assert lz4.group == "at.yawk.lz4"
+    assert lz4.version == "1.10.1"

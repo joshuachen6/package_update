@@ -864,6 +864,49 @@ def test_gradle_align_competing_pins_realigns_every_duplicate_occurrence(
     )
 
 
+def test_gradle_align_competing_pins_realigns_capabilities_resolution_select():
+    """A capabilitiesResolution.withCapability { select('g:a:v') } block --
+    used to resolve conflicts between two modules providing the same
+    capability, e.g. org.lz4:lz4-java vs at.yawk.lz4:lz4-java -- is
+    authoritative for that capability conflict and outranks both a
+    version{strictly} constraint and resolutionStrategy.force on the module
+    it selects. A stale select() left untouched silently keeps the old
+    vulnerable version even after every other pin is realigned. Observed
+    live: cwih-cnp-mgmt-consent-publish-api forced at.yawk.lz4:lz4-java to
+    1.11.1, but a stale select("at.yawk.lz4:lz4-java:1.10.1") still won real
+    Gradle resolution, leaving the CVE unfixed (Partial instead of Success).
+    """
+    from output.gradle import _align_competing_pins
+
+    build_text = (
+        "configurations.configureEach {\n"
+        "    resolutionStrategy {\n"
+        '        capabilitiesResolution.withCapability("org.lz4:lz4-java") {\n'
+        '            select("at.yawk.lz4:lz4-java:1.10.1")\n'
+        '            because("Resolve capability conflict")\n'
+        "        }\n"
+        "    }\n"
+        "}\n"
+    )
+
+    rows = _align_competing_pins(
+        build_text,
+        changes=[],
+        force_entries=[
+            {
+                "dependency": "at.yawk.lz4:lz4-java",
+                "old_version": "1.10.1",
+                "new_version": "1.11.1",
+            }
+        ],
+    )
+
+    realigned = [r for r in rows if r["dependency"] == "at.yawk.lz4:lz4-java"]
+    assert len(realigned) == 1
+    assert realigned[0]["new_version"] == "1.11.1"
+    assert 'select("at.yawk.lz4:lz4-java:1.11.1")' in realigned[0]["replacement"]
+
+
 def test_gradle_apply_updates_realigns_preexisting_force_pins(tmp_path):
     """Mirrors cwih-cnp-mgmt-cds-workflow: the project carries a stale
     resolutionStrategy force from an earlier manual CVE fix. Left alone it
