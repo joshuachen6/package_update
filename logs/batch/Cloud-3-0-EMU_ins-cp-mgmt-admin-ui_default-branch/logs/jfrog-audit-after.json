@@ -1,0 +1,59 @@
+{
+  "component_count": 870,
+  "ecosystems": [
+    "npm"
+  ],
+  "errors": [],
+  "vulnerability_count": 7,
+  "vulnerable_component_count": 5,
+  "vulnerable_components": [
+    {
+      "component_id": "npm://dompurify:3.4.3",
+      "cves": [
+        "CVE-2026-49458",
+        "CVE-2026-49459",
+        "CVE-2026-49978"
+      ],
+      "ecosystem": "npm",
+      "package": "dompurify",
+      "version": "3.4.3"
+    },
+    {
+      "component_id": "npm://fast-uri:3.1.3",
+      "cves": [
+        "CVE-2026-16221"
+      ],
+      "ecosystem": "npm",
+      "package": "fast-uri",
+      "version": "3.1.3"
+    },
+    {
+      "component_id": "npm://js-yaml:4.2.0",
+      "cves": [
+        "CVE-2026-59869"
+      ],
+      "ecosystem": "npm",
+      "package": "js-yaml",
+      "version": "4.2.0"
+    },
+    {
+      "component_id": "npm://quill:2.0.3",
+      "cves": [
+        "CVE-2025-15056"
+      ],
+      "ecosystem": "npm",
+      "package": "quill",
+      "version": "2.0.3"
+    },
+    {
+      "component_id": "npm://ws:8.21.0",
+      "cves": [
+        "CVE-2026-62389"
+      ],
+      "ecosystem": "npm",
+      "package": "ws",
+      "version": "8.21.0"
+    }
+  ],
+  "xray_host": "https://humana.jfrog.io"
+}

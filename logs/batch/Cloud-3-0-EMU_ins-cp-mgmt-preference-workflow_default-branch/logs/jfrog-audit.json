@@ -1,0 +1,66 @@
+{
+  "component_count": 158,
+  "ecosystems": [
+    "maven"
+  ],
+  "errors": [],
+  "vulnerability_count": 14,
+  "vulnerable_component_count": 5,
+  "vulnerable_components": [
+    {
+      "component_id": "gav://ch.qos.logback:logback-core:1.5.32",
+      "cves": [
+        "CVE-2026-10532",
+        "CVE-2026-9828"
+      ],
+      "ecosystem": "maven",
+      "package": "ch.qos.logback:logback-core",
+      "version": "1.5.32"
+    },
+    {
+      "component_id": "gav://io.netty:netty-codec-http:4.1.135.Final",
+      "cves": [
+        "CVE-2026-55831",
+        "CVE-2026-55833"
+      ],
+      "ecosystem": "maven",
+      "package": "io.netty:netty-codec-http",
+      "version": "4.1.135.Final"
+    },
+    {
+      "component_id": "gav://org.apache.tomcat.embed:tomcat-embed-core:11.0.22",
+      "cves": [
+        "CVE-2026-50229",
+        "CVE-2026-53404",
+        "CVE-2026-53434",
+        "CVE-2026-55276",
+        "CVE-2026-55955",
+        "CVE-2026-55956",
+        "CVE-2026-59083",
+        "CVE-2026-59084"
+      ],
+      "ecosystem": "maven",
+      "package": "org.apache.tomcat.embed:tomcat-embed-core",
+      "version": "11.0.22"
+    },
+    {
+      "component_id": "gav://org.apache.tomcat.embed:tomcat-embed-websocket:11.0.18",
+      "cves": [
+        "CVE-2026-42498"
+      ],
+      "ecosystem": "maven",
+      "package": "org.apache.tomcat.embed:tomcat-embed-websocket",
+      "version": "11.0.18"
+    },
+    {
+      "component_id": "gav://org.springframework.data:spring-data-mongodb:4.5.11",
+      "cves": [
+        "CVE-2026-41717"
+      ],
+      "ecosystem": "maven",
+      "package": "org.springframework.data:spring-data-mongodb",
+      "version": "4.5.11"
+    }
+  ],
+  "xray_host": "https://humana.jfrog.io"
+}

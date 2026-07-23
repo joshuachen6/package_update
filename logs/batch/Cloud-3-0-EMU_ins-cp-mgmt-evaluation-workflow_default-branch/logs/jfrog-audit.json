@@ -1,0 +1,299 @@
+{
+  "component_count": 135,
+  "ecosystems": [
+    "maven"
+  ],
+  "errors": [],
+  "vulnerability_count": 79,
+  "vulnerable_component_count": 26,
+  "vulnerable_components": [
+    {
+      "component_id": "gav://ch.qos.logback:logback-core:1.5.18",
+      "cves": [
+        "CVE-2025-11226",
+        "CVE-2026-10532",
+        "CVE-2026-1225",
+        "CVE-2026-9828"
+      ],
+      "ecosystem": "maven",
+      "package": "ch.qos.logback:logback-core",
+      "version": "1.5.18"
+    },
+    {
+      "component_id": "gav://com.fasterxml.jackson.core:jackson-databind:2.17.3",
+      "cves": [
+        "CVE-2026-54512",
+        "CVE-2026-54513",
+        "CVE-2026-54514",
+        "CVE-2026-54515"
+      ],
+      "ecosystem": "maven",
+      "package": "com.fasterxml.jackson.core:jackson-databind",
+      "version": "2.17.3"
+    },
+    {
+      "component_id": "gav://io.micrometer:micrometer-core:1.13.14",
+      "cves": [
+        "CVE-2026-40984"
+      ],
+      "ecosystem": "maven",
+      "package": "io.micrometer:micrometer-core",
+      "version": "1.13.14"
+    },
+    {
+      "component_id": "gav://io.netty:netty-codec-compression:4.2.5.Final",
+      "cves": [
+        "CVE-2026-42583"
+      ],
+      "ecosystem": "maven",
+      "package": "io.netty:netty-codec-compression",
+      "version": "4.2.5.Final"
+    },
+    {
+      "component_id": "gav://io.netty:netty-codec-dns:4.1.121.Final",
+      "cves": [
+        "CVE-2026-42579"
+      ],
+      "ecosystem": "maven",
+      "package": "io.netty:netty-codec-dns",
+      "version": "4.1.121.Final"
+    },
+    {
+      "component_id": "gav://io.netty:netty-codec-http2:4.2.5.Final",
+      "cves": [
+        "CVE-2026-33871",
+        "CVE-2026-42587",
+        "CVE-2026-47244",
+        "CVE-2026-48043",
+        "CVE-2026-50560"
+      ],
+      "ecosystem": "maven",
+      "package": "io.netty:netty-codec-http2",
+      "version": "4.2.5.Final"
+    },
+    {
+      "component_id": "gav://io.netty:netty-codec-http:4.2.5.Final",
+      "cves": [
+        "CVE-2025-67735",
+        "CVE-2026-33870",
+        "CVE-2026-41417",
+        "CVE-2026-42580",
+        "CVE-2026-42581",
+        "CVE-2026-42584",
+        "CVE-2026-42585",
+        "CVE-2026-42587",
+        "CVE-2026-50020"
+      ],
+      "ecosystem": "maven",
+      "package": "io.netty:netty-codec-http",
+      "version": "4.2.5.Final"
+    },
+    {
+      "component_id": "gav://io.netty:netty-handler-proxy:4.1.121.Final",
+      "cves": [
+        "CVE-2026-42578"
+      ],
+      "ecosystem": "maven",
+      "package": "io.netty:netty-handler-proxy",
+      "version": "4.1.121.Final"
+    },
+    {
+      "component_id": "gav://io.netty:netty-handler:4.1.118.Final",
+      "cves": [
+        "CVE-2026-44249",
+        "CVE-2026-45416",
+        "CVE-2026-50010"
+      ],
+      "ecosystem": "maven",
+      "package": "io.netty:netty-handler",
+      "version": "4.1.118.Final"
+    },
+    {
+      "component_id": "gav://io.netty:netty-resolver-dns:4.1.121.Final",
+      "cves": [
+        "CVE-2026-45673",
+        "CVE-2026-45674",
+        "CVE-2026-47691"
+      ],
+      "ecosystem": "maven",
+      "package": "io.netty:netty-resolver-dns",
+      "version": "4.1.121.Final"
+    },
+    {
+      "component_id": "gav://io.netty:netty-transport-native-epoll:4.1.121.Final",
+      "cves": [
+        "CVE-2026-45536"
+      ],
+      "ecosystem": "maven",
+      "package": "io.netty:netty-transport-native-epoll",
+      "version": "4.1.121.Final"
+    },
+    {
+      "component_id": "gav://org.apache.commons:commons-lang3:3.14.0",
+      "cves": [
+        "CVE-2025-48924"
+      ],
+      "ecosystem": "maven",
+      "package": "org.apache.commons:commons-lang3",
+      "version": "3.14.0"
+    },
+    {
+      "component_id": "gav://org.apache.kafka:kafka-clients:4.0.0",
+      "cves": [
+        "CVE-2026-33558",
+        "CVE-2026-35554"
+      ],
+      "ecosystem": "maven",
+      "package": "org.apache.kafka:kafka-clients",
+      "version": "4.0.0"
+    },
+    {
+      "component_id": "gav://org.apache.tomcat.embed:tomcat-embed-core:10.1.47",
+      "cves": [
+        "CVE-2025-66614",
+        "CVE-2026-24734",
+        "CVE-2026-24880",
+        "CVE-2026-25854",
+        "CVE-2026-34483",
+        "CVE-2026-41284",
+        "CVE-2026-41293",
+        "CVE-2026-43512",
+        "CVE-2026-43513",
+        "CVE-2026-43514",
+        "CVE-2026-43515",
+        "CVE-2026-50229",
+        "CVE-2026-53404",
+        "CVE-2026-53434",
+        "CVE-2026-55276",
+        "CVE-2026-55955",
+        "CVE-2026-55956",
+        "CVE-2026-59083",
+        "CVE-2026-59084"
+      ],
+      "ecosystem": "maven",
+      "package": "org.apache.tomcat.embed:tomcat-embed-core",
+      "version": "10.1.47"
+    },
+    {
+      "component_id": "gav://org.apache.tomcat.embed:tomcat-embed-websocket:10.1.41",
+      "cves": [
+        "CVE-2026-42498"
+      ],
+      "ecosystem": "maven",
+      "package": "org.apache.tomcat.embed:tomcat-embed-websocket",
+      "version": "10.1.41"
+    },
+    {
+      "component_id": "gav://org.assertj:assertj-core:3.25.3",
+      "cves": [
+        "CVE-2026-24400"
+      ],
+      "ecosystem": "maven",
+      "package": "org.assertj:assertj-core",
+      "version": "3.25.3"
+    },
+    {
+      "component_id": "gav://org.lz4:lz4-java:1.8.0",
+      "cves": [
+        "CVE-2025-12183",
+        "CVE-2025-66566"
+      ],
+      "ecosystem": "maven",
+      "package": "org.lz4:lz4-java",
+      "version": "1.8.0"
+    },
+    {
+      "component_id": "gav://org.springframework.boot:spring-boot-starter-actuator:3.4.0",
+      "cves": [
+        "CVE-2026-22731",
+        "CVE-2026-22733"
+      ],
+      "ecosystem": "maven",
+      "package": "org.springframework.boot:spring-boot-starter-actuator",
+      "version": "3.4.0"
+    },
+    {
+      "component_id": "gav://org.springframework.boot:spring-boot:3.3.12",
+      "cves": [
+        "CVE-2026-40973"
+      ],
+      "ecosystem": "maven",
+      "package": "org.springframework.boot:spring-boot",
+      "version": "3.3.12"
+    },
+    {
+      "component_id": "gav://org.springframework.data:spring-data-commons:3.3.12",
+      "cves": [
+        "CVE-2026-41716"
+      ],
+      "ecosystem": "maven",
+      "package": "org.springframework.data:spring-data-commons",
+      "version": "3.3.12"
+    },
+    {
+      "component_id": "gav://org.springframework.data:spring-data-mongodb:4.3.12",
+      "cves": [
+        "CVE-2026-41717"
+      ],
+      "ecosystem": "maven",
+      "package": "org.springframework.data:spring-data-mongodb",
+      "version": "4.3.12"
+    },
+    {
+      "component_id": "gav://org.springframework.kafka:spring-kafka:3.3.2",
+      "cves": [
+        "CVE-2026-41726",
+        "CVE-2026-41731"
+      ],
+      "ecosystem": "maven",
+      "package": "org.springframework.kafka:spring-kafka",
+      "version": "3.3.2"
+    },
+    {
+      "component_id": "gav://org.springframework:spring-context:6.2.3",
+      "cves": [
+        "CVE-2025-22233"
+      ],
+      "ecosystem": "maven",
+      "package": "org.springframework:spring-context",
+      "version": "6.2.3"
+    },
+    {
+      "component_id": "gav://org.springframework:spring-web:6.2.10",
+      "cves": [
+        "CVE-2026-41845"
+      ],
+      "ecosystem": "maven",
+      "package": "org.springframework:spring-web",
+      "version": "6.2.10"
+    },
+    {
+      "component_id": "gav://org.springframework:spring-webflux:6.2.0",
+      "cves": [
+        "CVE-2026-22735",
+        "CVE-2026-22737",
+        "CVE-2026-22740",
+        "CVE-2026-22741",
+        "CVE-2026-22745",
+        "CVE-2026-41842"
+      ],
+      "ecosystem": "maven",
+      "package": "org.springframework:spring-webflux",
+      "version": "6.2.0"
+    },
+    {
+      "component_id": "gav://org.springframework:spring-webmvc:6.2.10",
+      "cves": [
+        "CVE-2026-22735",
+        "CVE-2026-22737",
+        "CVE-2026-22741",
+        "CVE-2026-22745",
+        "CVE-2026-41842"
+      ],
+      "ecosystem": "maven",
+      "package": "org.springframework:spring-webmvc",
+      "version": "6.2.10"
+    }
+  ],
+  "xray_host": "https://humana.jfrog.io"
+}

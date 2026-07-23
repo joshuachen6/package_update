@@ -1,0 +1,2 @@
+package,section,old_spec,new_spec,minimum_required,selected_version,path
+quill,dependencies,^2.0.2,^2.0.3,2.0.3,2.0.3,dependencies.quill

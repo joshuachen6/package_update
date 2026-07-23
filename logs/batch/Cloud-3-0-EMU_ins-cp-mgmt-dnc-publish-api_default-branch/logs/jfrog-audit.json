@@ -1,0 +1,412 @@
+{
+  "component_count": 308,
+  "ecosystems": [
+    "maven"
+  ],
+  "errors": [],
+  "vulnerability_count": 96,
+  "vulnerable_component_count": 38,
+  "vulnerable_components": [
+    {
+      "component_id": "gav://ch.qos.logback:logback-core:1.5.18",
+      "cves": [
+        "CVE-2025-11226",
+        "CVE-2026-10532",
+        "CVE-2026-1225",
+        "CVE-2026-9828"
+      ],
+      "ecosystem": "maven",
+      "package": "ch.qos.logback:logback-core",
+      "version": "1.5.18"
+    },
+    {
+      "component_id": "gav://com.fasterxml.jackson.core:jackson-databind:2.17.0",
+      "cves": [
+        "CVE-2026-54512",
+        "CVE-2026-54513",
+        "CVE-2026-54514",
+        "CVE-2026-54515"
+      ],
+      "ecosystem": "maven",
+      "package": "com.fasterxml.jackson.core:jackson-databind",
+      "version": "2.17.0"
+    },
+    {
+      "component_id": "gav://com.github.jknack:handlebars:4.4.0",
+      "cves": [
+        "CVE-2026-55760"
+      ],
+      "ecosystem": "maven",
+      "package": "com.github.jknack:handlebars",
+      "version": "4.4.0"
+    },
+    {
+      "component_id": "gav://commons-beanutils:commons-beanutils:1.9.4",
+      "cves": [
+        "CVE-2025-48734"
+      ],
+      "ecosystem": "maven",
+      "package": "commons-beanutils:commons-beanutils",
+      "version": "1.9.4"
+    },
+    {
+      "component_id": "gav://io.micrometer:micrometer-core:1.13.14",
+      "cves": [
+        "CVE-2026-40984"
+      ],
+      "ecosystem": "maven",
+      "package": "io.micrometer:micrometer-core",
+      "version": "1.13.14"
+    },
+    {
+      "component_id": "gav://io.netty:netty-codec-compression:4.2.5.Final",
+      "cves": [
+        "CVE-2026-42583"
+      ],
+      "ecosystem": "maven",
+      "package": "io.netty:netty-codec-compression",
+      "version": "4.2.5.Final"
+    },
+    {
+      "component_id": "gav://io.netty:netty-codec-dns:4.1.121.Final",
+      "cves": [
+        "CVE-2026-42579"
+      ],
+      "ecosystem": "maven",
+      "package": "io.netty:netty-codec-dns",
+      "version": "4.1.121.Final"
+    },
+    {
+      "component_id": "gav://io.netty:netty-codec-http2:4.1.132.Final",
+      "cves": [
+        "CVE-2026-42587",
+        "CVE-2026-47244",
+        "CVE-2026-48043",
+        "CVE-2026-50560"
+      ],
+      "ecosystem": "maven",
+      "package": "io.netty:netty-codec-http2",
+      "version": "4.1.132.Final"
+    },
+    {
+      "component_id": "gav://io.netty:netty-codec-http:4.1.132.Final",
+      "cves": [
+        "CVE-2026-41417",
+        "CVE-2026-42580",
+        "CVE-2026-42581",
+        "CVE-2026-42584",
+        "CVE-2026-42585",
+        "CVE-2026-42587",
+        "CVE-2026-50020",
+        "CVE-2026-55831",
+        "CVE-2026-55833"
+      ],
+      "ecosystem": "maven",
+      "package": "io.netty:netty-codec-http",
+      "version": "4.1.132.Final"
+    },
+    {
+      "component_id": "gav://io.netty:netty-codec:4.1.132.Final",
+      "cves": [
+        "CVE-2026-42583"
+      ],
+      "ecosystem": "maven",
+      "package": "io.netty:netty-codec",
+      "version": "4.1.132.Final"
+    },
+    {
+      "component_id": "gav://io.netty:netty-handler-proxy:4.1.121.Final",
+      "cves": [
+        "CVE-2026-42578"
+      ],
+      "ecosystem": "maven",
+      "package": "io.netty:netty-handler-proxy",
+      "version": "4.1.121.Final"
+    },
+    {
+      "component_id": "gav://io.netty:netty-handler:4.1.132.Final",
+      "cves": [
+        "CVE-2026-44249",
+        "CVE-2026-45416",
+        "CVE-2026-50010"
+      ],
+      "ecosystem": "maven",
+      "package": "io.netty:netty-handler",
+      "version": "4.1.132.Final"
+    },
+    {
+      "component_id": "gav://io.netty:netty-resolver-dns:4.1.121.Final",
+      "cves": [
+        "CVE-2026-45673",
+        "CVE-2026-45674",
+        "CVE-2026-47691"
+      ],
+      "ecosystem": "maven",
+      "package": "io.netty:netty-resolver-dns",
+      "version": "4.1.121.Final"
+    },
+    {
+      "component_id": "gav://io.netty:netty-transport-native-epoll:4.1.121.Final",
+      "cves": [
+        "CVE-2026-45536"
+      ],
+      "ecosystem": "maven",
+      "package": "io.netty:netty-transport-native-epoll",
+      "version": "4.1.121.Final"
+    },
+    {
+      "component_id": "gav://io.projectreactor.netty:reactor-netty-http:1.2.1",
+      "cves": [
+        "CVE-2025-22227"
+      ],
+      "ecosystem": "maven",
+      "package": "io.projectreactor.netty:reactor-netty-http",
+      "version": "1.2.1"
+    },
+    {
+      "component_id": "gav://org.apache.commons:commons-lang3:3.14.0",
+      "cves": [
+        "CVE-2025-48924"
+      ],
+      "ecosystem": "maven",
+      "package": "org.apache.commons:commons-lang3",
+      "version": "3.14.0"
+    },
+    {
+      "component_id": "gav://org.apache.cxf:cxf-core:4.1.0",
+      "cves": [
+        "CVE-2025-48795",
+        "CVE-2026-49875",
+        "CVE-2026-50645"
+      ],
+      "ecosystem": "maven",
+      "package": "org.apache.cxf:cxf-core",
+      "version": "4.1.0"
+    },
+    {
+      "component_id": "gav://org.apache.httpcomponents.core5:httpcore5-h2:5.2.5",
+      "cves": [
+        "CVE-2026-54428"
+      ],
+      "ecosystem": "maven",
+      "package": "org.apache.httpcomponents.core5:httpcore5-h2",
+      "version": "5.2.5"
+    },
+    {
+      "component_id": "gav://org.apache.httpcomponents.core5:httpcore5:5.2.5",
+      "cves": [
+        "CVE-2026-54399"
+      ],
+      "ecosystem": "maven",
+      "package": "org.apache.httpcomponents.core5:httpcore5",
+      "version": "5.2.5"
+    },
+    {
+      "component_id": "gav://org.apache.kafka:kafka-clients:4.0.0",
+      "cves": [
+        "CVE-2026-33558",
+        "CVE-2026-35554"
+      ],
+      "ecosystem": "maven",
+      "package": "org.apache.kafka:kafka-clients",
+      "version": "4.0.0"
+    },
+    {
+      "component_id": "gav://org.apache.neethi:neethi:3.2.0",
+      "cves": [
+        "CVE-2026-42402",
+        "CVE-2026-42403",
+        "CVE-2026-42404"
+      ],
+      "ecosystem": "maven",
+      "package": "org.apache.neethi:neethi",
+      "version": "3.2.0"
+    },
+    {
+      "component_id": "gav://org.apache.tomcat.embed:tomcat-embed-core:10.1.52",
+      "cves": [
+        "CVE-2026-25854",
+        "CVE-2026-29129",
+        "CVE-2026-32990",
+        "CVE-2026-34483",
+        "CVE-2026-41284",
+        "CVE-2026-41293",
+        "CVE-2026-43512",
+        "CVE-2026-43513",
+        "CVE-2026-43514",
+        "CVE-2026-43515",
+        "CVE-2026-50229",
+        "CVE-2026-53404",
+        "CVE-2026-53434",
+        "CVE-2026-55276",
+        "CVE-2026-55955",
+        "CVE-2026-55956",
+        "CVE-2026-59083",
+        "CVE-2026-59084"
+      ],
+      "ecosystem": "maven",
+      "package": "org.apache.tomcat.embed:tomcat-embed-core",
+      "version": "10.1.52"
+    },
+    {
+      "component_id": "gav://org.assertj:assertj-core:3.25.3",
+      "cves": [
+        "CVE-2026-24400"
+      ],
+      "ecosystem": "maven",
+      "package": "org.assertj:assertj-core",
+      "version": "3.25.3"
+    },
+    {
+      "component_id": "gav://org.bouncycastle:bcprov-jdk18on:1.77",
+      "cves": [
+        "CVE-2024-29857",
+        "CVE-2024-30171",
+        "CVE-2024-30172",
+        "CVE-2025-14813",
+        "CVE-2025-8885",
+        "CVE-2026-0636",
+        "CVE-2026-5598"
+      ],
+      "ecosystem": "maven",
+      "package": "org.bouncycastle:bcprov-jdk18on",
+      "version": "1.77"
+    },
+    {
+      "component_id": "gav://org.eclipse.jgit:org.eclipse.jgit:6.6.1.202309021850-r",
+      "cves": [
+        "CVE-2025-4949"
+      ],
+      "ecosystem": "maven",
+      "package": "org.eclipse.jgit:org.eclipse.jgit",
+      "version": "6.6.1.202309021850-r"
+    },
+    {
+      "component_id": "gav://org.lz4:lz4-java:1.8.0",
+      "cves": [
+        "CVE-2025-12183",
+        "CVE-2025-66566"
+      ],
+      "ecosystem": "maven",
+      "package": "org.lz4:lz4-java",
+      "version": "1.8.0"
+    },
+    {
+      "component_id": "gav://org.springframework.boot:spring-boot:3.3.12",
+      "cves": [
+        "CVE-2026-40973"
+      ],
+      "ecosystem": "maven",
+      "package": "org.springframework.boot:spring-boot",
+      "version": "3.3.12"
+    },
+    {
+      "component_id": "gav://org.springframework.data:spring-data-commons:3.3.12",
+      "cves": [
+        "CVE-2026-41716"
+      ],
+      "ecosystem": "maven",
+      "package": "org.springframework.data:spring-data-commons",
+      "version": "3.3.12"
+    },
+    {
+      "component_id": "gav://org.springframework.data:spring-data-mongodb:4.3.12",
+      "cves": [
+        "CVE-2026-41717"
+      ],
+      "ecosystem": "maven",
+      "package": "org.springframework.data:spring-data-mongodb",
+      "version": "4.3.12"
+    },
+    {
+      "component_id": "gav://org.springframework.hateoas:spring-hateoas:2.3.4",
+      "cves": [
+        "CVE-2026-41006",
+        "CVE-2026-41007"
+      ],
+      "ecosystem": "maven",
+      "package": "org.springframework.hateoas:spring-hateoas",
+      "version": "2.3.4"
+    },
+    {
+      "component_id": "gav://org.springframework.kafka:spring-kafka:3.3.2",
+      "cves": [
+        "CVE-2026-41726",
+        "CVE-2026-41731"
+      ],
+      "ecosystem": "maven",
+      "package": "org.springframework.kafka:spring-kafka",
+      "version": "3.3.2"
+    },
+    {
+      "component_id": "gav://org.springframework.security:spring-security-crypto:6.2.3",
+      "cves": [
+        "CVE-2025-22228"
+      ],
+      "ecosystem": "maven",
+      "package": "org.springframework.security:spring-security-crypto",
+      "version": "6.2.3"
+    },
+    {
+      "component_id": "gav://org.springframework:spring-context:6.2.0",
+      "cves": [
+        "CVE-2025-22233"
+      ],
+      "ecosystem": "maven",
+      "package": "org.springframework:spring-context",
+      "version": "6.2.0"
+    },
+    {
+      "component_id": "gav://org.springframework:spring-core:6.2.0",
+      "cves": [
+        "CVE-2025-41249",
+        "CVE-2026-41848"
+      ],
+      "ecosystem": "maven",
+      "package": "org.springframework:spring-core",
+      "version": "6.2.0"
+    },
+    {
+      "component_id": "gav://org.springframework:spring-expression:6.2.0",
+      "cves": [
+        "CVE-2026-41850",
+        "CVE-2026-41851"
+      ],
+      "ecosystem": "maven",
+      "package": "org.springframework:spring-expression",
+      "version": "6.2.0"
+    },
+    {
+      "component_id": "gav://org.springframework:spring-web:6.2.0",
+      "cves": [
+        "CVE-2025-41234",
+        "CVE-2026-41845"
+      ],
+      "ecosystem": "maven",
+      "package": "org.springframework:spring-web",
+      "version": "6.2.0"
+    },
+    {
+      "component_id": "gav://org.springframework:spring-webflux:6.2.17",
+      "cves": [
+        "CVE-2026-22740",
+        "CVE-2026-22741",
+        "CVE-2026-22745",
+        "CVE-2026-41842"
+      ],
+      "ecosystem": "maven",
+      "package": "org.springframework:spring-webflux",
+      "version": "6.2.17"
+    },
+    {
+      "component_id": "gav://org.xmlunit:xmlunit-core:2.9.1",
+      "cves": [
+        "CVE-2024-31573"
+      ],
+      "ecosystem": "maven",
+      "package": "org.xmlunit:xmlunit-core",
+      "version": "2.9.1"
+    }
+  ],
+  "xray_host": "https://humana.jfrog.io"
+}

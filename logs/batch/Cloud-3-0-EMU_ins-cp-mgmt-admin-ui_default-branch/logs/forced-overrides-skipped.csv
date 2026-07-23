@@ -1,0 +1,2 @@
+package,reason,details
+quill,direct dependency already meets selected version,"current=2.0.3, selected=2.0.3"

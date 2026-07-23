@@ -1,0 +1,291 @@
+{
+  "after_scan": {
+    "components": [
+      {
+        "component_id": "npm://next:15.5.18",
+        "cves": [
+          "CVE-2026-64641",
+          "CVE-2026-64643",
+          "CVE-2026-64644",
+          "CVE-2026-64645",
+          "CVE-2026-64646",
+          "CVE-2026-64647",
+          "CVE-2026-64648",
+          "CVE-2026-64649"
+        ],
+        "ecosystem": "npm",
+        "package": "next",
+        "version": "15.5.18"
+      },
+      {
+        "component_id": "npm://quill:2.0.3",
+        "cves": [
+          "CVE-2025-15056"
+        ],
+        "ecosystem": "npm",
+        "package": "quill",
+        "version": "2.0.3"
+      },
+      {
+        "component_id": "npm://unzipper:0.11.2",
+        "cves": [
+          "CVE-2026-59972"
+        ],
+        "ecosystem": "npm",
+        "package": "unzipper",
+        "version": "0.11.2"
+      },
+      {
+        "component_id": "npm://ws:8.21.0",
+        "cves": [
+          "CVE-2026-62389"
+        ],
+        "ecosystem": "npm",
+        "package": "ws",
+        "version": "8.21.0"
+      }
+    ],
+    "json_path": "/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_cwih-cnp-mgmt-admin-ui_default-branch/logs/jfrog-audit-after.json"
+  },
+  "before_scan": {
+    "components": [
+      {
+        "component_id": "npm://immutable:5.1.7",
+        "cves": [
+          "CVE-2026-59879",
+          "CVE-2026-59880"
+        ],
+        "ecosystem": "npm",
+        "package": "immutable",
+        "version": "5.1.7"
+      },
+      {
+        "component_id": "npm://js-yaml:4.2.0",
+        "cves": [
+          "CVE-2026-59869"
+        ],
+        "ecosystem": "npm",
+        "package": "js-yaml",
+        "version": "4.2.0"
+      },
+      {
+        "component_id": "npm://postcss:8.4.31",
+        "cves": [
+          "CVE-2026-41305",
+          "CVE-2026-45623"
+        ],
+        "ecosystem": "npm",
+        "package": "postcss",
+        "version": "8.4.31"
+      },
+      {
+        "component_id": "npm://quill:2.0.3",
+        "cves": [
+          "CVE-2025-15056"
+        ],
+        "ecosystem": "npm",
+        "package": "quill",
+        "version": "2.0.3"
+      },
+      {
+        "component_id": "npm://unzipper:0.10.14",
+        "cves": [
+          "CVE-2026-59972"
+        ],
+        "ecosystem": "npm",
+        "package": "unzipper",
+        "version": "0.10.14"
+      },
+      {
+        "component_id": "npm://ws:8.21.0",
+        "cves": [
+          "CVE-2026-62389"
+        ],
+        "ecosystem": "npm",
+        "package": "ws",
+        "version": "8.21.0"
+      }
+    ],
+    "json_path": "/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_cwih-cnp-mgmt-admin-ui_default-branch/logs/jfrog-audit.json"
+  },
+  "classification": "Partial - build passed but 11 CVE record(s) remain",
+  "diagnostic_csvs": {
+    "direct-dependency-version-changes.csv": [
+      {
+        "minimum_required": "2.0.3",
+        "new_spec": "^2.0.3",
+        "old_spec": "^2.0.2",
+        "package": "quill",
+        "path": "dependencies.quill",
+        "section": "dependencies",
+        "selected_version": "2.0.3"
+      }
+    ],
+    "forced-overrides-changes.csv": [
+      {
+        "minimum_required": "5.1.7",
+        "new_override": "5.1.8",
+        "old_override": "",
+        "package": "immutable",
+        "removed_nested_override_paths": ""
+      },
+      {
+        "minimum_required": "4.2.0",
+        "new_override": "4.3.0",
+        "old_override": "",
+        "package": "js-yaml",
+        "removed_nested_override_paths": ""
+      },
+      {
+        "minimum_required": "8.4.31",
+        "new_override": "8.4.32",
+        "old_override": "",
+        "package": "postcss",
+        "removed_nested_override_paths": ""
+      },
+      {
+        "minimum_required": "0.10.14",
+        "new_override": "0.11.2",
+        "old_override": "",
+        "package": "unzipper",
+        "removed_nested_override_paths": ""
+      }
+    ],
+    "forced-overrides-skipped.csv": [
+      {
+        "details": "8.21.0",
+        "package": "ws",
+        "reason": "installed version already satisfies guidance criteria"
+      }
+    ],
+    "npm-view-errors.csv": []
+  },
+  "failure_isolation_enabled": false,
+  "files": [
+    {
+      "candidate_counts": {},
+      "dependency_manager": "node",
+      "fetch_errors": [],
+      "file_path": "/Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_cwih-cnp-mgmt-admin-ui_default-branch/default-branch/cwih-cnp-mgmt-admin-ui/package.json",
+      "raw_skipped": [
+        {
+          "current": "8.21.0",
+          "details": "8.21.0",
+          "package": "ws",
+          "reason": "installed version already satisfies guidance criteria",
+          "target": "8.21.0"
+        }
+      ],
+      "selected_changes": [
+        {
+          "change_type": "direct",
+          "new": "^2.0.3",
+          "old": "^2.0.2",
+          "package": "quill",
+          "remediation_guided": true
+        },
+        {
+          "change_type": "override",
+          "new": "5.1.8",
+          "old": "",
+          "package": "immutable",
+          "remediation_guided": true
+        },
+        {
+          "change_type": "override",
+          "new": "4.3.0",
+          "old": "",
+          "package": "js-yaml",
+          "remediation_guided": true
+        },
+        {
+          "change_type": "override",
+          "new": "8.4.32",
+          "old": "",
+          "package": "postcss",
+          "remediation_guided": true
+        },
+        {
+          "change_type": "override",
+          "new": "0.11.2",
+          "old": "",
+          "package": "unzipper",
+          "remediation_guided": true
+        }
+      ],
+      "skipped": [
+        {
+          "current": "8.21.0",
+          "detail": "8.21.0",
+          "package": "ws",
+          "reason": "installed version already satisfies guidance criteria",
+          "target": "8.21.0"
+        }
+      ],
+      "test_status": "not_run",
+      "validation_message": "",
+      "validation_status": "Passed",
+      "verification_status": "Partial - build passed but 11 CVE record(s) remain",
+      "version_inventory": {},
+      "write_status": "Written"
+    }
+  ],
+  "generated_at": "2026-07-22T12:41:43",
+  "next_actions": [
+    {
+      "action": "No additional remediation action identified.",
+      "category": "complete",
+      "priority": "none"
+    }
+  ],
+  "original_cves": [
+    "CVE-2025-15056",
+    "CVE-2026-41305",
+    "CVE-2026-45623",
+    "CVE-2026-59869",
+    "CVE-2026-59879",
+    "CVE-2026-59880",
+    "CVE-2026-59972",
+    "CVE-2026-62389"
+  ],
+  "outcome": "Partial",
+  "refresh_errors": [],
+  "remaining_original_cves": [
+    "CVE-2025-15056",
+    "CVE-2026-59972",
+    "CVE-2026-62389"
+  ],
+  "remediation_budget_seconds": 300,
+  "security_status": "still_vulnerable",
+  "summary": {
+    "candidate_versions_considered": 0,
+    "component_cve_pairs_new": 9,
+    "component_cve_pairs_remaining": 2,
+    "component_cve_pairs_removed": 6,
+    "dependency_files": 1,
+    "vulnerability_records_after": 11,
+    "vulnerability_records_before": 8
+  },
+  "test_status": "not_run",
+  "tests": {
+    "failed": 0,
+    "not_run": 1,
+    "passed": 0,
+    "results": [
+      {
+        "command": [
+          "npm",
+          "test"
+        ],
+        "ecosystem": "node",
+        "label": "npm tests",
+        "output": "/template/components/Accordion.test.tsx\n  \u25cf Console\n\n    console.error\n      In HTML, <button> cannot be a descendant of <button>.\n      This will cause a hydration error.\n      \n        <Accordian category=\"Test\" options={[...]}>\n          <div className=\"accordion ...\">\n      >     <button className=\"title\" onClick={function onClick} type=\"button\" tabIndex={0} onKeyDown={function onKeyDown}>\n      >       <button className=\"input\" onClick={function onClick} type=\"button\" onKeyDown={function onKeyDown}>\n              ...\n\n      18 |   };\n      19 |   it('Should have text', () => {\n    > 20 |     render(<Accordion {...defaultProps} />);\n         |           ^\n      21 |     expect(screen.getByText('Test')).toBeInTheDocument();\n      22 |   });\n      23 |   it('Should have expand button', () => {\n\n      at validateDOMNesting (node_modules/react-dom/cjs/react-dom-client.development.js:2605:19)\n      at completeWork (node_modules/react-dom/cjs/react-dom-client.development.js:12556:15)\n      at runWithFiberInDEV (node_modules/react-dom/cjs/react-dom-client.development.js:874:13)\n      at completeUnitOfWork (node_modules/react-dom/cjs/react-dom-client.development.js:17777:19)\n      at performUnitOfWork (node_modules/react-dom/cjs/react-dom-client.development.js:17658:11)\n      at workLoopSync (node_modules/react-dom/cjs/react-dom-client.development.js:17469:41)\n      at renderRootSync (node_modules/react-dom/cjs/react-dom-client.development.js:17450:11)\n      at performWorkOnRoot (node_modules/react-dom/cjs/react-dom-client.development.js:16504:11)\n      at performWorkOnRootViaSchedulerTask (node_modules/react-dom/cjs/react-dom-client.development.js:18957:7)\n      at flushActQueue (node_modules/react/cjs/react.development.js:590:34)\n      at Object.<anonymous>.process.env.NODE_ENV.exports.act (node_modules/react/cjs/react.development.js:884:10)\n      at node_modules/@testing-library/react/dist/act-compat.js:46:25\n      at renderRoot (node_modules/@testing-library/react/dist/pure.js:189:26)\n      at render (node_modules/@testing-library/react/dist/pure.js:291:10)\n      at Object.<anonymous> (__tests__/template/components/Accordion.test.tsx:20:11)\n\nPASS __tests__/components/ContentDisplay.test.tsx\nPASS __tests__/template/components/userInfo.test.tsx\nPASS __tests__/rule/components/summary.test.tsx\nPASS __tests__/template/components/dataTable.test.tsx\nPASS __tests__/auth/ssoLogin/page.test.tsx\nPASS __tests__/rule/components/ingestionFooter.test.tsx\nPASS __tests__/components/loadingButton.test.tsx\nPASS __tests__/api/internalDnc/search.test.ts\nPASS __tests__/api/template/consent.test.ts\nPASS __tests__/api/internalDnc/components/ReactivateNumberAdd.test.tsx\n\nSummary of all failing tests\nFAIL __tests__/utils/formateUtils.test.ts\n  \u25cf Utility Functions \u203a formateEffectiveDate \u203a formats given date correctly\n\n    expect(received).toBe(expected) // Object.is equality\n\n    Expected: \"01/01/2024\"\n    Received: \"12/31/2023\"\n\n       95 |       const result = formateEffectiveDate('2024-01-01');\n       96 |\n    >  97 |       expect(result).toBe('01/01/2024');\n          |                      ^\n       98 |     });\n       99 |\n      100 |     it('uses current date if undefined', () => {\n\n      at Object.toBe (__tests__/utils/formateUtils.test.ts:97:22)\n\n  \u25cf Utility Functions \u203a formateExpirationDate \u203a formats given expiration date\n\n    expect(received).toBe(expected) // Object.is equality\n\n    Expected: \"12/31/2024\"\n    Received: \"12/30/2024\"\n\n      110 |       const result = formateExpirationDate('2024-12-31');\n      111 |\n    > 112 |       expect(result).toBe('12/31/2024');\n          |                      ^\n      113 |     });\n      114 |\n      115 |     it('returns empty string when no date provided', () => {\n\n      at Object.toBe (__tests__/utils/formateUtils.test.ts:112:22)\n\n\nTest Suites: 1 failed, 183 passed, 184 total\nTests:       2 failed, 1 skipped, 580 passed, 583 total\nSnapshots:   1 passed, 1 total\nTime:        29.804 s\nRan all test suites.\n",
+        "project_dir": "/Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_cwih-cnp-mgmt-admin-ui_default-branch/default-branch/cwih-cnp-mgmt-admin-ui",
+        "reason": "every failing test suite also failed before remediation; treated as pre-existing, not caused by dependency updates",
+        "returncode": 1,
+        "status": "not_run"
+      }
+    ],
+    "status": "not_run"
+  }
+}

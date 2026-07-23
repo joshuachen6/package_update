@@ -1,0 +1,2 @@
+dependency,blocked_version,forced_version,status,reason
+com.fasterxml.jackson.core:jackson-databind,,2.21.5,proactive_scan_force,forced to make the post-change dependency tree resolvable before the real build

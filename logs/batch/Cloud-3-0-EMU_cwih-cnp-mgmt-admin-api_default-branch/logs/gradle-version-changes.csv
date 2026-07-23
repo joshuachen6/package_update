@@ -1,0 +1,6 @@
+dependency,config,old_version,new_version,remediation_guided
+org.apache.tomcat.embed:tomcat-embed-core,implementation,10.1.52,10.1.57,yes
+org.apache.tomcat.embed:tomcat-embed-websocket,implementation,10.1.52,10.1.57,yes
+org.springframework:spring-framework.version,ext,6.2.18,6.2.19,transitive org.springframework:spring-core>=6.2.19
+org.springframework:spring-webflux,implementation,6.2.18,6.2.19,yes
+org.apache.tomcat.embed:tomcat-embed-el,implementation,10.1.52,10.1.57,competing pin realigned

@@ -1,0 +1,2 @@
+dependency,reason,current,target
+org.apache.poi:poi-ooxml,no fixed versions for current major and no accessible same-major update found,4.1.2,
