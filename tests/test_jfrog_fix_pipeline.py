@@ -1310,14 +1310,16 @@ def test_gradle_writer_does_not_substitute_ordinary_force(tmp_path):
     assert "substitute module('org.example:ordinary')" not in updated
 
 
-def test_gradle_writer_skips_buildscript_force_block_without_buildscript_deps(
+def test_gradle_writer_forces_buildscript_scope_even_without_explicit_buildscript_deps(
     tmp_path,
 ):
-    """A CVE-flagged package is almost always an application dependency, not
-    a build-tool/plugin classpath one -- inserting a buildscript-scope force
-    block unconditionally added a block that could never do anything when
-    buildscript{} has no dependencies{} at all (confirmed live: a real
-    repo's build.gradle had exactly this empty-purpose block, pure clutter).
+    """Declared plugins (Spring Boot, Sonarqube, ...) resolve their own
+    transitive dependencies through buildscript's classpath configuration
+    even when buildscript{} declares no explicit dependencies{} of its own --
+    skipping the buildscript-scope force block in that case let a plugin's
+    transitively-resolved jackson-databind fall through unforced and 403
+    against Xray's download policy (confirmed live: cwih-cnp-mgmt-consent-
+    publish-api regressed from Success to a full revert this exact way).
     """
     from output.gradle import write_gradle_file
 
@@ -1327,6 +1329,38 @@ def test_gradle_writer_skips_buildscript_force_block_without_buildscript_deps(
         "}\n"
         "dependencies {}\n"
     )
+    output_path = tmp_path / "updated.gradle"
+
+    write_gradle_file(
+        build_text,
+        changes=[],
+        force_entries=[
+            {
+                "dependency": "org.example:ordinary",
+                "old_version": "1.0.0",
+                "new_version": "1.0.1",
+                "minimum_required": "1.0.1",
+            }
+        ],
+        output_path=str(output_path),
+        source_path=str(output_path),
+        in_place=False,
+    )
+
+    updated = output_path.read_text(encoding="utf-8")
+    assert updated.count("configurations.all") == 2
+    assert "force 'org.example:ordinary:1.0.1'" in updated
+
+
+def test_gradle_writer_skips_buildscript_force_block_when_no_buildscript_block(
+    tmp_path,
+):
+    """With no buildscript{} block at all, there is no classpath
+    configuration to force into -- only the project-scope block is written.
+    """
+    from output.gradle import write_gradle_file
+
+    build_text = "dependencies {}\n"
     output_path = tmp_path / "updated.gradle"
 
     write_gradle_file(

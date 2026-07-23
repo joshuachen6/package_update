@@ -863,22 +863,18 @@ _SUBSTITUTION_BLOCK_MARKER = (
 )
 
 
-def _buildscript_has_dependencies(build_text: str) -> bool:
-    """Whether buildscript{} itself declares any dependencies to force.
+def _buildscript_exists(build_text: str) -> bool:
+    """Whether the file has a buildscript{} block at all to force into.
 
-    A CVE-flagged package is almost always an application dependency, not a
-    build-tool/plugin classpath one -- forcing it in buildscript scope
-    unconditionally added a block that could never do anything (confirmed
-    live: a real repo's buildscript had no dependencies{} at all).
+    Forcing in buildscript scope matters even when buildscript{} declares no
+    explicit dependencies{} of its own: declared plugins (e.g. Spring Boot,
+    Sonarqube) resolve their *own* transitive dependencies through the same
+    classpath configuration, and those transitive picks can still need a
+    version force (confirmed live: a repo with no buildscript dependencies{}
+    still 403'd resolving jackson-databind through a plugin's classpath after
+    an earlier version of this check skipped the buildscript block here).
     """
-    match = re.search(r"buildscript\s*\{", build_text)
-    if not match:
-        return False
-    open_brace = build_text.find("{", match.start(), match.end())
-    if open_brace < 0:
-        return False
-    body = build_text[open_brace : _find_block_end(build_text, open_brace)]
-    return re.search(r"(?m)^\s*dependencies\s*\{", body) is not None
+    return re.search(r"buildscript\s*\{", build_text) is not None
 
 
 def _enclosing_block_end(text: str, pos: int) -> int:
@@ -936,18 +932,19 @@ def _append_or_insert_block(
 def write_resolution_forces(build_text: str, forces: list[dict]) -> str:
     """Insert resolutionStrategy.force entries into build_text.
 
-    Forces are written in project scope always, and in buildscript scope only
-    when buildscript actually declares dependencies (classpath/plugin
-    artifacts) -- see _buildscript_has_dependencies. Repeated calls within
-    (or across) a run extend the block this function already wrote instead
-    of inserting a new one each time -- see _append_or_insert_block.
+    Forces are written in project scope always, and in buildscript scope
+    whenever a buildscript{} block exists -- plugin classpath resolution can
+    need the same force even with no explicit buildscript dependencies{},
+    see _buildscript_exists. Repeated calls within (or across) a run extend
+    the block this function already wrote instead of inserting a new one
+    each time -- see _append_or_insert_block.
     """
     if not forces:
         return build_text
 
     force_lines = [f"force '{f['dependency']}:{f['new_version']}'" for f in forces]
 
-    if _buildscript_has_dependencies(build_text):
+    if _buildscript_exists(build_text):
         def _insert_buildscript(text: str, marker: str) -> str:
             snippet = (
                 "\n    configurations.all {\n"
