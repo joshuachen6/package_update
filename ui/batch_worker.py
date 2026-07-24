@@ -7,6 +7,7 @@ import subprocess
 import sys
 import threading
 import time
+import traceback
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from urllib.parse import urlparse
 
@@ -103,6 +104,19 @@ class BatchWorker(QThread):
         log_dir = self._repo_log_dir(url, branch)
         s = self._settings
 
+        # Captured independently of quick_update.py writing anything itself --
+        # a subprocess that crashes before it ever gets far enough to create
+        # its own log_dir (e.g. the checkout/clone step failing) previously
+        # left literally no trace once the GUI's in-memory row log was gone,
+        # making a whole batch of instant failures undiagnosable after the
+        # fact. Pre-creating the directory here means this file always lands
+        # regardless of how early the subprocess dies.
+        captured: list[str] = []
+
+        def _emit(line: str) -> None:
+            captured.append(line)
+            self.row_log.emit(index, line)
+
         script = os.path.join(
             os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "quick_update.py"
         )
@@ -112,8 +126,7 @@ class BatchWorker(QThread):
             "phase2-results.json",
         )
 
-        self.row_log.emit(
-            index,
+        _emit(
             f"[phase2] replay={s.get('phase2_only_replay')} "
             f"log_dir={log_dir} "
             f"cache={phase2_results} "
@@ -128,7 +141,7 @@ class BatchWorker(QThread):
                 "--phase2-results",
                 phase2_results,
             ]
-            self.row_log.emit(index, f"[phase2] USING REPLAY {' '.join(cmd)}")
+            _emit(f"[phase2] USING REPLAY {' '.join(cmd)}")
         else:
             # Isolate checkouts by batch row. clone_github_repo derives the
             # destination from only the repository name, so parallel rows
@@ -164,10 +177,7 @@ class BatchWorker(QThread):
                 "--log-dir",
                 log_dir,
             ]
-            self.row_log.emit(
-                index,
-                f"[phase2] FALLBACK FULL RUN {' '.join(cmd)}",
-            )
+            _emit(f"[phase2] FALLBACK FULL RUN {' '.join(cmd)}")
 
         if branch:
             cmd += ["--branch", branch]
@@ -236,14 +246,13 @@ class BatchWorker(QThread):
                 except queue.Empty:
                     proc.terminate()
                     timed_out = True
-                    self.row_log.emit(
-                        index,
+                    _emit(
                         f"[timeout] No output for {inactivity_secs // 60} min — process terminated.",
                     )
                     break
                 if raw is None:
                     break
-                self.row_log.emit(index, raw.rstrip("\r\n"))
+                _emit(raw.rstrip("\r\n"))
 
             proc.wait()
             with suppress_exc():
@@ -268,11 +277,25 @@ class BatchWorker(QThread):
                 status = "Error"
                 self.row_status.emit(index, "Error")
         except Exception as exc:
-            self.row_log.emit(index, f"[error] {exc}")
+            _emit(f"[error] {exc}")
+            _emit(traceback.format_exc())
             status = "Error"
             self.row_status.emit(index, "Error")
 
+        self._write_subprocess_output(log_dir, captured)
         self._record_repo_result(index, url, branch, log_dir, status, started_at)
+
+    def _write_subprocess_output(self, log_dir: str, captured: list[str]) -> None:
+        try:
+            os.makedirs(os.path.join(log_dir, "logs"), exist_ok=True)
+            with open(
+                os.path.join(log_dir, "logs", "batch-subprocess-output.txt"),
+                "w",
+                encoding="utf-8",
+            ) as f:
+                f.write("\n".join(captured) + "\n")
+        except OSError:
+            pass
 
     def _record_repo_result(
         self,

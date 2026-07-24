@@ -90,3 +90,48 @@ def test_parse_gradle_deps_recognizes_parenthesized_strictly_call():
     lz4 = by_artifact["lz4-java"]
     assert lz4.group == "at.yawk.lz4"
     assert lz4.version == "1.10.1"
+
+
+def test_parse_gradle_deps_recognizes_each_list_shared_strictly_block():
+    """Real-world gap: a Groovy idiom pinning several same-group artifacts
+    to one shared version in a single block --
+    `['a', 'b'].each { implementation(group: 'g', name: it) { version { strictly 'v' } } }`.
+    "name: it" is the loop variable, not a literal string, so it matched
+    neither the map-notation nor parenthesized-string strict patterns; every
+    artifact listed this way was invisible to parse_gradle_deps -- never a
+    Case 1 direct-write target, never realigned by _align_competing_pins.
+    resolutionStrategy.force was still written for them (as an unrelated
+    sibling/Case 3 fallback), but real Gradle resolution kept the
+    un-rewritten strictly value (strictly outranks force), leaving CVEs
+    unfixed (observed live: cwih-cnp-mgmt-consent-api's netty-codec/
+    netty-codec-http/netty-handler stayed on 4.1.132.Final with 19 CVEs
+    remaining despite a force to 4.2.16.Final).
+    """
+    build_text = (
+        "dependencies {\n"
+        "    // --- Netty (Strict versions for vulnerability fixes) ---\n"
+        "    ['netty-codec', 'netty-codec-http', 'netty-handler'].each {\n"
+        "        implementation(group: 'io.netty', name: it) {\n"
+        "            version { strictly '4.1.132.Final' }\n"
+        "        }\n"
+        "    }\n"
+        "    implementation(group: 'io.netty', name: 'netty-codec-http2') {\n"
+        "        version { strictly '4.2.10.Final' }\n"
+        "    }\n"
+        "}\n"
+    )
+
+    deps = parse_gradle_deps(build_text)
+    by_artifact = {d.artifact: d for d in deps}
+
+    for name in ("netty-codec", "netty-codec-http", "netty-handler"):
+        assert name in by_artifact, name
+        dep = by_artifact[name]
+        assert dep.group == "io.netty"
+        assert dep.version == "4.1.132.Final"
+        assert dep.config == "implementation"
+
+    # The unrelated, separately-declared netty-codec-http2 must not be
+    # swept into the loop's three entries.
+    assert by_artifact["netty-codec-http2"].version == "4.2.10.Final"
+    assert len([d for d in deps if d.artifact == "netty-codec-http2"]) == 1

@@ -43,6 +43,27 @@ _STRICT_STRING_DEP_HEADER_RE = re.compile(
     re.DOTALL,
 )
 
+# ['artifact-a', 'artifact-b'].each { implementation(group: 'g', name: it) { version { strictly 'v' } } }
+# -- a Groovy idiom for pinning several same-group artifacts to one shared
+# version in a single block. "name: it" (the loop variable, not a literal
+# string) matched none of the two header patterns above, so every artifact
+# listed this way was completely invisible to parse_gradle_deps: never a
+# Case 1 direct-write target, never realigned by _align_competing_pins.
+# Confirmed live: cwih-cnp-mgmt-consent-api's netty-codec/netty-codec-http/
+# netty-handler stayed pinned to their original strictly version -- a
+# resolutionStrategy.force to the fixed version was written and reported as
+# a change, but real Gradle resolution silently kept the un-rewritten
+# strictly value (strictly outranks force), leaving 19 CVEs unfixed.
+_EACH_LIST_HEADER_RE = re.compile(
+    r"""\[\s*(?P<names>(?:['"][^'"]+['"]\s*,\s*)*['"][^'"]+['"]\s*,?\s*)\]\s*
+        \.each\s*(?P<each_open>\{)\s*
+        (?P<config>implementation|api|compileOnly|runtimeOnly|annotationProcessor
+                  |testImplementation|testRuntimeOnly|testCompileOnly)\s*
+        \(\s*group\s*:\s*(['"])(?P<group>[^'"]+)\4\s*,\s*name\s*:\s*it\s*\)\s*(?P<inner_open>\{)""",
+    re.VERBOSE,
+)
+_QUOTED_ITEM_RE = re.compile(r"""['"]([^'"]+)['"]""")
+
 
 def _extract_gradle_attr(attrs, name):
     m = re.search(r"\b" + re.escape(name) + r"\s*:\s*(['\"])(.*?)\1", attrs)
@@ -332,6 +353,34 @@ def parse_gradle_deps(build_text):
                 match_end=close_idx + 1,
             )
         )
+
+    for m in _EACH_LIST_HEADER_RE.finditer(build_text):
+        names = _QUOTED_ITEM_RE.findall(m.group("names"))
+        if not names:
+            continue
+        each_close = _find_matching_brace(build_text, m.start("each_open"))
+        if each_close < 0:
+            continue
+        original = build_text[m.start() : each_close + 1]
+        version = _extract_strict_version(
+            build_text[m.start("inner_open") : each_close]
+        )
+        if not version:
+            continue
+        config = m.group("config")
+        group = m.group("group")
+        for artifact in names:
+            deps.append(
+                GradleDep(
+                    config=config,
+                    group=group,
+                    artifact=artifact,
+                    version=version,
+                    original=original,
+                    match_start=m.start(),
+                    match_end=each_close + 1,
+                )
+            )
 
     return sorted(deps, key=lambda d: d.match_start)
 

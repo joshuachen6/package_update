@@ -977,6 +977,50 @@ def test_gradle_align_competing_pins_realigns_capabilities_resolution_select():
     assert 'select("at.yawk.lz4:lz4-java:1.11.1")' in realigned[0]["replacement"]
 
 
+def test_gradle_writer_rewrites_shared_each_list_strictly_block_once(tmp_path):
+    """Three artifacts realigned via _align_competing_pins share the exact
+    same `original` text (the whole ['a','b','c'].each {...} block) since
+    parse_gradle_deps can't attribute a distinct text span to each looped
+    name. write_gradle_file applies each realignment row's
+    original->replacement via a plain text .replace(..., 1); confirms the
+    second and third rows' replace calls become harmless no-ops (the shared
+    text no longer matches after the first rewrites it) rather than
+    corrupting the file or emitting three redundant copies of the block.
+    """
+    from output.gradle import _align_competing_pins, write_gradle_file
+
+    build_text = (
+        "dependencies {\n"
+        "    ['netty-codec', 'netty-codec-http', 'netty-handler'].each {\n"
+        "        implementation(group: 'io.netty', name: it) {\n"
+        "            version { strictly '4.1.132.Final' }\n"
+        "        }\n"
+        "    }\n"
+        "}\n"
+    )
+
+    force_entries = [
+        {
+            "dependency": f"io.netty:{name}",
+            "old_version": "4.1.132.Final",
+            "new_version": "4.2.16.Final",
+        }
+        for name in ("netty-codec", "netty-codec-http", "netty-handler")
+    ]
+    rows = _align_competing_pins(build_text, changes=[], force_entries=force_entries)
+    assert len(rows) == 3
+
+    output_path = tmp_path / "updated.gradle"
+    write_gradle_file(
+        build_text, rows, force_entries, str(output_path), str(output_path), in_place=False,
+    )
+
+    updated = output_path.read_text(encoding="utf-8")
+    assert updated.count("strictly '4.2.16.Final'") == 1
+    assert "4.1.132.Final" not in updated
+    assert "['netty-codec', 'netty-codec-http', 'netty-handler']" in updated
+
+
 def test_gradle_apply_updates_realigns_preexisting_force_pins(tmp_path):
     """Mirrors cwih-cnp-mgmt-cds-workflow: the project carries a stale
     resolutionStrategy force from an earlier manual CVE fix. Left alone it

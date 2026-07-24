@@ -253,3 +253,26 @@ def test_batch_tab_shows_popup_and_writes_log_on_completion():
     assert "QMessageBox.information(" in source
     assert "batch-summary.log" in source
     assert "def _on_batch_summary(self, result: dict):" in source
+
+
+def test_batch_worker_persists_subprocess_output_even_on_instant_crash():
+    """A repo whose subprocess dies before quick_update.py ever gets far
+    enough to create its own log_dir (e.g. the checkout/clone step raising)
+    previously left no trace anywhere once the GUI's in-memory row log was
+    gone -- undiagnosable after the fact. _write_subprocess_output must run
+    unconditionally (outside the try/except around Popen) and capture the
+    exception's full traceback, not just str(exc), so a fast, silent crash
+    is diagnosable from a single git-tracked file instead of requiring a
+    live GUI session or a manual re-run.
+    """
+    source = Path("ui/batch_worker.py").read_text(encoding="utf-8")
+
+    assert "def _write_subprocess_output(self, log_dir: str, captured: list[str]) -> None:" in source
+    assert "self._write_subprocess_output(log_dir, captured)" in source
+    # Called unconditionally after the try/except, not inside it -- must run
+    # whether the subprocess succeeded, errored, or the outer try raised.
+    write_call_pos = source.index("self._write_subprocess_output(log_dir, captured)")
+    except_pos = source.index("except Exception as exc:")
+    assert write_call_pos > except_pos
+    assert "_emit(traceback.format_exc())" in source
+    assert '"batch-subprocess-output.txt"' in source
