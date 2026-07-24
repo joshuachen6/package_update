@@ -4,11 +4,11 @@
 |metric|value|
 |---|---|
 |Overall Status|🟢 Success|
-|Generated at|2026-07-23T14:45:16|
+|Generated at|2026-07-23T15:03:24|
 |GitHub URL|https://github.com/Cloud-3-0-EMU/cwih-cnp-mgmt-consent-publish-api.git|
 |Project directory|/Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_cwih-cnp-mgmt-consent-publish-api_npe/npe/cwih-cnp-mgmt-consent-publish-api|
 |Dependency files|1|
-|Changed packages|32|
+|Changed packages|26|
 |Skipped packages|0|
 |Validation records|1|
 |Taskboard CVEs tracked|0|
@@ -30,17 +30,17 @@ All remediation actions completed successfully.
 ## Dependency Files
 |file|ecosystem|changes|skipped|write_status|validation_status|validation_message|verification_status|test_status|
 |---|---|---|---|---|---|---|---|---|
-|build.gradle|gradle|32|0|Written|Passed||Success - build and tests passed; no CVEs remain|passed|
+|build.gradle|gradle|26|0|Written|Passed||Success - build and tests passed; no CVEs remain|passed|
 
 ## Applied / Planned Changes
 |file|ecosystem|package|type|old|new|status|remediation_guided|
 |---|---|---|---|---|---|---|---|
 |build.gradle|gradle|at.yawk.lz4:lz4-java|gradle|1.10.1|1.11.1|Passed|True|
-|build.gradle|gradle|io.netty:netty-codec-compression|gradle|4.2.5.Final|4.2.16.Final|Passed|True|
-|build.gradle|gradle|io.netty:netty-codec-compression|gradle|4.2.5.Final|4.2.16.Final|Passed|True|
-|build.gradle|gradle|com.fasterxml.jackson.core:jackson-databind|gradle|2.21.2|2.22.1|Passed|True|
 |build.gradle|gradle|ch.qos.logback:logback-core|gradle|1.5.32|1.6.0|Passed|True|
+|build.gradle|gradle|io.netty:netty-codec-compression|gradle|4.2.5.Final|4.2.16.Final|Passed|True|
+|build.gradle|gradle|io.netty:netty-codec-compression|gradle|4.2.5.Final|4.2.16.Final|Passed|True|
 |build.gradle|gradle|org.springframework:spring-framework.version|gradle|6.2.18|6.2.19|Passed|True|
+|build.gradle|gradle|com.fasterxml.jackson.core:jackson-databind|gradle|2.21.2|2.22.1|Passed|True|
 |build.gradle|gradle|org.apache.cxf:cxf-rt-transports-http|gradle|4.1.3|4.2.2|Passed|True|
 |build.gradle|gradle|com.fasterxml.jackson.core:jackson-core|gradle|2.21.2|2.22.1|Passed|True|
 |build.gradle|gradle|ch.qos.logback:logback-classic|gradle|1.5.32|1.6.0|Passed|True|
@@ -49,24 +49,18 @@ All remediation actions completed successfully.
 |build.gradle|gradle|io.netty:netty-handler|gradle|4.1.135.Final|4.2.16.Final|Passed|True|
 |build.gradle|gradle|org.apache.cxf:cxf-rt-transports-http|gradle|4.1.3|4.2.2|Passed|True|
 |build.gradle|gradle|at.yawk.lz4:lz4-java|gradle|1.10.1|1.11.1|Passed|True|
-|build.gradle|gradle|io.netty:netty-codec-http|gradle-force|4.1.135.Final|4.2.16.Final|Passed|True|
 |build.gradle|gradle|org.springframework.data:spring-data-mongodb|gradle-force|4.5.10|4.5.13|Passed|True|
-|build.gradle|gradle|org.apache.cxf:cxf-core|gradle-force|4.1.3|4.2.2|Passed|True|
-|build.gradle|gradle|org.springframework.boot:spring-boot|gradle-force|3.5.13|3.5.16|Passed|True|
-|build.gradle|gradle|org.springframework.hateoas:spring-hateoas|gradle-force|2.5.2|2.5.3|Passed|True|
-|build.gradle|gradle|org.springframework.kafka:spring-kafka|gradle-force|3.3.14|3.3.16|Passed|True|
 |build.gradle|gradle|org.springframework.data:spring-data-commons|gradle-force|3.5.10|3.5.13|Passed|True|
+|build.gradle|gradle|org.apache.cxf:cxf-core|gradle-force|4.1.3|4.2.2|Passed|True|
 |build.gradle|gradle|io.micrometer:micrometer-core|gradle-force|1.15.10|1.17.0|Passed|True|
-|build.gradle|gradle|com.fasterxml.jackson.core:jackson-core|gradle-force|2.21.2|2.22.1|Passed|True|
-|build.gradle|gradle|ch.qos.logback:logback-classic|gradle-force|1.5.32|1.6.0|Passed|True|
+|build.gradle|gradle|org.springframework.boot:spring-boot|gradle-force|3.5.13|3.5.16|Passed|True|
+|build.gradle|gradle|org.springframework.kafka:spring-kafka|gradle-force|3.3.14|3.3.16|Passed|True|
+|build.gradle|gradle|org.springframework.hateoas:spring-hateoas|gradle-force|2.5.2|2.5.3|Passed|True|
+|build.gradle|gradle|io.netty:netty-codec-http|gradle-force|4.1.135.Final|4.2.16.Final|Passed|True|
 |build.gradle|gradle|org.springframework:spring-core|gradle-force|6.2.18|6.2.19|Passed|True|
 |build.gradle|gradle|org.springframework:spring-expression|gradle-force|6.2.18|6.2.19|Passed|True|
 |build.gradle|gradle|org.springframework:spring-web|gradle-force|6.2.18|6.2.19|Passed|True|
 |build.gradle|gradle|org.springframework:spring-webflux|gradle-force|6.2.18|6.2.19|Passed|True|
-|build.gradle|gradle|io.netty:netty-codec|gradle-force|4.1.135.Final|4.2.16.Final|Passed|True|
-|build.gradle|gradle|io.netty:netty-handler|gradle-force|4.1.135.Final|4.2.16.Final|Passed|True|
-|build.gradle|gradle|io.netty:netty-codec-http2|gradle-force|4.1.135.Final|4.2.16.Final|Passed|True|
-|build.gradle|gradle|org.apache.cxf:cxf-rt-transports-http|gradle-force|4.1.3|4.2.2|Passed|True|
 
 ## Skipped / Resolved / Could Not Update
 _No rows._
@@ -80,7 +74,7 @@ _No rows._
 |ecosystem|snapshot|path|exists|line_count|dependency_count|bytes|
 |---|---|---|---|---|---|---|
 |gradle|before|/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_cwih-cnp-mgmt-consent-publish-api_npe/logs/gradle-dependency-tree-before.txt|True|2279|2164|151543|
-|gradle|after|/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_cwih-cnp-mgmt-consent-publish-api_npe/logs/gradle-dependency-tree-after.txt|True|2359|2244|156925|
+|gradle|after|/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_cwih-cnp-mgmt-consent-publish-api_npe/logs/gradle-dependency-tree-after.txt|True|2359|2244|157085|
 |node|before|/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_cwih-cnp-mgmt-consent-publish-api_npe/logs/npm-dependency-tree-before.json|False|0|0|0|
 |node|after|/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_cwih-cnp-mgmt-consent-publish-api_npe/logs/npm-dependency-tree-after.json|False|0|0|0|
 
@@ -92,8 +86,8 @@ _No rows._
 |ch.qos.logback:logback-core|1.5.32|1.6.0|changed|
 |com.fasterxml.jackson.core:jackson-core|2.21.2|2.22.1|changed|
 |com.fasterxml.jackson.core:jackson-databind|2.21.2|2.21.5|changed|
-|com.fasterxml.jackson.datatype:jackson-datatype-jdk8|2.21.2|2.22.1|changed|
-|com.fasterxml.jackson.module:jackson-module-parameter-names|2.21.2|2.22.1|changed|
+|com.fasterxml.jackson.datatype:jackson-datatype-jdk8|2.21.2|2.21.4|changed|
+|com.fasterxml.jackson.module:jackson-module-parameter-names|2.21.2|2.21.4|changed|
 |com.fasterxml.jackson:jackson-bom|2.21.2|2.22.1|changed|
 |com.fasterxml.woodstox:woodstox-core|7.1.1|7.2.0|changed|
 |io.micrometer:context-propagation|1.1.4|1.2.1|changed|

@@ -8,14 +8,18 @@ plugins {
 }
 configurations.all {
     resolutionStrategy.dependencySubstitution {
+        // package-update: managed dependencySubstitution block (safe to regenerate)
         substitute module('io.netty:netty-codec') using module('io.netty:netty-codec:4.1.136.Final')
     }
 }
 
 configurations.all {
     resolutionStrategy {
-            force 'io.netty:netty-codec:4.1.136.Final'
-    }
+        // package-update: managed force block (safe to regenerate)
+        force 'at.yawk.lz4:lz4-java:1.11.1'
+    
+        force 'io.netty:netty-codec:4.1.136.Final'
+}
 }
 
 
@@ -56,7 +60,7 @@ ext {
     set('springCloudVersion', "2025.0.0")
     set('spring-framework.version', "6.2.19")
     set('jackson-bom.version', "2.22.1")
-    set('logback.version', "1.5.38")
+    set('logback.version', "1.6.0")
     set('spring-kafka.version', "3.3.16")
     set('tomcat.version', "10.1.57")
 }

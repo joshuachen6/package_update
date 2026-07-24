@@ -27,9 +27,9 @@ runtimeClasspath - Runtime classpath of source set 'main'.
 |    |    +--- org.springframework.boot:spring-boot-autoconfigure:3.5.14
 |    |    |    \--- org.springframework.boot:spring-boot:3.5.14 (*)
 |    |    +--- org.springframework.boot:spring-boot-starter-logging:3.5.14
-|    |    |    +--- ch.qos.logback:logback-classic:1.5.32 -> 1.5.38
-|    |    |    |    +--- ch.qos.logback:logback-core:1.5.38
-|    |    |    |    \--- org.slf4j:slf4j-api:2.0.17
+|    |    |    +--- ch.qos.logback:logback-classic:1.5.32 -> 1.6.0
+|    |    |    |    +--- ch.qos.logback:logback-core:1.6.0
+|    |    |    |    \--- org.slf4j:slf4j-api:2.0.18 -> 2.0.17
 |    |    |    +--- org.apache.logging.log4j:log4j-to-slf4j:2.24.3
 |    |    |    |    +--- org.apache.logging.log4j:log4j-api:2.24.3
 |    |    |    |    \--- org.slf4j:slf4j-api:2.0.16 -> 2.0.17
@@ -94,7 +94,7 @@ runtimeClasspath - Runtime classpath of source set 'main'.
 |    +--- org.springframework.boot:spring-boot-starter-tomcat:3.5.14
 |    |    +--- jakarta.annotation:jakarta.annotation-api:2.1.1
 |    |    +--- org.apache.tomcat.embed:tomcat-embed-core:10.1.54 -> 10.1.57
-|    |    |    \--- org.apache.tomcat:tomcat-annotations-api:10.1.57
+|    |    |    \--- org.apache.tomcat:tomcat-annotations-api:10.1.57 -> 10.1.54
 |    |    +--- org.apache.tomcat.embed:tomcat-embed-el:10.1.54 -> 10.1.57
 |    |    \--- org.apache.tomcat.embed:tomcat-embed-websocket:10.1.54 -> 10.1.57
 |    |         \--- org.apache.tomcat.embed:tomcat-embed-core:10.1.57 (*)
@@ -160,7 +160,7 @@ runtimeClasspath - Runtime classpath of source set 'main'.
 |    +--- org.springframework.retry:spring-retry:2.0.13 -> 2.0.12
 |    +--- org.apache.kafka:kafka-clients:3.8.1 -> 3.9.2
 |    |    +--- com.github.luben:zstd-jni:1.5.6-4
-|    |    +--- at.yawk.lz4:lz4-java:1.10.1
+|    |    +--- at.yawk.lz4:lz4-java:1.10.1 -> 1.11.1
 |    |    +--- org.xerial.snappy:snappy-java:1.1.10.5
 |    |    \--- org.slf4j:slf4j-api:1.7.36 -> 2.0.17
 |    \--- io.micrometer:micrometer-observation:1.14.14 -> 1.15.11 (*)
@@ -297,7 +297,7 @@ runtimeClasspath - Runtime classpath of source set 'main'.
 |         |    \--- io.projectreactor:reactor-core:3.4.33 -> 3.7.18 (*)
 |         \--- com.github.spotbugs:spotbugs-annotations:4.8.1 -> 4.8.6
 |              +--- com.google.code.findbugs:jsr305:3.0.2
-|              \--- ch.qos.logback:logback-core:{strictly [1.2.9, 2[} -> 1.5.38 (c)
+|              \--- ch.qos.logback:logback-core:{strictly [1.2.9, 2[} -> 1.6.0 (c)
 \--- org.apache.commons:commons-lang3:{strictly 3.20.0} -> 3.20.0
 
 (c) - A dependency constraint, not a dependency. The dependency affected by the constraint occurs elsewhere in the tree.
@@ -346,9 +346,9 @@ compileClasspath - Compile classpath for source set 'main'.
 |    |    +--- org.springframework.boot:spring-boot-autoconfigure:3.5.14
 |    |    |    \--- org.springframework.boot:spring-boot:3.5.14 (*)
 |    |    +--- org.springframework.boot:spring-boot-starter-logging:3.5.14
-|    |    |    +--- ch.qos.logback:logback-classic:1.5.32 -> 1.5.38
-|    |    |    |    +--- ch.qos.logback:logback-core:1.5.38
-|    |    |    |    \--- org.slf4j:slf4j-api:2.0.17
+|    |    |    +--- ch.qos.logback:logback-classic:1.5.32 -> 1.6.0
+|    |    |    |    +--- ch.qos.logback:logback-core:1.6.0
+|    |    |    |    \--- org.slf4j:slf4j-api:2.0.18 -> 2.0.17
 |    |    |    +--- org.apache.logging.log4j:log4j-to-slf4j:2.24.3
 |    |    |    |    +--- org.apache.logging.log4j:log4j-api:2.24.3
 |    |    |    |    \--- org.slf4j:slf4j-api:2.0.16 -> 2.0.17
@@ -411,7 +411,7 @@ compileClasspath - Compile classpath for source set 'main'.
 |    +--- org.springframework.boot:spring-boot-starter-tomcat:3.5.14
 |    |    +--- jakarta.annotation:jakarta.annotation-api:2.1.1
 |    |    +--- org.apache.tomcat.embed:tomcat-embed-core:10.1.54 -> 10.1.57
-|    |    |    \--- org.apache.tomcat:tomcat-annotations-api:10.1.57
+|    |    |    \--- org.apache.tomcat:tomcat-annotations-api:10.1.57 -> 10.1.54
 |    |    +--- org.apache.tomcat.embed:tomcat-embed-el:10.1.54 -> 10.1.57
 |    |    \--- org.apache.tomcat.embed:tomcat-embed-websocket:10.1.54 -> 10.1.57
 |    |         \--- org.apache.tomcat.embed:tomcat-embed-core:10.1.57 (*)
@@ -615,7 +615,7 @@ You can use '--warning-mode all' to show the individual deprecation warnings and
 
 For more on this, please refer to https://docs.gradle.org/8.14.1/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
 
-BUILD SUCCESSFUL in 4s
+BUILD SUCCESSFUL in 53s
 1 actionable task: 1 executed
 
 To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.14.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
@@ -647,9 +647,9 @@ testRuntimeClasspath - Runtime classpath of source set 'test'.
 |    |    +--- org.springframework.boot:spring-boot-autoconfigure:3.5.14
 |    |    |    \--- org.springframework.boot:spring-boot:3.5.14 (*)
 |    |    +--- org.springframework.boot:spring-boot-starter-logging:3.5.14
-|    |    |    +--- ch.qos.logback:logback-classic:1.5.32 -> 1.5.38
-|    |    |    |    +--- ch.qos.logback:logback-core:1.5.38
-|    |    |    |    \--- org.slf4j:slf4j-api:2.0.17
+|    |    |    +--- ch.qos.logback:logback-classic:1.5.32 -> 1.6.0
+|    |    |    |    +--- ch.qos.logback:logback-core:1.6.0
+|    |    |    |    \--- org.slf4j:slf4j-api:2.0.18 -> 2.0.17
 |    |    |    +--- org.apache.logging.log4j:log4j-to-slf4j:2.24.3
 |    |    |    |    +--- org.apache.logging.log4j:log4j-api:2.24.3
 |    |    |    |    \--- org.slf4j:slf4j-api:2.0.16 -> 2.0.17
@@ -714,7 +714,7 @@ testRuntimeClasspath - Runtime classpath of source set 'test'.
 |    +--- org.springframework.boot:spring-boot-starter-tomcat:3.5.14
 |    |    +--- jakarta.annotation:jakarta.annotation-api:2.1.1
 |    |    +--- org.apache.tomcat.embed:tomcat-embed-core:10.1.54 -> 10.1.57
-|    |    |    \--- org.apache.tomcat:tomcat-annotations-api:10.1.57
+|    |    |    \--- org.apache.tomcat:tomcat-annotations-api:10.1.57 -> 10.1.54
 |    |    +--- org.apache.tomcat.embed:tomcat-embed-el:10.1.54 -> 10.1.57
 |    |    \--- org.apache.tomcat.embed:tomcat-embed-websocket:10.1.54 -> 10.1.57
 |    |         \--- org.apache.tomcat.embed:tomcat-embed-core:10.1.57 (*)
@@ -780,7 +780,7 @@ testRuntimeClasspath - Runtime classpath of source set 'test'.
 |    +--- org.springframework.retry:spring-retry:2.0.13 -> 2.0.12
 |    +--- org.apache.kafka:kafka-clients:3.8.1 -> 3.9.2
 |    |    +--- com.github.luben:zstd-jni:1.5.6-4
-|    |    +--- at.yawk.lz4:lz4-java:1.10.1
+|    |    +--- at.yawk.lz4:lz4-java:1.10.1 -> 1.11.1
 |    |    +--- org.xerial.snappy:snappy-java:1.1.10.5
 |    |    \--- org.slf4j:slf4j-api:1.7.36 -> 2.0.17
 |    \--- io.micrometer:micrometer-observation:1.14.14 -> 1.15.11 (*)
@@ -917,7 +917,7 @@ testRuntimeClasspath - Runtime classpath of source set 'test'.
 |         |    \--- io.projectreactor:reactor-core:3.4.33 -> 3.7.18 (*)
 |         \--- com.github.spotbugs:spotbugs-annotations:4.8.1 -> 4.8.6
 |              +--- com.google.code.findbugs:jsr305:3.0.2
-|              \--- ch.qos.logback:logback-core:{strictly [1.2.9, 2[} -> 1.5.38 (c)
+|              \--- ch.qos.logback:logback-core:{strictly [1.2.9, 2[} -> 1.6.0 (c)
 +--- org.apache.commons:commons-lang3:{strictly 3.20.0} -> 3.20.0
 +--- org.springframework.boot:spring-boot-starter-test -> 3.5.14
 |    +--- org.springframework.boot:spring-boot-starter:3.5.14 (*)
@@ -1000,7 +1000,7 @@ You can use '--warning-mode all' to show the individual deprecation warnings and
 
 For more on this, please refer to https://docs.gradle.org/8.14.1/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
 
-BUILD SUCCESSFUL in 5s
+BUILD SUCCESSFUL in 3s
 1 actionable task: 1 executed
 
 To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.14.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
@@ -1032,9 +1032,9 @@ testCompileClasspath - Compile classpath for source set 'test'.
 |    |    +--- org.springframework.boot:spring-boot-autoconfigure:3.5.14
 |    |    |    \--- org.springframework.boot:spring-boot:3.5.14 (*)
 |    |    +--- org.springframework.boot:spring-boot-starter-logging:3.5.14
-|    |    |    +--- ch.qos.logback:logback-classic:1.5.32 -> 1.5.38
-|    |    |    |    +--- ch.qos.logback:logback-core:1.5.38
-|    |    |    |    \--- org.slf4j:slf4j-api:2.0.17
+|    |    |    +--- ch.qos.logback:logback-classic:1.5.32 -> 1.6.0
+|    |    |    |    +--- ch.qos.logback:logback-core:1.6.0
+|    |    |    |    \--- org.slf4j:slf4j-api:2.0.18 -> 2.0.17
 |    |    |    +--- org.apache.logging.log4j:log4j-to-slf4j:2.24.3
 |    |    |    |    +--- org.apache.logging.log4j:log4j-api:2.24.3
 |    |    |    |    \--- org.slf4j:slf4j-api:2.0.16 -> 2.0.17
@@ -1097,7 +1097,7 @@ testCompileClasspath - Compile classpath for source set 'test'.
 |    +--- org.springframework.boot:spring-boot-starter-tomcat:3.5.14
 |    |    +--- jakarta.annotation:jakarta.annotation-api:2.1.1
 |    |    +--- org.apache.tomcat.embed:tomcat-embed-core:10.1.54 -> 10.1.57
-|    |    |    \--- org.apache.tomcat:tomcat-annotations-api:10.1.57
+|    |    |    \--- org.apache.tomcat:tomcat-annotations-api:10.1.57 -> 10.1.54
 |    |    +--- org.apache.tomcat.embed:tomcat-embed-el:10.1.54 -> 10.1.57
 |    |    \--- org.apache.tomcat.embed:tomcat-embed-websocket:10.1.54 -> 10.1.57
 |    |         \--- org.apache.tomcat.embed:tomcat-embed-core:10.1.57 (*)
@@ -1352,5 +1352,5 @@ You can use '--warning-mode all' to show the individual deprecation warnings and
 
 For more on this, please refer to https://docs.gradle.org/8.14.1/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
 
-BUILD SUCCESSFUL in 6s
+BUILD SUCCESSFUL in 3s
 1 actionable task: 1 executed

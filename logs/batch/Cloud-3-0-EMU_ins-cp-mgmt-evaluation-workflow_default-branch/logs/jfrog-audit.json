@@ -4,28 +4,17 @@
     "maven"
   ],
   "errors": [],
-  "vulnerability_count": 79,
-  "vulnerable_component_count": 26,
+  "vulnerability_count": 78,
+  "vulnerable_component_count": 25,
   "vulnerable_components": [
-    {
-      "component_id": "gav://ch.qos.logback:logback-core:1.5.18",
-      "cves": [
-        "CVE-2025-11226",
-        "CVE-2026-10532",
-        "CVE-2026-1225",
-        "CVE-2026-9828"
-      ],
-      "ecosystem": "maven",
-      "package": "ch.qos.logback:logback-core",
-      "version": "1.5.18"
-    },
     {
       "component_id": "gav://com.fasterxml.jackson.core:jackson-databind:2.17.3",
       "cves": [
         "CVE-2026-54512",
         "CVE-2026-54513",
         "CVE-2026-54514",
-        "CVE-2026-54515"
+        "CVE-2026-54515",
+        "CVE-2026-59888"
       ],
       "ecosystem": "maven",
       "package": "com.fasterxml.jackson.core:jackson-databind",
@@ -43,7 +32,8 @@
     {
       "component_id": "gav://io.netty:netty-codec-compression:4.2.5.Final",
       "cves": [
-        "CVE-2026-42583"
+        "CVE-2026-42583",
+        "CVE-2026-59901"
       ],
       "ecosystem": "maven",
       "package": "io.netty:netty-codec-compression",
@@ -196,7 +186,8 @@
       "component_id": "gav://org.lz4:lz4-java:1.8.0",
       "cves": [
         "CVE-2025-12183",
-        "CVE-2025-66566"
+        "CVE-2025-66566",
+        "CVE-2026-59949"
       ],
       "ecosystem": "maven",
       "package": "org.lz4:lz4-java",

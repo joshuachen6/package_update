@@ -4,24 +4,17 @@
     "npm"
   ],
   "errors": [],
-  "vulnerability_count": 11,
+  "vulnerability_count": 4,
   "vulnerable_component_count": 4,
   "vulnerable_components": [
     {
-      "component_id": "npm://next:15.5.18",
+      "component_id": "npm://brace-expansion:5.0.7",
       "cves": [
-        "CVE-2026-64641",
-        "CVE-2026-64643",
-        "CVE-2026-64644",
-        "CVE-2026-64645",
-        "CVE-2026-64646",
-        "CVE-2026-64647",
-        "CVE-2026-64648",
-        "CVE-2026-64649"
+        "CVE-2026-14257"
       ],
       "ecosystem": "npm",
-      "package": "next",
-      "version": "15.5.18"
+      "package": "brace-expansion",
+      "version": "5.0.7"
     },
     {
       "component_id": "npm://quill:2.0.3",

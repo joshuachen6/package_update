@@ -8,6 +8,7 @@ plugins {
 }
 configurations.all {
     resolutionStrategy.dependencySubstitution {
+        // package-update: managed dependencySubstitution block (safe to regenerate)
         substitute module('org.springframework.data:spring-data-commons') using module('org.springframework.data:spring-data-commons:3.5.13')
         substitute module('org.springframework.data:spring-data-mongodb') using module('org.springframework.data:spring-data-mongodb:4.5.13')
     }
@@ -15,8 +16,10 @@ configurations.all {
 
 configurations.all {
     resolutionStrategy {
-            force 'org.springframework.data:spring-data-commons:3.5.13'
-            force 'org.springframework.data:spring-data-mongodb:4.5.13'
+        // package-update: managed force block (safe to regenerate)
+        force 'at.yawk.lz4:lz4-java:1.11.1'
+        force 'org.springframework.data:spring-data-commons:3.5.13'
+        force 'org.springframework.data:spring-data-mongodb:4.5.13'
     }
 }
 
@@ -50,11 +53,10 @@ repositories {
 ext {
     set('springCloudVersion', "2025.0.0")
     set('jackson-bom.version', "2.22.1")
-    set('logback.version', "1.5.38")
+    set('logback.version', "1.6.0")
     set('netty.version', "4.2.16.Final")
     set('spring-framework.version', "6.2.19")
     set('spring-kafka.version', "3.3.16")
-    set('tomcat.version', "10.1.57")
 }
 
 dependencies {

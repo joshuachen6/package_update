@@ -6,6 +6,15 @@
   "before_scan": {
     "components": [
       {
+        "component_id": "gav://at.yawk.lz4:lz4-java:1.10.1",
+        "cves": [
+          "CVE-2026-59949"
+        ],
+        "ecosystem": "maven",
+        "package": "at.yawk.lz4:lz4-java",
+        "version": "1.10.1"
+      },
+      {
         "component_id": "gav://ch.qos.logback:logback-core:1.5.32",
         "cves": [
           "CVE-2026-10532",
@@ -82,8 +91,8 @@
     "gradle-force-overrides.csv": [
       {
         "dependency": "ch.qos.logback:logback-core",
-        "minimum_required": "1.5.38",
-        "new_version": "1.5.38",
+        "minimum_required": "1.6.0",
+        "new_version": "1.6.0",
         "old_version": "1.5.32"
       },
       {
@@ -93,10 +102,10 @@
         "old_version": "3.3.15"
       },
       {
-        "dependency": "com.fasterxml.jackson.core:jackson-databind",
-        "minimum_required": "2.22.1",
-        "new_version": "2.22.1",
-        "old_version": "2.21.2"
+        "dependency": "at.yawk.lz4:lz4-java",
+        "minimum_required": "1.11.1",
+        "new_version": "1.11.1",
+        "old_version": "1.10.1"
       },
       {
         "dependency": "org.apache.tomcat.embed:tomcat-embed-core",
@@ -105,22 +114,10 @@
         "old_version": "10.1.54"
       },
       {
-        "dependency": "ch.qos.logback:logback-classic",
-        "minimum_required": "1.5.38",
-        "new_version": "1.5.38",
-        "old_version": "1.5.32"
-      },
-      {
-        "dependency": "com.fasterxml.jackson.core:jackson-core",
+        "dependency": "com.fasterxml.jackson.core:jackson-databind",
         "minimum_required": "2.22.1",
         "new_version": "2.22.1",
         "old_version": "2.21.2"
-      },
-      {
-        "dependency": "org.apache.tomcat.embed:tomcat-embed-el",
-        "minimum_required": "10.1.57",
-        "new_version": "10.1.57",
-        "old_version": "10.1.54"
       }
     ],
     "gradle-skipped.csv": [],
@@ -138,7 +135,8 @@
   "files": [
     {
       "candidate_counts": {
-        "ch.qos.logback:logback-core": 169,
+        "at.yawk.lz4:lz4-java": 9,
+        "ch.qos.logback:logback-core": 170,
         "com.fasterxml.jackson.core:jackson-databind": 229,
         "org.apache.tomcat.embed:tomcat-embed-core": 464,
         "org.springframework.kafka:spring-kafka": 248
@@ -157,7 +155,7 @@
         },
         {
           "change_type": "gradle-force",
-          "new": "1.5.38",
+          "new": "1.6.0",
           "old": "1.5.32",
           "package": "ch.qos.logback:logback-core",
           "remediation_guided": true
@@ -171,9 +169,9 @@
         },
         {
           "change_type": "gradle-force",
-          "new": "2.22.1",
-          "old": "2.21.2",
-          "package": "com.fasterxml.jackson.core:jackson-databind",
+          "new": "1.11.1",
+          "old": "1.10.1",
+          "package": "at.yawk.lz4:lz4-java",
           "remediation_guided": true
         },
         {
@@ -185,23 +183,9 @@
         },
         {
           "change_type": "gradle-force",
-          "new": "1.5.38",
-          "old": "1.5.32",
-          "package": "ch.qos.logback:logback-classic",
-          "remediation_guided": true
-        },
-        {
-          "change_type": "gradle-force",
           "new": "2.22.1",
           "old": "2.21.2",
-          "package": "com.fasterxml.jackson.core:jackson-core",
-          "remediation_guided": true
-        },
-        {
-          "change_type": "gradle-force",
-          "new": "10.1.57",
-          "old": "10.1.54",
-          "package": "org.apache.tomcat.embed:tomcat-embed-el",
+          "package": "com.fasterxml.jackson.core:jackson-databind",
           "remediation_guided": true
         }
       ],
@@ -211,6 +195,17 @@
       "validation_status": "Passed",
       "verification_status": "Success - build and tests passed; no CVEs remain",
       "version_inventory": {
+        "at.yawk.lz4:lz4-java": [
+          "1.8.1",
+          "1.9.0",
+          "1.10.0",
+          "1.10.1",
+          "1.10.2",
+          "1.10.3",
+          "1.10.4",
+          "1.11.0",
+          "1.11.1"
+        ],
         "ch.qos.logback:logback-core": [
           "0.2.5",
           "0.3",
@@ -380,7 +375,8 @@
           "1.5.35",
           "1.5.36",
           "1.5.37",
-          "1.5.38"
+          "1.5.38",
+          "1.6.0"
         ],
         "com.fasterxml.jackson.core:jackson-databind": [
           "2.0.0-RC1",
@@ -1333,7 +1329,7 @@
       "write_status": "Written"
     }
   ],
-  "generated_at": "2026-07-22T12:45:04",
+  "generated_at": "2026-07-24T08:22:47",
   "next_actions": [
     {
       "action": "No additional remediation action identified.",
@@ -1368,6 +1364,7 @@
     "CVE-2026-59084",
     "CVE-2026-59888",
     "CVE-2026-59889",
+    "CVE-2026-59949",
     "CVE-2026-9828"
   ],
   "outcome": "Success",
@@ -1376,13 +1373,13 @@
   "remediation_budget_seconds": 300,
   "security_status": "verified_clean",
   "summary": {
-    "candidate_versions_considered": 1110,
+    "candidate_versions_considered": 1120,
     "component_cve_pairs_new": 0,
     "component_cve_pairs_remaining": 0,
-    "component_cve_pairs_removed": 27,
+    "component_cve_pairs_removed": 28,
     "dependency_files": 1,
     "vulnerability_records_after": 0,
-    "vulnerability_records_before": 27
+    "vulnerability_records_before": 28
   },
   "test_status": "passed",
   "tests": {
@@ -1400,7 +1397,7 @@
         ],
         "ecosystem": "gradle",
         "label": "Gradle tests",
-        "output": "To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.14.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.\nDaemon will be stopped at the end of the build \n\n> Task :compileJava\n\n> Task :processResources\n> Task :classes\n> Task :compileTestJava\n> Task :processTestResources\n> Task :testClasses\n> Task :test\n> Task :jacocoTestReport\n> Task :jacocoTestCoverageVerification\n\n[Incubating] Problems report is available at: file:///Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_ins-cp-mgmt-admin-api_default-branch/default-branch/ins-cp-mgmt-admin-api/build/reports/problems/problems-report.html\n\nDeprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.\n\nYou can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.\n\nFor more on this, please refer to https://docs.gradle.org/8.14.1/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.\n\nBUILD SUCCESSFUL in 1m 55s\n7 actionable tasks: 7 executed\n\nNote: /Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_ins-cp-mgmt-admin-api_default-branch/default-branch/ins-cp-mgmt-admin-api/src/main/java/com/humana/cnp/service/avro/AvroDeserializer.java uses or overrides a deprecated API.\nNote: Recompile with -Xlint:deprecation for details.\nNote: Some input files use unchecked or unsafe operations.\nNote: Recompile with -Xlint:unchecked for details.\nJava HotSpot(TM) 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended\n",
+        "output": "To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.14.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.\nDaemon will be stopped at the end of the build \n\n> Task :compileJava\n\n> Task :processResources\n> Task :classes\n> Task :compileTestJava\n> Task :processTestResources\n> Task :testClasses\n> Task :test\n> Task :jacocoTestReport\n> Task :jacocoTestCoverageVerification\n\n[Incubating] Problems report is available at: file:///Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_ins-cp-mgmt-admin-api_default-branch/default-branch/ins-cp-mgmt-admin-api/build/reports/problems/problems-report.html\n\nDeprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.\n\nYou can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.\n\nFor more on this, please refer to https://docs.gradle.org/8.14.1/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.\n\nBUILD SUCCESSFUL in 2m 3s\n7 actionable tasks: 7 executed\n\nNote: /Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_ins-cp-mgmt-admin-api_default-branch/default-branch/ins-cp-mgmt-admin-api/src/main/java/com/humana/cnp/service/avro/AvroDeserializer.java uses or overrides a deprecated API.\nNote: Recompile with -Xlint:deprecation for details.\nNote: Some input files use unchecked or unsafe operations.\nNote: Recompile with -Xlint:unchecked for details.\nJava HotSpot(TM) 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended\n",
         "project_dir": "/Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_ins-cp-mgmt-admin-api_default-branch/default-branch/ins-cp-mgmt-admin-api",
         "reason": "",
         "returncode": 0,

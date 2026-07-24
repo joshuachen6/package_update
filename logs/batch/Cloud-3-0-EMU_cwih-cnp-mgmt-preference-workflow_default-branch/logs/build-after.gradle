@@ -1,17 +1,13 @@
 buildscript {
     configurations.all {
         resolutionStrategy {
-            force 'com.fasterxml.jackson.core:jackson-databind:2.21.5'
-        }
-    }
-
-    configurations.all {
-        resolutionStrategy {
-            force 'org.springframework.data:spring-data-commons:3.5.13'
+            // package-update: managed buildscript force block (safe to regenerate)
+            force 'at.yawk.lz4:lz4-java:1.11.1'
             force 'org.springframework.data:spring-data-mongodb:4.5.13'
-            force 'org.springframework.data:spring-data-redis:3.5.13'
-            force 'org.springframework.data:spring-data-keyvalue:3.5.13'
-        }
+            force 'org.springframework.data:spring-data-commons:3.5.13'
+        
+            force 'com.fasterxml.jackson.core:jackson-databind:2.21.5'
+}
     }
 
     repositories {
@@ -40,32 +36,23 @@ plugins {
 }
 configurations.all {
     resolutionStrategy.dependencySubstitution {
-        substitute module('com.fasterxml.jackson.core:jackson-databind') using module('com.fasterxml.jackson.core:jackson-databind:2.21.5')
-    }
-}
-
-configurations.all {
-    resolutionStrategy {
-            force 'com.fasterxml.jackson.core:jackson-databind:2.21.5'
-    }
-}
-
-configurations.all {
-    resolutionStrategy.dependencySubstitution {
-        substitute module('org.springframework.data:spring-data-commons') using module('org.springframework.data:spring-data-commons:3.5.13')
+        // package-update: managed dependencySubstitution block (safe to regenerate)
         substitute module('org.springframework.data:spring-data-mongodb') using module('org.springframework.data:spring-data-mongodb:4.5.13')
-        substitute module('org.springframework.data:spring-data-redis') using module('org.springframework.data:spring-data-redis:3.5.13')
-        substitute module('org.springframework.data:spring-data-keyvalue') using module('org.springframework.data:spring-data-keyvalue:3.5.13')
-    }
+        substitute module('org.springframework.data:spring-data-commons') using module('org.springframework.data:spring-data-commons:3.5.13')
+    
+        substitute module('com.fasterxml.jackson.core:jackson-databind') using module('com.fasterxml.jackson.core:jackson-databind:2.21.5')
+}
 }
 
 configurations.all {
     resolutionStrategy {
-            force 'org.springframework.data:spring-data-commons:3.5.13'
-            force 'org.springframework.data:spring-data-mongodb:4.5.13'
-            force 'org.springframework.data:spring-data-redis:3.5.13'
-            force 'org.springframework.data:spring-data-keyvalue:3.5.13'
-    }
+        // package-update: managed force block (safe to regenerate)
+        force 'at.yawk.lz4:lz4-java:1.11.1'
+        force 'org.springframework.data:spring-data-mongodb:4.5.13'
+        force 'org.springframework.data:spring-data-commons:3.5.13'
+    
+        force 'com.fasterxml.jackson.core:jackson-databind:2.21.5'
+}
 }
 
 
@@ -103,7 +90,6 @@ repositories {
 ext {
     set('springCloudVersion', "2025.0.0")
     set('jackson-bom.version', "2.22.1")
-    set('logback.version', "1.5.38")
     set('micrometer.version', "1.17.0")
     set('netty.version', "4.2.16.Final")
     set('spring-framework.version', "6.2.19")
@@ -139,8 +125,8 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-redis'
     implementation 'redis.clients:jedis:5.2.0'
     implementation 'com.humana.cpms.cds:cds-utilities:1.0.0'
-    implementation "ch.qos.logback:logback-core:1.5.38"//Vit Fix CVE-2025-11226
-    implementation "ch.qos.logback:logback-classic:1.5.38"//Vit Fix CVE-2025-11226
+    implementation "ch.qos.logback:logback-core:1.6.0"//Vit Fix CVE-2025-11226
+    implementation "ch.qos.logback:logback-classic:1.6.0"//Vit Fix CVE-2025-11226
     implementation(group: 'org.apache.commons', name: 'commons-lang3') {
         version {
             strictly '3.20.0'
