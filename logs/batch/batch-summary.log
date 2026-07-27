@@ -169,3 +169,29 @@ Per-repo:
   [Success] https://github.com/Cloud-3-0-EMU/ins-cp-mgmt-preference-workflow.git — 6:32
   [Aborted] https://github.com/Cloud-3-0-EMU/cwih-cnp-mgmt-evaluation-workflow.git — 27:34
 
+=== Batch summary: 2026-07-27T10:47:20 ===
+Batch remediation complete
+
+Repos processed: 2
+  Successful: 2
+  Partial: 0
+  Failed: 0
+  Other (error/aborted): 0
+
+Full remediation rate: 100.0%
+Useful remediation rate (full + partial): 100.0%
+
+Unique CVEs cleared: 69
+Total CVEs cleared (counts duplicates across repos): 72
+
+Vulnerable packages before: 25
+Vulnerable packages after: 0
+Instances cleared: 25
+Clearance rate: 100.0%
+
+Average repo fix time: 6:27
+
+Per-repo:
+  [Success] https://github.com/Cloud-3-0-EMU/cwih-cnp-mgmt-consent-publish-api.git@npe_test_dependency_upgrade — 6:25
+  [Success] https://github.com/Cloud-3-0-EMU/cwih-cnp-mgmt-consent-publish-api.git@main — 6:29
+

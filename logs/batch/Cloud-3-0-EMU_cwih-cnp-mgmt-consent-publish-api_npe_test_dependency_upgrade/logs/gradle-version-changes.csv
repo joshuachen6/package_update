@@ -1,0 +1,2 @@
+dependency,config,old_version,new_version,remediation_guided
+org.apache.neethi:neethi,implementation,3.2.2,3.2.3,yes
