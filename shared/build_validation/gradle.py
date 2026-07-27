@@ -803,7 +803,11 @@ def _proactive_check_and_fix(
     from concurrent.futures import ThreadPoolExecutor
     from concurrent.futures import as_completed as _as_completed
 
-    from output.gradle import write_dependency_substitutions, write_resolution_forces
+    from output.gradle import (
+        _align_competing_pins,
+        write_dependency_substitutions,
+        write_resolution_forces,
+    )
     from parsers.gradle import (
         find_accessible_version,
         get_available_versions,
@@ -893,6 +897,22 @@ def _proactive_check_and_fix(
             }
             for key, forced_version in scan_bumped.items()
         ]
+
+        # A package can already carry its own direct `version { strictly '...' }`
+        # pin (or a pre-existing force / capabilitiesResolution.select()) for a
+        # DIFFERENT version than what this scan just decided is actually
+        # accessible. Writing only a new force here left that competing pin
+        # untouched, so the file ended up declaring two different versions for
+        # the same package side by side (confirmed live:
+        # cwih-cnp-mgmt-consent-publish-api's jackson-databind kept its direct
+        # `strictly '2.22.1'` declaration while a force to the actually-
+        # accessible 2.21.5 was added right next to it — misleading even
+        # though this run's real Gradle resolution happened to settle on the
+        # forced version). Realign those competing pins the same way the main
+        # write path already does for its own force entries.
+        for row in _align_competing_pins(build_text, [], scan_force_entries):
+            build_text = build_text.replace(row["original"], row["replacement"], 1)
+
         build_text = write_resolution_forces(build_text, scan_force_entries)
         build_text = write_dependency_substitutions(build_text, scan_force_entries)
         build_path.write_text(build_text, encoding="utf-8")

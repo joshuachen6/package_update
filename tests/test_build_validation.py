@@ -1822,6 +1822,89 @@ def test_proactive_gradle_check_fixes_blocks_that_break_tree_resolution_itself(
     assert "jackson-databind:2.21.5" in debug
 
 
+def test_proactive_gradle_check_realigns_competing_direct_pin_when_scan_forces(
+    tmp_path, monkeypatch
+):
+    """Live bug (confirmed via a real batch pull, cwih-cnp-mgmt-consent-
+    publish-api): jackson-databind's CVE-remediation target (2.22.1) was
+    blocked in Artifactory, so this proactive scan forced the nearest
+    accessible version (2.21.5) via resolutionStrategy.force -- but it never
+    touched the package's own pre-existing direct `version { strictly
+    '2.22.1' }` declaration, leaving the file declaring two different
+    versions for the same package side by side. _align_competing_pins
+    already does exactly this realignment for the main write path's own
+    force entries; the scan-forced path needs the same treatment.
+    """
+    build_file = tmp_path / "build.gradle"
+    build_file.write_text(
+        "repositories { maven { url 'https://repo.example' } }\n"
+        "dependencies {\n"
+        "    implementation('com.fasterxml.jackson.core:jackson-databind') {\n"
+        "        version { strictly '2.22.1' }\n"
+        "    }\n"
+        "}\n",
+        encoding="utf-8",
+    )
+
+    import parsers.gradle as gradle
+    import parsers.gradle_tree as gradle_tree
+    from shared.maven_version import MavenVersion
+
+    scan_failure = (
+        "FAILURE: Build failed with an exception.\n\n"
+        "* What went wrong:\n"
+        "Could not resolve com.fasterxml.jackson.core:jackson-databind:2.22.1.\n"
+        "Required by:\n"
+        "    project :\n"
+        "Could not GET 'https://repo.example/com/fasterxml/jackson/core/"
+        "jackson-databind/2.22.1/jackson-databind-2.22.1.pom'. "
+        "Received status code 403 from server: Forbidden\n"
+    )
+
+    call_count = {"n": 0}
+
+    def fake_run_gradle_dependencies(
+        project_dir, gradle_cmd, timeout, configuration=None, resolve_repo_urls=False
+    ):
+        call_count["n"] += 1
+        if call_count["n"] == 1:
+            return None, scan_failure
+        return "resolved tree after force", None
+
+    monkeypatch.setattr(
+        gradle_tree, "run_gradle_dependencies", fake_run_gradle_dependencies
+    )
+    monkeypatch.setattr(gradle_tree, "parse_gradle_dep_tree", lambda output: ({}, {}))
+    monkeypatch.setattr(
+        gradle,
+        "get_available_versions",
+        lambda group, artifact, url, auth, timeout: (
+            [MavenVersion.parse("2.21.5"), MavenVersion.parse("2.22.1")],
+            None,
+        ),
+    )
+    monkeypatch.setattr(
+        gradle,
+        "version_accessible",
+        lambda group, artifact, version, url, auth, timeout: version == "2.21.5",
+    )
+
+    bv._proactive_check_and_fix(
+        str(build_file),
+        "./gradlew",
+        30,
+        str(tmp_path),
+        None,
+        None,
+        "https://repo.example",
+    )
+
+    written = build_file.read_text(encoding="utf-8")
+    assert "2.22.1" not in written
+    assert "strictly '2.21.5'" in written
+    assert "force 'com.fasterxml.jackson.core:jackson-databind:2.21.5'" in written
+
+
 def _spring_boot_plugin_build_text():
     return """plugins {
     id 'org.springframework.boot' version '3.5.16'
