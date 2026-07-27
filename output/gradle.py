@@ -4,10 +4,16 @@ import os
 import re
 import threading
 import time
+from collections.abc import Callable
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 
-from parsers.gradle import GradleDep, _is_prerelease, find_accessible_version
+from parsers.gradle import (
+    GradleDep,
+    _is_prerelease,
+    find_accessible_version,
+    parse_gradle_deps,
+)
 from parsers.gradle_tree import resolve_transitive_with_gradle
 from resolver.resolver import select_best_version
 from shared.maven_version import MavenVersion
@@ -102,6 +108,9 @@ def apply_updates(
                     written as resolutionStrategy.force lines
     """
     direct_by_key: dict[str, GradleDep] = {f"{d.group}:{d.artifact}": d for d in deps}
+    direct_occurrences_by_key: dict[str, list[GradleDep]] = {}
+    for d in deps:
+        direct_occurrences_by_key.setdefault(f"{d.group}:{d.artifact}", []).append(d)
     all_criteria_keys: set[str] = set(remediation_by_key.keys()) | set(package_constraints.keys())
 
     try:
@@ -245,20 +254,32 @@ def apply_updates(
             # Already confirmed accessible above (unless skip_block_check).
             final = str(target)
 
-            if final == dep.version:
-                ks.append({"dependency": key, "reason": "selected version equals current", "current": str(current), "target": ""})
-                return kc, ks, kf
+            # A build.gradle can declare the same group:artifact more than
+            # once (e.g. two identical strict-version blocks at different
+            # locations). direct_by_key only keeps one representative entry
+            # per key, so iterate every parsed occurrence here -- otherwise
+            # only the first textual occurrence gets patched and the rest
+            # stay at the vulnerable version even though the pipeline
+            # believes the package was fixed.
+            occurrences = direct_occurrences_by_key.get(key, [dep])
+            changed_any = False
+            for occurrence in occurrences:
+                if occurrence.version == final:
+                    continue
+                new_decl = occurrence.original.replace(occurrence.version, final, 1)
+                kc.append({
+                    "dependency": key,
+                    "config": occurrence.config,
+                    "old_version": occurrence.version,
+                    "new_version": final,
+                    "remediation_guided": "yes",
+                    "original": occurrence.original,
+                    "replacement": new_decl,
+                })
+                changed_any = True
 
-            new_decl = dep.original.replace(dep.version, final, 1)
-            kc.append({
-                "dependency": key,
-                "config": dep.config,
-                "old_version": dep.version,
-                "new_version": final,
-                "remediation_guided": "yes",
-                "original": dep.original,
-                "replacement": new_decl,
-            })
+            if not changed_any:
+                ks.append({"dependency": key, "reason": "selected version equals current", "current": str(current), "target": ""})
             return kc, ks, kf
 
         # -----------------------------------------------------------------
@@ -391,10 +412,13 @@ def apply_updates(
                 force_entries.extend(kf)
 
     force_entries.extend(
-        _sibling_family_forces(changes, force_entries, installed)
+        _sibling_family_forces(changes, force_entries, installed, available_by_key)
     )
     changes.extend(
         _align_competing_pins(build_text_for_strategy, changes, force_entries)
+    )
+    force_entries = _drop_redundant_forces(
+        build_text_for_strategy, changes, force_entries
     )
 
     return changes, skipped, force_entries
@@ -402,6 +426,10 @@ def apply_updates(
 
 _EXISTING_FORCE_LINE_RE = re.compile(
     r"""force\s*\(?\s*(['"])([^'"$]+):([^'"$]+):([^'"$]+)\1(?:\s*\))?"""
+)
+
+_CAPABILITIES_SELECT_RE = re.compile(
+    r"""select\s*\(\s*(['"])([^'"$]+):([^'"$]+):([^'"$]+)\1\s*\)"""
 )
 
 
@@ -422,8 +450,6 @@ def _align_competing_pins(
     original/replacement like any direct change, so writing, reporting, and
     rollback all treat them uniformly.
     """
-    from parsers.gradle import parse_gradle_deps
-
     targets: dict[str, str] = {}
     for row in list(changes) + list(force_entries):
         dependency = row.get("dependency", "")
@@ -431,6 +457,20 @@ def _align_competing_pins(
         if dependency and new_version:
             targets.setdefault(dependency, new_version)
 
+    # Read-only membership check against text Case 1 already patched. This
+    # must NOT be mutated as the loops below run: a build.gradle can declare
+    # the very SAME group:artifact:version twice (byte-identical text at two
+    # different physical locations) -- adding the first occurrence's text
+    # here would make the set membership check below wrongly treat the
+    # SECOND, still-unpatched occurrence as "already handled" too, since the
+    # check is by text content, not position. Observed live:
+    # org.apache.cxf:cxf-rt-transports-http declared twice at 4.1.3; this
+    # loop patched the first to 4.2.2 and then, because that exact text was
+    # now in handled_originals, skipped the second -- leaving the old
+    # vulnerable version sitting right next to the new one in the file.
+    # parse_gradle_deps/finditer already return each physical occurrence
+    # separately, so nothing here needs to track "have I emitted a row for
+    # this text already" -- every occurrence not covered by Case 1 gets one.
     handled_originals = {row.get("original") for row in changes}
     rows: list[dict] = []
 
@@ -451,7 +491,6 @@ def _align_competing_pins(
             "original": dep.original,
             "replacement": dep.original.replace(dep.version, target, 1),
         })
-        handled_originals.add(dep.original)
 
     # Pre-existing resolutionStrategy force lines pinning an old version.
     for match in _EXISTING_FORCE_LINE_RE.finditer(build_text):
@@ -472,15 +511,87 @@ def _align_competing_pins(
             "original": original,
             "replacement": original.replace(f"{key}:{old_version}", f"{key}:{target}", 1),
         })
-        handled_originals.add(original)
+
+    # Pre-existing capabilitiesResolution.withCapability { select('g:a:v') }
+    # pins -- a mechanism for resolving conflicts between two modules that
+    # provide the same capability (e.g. org.lz4:lz4-java vs
+    # at.yawk.lz4:lz4-java). select() is authoritative for that capability
+    # conflict and outranks both a version{strictly} constraint and
+    # resolutionStrategy.force on the losing module, so a stale select()
+    # silently keeps the vulnerable version even after both of those are
+    # realigned (confirmed live: lz4-java forced to 1.11.1 and its own
+    # strictly() block realigned, but a stale select("...:1.10.1") still won
+    # real Gradle resolution).
+    for match in _CAPABILITIES_SELECT_RE.finditer(build_text):
+        key = f"{match.group(2)}:{match.group(3)}"
+        old_version = match.group(4)
+        target = targets.get(key)
+        if not target or old_version == target:
+            continue
+        original = match.group(0)
+        if original in handled_originals:
+            continue
+        rows.append({
+            "dependency": key,
+            "config": "capabilitiesResolution",
+            "old_version": old_version,
+            "new_version": target,
+            "remediation_guided": "competing pin realigned",
+            "original": original,
+            "replacement": original.replace(f"{key}:{old_version}", f"{key}:{target}", 1),
+        })
 
     return rows
+
+
+def _drop_redundant_forces(
+    build_text: str,
+    changes: list[dict],
+    force_entries: list[dict],
+) -> list[dict]:
+    """Drop a force entry when the package's own direct declaration(s)
+    already pin the identical target version.
+
+    _sibling_family_forces adds a resolutionStrategy.force entry for any
+    same-group sibling sitting at the trigger's old version, without regard
+    for whether that sibling also has its own direct `implementation(...)`
+    declaration(s) -- which _align_competing_pins then separately realigns
+    to the exact same target. The force line changes nothing once every
+    direct occurrence already carries the target version; it's pure clutter
+    (confirmed live: org.apache.cxf:cxf-rt-transports-http ended up pinned
+    three ways to the identical 4.2.2 -- two realigned strictly() blocks
+    plus a fully redundant force entry, in both buildscript and project
+    scope).
+    """
+    if not force_entries or not build_text:
+        return force_entries
+
+    occurrences_by_key: dict[str, list[GradleDep]] = {}
+    for dep in parse_gradle_deps(build_text):
+        occurrences_by_key.setdefault(f"{dep.group}:{dep.artifact}", []).append(dep)
+
+    changed_originals = {row.get("original") for row in changes}
+
+    kept: list[dict] = []
+    for entry in force_entries:
+        key = entry.get("dependency", "")
+        target = entry.get("new_version", "")
+        occurrences = occurrences_by_key.get(key)
+        if occurrences and target and all(
+            occ.version == target or occ.original in changed_originals
+            for occ in occurrences
+        ):
+            continue
+        kept.append(entry)
+
+    return kept
 
 
 def _sibling_family_forces(
     changes: list[dict],
     force_entries: list[dict],
     installed: dict[str, MavenVersion],
+    available_by_key: dict[str, list[MavenVersion]],
 ) -> list[dict]:
     """Keep version-locked dependency families (Netty, Spring, Jackson, ...) consistent.
 
@@ -520,11 +631,33 @@ def _sibling_family_forces(
                 continue
             if sibling_version != old_version:
                 continue
+
+            # The trigger's exact version string doesn't necessarily exist for
+            # every sibling -- Jackson's own annotations module releases on a
+            # coarser cadence than databind/core (no patch digit some minors),
+            # so stamping databind's "2.22.1" onto jackson-annotations forced a
+            # version that was never published. Gradle can't resolve it
+            # ("jackson-annotations:2.22.1 FAILED" in the tree, confirmed live)
+            # and the real build never gets far enough to blame the actual
+            # cause. Only force to a version confirmed to exist for THIS
+            # sibling; fall back to the closest existing one below the
+            # trigger's target, and skip forcing entirely if none exists.
+            sibling_available = available_by_key.get(sibling_key, [])
+            if target_version in sibling_available:
+                resolved_target = target_version
+            else:
+                lower_candidates = [
+                    v for v in sibling_available if old_version < v <= target_version
+                ]
+                resolved_target = max(lower_candidates) if lower_candidates else None
+            if resolved_target is None:
+                continue
+
             sibling_forces[sibling_key] = {
                 "dependency": sibling_key,
                 "old_version": str(sibling_version),
-                "new_version": str(target_version),
-                "minimum_required": str(target_version),
+                "new_version": str(resolved_target),
+                "minimum_required": str(resolved_target),
                 "remediation_guided": f"version-locked sibling of {dependency}",
             }
 
@@ -748,18 +881,28 @@ def write_spring_boot_managed_properties(
 
     # Remove old values for properties this run controls. This supports both
     # set('name', "version") and ext['name'] = 'version' declarations.
+    #
+    # The trailing "(?://[^\n]*)?" is required: these lines are commonly
+    # annotated with a CVE comment (e.g. `set('netty.version', "4.1.135.Final")
+    # //Fix for CVE-2026-33870`), and the original pattern anchored "\s*\)\s*$"
+    # right after the closing paren -- a comment there isn't whitespace, so
+    # the match (and therefore the deletion) silently failed. The old line
+    # survived untouched while a brand-new, comment-free line with the
+    # updated version was still unconditionally appended below, leaving two
+    # coexisting values for the same property, one stale and one current
+    # (confirmed live via a manual post-pipeline diff on netty.version).
     for property_name in selected_versions:
         build_text = re.sub(
             r"(?m)^\s*set\(\s*['\"]"
             + re.escape(property_name)
-            + r"['\"]\s*,\s*['\"][^'\"]+['\"]\s*\)\s*$\n?",
+            + r"['\"]\s*,\s*['\"][^'\"]+['\"]\s*\)\s*(?://[^\n]*)?$\n?",
             "",
             build_text,
         )
         build_text = re.sub(
             r"(?m)^\s*ext\[\s*['\"]"
             + re.escape(property_name)
-            + r"['\"]\s*\]\s*=\s*['\"][^'\"]+['\"]\s*$\n?",
+            + r"['\"]\s*\]\s*=\s*['\"][^'\"]+['\"]\s*(?://[^\n]*)?$\n?",
             "",
             build_text,
         )
@@ -801,50 +944,144 @@ def write_spring_boot_managed_properties(
     return build_text, remaining_forces
 
 
+_FORCE_BLOCK_MARKER_BUILDSCRIPT = (
+    "// package-update: managed buildscript force block (safe to regenerate)"
+)
+_FORCE_BLOCK_MARKER_PROJECT = (
+    "// package-update: managed force block (safe to regenerate)"
+)
+_SUBSTITUTION_BLOCK_MARKER = (
+    "// package-update: managed dependencySubstitution block (safe to regenerate)"
+)
+
+
+def _buildscript_exists(build_text: str) -> bool:
+    """Whether the file has a buildscript{} block at all to force into.
+
+    Forcing in buildscript scope matters even when buildscript{} declares no
+    explicit dependencies{} of its own: declared plugins (e.g. Spring Boot,
+    Sonarqube) resolve their *own* transitive dependencies through the same
+    classpath configuration, and those transitive picks can still need a
+    version force (confirmed live: a repo with no buildscript dependencies{}
+    still 403'd resolving jackson-databind through a plugin's classpath after
+    an earlier version of this check skipped the buildscript block here).
+    """
+    return re.search(r"buildscript\s*\{", build_text) is not None
+
+
+def _enclosing_block_end(text: str, pos: int) -> int:
+    """Index just past the '}' closing the block that contains position pos."""
+    depth = 0
+    i = pos
+    while i >= 0:
+        ch = text[i]
+        if ch == "}":
+            depth += 1
+        elif ch == "{":
+            if depth == 0:
+                return _find_block_end(text, i)
+            depth -= 1
+        i -= 1
+    return pos
+
+
+def _append_or_insert_block(
+    build_text: str,
+    marker: str,
+    body_lines: list[str],
+    insert_new: Callable[[str, str], str],
+    body_indent: str,
+) -> str:
+    """Append body_lines into the block already tagged with marker, or
+    create a fresh marked block via insert_new if none exists yet.
+
+    A single pipeline run can call the writer more than once (a pre-build
+    check may force one blocked artifact, the main CVE write forces
+    everything else, a later reactive retry may force still more) -- each
+    call used to insert a brand-new configurations.all block rather than
+    reusing the one already written this run, so one repo could end up with
+    several near-identical blocks (confirmed live: 4 blocks from 2 calls on
+    the same file). The marker tags only blocks this function itself wrote,
+    so later calls extend that exact block and never touch a hand-authored
+    one -- preserving the original "never merge into unrecognized blocks"
+    safety this design started from.
+    """
+    marker_idx = build_text.find(marker)
+    if marker_idx == -1:
+        return insert_new(build_text, marker)
+
+    close_idx = _enclosing_block_end(build_text, marker_idx) - 1
+    # Re-running the same write (Phase 2 replay, a repeated batch pass) must
+    # not keep growing the block with lines it already contains.
+    existing_body = build_text[marker_idx:close_idx]
+    new_lines = [line for line in body_lines if line not in existing_body]
+    if not new_lines:
+        return build_text
+    insertion = "\n" + "\n".join(f"{body_indent}{line}" for line in new_lines)
+    return build_text[:close_idx] + insertion + "\n" + build_text[close_idx:]
+
+
 def write_resolution_forces(build_text: str, forces: list[dict]) -> str:
     """Insert resolutionStrategy.force entries into build_text.
 
-    Forces are written in both places Gradle can need them:
-    - buildscript configurations for classpath/plugin artifacts
-    - project configurations for compile/runtime artifacts
-
-    Always add a new project-level configurations.all block instead of trying to
-    merge into an existing one. Some legacy build.gradle files have compact or
-    non-standard formatting that makes safely identifying scope-sensitive
-    existing blocks unreliable, and duplicate resolutionStrategy.force entries
-    are safer than missing the force entirely.
+    Forces are written in project scope always, and in buildscript scope
+    whenever a buildscript{} block exists -- plugin classpath resolution can
+    need the same force even with no explicit buildscript dependencies{},
+    see _buildscript_exists. Repeated calls within (or across) a run extend
+    the block this function already wrote instead of inserting a new one
+    each time -- see _append_or_insert_block.
     """
     if not forces:
         return build_text
 
-    force_lines = "\n".join(
-        f"            force '{f['dependency']}:{f['new_version']}'" for f in forces
-    )
+    force_lines = [f"force '{f['dependency']}:{f['new_version']}'" for f in forces]
 
-    buildscript_snippet = (
-        "\n    configurations.all {\n"
-        "        resolutionStrategy {\n"
-        f"{force_lines}\n"
-        "        }\n"
-        "    }\n"
-    )
+    if _buildscript_exists(build_text):
+        def _insert_buildscript(text: str, marker: str) -> str:
+            snippet = (
+                "\n    configurations.all {\n"
+                "        resolutionStrategy {\n"
+                f"            {marker}\n"
+                + "\n".join(f"            {line}" for line in force_lines)
+                + "\n        }\n"
+                "    }\n"
+            )
+            buildscript_match = re.search(r"buildscript\s*\{", text)
+            if not buildscript_match:
+                return text
+            return (
+                text[: buildscript_match.end()]
+                + snippet
+                + text[buildscript_match.end() :]
+            )
 
-    buildscript_match = re.search(r"buildscript\s*\{", build_text)
-    if buildscript_match:
-        build_text = (
-            build_text[: buildscript_match.end()]
-            + buildscript_snippet
-            + build_text[buildscript_match.end() :]
+        build_text = _append_or_insert_block(
+            build_text,
+            _FORCE_BLOCK_MARKER_BUILDSCRIPT,
+            force_lines,
+            _insert_buildscript,
+            body_indent="            ",
         )
 
-    project_block = (
-        "configurations.all {\n"
-        "    resolutionStrategy {\n"
-        f"{force_lines}\n"
-        "    }\n"
-        "}\n"
+    def _insert_project(text: str, marker: str) -> str:
+        project_block = (
+            "configurations.all {\n"
+            "    resolutionStrategy {\n"
+            f"        {marker}\n"
+            + "\n".join(f"        {line}" for line in force_lines)
+            + "\n    }\n"
+            "}\n"
+        )
+        return _insert_project_forces(text, project_block)
+
+    build_text = _append_or_insert_block(
+        build_text,
+        _FORCE_BLOCK_MARKER_PROJECT,
+        force_lines,
+        _insert_project,
+        body_indent="        ",
     )
-    return _insert_project_forces(build_text, project_block).rstrip() + "\n"
+    return build_text.rstrip() + "\n"
 
 
 def write_dependency_substitutions(build_text: str, forces: list[dict]) -> str:
@@ -852,25 +1089,38 @@ def write_dependency_substitutions(build_text: str, forces: list[dict]) -> str:
     cannot override (e.g. Gradle Module Metadata strict version constraints).
 
     dependencySubstitution runs before version conflict resolution, substituting the
-    entire module reference before strict constraints from component metadata are applied.
+    entire module reference before strict constraints from component metadata are
+    applied. Repeated calls extend the block this function already wrote --
+    see _append_or_insert_block.
     """
     if not forces:
         return build_text
 
-    sub_lines = "\n".join(
-        f"        substitute module('{f['dependency']}') "
+    sub_lines = [
+        f"substitute module('{f['dependency']}') "
         f"using module('{f['dependency']}:{f['new_version']}')"
         for f in forces
-    )
+    ]
 
-    project_block = (
-        "configurations.all {\n"
-        "    resolutionStrategy.dependencySubstitution {\n"
-        f"{sub_lines}\n"
-        "    }\n"
-        "}\n"
+    def _insert_project(text: str, marker: str) -> str:
+        project_block = (
+            "configurations.all {\n"
+            "    resolutionStrategy.dependencySubstitution {\n"
+            f"        {marker}\n"
+            + "\n".join(f"        {line}" for line in sub_lines)
+            + "\n    }\n"
+            "}\n"
+        )
+        return _insert_project_forces(text, project_block)
+
+    build_text = _append_or_insert_block(
+        build_text,
+        _SUBSTITUTION_BLOCK_MARKER,
+        sub_lines,
+        _insert_project,
+        body_indent="        ",
     )
-    return _insert_project_forces(build_text, project_block).rstrip() + "\n"
+    return build_text.rstrip() + "\n"
 
 
 def write_gradle_file(

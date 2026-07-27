@@ -6,16 +6,22 @@ import queue
 import subprocess
 import sys
 import threading
+import time
+import traceback
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from urllib.parse import urlparse
 
 from PyQt6.QtCore import QThread, pyqtSignal
+
+from shared.batch_summary import aggregate_batch_summary, read_repo_evidence
+from shared.utils import safe_branch_dir as _safe_branch_dir
 
 
 class BatchWorker(QThread):
     row_status = pyqtSignal(int, str)
     row_log = pyqtSignal(int, str)
     all_done = pyqtSignal()
+    batch_summary = pyqtSignal(dict)
 
     def __init__(self, rows: list[dict], settings: dict, parent=None):
         super().__init__(parent)
@@ -23,6 +29,8 @@ class BatchWorker(QThread):
         self._settings = settings
         self._abort = False
         self._procs: list[subprocess.Popen] = []
+        self._repo_results: list[dict] = []
+        self._repo_results_lock = threading.Lock()
 
     def abort(self):
         self._abort = True
@@ -44,6 +52,13 @@ class BatchWorker(QThread):
                 except Exception as exc:
                     self.row_log.emit(idx, f"[error] {exc}")
                     self.row_status.emit(idx, "Error")
+        repo_results = list(self._repo_results)
+        self.batch_summary.emit(
+            {
+                "summary": aggregate_batch_summary(repo_results),
+                "repos": repo_results,
+            }
+        )
         self.all_done.emit()
 
     def _expand_url(self, url: str) -> str:
@@ -56,7 +71,7 @@ class BatchWorker(QThread):
             url = url + ".git"
         return url
 
-    def _repo_log_dir(self, url: str) -> str:
+    def _repo_log_dir(self, url: str, branch: str = "") -> str:
         base = self._settings.get("log_dir") or "logs"
         parsed = urlparse(url)
         parts = [p for p in parsed.path.split("/") if p]
@@ -66,6 +81,10 @@ class BatchWorker(QThread):
             dir_name = parts[-1].replace(".git", "")
         else:
             dir_name = "repo"
+        # Different branches of the same repo in one batch used to share this
+        # exact directory and clobber each other's logs -- the branch name is
+        # now part of the path instead of being invisible.
+        dir_name = f"{dir_name}_{_safe_branch_dir(branch)}"
         return os.path.join(base, "batch", dir_name)
 
     def _run_repo(self, index: int, row: dict):
@@ -79,10 +98,24 @@ class BatchWorker(QThread):
             return
 
         self.row_status.emit(index, "Running...")
+        started_at = time.monotonic()
         branch = row.get("branch", "").strip()
         cves = row.get("cves", "").strip()
-        log_dir = self._repo_log_dir(url)
+        log_dir = self._repo_log_dir(url, branch)
         s = self._settings
+
+        # Captured independently of quick_update.py writing anything itself --
+        # a subprocess that crashes before it ever gets far enough to create
+        # its own log_dir (e.g. the checkout/clone step failing) previously
+        # left literally no trace once the GUI's in-memory row log was gone,
+        # making a whole batch of instant failures undiagnosable after the
+        # fact. Pre-creating the directory here means this file always lands
+        # regardless of how early the subprocess dies.
+        captured: list[str] = []
+
+        def _emit(line: str) -> None:
+            captured.append(line)
+            self.row_log.emit(index, line)
 
         script = os.path.join(
             os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "quick_update.py"
@@ -93,8 +126,7 @@ class BatchWorker(QThread):
             "phase2-results.json",
         )
 
-        self.row_log.emit(
-            index,
+        _emit(
             f"[phase2] replay={s.get('phase2_only_replay')} "
             f"log_dir={log_dir} "
             f"cache={phase2_results} "
@@ -109,12 +141,17 @@ class BatchWorker(QThread):
                 "--phase2-results",
                 phase2_results,
             ]
-            self.row_log.emit(index, f"[phase2] USING REPLAY {' '.join(cmd)}")
+            _emit(f"[phase2] USING REPLAY {' '.join(cmd)}")
         else:
             # Isolate checkouts by batch row. clone_github_repo derives the
             # destination from only the repository name, so parallel rows
             # sharing a checkout root can otherwise remove or clone into
-            # one another's directories.
+            # one another's directories. This used to be the bare batch-row
+            # index ("0", "1", "6", ...), which told you nothing about which
+            # branch was actually checked out there -- the branch name now
+            # does that job instead. (Two rows for the exact same repo+branch
+            # would still collide, but that's a genuine duplicate row, not a
+            # case this needs to disambiguate.)
             checkout_root = (
                 os.path.abspath(os.path.expanduser(s["checkout_dir"]))
                 if s.get("checkout_dir")
@@ -127,7 +164,7 @@ class BatchWorker(QThread):
             checkout_dir = os.path.join(
                 checkout_root,
                 os.path.basename(os.path.normpath(log_dir)),
-                str(index),
+                _safe_branch_dir(branch),
             )
             cmd = [
                 sys.executable,
@@ -140,10 +177,7 @@ class BatchWorker(QThread):
                 "--log-dir",
                 log_dir,
             ]
-            self.row_log.emit(
-                index,
-                f"[phase2] FALLBACK FULL RUN {' '.join(cmd)}",
-            )
+            _emit(f"[phase2] FALLBACK FULL RUN {' '.join(cmd)}")
 
         if branch:
             cmd += ["--branch", branch]
@@ -163,6 +197,8 @@ class BatchWorker(QThread):
             cmd += ["--npm-registry", s["npm_registry"]]
         if s.get("skip_block_check"):
             cmd += ["--skip-block-check"]
+        if s.get("capture_build_logs"):
+            cmd += ["--capture-build-logs"]
         if s.get("workers"):
             cmd += ["--workers", str(s["workers"])]
         if s.get("npm_timeout"):
@@ -210,34 +246,76 @@ class BatchWorker(QThread):
                 except queue.Empty:
                     proc.terminate()
                     timed_out = True
-                    self.row_log.emit(
-                        index,
+                    _emit(
                         f"[timeout] No output for {inactivity_secs // 60} min — process terminated.",
                     )
                     break
                 if raw is None:
                     break
-                self.row_log.emit(index, raw.rstrip("\r\n"))
+                _emit(raw.rstrip("\r\n"))
 
             proc.wait()
             with suppress_exc():
                 self._procs.remove(proc)
 
             if timed_out:
+                status = "Error"
                 self.row_status.emit(index, "Error")
             elif self._abort:
+                status = "Aborted"
                 self.row_status.emit(index, "Aborted")
             elif proc.returncode == 0:
+                status = "Success"
                 self.row_status.emit(index, "Success")
             elif proc.returncode == 2:
+                status = "Partial"
                 self.row_status.emit(index, "Partial")
             elif proc.returncode == 3:
+                status = "Failed"
                 self.row_status.emit(index, "Failed")
             else:
+                status = "Error"
                 self.row_status.emit(index, "Error")
         except Exception as exc:
-            self.row_log.emit(index, f"[error] {exc}")
+            _emit(f"[error] {exc}")
+            _emit(traceback.format_exc())
+            status = "Error"
             self.row_status.emit(index, "Error")
+
+        self._write_subprocess_output(log_dir, captured)
+        self._record_repo_result(index, url, branch, log_dir, status, started_at)
+
+    def _write_subprocess_output(self, log_dir: str, captured: list[str]) -> None:
+        try:
+            os.makedirs(os.path.join(log_dir, "logs"), exist_ok=True)
+            with open(
+                os.path.join(log_dir, "logs", "batch-subprocess-output.txt"),
+                "w",
+                encoding="utf-8",
+            ) as f:
+                f.write("\n".join(captured) + "\n")
+        except OSError:
+            pass
+
+    def _record_repo_result(
+        self,
+        index: int,
+        url: str,
+        branch: str,
+        log_dir: str,
+        status: str,
+        started_at: float,
+    ) -> None:
+        result = {
+            "index": index,
+            "url": url,
+            "branch": branch,
+            "status": status,
+            "duration_seconds": time.monotonic() - started_at,
+            "evidence": read_repo_evidence(log_dir),
+        }
+        with self._repo_results_lock:
+            self._repo_results.append(result)
 
 
 class suppress_exc:

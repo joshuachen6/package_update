@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import os
 import time
 
 from PyQt6.QtCore import Qt, QTimer
@@ -10,6 +11,7 @@ from PyQt6.QtWidgets import (
     QHBoxLayout,
     QHeaderView,
     QLabel,
+    QMessageBox,
     QPushButton,
     QSplitter,
     QTableWidget,
@@ -18,6 +20,7 @@ from PyQt6.QtWidgets import (
     QWidget,
 )
 
+from shared.batch_summary import format_summary_log, format_summary_popup
 from ui.widgets import mono_textedit
 
 _COL_URL = 0
@@ -43,6 +46,7 @@ class BatchTab(QWidget):
         self._ticker = QTimer(self)
         self._ticker.setInterval(1000)
         self._ticker.timeout.connect(self._tick_timer)
+        self._last_batch_result: dict | None = None
         self._setup_ui()
 
     def _setup_ui(self):
@@ -251,6 +255,7 @@ class BatchTab(QWidget):
         self._worker = BatchWorker(rows, settings, parent=self)
         self._worker.row_status.connect(self._on_row_status)
         self._worker.row_log.connect(self._on_row_log)
+        self._worker.batch_summary.connect(self._on_batch_summary)
         self._worker.all_done.connect(self._on_all_done)
         self._worker.start()
 
@@ -320,6 +325,7 @@ class BatchTab(QWidget):
         self._worker = BatchWorker(rows, settings, parent=self)
         self._worker.row_status.connect(self._on_row_status)
         self._worker.row_log.connect(self._on_row_log)
+        self._worker.batch_summary.connect(self._on_batch_summary)
         self._worker.all_done.connect(self._on_all_done)
         self._worker.start()
 
@@ -465,6 +471,7 @@ class BatchTab(QWidget):
         self._worker = BatchWorker(selected, settings, parent=self)
         self._worker.row_status.connect(self._on_row_status)
         self._worker.row_log.connect(self._on_row_log)
+        self._worker.batch_summary.connect(self._on_batch_summary)
         self._worker.all_done.connect(self._on_all_done)
         self._worker.start()
 
@@ -481,6 +488,33 @@ class BatchTab(QWidget):
         )
         self._phase2_btn.setEnabled(needs_phase2)
         self._stop_btn.setEnabled(False)
+
+        if self._last_batch_result is not None:
+            summary = self._last_batch_result["summary"]
+            repos = self._last_batch_result["repos"]
+            if summary["processed"]:
+                self._write_batch_summary_log(summary, repos)
+                QMessageBox.information(
+                    self,
+                    "Batch complete",
+                    format_summary_popup(summary),
+                )
+            self._last_batch_result = None
+
+    def _on_batch_summary(self, result: dict):
+        self._last_batch_result = result
+
+    def _write_batch_summary_log(self, summary: dict, repos: list[dict]) -> None:
+        settings = self._get_settings() or {}
+        base = settings.get("log_dir") or "logs"
+        log_path = os.path.join(base, "batch", "batch-summary.log")
+        try:
+            os.makedirs(os.path.dirname(log_path), exist_ok=True)
+            with open(log_path, "a", encoding="utf-8") as f:
+                f.write(format_summary_log(summary, repos))
+                f.write("\n")
+        except OSError as exc:
+            self._log_label.setText(f"Could not write batch summary log: {exc}")
 
 
 def _status_item(text: str) -> QTableWidgetItem:

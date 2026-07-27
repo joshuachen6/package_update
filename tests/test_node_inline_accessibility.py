@@ -79,6 +79,74 @@ def test_direct_dependency_substitutes_blocked_cve_target(monkeypatch):
     assert override_changes == []
 
 
+def test_direct_dependency_substitutes_cve_flagged_target_even_when_accessible(
+    monkeypatch,
+):
+    """Real-world bug: select_best_version's minimal-bump heuristic can land
+    on a version that's perfectly reachable (not registry-blocked) but still
+    CVE-flagged by Xray. The old code only ever re-searched when the pick was
+    ALSO registry-blocked, so an accessible-but-vulnerable pick shipped
+    unverified -- observed live: dompurify/fast-uri/js-yaml all landed on a
+    version Xray still flagged in the after-audit, because nothing here ever
+    asked Xray about the initially-selected candidate itself.
+    """
+    from output.node import apply_updates
+    from parsers.node import DirectEntry
+
+    package_json = {"dependencies": {"some-dep": "1.0.0"}}
+    direct_entry = DirectEntry(
+        package="some-dep",
+        section="dependencies",
+        spec="1.0.0",
+        container=package_json["dependencies"],
+        key="some-dep",
+        path="dependencies.some-dep",
+    )
+    lockfile = {"packages": {"node_modules/some-dep": {"version": "1.0.0"}}}
+
+    def fake_filter(ecosystem, package, versions, **kwargs):
+        # The naive minimal-bump pick (2.0.0) is still CVE-flagged; 2.0.1 is clean.
+        safe = [v for v in versions if str(v) != "2.0.0"]
+        vulnerable = (
+            {"npm://some-dep:2.0.0": ["CVE-FAKE-1"]}
+            if any(str(v) == "2.0.0" for v in versions)
+            else {}
+        )
+        return safe, vulnerable, ""
+
+    monkeypatch.setattr("shared.version_search.filter_versions_without_cves", fake_filter)
+    # Never registry-blocked -- purely a CVE problem, not an accessibility one.
+    _patch_is_version_blocked(monkeypatch, lambda *a, **k: (False, ""))
+
+    direct_changes, override_changes, skipped, block_changes = apply_updates(
+        package_json=package_json,
+        direct_entries=[direct_entry],
+        criteria={"some-dep": {1: SemVer.parse("2.0.0")}},
+        package_versions={"some-dep": {SemVer.parse("2.0.0")}},
+        versions_by_package={
+            "some-dep": [
+                SemVer.parse("1.0.0"),
+                SemVer.parse("2.0.0"),
+                SemVer.parse("2.0.1"),
+            ],
+        },
+        package_constraints={"some-dep": ">="},
+        allow_ambiguous_highest_major=True,
+        keep_nested_overrides=False,
+        lockfile=lockfile,
+    )
+
+    assert package_json["dependencies"]["some-dep"] == "2.0.1"
+    assert direct_changes and direct_changes[0]["new_spec"] == "2.0.1"
+    assert block_changes == [
+        {
+            "package": "some-dep",
+            "blocked_version": "2.0.0",
+            "unblocked_version": "2.0.1",
+        }
+    ]
+
+
 def test_flat_override_substitutes_blocked_cve_target(monkeypatch):
     from output.node import apply_updates
 

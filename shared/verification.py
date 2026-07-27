@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import contextlib
 import json
 import re
 import subprocess
@@ -228,6 +229,87 @@ def _node_baseline_failure(
         )
 
 
+def _node_build_once(project_dir: Path, npm_cmd: str, timeout: int, label: str) -> str:
+    parts = []
+    install = _run(
+        [npm_cmd, "install", "--no-audit", "--no-fund"],
+        project_dir,
+        timeout,
+        f"{label} npm install",
+    )
+    parts.append(install.get("output", ""))
+    if install["status"] == "passed":
+        try:
+            package_json = json.loads((project_dir / "package.json").read_text(encoding="utf-8"))
+        except Exception:
+            package_json = {}
+        scripts = package_json.get("scripts") if isinstance(package_json, dict) else None
+        if isinstance(scripts, dict) and scripts.get("build"):
+            build = _run([npm_cmd, "run", "build"], project_dir, timeout, f"{label} npm build")
+            parts.append(build.get("output", ""))
+    return "\n".join(part for part in parts if part)
+
+
+def capture_node_build_logs(
+    project_dir: Path,
+    npm_cmd: str,
+    timeout: int,
+    log_dir: str,
+) -> None:
+    """Opt-in diagnostic (cfg.capture_build_logs): run `npm install` (plus
+    `npm run build` if declared) twice -- once against the pre-remediation
+    package.json/lockfile, once against the already-written post-remediation
+    state -- purely to leave clean build-log-before.txt/build-log-after.txt
+    artifacts. An extra full install (and possibly build) per repo; meant for
+    verification runs, not production batches, hence gated behind a config
+    flag rather than always-on. Lockfile swap/restore mirrors
+    _node_baseline_failure. Best-effort: any git/install hiccup on the
+    "before" side just skips that file rather than raising.
+    """
+    pkg_path = project_dir / "package.json"
+    current_pkg_text = pkg_path.read_text(encoding="utf-8")
+
+    after_output = _node_build_once(project_dir, npm_cmd, timeout, "after")
+    with contextlib.suppress(Exception):
+        Path(log_dir, "build-log-after.txt").write_text(after_output, encoding="utf-8")
+
+    original_pkg_text = _git_show(project_dir, "package.json")
+    if original_pkg_text is None or original_pkg_text == current_pkg_text:
+        return
+
+    lock_paths = [
+        project_dir / "package-lock.json",
+        project_dir / "npm-shrinkwrap.json",
+    ]
+    snapshots: dict[Path, tuple[str, str]] = {}
+    for lock_path in lock_paths:
+        if not lock_path.is_file():
+            continue
+        original_lock_text = _git_show(project_dir, lock_path.name)
+        if original_lock_text is None:
+            continue
+        snapshots[lock_path] = (lock_path.read_text(encoding="utf-8"), original_lock_text)
+
+    try:
+        pkg_path.write_text(original_pkg_text, encoding="utf-8")
+        for lock_path, (_current, original_text) in snapshots.items():
+            lock_path.write_text(original_text, encoding="utf-8")
+        before_output = _node_build_once(project_dir, npm_cmd, timeout, "before")
+    finally:
+        pkg_path.write_text(current_pkg_text, encoding="utf-8")
+        for lock_path, (current_text, _original) in snapshots.items():
+            lock_path.write_text(current_text, encoding="utf-8")
+        _run(
+            [npm_cmd, "install", "--no-audit", "--no-fund"],
+            project_dir,
+            timeout,
+            "npm restore install",
+        )
+
+    with contextlib.suppress(Exception):
+        Path(log_dir, "build-log-before.txt").write_text(before_output, encoding="utf-8")
+
+
 def _gradle_test(
     file_result: dict[str, Any],
     cfg: dict[str, Any],
@@ -243,26 +325,55 @@ def _gradle_test(
         # system `gradle` — get_gradle_cmd checks os.access(..., X_OK) too.
         gradle_cmd = get_gradle_cmd(str(build_file.resolve().parent))
 
-    result = _run(
-        [
-            gradle_cmd,
-            "test",
-            "--rerun-tasks",
-            "--console=plain",
-            # Batch runs execute many repos in parallel, each spawning its own
-            # background daemon under --daemon; live data showed daemons
-            # getting killed mid-build ("daemon disappeared unexpectedly")
-            # under that contention, misreporting an otherwise-passing repo
-            # as Failed. shared.build_validation.validate_gradle_project
-            # already uses --no-daemon for the same reason (see its comment)
-            # — match that here so this one-shot test run doesn't leave a
-            # persistent daemon competing with everything else in the batch.
-            "--no-daemon",
-        ],
-        build_file.resolve().parent,
-        max(int(cfg.get("gradle_timeout", 30)), 600),
-        "Gradle tests",
-    )
+    from shared.build_validation import _extract_failing_tests, _is_transient_daemon_crash
+
+    project_dir = build_file.resolve().parent
+    timeout = max(int(cfg.get("gradle_timeout", 30)), 600)
+    command = [
+        gradle_cmd,
+        "test",
+        "--rerun-tasks",
+        "--console=plain",
+        # Batch runs execute many repos in parallel, each spawning its own
+        # background daemon under --daemon; live data showed daemons
+        # getting killed mid-build ("daemon disappeared unexpectedly")
+        # under that contention, misreporting an otherwise-passing repo
+        # as Failed. shared.build_validation.validate_gradle_project
+        # already uses --no-daemon for the same reason (see its comment)
+        # — match that here so this one-shot test run doesn't leave a
+        # persistent daemon competing with everything else in the batch.
+        "--no-daemon",
+    ]
+
+    def _crashed_with_no_test_result(candidate: dict[str, Any]) -> bool:
+        candidate_output = candidate.get("output", "")
+        return (
+            candidate["status"] == "failed"
+            and _is_transient_daemon_crash(candidate_output)
+            and not _extract_failing_tests(candidate_output)
+        )
+
+    result = _run(command, project_dir, timeout, "Gradle tests")
+    if _crashed_with_no_test_result(result):
+        # --no-daemon only stops a *persistent* daemon from being reused; the
+        # single-use worker Gradle still forks for this run can itself be
+        # killed under the same batch-parallelism memory contention. Live
+        # data: this one-shot verification test run crashed with zero test
+        # output while the earlier build-validation run against the exact
+        # same code had already run :test successfully moments before —
+        # retry once with a longer timeout, matching build_validation's own
+        # handling of this same crash class, before accepting it.
+        result = _run(command, project_dir, max(300, timeout * 3), "Gradle tests")
+        if _crashed_with_no_test_result(result):
+            result["status"] = "not_run"
+            result["reason"] = (
+                "Gradle's build worker crashed (OOM/resource contention "
+                "under parallel batch execution) before producing any test "
+                "result, twice in a row — unrelated to the dependency "
+                "update, so not counted as a test failure"
+            )
+            return result
+
     if result["status"] != "passed":
         return result
     output = result.get("output", "")
@@ -513,10 +624,59 @@ def refresh_dependency_evidence(
                         fresh.read_text(encoding="utf-8"),
                         encoding="utf-8",
                     )
+            elif file_result.get("dm_type") == "node":
+                # Node has no equivalent of this at all today: resolve_tree
+                # above just overwrote the flat npm-dependency-tree.json with
+                # the post-remediation lockfile, but nothing ever copied it to
+                # an -after snapshot -- the report's node "after" row was
+                # always missing.
+                fresh = Path(log_dir) / "npm-dependency-tree.json"
+                if fresh.is_file():
+                    (Path(log_dir) / "npm-dependency-tree-after.json").write_text(
+                        fresh.read_text(encoding="utf-8"),
+                        encoding="utf-8",
+                    )
         except Exception as exc:
             errors.append(
                 f"{file_result.get('file_path', '')}: {exc}"
             )
+
+    # A Gradle write that fully reverted (write_status == "Failed", isolation
+    # disabled) is deliberately excluded from _changed_file_results above --
+    # there's nothing changed to refresh. But the on-disk build.gradle is
+    # back to its exact pre-remediation state in that case, and the after-
+    # scan below still runs unconditionally, expecting some tree to read. Left
+    # unhandled, it finds nothing and reports "Error - secondary verification
+    # scan incomplete" -- indistinguishable from a real scan/infra failure --
+    # instead of the real, honest answer: the build broke, everything reverted,
+    # and the repo's CVE state is unchanged from before. Falling back to the
+    # already-resolved preaudit tree (captured before any edits) is safe here
+    # specifically because a full revert makes that tree accurate again.
+    if not (Path(log_dir) / "gradle-dependency-tree.txt").is_file():
+        for file_result in results.get("file_results", []) or []:
+            if (
+                file_result.get("dm_type") != "gradle"
+                or not file_result.get("display_changes")
+                or file_result.get("write_status") != "Failed"
+            ):
+                continue
+            preaudit_path = file_result.get("preaudit_gradle_tree_path")
+            if not preaudit_path or not Path(preaudit_path).is_file():
+                continue
+            try:
+                tree_text = Path(preaudit_path).read_text(encoding="utf-8")
+                (Path(log_dir) / "gradle-dependency-tree.txt").write_text(
+                    tree_text, encoding="utf-8"
+                )
+                (Path(log_dir) / "gradle-dependency-tree-after.txt").write_text(
+                    tree_text, encoding="utf-8"
+                )
+            except Exception as exc:
+                errors.append(
+                    f"{file_result.get('file_path', '')}: reverted-write tree "
+                    f"fallback failed: {exc}"
+                )
+            break
 
     return errors
 

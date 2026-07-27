@@ -6,6 +6,9 @@ import subprocess
 import pytest
 
 import shared.build_validation as bv
+import shared.build_validation.core as bv_core
+import shared.build_validation.gradle as bv_gradle
+import shared.build_validation.node as bv_node
 
 
 def _csv_rows(path):
@@ -82,7 +85,7 @@ def test_node_validation_auto_rolls_back_breaking_package_and_logs(tmp_path, mon
         if data["dependencies"].get("breaking-pkg") == "^2.0.0":
             raise bv.BuildValidationError("build failed in breaking-pkg")
 
-    monkeypatch.setattr(bv, "validate_node_project", fake_validate)
+    monkeypatch.setattr(bv_node, "validate_node_project", fake_validate)
 
     bv.validate_node_project_or_rollback(
         str(package_json),
@@ -122,7 +125,7 @@ def test_node_validation_marks_manual_updates_when_auto_isolation_fails(tmp_path
     def fake_validate(path, npm_cmd="npm", timeout=600):
         raise bv.BuildValidationError("build still failed")
 
-    monkeypatch.setattr(bv, "validate_node_project", fake_validate)
+    monkeypatch.setattr(bv_node, "validate_node_project", fake_validate)
     with pytest.raises(bv.BuildValidationManualUpdatesError):
         bv.validate_node_project_or_rollback(
             str(package_json),
@@ -153,7 +156,7 @@ def test_node_validation_first_try_success_clears_stale_manual_updates_csv(tmp_p
         encoding="utf-8",
     )
 
-    monkeypatch.setattr(bv, "validate_node_project", lambda path, npm_cmd="npm", timeout=600: None)
+    monkeypatch.setattr(bv_node, "validate_node_project", lambda path, npm_cmd="npm", timeout=600: None)
 
     bv.validate_node_project_or_rollback(
         str(package_json),
@@ -183,7 +186,7 @@ def test_node_validation_first_try_success_clears_stale_auto_fixes_csv(tmp_path,
         encoding="utf-8",
     )
 
-    monkeypatch.setattr(bv, "validate_node_project", lambda path, npm_cmd="npm", timeout=600: None)
+    monkeypatch.setattr(bv_node, "validate_node_project", lambda path, npm_cmd="npm", timeout=600: None)
 
     bv.validate_node_project_or_rollback(
         str(package_json),
@@ -213,7 +216,7 @@ def test_node_validation_isolation_success_clears_stale_manual_updates_csv(tmp_p
         if data["dependencies"].get("breaking-pkg") == "^2.0.0":
             raise bv.BuildValidationError("build failed in breaking-pkg")
 
-    monkeypatch.setattr(bv, "validate_node_project", fake_validate)
+    monkeypatch.setattr(bv_node, "validate_node_project", fake_validate)
 
     bv.validate_node_project_or_rollback(
         str(package_json),
@@ -239,7 +242,7 @@ def test_gradle_validation_auto_rolls_back_breaking_dependency_and_logs(tmp_path
         if "org.example:bad:2.0.0" in build_file.read_text(encoding="utf-8"):
             raise bv.BuildValidationError("compile failed org.example:bad")
 
-    monkeypatch.setattr(bv, "validate_gradle_project", fake_validate)
+    monkeypatch.setattr(bv_gradle, "validate_gradle_project", fake_validate)
 
     bv.validate_gradle_project_or_rollback(
         str(build_file),
@@ -284,7 +287,7 @@ def test_gradle_validation_steps_down_to_intermediate_safe_version_before_full_r
                 "NoSuchMethodError: VersionUtil.checkForVersionEquality"
             )
 
-    monkeypatch.setattr(bv, "validate_gradle_project", fake_validate)
+    monkeypatch.setattr(bv_gradle, "validate_gradle_project", fake_validate)
 
     import parsers.gradle as gradle
 
@@ -355,7 +358,7 @@ def test_failed_validation_clears_stale_auto_fixes_csv(tmp_path, monkeypatch):
     def fake_validate(path, npm_cmd="npm", timeout=600):
         raise bv.BuildValidationError("build still failed")
 
-    monkeypatch.setattr(bv, "validate_node_project", fake_validate)
+    monkeypatch.setattr(bv_node, "validate_node_project", fake_validate)
 
     with pytest.raises(bv.BuildValidationManualUpdatesError):
         bv.validate_node_project_or_rollback(
@@ -388,7 +391,7 @@ def test_gradle_validation_keeps_updates_when_failure_predates_remediation(
             "IngestionServiceApplicationTest > initializationError FAILED\n"
         )
 
-    monkeypatch.setattr(bv, "validate_gradle_project", fake_validate)
+    monkeypatch.setattr(bv_gradle, "validate_gradle_project", fake_validate)
 
     bv.validate_gradle_project_or_rollback(
         str(build_file),
@@ -433,7 +436,7 @@ def test_gradle_validation_rolls_back_when_a_new_test_failure_appears(
             "Execution failed for task ':test'.\n" + failing
         )
 
-    monkeypatch.setattr(bv, "validate_gradle_project", fake_validate)
+    monkeypatch.setattr(bv_gradle, "validate_gradle_project", fake_validate)
 
     with pytest.raises(bv.BuildValidationManualUpdatesError):
         bv.validate_gradle_project_or_rollback(
@@ -551,7 +554,7 @@ def test_gradle_validation_marks_manual_updates_when_auto_isolation_fails(tmp_pa
     def fake_validate(path, gradle_cmd, timeout=600, **kwargs):
         raise bv.BuildValidationError("gradle build failed")
 
-    monkeypatch.setattr(bv, "validate_gradle_project", fake_validate)
+    monkeypatch.setattr(bv_gradle, "validate_gradle_project", fake_validate)
 
     with pytest.raises(bv.BuildValidationManualUpdatesError):
         bv.validate_gradle_project_or_rollback(
@@ -590,7 +593,7 @@ def test_gradle_validation_logs_external_blocker_when_failure_does_not_match_can
             "(com.fasterxml.jackson.core:jackson-databind:2.22.0)"
         )
 
-    monkeypatch.setattr(bv, "validate_gradle_project", fake_validate)
+    monkeypatch.setattr(bv_gradle, "validate_gradle_project", fake_validate)
 
     with pytest.raises(bv.BuildValidationManualUpdatesError):
         bv.validate_gradle_project_or_rollback(
@@ -636,7 +639,7 @@ def test_gradle_validation_auto_forces_external_blocker_when_build_passes(
                 "jackson-databind/2.22.0/jackson-databind-2.22.0.jar'. "
                 "Received status code 403"
             )
-    monkeypatch.setattr(bv, "validate_gradle_project", fake_validate)
+    monkeypatch.setattr(bv_gradle, "validate_gradle_project", fake_validate)
 
     import parsers.gradle as gradle
     import parsers.gradle_tree as gradle_tree
@@ -720,7 +723,7 @@ def test_gradle_external_blocker_fix_retries_transient_daemon_crash(
                 "(it may have been killed or may have crashed)"
             )
 
-    monkeypatch.setattr(bv, "validate_gradle_project", fake_validate)
+    monkeypatch.setattr(bv_gradle, "validate_gradle_project", fake_validate)
 
     import parsers.gradle as gradle
     import parsers.gradle_tree as gradle_tree
@@ -805,7 +808,7 @@ def test_gradle_validation_fixes_candidate_related_blocker_before_rollback(
                 "'https://repo.example/maven/io/netty/netty-handler/4.1.133.Final/"
                 "netty-handler-4.1.133.Final.jar'. Received status code 403"
             )
-    monkeypatch.setattr(bv, "validate_gradle_project", fake_validate)
+    monkeypatch.setattr(bv_gradle, "validate_gradle_project", fake_validate)
 
     import output.gradle as out_gradle
     import parsers.gradle as gradle
@@ -861,7 +864,7 @@ def test_gradle_validation_allows_secondary_scan_to_classify_unresolved_blocker(
     build_file.write_text("dependencies {}\n", encoding="utf-8")
 
     monkeypatch.setattr(
-        bv,
+        bv_gradle,
         "_proactive_check_and_fix",
         lambda *args, **kwargs: [
             {
@@ -872,7 +875,7 @@ def test_gradle_validation_allows_secondary_scan_to_classify_unresolved_blocker(
         ],
     )
     monkeypatch.setattr(
-        bv,
+        bv_gradle,
         "validate_gradle_project",
         lambda *args, **kwargs: None,
     )
@@ -1259,7 +1262,7 @@ def test_gradle_validation_uses_disposable_daemon(
         )
 
     monkeypatch.setattr(
-        bv,
+        bv_gradle,
         "_run_build_command",
         capture_command,
     )
@@ -1297,7 +1300,7 @@ def test_gradle_validation_probes_with_lighter_task_and_confirms_with_full_build
             raise bv.BuildValidationError("compile failed org.example:bad")
         return subprocess.CompletedProcess(cmd, 0, "", "")
 
-    monkeypatch.setattr(bv, "_run_build_command", fake_run_build_command)
+    monkeypatch.setattr(bv_gradle, "_run_build_command", fake_run_build_command)
 
     bv.validate_gradle_project_or_rollback(
         str(build_file),
@@ -1345,7 +1348,7 @@ def test_gradle_validation_rejects_probe_pass_when_full_build_confirm_fails(
         # ...but the full build never actually passes.
         raise bv.BuildValidationError("packaging task failed")
 
-    monkeypatch.setattr(bv, "_run_build_command", fake_run_build_command)
+    monkeypatch.setattr(bv_gradle, "_run_build_command", fake_run_build_command)
 
     with pytest.raises(bv.BuildValidationManualUpdatesError):
         bv.validate_gradle_project_or_rollback(
@@ -1392,12 +1395,12 @@ def test_build_timeout_cleans_only_new_gradle_daemons(
     terminated = []
 
     monkeypatch.setattr(
-        bv,
+        bv_core,
         "_gradle_daemon_pids",
         lambda: next(daemon_snapshots),
     )
     monkeypatch.setattr(
-        bv,
+        bv_core,
         "_terminate_process_trees",
         lambda roots: terminated.append(set(roots)),
     )
@@ -1436,7 +1439,7 @@ def test_gradle_validation_retries_timeout_before_failure_isolation(
                 f"Gradle build validation timed out after {timeout}s"
             )
 
-    monkeypatch.setattr(bv, "validate_gradle_project", fake_validate)
+    monkeypatch.setattr(bv_gradle, "validate_gradle_project", fake_validate)
 
     bv.validate_gradle_project_or_rollback(
         str(build_file),
@@ -1481,7 +1484,7 @@ def test_gradle_validation_retries_transient_daemon_crash_before_isolation(
                 "(it may have been killed or may have crashed)"
             )
 
-    monkeypatch.setattr(bv, "validate_gradle_project", fake_validate)
+    monkeypatch.setattr(bv_gradle, "validate_gradle_project", fake_validate)
 
     bv.validate_gradle_project_or_rollback(
         str(build_file),
@@ -1519,7 +1522,7 @@ def test_gradle_validation_does_not_retry_non_timeout_failure(
         if "2.0.0" in build_file.read_text(encoding="utf-8"):
             raise bv.BuildValidationError("compile failed org.example:bad")
 
-    monkeypatch.setattr(bv, "validate_gradle_project", fake_validate)
+    monkeypatch.setattr(bv_gradle, "validate_gradle_project", fake_validate)
 
     bv.validate_gradle_project_or_rollback(
         str(build_file),
@@ -1819,6 +1822,89 @@ def test_proactive_gradle_check_fixes_blocks_that_break_tree_resolution_itself(
     assert "jackson-databind:2.21.5" in debug
 
 
+def test_proactive_gradle_check_realigns_competing_direct_pin_when_scan_forces(
+    tmp_path, monkeypatch
+):
+    """Live bug (confirmed via a real batch pull, cwih-cnp-mgmt-consent-
+    publish-api): jackson-databind's CVE-remediation target (2.22.1) was
+    blocked in Artifactory, so this proactive scan forced the nearest
+    accessible version (2.21.5) via resolutionStrategy.force -- but it never
+    touched the package's own pre-existing direct `version { strictly
+    '2.22.1' }` declaration, leaving the file declaring two different
+    versions for the same package side by side. _align_competing_pins
+    already does exactly this realignment for the main write path's own
+    force entries; the scan-forced path needs the same treatment.
+    """
+    build_file = tmp_path / "build.gradle"
+    build_file.write_text(
+        "repositories { maven { url 'https://repo.example' } }\n"
+        "dependencies {\n"
+        "    implementation('com.fasterxml.jackson.core:jackson-databind') {\n"
+        "        version { strictly '2.22.1' }\n"
+        "    }\n"
+        "}\n",
+        encoding="utf-8",
+    )
+
+    import parsers.gradle as gradle
+    import parsers.gradle_tree as gradle_tree
+    from shared.maven_version import MavenVersion
+
+    scan_failure = (
+        "FAILURE: Build failed with an exception.\n\n"
+        "* What went wrong:\n"
+        "Could not resolve com.fasterxml.jackson.core:jackson-databind:2.22.1.\n"
+        "Required by:\n"
+        "    project :\n"
+        "Could not GET 'https://repo.example/com/fasterxml/jackson/core/"
+        "jackson-databind/2.22.1/jackson-databind-2.22.1.pom'. "
+        "Received status code 403 from server: Forbidden\n"
+    )
+
+    call_count = {"n": 0}
+
+    def fake_run_gradle_dependencies(
+        project_dir, gradle_cmd, timeout, configuration=None, resolve_repo_urls=False
+    ):
+        call_count["n"] += 1
+        if call_count["n"] == 1:
+            return None, scan_failure
+        return "resolved tree after force", None
+
+    monkeypatch.setattr(
+        gradle_tree, "run_gradle_dependencies", fake_run_gradle_dependencies
+    )
+    monkeypatch.setattr(gradle_tree, "parse_gradle_dep_tree", lambda output: ({}, {}))
+    monkeypatch.setattr(
+        gradle,
+        "get_available_versions",
+        lambda group, artifact, url, auth, timeout: (
+            [MavenVersion.parse("2.21.5"), MavenVersion.parse("2.22.1")],
+            None,
+        ),
+    )
+    monkeypatch.setattr(
+        gradle,
+        "version_accessible",
+        lambda group, artifact, version, url, auth, timeout: version == "2.21.5",
+    )
+
+    bv._proactive_check_and_fix(
+        str(build_file),
+        "./gradlew",
+        30,
+        str(tmp_path),
+        None,
+        None,
+        "https://repo.example",
+    )
+
+    written = build_file.read_text(encoding="utf-8")
+    assert "2.22.1" not in written
+    assert "strictly '2.21.5'" in written
+    assert "force 'com.fasterxml.jackson.core:jackson-databind:2.21.5'" in written
+
+
 def _spring_boot_plugin_build_text():
     return """plugins {
     id 'org.springframework.boot' version '3.5.16'
@@ -1915,3 +2001,82 @@ def test_revert_gradle_package_to_version_refuses_to_step_boot_platform():
     )
 
     assert result is None
+
+
+def test_capture_gradle_build_logs_writes_both_before_and_after(tmp_path, monkeypatch):
+    """cfg.capture_build_logs opt-in: an extra build against the
+    pre-remediation file, plus the already-written post-remediation file,
+    purely to leave clean log artifacts distinct from the append-forever
+    debug log.
+    """
+    build_file = tmp_path / "build.gradle"
+    original = "dependencies { implementation 'org.example:parent:1.0.0' }\n"
+    current = "dependencies { implementation 'org.example:parent:2.0.0' }\n"
+    build_file.write_text(current, encoding="utf-8")
+
+    seen_versions = []
+
+    def fake_run_build_command(cmd, cwd, timeout, label):
+        text = build_file.read_text(encoding="utf-8")
+        seen_versions.append(text)
+        return subprocess.CompletedProcess(cmd, 0, f"BUILD SUCCESSFUL ({text})", "")
+
+    monkeypatch.setattr(bv_gradle, "_run_build_command", fake_run_build_command)
+
+    bv.capture_gradle_build_logs(
+        build_file, original, current, "gradle", 30, str(tmp_path)
+    )
+
+    before = (tmp_path / "build-log-before.txt").read_text(encoding="utf-8")
+    after = (tmp_path / "build-log-after.txt").read_text(encoding="utf-8")
+    assert "1.0.0" in before
+    assert "2.0.0" in after
+    # The file must end up back at the post-remediation content, not left on
+    # the baseline snapshot used mid-capture.
+    assert build_file.read_text(encoding="utf-8") == current
+
+
+def test_capture_gradle_build_logs_skips_before_when_text_unchanged(tmp_path, monkeypatch):
+    build_file = tmp_path / "build.gradle"
+    text = "dependencies { implementation 'org.example:parent:1.0.0' }\n"
+    build_file.write_text(text, encoding="utf-8")
+
+    def fake_run_build_command(cmd, cwd, timeout, label):
+        return subprocess.CompletedProcess(cmd, 0, "BUILD SUCCESSFUL", "")
+
+    monkeypatch.setattr(bv_gradle, "_run_build_command", fake_run_build_command)
+
+    bv.capture_gradle_build_logs(build_file, text, text, "gradle", 30, str(tmp_path))
+
+    assert not (tmp_path / "build-log-before.txt").exists()
+    assert (tmp_path / "build-log-after.txt").exists()
+
+
+def test_capture_gradle_build_logs_retries_transient_daemon_crash(tmp_path, monkeypatch):
+    """A crashed single-use build worker (OOM/contention, not a real
+    problem with the file) must not silently poison this diagnostic build --
+    same retry _run_candidate_trials already applies elsewhere.
+    """
+    build_file = tmp_path / "build.gradle"
+    text = "dependencies { implementation 'org.example:parent:1.0.0' }\n"
+    build_file.write_text(text, encoding="utf-8")
+
+    calls = []
+
+    def fake_run_build_command(cmd, cwd, timeout, label):
+        calls.append(timeout)
+        if len(calls) == 1:
+            raise bv.BuildValidationError(
+                "Gradle build daemon disappeared unexpectedly (it may have "
+                "been killed or may have crashed)"
+            )
+        return subprocess.CompletedProcess(cmd, 0, "BUILD SUCCESSFUL", "")
+
+    monkeypatch.setattr(bv_gradle, "_run_build_command", fake_run_build_command)
+
+    bv.capture_gradle_build_logs(build_file, text, text, "gradle", 30, str(tmp_path))
+
+    after = (tmp_path / "build-log-after.txt").read_text(encoding="utf-8")
+    assert "BUILD SUCCESSFUL" in after
+    assert len(calls) == 2
+    assert calls[1] > calls[0]

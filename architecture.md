@@ -155,8 +155,10 @@ classDiagram
             +Callable validate
         }
         class validate_or_rollback {
-            <<shared/build_validation.py>>
+            <<shared/build_validation/core.py>>
             validate_or_rollback(path, original, current, failure, candidates, build_fn, revert_fn, confirm_fn, ...)
+            ecosystem-agnostic; shared/build_validation/{gradle,node,python}.py
+            hold the ecosystem-specific validate_*_project_or_rollback callers
         }
         class BuildValidationManualUpdatesError {
             <<exception>>

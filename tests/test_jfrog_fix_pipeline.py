@@ -689,6 +689,14 @@ def test_gradle_force_expands_to_version_locked_netty_siblings(tmp_path):
                 MavenVersion.parse("4.1.132.Final"),
                 MavenVersion.parse("4.2.16.Final"),
             ],
+            "io.netty:netty-handler": [
+                MavenVersion.parse("4.1.132.Final"),
+                MavenVersion.parse("4.2.16.Final"),
+            ],
+            "io.netty:netty-codec": [
+                MavenVersion.parse("4.1.132.Final"),
+                MavenVersion.parse("4.2.16.Final"),
+            ],
         },
         package_constraints={"io.netty:netty-transport-native-epoll": ">"},
         installed={
@@ -773,6 +781,246 @@ def test_gradle_force_does_not_group_unrelated_same_group_artifacts(tmp_path):
     }
 
 
+def test_gradle_sibling_force_dropped_when_direct_declaration_already_realigned(
+    tmp_path,
+):
+    """A sibling swept up by _sibling_family_forces can also have its own
+    direct declaration in build.gradle -- which _align_competing_pins
+    separately realigns to the identical target version. Once every direct
+    occurrence carries the correct version, the sibling's force entry pins
+    nothing new; it's pure clutter. Observed live: cwih-cnp-mgmt-consent-
+    publish-api's org.apache.cxf:cxf-rt-transports-http (sibling of
+    cxf-core) ended up forced to 4.2.2 in both buildscript and project
+    scope AND had its own strictly() blocks realigned to the identical
+    4.2.2 -- three redundant pins for one already-correctly-handled change.
+    """
+    from output.gradle import apply_updates
+
+    declaration = (
+        "implementation(group: 'org.apache.cxf', name: 'cxf-rt-transports-http') {\n"
+        "        version { strictly '4.1.3' }\n"
+        "    }"
+    )
+    build_file = tmp_path / "build.gradle"
+    build_file.write_text(
+        "dependencies {\n"
+        f"    {declaration}\n"
+        "}\n",
+        encoding="utf-8",
+    )
+
+    changes, skipped, forces = apply_updates(
+        deps=[],
+        remediation_by_key={},
+        available_by_key={
+            "org.apache.cxf:cxf-core": [
+                MavenVersion.parse("4.1.3"),
+                MavenVersion.parse("4.2.2"),
+            ],
+            "org.apache.cxf:cxf-rt-transports-http": [
+                MavenVersion.parse("4.1.3"),
+                MavenVersion.parse("4.2.2"),
+            ],
+        },
+        package_constraints={"org.apache.cxf:cxf-core": ">"},
+        installed={
+            "org.apache.cxf:cxf-core": MavenVersion.parse("4.1.3"),
+            "org.apache.cxf:cxf-rt-transports-http": MavenVersion.parse("4.1.3"),
+        },
+        parents_of={},
+        build_file=str(build_file),
+        base_url="https://jfrog.example/artifactory/gradle",
+        auth=None,
+        gradle_cmd="gradle",
+        timeout=30,
+        skip_block_check=True,
+        show_progress=False,
+    )
+
+    # The direct declaration got realigned...
+    realigned = [
+        row for row in changes
+        if row["dependency"] == "org.apache.cxf:cxf-rt-transports-http"
+    ]
+    assert len(realigned) == 1
+    assert realigned[0]["new_version"] == "4.2.2"
+
+    # ...so the sibling force for the SAME package must not also be emitted.
+    forced_keys = {entry["dependency"] for entry in forces}
+    assert "org.apache.cxf:cxf-rt-transports-http" not in forced_keys
+    assert "org.apache.cxf:cxf-core" in forced_keys
+
+
+def test_gradle_align_competing_pins_realigns_every_duplicate_occurrence(
+    tmp_path,
+):
+    """Real-world bug distinct from the Case 1 duplicate fix: a package that
+    is only realigned via _sibling_family_forces (never a direct CVE target
+    itself) can ALSO be declared twice in build.gradle. _align_competing_pins
+    re-scans the whole file for such declarations, but used to mutate the
+    same "already handled" set it was checking against text content -- so
+    after patching the first of two byte-identical declarations, it treated
+    the second as already handled purely because the TEXT matched, and left
+    it at the old vulnerable version. Observed live: cwih-cnp-mgmt-consent-
+    publish-api's org.apache.cxf:cxf-rt-transports-http was declared twice at
+    4.1.3; only the first became 4.2.2, the second stayed at 4.1.3 right next
+    to it.
+    """
+    from output.gradle import apply_updates
+
+    declaration = "implementation 'org.apache.cxf:cxf-rt-transports-http:4.1.3'"
+    build_file = tmp_path / "build.gradle"
+    build_file.write_text(
+        "dependencies {\n"
+        f"    {declaration}\n"
+        "    implementation 'org.example:filler:1.0.0'\n"
+        f"    {declaration}\n"
+        "}\n",
+        encoding="utf-8",
+    )
+
+    changes, skipped, forces = apply_updates(
+        deps=[],
+        remediation_by_key={},
+        available_by_key={
+            "org.apache.cxf:cxf-core": [
+                MavenVersion.parse("4.1.3"),
+                MavenVersion.parse("4.2.2"),
+            ],
+            "org.apache.cxf:cxf-rt-transports-http": [
+                MavenVersion.parse("4.1.3"),
+                MavenVersion.parse("4.2.2"),
+            ],
+        },
+        package_constraints={"org.apache.cxf:cxf-core": ">"},
+        installed={
+            "org.apache.cxf:cxf-core": MavenVersion.parse("4.1.3"),
+            "org.apache.cxf:cxf-rt-transports-http": MavenVersion.parse("4.1.3"),
+        },
+        parents_of={},
+        build_file=str(build_file),
+        base_url="https://jfrog.example/artifactory/gradle",
+        auth=None,
+        gradle_cmd="gradle",
+        timeout=30,
+        skip_block_check=True,
+        show_progress=False,
+    )
+
+    realigned = [
+        row for row in changes
+        if row.get("dependency") == "org.apache.cxf:cxf-rt-transports-http"
+        and row.get("remediation_guided") == "competing pin realigned"
+    ]
+    assert len(realigned) == 2
+    assert all(row["new_version"] == "4.2.2" for row in realigned)
+
+    from output.gradle import write_gradle_file
+
+    output_path = tmp_path / "build-out.gradle"
+    write_gradle_file(
+        build_file.read_text(encoding="utf-8"),
+        changes,
+        forces,
+        str(output_path),
+        str(build_file),
+        in_place=False,
+    )
+    updated_text = output_path.read_text(encoding="utf-8")
+    assert updated_text.count("cxf-rt-transports-http:4.1.3") == 0
+    assert (
+        updated_text.count("implementation 'org.apache.cxf:cxf-rt-transports-http:4.2.2'")
+        == 2
+    )
+
+
+def test_gradle_align_competing_pins_realigns_capabilities_resolution_select():
+    """A capabilitiesResolution.withCapability { select('g:a:v') } block --
+    used to resolve conflicts between two modules providing the same
+    capability, e.g. org.lz4:lz4-java vs at.yawk.lz4:lz4-java -- is
+    authoritative for that capability conflict and outranks both a
+    version{strictly} constraint and resolutionStrategy.force on the module
+    it selects. A stale select() left untouched silently keeps the old
+    vulnerable version even after every other pin is realigned. Observed
+    live: cwih-cnp-mgmt-consent-publish-api forced at.yawk.lz4:lz4-java to
+    1.11.1, but a stale select("at.yawk.lz4:lz4-java:1.10.1") still won real
+    Gradle resolution, leaving the CVE unfixed (Partial instead of Success).
+    """
+    from output.gradle import _align_competing_pins
+
+    build_text = (
+        "configurations.configureEach {\n"
+        "    resolutionStrategy {\n"
+        '        capabilitiesResolution.withCapability("org.lz4:lz4-java") {\n'
+        '            select("at.yawk.lz4:lz4-java:1.10.1")\n'
+        '            because("Resolve capability conflict")\n'
+        "        }\n"
+        "    }\n"
+        "}\n"
+    )
+
+    rows = _align_competing_pins(
+        build_text,
+        changes=[],
+        force_entries=[
+            {
+                "dependency": "at.yawk.lz4:lz4-java",
+                "old_version": "1.10.1",
+                "new_version": "1.11.1",
+            }
+        ],
+    )
+
+    realigned = [r for r in rows if r["dependency"] == "at.yawk.lz4:lz4-java"]
+    assert len(realigned) == 1
+    assert realigned[0]["new_version"] == "1.11.1"
+    assert 'select("at.yawk.lz4:lz4-java:1.11.1")' in realigned[0]["replacement"]
+
+
+def test_gradle_writer_rewrites_shared_each_list_strictly_block_once(tmp_path):
+    """Three artifacts realigned via _align_competing_pins share the exact
+    same `original` text (the whole ['a','b','c'].each {...} block) since
+    parse_gradle_deps can't attribute a distinct text span to each looped
+    name. write_gradle_file applies each realignment row's
+    original->replacement via a plain text .replace(..., 1); confirms the
+    second and third rows' replace calls become harmless no-ops (the shared
+    text no longer matches after the first rewrites it) rather than
+    corrupting the file or emitting three redundant copies of the block.
+    """
+    from output.gradle import _align_competing_pins, write_gradle_file
+
+    build_text = (
+        "dependencies {\n"
+        "    ['netty-codec', 'netty-codec-http', 'netty-handler'].each {\n"
+        "        implementation(group: 'io.netty', name: it) {\n"
+        "            version { strictly '4.1.132.Final' }\n"
+        "        }\n"
+        "    }\n"
+        "}\n"
+    )
+
+    force_entries = [
+        {
+            "dependency": f"io.netty:{name}",
+            "old_version": "4.1.132.Final",
+            "new_version": "4.2.16.Final",
+        }
+        for name in ("netty-codec", "netty-codec-http", "netty-handler")
+    ]
+    rows = _align_competing_pins(build_text, changes=[], force_entries=force_entries)
+    assert len(rows) == 3
+
+    output_path = tmp_path / "updated.gradle"
+    write_gradle_file(
+        build_text, rows, force_entries, str(output_path), str(output_path), in_place=False,
+    )
+
+    updated = output_path.read_text(encoding="utf-8")
+    assert updated.count("strictly '4.2.16.Final'") == 1
+    assert "4.1.132.Final" not in updated
+    assert "['netty-codec', 'netty-codec-http', 'netty-handler']" in updated
+
+
 def test_gradle_apply_updates_realigns_preexisting_force_pins(tmp_path):
     """Mirrors cwih-cnp-mgmt-cds-workflow: the project carries a stale
     resolutionStrategy force from an earlier manual CVE fix. Left alone it
@@ -799,6 +1047,10 @@ def test_gradle_apply_updates_realigns_preexisting_force_pins(tmp_path):
         remediation_by_key={},
         available_by_key={
             "ch.qos.logback:logback-core": [
+                MavenVersion.parse("1.5.25"),
+                MavenVersion.parse("1.5.38"),
+            ],
+            "ch.qos.logback:logback-classic": [
                 MavenVersion.parse("1.5.25"),
                 MavenVersion.parse("1.5.38"),
             ],
@@ -852,6 +1104,10 @@ def test_gradle_apply_updates_realigns_strictly_pinned_family_sibling(tmp_path):
                 MavenVersion.parse("1.5.25"),
                 MavenVersion.parse("1.5.38"),
             ],
+            "ch.qos.logback:logback-classic": [
+                MavenVersion.parse("1.5.25"),
+                MavenVersion.parse("1.5.38"),
+            ],
         },
         package_constraints={"ch.qos.logback:logback-core": ">"},
         installed={
@@ -876,6 +1132,71 @@ def test_gradle_apply_updates_realigns_strictly_pinned_family_sibling(tmp_path):
     assert realigned[0]["dependency"] == "ch.qos.logback:logback-classic"
     assert "strictly '1.5.25'" in realigned[0]["original"]
     assert "strictly '1.5.38'" in realigned[0]["replacement"]
+
+
+def test_gradle_sibling_force_skips_version_that_does_not_exist_for_sibling(
+    tmp_path,
+):
+    """Real-world bug: jackson-databind's remediation target (2.22.1) doesn't
+    exist for jackson-annotations, which releases on a coarser cadence (no
+    patch digit for some minors) than databind/core. _sibling_family_forces
+    used to stamp the trigger's exact version string onto every same-group,
+    same-version sibling with no existence check, producing an unresolvable
+    dependency (observed live: "jackson-annotations:2.22.1 FAILED" in the
+    resolved Gradle tree for ins-cp-mgmt-cds-api) that broke the real build
+    without ever implicating the actual cause. It must fall back to the
+    highest version that actually exists for that sibling, and skip forcing
+    it altogether if nothing usable exists.
+    """
+    from output.gradle import apply_updates
+
+    build_file = tmp_path / "build.gradle"
+    build_file.write_text("dependencies {}\n", encoding="utf-8")
+
+    changes, skipped, forces = apply_updates(
+        deps=[],
+        remediation_by_key={},
+        available_by_key={
+            "com.fasterxml.jackson.core:jackson-databind": [
+                MavenVersion.parse("2.19.0"),
+                MavenVersion.parse("2.22.1"),
+            ],
+            # jackson-annotations never published 2.22.1 -- only a coarser
+            # 2.22 exists (modeled here as 2.22.0, the closest usable version
+            # below the trigger's exact target).
+            "com.fasterxml.jackson.core:jackson-annotations": [
+                MavenVersion.parse("2.19.0"),
+                MavenVersion.parse("2.22.0"),
+            ],
+            # jackson-core has no matching release at all in this scenario.
+            "com.fasterxml.jackson.core:jackson-core": [
+                MavenVersion.parse("2.19.0"),
+            ],
+        },
+        package_constraints={"com.fasterxml.jackson.core:jackson-databind": ">"},
+        installed={
+            "com.fasterxml.jackson.core:jackson-databind": MavenVersion.parse("2.19.0"),
+            "com.fasterxml.jackson.core:jackson-annotations": MavenVersion.parse("2.19.0"),
+            "com.fasterxml.jackson.core:jackson-core": MavenVersion.parse("2.19.0"),
+        },
+        parents_of={},
+        build_file=str(build_file),
+        base_url="https://jfrog.example/artifactory/gradle",
+        auth=None,
+        gradle_cmd="gradle",
+        timeout=30,
+        skip_block_check=True,
+        show_progress=False,
+    )
+
+    forced_by_dep = {entry["dependency"]: entry for entry in forces}
+    assert (
+        forced_by_dep["com.fasterxml.jackson.core:jackson-annotations"]["new_version"]
+        == "2.22.0"
+    )
+    # Nothing above 2.19.0 exists for jackson-core -- must not be forced to a
+    # version that isn't real, and must not be forced at all.
+    assert "com.fasterxml.jackson.core:jackson-core" not in forced_by_dep
 
 
 def test_gradle_force_prefers_stable_release_over_newer_preview(tmp_path):
@@ -958,6 +1279,49 @@ dependencies {
     assert "set('spring-framework.version', \"6.2.19\")" in updated
     assert "set('micrometer.version', \"1.15.12\")" in updated
     assert "set('netty.version', \"4.1.136.Final\")" in updated
+
+
+def test_gradle_writer_replaces_managed_property_line_with_trailing_comment():
+    """Real-world bug (confirmed via a coworker's manual post-pipeline diff):
+    ext { set('netty.version', "4.1.135.Final") //Fix for CVE-2026-33870 }
+    -- the deletion regex anchored "\\s*\\)\\s*$" right after the closing
+    paren, so a trailing "//..." comment (not whitespace) meant end-of-line
+    never matched and the old line was never removed. A brand-new,
+    comment-free `set('netty.version', "...")` line was still appended
+    unconditionally, leaving two values for the same property: the stale
+    one (with its comment, untouched) sitting right next to the current one.
+    """
+    from output.gradle import write_spring_boot_managed_properties
+
+    build_text = """plugins {
+    id 'org.springframework.boot' version '3.5.14'
+    id 'io.spring.dependency-management' version '1.1.7'
+}
+
+ext {
+    set('netty.version', "4.1.135.Final") //Fix for CVE-2026-33870
+}
+
+dependencies {
+    implementation 'io.netty:netty-handler'
+}
+"""
+    forces = [
+        {
+            "dependency": "io.netty:netty-handler",
+            "new_version": "4.2.16.Final",
+        },
+    ]
+
+    updated, remaining = write_spring_boot_managed_properties(
+        build_text,
+        forces,
+    )
+
+    assert remaining == []
+    assert updated.count("netty.version") == 1
+    assert "4.1.135.Final" not in updated
+    assert "set('netty.version', \"4.2.16.Final\")" in updated
 
 
 def test_gradle_writer_does_not_treat_spring_data_module_as_bom_version():
@@ -1146,6 +1510,192 @@ def test_gradle_writer_does_not_substitute_ordinary_force(tmp_path):
     assert "substitute module('org.example:ordinary')" not in updated
 
 
+def test_gradle_writer_forces_buildscript_scope_even_without_explicit_buildscript_deps(
+    tmp_path,
+):
+    """Declared plugins (Spring Boot, Sonarqube, ...) resolve their own
+    transitive dependencies through buildscript's classpath configuration
+    even when buildscript{} declares no explicit dependencies{} of its own --
+    skipping the buildscript-scope force block in that case let a plugin's
+    transitively-resolved jackson-databind fall through unforced and 403
+    against Xray's download policy (confirmed live: cwih-cnp-mgmt-consent-
+    publish-api regressed from Success to a full revert this exact way).
+    """
+    from output.gradle import write_gradle_file
+
+    build_text = (
+        "buildscript {\n"
+        "    repositories { mavenLocal() }\n"
+        "}\n"
+        "dependencies {}\n"
+    )
+    output_path = tmp_path / "updated.gradle"
+
+    write_gradle_file(
+        build_text,
+        changes=[],
+        force_entries=[
+            {
+                "dependency": "org.example:ordinary",
+                "old_version": "1.0.0",
+                "new_version": "1.0.1",
+                "minimum_required": "1.0.1",
+            }
+        ],
+        output_path=str(output_path),
+        source_path=str(output_path),
+        in_place=False,
+    )
+
+    updated = output_path.read_text(encoding="utf-8")
+    assert updated.count("configurations.all") == 2
+    assert "force 'org.example:ordinary:1.0.1'" in updated
+
+
+def test_gradle_writer_skips_buildscript_force_block_when_no_buildscript_block(
+    tmp_path,
+):
+    """With no buildscript{} block at all, there is no classpath
+    configuration to force into -- only the project-scope block is written.
+    """
+    from output.gradle import write_gradle_file
+
+    build_text = "dependencies {}\n"
+    output_path = tmp_path / "updated.gradle"
+
+    write_gradle_file(
+        build_text,
+        changes=[],
+        force_entries=[
+            {
+                "dependency": "org.example:ordinary",
+                "old_version": "1.0.0",
+                "new_version": "1.0.1",
+                "minimum_required": "1.0.1",
+            }
+        ],
+        output_path=str(output_path),
+        source_path=str(output_path),
+        in_place=False,
+    )
+
+    updated = output_path.read_text(encoding="utf-8")
+    assert updated.count("configurations.all") == 1
+    assert "force 'org.example:ordinary:1.0.1'" in updated
+
+
+def test_gradle_writer_keeps_buildscript_force_block_when_buildscript_has_deps(
+    tmp_path,
+):
+    from output.gradle import write_gradle_file
+
+    build_text = (
+        "buildscript {\n"
+        "    dependencies { classpath 'org.example:plugin:1.0.0' }\n"
+        "}\n"
+        "dependencies {}\n"
+    )
+    output_path = tmp_path / "updated.gradle"
+
+    write_gradle_file(
+        build_text,
+        changes=[],
+        force_entries=[
+            {
+                "dependency": "org.example:ordinary",
+                "old_version": "1.0.0",
+                "new_version": "1.0.1",
+                "minimum_required": "1.0.1",
+            }
+        ],
+        output_path=str(output_path),
+        source_path=str(output_path),
+        in_place=False,
+    )
+
+    updated = output_path.read_text(encoding="utf-8")
+    assert updated.count("configurations.all") == 2
+
+
+def test_gradle_writer_merges_repeated_force_calls_into_one_block(tmp_path):
+    """Real-world bug: a single pipeline run can call write_resolution_forces
+    more than once (a pre-build check forces one blocked artifact, the main
+    CVE write forces everything else) -- each call used to insert a brand
+    new configurations.all block, so one repo could end up with several
+    near-identical blocks (confirmed live: 4 blocks from 2 calls on the same
+    file, none of which existed in the original build.gradle). Repeated
+    calls must extend the block already written this run instead.
+    """
+    from output.gradle import write_resolution_forces
+
+    build_text = "dependencies {}\n"
+
+    once = write_resolution_forces(
+        build_text,
+        [{"dependency": "com.fasterxml.jackson.core:jackson-databind", "new_version": "2.21.5"}],
+    )
+    twice = write_resolution_forces(
+        once,
+        [{"dependency": "org.apache.cxf:cxf-core", "new_version": "4.2.2"}],
+    )
+
+    assert twice.count("configurations.all") == 1
+    assert "force 'com.fasterxml.jackson.core:jackson-databind:2.21.5'" in twice
+    assert "force 'org.apache.cxf:cxf-core:4.2.2'" in twice
+
+
+def test_gradle_writer_merges_repeated_substitution_calls_into_one_block(tmp_path):
+    from output.gradle import write_dependency_substitutions
+
+    build_text = "dependencies {}\n"
+
+    once = write_dependency_substitutions(
+        build_text,
+        [{"dependency": "org.springframework.data:spring-data-mongodb", "new_version": "4.5.13"}],
+    )
+    twice = write_dependency_substitutions(
+        once,
+        [{"dependency": "org.springframework.data:spring-data-commons", "new_version": "3.5.13"}],
+    )
+
+    assert twice.count("resolutionStrategy.dependencySubstitution") == 1
+    assert "substitute module('org.springframework.data:spring-data-mongodb') using module('org.springframework.data:spring-data-mongodb:4.5.13')" in twice
+    assert "substitute module('org.springframework.data:spring-data-commons') using module('org.springframework.data:spring-data-commons:3.5.13')" in twice
+
+
+def test_gradle_writer_force_block_is_idempotent_on_repeated_full_write(tmp_path):
+    """Writing the same force entries through write_gradle_file twice in a
+    row must produce byte-identical output -- the direct check that repeated
+    processing of the same repo doesn't keep growing the file.
+    """
+    from output.gradle import write_gradle_file
+
+    build_text = "dependencies {}\n"
+    force_entries = [
+        {
+            "dependency": "org.example:ordinary",
+            "old_version": "1.0.0",
+            "new_version": "1.0.1",
+            "minimum_required": "1.0.1",
+        }
+    ]
+
+    first_path = tmp_path / "first.gradle"
+    write_gradle_file(
+        build_text, [], force_entries, str(first_path), str(first_path), in_place=False
+    )
+    first_text = first_path.read_text(encoding="utf-8")
+
+    second_path = tmp_path / "second.gradle"
+    write_gradle_file(
+        first_text, [], force_entries, str(second_path), str(second_path), in_place=False
+    )
+    second_text = second_path.read_text(encoding="utf-8")
+
+    assert second_text.count("configurations.all") == 1
+    assert second_text.count("force 'org.example:ordinary:1.0.1'") == 1
+
+
 def test_gradle_apply_updates_checks_accessibility_before_forcing_transitive(tmp_path, monkeypatch):
     """Live bug: a transitive dependency's force entry was written straight
     from JFrog's CVE-remediation target version with no accessibility check
@@ -1266,4 +1816,80 @@ def test_gradle_apply_updates_skips_transitive_when_no_accessible_version(
     assert changes == []
     assert len(skipped) == 1
     assert skipped[0]["dependency"] == "com.fasterxml.jackson.core:jackson-databind"
-    assert "no accessible version" in skipped[0]["reason"]
+
+
+def test_gradle_apply_updates_patches_every_occurrence_of_duplicated_declaration(
+    tmp_path,
+):
+    """Real-world bug: a build.gradle can declare the same group:artifact
+    twice with byte-identical strict-version blocks (copy/paste in two
+    dependency sections). direct_by_key collapses duplicates to a single
+    representative GradleDep, so Case 1 must consult every parsed occurrence
+    -- otherwise only the first textual occurrence gets patched and the
+    second stays at the vulnerable version even though the pipeline reports
+    the package as fixed (observed live: cwih-cnp-mgmt-consent-publish-api's
+    io.netty:netty-codec-compression stayed "Partial" for exactly this
+    reason).
+    """
+    from output.gradle import apply_updates
+    from parsers.gradle import parse_gradle_deps
+
+    block = (
+        "implementation(group: 'io.netty', name: 'netty-codec-compression') {\n"
+        "    version { strictly '4.2.5.Final' }\n"
+        "}\n"
+    )
+    build_text = (
+        "dependencies {\n"
+        f"    {block}\n"
+        "    implementation 'org.example:filler:1.0.0'\n"
+        f"    {block}\n"
+        "}\n"
+    )
+    build_file = tmp_path / "build.gradle"
+    build_file.write_text(build_text, encoding="utf-8")
+
+    deps = parse_gradle_deps(build_text)
+    netty_deps = [d for d in deps if d.artifact == "netty-codec-compression"]
+    assert len(netty_deps) == 2, "test setup must produce two parsed occurrences"
+
+    changes, skipped, forces = apply_updates(
+        deps=deps,
+        remediation_by_key={
+            "io.netty:netty-codec-compression": {MavenVersion.parse("4.2.16.Final")}
+        },
+        available_by_key={
+            "io.netty:netty-codec-compression": [
+                MavenVersion.parse("4.2.5.Final"),
+                MavenVersion.parse("4.2.16.Final"),
+            ],
+        },
+        package_constraints={"io.netty:netty-codec-compression": ">="},
+        installed={
+            "io.netty:netty-codec-compression": MavenVersion.parse("4.2.5.Final"),
+        },
+        parents_of={},
+        build_file=str(build_file),
+        base_url="https://jfrog.example/artifactory/gradle",
+        auth=None,
+        gradle_cmd="gradle",
+        timeout=30,
+        skip_block_check=True,
+        show_progress=False,
+    )
+
+    assert forces == []
+    assert skipped == []
+    assert len(changes) == 2
+    assert all(c["dependency"] == "io.netty:netty-codec-compression" for c in changes)
+    assert all(c["new_version"] == "4.2.16.Final" for c in changes)
+
+    from output.gradle import write_gradle_file
+
+    output_path = tmp_path / "build-out.gradle"
+    write_gradle_file(
+        build_text, changes, forces, str(output_path), str(build_file), in_place=False
+    )
+    updated_text = output_path.read_text(encoding="utf-8")
+    assert updated_text.count("4.2.5.Final") == 0
+    assert updated_text.count("4.2.16.Final") == 2

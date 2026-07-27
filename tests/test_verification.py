@@ -547,6 +547,129 @@ def test_refresh_syncs_after_tree_snapshot_on_success(tmp_path, monkeypatch):
     assert "1.5.38" in after
 
 
+def test_refresh_falls_back_to_preaudit_tree_when_gradle_write_fully_reverted(
+    tmp_path, monkeypatch
+):
+    """Live bug: when a Gradle write fully reverts (write_status == "Failed",
+    isolation disabled), _changed_file_results correctly skips refreshing --
+    nothing changed. But the after-scan still runs unconditionally, expecting
+    a tree file, and finds none -- misclassifying a legitimate build failure
+    (reverted to the original, still-vulnerable state) as "Error - secondary
+    verification scan incomplete" instead of the real, unchanged CVE state.
+    Observed live across 13 real repos in one batch (cds-api, dnc-publish-api,
+    rule-api, etc.) -- all Gradle, all write_status=Failed, all missing
+    gradle-dependency-tree.txt.
+    """
+    from shared.verification import refresh_dependency_evidence
+
+    preaudit_dir = tmp_path / "preaudit-gradle" / "1"
+    preaudit_dir.mkdir(parents=True)
+    (preaudit_dir / "gradle-dependency-tree.txt").write_text(
+        "+--- com.fasterxml.jackson.core:jackson-databind:2.19.0\n",
+        encoding="utf-8",
+    )
+
+    errors = refresh_dependency_evidence({
+        "cfg": {"log_dir": str(tmp_path)},
+        "file_results": [{
+            "dm_type": "gradle",
+            "file_path": str(tmp_path / "build.gradle"),
+            "display_changes": [{"package": "x"}],
+            "write_status": "Failed",
+            "preaudit_gradle_tree_path": str(preaudit_dir / "gradle-dependency-tree.txt"),
+        }],
+    })
+
+    assert errors == []
+    tree = (tmp_path / "gradle-dependency-tree.txt").read_text(encoding="utf-8")
+    assert "jackson-databind:2.19.0" in tree
+    after = (tmp_path / "gradle-dependency-tree-after.txt").read_text(encoding="utf-8")
+    assert "jackson-databind:2.19.0" in after
+
+
+def test_refresh_does_not_fall_back_when_write_succeeded_with_no_tree(
+    tmp_path, monkeypatch
+):
+    """The reverted-write fallback must only fire for a genuine full revert
+    (write_status == "Failed"), not silently mask an unrelated case where a
+    successful write's own resolve_tree happened not to produce a tree file.
+    """
+    from types import SimpleNamespace
+
+    from shared.verification import refresh_dependency_evidence
+
+    preaudit_dir = tmp_path / "preaudit-gradle" / "1"
+    preaudit_dir.mkdir(parents=True)
+    (preaudit_dir / "gradle-dependency-tree.txt").write_text(
+        "+--- some:thing:1.0.0\n", encoding="utf-8"
+    )
+
+    spec = SimpleNamespace(
+        parser=SimpleNamespace(
+            parse=lambda file_path: object(),
+            resolve_tree=lambda file_path, parsed, cfg, log_dir: SimpleNamespace(tree_failed=False),
+        )
+    )
+    monkeypatch.setattr("managers.get_manager_spec", lambda dm_type: spec)
+
+    errors = refresh_dependency_evidence({
+        "cfg": {"log_dir": str(tmp_path)},
+        "file_results": [{
+            "dm_type": "gradle",
+            "file_path": str(tmp_path / "build.gradle"),
+            "display_changes": [{"package": "x"}],
+            "write_status": "Written",
+            "preaudit_gradle_tree_path": str(preaudit_dir / "gradle-dependency-tree.txt"),
+        }],
+    })
+
+    assert errors == []
+    assert not (tmp_path / "gradle-dependency-tree.txt").is_file()
+
+
+def test_refresh_syncs_node_after_tree_snapshot_on_success(tmp_path, monkeypatch):
+    """Live bug: Gradle's post-remediation resolve_tree here got copied to an
+    -after snapshot, but Node's never did -- the report's node "after" row
+    was always missing entirely, matching real batch data (npm-dependency-
+    tree-after.json simply never existed for any repo).
+    """
+    from types import SimpleNamespace
+
+    from shared.verification import refresh_dependency_evidence
+
+    def fake_resolve_tree(file_path, parsed, cfg, log_dir):
+        # Simulates resolve_tree's own side effect of overwriting the flat
+        # file with the freshly re-resolved post-remediation lockfile.
+        Path(log_dir, "npm-dependency-tree.json").write_text(
+            '{"packages": {"": {}, "node_modules/ws": {"version": "8.21.0"}}}',
+            encoding="utf-8",
+        )
+        return SimpleNamespace(tree_failed=False)
+
+    spec = SimpleNamespace(
+        parser=SimpleNamespace(
+            parse=lambda file_path: object(),
+            resolve_tree=fake_resolve_tree,
+        )
+    )
+    monkeypatch.setattr("managers.get_manager_spec", lambda dm_type: spec)
+
+    errors = refresh_dependency_evidence({
+        "cfg": {"log_dir": str(tmp_path)},
+        "file_results": [{
+            "dm_type": "node",
+            "file_path": str(tmp_path / "package.json"),
+            "display_changes": [{"package": "x"}],
+            "write_status": "Written",
+        }],
+    })
+
+    assert errors == []
+    after_path = tmp_path / "npm-dependency-tree-after.json"
+    assert after_path.is_file()
+    assert "8.21.0" in after_path.read_text(encoding="utf-8")
+
+
 def test_gradle_test_skips_non_executable_wrapper(tmp_path, monkeypatch):
     """Live bug: a checked-out gradlew without the executable bit (git
     doesn't always preserve it) raised PermissionError when exec'd directly,
@@ -695,6 +818,50 @@ def test_node_verification_reports_failure_when_baseline_passes(tmp_path, monkey
     assert package_json.read_text(encoding="utf-8") == current_text
 
 
+def test_capture_node_build_logs_writes_both_before_and_after(tmp_path, monkeypatch):
+    """cfg.capture_build_logs opt-in: an extra install/build against the
+    pre-remediation package.json/lockfile, plus the already-written
+    post-remediation state, purely to leave clean log artifacts.
+    """
+    from shared.verification import capture_node_build_logs
+
+    original_text = json.dumps({"name": "x", "version": "1.0.0", "scripts": {}})
+    package_json = _init_git_repo_with_package_json(tmp_path, original_text)
+    current_text = json.dumps({"name": "x", "version": "1.0.1", "scripts": {}})
+    package_json.write_text(current_text, encoding="utf-8")
+
+    def fake_run(command, cwd, timeout, label):
+        text = (tmp_path / "package.json").read_text(encoding="utf-8")
+        return {"label": label, "status": "passed", "output": f"installed ({text})"}
+
+    monkeypatch.setattr("shared.verification._run", fake_run)
+
+    capture_node_build_logs(tmp_path, "npm", 30, str(tmp_path))
+
+    before = (tmp_path / "build-log-before.txt").read_text(encoding="utf-8")
+    after = (tmp_path / "build-log-after.txt").read_text(encoding="utf-8")
+    assert "1.0.0" in before
+    assert "1.0.1" in after
+    assert package_json.read_text(encoding="utf-8") == current_text
+
+
+def test_capture_node_build_logs_skips_before_when_text_unchanged(tmp_path, monkeypatch):
+    from shared.verification import capture_node_build_logs
+
+    text = json.dumps({"name": "x", "version": "1.0.0", "scripts": {}})
+    _init_git_repo_with_package_json(tmp_path, text)
+
+    def fake_run(command, cwd, timeout, label):
+        return {"label": label, "status": "passed", "output": "installed"}
+
+    monkeypatch.setattr("shared.verification._run", fake_run)
+
+    capture_node_build_logs(tmp_path, "npm", 30, str(tmp_path))
+
+    assert not (tmp_path / "build-log-before.txt").exists()
+    assert (tmp_path / "build-log-after.txt").exists()
+
+
 def test_gradle_test_runs_without_a_reusable_daemon(tmp_path, monkeypatch):
     """Live bug: two repos with dependency updates that wrote and validated
     cleanly (write_status Written, validation_status Passed) still ended up
@@ -720,6 +887,93 @@ def test_gradle_test_runs_without_a_reusable_daemon(tmp_path, monkeypatch):
 
     assert "--no-daemon" in captured_cmd["cmd"]
     assert "--daemon" not in captured_cmd["cmd"]
+
+
+_DAEMON_CRASH_OUTPUT = (
+    "FAILURE: Build failed with an exception.\n\n"
+    "* What went wrong:\n"
+    "Gradle build daemon disappeared unexpectedly (it may have been killed "
+    "or may have crashed)\n"
+)
+
+
+def test_gradle_test_retries_and_recovers_from_transient_daemon_crash(
+    tmp_path, monkeypatch,
+):
+    """Live bug: cwih-cnp-mgmt-preference-api's build validation already ran
+    :test successfully (BUILD SUCCESSFUL, real test output) but this separate,
+    later verification re-run crashed with zero test output ("Gradle build
+    daemon disappeared unexpectedly") and got reported as "tests did not
+    pass" -- an infra crash, not a real test failure. Retrying once (matching
+    build_validation.py's own handling of this exact crash class) should
+    recover instead of failing the whole repo.
+    """
+    from shared.verification import _gradle_test
+
+    build_file = tmp_path / "build.gradle"
+    build_file.write_text("", encoding="utf-8")
+
+    calls = []
+
+    def fake_run(cmd, cwd, timeout, label):
+        calls.append(timeout)
+        if len(calls) == 1:
+            return {"label": label, "status": "failed", "output": _DAEMON_CRASH_OUTPUT}
+        return {"label": label, "status": "passed", "output": "> Task :test\n"}
+
+    monkeypatch.setattr("shared.verification._run", fake_run)
+
+    result = _gradle_test({"file_path": str(build_file)}, {"gradle_cmd": "gradle"})
+
+    assert result["status"] == "passed"
+    assert len(calls) == 2
+    assert calls[1] > calls[0]
+
+
+def test_gradle_test_reports_not_run_when_daemon_crash_persists(tmp_path, monkeypatch):
+    """If the retry also crashes with zero test output, this must not be
+    counted as a failed test -- it's still unrelated infra flakiness, twice.
+    Reporting it as "failed" (as before this fix) marked otherwise-passing
+    repos Failed for a reason that had nothing to do with the code.
+    """
+    from shared.verification import _gradle_test
+
+    build_file = tmp_path / "build.gradle"
+    build_file.write_text("", encoding="utf-8")
+
+    def fake_run(cmd, cwd, timeout, label):
+        return {"label": label, "status": "failed", "output": _DAEMON_CRASH_OUTPUT}
+
+    monkeypatch.setattr("shared.verification._run", fake_run)
+
+    result = _gradle_test({"file_path": str(build_file)}, {"gradle_cmd": "gradle"})
+
+    assert result["status"] == "not_run"
+    assert "crashed" in result["reason"]
+
+
+def test_gradle_test_does_not_mask_real_failure_alongside_daemon_crash_text(
+    tmp_path, monkeypatch,
+):
+    """Guard against over-matching: if genuine per-test failures are present
+    in the output alongside daemon-crash-sounding text, this must stay
+    "failed" -- only a crash with zero test evidence gets excused.
+    """
+    from shared.verification import _gradle_test
+
+    build_file = tmp_path / "build.gradle"
+    build_file.write_text("", encoding="utf-8")
+
+    output = _DAEMON_CRASH_OUTPUT + "\nSomeRealTest > breaksOnNewJackson() FAILED\n"
+
+    def fake_run(cmd, cwd, timeout, label):
+        return {"label": label, "status": "failed", "output": output}
+
+    monkeypatch.setattr("shared.verification._run", fake_run)
+
+    result = _gradle_test({"file_path": str(build_file)}, {"gradle_cmd": "gradle"})
+
+    assert result["status"] == "failed"
 
 
 _GRADLE_VAULT_FAIL_OUTPUT = (
@@ -764,7 +1018,7 @@ def test_gradle_verification_keeps_updates_when_failure_predates_remediation(
 
     monkeypatch.setattr("shared.verification._run", fake_run)
     monkeypatch.setattr(
-        "shared.build_validation.validate_gradle_project",
+        "shared.build_validation.gradle.validate_gradle_project",
         fake_validate_gradle_project,
     )
     monkeypatch.setattr(
@@ -812,7 +1066,7 @@ def test_gradle_verification_reports_failure_when_baseline_passes(tmp_path, monk
 
     monkeypatch.setattr("shared.verification._run", fake_run)
     monkeypatch.setattr(
-        "shared.build_validation.validate_gradle_project",
+        "shared.build_validation.gradle.validate_gradle_project",
         fake_validate_gradle_project,
     )
     monkeypatch.setattr(
