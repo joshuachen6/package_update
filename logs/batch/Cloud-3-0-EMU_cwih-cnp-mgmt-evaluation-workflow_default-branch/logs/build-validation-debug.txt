@@ -44,3 +44,18 @@
 [2026-07-22 11:44:38] proactive check: 148 resolved artifacts — checking accessibility...
 [2026-07-22 11:52:53] proactive check: all artifacts accessible — no pre-flight forces needed
 [2026-07-22 11:53:47] round 1: 0 new blocked packages
+[2026-07-24 10:26:42] [perf] concurrent version search (com.fasterxml.jackson.core:jackson-databind) completed in 0.94s
+[2026-07-24 10:26:43] [perf] concurrent version search (org.springframework:spring-webflux) completed in 1.52s
+[2026-07-24 10:26:43] [perf] concurrent version search (com.fasterxml.jackson.core:jackson-databind) completed in 0.65s
+[2026-07-24 10:26:43] [perf] concurrent version search (org.springframework.kafka:spring-kafka) completed in 1.64s
+[2026-07-24 10:26:43] [perf] concurrent version search (org.springframework:spring-webflux) completed in 0.38s
+[2026-07-24 10:26:43] [perf] concurrent version search (ch.qos.logback:logback-core) completed in 1.99s
+[2026-07-24 10:26:44] [perf] concurrent version search (org.springframework.kafka:spring-kafka) completed in 0.74s
+[2026-07-24 10:26:44] [perf] concurrent version search (ch.qos.logback:logback-core) completed in 0.41s
+[2026-07-24 10:26:45] [perf] concurrent version search (org.codehaus.plexus:plexus-utils) completed in 3.37s
+[2026-07-24 10:26:45] [perf] concurrent version search (org.codehaus.plexus:plexus-utils) completed in 0.35s
+[2026-07-24 10:26:45] proactive check: resolving post-change dependency tree...
+[2026-07-24 10:29:45] proactive check: runtimeClasspath failed — timed out after 180s
+[2026-07-24 10:32:45] proactive check: compileClasspath failed — timed out after 180s
+[2026-07-24 10:32:45] proactive check: could not resolve dependency tree even after forcing accessible replacements, skipping
+[2026-07-24 10:35:16] initial Gradle validation timed out or hit a transient daemon crash; retrying the complete updated build with a 450s timeout before isolation

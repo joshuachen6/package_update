@@ -4,7 +4,7 @@
     "maven"
   ],
   "errors": [],
-  "vulnerability_count": 96,
+  "vulnerability_count": 101,
   "vulnerable_component_count": 33,
   "vulnerable_components": [
     {
@@ -61,7 +61,8 @@
     {
       "component_id": "gav://io.netty:netty-codec-compression:4.2.5.Final",
       "cves": [
-        "CVE-2026-42583"
+        "CVE-2026-42583",
+        "CVE-2026-59901"
       ],
       "ecosystem": "maven",
       "package": "io.netty:netty-codec-compression",
@@ -83,7 +84,9 @@
         "CVE-2026-42587",
         "CVE-2026-47244",
         "CVE-2026-48043",
-        "CVE-2026-50560"
+        "CVE-2026-50560",
+        "CVE-2026-56819",
+        "CVE-2026-59900"
       ],
       "ecosystem": "maven",
       "package": "io.netty:netty-codec-http2",
@@ -116,7 +119,8 @@
     {
       "component_id": "gav://io.netty:netty-codec:4.1.127.Final",
       "cves": [
-        "CVE-2026-42583"
+        "CVE-2026-42583",
+        "CVE-2026-59901"
       ],
       "ecosystem": "maven",
       "package": "io.netty:netty-codec",
@@ -273,7 +277,8 @@
       "component_id": "gav://org.lz4:lz4-java:1.8.0",
       "cves": [
         "CVE-2025-12183",
-        "CVE-2025-66566"
+        "CVE-2025-66566",
+        "CVE-2026-59949"
       ],
       "ecosystem": "maven",
       "package": "org.lz4:lz4-java",

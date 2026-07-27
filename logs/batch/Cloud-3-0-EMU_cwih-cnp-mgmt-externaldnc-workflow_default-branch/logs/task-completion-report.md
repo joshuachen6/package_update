@@ -4,19 +4,19 @@
 |metric|value|
 |---|---|
 |Overall Status|🟢 Success|
-|Generated at|2026-07-22T11:58:21|
+|Generated at|2026-07-24T10:24:06|
 |GitHub URL|https://github.com/Cloud-3-0-EMU/cwih-cnp-mgmt-externaldnc-workflow.git|
 |Project directory|/Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_cwih-cnp-mgmt-externaldnc-workflow_default-branch/default-branch/cwih-cnp-mgmt-externaldnc-workflow|
 |Dependency files|1|
-|Changed packages|47|
+|Changed packages|24|
 |Skipped packages|0|
 |Validation records|0|
 |Taskboard CVEs tracked|26|
-|Resolved dependency changes|51|
+|Resolved dependency changes|52|
 |Verification classification|Success - build and tests passed; no CVEs remain|
 |Test verification|passed|
 |Original CVEs remaining|0|
-|JFrog vulnerabilities before|66|
+|JFrog vulnerabilities before|77|
 |JFrog vulnerabilities after|0|
 |JFrog audit before JSON|/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_cwih-cnp-mgmt-externaldnc-workflow_default-branch/logs/jfrog-audit.json|
 |JFrog audit after JSON|/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_cwih-cnp-mgmt-externaldnc-workflow_default-branch/logs/jfrog-audit-after.json|
@@ -30,58 +30,35 @@ All remediation actions completed successfully.
 ## Dependency Files
 |file|ecosystem|changes|skipped|write_status|validation_status|validation_message|verification_status|test_status|
 |---|---|---|---|---|---|---|---|---|
-|build.gradle|gradle|47|0|Written|Passed||Success - build and tests passed; no CVEs remain|passed|
+|build.gradle|gradle|24|0|Written|Passed||Success - build and tests passed; no CVEs remain|passed|
 
 ## Applied / Planned Changes
 |file|ecosystem|package|type|old|new|status|remediation_guided|
 |---|---|---|---|---|---|---|---|
+|build.gradle|gradle|io.netty:netty-codec-http2|gradle|4.2.11.Final|4.2.16.Final|Passed|True|
+|build.gradle|gradle|io.netty:netty-handler|gradle|4.2.5.Final|4.2.16.Final|Passed|True|
 |build.gradle|gradle|io.netty:netty-codec-http|gradle|4.2.11.Final|4.2.16.Final|Passed|True|
 |build.gradle|gradle|org.apache.tomcat.embed:tomcat-embed-core|gradle|10.1.52|10.1.57|Passed|True|
-|build.gradle|gradle|io.netty:netty-codec-http2|gradle|4.2.11.Final|4.2.16.Final|Passed|True|
+|build.gradle|gradle|ch.qos.logback:logback-core|gradle|1.5.25|1.6.0|Passed|True|
 |build.gradle|gradle|org.apache.tomcat.embed:tomcat-embed-websocket|gradle|10.1.52|10.1.57|Passed|True|
-|build.gradle|gradle|io.netty:netty-handler|gradle|4.2.5.Final|4.2.16.Final|Passed|True|
-|build.gradle|gradle|ch.qos.logback:logback-core|gradle|1.5.25|1.5.38|Passed|True|
 |build.gradle|gradle|org.springframework.kafka:spring-kafka|gradle|3.3.6|3.3.16|Passed|True|
 |build.gradle|gradle|org.springframework:spring-framework.version|gradle|6.2.17|6.2.19|Passed|True|
 |build.gradle|gradle|org.springframework:spring-webflux|gradle|6.2.17|6.2.19|Passed|True|
-|build.gradle|gradle|ch.qos.logback:logback-classic|gradle|1.5.25|1.5.38|Passed|True|
+|build.gradle|gradle|ch.qos.logback:logback-classic|gradle|1.5.25|1.6.0|Passed|True|
 |build.gradle|gradle|io.netty:netty-codec|gradle|4.2.11.Final|4.2.16.Final|Passed|True|
 |build.gradle|gradle|io.micrometer:micrometer-core|gradle-force|1.15.11|1.17.0|Passed|True|
-|build.gradle|gradle|org.springframework.data:spring-data-commons|gradle-force|3.5.11|3.5.13|Passed|True|
 |build.gradle|gradle|org.springframework.data:spring-data-mongodb|gradle-force|4.5.11|4.5.13|Passed|True|
-|build.gradle|gradle|io.netty:netty-transport-native-epoll|gradle-force|4.1.132.Final|4.2.16.Final|Passed|True|
+|build.gradle|gradle|org.springframework.data:spring-data-commons|gradle-force|3.5.11|3.5.13|Passed|True|
 |build.gradle|gradle|io.netty:netty-resolver-dns|gradle-force|4.1.132.Final|4.2.16.Final|Passed|True|
-|build.gradle|gradle|io.netty:netty-handler-proxy|gradle-force|4.1.132.Final|4.2.16.Final|Passed|True|
-|build.gradle|gradle|io.netty:netty-codec-dns|gradle-force|4.1.132.Final|4.2.16.Final|Passed|True|
-|build.gradle|gradle|com.fasterxml.jackson.core:jackson-databind|gradle-force|2.21.2|2.22.1|Passed|True|
 |build.gradle|gradle|io.netty:netty-codec-compression|gradle-force|4.2.11.Final|4.2.16.Final|Passed|True|
-|build.gradle|gradle|io.netty:netty-codec-base|gradle-force|4.2.11.Final|4.2.16.Final|Passed|True|
-|build.gradle|gradle|io.netty:netty-codec|gradle-force|4.2.11.Final|4.2.16.Final|Passed|True|
-|build.gradle|gradle|io.netty:netty-codec-protobuf|gradle-force|4.2.11.Final|4.2.16.Final|Passed|True|
-|build.gradle|gradle|io.netty:netty-codec-marshalling|gradle-force|4.2.11.Final|4.2.16.Final|Passed|True|
-|build.gradle|gradle|ch.qos.logback:logback-classic|gradle-force|1.5.25|1.5.38|Passed|True|
+|build.gradle|gradle|io.netty:netty-codec-dns|gradle-force|4.1.132.Final|4.2.16.Final|Passed|True|
+|build.gradle|gradle|io.netty:netty-transport-native-epoll|gradle-force|4.1.132.Final|4.2.16.Final|Passed|True|
+|build.gradle|gradle|com.fasterxml.jackson.core:jackson-databind|gradle-force|2.21.2|2.22.1|Passed|True|
+|build.gradle|gradle|at.yawk.lz4:lz4-java|gradle-force|1.10.1|1.11.1|Passed|True|
+|build.gradle|gradle|io.netty:netty-handler-proxy|gradle-force|4.1.132.Final|4.2.16.Final|Passed|True|
 |build.gradle|gradle|org.springframework:spring-core|gradle-force|6.2.17|6.2.19|Passed|True|
-|build.gradle|gradle|org.springframework:spring-jcl|gradle-force|6.2.17|6.2.19|Passed|True|
-|build.gradle|gradle|org.springframework:spring-context|gradle-force|6.2.17|6.2.19|Passed|True|
-|build.gradle|gradle|org.springframework:spring-aop|gradle-force|6.2.17|6.2.19|Passed|True|
-|build.gradle|gradle|org.springframework:spring-beans|gradle-force|6.2.17|6.2.19|Passed|True|
 |build.gradle|gradle|org.springframework:spring-expression|gradle-force|6.2.17|6.2.19|Passed|True|
-|build.gradle|gradle|org.springframework:spring-tx|gradle-force|6.2.17|6.2.19|Passed|True|
-|build.gradle|gradle|org.springframework:spring-messaging|gradle-force|6.2.17|6.2.19|Passed|True|
 |build.gradle|gradle|org.springframework:spring-web|gradle-force|6.2.17|6.2.19|Passed|True|
-|build.gradle|gradle|org.springframework:spring-test|gradle-force|6.2.17|6.2.19|Passed|True|
-|build.gradle|gradle|io.micrometer:micrometer-observation|gradle-force|1.15.11|1.17.0|Passed|True|
-|build.gradle|gradle|io.micrometer:micrometer-commons|gradle-force|1.15.11|1.17.0|Passed|True|
-|build.gradle|gradle|io.micrometer:micrometer-jakarta9|gradle-force|1.15.11|1.17.0|Passed|True|
-|build.gradle|gradle|io.netty:netty-common|gradle-force|4.1.132.Final|4.2.16.Final|Passed|True|
-|build.gradle|gradle|io.netty:netty-buffer|gradle-force|4.1.132.Final|4.2.16.Final|Passed|True|
-|build.gradle|gradle|io.netty:netty-transport|gradle-force|4.1.132.Final|4.2.16.Final|Passed|True|
-|build.gradle|gradle|io.netty:netty-resolver|gradle-force|4.1.132.Final|4.2.16.Final|Passed|True|
-|build.gradle|gradle|io.netty:netty-transport-native-unix-common|gradle-force|4.1.132.Final|4.2.16.Final|Passed|True|
-|build.gradle|gradle|io.netty:netty-resolver-dns-native-macos|gradle-force|4.1.132.Final|4.2.16.Final|Passed|True|
-|build.gradle|gradle|io.netty:netty-resolver-dns-classes-macos|gradle-force|4.1.132.Final|4.2.16.Final|Passed|True|
-|build.gradle|gradle|io.netty:netty-transport-classes-epoll|gradle-force|4.1.132.Final|4.2.16.Final|Passed|True|
-|build.gradle|gradle|io.netty:netty-codec-socks|gradle-force|4.1.132.Final|4.2.16.Final|Passed|True|
 
 ## Skipped / Resolved / Could Not Update
 _No rows._
@@ -92,16 +69,17 @@ _No rows._
 ## Before / After Dependency Trees
 |ecosystem|snapshot|path|exists|line_count|dependency_count|bytes|
 |---|---|---|---|---|---|---|
-|gradle|before|/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_cwih-cnp-mgmt-externaldnc-workflow_default-branch/logs/gradle-dependency-tree-before.txt|True|1176|1069|75941|
-|gradle|after|/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_cwih-cnp-mgmt-externaldnc-workflow_default-branch/logs/gradle-dependency-tree-after.txt|True|1194|1087|74472|
+|gradle|before|/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_cwih-cnp-mgmt-externaldnc-workflow_default-branch/logs/gradle-dependency-tree-before.txt|True|1176|1069|75940|
+|gradle|after|/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_cwih-cnp-mgmt-externaldnc-workflow_default-branch/logs/gradle-dependency-tree-after.txt|True|1194|1087|74516|
 |node|before|/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_cwih-cnp-mgmt-externaldnc-workflow_default-branch/logs/npm-dependency-tree-before.json|False|0|0|0|
 |node|after|/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_cwih-cnp-mgmt-externaldnc-workflow_default-branch/logs/npm-dependency-tree-after.json|False|0|0|0|
 
 ## Resolved Dependency Changes
 |dependency|before|after|status|
 |---|---|---|---|
-|ch.qos.logback:logback-classic|1.5.25|1.5.38|changed|
-|ch.qos.logback:logback-core|1.5.25|1.5.38|changed|
+|at.yawk.lz4:lz4-java|1.10.1|1.11.1|changed|
+|ch.qos.logback:logback-classic|1.5.25|1.6.0|changed|
+|ch.qos.logback:logback-core|1.5.25|1.6.0|changed|
 |com.fasterxml.jackson.core:jackson-annotations|2.21|2.22|changed|
 |com.fasterxml.jackson.core:jackson-databind|2.21.2|2.22.1|changed|
 |com.fasterxml.jackson.datatype:jackson-datatype-jdk8|2.21.2|2.22.1|changed|

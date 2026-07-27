@@ -1,0 +1,159 @@
+[phase2] replay=None log_dir=/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_ins-cp-mgmt-admin-api_default-branch cache=/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_ins-cp-mgmt-admin-api_default-branch/logs/phase2-results.json exists=True
+[phase2] FALLBACK FULL RUN /Users/jchen18/Documents/package_update/.venv/bin/python3 -u /Users/jchen18/Documents/package_update/quick_update.py --github-url https://github.com/Cloud-3-0-EMU/ins-cp-mgmt-admin-api.git --checkout-dir /Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_ins-cp-mgmt-admin-api_default-branch/default-branch --log-dir /Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_ins-cp-mgmt-admin-api_default-branch
+Cloning https://github.com/Cloud-3-0-EMU/ins-cp-mgmt-admin-api.git...
+Cloning https://github.com/Cloud-3-0-EMU/ins-cp-mgmt-admin-api.git -> /Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_ins-cp-mgmt-admin-api_default-branch/default-branch/ins-cp-mgmt-admin-api
+Cloning into '/Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_ins-cp-mgmt-admin-api_default-branch/default-branch/ins-cp-mgmt-admin-api'...
+Found 1 dependency file(s):
+  - Gradle    >  build.gradle
+
+Pre-resolving Gradle dependencies for Gradle    >  build.gradle...
+Found 16 dependency declarations in /Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_ins-cp-mgmt-admin-api_default-branch/default-branch/ins-cp-mgmt-admin-api/build.gradle
+  Detected 2 maven repo(s): https://humana.jfrog.io/artifactory/plugins-release, https://humana.jfrog.io/artifactory/ins-cp-mgmt-gradle-virtual
+
+Fetching Artifactory versions (12 workers): [------------------------------] 0/16 0%
+Fetching Artifactory versions (12 workers): [#-----------------------------] 1/16 6%
+Fetching Artifactory versions (12 workers): [###---------------------------] 2/16 12%
+Fetching Artifactory versions (12 workers): [#####-------------------------] 3/16 18%
+Fetching Artifactory versions (12 workers): [#######-----------------------] 4/16 25%
+Fetching Artifactory versions (12 workers): [#########---------------------] 5/16 31%
+Fetching Artifactory versions (12 workers): [###########-------------------] 6/16 37%
+Fetching Artifactory versions (12 workers): [#############-----------------] 7/16 43%
+Fetching Artifactory versions (12 workers): [###############---------------] 8/16 50%
+Fetching Artifactory versions (12 workers): [################--------------] 9/16 56%
+Fetching Artifactory versions (12 workers): [##################------------] 10/16 62%
+Fetching Artifactory versions (12 workers): [####################----------] 11/16 68%
+Fetching Artifactory versions (12 workers): [######################--------] 12/16 75%
+Fetching Artifactory versions (12 workers): [########################------] 13/16 81%
+Fetching Artifactory versions (12 workers): [##########################----] 14/16 87%
+Fetching Artifactory versions (12 workers): [############################--] 15/16 93%
+Fetching Artifactory versions (12 workers): [##############################] 16/16 100%
+Resolving Gradle dependency tree... timeout=180s
+  Dependency tree -> /Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_ins-cp-mgmt-admin-api_default-branch/logs/preaudit-gradle/1/gradle-dependency-tree.txt
+  136 packages in dependency tree
+
+------------------------------------------------------------
+JFrog CVE audit
+------------------------------------------------------------
+Running JFrog Xray API CVE scan for 137 resolved component(s)...
+JFrog Xray API CVE scan complete: 28 CVE record(s) across 5 vulnerable component(s).
+JFrog audit log -> /Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_ins-cp-mgmt-admin-api_default-branch/logs/jfrog-audit.json
+
+------------------------------------------------------------
+Fix JFrog CVEs
+------------------------------------------------------------
+
+Fixing 5 JFrog package(s) in Gradle    >  build.gradle
+Fetching Artifactory versions for 5 JFrog package(s)...
+
+Fetching Artifactory versions (12 workers): [------------------------------] 0/5 0%
+Fetching Artifactory versions (12 workers): [######------------------------] 1/5 20%
+Fetching Artifactory versions (12 workers): [############------------------] 2/5 40%
+Fetching Artifactory versions (12 workers): [##################------------] 3/5 60%
+Fetching Artifactory versions (12 workers): [########################------] 4/5 80%
+Fetching Artifactory versions (12 workers): [##############################] 5/5 100%
+
+Applying updates: [------------------------------] 0/5 0%  [ext-fix] [perf] concurrent version search (org.springframework.kafka:spring-kafka) completed in 1.94s
+
+Applying updates: [######------------------------] 1/5 20%  [ext-fix] [perf] concurrent version search (ch.qos.logback:logback-core) completed in 2.22s
+  [ext-fix] [perf] transitive-parent search (ch.qos.logback:logback-core) ran 0 gradle probe(s) in 0.00s (resolved=False)
+
+Applying updates: [############------------------] 2/5 40%  [ext-fix] [perf] concurrent version search (at.yawk.lz4:lz4-java) completed in 2.45s
+  [ext-fix] [perf] concurrent version search (org.apache.tomcat.embed:tomcat-embed-core) completed in 3.50s
+  [ext-fix] [perf] concurrent version search (com.fasterxml.jackson.core:jackson-databind) completed in 4.24s
+  [ext-fix] [perf] transitive-parent search (at.yawk.lz4:lz4-java) ran 1 gradle probe(s) in 15.05s (resolved=False)
+
+Applying updates: [##################------------] 3/5 60%  [ext-fix] [perf] transitive-parent search (org.apache.tomcat.embed:tomcat-embed-core) ran 1 gradle probe(s) in 21.55s (resolved=False)
+
+Applying updates: [########################------] 4/5 80%  [ext-fix] [perf] transitive-parent search (com.fasterxml.jackson.core:jackson-databind) ran 1 gradle probe(s) in 22.71s (resolved=False)
+
+Applying updates: [##############################] 5/5 100%
+
+Gradle counts: deps=16, updated=1, forced=5, skipped=0
+Changes: gradle_direct=1, gradle_force=5, skipped=0
+Phase2 cache generated → /Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_ins-cp-mgmt-admin-api_default-branch/logs/phase2-results.json
+Writing /Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_ins-cp-mgmt-admin-api_default-branch/default-branch/ins-cp-mgmt-admin-api/build.gradle in place...
+Backup: /Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_ins-cp-mgmt-admin-api_default-branch/default-branch/ins-cp-mgmt-admin-api/build.gradle.bak
+Updated in place: /Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_ins-cp-mgmt-admin-api_default-branch/default-branch/ins-cp-mgmt-admin-api/build.gradle
+  [ext-fix] proactive check: resolving post-change dependency tree...
+  [ext-fix] proactive check: 106 resolved artifacts — checking accessibility...
+  [ext-fix] proactive check: 1 blocked artifact(s) — finding replacements...
+  [ext-fix] [perf] concurrent version search (io.netty:netty-codec) completed in 3.92s
+  [ext-fix] proactive check: metadata for io.netty:netty-codec returned 259 version(s) in 0.00s
+  [ext-fix] proactive check: replacement search for io.netty:netty-codec:4.1.133.Final completed in 3.92s -> '4.1.136.Final'
+Proactive block check: forced 1 blocked transitive(s): io.netty:netty-codec:4.1.136.Final
+Validating updated project: gradle build --no-daemon --init-script /var/folders/cg/2rmnrrps3g77gcd8ny14r1yr0000gp/T/pkg_update_gradle_logging.gradle
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.14.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+
+> Task :compileJava
+
+> Task :processResources
+> Task :classes
+> Task :resolveMainClassName
+> Task :bootJar
+> Task :bootStartScripts
+> Task :bootDistTar
+> Task :bootDistZip
+> Task :jar
+> Task :startScripts
+> Task :distTar
+> Task :distZip
+> Task :assemble
+> Task :compileTestJava
+> Task :processTestResources
+> Task :testClasses
+> Task :test
+> Task :check
+> Task :build
+> Task :jacocoTestReport
+> Task :jacocoTestCoverageVerification
+
+[Incubating] Problems report is available at: file:///Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_ins-cp-mgmt-admin-api_default-branch/default-branch/ins-cp-mgmt-admin-api/build/reports/problems/problems-report.html
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/8.14.1/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD SUCCESSFUL in 2m 12s
+16 actionable tasks: 16 executed
+Note: /Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_ins-cp-mgmt-admin-api_default-branch/default-branch/ins-cp-mgmt-admin-api/src/main/java/com/humana/cnp/service/avro/AvroDeserializer.java uses or overrides a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+Note: Some input files use unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+Java HotSpot(TM) 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+
+Totals: 0 npm direct, 0 npm override(s), 1 Gradle direct, 5 Gradle force(s), 0 Python direct, 0 skipped
+Logs:   /Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_ins-cp-mgmt-admin-api_default-branch/logs
+Found 16 dependency declarations in /Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_ins-cp-mgmt-admin-api_default-branch/default-branch/ins-cp-mgmt-admin-api/build.gradle
+  Detected 2 maven repo(s): https://humana.jfrog.io/artifactory/plugins-release, https://humana.jfrog.io/artifactory/ins-cp-mgmt-gradle-virtual
+
+Fetching Artifactory versions (12 workers): [------------------------------] 0/16 0%
+Fetching Artifactory versions (12 workers): [#-----------------------------] 1/16 6%
+Fetching Artifactory versions (12 workers): [###---------------------------] 2/16 12%
+Fetching Artifactory versions (12 workers): [#####-------------------------] 3/16 18%
+Fetching Artifactory versions (12 workers): [#######-----------------------] 4/16 25%
+Fetching Artifactory versions (12 workers): [#########---------------------] 5/16 31%
+Fetching Artifactory versions (12 workers): [###########-------------------] 6/16 37%
+Fetching Artifactory versions (12 workers): [#############-----------------] 7/16 43%
+Fetching Artifactory versions (12 workers): [###############---------------] 8/16 50%
+Fetching Artifactory versions (12 workers): [################--------------] 9/16 56%
+Fetching Artifactory versions (12 workers): [##################------------] 10/16 62%
+Fetching Artifactory versions (12 workers): [####################----------] 11/16 68%
+Fetching Artifactory versions (12 workers): [######################--------] 12/16 75%
+Fetching Artifactory versions (12 workers): [########################------] 13/16 81%
+Fetching Artifactory versions (12 workers): [##########################----] 14/16 87%
+Fetching Artifactory versions (12 workers): [############################--] 15/16 93%
+Fetching Artifactory versions (12 workers): [##############################] 16/16 100%
+Resolving Gradle dependency tree... timeout=180s
+  Dependency tree -> /Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_ins-cp-mgmt-admin-api_default-branch/logs/gradle-dependency-tree.txt
+  136 packages in dependency tree
+Running JFrog Xray API CVE scan for 137 resolved component(s)...
+JFrog Xray API CVE scan complete: 0 CVE record(s) across 0 vulnerable component(s).
+JFrog audit log -> /Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_ins-cp-mgmt-admin-api_default-branch/logs/jfrog-audit-after.json
+Post-update verification: Success - build and tests passed; no CVEs remain
+Remediation evidence -> /Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_ins-cp-mgmt-admin-api_default-branch/logs/remediation-evidence.json
+Phase2 cache generated → /Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_ins-cp-mgmt-admin-api_default-branch/logs/phase2-results.json
+Report generated → /Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_ins-cp-mgmt-admin-api_default-branch/logs/task-completion-report.xlsx
+STATUS: Success

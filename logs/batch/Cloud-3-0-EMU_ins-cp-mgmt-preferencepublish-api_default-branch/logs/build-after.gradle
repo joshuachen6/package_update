@@ -1,25 +1,12 @@
 buildscript {
     configurations.all {
         resolutionStrategy {
+            // package-update: managed buildscript force block (safe to regenerate)
             force 'org.apache.cxf:cxf-core:4.2.2'
-            force 'org.apache.neethi:neethi:3.2.2'
+            force 'org.apache.neethi:neethi:3.2.3'
             force 'org.springframework.data:spring-data-mongodb:4.5.13'
-            force 'org.springframework.hateoas:spring-hateoas:2.5.3'
             force 'org.springframework.data:spring-data-commons:3.5.13'
-            force 'org.apache.cxf:cxf-spring-boot-starter-jaxws:4.2.2'
-            force 'org.apache.cxf:cxf-spring-boot-autoconfigure:4.2.2'
-            force 'org.apache.cxf:cxf-rt-transports-http:4.2.2'
-            force 'org.apache.cxf:cxf-rt-frontend-jaxws:4.2.2'
-            force 'org.apache.cxf:cxf-rt-bindings-soap:4.2.2'
-            force 'org.apache.cxf:cxf-rt-wsdl:4.2.2'
-            force 'org.apache.cxf:cxf-rt-databinding-jaxb:4.2.2'
-            force 'org.apache.cxf:cxf-rt-bindings-xml:4.2.2'
-            force 'org.apache.cxf:cxf-rt-frontend-simple:4.2.2'
-            force 'org.apache.cxf:cxf-rt-ws-addr:4.2.2'
-            force 'org.apache.cxf:cxf-rt-ws-policy:4.2.2'
-            force 'org.apache.cxf:cxf-rt-features-metrics:4.2.2'
-            force 'org.springframework.data:spring-data-redis:3.5.13'
-            force 'org.springframework.data:spring-data-keyvalue:3.5.13'
+            force 'org.springframework.hateoas:spring-hateoas:2.5.3'
         }
     }
 
@@ -50,34 +37,20 @@ plugins {
 }
 configurations.all {
     resolutionStrategy.dependencySubstitution {
+        // package-update: managed dependencySubstitution block (safe to regenerate)
         substitute module('org.springframework.data:spring-data-mongodb') using module('org.springframework.data:spring-data-mongodb:4.5.13')
         substitute module('org.springframework.data:spring-data-commons') using module('org.springframework.data:spring-data-commons:3.5.13')
-        substitute module('org.springframework.data:spring-data-redis') using module('org.springframework.data:spring-data-redis:3.5.13')
-        substitute module('org.springframework.data:spring-data-keyvalue') using module('org.springframework.data:spring-data-keyvalue:3.5.13')
     }
 }
 
 configurations.all {
     resolutionStrategy {
-            force 'org.apache.cxf:cxf-core:4.2.2'
-            force 'org.apache.neethi:neethi:3.2.2'
-            force 'org.springframework.data:spring-data-mongodb:4.5.13'
-            force 'org.springframework.hateoas:spring-hateoas:2.5.3'
-            force 'org.springframework.data:spring-data-commons:3.5.13'
-            force 'org.apache.cxf:cxf-spring-boot-starter-jaxws:4.2.2'
-            force 'org.apache.cxf:cxf-spring-boot-autoconfigure:4.2.2'
-            force 'org.apache.cxf:cxf-rt-transports-http:4.2.2'
-            force 'org.apache.cxf:cxf-rt-frontend-jaxws:4.2.2'
-            force 'org.apache.cxf:cxf-rt-bindings-soap:4.2.2'
-            force 'org.apache.cxf:cxf-rt-wsdl:4.2.2'
-            force 'org.apache.cxf:cxf-rt-databinding-jaxb:4.2.2'
-            force 'org.apache.cxf:cxf-rt-bindings-xml:4.2.2'
-            force 'org.apache.cxf:cxf-rt-frontend-simple:4.2.2'
-            force 'org.apache.cxf:cxf-rt-ws-addr:4.2.2'
-            force 'org.apache.cxf:cxf-rt-ws-policy:4.2.2'
-            force 'org.apache.cxf:cxf-rt-features-metrics:4.2.2'
-            force 'org.springframework.data:spring-data-redis:3.5.13'
-            force 'org.springframework.data:spring-data-keyvalue:3.5.13'
+        // package-update: managed force block (safe to regenerate)
+        force 'org.apache.cxf:cxf-core:4.2.2'
+        force 'org.apache.neethi:neethi:3.2.3'
+        force 'org.springframework.data:spring-data-mongodb:4.5.13'
+        force 'org.springframework.data:spring-data-commons:3.5.13'
+        force 'org.springframework.hateoas:spring-hateoas:2.5.3'
     }
 }
 
@@ -99,8 +72,6 @@ repositories {
 }
 ext {
     set('springCloudVersion', "2025.0.0")
-    set('jackson-bom.version', "2.22.1")
-    set('logback.version', "1.5.38")
     set('micrometer.version', "1.17.0")
     set('netty.version', "4.2.16.Final")
     set('spring-framework.version', "6.2.19")
@@ -185,13 +156,13 @@ dependencies {
 
     implementation(group: 'ch.qos.logback', name: 'logback-classic') {
         version {
-            strictly '1.5.38'
+            strictly '1.6.0'
         }
     }
 
     implementation(group: 'ch.qos.logback', name: 'logback-core') {
         version {
-            strictly '1.5.38'
+            strictly '1.6.0'
         }
     }
 

@@ -6,6 +6,15 @@
   "before_scan": {
     "components": [
       {
+        "component_id": "gav://at.yawk.lz4:lz4-java:1.10.1",
+        "cves": [
+          "CVE-2026-59949"
+        ],
+        "ecosystem": "maven",
+        "package": "at.yawk.lz4:lz4-java",
+        "version": "1.10.1"
+      },
+      {
         "component_id": "gav://ch.qos.logback:logback-core:1.5.32",
         "cves": [
           "CVE-2026-10532",
@@ -83,117 +92,15 @@
       },
       {
         "dependency": "ch.qos.logback:logback-core",
-        "minimum_required": "1.5.38",
-        "new_version": "1.5.38",
+        "minimum_required": "1.6.0",
+        "new_version": "1.6.0",
         "old_version": "1.5.32"
       },
       {
-        "dependency": "io.netty:netty-bom",
-        "minimum_required": "4.2.16.Final",
-        "new_version": "4.2.16.Final",
-        "old_version": "4.1.135.Final"
-      },
-      {
-        "dependency": "io.netty:netty-buffer",
-        "minimum_required": "4.2.16.Final",
-        "new_version": "4.2.16.Final",
-        "old_version": "4.1.135.Final"
-      },
-      {
-        "dependency": "io.netty:netty-codec",
-        "minimum_required": "4.2.16.Final",
-        "new_version": "4.2.16.Final",
-        "old_version": "4.1.135.Final"
-      },
-      {
-        "dependency": "io.netty:netty-codec-dns",
-        "minimum_required": "4.2.16.Final",
-        "new_version": "4.2.16.Final",
-        "old_version": "4.1.135.Final"
-      },
-      {
-        "dependency": "io.netty:netty-codec-http2",
-        "minimum_required": "4.2.16.Final",
-        "new_version": "4.2.16.Final",
-        "old_version": "4.1.135.Final"
-      },
-      {
-        "dependency": "io.netty:netty-common",
-        "minimum_required": "4.2.16.Final",
-        "new_version": "4.2.16.Final",
-        "old_version": "4.1.135.Final"
-      },
-      {
-        "dependency": "io.netty:netty-handler",
-        "minimum_required": "4.2.16.Final",
-        "new_version": "4.2.16.Final",
-        "old_version": "4.1.135.Final"
-      },
-      {
-        "dependency": "io.netty:netty-transport",
-        "minimum_required": "4.2.16.Final",
-        "new_version": "4.2.16.Final",
-        "old_version": "4.1.135.Final"
-      },
-      {
-        "dependency": "io.netty:netty-transport-native-epoll",
-        "minimum_required": "4.2.16.Final",
-        "new_version": "4.2.16.Final",
-        "old_version": "4.1.135.Final"
-      },
-      {
-        "dependency": "io.netty:netty-resolver-dns",
-        "minimum_required": "4.2.16.Final",
-        "new_version": "4.2.16.Final",
-        "old_version": "4.1.135.Final"
-      },
-      {
-        "dependency": "io.netty:netty-resolver-dns-native-macos",
-        "minimum_required": "4.2.16.Final",
-        "new_version": "4.2.16.Final",
-        "old_version": "4.1.135.Final"
-      },
-      {
-        "dependency": "io.netty:netty-transport-native-unix-common",
-        "minimum_required": "4.2.16.Final",
-        "new_version": "4.2.16.Final",
-        "old_version": "4.1.135.Final"
-      },
-      {
-        "dependency": "io.netty:netty-transport-classes-epoll",
-        "minimum_required": "4.2.16.Final",
-        "new_version": "4.2.16.Final",
-        "old_version": "4.1.135.Final"
-      },
-      {
-        "dependency": "io.netty:netty-resolver",
-        "minimum_required": "4.2.16.Final",
-        "new_version": "4.2.16.Final",
-        "old_version": "4.1.135.Final"
-      },
-      {
-        "dependency": "io.netty:netty-handler-proxy",
-        "minimum_required": "4.2.16.Final",
-        "new_version": "4.2.16.Final",
-        "old_version": "4.1.135.Final"
-      },
-      {
-        "dependency": "io.netty:netty-resolver-dns-classes-macos",
-        "minimum_required": "4.2.16.Final",
-        "new_version": "4.2.16.Final",
-        "old_version": "4.1.135.Final"
-      },
-      {
-        "dependency": "io.netty:netty-codec-socks",
-        "minimum_required": "4.2.16.Final",
-        "new_version": "4.2.16.Final",
-        "old_version": "4.1.135.Final"
-      },
-      {
-        "dependency": "ch.qos.logback:logback-classic",
-        "minimum_required": "1.5.38",
-        "new_version": "1.5.38",
-        "old_version": "1.5.32"
+        "dependency": "at.yawk.lz4:lz4-java",
+        "minimum_required": "1.11.1",
+        "new_version": "1.11.1",
+        "old_version": "1.10.1"
       },
       {
         "dependency": "org.apache.httpcomponents.core5:httpcore5",
@@ -307,7 +214,8 @@
   "files": [
     {
       "candidate_counts": {
-        "ch.qos.logback:logback-core": 169,
+        "at.yawk.lz4:lz4-java": 9,
+        "ch.qos.logback:logback-core": 170,
         "io.netty:netty-codec-http": 259,
         "org.apache.tomcat.embed:tomcat-embed-core": 464,
         "org.apache.tomcat.embed:tomcat-embed-websocket": 428,
@@ -418,135 +326,16 @@
         },
         {
           "change_type": "gradle-force",
-          "new": "1.5.38",
+          "new": "1.6.0",
           "old": "1.5.32",
           "package": "ch.qos.logback:logback-core",
           "remediation_guided": true
         },
         {
           "change_type": "gradle-force",
-          "new": "4.2.16.Final",
-          "old": "4.1.135.Final",
-          "package": "io.netty:netty-bom",
-          "remediation_guided": true
-        },
-        {
-          "change_type": "gradle-force",
-          "new": "4.2.16.Final",
-          "old": "4.1.135.Final",
-          "package": "io.netty:netty-buffer",
-          "remediation_guided": true
-        },
-        {
-          "change_type": "gradle-force",
-          "new": "4.2.16.Final",
-          "old": "4.1.135.Final",
-          "package": "io.netty:netty-codec",
-          "remediation_guided": true
-        },
-        {
-          "change_type": "gradle-force",
-          "new": "4.2.16.Final",
-          "old": "4.1.135.Final",
-          "package": "io.netty:netty-codec-dns",
-          "remediation_guided": true
-        },
-        {
-          "change_type": "gradle-force",
-          "new": "4.2.16.Final",
-          "old": "4.1.135.Final",
-          "package": "io.netty:netty-codec-http2",
-          "remediation_guided": true
-        },
-        {
-          "change_type": "gradle-force",
-          "new": "4.2.16.Final",
-          "old": "4.1.135.Final",
-          "package": "io.netty:netty-common",
-          "remediation_guided": true
-        },
-        {
-          "change_type": "gradle-force",
-          "new": "4.2.16.Final",
-          "old": "4.1.135.Final",
-          "package": "io.netty:netty-handler",
-          "remediation_guided": true
-        },
-        {
-          "change_type": "gradle-force",
-          "new": "4.2.16.Final",
-          "old": "4.1.135.Final",
-          "package": "io.netty:netty-transport",
-          "remediation_guided": true
-        },
-        {
-          "change_type": "gradle-force",
-          "new": "4.2.16.Final",
-          "old": "4.1.135.Final",
-          "package": "io.netty:netty-transport-native-epoll",
-          "remediation_guided": true
-        },
-        {
-          "change_type": "gradle-force",
-          "new": "4.2.16.Final",
-          "old": "4.1.135.Final",
-          "package": "io.netty:netty-resolver-dns",
-          "remediation_guided": true
-        },
-        {
-          "change_type": "gradle-force",
-          "new": "4.2.16.Final",
-          "old": "4.1.135.Final",
-          "package": "io.netty:netty-resolver-dns-native-macos",
-          "remediation_guided": true
-        },
-        {
-          "change_type": "gradle-force",
-          "new": "4.2.16.Final",
-          "old": "4.1.135.Final",
-          "package": "io.netty:netty-transport-native-unix-common",
-          "remediation_guided": true
-        },
-        {
-          "change_type": "gradle-force",
-          "new": "4.2.16.Final",
-          "old": "4.1.135.Final",
-          "package": "io.netty:netty-transport-classes-epoll",
-          "remediation_guided": true
-        },
-        {
-          "change_type": "gradle-force",
-          "new": "4.2.16.Final",
-          "old": "4.1.135.Final",
-          "package": "io.netty:netty-resolver",
-          "remediation_guided": true
-        },
-        {
-          "change_type": "gradle-force",
-          "new": "4.2.16.Final",
-          "old": "4.1.135.Final",
-          "package": "io.netty:netty-handler-proxy",
-          "remediation_guided": true
-        },
-        {
-          "change_type": "gradle-force",
-          "new": "4.2.16.Final",
-          "old": "4.1.135.Final",
-          "package": "io.netty:netty-resolver-dns-classes-macos",
-          "remediation_guided": true
-        },
-        {
-          "change_type": "gradle-force",
-          "new": "4.2.16.Final",
-          "old": "4.1.135.Final",
-          "package": "io.netty:netty-codec-socks",
-          "remediation_guided": true
-        },
-        {
-          "change_type": "gradle-force",
-          "new": "1.5.38",
-          "old": "1.5.32",
-          "package": "ch.qos.logback:logback-classic",
+          "new": "1.11.1",
+          "old": "1.10.1",
+          "package": "at.yawk.lz4:lz4-java",
           "remediation_guided": true
         },
         {
@@ -570,6 +359,17 @@
       "validation_status": "Passed",
       "verification_status": "Success - build and tests passed; no CVEs remain",
       "version_inventory": {
+        "at.yawk.lz4:lz4-java": [
+          "1.8.1",
+          "1.9.0",
+          "1.10.0",
+          "1.10.1",
+          "1.10.2",
+          "1.10.3",
+          "1.10.4",
+          "1.11.0",
+          "1.11.1"
+        ],
         "ch.qos.logback:logback-core": [
           "0.2.5",
           "0.3",
@@ -739,7 +539,8 @@
           "1.5.35",
           "1.5.36",
           "1.5.37",
-          "1.5.38"
+          "1.5.38",
+          "1.6.0"
         ],
         "io.netty:netty-codec-http": [
           "4.0.0.Alpha1",
@@ -2202,7 +2003,7 @@
       "write_status": "Written"
     }
   ],
-  "generated_at": "2026-07-22T12:09:03",
+  "generated_at": "2026-07-24T10:34:28",
   "next_actions": [
     {
       "action": "No additional remediation action identified.",
@@ -2224,6 +2025,7 @@
     "CVE-2026-55956",
     "CVE-2026-59083",
     "CVE-2026-59084",
+    "CVE-2026-59949",
     "CVE-2026-9828"
   ],
   "outcome": "Success",
@@ -2232,13 +2034,13 @@
   "remediation_budget_seconds": 300,
   "security_status": "verified_clean",
   "summary": {
-    "candidate_versions_considered": 1618,
+    "candidate_versions_considered": 1628,
     "component_cve_pairs_new": 0,
     "component_cve_pairs_remaining": 0,
-    "component_cve_pairs_removed": 14,
+    "component_cve_pairs_removed": 15,
     "dependency_files": 1,
     "vulnerability_records_after": 0,
-    "vulnerability_records_before": 14
+    "vulnerability_records_before": 15
   },
   "test_status": "passed",
   "tests": {
@@ -2256,7 +2058,7 @@
         ],
         "ecosystem": "gradle",
         "label": "Gradle tests",
-        "output": "To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.14.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.\nDaemon will be stopped at the end of the build \n\n> Task :compileJava\n\n> Task :processResources\n> Task :classes\n\n> Task :compileTestJava\n\n> Task :processTestResources\n> Task :testClasses\n> Task :test\n> Task :jacocoTestReport\n> Task :jacocoTestCoverageVerification\n\n[Incubating] Problems report is available at: file:///Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_ins-cp-mgmt-preference-workflow_default-branch/default-branch/ins-cp-mgmt-preference-workflow/build/reports/problems/problems-report.html\n\nDeprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.\n\nYou can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.\n\nFor more on this, please refer to https://docs.gradle.org/8.14.1/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.\n\nBUILD SUCCESSFUL in 1m 27s\n7 actionable tasks: 7 executed\n\nNote: Some input files use or override a deprecated API.\nNote: Recompile with -Xlint:deprecation for details.\nNote: Some input files use unchecked or unsafe operations.\nNote: Recompile with -Xlint:unchecked for details.\nNote: Some input files use unchecked or unsafe operations.\nNote: Recompile with -Xlint:unchecked for details.\nJava HotSpot(TM) 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended\n",
+        "output": "To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.14.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.\nDaemon will be stopped at the end of the build \n\n> Task :compileJava\n\n> Task :processResources\n> Task :classes\n\n> Task :compileTestJava\n\n> Task :processTestResources\n> Task :testClasses\n> Task :test\n> Task :jacocoTestReport\n> Task :jacocoTestCoverageVerification\n\n[Incubating] Problems report is available at: file:///Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_ins-cp-mgmt-preference-workflow_default-branch/default-branch/ins-cp-mgmt-preference-workflow/build/reports/problems/problems-report.html\n\nDeprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.\n\nYou can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.\n\nFor more on this, please refer to https://docs.gradle.org/8.14.1/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.\n\nBUILD SUCCESSFUL in 1m 28s\n7 actionable tasks: 7 executed\n\nNote: Some input files use or override a deprecated API.\nNote: Recompile with -Xlint:deprecation for details.\nNote: Some input files use unchecked or unsafe operations.\nNote: Recompile with -Xlint:unchecked for details.\nNote: Some input files use unchecked or unsafe operations.\nNote: Recompile with -Xlint:unchecked for details.\nJava HotSpot(TM) 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended\n",
         "project_dir": "/Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_ins-cp-mgmt-preference-workflow_default-branch/default-branch/ins-cp-mgmt-preference-workflow",
         "reason": "",
         "returncode": 0,

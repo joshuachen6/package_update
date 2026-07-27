@@ -1,18 +1,15 @@
 buildscript {
     configurations.all {
         resolutionStrategy {
-            force 'com.fasterxml.jackson.core:jackson-databind:2.21.5'
-        }
-    }
-
-    configurations.all {
-        resolutionStrategy {
+            // package-update: managed buildscript force block (safe to regenerate)
             force 'org.springframework.data:spring-data-commons:3.5.13'
             force 'org.springframework.data:spring-data-mongodb:4.5.13'
             force 'org.lz4:lz4-java:1.8.0'
             force 'org.assertj:assertj-core:3.27.7'
             force 'org.apache.commons:commons-lang3:3.20.0'
-        }
+        
+            force 'com.fasterxml.jackson.core:jackson-databind:2.21.5'
+}
     }
 
     repositories {
@@ -42,31 +39,25 @@ plugins {
 }
 configurations.all {
     resolutionStrategy.dependencySubstitution {
-        substitute module('com.fasterxml.jackson.core:jackson-databind') using module('com.fasterxml.jackson.core:jackson-databind:2.21.5')
-    }
-}
-
-configurations.all {
-    resolutionStrategy {
-            force 'com.fasterxml.jackson.core:jackson-databind:2.21.5'
-    }
-}
-
-configurations.all {
-    resolutionStrategy.dependencySubstitution {
+        // package-update: managed dependencySubstitution block (safe to regenerate)
         substitute module('org.springframework.data:spring-data-commons') using module('org.springframework.data:spring-data-commons:3.5.13')
         substitute module('org.springframework.data:spring-data-mongodb') using module('org.springframework.data:spring-data-mongodb:4.5.13')
-    }
+    
+        substitute module('com.fasterxml.jackson.core:jackson-databind') using module('com.fasterxml.jackson.core:jackson-databind:2.21.5')
+}
 }
 
 configurations.all {
     resolutionStrategy {
-            force 'org.springframework.data:spring-data-commons:3.5.13'
-            force 'org.springframework.data:spring-data-mongodb:4.5.13'
-            force 'org.lz4:lz4-java:1.8.0'
-            force 'org.assertj:assertj-core:3.27.7'
-            force 'org.apache.commons:commons-lang3:3.20.0'
-    }
+        // package-update: managed force block (safe to regenerate)
+        force 'org.springframework.data:spring-data-commons:3.5.13'
+        force 'org.springframework.data:spring-data-mongodb:4.5.13'
+        force 'org.lz4:lz4-java:1.8.0'
+        force 'org.assertj:assertj-core:3.27.7'
+        force 'org.apache.commons:commons-lang3:3.20.0'
+    
+        force 'com.fasterxml.jackson.core:jackson-databind:2.21.5'
+}
 }
 
 
@@ -121,9 +112,7 @@ repositories {
 ext {
     set('springCloudVersion', "2023.0.4")
     set('jackson-bom.version', "2.22.1")
-    set('logback.version', "1.5.38")
     set('micrometer.version', "1.17.0")
-    set('spring-framework.version', "6.2.19")
     set('tomcat.version', "10.1.57")
 }
 

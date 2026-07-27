@@ -1,23 +1,17 @@
 buildscript {
     configurations.all {
         resolutionStrategy {
-            force 'com.fasterxml.jackson.core:jackson-databind:2.21.5'
-        }
-    }
-
-    configurations.all {
-        resolutionStrategy {
-            force 'io.netty:netty-codec-http3:4.2.16.Final'
-            force 'io.netty:netty-codec-compression:4.2.16.Final'
-        }
-    }
-
-    configurations.all {
-        resolutionStrategy {
+            // package-update: managed buildscript force block (safe to regenerate)
             force 'org.springframework.data:spring-data-mongodb:4.5.13'
+            force 'at.yawk.lz4:lz4-java:1.11.1'
             force 'org.apache.httpcomponents.core5:httpcore5:5.4.3'
             force 'org.apache.httpcomponents.core5:httpcore5-h2:5.4.3'
-        }
+        
+            force 'io.netty:netty-codec-compression:4.2.16.Final'
+            force 'io.netty:netty-codec-http3:4.2.16.Final'
+
+            force 'com.fasterxml.jackson.core:jackson-databind:2.21.5'
+}
     }
 
     repositories {
@@ -52,42 +46,29 @@ plugins {
 }
 configurations.all {
     resolutionStrategy.dependencySubstitution {
-        substitute module('com.fasterxml.jackson.core:jackson-databind') using module('com.fasterxml.jackson.core:jackson-databind:2.21.5')
-    }
-}
-
-configurations.all {
-    resolutionStrategy {
-            force 'com.fasterxml.jackson.core:jackson-databind:2.21.5'
-    }
-}
-
-configurations.all {
-    resolutionStrategy.dependencySubstitution {
-        substitute module('io.netty:netty-codec-http3') using module('io.netty:netty-codec-http3:4.2.16.Final')
-        substitute module('io.netty:netty-codec-compression') using module('io.netty:netty-codec-compression:4.2.16.Final')
-    }
-}
-
-configurations.all {
-    resolutionStrategy {
-            force 'io.netty:netty-codec-http3:4.2.16.Final'
-            force 'io.netty:netty-codec-compression:4.2.16.Final'
-    }
-}
-
-configurations.all {
-    resolutionStrategy.dependencySubstitution {
+        // package-update: managed dependencySubstitution block (safe to regenerate)
         substitute module('org.springframework.data:spring-data-mongodb') using module('org.springframework.data:spring-data-mongodb:4.5.13')
-    }
+    
+        substitute module('io.netty:netty-codec-compression') using module('io.netty:netty-codec-compression:4.2.16.Final')
+        substitute module('io.netty:netty-codec-http3') using module('io.netty:netty-codec-http3:4.2.16.Final')
+
+        substitute module('com.fasterxml.jackson.core:jackson-databind') using module('com.fasterxml.jackson.core:jackson-databind:2.21.5')
+}
 }
 
 configurations.all {
     resolutionStrategy {
-            force 'org.springframework.data:spring-data-mongodb:4.5.13'
-            force 'org.apache.httpcomponents.core5:httpcore5:5.4.3'
-            force 'org.apache.httpcomponents.core5:httpcore5-h2:5.4.3'
-    }
+        // package-update: managed force block (safe to regenerate)
+        force 'org.springframework.data:spring-data-mongodb:4.5.13'
+        force 'at.yawk.lz4:lz4-java:1.11.1'
+        force 'org.apache.httpcomponents.core5:httpcore5:5.4.3'
+        force 'org.apache.httpcomponents.core5:httpcore5-h2:5.4.3'
+    
+        force 'io.netty:netty-codec-compression:4.2.16.Final'
+        force 'io.netty:netty-codec-http3:4.2.16.Final'
+
+        force 'com.fasterxml.jackson.core:jackson-databind:2.21.5'
+}
 }
 
 
@@ -125,9 +106,9 @@ repositories {
 ext {
     set('springCloudVersion', "2025.0.0")
     set('spring-framework.version', "6.2.19")
+    set('netty.version', "4.1.135.Final")
     set('micrometer.version',"1.17.0-RC1")
-    set('logback.version', "1.5.38")
-    set('netty.version', "4.2.16.Final")
+    set('logback.version', "1.6.0")
 }
 
 dependencies {

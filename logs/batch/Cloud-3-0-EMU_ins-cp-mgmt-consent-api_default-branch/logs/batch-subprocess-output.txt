@@ -1,0 +1,1006 @@
+[phase2] replay=None log_dir=/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_ins-cp-mgmt-consent-api_default-branch cache=/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_ins-cp-mgmt-consent-api_default-branch/logs/phase2-results.json exists=True
+[phase2] FALLBACK FULL RUN /Users/jchen18/Documents/package_update/.venv/bin/python3 -u /Users/jchen18/Documents/package_update/quick_update.py --github-url https://github.com/Cloud-3-0-EMU/ins-cp-mgmt-consent-api.git --checkout-dir /Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_ins-cp-mgmt-consent-api_default-branch/default-branch --log-dir /Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_ins-cp-mgmt-consent-api_default-branch
+Cloning https://github.com/Cloud-3-0-EMU/ins-cp-mgmt-consent-api.git...
+Cloning https://github.com/Cloud-3-0-EMU/ins-cp-mgmt-consent-api.git -> /Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_ins-cp-mgmt-consent-api_default-branch/default-branch/ins-cp-mgmt-consent-api
+Cloning into '/Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_ins-cp-mgmt-consent-api_default-branch/default-branch/ins-cp-mgmt-consent-api'...
+Found 1 dependency file(s):
+  - Gradle    >  build.gradle
+
+Pre-resolving Gradle dependencies for Gradle    >  build.gradle...
+Found 34 dependency declarations in /Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_ins-cp-mgmt-consent-api_default-branch/default-branch/ins-cp-mgmt-consent-api/build.gradle
+
+Fetching Artifactory versions (12 workers): [------------------------------] 0/34 0%
+Fetching Artifactory versions (12 workers): [------------------------------] 1/34 2%
+Fetching Artifactory versions (12 workers): [#-----------------------------] 2/34 5%
+Fetching Artifactory versions (12 workers): [##----------------------------] 3/34 8%
+Fetching Artifactory versions (12 workers): [###---------------------------] 4/34 11%
+Fetching Artifactory versions (12 workers): [####--------------------------] 5/34 14%
+Fetching Artifactory versions (12 workers): [#####-------------------------] 6/34 17%
+Fetching Artifactory versions (12 workers): [######------------------------] 7/34 20%
+Fetching Artifactory versions (12 workers): [#######-----------------------] 8/34 23%
+Fetching Artifactory versions (12 workers): [#######-----------------------] 9/34 26%
+Fetching Artifactory versions (12 workers): [########----------------------] 10/34 29%
+Fetching Artifactory versions (12 workers): [#########---------------------] 11/34 32%
+Fetching Artifactory versions (12 workers): [##########--------------------] 12/34 35%
+Fetching Artifactory versions (12 workers): [###########-------------------] 13/34 38%
+Fetching Artifactory versions (12 workers): [############------------------] 14/34 41%
+Fetching Artifactory versions (12 workers): [#############-----------------] 15/34 44%
+Fetching Artifactory versions (12 workers): [##############----------------] 16/34 47%
+Fetching Artifactory versions (12 workers): [###############---------------] 17/34 50%
+Fetching Artifactory versions (12 workers): [###############---------------] 18/34 52%
+Fetching Artifactory versions (12 workers): [################--------------] 19/34 55%
+Fetching Artifactory versions (12 workers): [#################-------------] 20/34 58%
+Fetching Artifactory versions (12 workers): [##################------------] 21/34 61%
+Fetching Artifactory versions (12 workers): [###################-----------] 22/34 64%
+Fetching Artifactory versions (12 workers): [####################----------] 23/34 67%
+Fetching Artifactory versions (12 workers): [#####################---------] 24/34 70%
+Fetching Artifactory versions (12 workers): [######################--------] 25/34 73%
+Fetching Artifactory versions (12 workers): [######################--------] 26/34 76%
+Fetching Artifactory versions (12 workers): [#######################-------] 27/34 79%
+Fetching Artifactory versions (12 workers): [########################------] 28/34 82%
+Fetching Artifactory versions (12 workers): [#########################-----] 29/34 85%
+Fetching Artifactory versions (12 workers): [##########################----] 30/34 88%
+Fetching Artifactory versions (12 workers): [###########################---] 31/34 91%
+Fetching Artifactory versions (12 workers): [############################--] 32/34 94%
+Fetching Artifactory versions (12 workers): [#############################-] 33/34 97%
+Fetching Artifactory versions (12 workers): [##############################] 34/34 100%
+Resolving Gradle dependency tree... timeout=180s
+  Dependency tree -> /Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_ins-cp-mgmt-consent-api_default-branch/logs/preaudit-gradle/1/gradle-dependency-tree.txt
+  242 packages in dependency tree
+
+------------------------------------------------------------
+JFrog CVE audit
+------------------------------------------------------------
+Running JFrog Xray API CVE scan for 243 resolved component(s)...
+JFrog Xray API CVE scan complete: 68 CVE record(s) across 25 vulnerable component(s).
+JFrog audit log -> /Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_ins-cp-mgmt-consent-api_default-branch/logs/jfrog-audit.json
+
+------------------------------------------------------------
+Fix JFrog CVEs
+------------------------------------------------------------
+
+Fixing 25 JFrog package(s) in Gradle    >  build.gradle
+Fetching Artifactory versions for 19 JFrog package(s)...
+
+Fetching Artifactory versions (12 workers): [------------------------------] 0/19 0%
+Fetching Artifactory versions (12 workers): [#-----------------------------] 1/19 5%
+Fetching Artifactory versions (12 workers): [###---------------------------] 2/19 10%
+Fetching Artifactory versions (12 workers): [####--------------------------] 3/19 15%
+Fetching Artifactory versions (12 workers): [######------------------------] 4/19 21%
+Fetching Artifactory versions (12 workers): [#######-----------------------] 5/19 26%
+Fetching Artifactory versions (12 workers): [#########---------------------] 6/19 31%
+Fetching Artifactory versions (12 workers): [###########-------------------] 7/19 36%
+Fetching Artifactory versions (12 workers): [############------------------] 8/19 42%
+Fetching Artifactory versions (12 workers): [##############----------------] 9/19 47%
+Fetching Artifactory versions (12 workers): [###############---------------] 10/19 52%
+Fetching Artifactory versions (12 workers): [#################-------------] 11/19 57%
+Fetching Artifactory versions (12 workers): [##################------------] 12/19 63%
+Fetching Artifactory versions (12 workers): [####################----------] 13/19 68%
+Fetching Artifactory versions (12 workers): [######################--------] 14/19 73%
+Fetching Artifactory versions (12 workers): [#######################-------] 15/19 78%
+Fetching Artifactory versions (12 workers): [#########################-----] 16/19 84%
+Fetching Artifactory versions (12 workers): [##########################----] 17/19 89%
+Fetching Artifactory versions (12 workers): [############################--] 18/19 94%
+Fetching Artifactory versions (12 workers): [##############################] 19/19 100%
+
+Applying updates: [------------------------------] 0/25 0%  [ext-fix] [perf] concurrent version search (com.fasterxml.jackson.core:jackson-databind) completed in 0.96s
+  [ext-fix] [perf] concurrent version search (io.netty:netty-handler-proxy) completed in 1.00s
+  [ext-fix] [perf] transitive-parent search (io.netty:netty-handler-proxy) ran 0 gradle probe(s) in 0.00s (resolved=False)
+
+Applying updates: [#-----------------------------] 1/25 4%  [ext-fix] [perf] concurrent version search (ch.qos.logback:logback-core) completed in 1.16s
+  [ext-fix] [perf] concurrent version search (io.netty:netty-transport-native-epoll) completed in 1.24s
+  [ext-fix] [perf] transitive-parent search (io.netty:netty-transport-native-epoll) ran 0 gradle probe(s) in 0.00s (resolved=False)
+
+Applying updates: [##----------------------------] 2/25 8%  [ext-fix] [perf] concurrent version search (io.netty:netty-codec) completed in 1.37s
+  [ext-fix] [perf] concurrent version search (com.fasterxml.jackson.core:jackson-databind) completed in 0.52s
+
+Applying updates: [###---------------------------] 3/25 12%  [ext-fix] [perf] concurrent version search (io.netty:netty-handler) completed in 1.70s
+  [ext-fix] [perf] concurrent version search (io.netty:netty-codec-http2) completed in 1.90s
+  [ext-fix] [perf] concurrent version search (ch.qos.logback:logback-core) completed in 0.78s
+
+Applying updates: [####--------------------------] 4/25 16%  [ext-fix] [perf] concurrent version search (io.micrometer:micrometer-core) completed in 1.99s
+  [ext-fix] [perf] transitive-parent search (io.micrometer:micrometer-core) ran 0 gradle probe(s) in 0.00s (resolved=False)
+
+Applying updates: [######------------------------] 5/25 20%  [ext-fix] [perf] concurrent version search (io.netty:netty-resolver-dns) completed in 2.02s
+  [ext-fix] [perf] transitive-parent search (io.netty:netty-resolver-dns) ran 0 gradle probe(s) in 0.00s (resolved=False)
+
+Applying updates: [#######-----------------------] 6/25 24%  [ext-fix] [perf] concurrent version search (io.netty:netty-codec-dns) completed in 2.03s
+  [ext-fix] [perf] transitive-parent search (io.netty:netty-codec-dns) ran 0 gradle probe(s) in 0.00s (resolved=False)
+
+Applying updates: [########----------------------] 7/25 28%  [ext-fix] [perf] concurrent version search (io.netty:netty-codec-http) completed in 2.18s
+  [ext-fix] [perf] transitive-parent search (io.netty:netty-codec-http) ran 0 gradle probe(s) in 0.00s (resolved=False)
+
+Applying updates: [#########---------------------] 8/25 32%  [ext-fix] [perf] concurrent version search (io.netty:netty-handler) completed in 0.50s
+
+Applying updates: [##########--------------------] 9/25 36%  [ext-fix] [perf] concurrent version search (io.netty:netty-codec-compression) completed in 2.62s
+  [ext-fix] [perf] transitive-parent search (io.netty:netty-codec-compression) ran 0 gradle probe(s) in 0.00s (resolved=False)
+
+Applying updates: [############------------------] 10/25 40%  [ext-fix] [perf] concurrent version search (org.apache.kafka:kafka-clients) completed in 1.51s
+  [ext-fix] [perf] concurrent version search (io.netty:netty-codec-http2) completed in 1.01s
+
+Applying updates: [#############-----------------] 11/25 44%  [ext-fix] [perf] concurrent version search (io.netty:netty-codec) completed in 1.61s
+
+Applying updates: [##############----------------] 12/25 48%  [ext-fix] [perf] concurrent version search (org.springframework.data:spring-data-commons) completed in 1.08s
+
+Applying updates: [###############---------------] 13/25 52%  [ext-fix] [perf] concurrent version search (org.springframework.kafka:spring-kafka) completed in 0.96s
+  [ext-fix] [perf] concurrent version search (org.apache.kafka:kafka-clients) completed in 0.41s
+
+Applying updates: [################--------------] 14/25 56%
+Applying updates: [##################------------] 15/25 60%  [ext-fix] [perf] concurrent version search (org.apache.cxf:cxf-core) completed in 2.39s
+  [ext-fix] [perf] concurrent version search (org.springframework.boot:spring-boot-starter-actuator) completed in 1.53s
+
+Applying updates: [###################-----------] 16/25 64%  [ext-fix] [perf] concurrent version search (org.springframework.hateoas:spring-hateoas) completed in 1.44s
+  [ext-fix] [perf] transitive-parent search (org.springframework.hateoas:spring-hateoas) ran 0 gradle probe(s) in 0.00s (resolved=False)
+
+Applying updates: [####################----------] 17/25 68%  [ext-fix] [perf] concurrent version search (org.springframework.data:spring-data-mongodb) completed in 1.68s
+  [ext-fix] [perf] transitive-parent search (org.springframework.data:spring-data-mongodb) ran 0 gradle probe(s) in 0.00s (resolved=False)
+
+Applying updates: [#####################---------] 18/25 72%  [ext-fix] [perf] concurrent version search (org.apache.neethi:neethi) completed in 2.52s
+  [ext-fix] [perf] transitive-parent search (org.apache.neethi:neethi) ran 0 gradle probe(s) in 0.00s (resolved=False)
+
+Applying updates: [######################--------] 19/25 76%  [ext-fix] [perf] concurrent version search (org.springframework.boot:spring-boot) completed in 2.61s
+  [ext-fix] [perf] transitive-parent search (org.springframework.boot:spring-boot) ran 0 gradle probe(s) in 0.00s (resolved=False)
+
+Applying updates: [########################------] 20/25 80%  [ext-fix] [perf] concurrent version search (org.springframework:spring-webflux) completed in 1.53s
+
+Applying updates: [#########################-----] 21/25 84%  [ext-fix] [perf] concurrent version search (org.springframework:spring-expression) completed in 2.42s
+
+Applying updates: [##########################----] 22/25 88%  [ext-fix] [perf] concurrent version search (org.springframework:spring-core) completed in 3.13s
+
+Applying updates: [###########################---] 23/25 92%  [ext-fix] [perf] concurrent version search (org.springframework:spring-web) completed in 2.79s
+
+Applying updates: [############################--] 24/25 96%  [ext-fix] [perf] transitive-parent search (org.apache.cxf:cxf-core) ran 1 gradle probe(s) in 4.32s (resolved=False)
+
+Applying updates: [##############################] 25/25 100%
+
+Gradle counts: deps=34, updated=10, forced=19, skipped=0
+Changes: gradle_direct=10, gradle_force=19, skipped=0
+Phase2 cache generated → /Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_ins-cp-mgmt-consent-api_default-branch/logs/phase2-results.json
+Writing /Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_ins-cp-mgmt-consent-api_default-branch/default-branch/ins-cp-mgmt-consent-api/build.gradle in place...
+Backup: /Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_ins-cp-mgmt-consent-api_default-branch/default-branch/ins-cp-mgmt-consent-api/build.gradle.bak
+Updated in place: /Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_ins-cp-mgmt-consent-api_default-branch/default-branch/ins-cp-mgmt-consent-api/build.gradle
+  [ext-fix] proactive check: resolving post-change dependency tree...
+  Gradle failed — 1 403-blocked package(s) detected, entering retry loop
+  [retry round 1/10] 1 new blocked package(s)…
+    com.fasterxml.jackson.core:jackson-databind: 2.21.4 ↑ 2.21.5 (forced for tree)
+  [retry round 1] retrying gradle with 1 forced version(s)…
+  [retry round 1] gradle succeeded — dependency tree resolved
+  [ext-fix] proactive check: forced 1 artifact(s) just to make the dependency tree resolve: com.fasterxml.jackson.core:jackson-databind:2.21.5
+  [ext-fix] proactive check: 216 resolved artifacts — checking accessibility...
+  [ext-fix] proactive check: all artifacts accessible — no pre-flight forces needed
+Validating updated project: gradle build --no-daemon --init-script /var/folders/cg/2rmnrrps3g77gcd8ny14r1yr0000gp/T/pkg_update_gradle_logging.gradle
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.14.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+
+> Task :compileJava
+
+> Task :processResources
+> Task :classes
+> Task :resolveMainClassName
+> Task :bootJar
+> Task :jar
+> Task :assemble
+
+> Task :compileTestJava
+
+> Task :processTestResources NO-SOURCE
+> Task :testClasses
+
+> Task :test
+
+MemberConsentEvaluateControllerV20Test > membersEnterpriseMemberIdConsentsEvaluateGetTest() FAILED
+    java.lang.IllegalStateException: Failed to load ApplicationContext for [ReactiveWebMergedContextConfiguration@32f40c92 testClass = com.humana.enterprise.consents.controller.v20.MemberConsentEvaluateControllerV20Test, locations = [], classes = [com.humana.enterprise.consents.App], contextInitializerClasses = [], activeProfiles = [], propertySourceDescriptors = [], propertySourceProperties = ["org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true"], contextCustomizers = [org.springframework.boot.test.autoconfigure.OnFailureConditionReportContextCustomizerFactory$OnFailureConditionReportContextCustomizer@80b122b, org.springframework.boot.test.autoconfigure.actuate.observability.ObservabilityContextCustomizerFactory$DisableObservabilityContextCustomizer@1f, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizer@78cfa264, [ImportsContextCustomizer@7cce8f93 key = [org.springframework.boot.autoconfigure.security.reactive.ReactiveSecurityAutoConfiguration, org.springframework.boot.autoconfigure.security.reactive.ReactiveUserDetailsServiceAutoConfiguration, org.springframework.boot.autoconfigure.security.oauth2.client.reactive.ReactiveOAuth2ClientAutoConfiguration, org.springframework.boot.autoconfigure.security.oauth2.client.reactive.ReactiveOAuth2ClientWebSecurityAutoConfiguration, org.springframework.boot.autoconfigure.security.oauth2.resource.reactive.ReactiveOAuth2ResourceServerAutoConfiguration, org.springframework.boot.test.autoconfigure.web.reactive.WebTestClientAutoConfiguration]], org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@57ddd45b, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@342e690b, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@416d56f2, org.springframework.boot.test.web.reactive.server.WebTestClientContextCustomizer@47c7a9e5, org.springframework.boot.test.web.reactor.netty.DisableReactorResourceFactoryGlobalResourcesContextCustomizerFactory$DisableReactorResourceFactoryGlobalResourcesContextCustomizerCustomizer@321ca237, org.springframework.test.context.bean.override.BeanOverrideContextCustomizer@f00d0f17, org.springframework.test.context.support.DynamicPropertiesContextCustomizer@0, org.springframework.boot.test.context.SpringBootTestAnnotation@b10c3606], contextLoader = org.springframework.boot.test.context.SpringBootContextLoader, parent = null]
+        at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:180)
+        at org.springframework.test.context.support.DefaultTestContext.getApplicationContext(DefaultTestContext.java:130)
+        at org.springframework.test.context.bean.override.BeanOverrideTestExecutionListener.injectFields(BeanOverrideTestExecutionListener.java:107)
+        at org.springframework.test.context.bean.override.BeanOverrideTestExecutionListener.prepareTestInstance(BeanOverrideTestExecutionListener.java:70)
+        at org.springframework.test.context.TestContextManager.prepareTestInstance(TestContextManager.java:260)
+        at org.springframework.test.context.junit.jupiter.SpringExtension.postProcessTestInstance(SpringExtension.java:159)
+        at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.accept(ForEachOps.java:183)
+        at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+        at java.base/java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:179)
+        at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+        at java.base/java.util.ArrayList$ArrayListSpliterator.forEachRemaining(ArrayList.java:1625)
+        at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509)
+        at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
+        at java.base/java.util.stream.ForEachOps$ForEachOp.evaluateSequential(ForEachOps.java:150)
+        at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.evaluateSequential(ForEachOps.java:173)
+        at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
+        at java.base/java.util.stream.ReferencePipeline.forEach(ReferencePipeline.java:596)
+        at java.base/java.util.Optional.orElseGet(Optional.java:364)
+        at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+        at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+
+        Caused by:
+        org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'baseWebExceptionHandler': Unsatisfied dependency expressed through field 'baseObjectMapperUtil': Error creating bean with name 'baseObjectMapperUtil' defined in URL [jar:file:/Users/jchen18/.gradle/caches/modules-2/files-2.1/com.humana.eai/eai-chassis-rest/2.8.5/39b4c8f922fdd683e0d125340e7eedcc7b7fdbf/eai-chassis-rest-2.8.5-plain.jar!/com/humana/eai/chassis/util/BaseObjectMapperUtil.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'jacksonObjectMapper' defined in class path resource [org/springframework/boot/autoconfigure/jackson/JacksonAutoConfiguration$JacksonObjectMapperConfiguration.class]: Failed to instantiate [com.fasterxml.jackson.databind.ObjectMapper]: Factory method 'jacksonObjectMapper' threw exception with message: Could not initialize class com.fasterxml.jackson.databind.ObjectMapper
+            at app//org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:787)
+            at app//org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:767)
+            at app//org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:146)
+            at app//org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:509)
+            at app//org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1457)
+            at app//org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:606)
+            at app//org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:529)
+            at app//org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339)
+            at app//org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:373)
+            at app//org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337)
+            at app//org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+            at app//org.springframework.beans.factory.support.DefaultListableBeanFactory.instantiateSingleton(DefaultListableBeanFactory.java:1235)
+            at app//org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingleton(DefaultListableBeanFactory.java:1201)
+            at app//org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:1130)
+            at app//org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:991)
+            at app//org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:628)
+            at app//org.springframework.boot.SpringApplication.refresh(SpringApplication.java:752)
+            at app//org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:439)
+            at app//org.springframework.boot.SpringApplication.run(SpringApplication.java:318)
+            at app//org.springframework.boot.test.context.SpringBootContextLoader.lambda$loadContext$3(SpringBootContextLoader.java:151)
+            at app//org.springframework.util.function.ThrowingSupplier.get(ThrowingSupplier.java:58)
+            at app//org.springframework.util.function.ThrowingSupplier.get(ThrowingSupplier.java:46)
+            at app//org.springframework.boot.SpringApplication.withHook(SpringApplication.java:1461)
+            at app//org.springframework.boot.test.context.SpringBootContextLoader$ContextLoaderHook.run(SpringBootContextLoader.java:590)
+            at app//org.springframework.boot.test.context.SpringBootContextLoader.loadContext(SpringBootContextLoader.java:151)
+            at app//org.springframework.boot.test.context.SpringBootContextLoader.loadContext(SpringBootContextLoader.java:110)
+            at app//org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContextInternal(DefaultCacheAwareContextLoaderDelegate.java:225)
+            at app//org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:152)
+            ... 19 more
+
+            Caused by:
+            org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'baseObjectMapperUtil' defined in URL [jar:file:/Users/jchen18/.gradle/caches/modules-2/files-2.1/com.humana.eai/eai-chassis-rest/2.8.5/39b4c8f922fdd683e0d125340e7eedcc7b7fdbf/eai-chassis-rest-2.8.5-plain.jar!/com/humana/eai/chassis/util/BaseObjectMapperUtil.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'jacksonObjectMapper' defined in class path resource [org/springframework/boot/autoconfigure/jackson/JacksonAutoConfiguration$JacksonObjectMapperConfiguration.class]: Failed to instantiate [com.fasterxml.jackson.databind.ObjectMapper]: Factory method 'jacksonObjectMapper' threw exception with message: Could not initialize class com.fasterxml.jackson.databind.ObjectMapper
+                at app//org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:804)
+                at app//org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:240)
+                at app//org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1393)
+                at app//org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1230)
+                at app//org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:569)
+                at app//org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:529)
+                at app//org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339)
+                at app//org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:373)
+                at app//org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337)
+                at app//org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+                at app//org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1715)
+                at app//org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1660)
+                at app//org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:784)
+                ... 46 more
+
+                Caused by:
+                org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'jacksonObjectMapper' defined in class path resource [org/springframework/boot/autoconfigure/jackson/JacksonAutoConfiguration$JacksonObjectMapperConfiguration.class]: Failed to instantiate [com.fasterxml.jackson.databind.ObjectMapper]: Factory method 'jacksonObjectMapper' threw exception with message: Could not initialize class com.fasterxml.jackson.databind.ObjectMapper
+                    at app//org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:657)
+                    at app//org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:645)
+                    at app//org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1373)
+                    at app//org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1203)
+                    at app//org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:569)
+                    at app//org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:529)
+                    at app//org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339)
+                    at app//org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:373)
+                    at app//org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337)
+                    at app//org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+                    at app//org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254)
+                    at app//org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1777)
+                    at app//org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1660)
+                    at app//org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:913)
+                    at app//org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791)
+                    ... 58 more
+
+                    Caused by:
+                    org.springframework.beans.BeanInstantiationException: Failed to instantiate [com.fasterxml.jackson.databind.ObjectMapper]: Factory method 'jacksonObjectMapper' threw exception with message: Could not initialize class com.fasterxml.jackson.databind.ObjectMapper
+                        at app//org.springframework.beans.factory.support.SimpleInstantiationStrategy.lambda$instantiate$0(SimpleInstantiationStrategy.java:200)
+                        at app//org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiateWithFactoryMethod(SimpleInstantiationStrategy.java:89)
+                        at app//org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:169)
+                        at app//org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:653)
+                        ... 72 more
+
+                        Caused by:
+                        java.lang.NoClassDefFoundError: Could not initialize class com.fasterxml.jackson.databind.ObjectMapper
+                            at org.springframework.http.converter.json.Jackson2ObjectMapperBuilder.build(Jackson2ObjectMapperBuilder.java:700)
+                            at org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration$JacksonObjectMapperConfiguration.jacksonObjectMapper(JacksonAutoConfiguration.java:132)
+                            at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+                            at org.springframework.beans.factory.support.SimpleInstantiationStrategy.lambda$instantiate$0(SimpleInstantiationStrategy.java:172)
+                            ... 75 more
+
+                            Caused by:
+                            java.lang.ExceptionInInitializerError: Exception java.lang.NoClassDefFoundError: com/fasterxml/jackson/annotation/JsonSerializeAs [in thread "background-preinit"]
+                                at com.fasterxml.jackson.databind.introspect.JacksonAnnotationIntrospector.<clinit>(JacksonAnnotationIntrospector.java:38)
+                                at com.fasterxml.jackson.databind.ObjectMapper.<clinit>(ObjectMapper.java:403)
+                                at org.springframework.http.converter.json.Jackson2ObjectMapperBuilder.build(Jackson2ObjectMapperBuilder.java:700)
+                                at org.springframework.http.converter.json.MappingJackson2HttpMessageConverter.<init>(MappingJackson2HttpMessageConverter.java:63)
+                                at org.springframework.http.converter.support.AllEncompassingFormHttpMessageConverter.<init>(AllEncompassingFormHttpMessageConverter.java:94)
+                                at org.springframework.boot.autoconfigure.BackgroundPreinitializer$MessageConverterInitializer.run(BackgroundPreinitializer.java:146)
+                                at org.springframework.boot.autoconfigure.BackgroundPreinitializer$1.runSafely(BackgroundPreinitializer.java:120)
+                                at org.springframework.boot.autoconfigure.BackgroundPreinitializer$1.run(BackgroundPreinitializer.java:106)
+                                at java.base/java.lang.Thread.run(Thread.java:842)
+
+MemberConsentsControllerV20Test > consumersMembersEnterpriseMemberIdConsentsGetTest() FAILED
+    java.lang.IllegalStateException: Failed to load ApplicationContext for [ReactiveWebMergedContextConfiguration@65b2582 testClass = com.humana.enterprise.consents.controller.v20.MemberConsentsControllerV20Test, locations = [], classes = [com.humana.enterprise.consents.App], contextInitializerClasses = [], activeProfiles = [], propertySourceDescriptors = [], propertySourceProperties = ["org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true"], contextCustomizers = [org.springframework.boot.test.autoconfigure.OnFailureConditionReportContextCustomizerFactory$OnFailureConditionReportContextCustomizer@80b122b, org.springframework.boot.test.autoconfigure.actuate.observability.ObservabilityContextCustomizerFactory$DisableObservabilityContextCustomizer@1f, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizer@78cfa264, [ImportsContextCustomizer@67485f3c key = [org.springframework.boot.autoconfigure.security.reactive.ReactiveSecurityAutoConfiguration, org.springframework.boot.autoconfigure.security.reactive.ReactiveUserDetailsServiceAutoConfiguration, org.springframework.boot.autoconfigure.security.oauth2.client.reactive.ReactiveOAuth2ClientAutoConfiguration, org.springframework.boot.autoconfigure.security.oauth2.client.reactive.ReactiveOAuth2ClientWebSecurityAutoConfiguration, org.springframework.boot.autoconfigure.security.oauth2.resource.reactive.ReactiveOAuth2ResourceServerAutoConfiguration, org.springframework.boot.test.autoconfigure.web.reactive.WebTestClientAutoConfiguration]], org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@57ddd45b, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@342e690b, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@416d56f2, org.springframework.boot.test.web.reactive.server.WebTestClientContextCustomizer@47c7a9e5, org.springframework.boot.test.web.reactor.netty.DisableReactorResourceFactoryGlobalResourcesContextCustomizerFactory$DisableReactorResourceFactoryGlobalResourcesContextCustomizerCustomizer@321ca237, org.springframework.test.context.bean.override.BeanOverrideContextCustomizer@7bbd3dd2, org.springframework.test.context.support.DynamicPropertiesContextCustomizer@0, org.springframework.boot.test.context.SpringBootTestAnnotation@b10c3606], contextLoader = org.springframework.boot.test.context.SpringBootContextLoader, parent = null]
+        at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:180)
+        at org.springframework.test.context.support.DefaultTestContext.getApplicationContext(DefaultTestContext.java:130)
+        at org.springframework.test.context.bean.override.BeanOverrideTestExecutionListener.injectFields(BeanOverrideTestExecutionListener.java:107)
+        at org.springframework.test.context.bean.override.BeanOverrideTestExecutionListener.prepareTestInstance(BeanOverrideTestExecutionListener.java:70)
+        at org.springframework.test.context.TestContextManager.prepareTestInstance(TestContextManager.java:260)
+        at org.springframework.test.context.junit.jupiter.SpringExtension.postProcessTestInstance(SpringExtension.java:159)
+        at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.accept(ForEachOps.java:183)
+        at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+        at java.base/java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:179)
+        at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+        at java.base/java.util.ArrayList$ArrayListSpliterator.forEachRemaining(ArrayList.java:1625)
+        at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509)
+        at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
+        at java.base/java.util.stream.ForEachOps$ForEachOp.evaluateSequential(ForEachOps.java:150)
+        at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.evaluateSequential(ForEachOps.java:173)
+        at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
+        at java.base/java.util.stream.ReferencePipeline.forEach(ReferencePipeline.java:596)
+        at java.base/java.util.Optional.orElseGet(Optional.java:364)
+        at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+        at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+
+        Caused by:
+        org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'baseWebExceptionHandler': Unsatisfied dependency expressed through field 'baseObjectMapperUtil': Error creating bean with name 'baseObjectMapperUtil' defined in URL [jar:file:/Users/jchen18/.gradle/caches/modules-2/files-2.1/com.humana.eai/eai-chassis-rest/2.8.5/39b4c8f922fdd683e0d125340e7eedcc7b7fdbf/eai-chassis-rest-2.8.5-plain.jar!/com/humana/eai/chassis/util/BaseObjectMapperUtil.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'jacksonObjectMapper' defined in class path resource [org/springframework/boot/autoconfigure/jackson/JacksonAutoConfiguration$JacksonObjectMapperConfiguration.class]: Failed to instantiate [com.fasterxml.jackson.databind.ObjectMapper]: Factory method 'jacksonObjectMapper' threw exception with message: Could not initialize class com.fasterxml.jackson.databind.ObjectMapper
+            at app//org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:787)
+            at app//org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:767)
+            at app//org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:146)
+            at app//org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:509)
+            at app//org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1457)
+            at app//org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:606)
+            at app//org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:529)
+            at app//org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339)
+            at app//org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:373)
+            at app//org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337)
+            at app//org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+            at app//org.springframework.beans.factory.support.DefaultListableBeanFactory.instantiateSingleton(DefaultListableBeanFactory.java:1235)
+            at app//org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingleton(DefaultListableBeanFactory.java:1201)
+            at app//org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:1130)
+            at app//org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:991)
+            at app//org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:628)
+            at app//org.springframework.boot.SpringApplication.refresh(SpringApplication.java:752)
+            at app//org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:439)
+            at app//org.springframework.boot.SpringApplication.run(SpringApplication.java:318)
+            at app//org.springframework.boot.test.context.SpringBootContextLoader.lambda$loadContext$3(SpringBootContextLoader.java:151)
+            at app//org.springframework.util.function.ThrowingSupplier.get(ThrowingSupplier.java:58)
+            at app//org.springframework.util.function.ThrowingSupplier.get(ThrowingSupplier.java:46)
+            at app//org.springframework.boot.SpringApplication.withHook(SpringApplication.java:1461)
+            at app//org.springframework.boot.test.context.SpringBootContextLoader$ContextLoaderHook.run(SpringBootContextLoader.java:590)
+            at app//org.springframework.boot.test.context.SpringBootContextLoader.loadContext(SpringBootContextLoader.java:151)
+            at app//org.springframework.boot.test.context.SpringBootContextLoader.loadContext(SpringBootContextLoader.java:110)
+            at app//org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContextInternal(DefaultCacheAwareContextLoaderDelegate.java:225)
+            at app//org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:152)
+            ... 19 more
+
+            Caused by:
+            org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'baseObjectMapperUtil' defined in URL [jar:file:/Users/jchen18/.gradle/caches/modules-2/files-2.1/com.humana.eai/eai-chassis-rest/2.8.5/39b4c8f922fdd683e0d125340e7eedcc7b7fdbf/eai-chassis-rest-2.8.5-plain.jar!/com/humana/eai/chassis/util/BaseObjectMapperUtil.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'jacksonObjectMapper' defined in class path resource [org/springframework/boot/autoconfigure/jackson/JacksonAutoConfiguration$JacksonObjectMapperConfiguration.class]: Failed to instantiate [com.fasterxml.jackson.databind.ObjectMapper]: Factory method 'jacksonObjectMapper' threw exception with message: Could not initialize class com.fasterxml.jackson.databind.ObjectMapper
+                at app//org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:804)
+                at app//org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:240)
+                at app//org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1393)
+                at app//org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1230)
+                at app//org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:569)
+                at app//org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:529)
+                at app//org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339)
+                at app//org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:373)
+                at app//org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337)
+                at app//org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+                at app//org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1715)
+                at app//org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1660)
+                at app//org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:784)
+                ... 46 more
+
+                Caused by:
+                org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'jacksonObjectMapper' defined in class path resource [org/springframework/boot/autoconfigure/jackson/JacksonAutoConfiguration$JacksonObjectMapperConfiguration.class]: Failed to instantiate [com.fasterxml.jackson.databind.ObjectMapper]: Factory method 'jacksonObjectMapper' threw exception with message: Could not initialize class com.fasterxml.jackson.databind.ObjectMapper
+                    at app//org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:657)
+                    at app//org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:645)
+                    at app//org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1373)
+                    at app//org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1203)
+                    at app//org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:569)
+                    at app//org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:529)
+                    at app//org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339)
+                    at app//org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:373)
+                    at app//org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337)
+                    at app//org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+                    at app//org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254)
+                    at app//org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1777)
+                    at app//org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1660)
+                    at app//org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:913)
+                    at app//org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791)
+                    ... 58 more
+
+                    Caused by:
+                    org.springframework.beans.BeanInstantiationException: Failed to instantiate [com.fasterxml.jackson.databind.ObjectMapper]: Factory method 'jacksonObjectMapper' threw exception with message: Could not initialize class com.fasterxml.jackson.databind.ObjectMapper
+                        at app//org.springframework.beans.factory.support.SimpleInstantiationStrategy.lambda$instantiate$0(SimpleInstantiationStrategy.java:200)
+                        at app//org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiateWithFactoryMethod(SimpleInstantiationStrategy.java:89)
+                        at app//org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:169)
+                        at app//org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:653)
+                        ... 72 more
+
+                        Caused by:
+                        java.lang.NoClassDefFoundError: Could not initialize class com.fasterxml.jackson.databind.ObjectMapper
+                            at org.springframework.http.converter.json.Jackson2ObjectMapperBuilder.build(Jackson2ObjectMapperBuilder.java:700)
+                            at org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration$JacksonObjectMapperConfiguration.jacksonObjectMapper(JacksonAutoConfiguration.java:132)
+                            at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+                            at org.springframework.beans.factory.support.SimpleInstantiationStrategy.lambda$instantiate$0(SimpleInstantiationStrategy.java:172)
+                            ... 75 more
+
+                            Caused by:
+                            java.lang.ExceptionInInitializerError: Exception java.lang.NoClassDefFoundError: com/fasterxml/jackson/annotation/JsonSerializeAs [in thread "background-preinit"]
+                                at com.fasterxml.jackson.databind.introspect.JacksonAnnotationIntrospector.<clinit>(JacksonAnnotationIntrospector.java:38)
+                                at com.fasterxml.jackson.databind.ObjectMapper.<clinit>(ObjectMapper.java:403)
+                                at org.springframework.http.converter.json.Jackson2ObjectMapperBuilder.build(Jackson2ObjectMapperBuilder.java:700)
+                                at org.springframework.http.converter.json.MappingJackson2HttpMessageConverter.<init>(MappingJackson2HttpMessageConverter.java:63)
+                                at org.springframework.http.converter.support.AllEncompassingFormHttpMessageConverter.<init>(AllEncompassingFormHttpMessageConverter.java:94)
+                                at org.springframework.boot.autoconfigure.BackgroundPreinitializer$MessageConverterInitializer.run(BackgroundPreinitializer.java:146)
+                                at org.springframework.boot.autoconfigure.BackgroundPreinitializer$1.runSafely(BackgroundPreinitializer.java:120)
+                                at org.springframework.boot.autoconfigure.BackgroundPreinitializer$1.run(BackgroundPreinitializer.java:106)
+                                at java.base/java.lang.Thread.run(Thread.java:842)
+
+RetrievePublicKeysControllerV20Test > keysGetTest() FAILED
+    java.lang.IllegalStateException: Failed to load ApplicationContext for [ReactiveWebMergedContextConfiguration@ae4159d testClass = com.humana.enterprise.consents.controller.v20.RetrievePublicKeysControllerV20Test, locations = [], classes = [com.humana.enterprise.consents.App], contextInitializerClasses = [], activeProfiles = [], propertySourceDescriptors = [], propertySourceProperties = ["org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true"], contextCustomizers = [org.springframework.boot.test.autoconfigure.OnFailureConditionReportContextCustomizerFactory$OnFailureConditionReportContextCustomizer@80b122b, org.springframework.boot.test.autoconfigure.actuate.observability.ObservabilityContextCustomizerFactory$DisableObservabilityContextCustomizer@1f, org.springframework.boot.test.autoconfigure.properties.PropertyMappingContextCustomizer@0, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverContextCustomizer@78cfa264, [ImportsContextCustomizer@3814cf08 key = [org.springframework.boot.autoconfigure.security.reactive.ReactiveSecurityAutoConfiguration, org.springframework.boot.autoconfigure.security.reactive.ReactiveUserDetailsServiceAutoConfiguration, org.springframework.boot.autoconfigure.security.oauth2.client.reactive.ReactiveOAuth2ClientAutoConfiguration, org.springframework.boot.autoconfigure.security.oauth2.client.reactive.ReactiveOAuth2ClientWebSecurityAutoConfiguration, org.springframework.boot.autoconfigure.security.oauth2.resource.reactive.ReactiveOAuth2ResourceServerAutoConfiguration, org.springframework.boot.test.autoconfigure.web.reactive.WebTestClientAutoConfiguration]], org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@57ddd45b, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@342e690b, org.springframework.boot.test.mock.mockito.MockitoContextCustomizer@0, org.springframework.boot.test.web.client.TestRestTemplateContextCustomizer@416d56f2, org.springframework.boot.test.web.reactive.server.WebTestClientContextCustomizer@47c7a9e5, org.springframework.boot.test.web.reactor.netty.DisableReactorResourceFactoryGlobalResourcesContextCustomizerFactory$DisableReactorResourceFactoryGlobalResourcesContextCustomizerCustomizer@321ca237, org.springframework.test.context.bean.override.BeanOverrideContextCustomizer@4a787864, org.springframework.test.context.support.DynamicPropertiesContextCustomizer@0, org.springframework.boot.test.context.SpringBootTestAnnotation@b10c3606], contextLoader = org.springframework.boot.test.context.SpringBootContextLoader, parent = null]
+        at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:180)
+        at org.springframework.test.context.support.DefaultTestContext.getApplicationContext(DefaultTestContext.java:130)
+        at org.springframework.test.context.bean.override.BeanOverrideTestExecutionListener.injectFields(BeanOverrideTestExecutionListener.java:107)
+        at org.springframework.test.context.bean.override.BeanOverrideTestExecutionListener.prepareTestInstance(BeanOverrideTestExecutionListener.java:70)
+        at org.springframework.test.context.TestContextManager.prepareTestInstance(TestContextManager.java:260)
+        at org.springframework.test.context.junit.jupiter.SpringExtension.postProcessTestInstance(SpringExtension.java:159)
+        at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.accept(ForEachOps.java:183)
+        at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+        at java.base/java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:179)
+        at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+        at java.base/java.util.ArrayList$ArrayListSpliterator.forEachRemaining(ArrayList.java:1625)
+        at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509)
+        at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
+        at java.base/java.util.stream.ForEachOps$ForEachOp.evaluateSequential(ForEachOps.java:150)
+        at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.evaluateSequential(ForEachOps.java:173)
+        at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
+        at java.base/java.util.stream.ReferencePipeline.forEach(ReferencePipeline.java:596)
+        at java.base/java.util.Optional.orElseGet(Optional.java:364)
+        at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+        at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+
+        Caused by:
+        org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'baseWebExceptionHandler': Unsatisfied dependency expressed through field 'baseObjectMapperUtil': Error creating bean with name 'baseObjectMapperUtil' defined in URL [jar:file:/Users/jchen18/.gradle/caches/modules-2/files-2.1/com.humana.eai/eai-chassis-rest/2.8.5/39b4c8f922fdd683e0d125340e7eedcc7b7fdbf/eai-chassis-rest-2.8.5-plain.jar!/com/humana/eai/chassis/util/BaseObjectMapperUtil.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'jacksonObjectMapper' defined in class path resource [org/springframework/boot/autoconfigure/jackson/JacksonAutoConfiguration$JacksonObjectMapperConfiguration.class]: Failed to instantiate [com.fasterxml.jackson.databind.ObjectMapper]: Factory method 'jacksonObjectMapper' threw exception with message: Could not initialize class com.fasterxml.jackson.databind.ObjectMapper
+            at app//org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:787)
+            at app//org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:767)
+            at app//org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:146)
+            at app//org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:509)
+            at app//org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1457)
+            at app//org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:606)
+            at app//org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:529)
+            at app//org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339)
+            at app//org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:373)
+            at app//org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337)
+            at app//org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+            at app//org.springframework.beans.factory.support.DefaultListableBeanFactory.instantiateSingleton(DefaultListableBeanFactory.java:1235)
+            at app//org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingleton(DefaultListableBeanFactory.java:1201)
+            at app//org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:1130)
+            at app//org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:991)
+            at app//org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:628)
+            at app//org.springframework.boot.SpringApplication.refresh(SpringApplication.java:752)
+            at app//org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:439)
+            at app//org.springframework.boot.SpringApplication.run(SpringApplication.java:318)
+            at app//org.springframework.boot.test.context.SpringBootContextLoader.lambda$loadContext$3(SpringBootContextLoader.java:151)
+            at app//org.springframework.util.function.ThrowingSupplier.get(ThrowingSupplier.java:58)
+            at app//org.springframework.util.function.ThrowingSupplier.get(ThrowingSupplier.java:46)
+            at app//org.springframework.boot.SpringApplication.withHook(SpringApplication.java:1461)
+            at app//org.springframework.boot.test.context.SpringBootContextLoader$ContextLoaderHook.run(SpringBootContextLoader.java:590)
+            at app//org.springframework.boot.test.context.SpringBootContextLoader.loadContext(SpringBootContextLoader.java:151)
+            at app//org.springframework.boot.test.context.SpringBootContextLoader.loadContext(SpringBootContextLoader.java:110)
+            at app//org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContextInternal(DefaultCacheAwareContextLoaderDelegate.java:225)
+            at app//org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:152)
+            ... 19 more
+
+            Caused by:
+            org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'baseObjectMapperUtil' defined in URL [jar:file:/Users/jchen18/.gradle/caches/modules-2/files-2.1/com.humana.eai/eai-chassis-rest/2.8.5/39b4c8f922fdd683e0d125340e7eedcc7b7fdbf/eai-chassis-rest-2.8.5-plain.jar!/com/humana/eai/chassis/util/BaseObjectMapperUtil.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'jacksonObjectMapper' defined in class path resource [org/springframework/boot/autoconfigure/jackson/JacksonAutoConfiguration$JacksonObjectMapperConfiguration.class]: Failed to instantiate [com.fasterxml.jackson.databind.ObjectMapper]: Factory method 'jacksonObjectMapper' threw exception with message: Could not initialize class com.fasterxml.jackson.databind.ObjectMapper
+                at app//org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:804)
+                at app//org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:240)
+                at app//org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1393)
+                at app//org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1230)
+                at app//org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:569)
+                at app//org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:529)
+                at app//org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339)
+                at app//org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:373)
+                at app//org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337)
+                at app//org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+                at app//org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1715)
+                at app//org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1660)
+                at app//org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:784)
+                ... 46 more
+
+                Caused by:
+                org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'jacksonObjectMapper' defined in class path resource [org/springframework/boot/autoconfigure/jackson/JacksonAutoConfiguration$JacksonObjectMapperConfiguration.class]: Failed to instantiate [com.fasterxml.jackson.databind.ObjectMapper]: Factory method 'jacksonObjectMapper' threw exception with message: Could not initialize class com.fasterxml.jackson.databind.ObjectMapper
+                    at app//org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:657)
+                    at app//org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:645)
+                    at app//org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1373)
+                    at app//org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1203)
+                    at app//org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:569)
+                    at app//org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:529)
+                    at app//org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:339)
+                    at app//org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:373)
+                    at app//org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:337)
+                    at app//org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:202)
+                    at app//org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254)
+                    at app//org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1777)
+                    at app//org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1660)
+                    at app//org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:913)
+                    at app//org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791)
+                    ... 58 more
+
+                    Caused by:
+                    org.springframework.beans.BeanInstantiationException: Failed to instantiate [com.fasterxml.jackson.databind.ObjectMapper]: Factory method 'jacksonObjectMapper' threw exception with message: Could not initialize class com.fasterxml.jackson.databind.ObjectMapper
+                        at app//org.springframework.beans.factory.support.SimpleInstantiationStrategy.lambda$instantiate$0(SimpleInstantiationStrategy.java:200)
+                        at app//org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiateWithFactoryMethod(SimpleInstantiationStrategy.java:89)
+                        at app//org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:169)
+                        at app//org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:653)
+                        ... 72 more
+
+                        Caused by:
+                        java.lang.NoClassDefFoundError: Could not initialize class com.fasterxml.jackson.databind.ObjectMapper
+                            at org.springframework.http.converter.json.Jackson2ObjectMapperBuilder.build(Jackson2ObjectMapperBuilder.java:700)
+                            at org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration$JacksonObjectMapperConfiguration.jacksonObjectMapper(JacksonAutoConfiguration.java:132)
+                            at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+                            at org.springframework.beans.factory.support.SimpleInstantiationStrategy.lambda$instantiate$0(SimpleInstantiationStrategy.java:172)
+                            ... 75 more
+
+                            Caused by:
+                            java.lang.ExceptionInInitializerError: Exception java.lang.NoClassDefFoundError: com/fasterxml/jackson/annotation/JsonSerializeAs [in thread "background-preinit"]
+                                at com.fasterxml.jackson.databind.introspect.JacksonAnnotationIntrospector.<clinit>(JacksonAnnotationIntrospector.java:38)
+                                at com.fasterxml.jackson.databind.ObjectMapper.<clinit>(ObjectMapper.java:403)
+                                at org.springframework.http.converter.json.Jackson2ObjectMapperBuilder.build(Jackson2ObjectMapperBuilder.java:700)
+                                at org.springframework.http.converter.json.MappingJackson2HttpMessageConverter.<init>(MappingJackson2HttpMessageConverter.java:63)
+                                at org.springframework.http.converter.support.AllEncompassingFormHttpMessageConverter.<init>(AllEncompassingFormHttpMessageConverter.java:94)
+                                at org.springframework.boot.autoconfigure.BackgroundPreinitializer$MessageConverterInitializer.run(BackgroundPreinitializer.java:146)
+                                at org.springframework.boot.autoconfigure.BackgroundPreinitializer$1.runSafely(BackgroundPreinitializer.java:120)
+                                at org.springframework.boot.autoconfigure.BackgroundPreinitializer$1.run(BackgroundPreinitializer.java:106)
+                                at java.base/java.lang.Thread.run(Thread.java:842)
+
+EvaluationProducerServiceTest > test send message when exception occurred FAILED
+    java.lang.NoClassDefFoundError: Could not initialize class com.fasterxml.jackson.databind.ObjectMapper
+        at org.apache.avro.Schema.<clinit>(Schema.java:119)
+        at org.apache.avro.Schema$Parser.parse(Schema.java:1515)
+        at com.humana.enterprise.consents.contract.avro.schema.outbound.ConsentEvaluationHistory.<clinit>(ConsentEvaluationHistory.java:19)
+        at com.humana.enterprise.consents.util.MockUtil.getMockConsentEvaluationHistory(MockUtil.java:59)
+        at com.humana.enterprise.consents.kafka.EvaluationProducerServiceTest.setUp(EvaluationProducerServiceTest.java:57)
+
+        Caused by:
+        java.lang.ExceptionInInitializerError: Exception java.lang.NoClassDefFoundError: com/fasterxml/jackson/annotation/JsonSerializeAs [in thread "background-preinit"]
+            at com.fasterxml.jackson.databind.introspect.JacksonAnnotationIntrospector.<clinit>(JacksonAnnotationIntrospector.java:38)
+            at com.fasterxml.jackson.databind.ObjectMapper.<clinit>(ObjectMapper.java:403)
+            at org.springframework.http.converter.json.Jackson2ObjectMapperBuilder.build(Jackson2ObjectMapperBuilder.java:700)
+            at org.springframework.http.converter.json.MappingJackson2HttpMessageConverter.<init>(MappingJackson2HttpMessageConverter.java:63)
+            at org.springframework.http.converter.support.AllEncompassingFormHttpMessageConverter.<init>(AllEncompassingFormHttpMessageConverter.java:94)
+            at org.springframework.boot.autoconfigure.BackgroundPreinitializer$MessageConverterInitializer.run(BackgroundPreinitializer.java:146)
+            at org.springframework.boot.autoconfigure.BackgroundPreinitializer$1.runSafely(BackgroundPreinitializer.java:120)
+            at org.springframework.boot.autoconfigure.BackgroundPreinitializer$1.run(BackgroundPreinitializer.java:106)
+            at java.base/java.lang.Thread.run(Thread.java:842)
+
+EvaluationProducerServiceTest > test send message when exception occurred FAILED
+    java.lang.NoClassDefFoundError: Could not initialize class com.humana.enterprise.consents.contract.avro.schema.outbound.ConsentEvaluationHistory
+        at com.humana.enterprise.consents.util.MockUtil.getMockConsentEvaluationHistory(MockUtil.java:59)
+        at com.humana.enterprise.consents.kafka.EvaluationProducerServiceTest.setUp(EvaluationProducerServiceTest.java:57)
+
+        Caused by:
+        java.lang.ExceptionInInitializerError: Exception java.lang.NoClassDefFoundError: Could not initialize class com.fasterxml.jackson.databind.ObjectMapper [in thread "Test worker"]
+            at org.apache.avro.Schema.<clinit>(Schema.java:119)
+            at org.apache.avro.Schema$Parser.parse(Schema.java:1515)
+            at com.humana.enterprise.consents.contract.avro.schema.outbound.ConsentEvaluationHistory.<clinit>(ConsentEvaluationHistory.java:19)
+            ... 2 more
+
+EvaluationProducerServiceTest > test send message when correct data is passed FAILED
+    java.lang.NoClassDefFoundError: Could not initialize class com.humana.enterprise.consents.contract.avro.schema.outbound.ConsentEvaluationHistory
+        at com.humana.enterprise.consents.util.MockUtil.getMockConsentEvaluationHistory(MockUtil.java:59)
+        at com.humana.enterprise.consents.kafka.EvaluationProducerServiceTest.setUp(EvaluationProducerServiceTest.java:57)
+
+        Caused by:
+        java.lang.ExceptionInInitializerError: Exception java.lang.NoClassDefFoundError: Could not initialize class com.fasterxml.jackson.databind.ObjectMapper [in thread "Test worker"]
+            at org.apache.avro.Schema.<clinit>(Schema.java:119)
+            at org.apache.avro.Schema$Parser.parse(Schema.java:1515)
+            at com.humana.enterprise.consents.contract.avro.schema.outbound.ConsentEvaluationHistory.<clinit>(ConsentEvaluationHistory.java:19)
+            ... 2 more
+
+MemberConsentEvaluateServiceV20Test > testing the consume consents when when multiple consents FAILED
+    java.lang.NoClassDefFoundError: Could not initialize class com.fasterxml.jackson.databind.ObjectMapper
+        at com.humana.enterprise.consents.util.ConsumptionServiceUtil.convertEntityToJsonString(ConsumptionServiceUtil.java:206)
+        at com.humana.enterprise.consents.service.v20.MemberConsentEvaluateServiceV20.lambda$membersEnterpriseMemberIdConsentsEvaluate$0(MemberConsentEvaluateServiceV20.java:92)
+        at reactor.core.publisher.FluxMapFuseable$MapFuseableSubscriber.onNext(FluxMapFuseable.java:113)
+        at reactor.core.publisher.Operators$ScalarSubscription.request(Operators.java:2570)
+        at reactor.core.publisher.FluxMapFuseable$MapFuseableSubscriber.request(FluxMapFuseable.java:171)
+        at reactor.core.publisher.BlockingSingleSubscriber.onSubscribe(BlockingSingleSubscriber.java:54)
+        at reactor.core.publisher.FluxMapFuseable$MapFuseableSubscriber.onSubscribe(FluxMapFuseable.java:96)
+        at reactor.core.publisher.MonoJust.subscribe(MonoJust.java:55)
+        at reactor.core.publisher.Mono.subscribe(Mono.java:4576)
+        at reactor.core.publisher.Mono.block(Mono.java:1778)
+        at com.humana.enterprise.consents.service.v20.MemberConsentEvaluateServiceV20Test.testmembersEnterpriseMemberIdConsentsEvaluateMultipleConsentsAndPreferences(MemberConsentEvaluateServiceV20Test.java:158)
+
+        Caused by:
+        java.lang.ExceptionInInitializerError: Exception java.lang.NoClassDefFoundError: com/fasterxml/jackson/annotation/JsonSerializeAs [in thread "background-preinit"]
+            at com.fasterxml.jackson.databind.introspect.JacksonAnnotationIntrospector.<clinit>(JacksonAnnotationIntrospector.java:38)
+            at com.fasterxml.jackson.databind.ObjectMapper.<clinit>(ObjectMapper.java:403)
+            at org.springframework.http.converter.json.Jackson2ObjectMapperBuilder.build(Jackson2ObjectMapperBuilder.java:700)
+            at org.springframework.http.converter.json.MappingJackson2HttpMessageConverter.<init>(MappingJackson2HttpMessageConverter.java:63)
+            at org.springframework.http.converter.support.AllEncompassingFormHttpMessageConverter.<init>(AllEncompassingFormHttpMessageConverter.java:94)
+            at org.springframework.boot.autoconfigure.BackgroundPreinitializer$MessageConverterInitializer.run(BackgroundPreinitializer.java:146)
+            at org.springframework.boot.autoconfigure.BackgroundPreinitializer$1.runSafely(BackgroundPreinitializer.java:120)
+            at org.springframework.boot.autoconfigure.BackgroundPreinitializer$1.run(BackgroundPreinitializer.java:106)
+            at java.base/java.lang.Thread.run(Thread.java:842)
+
+MemberConsentEvaluateServiceV20Test > testing validate and evaluate consent with no active rule FAILED
+    org.opentest4j.AssertionFailedError: Unexpected exception type thrown, expected: <com.humana.eai.chassis.exceptions.BaseAPIException> but was: <java.lang.NoClassDefFoundError>
+        at app//org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+        at app//org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:67)
+        at app//org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:35)
+        at app//org.junit.jupiter.api.Assertions.assertThrows(Assertions.java:3128)
+        at app//com.humana.enterprise.consents.service.v20.MemberConsentEvaluateServiceV20Test.testValidateAndEvaluateNoActiveRule(MemberConsentEvaluateServiceV20Test.java:203)
+
+        Caused by:
+        java.lang.NoClassDefFoundError: Could not initialize class com.fasterxml.jackson.databind.ObjectMapper
+            at com.humana.enterprise.consents.util.ConsumptionServiceUtil.convertEntityToJsonString(ConsumptionServiceUtil.java:206)
+            at com.humana.enterprise.consents.service.v20.MemberConsentEvaluateServiceV20.buildEvaluationHistory(MemberConsentEvaluateServiceV20.java:181)
+            at com.humana.enterprise.consents.service.v20.MemberConsentEvaluateServiceV20.validateAndEvaluate(MemberConsentEvaluateServiceV20.java:154)
+            at com.humana.enterprise.consents.service.v20.MemberConsentEvaluateServiceV20Test.lambda$testValidateAndEvaluateNoActiveRule$2(MemberConsentEvaluateServiceV20Test.java:203)
+            at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:53)
+            ... 3 more
+
+            Caused by:
+            java.lang.ExceptionInInitializerError: Exception java.lang.NoClassDefFoundError: com/fasterxml/jackson/annotation/JsonSerializeAs [in thread "background-preinit"]
+                at com.fasterxml.jackson.databind.introspect.JacksonAnnotationIntrospector.<clinit>(JacksonAnnotationIntrospector.java:38)
+                at com.fasterxml.jackson.databind.ObjectMapper.<clinit>(ObjectMapper.java:403)
+                at org.springframework.http.converter.json.Jackson2ObjectMapperBuilder.build(Jackson2ObjectMapperBuilder.java:700)
+                at org.springframework.http.converter.json.MappingJackson2HttpMessageConverter.<init>(MappingJackson2HttpMessageConverter.java:63)
+                at org.springframework.http.converter.support.AllEncompassingFormHttpMessageConverter.<init>(AllEncompassingFormHttpMessageConverter.java:94)
+                at org.springframework.boot.autoconfigure.BackgroundPreinitializer$MessageConverterInitializer.run(BackgroundPreinitializer.java:146)
+                at org.springframework.boot.autoconfigure.BackgroundPreinitializer$1.runSafely(BackgroundPreinitializer.java:120)
+                at org.springframework.boot.autoconfigure.BackgroundPreinitializer$1.run(BackgroundPreinitializer.java:106)
+                at java.base/java.lang.Thread.run(Thread.java:842)
+
+MemberConsentEvaluateServiceV20Test > testing the consume consents when business rule available FAILED
+    java.lang.NoClassDefFoundError: Could not initialize class com.fasterxml.jackson.databind.ObjectMapper
+        at com.humana.enterprise.consents.util.ConsumptionServiceUtil.convertEntityToJsonString(ConsumptionServiceUtil.java:206)
+        at com.humana.enterprise.consents.service.v20.MemberConsentEvaluateServiceV20.lambda$membersEnterpriseMemberIdConsentsEvaluate$0(MemberConsentEvaluateServiceV20.java:92)
+        at reactor.core.publisher.FluxMapFuseable$MapFuseableSubscriber.onNext(FluxMapFuseable.java:113)
+        at reactor.core.publisher.Operators$ScalarSubscription.request(Operators.java:2570)
+        at reactor.core.publisher.FluxMapFuseable$MapFuseableSubscriber.request(FluxMapFuseable.java:171)
+        at reactor.core.publisher.BlockingSingleSubscriber.onSubscribe(BlockingSingleSubscriber.java:54)
+        at reactor.core.publisher.FluxMapFuseable$MapFuseableSubscriber.onSubscribe(FluxMapFuseable.java:96)
+        at reactor.core.publisher.MonoJust.subscribe(MonoJust.java:55)
+        at reactor.core.publisher.Mono.subscribe(Mono.java:4576)
+        at reactor.core.publisher.Mono.block(Mono.java:1778)
+        at com.humana.enterprise.consents.service.v20.MemberConsentEvaluateServiceV20Test.testmembersEnterpriseMemberIdConsentsEvaluateWithBusinessRuleEvaluation(MemberConsentEvaluateServiceV20Test.java:98)
+
+        Caused by:
+        java.lang.ExceptionInInitializerError: Exception java.lang.NoClassDefFoundError: com/fasterxml/jackson/annotation/JsonSerializeAs [in thread "background-preinit"]
+            at com.fasterxml.jackson.databind.introspect.JacksonAnnotationIntrospector.<clinit>(JacksonAnnotationIntrospector.java:38)
+            at com.fasterxml.jackson.databind.ObjectMapper.<clinit>(ObjectMapper.java:403)
+            at org.springframework.http.converter.json.Jackson2ObjectMapperBuilder.build(Jackson2ObjectMapperBuilder.java:700)
+            at org.springframework.http.converter.json.MappingJackson2HttpMessageConverter.<init>(MappingJackson2HttpMessageConverter.java:63)
+            at org.springframework.http.converter.support.AllEncompassingFormHttpMessageConverter.<init>(AllEncompassingFormHttpMessageConverter.java:94)
+            at org.springframework.boot.autoconfigure.BackgroundPreinitializer$MessageConverterInitializer.run(BackgroundPreinitializer.java:146)
+            at org.springframework.boot.autoconfigure.BackgroundPreinitializer$1.runSafely(BackgroundPreinitializer.java:120)
+            at org.springframework.boot.autoconfigure.BackgroundPreinitializer$1.run(BackgroundPreinitializer.java:106)
+            at java.base/java.lang.Thread.run(Thread.java:842)
+
+MemberConsentEvaluateServiceV20Test > testing the consume consents when preference list is empty FAILED
+    java.lang.NoClassDefFoundError: Could not initialize class com.fasterxml.jackson.databind.ObjectMapper
+        at com.humana.enterprise.consents.util.ConsumptionServiceUtil.convertEntityToJsonString(ConsumptionServiceUtil.java:206)
+        at com.humana.enterprise.consents.service.v20.MemberConsentEvaluateServiceV20.lambda$membersEnterpriseMemberIdConsentsEvaluate$0(MemberConsentEvaluateServiceV20.java:92)
+        at reactor.core.publisher.FluxMapFuseable$MapFuseableSubscriber.onNext(FluxMapFuseable.java:113)
+        at reactor.core.publisher.Operators$ScalarSubscription.request(Operators.java:2570)
+        at reactor.core.publisher.FluxMapFuseable$MapFuseableSubscriber.request(FluxMapFuseable.java:171)
+        at reactor.core.publisher.BlockingSingleSubscriber.onSubscribe(BlockingSingleSubscriber.java:54)
+        at reactor.core.publisher.FluxMapFuseable$MapFuseableSubscriber.onSubscribe(FluxMapFuseable.java:96)
+        at reactor.core.publisher.MonoJust.subscribe(MonoJust.java:55)
+        at reactor.core.publisher.Mono.subscribe(Mono.java:4576)
+        at reactor.core.publisher.Mono.block(Mono.java:1778)
+        at com.humana.enterprise.consents.service.v20.MemberConsentEvaluateServiceV20Test.testmembersEnterpriseMemberIdConsentsEvaluateEmptyPreferencesList(MemberConsentEvaluateServiceV20Test.java:123)
+
+        Caused by:
+        java.lang.ExceptionInInitializerError: Exception java.lang.NoClassDefFoundError: com/fasterxml/jackson/annotation/JsonSerializeAs [in thread "background-preinit"]
+            at com.fasterxml.jackson.databind.introspect.JacksonAnnotationIntrospector.<clinit>(JacksonAnnotationIntrospector.java:38)
+            at com.fasterxml.jackson.databind.ObjectMapper.<clinit>(ObjectMapper.java:403)
+            at org.springframework.http.converter.json.Jackson2ObjectMapperBuilder.build(Jackson2ObjectMapperBuilder.java:700)
+            at org.springframework.http.converter.json.MappingJackson2HttpMessageConverter.<init>(MappingJackson2HttpMessageConverter.java:63)
+            at org.springframework.http.converter.support.AllEncompassingFormHttpMessageConverter.<init>(AllEncompassingFormHttpMessageConverter.java:94)
+            at org.springframework.boot.autoconfigure.BackgroundPreinitializer$MessageConverterInitializer.run(BackgroundPreinitializer.java:146)
+            at org.springframework.boot.autoconfigure.BackgroundPreinitializer$1.runSafely(BackgroundPreinitializer.java:120)
+            at org.springframework.boot.autoconfigure.BackgroundPreinitializer$1.run(BackgroundPreinitializer.java:106)
+            at java.base/java.lang.Thread.run(Thread.java:842)
+
+MemberConsentEvaluateServiceV20Test > testing validate and evaluate consent with no active rule FAILED
+    org.opentest4j.AssertionFailedError: Unexpected exception type thrown, expected: <com.humana.eai.chassis.exceptions.BaseAPIException> but was: <java.lang.NoClassDefFoundError>
+        at app//org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+        at app//org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:67)
+        at app//org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:35)
+        at app//org.junit.jupiter.api.Assertions.assertThrows(Assertions.java:3128)
+        at app//com.humana.enterprise.consents.service.v20.MemberConsentEvaluateServiceV20Test.testValidateAndEvaluateNoActiveRule2(MemberConsentEvaluateServiceV20Test.java:192)
+
+        Caused by:
+        java.lang.NoClassDefFoundError: Could not initialize class com.fasterxml.jackson.databind.ObjectMapper
+            at com.humana.enterprise.consents.util.ConsumptionServiceUtil.convertEntityToJsonString(ConsumptionServiceUtil.java:206)
+            at com.humana.enterprise.consents.service.v20.MemberConsentEvaluateServiceV20.buildEvaluationHistory(MemberConsentEvaluateServiceV20.java:181)
+            at com.humana.enterprise.consents.service.v20.MemberConsentEvaluateServiceV20.validateAndEvaluate(MemberConsentEvaluateServiceV20.java:154)
+            at com.humana.enterprise.consents.service.v20.MemberConsentEvaluateServiceV20Test.lambda$testValidateAndEvaluateNoActiveRule2$1(MemberConsentEvaluateServiceV20Test.java:192)
+            at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:53)
+            ... 3 more
+
+            Caused by:
+            java.lang.ExceptionInInitializerError: Exception java.lang.NoClassDefFoundError: com/fasterxml/jackson/annotation/JsonSerializeAs [in thread "background-preinit"]
+                at com.fasterxml.jackson.databind.introspect.JacksonAnnotationIntrospector.<clinit>(JacksonAnnotationIntrospector.java:38)
+                at com.fasterxml.jackson.databind.ObjectMapper.<clinit>(ObjectMapper.java:403)
+                at org.springframework.http.converter.json.Jackson2ObjectMapperBuilder.build(Jackson2ObjectMapperBuilder.java:700)
+                at org.springframework.http.converter.json.MappingJackson2HttpMessageConverter.<init>(MappingJackson2HttpMessageConverter.java:63)
+                at org.springframework.http.converter.support.AllEncompassingFormHttpMessageConverter.<init>(AllEncompassingFormHttpMessageConverter.java:94)
+                at org.springframework.boot.autoconfigure.BackgroundPreinitializer$MessageConverterInitializer.run(BackgroundPreinitializer.java:146)
+                at org.springframework.boot.autoconfigure.BackgroundPreinitializer$1.runSafely(BackgroundPreinitializer.java:120)
+                at org.springframework.boot.autoconfigure.BackgroundPreinitializer$1.run(BackgroundPreinitializer.java:106)
+                at java.base/java.lang.Thread.run(Thread.java:842)
+
+MemberConsentEvaluateServiceV20Test > testing the when consent and preference list is empty FAILED
+    org.opentest4j.AssertionFailedError: Unexpected exception type thrown, expected: <com.humana.eai.chassis.exceptions.BaseAPIException> but was: <java.lang.NoClassDefFoundError>
+        at app//org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+        at app//org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:67)
+        at app//org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:35)
+        at app//org.junit.jupiter.api.Assertions.assertThrows(Assertions.java:3128)
+        at app//com.humana.enterprise.consents.service.v20.MemberConsentEvaluateServiceV20Test.testmembersEnterpriseMemberIdConsentsEvaluateEmptyWhenBothConsentAndPreferencesList(MemberConsentEvaluateServiceV20Test.java:178)
+
+        Caused by:
+        java.lang.NoClassDefFoundError: Could not initialize class com.fasterxml.jackson.databind.ObjectMapper
+            at com.humana.enterprise.consents.util.ConsumptionServiceUtil.convertEntityToJsonString(ConsumptionServiceUtil.java:206)
+            at com.humana.enterprise.consents.service.v20.MemberConsentEvaluateServiceV20.buildEvaluationHistory(MemberConsentEvaluateServiceV20.java:181)
+            at com.humana.enterprise.consents.service.v20.MemberConsentEvaluateServiceV20.validateAndEvaluate(MemberConsentEvaluateServiceV20.java:120)
+            at com.humana.enterprise.consents.service.v20.MemberConsentEvaluateServiceV20Test.lambda$testmembersEnterpriseMemberIdConsentsEvaluateEmptyWhenBothConsentAndPreferencesList$0(MemberConsentEvaluateServiceV20Test.java:179)
+            at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:53)
+            ... 3 more
+
+            Caused by:
+            java.lang.ExceptionInInitializerError: Exception java.lang.NoClassDefFoundError: com/fasterxml/jackson/annotation/JsonSerializeAs [in thread "background-preinit"]
+                at com.fasterxml.jackson.databind.introspect.JacksonAnnotationIntrospector.<clinit>(JacksonAnnotationIntrospector.java:38)
+                at com.fasterxml.jackson.databind.ObjectMapper.<clinit>(ObjectMapper.java:403)
+                at org.springframework.http.converter.json.Jackson2ObjectMapperBuilder.build(Jackson2ObjectMapperBuilder.java:700)
+                at org.springframework.http.converter.json.MappingJackson2HttpMessageConverter.<init>(MappingJackson2HttpMessageConverter.java:63)
+                at org.springframework.http.converter.support.AllEncompassingFormHttpMessageConverter.<init>(AllEncompassingFormHttpMessageConverter.java:94)
+                at org.springframework.boot.autoconfigure.BackgroundPreinitializer$MessageConverterInitializer.run(BackgroundPreinitializer.java:146)
+                at org.springframework.boot.autoconfigure.BackgroundPreinitializer$1.runSafely(BackgroundPreinitializer.java:120)
+                at org.springframework.boot.autoconfigure.BackgroundPreinitializer$1.run(BackgroundPreinitializer.java:106)
+                at java.base/java.lang.Thread.run(Thread.java:842)
+
+MemberConsentsServiceV20Test > testBuildConsent_Positive() FAILED
+    java.lang.NoClassDefFoundError: Could not initialize class com.fasterxml.jackson.databind.ObjectMapper
+        at com.humana.enterprise.consents.util.ConsumptionServiceUtil.buildConsentProvidedTo(ConsumptionServiceUtil.java:149)
+        at com.humana.enterprise.consents.service.v20.MemberConsentsServiceV20Test.testBuildConsent_Positive(MemberConsentsServiceV20Test.java:104)
+
+        Caused by:
+        java.lang.ExceptionInInitializerError: Exception java.lang.NoClassDefFoundError: com/fasterxml/jackson/annotation/JsonSerializeAs [in thread "background-preinit"]
+            at com.fasterxml.jackson.databind.introspect.JacksonAnnotationIntrospector.<clinit>(JacksonAnnotationIntrospector.java:38)
+            at com.fasterxml.jackson.databind.ObjectMapper.<clinit>(ObjectMapper.java:403)
+            at org.springframework.http.converter.json.Jackson2ObjectMapperBuilder.build(Jackson2ObjectMapperBuilder.java:700)
+            at org.springframework.http.converter.json.MappingJackson2HttpMessageConverter.<init>(MappingJackson2HttpMessageConverter.java:63)
+            at org.springframework.http.converter.support.AllEncompassingFormHttpMessageConverter.<init>(AllEncompassingFormHttpMessageConverter.java:94)
+            at org.springframework.boot.autoconfigure.BackgroundPreinitializer$MessageConverterInitializer.run(BackgroundPreinitializer.java:146)
+            at org.springframework.boot.autoconfigure.BackgroundPreinitializer$1.runSafely(BackgroundPreinitializer.java:120)
+            at org.springframework.boot.autoconfigure.BackgroundPreinitializer$1.run(BackgroundPreinitializer.java:106)
+            at java.base/java.lang.Thread.run(Thread.java:842)
+
+MemberConsentsServiceV20Test > testBuildConsent_Negative() FAILED
+    java.lang.NoClassDefFoundError: Could not initialize class com.fasterxml.jackson.databind.ObjectMapper
+        at com.humana.enterprise.consents.util.ConsumptionServiceUtil.buildConsentProvidedTo(ConsumptionServiceUtil.java:149)
+        at com.humana.enterprise.consents.service.v20.MemberConsentsServiceV20Test.testBuildConsent_Negative(MemberConsentsServiceV20Test.java:121)
+
+        Caused by:
+        java.lang.ExceptionInInitializerError: Exception java.lang.NoClassDefFoundError: com/fasterxml/jackson/annotation/JsonSerializeAs [in thread "background-preinit"]
+            at com.fasterxml.jackson.databind.introspect.JacksonAnnotationIntrospector.<clinit>(JacksonAnnotationIntrospector.java:38)
+            at com.fasterxml.jackson.databind.ObjectMapper.<clinit>(ObjectMapper.java:403)
+            at org.springframework.http.converter.json.Jackson2ObjectMapperBuilder.build(Jackson2ObjectMapperBuilder.java:700)
+            at org.springframework.http.converter.json.MappingJackson2HttpMessageConverter.<init>(MappingJackson2HttpMessageConverter.java:63)
+            at org.springframework.http.converter.support.AllEncompassingFormHttpMessageConverter.<init>(AllEncompassingFormHttpMessageConverter.java:94)
+            at org.springframework.boot.autoconfigure.BackgroundPreinitializer$MessageConverterInitializer.run(BackgroundPreinitializer.java:146)
+            at org.springframework.boot.autoconfigure.BackgroundPreinitializer$1.runSafely(BackgroundPreinitializer.java:120)
+            at org.springframework.boot.autoconfigure.BackgroundPreinitializer$1.run(BackgroundPreinitializer.java:106)
+            at java.base/java.lang.Thread.run(Thread.java:842)
+
+EvaluationServiceUtilTest > testConvertIngestionRequestDtoToOutboundAvro_withConsentsResponse() FAILED
+    java.lang.NoClassDefFoundError: Could not initialize class org.apache.avro.Schema
+        at org.apache.avro.Schema$Parser.parse(Schema.java:1515)
+        at com.humana.enterprise.consents.contract.avro.schema.outbound.ConsumeConsentRequest.<clinit>(ConsumeConsentRequest.java:19)
+        at com.humana.enterprise.consents.util.EvaluationServiceUtil.getConsumeConsentRequest(EvaluationServiceUtil.java:67)
+        at com.humana.enterprise.consents.util.EvaluationServiceUtil.convertIngestionRequestDtoToOutboundAvro(EvaluationServiceUtil.java:40)
+        at com.humana.enterprise.consents.util.EvaluationServiceUtilTest.testConvertIngestionRequestDtoToOutboundAvro_withConsentsResponse(EvaluationServiceUtilTest.java:110)
+
+        Caused by:
+        java.lang.ExceptionInInitializerError: Exception java.lang.NoClassDefFoundError: Could not initialize class com.fasterxml.jackson.databind.ObjectMapper [in thread "Test worker"]
+            at org.apache.avro.Schema.<clinit>(Schema.java:119)
+            at org.apache.avro.Schema$Parser.parse(Schema.java:1515)
+            at com.humana.enterprise.consents.contract.avro.schema.outbound.ConsentEvaluationHistory.<clinit>(ConsentEvaluationHistory.java:19)
+            at com.humana.enterprise.consents.util.MockUtil.getMockConsentEvaluationHistory(MockUtil.java:59)
+            at com.humana.enterprise.consents.kafka.EvaluationProducerServiceTest.setUp(EvaluationProducerServiceTest.java:57)
+            at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+            at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+            at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+
+EvaluationServiceUtilTest > testGetConsent_withMissingSubmittedTimestamp() FAILED
+    java.lang.NoClassDefFoundError: Could not initialize class org.apache.avro.Schema
+        at org.apache.avro.Schema$Parser.parse(Schema.java:1515)
+        at com.humana.enterprise.consents.contract.avro.schema.outbound.ConsentSigningInformation.<clinit>(ConsentSigningInformation.java:19)
+        at com.humana.enterprise.consents.util.EvaluationServiceUtil.getConsent(EvaluationServiceUtil.java:152)
+        at com.humana.enterprise.consents.util.EvaluationServiceUtilTest.testGetConsent_withMissingSubmittedTimestamp(EvaluationServiceUtilTest.java:291)
+
+        Caused by:
+        java.lang.ExceptionInInitializerError: Exception java.lang.NoClassDefFoundError: Could not initialize class com.fasterxml.jackson.databind.ObjectMapper [in thread "Test worker"]
+            at org.apache.avro.Schema.<clinit>(Schema.java:119)
+            at org.apache.avro.Schema$Parser.parse(Schema.java:1515)
+            at com.humana.enterprise.consents.contract.avro.schema.outbound.ConsentEvaluationHistory.<clinit>(ConsentEvaluationHistory.java:19)
+            at com.humana.enterprise.consents.util.MockUtil.getMockConsentEvaluationHistory(MockUtil.java:59)
+            at com.humana.enterprise.consents.kafka.EvaluationProducerServiceTest.setUp(EvaluationProducerServiceTest.java:57)
+            at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+            at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+            at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+
+EvaluationServiceUtilTest > testGetConsent_withNullConsentPeriod() FAILED
+    java.lang.NoClassDefFoundError: Could not initialize class com.humana.enterprise.consents.contract.avro.schema.outbound.ConsentSigningInformation
+        at com.humana.enterprise.consents.util.EvaluationServiceUtil.getConsent(EvaluationServiceUtil.java:152)
+        at com.humana.enterprise.consents.util.EvaluationServiceUtilTest.testGetConsent_withNullConsentPeriod(EvaluationServiceUtilTest.java:308)
+
+        Caused by:
+        java.lang.ExceptionInInitializerError: Exception java.lang.NoClassDefFoundError: Could not initialize class org.apache.avro.Schema [in thread "Test worker"]
+            at org.apache.avro.Schema$Parser.parse(Schema.java:1515)
+            at com.humana.enterprise.consents.contract.avro.schema.outbound.ConsentSigningInformation.<clinit>(ConsentSigningInformation.java:19)
+            at com.humana.enterprise.consents.util.EvaluationServiceUtil.getConsent(EvaluationServiceUtil.java:152)
+            at com.humana.enterprise.consents.util.EvaluationServiceUtilTest.testGetConsent_withMissingSubmittedTimestamp(EvaluationServiceUtilTest.java:291)
+
+EvaluationServiceUtilTest > testConvertIngestionRequestDtoToOutboundAvro_withEvaluationResponse() FAILED
+    java.lang.NoClassDefFoundError: Could not initialize class com.humana.enterprise.consents.contract.avro.schema.outbound.ConsumeConsentRequest
+        at com.humana.enterprise.consents.util.EvaluationServiceUtil.getConsumeConsentRequest(EvaluationServiceUtil.java:67)
+        at com.humana.enterprise.consents.util.EvaluationServiceUtil.convertIngestionRequestDtoToOutboundAvro(EvaluationServiceUtil.java:40)
+        at com.humana.enterprise.consents.util.EvaluationServiceUtilTest.testConvertIngestionRequestDtoToOutboundAvro_withEvaluationResponse(EvaluationServiceUtilTest.java:158)
+
+        Caused by:
+        java.lang.ExceptionInInitializerError: Exception java.lang.NoClassDefFoundError: Could not initialize class org.apache.avro.Schema [in thread "Test worker"]
+            at org.apache.avro.Schema$Parser.parse(Schema.java:1515)
+            at com.humana.enterprise.consents.contract.avro.schema.outbound.ConsumeConsentRequest.<clinit>(ConsumeConsentRequest.java:19)
+            at com.humana.enterprise.consents.util.EvaluationServiceUtil.getConsumeConsentRequest(EvaluationServiceUtil.java:67)
+            at com.humana.enterprise.consents.util.EvaluationServiceUtil.convertIngestionRequestDtoToOutboundAvro(EvaluationServiceUtil.java:40)
+            at com.humana.enterprise.consents.util.EvaluationServiceUtilTest.testConvertIngestionRequestDtoToOutboundAvro_withConsentsResponse(EvaluationServiceUtilTest.java:110)
+
+EvaluationServiceUtilTest > testSetNullWithEmptyStringForConsentProvidedTo_blankFields() FAILED
+    java.lang.NoClassDefFoundError: Could not initialize class org.apache.avro.Schema
+        at org.apache.avro.Schema$Parser.parse(Schema.java:1515)
+        at com.humana.enterprise.consents.contract.avro.schema.outbound.ConsentProvidedTo.<clinit>(ConsentProvidedTo.java:19)
+        at com.humana.enterprise.consents.util.EvaluationServiceUtilTest.testSetNullWithEmptyStringForConsentProvidedTo_blankFields(EvaluationServiceUtilTest.java:238)
+
+        Caused by:
+        java.lang.ExceptionInInitializerError: Exception java.lang.NoClassDefFoundError: Could not initialize class com.fasterxml.jackson.databind.ObjectMapper [in thread "Test worker"]
+            at org.apache.avro.Schema.<clinit>(Schema.java:119)
+            at org.apache.avro.Schema$Parser.parse(Schema.java:1515)
+            at com.humana.enterprise.consents.contract.avro.schema.outbound.ConsentEvaluationHistory.<clinit>(ConsentEvaluationHistory.java:19)
+            at com.humana.enterprise.consents.util.MockUtil.getMockConsentEvaluationHistory(MockUtil.java:59)
+            at com.humana.enterprise.consents.kafka.EvaluationProducerServiceTest.setUp(EvaluationProducerServiceTest.java:57)
+            at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+            at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+            at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+
+EvaluationServiceUtilTest > testGetConsent_withAllConsentPeriodFieldsPresent() FAILED
+    java.lang.NoClassDefFoundError: Could not initialize class com.humana.enterprise.consents.contract.avro.schema.outbound.ConsentSigningInformation
+        at com.humana.enterprise.consents.util.EvaluationServiceUtil.getConsent(EvaluationServiceUtil.java:152)
+        at com.humana.enterprise.consents.util.EvaluationServiceUtilTest.testGetConsent_withAllConsentPeriodFieldsPresent(EvaluationServiceUtilTest.java:269)
+
+        Caused by:
+        java.lang.ExceptionInInitializerError: Exception java.lang.NoClassDefFoundError: Could not initialize class org.apache.avro.Schema [in thread "Test worker"]
+            at org.apache.avro.Schema$Parser.parse(Schema.java:1515)
+            at com.humana.enterprise.consents.contract.avro.schema.outbound.ConsentSigningInformation.<clinit>(ConsentSigningInformation.java:19)
+            at com.humana.enterprise.consents.util.EvaluationServiceUtil.getConsent(EvaluationServiceUtil.java:152)
+            at com.humana.enterprise.consents.util.EvaluationServiceUtilTest.testGetConsent_withMissingSubmittedTimestamp(EvaluationServiceUtilTest.java:291)
+
+EvaluationServiceUtilTest > testConvertIngestionRequestDtoToOutboundAvro_withErrorResponse() FAILED
+    java.lang.NoClassDefFoundError: Could not initialize class com.humana.enterprise.consents.contract.avro.schema.outbound.ConsumeConsentRequest
+        at com.humana.enterprise.consents.util.EvaluationServiceUtil.getConsumeConsentRequest(EvaluationServiceUtil.java:67)
+        at com.humana.enterprise.consents.util.EvaluationServiceUtil.convertIngestionRequestDtoToOutboundAvro(EvaluationServiceUtil.java:40)
+        at com.humana.enterprise.consents.util.EvaluationServiceUtilTest.testConvertIngestionRequestDtoToOutboundAvro_withErrorResponse(EvaluationServiceUtilTest.java:45)
+
+        Caused by:
+        java.lang.ExceptionInInitializerError: Exception java.lang.NoClassDefFoundError: Could not initialize class org.apache.avro.Schema [in thread "Test worker"]
+            at org.apache.avro.Schema$Parser.parse(Schema.java:1515)
+            at com.humana.enterprise.consents.contract.avro.schema.outbound.ConsumeConsentRequest.<clinit>(ConsumeConsentRequest.java:19)
+            at com.humana.enterprise.consents.util.EvaluationServiceUtil.getConsumeConsentRequest(EvaluationServiceUtil.java:67)
+            at com.humana.enterprise.consents.util.EvaluationServiceUtil.convertIngestionRequestDtoToOutboundAvro(EvaluationServiceUtil.java:40)
+            at com.humana.enterprise.consents.util.EvaluationServiceUtilTest.testConvertIngestionRequestDtoToOutboundAvro_withConsentsResponse(EvaluationServiceUtilTest.java:110)
+
+EvaluationServiceUtilTest > testSetNullWithEmptyStringForConsentProvidedBy_blankFields() FAILED
+    java.lang.NoClassDefFoundError: Could not initialize class org.apache.avro.Schema
+        at org.apache.avro.Schema$Parser.parse(Schema.java:1515)
+        at com.humana.enterprise.consents.contract.avro.schema.outbound.ConsentProvidedBy.<clinit>(ConsentProvidedBy.java:19)
+        at com.humana.enterprise.consents.util.EvaluationServiceUtilTest.testSetNullWithEmptyStringForConsentProvidedBy_blankFields(EvaluationServiceUtilTest.java:217)
+
+        Caused by:
+        java.lang.ExceptionInInitializerError: Exception java.lang.NoClassDefFoundError: Could not initialize class com.fasterxml.jackson.databind.ObjectMapper [in thread "Test worker"]
+            at org.apache.avro.Schema.<clinit>(Schema.java:119)
+            at org.apache.avro.Schema$Parser.parse(Schema.java:1515)
+            at com.humana.enterprise.consents.contract.avro.schema.outbound.ConsentEvaluationHistory.<clinit>(ConsentEvaluationHistory.java:19)
+            at com.humana.enterprise.consents.util.MockUtil.getMockConsentEvaluationHistory(MockUtil.java:59)
+            at com.humana.enterprise.consents.kafka.EvaluationProducerServiceTest.setUp(EvaluationProducerServiceTest.java:57)
+            at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+            at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+            at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+
+EvaluationServiceUtilTest > testGetConsent_handlesNullsAndEmptyStrings() FAILED
+    java.lang.NoClassDefFoundError: Could not initialize class com.humana.enterprise.consents.contract.avro.schema.outbound.ConsentSigningInformation
+        at com.humana.enterprise.consents.util.EvaluationServiceUtil.getConsent(EvaluationServiceUtil.java:152)
+        at com.humana.enterprise.consents.util.EvaluationServiceUtilTest.testGetConsent_handlesNullsAndEmptyStrings(EvaluationServiceUtilTest.java:197)
+
+        Caused by:
+        java.lang.ExceptionInInitializerError: Exception java.lang.NoClassDefFoundError: Could not initialize class org.apache.avro.Schema [in thread "Test worker"]
+            at org.apache.avro.Schema$Parser.parse(Schema.java:1515)
+            at com.humana.enterprise.consents.contract.avro.schema.outbound.ConsentSigningInformation.<clinit>(ConsentSigningInformation.java:19)
+            at com.humana.enterprise.consents.util.EvaluationServiceUtil.getConsent(EvaluationServiceUtil.java:152)
+            at com.humana.enterprise.consents.util.EvaluationServiceUtilTest.testGetConsent_withMissingSubmittedTimestamp(EvaluationServiceUtilTest.java:291)
+
+> Task :test FAILED
+> Task :jacocoTestReport
+> Task :jacocoTestCoverageVerification
+
+[Incubating] Problems report is available at: file:///Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_ins-cp-mgmt-consent-api_default-branch/default-branch/ins-cp-mgmt-consent-api/build/reports/problems/problems-report.html
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/8.14.1/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+9 actionable tasks: 9 executed
+Note: /Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_ins-cp-mgmt-consent-api_default-branch/default-branch/ins-cp-mgmt-consent-api/src/main/java/com/humana/enterprise/consents/util/VaultPropertySourceFactory.java uses unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+Note: /Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_ins-cp-mgmt-consent-api_default-branch/default-branch/ins-cp-mgmt-consent-api/src/test/java/com/humana/enterprise/consents/service/v20/MemberConsentsServiceV20Test.java uses unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+Java HotSpot(TM) 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+
+29 tests completed, 23 failed
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':test'.
+> There were failing tests. See the report at: file:///Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_ins-cp-mgmt-consent-api_default-branch/default-branch/ins-cp-mgmt-consent-api/build/reports/tests/test/index.html
+
+* Try:
+> Run with --scan to get full insights.
+
+BUILD FAILED in 15s
+Validating updated project: gradle build --no-daemon --init-script /var/folders/cg/2rmnrrps3g77gcd8ny14r1yr0000gp/T/pkg_update_gradle_logging.gradle
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.14.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+
+> Task :compileJava
+
+> Task :processResources UP-TO-DATE
+> Task :classes
+> Task :resolveMainClassName
+> Task :bootJar
+> Task :jar UP-TO-DATE
+> Task :assemble
+
+> Task :compileTestJava
+
+> Task :processTestResources NO-SOURCE
+> Task :testClasses
+> Task :test
+> Task :check
+> Task :build
+> Task :jacocoTestReport
+> Task :jacocoTestCoverageVerification
+
+[Incubating] Problems report is available at: file:///Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_ins-cp-mgmt-consent-api_default-branch/default-branch/ins-cp-mgmt-consent-api/build/reports/problems/problems-report.html
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/8.14.1/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD SUCCESSFUL in 1m 4s
+9 actionable tasks: 7 executed, 2 up-to-date
+Note: /Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_ins-cp-mgmt-consent-api_default-branch/default-branch/ins-cp-mgmt-consent-api/src/main/java/com/humana/enterprise/consents/util/VaultPropertySourceFactory.java uses unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+Note: /Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_ins-cp-mgmt-consent-api_default-branch/default-branch/ins-cp-mgmt-consent-api/src/test/java/com/humana/enterprise/consents/service/v20/MemberConsentsServiceV20Test.java uses unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+Java HotSpot(TM) 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+Build validation failed; rollback isolation is disabled.
+Write/validation failed: Build validation failed. Failure isolation disabled.
+
+Totals: 0 npm direct, 0 npm override(s), 10 Gradle direct, 19 Gradle force(s), 0 Python direct, 0 skipped
+Logs:   /Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_ins-cp-mgmt-consent-api_default-branch/logs
+Running JFrog Xray API CVE scan for 243 resolved component(s)...
+JFrog Xray API CVE scan complete: 68 CVE record(s) across 25 vulnerable component(s).
+JFrog audit log -> /Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_ins-cp-mgmt-consent-api_default-branch/logs/jfrog-audit-after.json
+Post-update verification: Failed - dependency updates could not be validated; manual review required
+Remediation evidence -> /Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_ins-cp-mgmt-consent-api_default-branch/logs/remediation-evidence.json
+Phase2 cache generated → /Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_ins-cp-mgmt-consent-api_default-branch/logs/phase2-results.json
+Report generated → /Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_ins-cp-mgmt-consent-api_default-branch/logs/task-completion-report.xlsx
+STATUS: Failed - build validation did not pass.

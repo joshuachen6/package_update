@@ -307,22 +307,10 @@
         "old_version": "3.5.13"
       },
       {
-        "dependency": "org.springframework.data:spring-data-mongodb",
-        "minimum_required": "4.5.13",
-        "new_version": "4.5.13",
-        "old_version": "4.5.10"
-      },
-      {
         "dependency": "org.springframework.data:spring-data-commons",
         "minimum_required": "3.5.13",
         "new_version": "3.5.13",
         "old_version": "3.5.10"
-      },
-      {
-        "dependency": "io.netty:netty-codec-http",
-        "minimum_required": "4.2.16.Final",
-        "new_version": "4.2.16.Final",
-        "old_version": "4.1.132.Final"
       },
       {
         "dependency": "org.springframework.kafka:spring-kafka",
@@ -331,19 +319,49 @@
         "old_version": "3.3.14"
       },
       {
+        "dependency": "org.springframework.data:spring-data-mongodb",
+        "minimum_required": "4.5.13",
+        "new_version": "4.5.13",
+        "old_version": "4.5.10"
+      },
+      {
         "dependency": "com.fasterxml.jackson.core:jackson-databind",
         "minimum_required": "2.22.1",
         "new_version": "2.22.1",
         "old_version": "2.21.2"
       },
       {
-        "dependency": "io.netty:netty-codec-dns",
+        "dependency": "io.netty:netty-codec",
+        "minimum_required": "4.2.16.Final",
+        "new_version": "4.2.16.Final",
+        "old_version": "4.1.132.Final"
+      },
+      {
+        "dependency": "io.netty:netty-resolver-dns",
         "minimum_required": "4.2.16.Final",
         "new_version": "4.2.16.Final",
         "old_version": "4.1.132.Final"
       },
       {
         "dependency": "io.netty:netty-codec-http2",
+        "minimum_required": "4.2.16.Final",
+        "new_version": "4.2.16.Final",
+        "old_version": "4.1.132.Final"
+      },
+      {
+        "dependency": "io.netty:netty-codec-http",
+        "minimum_required": "4.2.16.Final",
+        "new_version": "4.2.16.Final",
+        "old_version": "4.1.132.Final"
+      },
+      {
+        "dependency": "io.netty:netty-handler",
+        "minimum_required": "4.2.16.Final",
+        "new_version": "4.2.16.Final",
+        "old_version": "4.1.132.Final"
+      },
+      {
+        "dependency": "io.netty:netty-codec-dns",
         "minimum_required": "4.2.16.Final",
         "new_version": "4.2.16.Final",
         "old_version": "4.1.132.Final"
@@ -356,24 +374,6 @@
       },
       {
         "dependency": "io.netty:netty-handler-proxy",
-        "minimum_required": "4.2.16.Final",
-        "new_version": "4.2.16.Final",
-        "old_version": "4.1.132.Final"
-      },
-      {
-        "dependency": "io.netty:netty-handler",
-        "minimum_required": "4.2.16.Final",
-        "new_version": "4.2.16.Final",
-        "old_version": "4.1.132.Final"
-      },
-      {
-        "dependency": "io.netty:netty-resolver-dns",
-        "minimum_required": "4.2.16.Final",
-        "new_version": "4.2.16.Final",
-        "old_version": "4.1.132.Final"
-      },
-      {
-        "dependency": "io.netty:netty-codec",
         "minimum_required": "4.2.16.Final",
         "new_version": "4.2.16.Final",
         "old_version": "4.1.132.Final"
@@ -424,7 +424,7 @@
         "dependency": "org.springframework:spring-framework.version",
         "new_version": "6.2.19",
         "old_version": "6.2.17",
-        "remediation_guided": "transitive org.springframework:spring-web>=6.2.19"
+        "remediation_guided": "transitive org.springframework:spring-core>=6.2.19"
       },
       {
         "config": "implementation",
@@ -554,13 +554,6 @@
         },
         {
           "change_type": "gradle-force",
-          "new": "4.5.13",
-          "old": "4.5.10",
-          "package": "org.springframework.data:spring-data-mongodb",
-          "remediation_guided": true
-        },
-        {
-          "change_type": "gradle-force",
           "new": "3.5.13",
           "old": "3.5.10",
           "package": "org.springframework.data:spring-data-commons",
@@ -568,16 +561,16 @@
         },
         {
           "change_type": "gradle-force",
-          "new": "4.2.16.Final",
-          "old": "4.1.132.Final",
-          "package": "io.netty:netty-codec-http",
+          "new": "3.3.16",
+          "old": "3.3.14",
+          "package": "org.springframework.kafka:spring-kafka",
           "remediation_guided": true
         },
         {
           "change_type": "gradle-force",
-          "new": "3.3.16",
-          "old": "3.3.14",
-          "package": "org.springframework.kafka:spring-kafka",
+          "new": "4.5.13",
+          "old": "4.5.10",
+          "package": "org.springframework.data:spring-data-mongodb",
           "remediation_guided": true
         },
         {
@@ -591,7 +584,14 @@
           "change_type": "gradle-force",
           "new": "4.2.16.Final",
           "old": "4.1.132.Final",
-          "package": "io.netty:netty-codec-dns",
+          "package": "io.netty:netty-codec",
+          "remediation_guided": true
+        },
+        {
+          "change_type": "gradle-force",
+          "new": "4.2.16.Final",
+          "old": "4.1.132.Final",
+          "package": "io.netty:netty-resolver-dns",
           "remediation_guided": true
         },
         {
@@ -599,6 +599,27 @@
           "new": "4.2.16.Final",
           "old": "4.1.132.Final",
           "package": "io.netty:netty-codec-http2",
+          "remediation_guided": true
+        },
+        {
+          "change_type": "gradle-force",
+          "new": "4.2.16.Final",
+          "old": "4.1.132.Final",
+          "package": "io.netty:netty-codec-http",
+          "remediation_guided": true
+        },
+        {
+          "change_type": "gradle-force",
+          "new": "4.2.16.Final",
+          "old": "4.1.132.Final",
+          "package": "io.netty:netty-handler",
+          "remediation_guided": true
+        },
+        {
+          "change_type": "gradle-force",
+          "new": "4.2.16.Final",
+          "old": "4.1.132.Final",
+          "package": "io.netty:netty-codec-dns",
           "remediation_guided": true
         },
         {
@@ -613,27 +634,6 @@
           "new": "4.2.16.Final",
           "old": "4.1.132.Final",
           "package": "io.netty:netty-handler-proxy",
-          "remediation_guided": true
-        },
-        {
-          "change_type": "gradle-force",
-          "new": "4.2.16.Final",
-          "old": "4.1.132.Final",
-          "package": "io.netty:netty-handler",
-          "remediation_guided": true
-        },
-        {
-          "change_type": "gradle-force",
-          "new": "4.2.16.Final",
-          "old": "4.1.132.Final",
-          "package": "io.netty:netty-resolver-dns",
-          "remediation_guided": true
-        },
-        {
-          "change_type": "gradle-force",
-          "new": "4.2.16.Final",
-          "old": "4.1.132.Final",
-          "package": "io.netty:netty-codec",
           "remediation_guided": true
         },
         {
@@ -6592,7 +6592,7 @@
       "write_status": "Written"
     }
   ],
-  "generated_at": "2026-07-24T08:54:28",
+  "generated_at": "2026-07-24T09:47:30",
   "next_actions": [
     {
       "action": "No additional remediation action identified.",
@@ -6705,7 +6705,7 @@
         ],
         "ecosystem": "gradle",
         "label": "Gradle tests",
-        "output": "To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.14.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.\nDaemon will be stopped at the end of the build \n\n> Task :compileJava\n\n> Task :processResources\n> Task :classes\n\n> Task :compileTestJava\n\n> Task :processTestResources\n> Task :testClasses\n> Task :test\n> Task :jacocoTestReport\n> Task :jacocoTestCoverageVerification\n\n[Incubating] Problems report is available at: file:///Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_cwih-cnp-mgmt-preference-workflow_default-branch/default-branch/cwih-cnp-mgmt-preference-workflow/build/reports/problems/problems-report.html\n\nDeprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.\n\nYou can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.\n\nFor more on this, please refer to https://docs.gradle.org/8.14.1/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.\n\nBUILD SUCCESSFUL in 1m 37s\n7 actionable tasks: 7 executed\n\nNote: Some input files use or override a deprecated API.\nNote: Recompile with -Xlint:deprecation for details.\nNote: Some input files use unchecked or unsafe operations.\nNote: Recompile with -Xlint:unchecked for details.\nNote: Some input files use unchecked or unsafe operations.\nNote: Recompile with -Xlint:unchecked for details.\nJava HotSpot(TM) 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended\n",
+        "output": "To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.14.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.\nDaemon will be stopped at the end of the build \n\n> Task :compileJava\n\n> Task :processResources\n> Task :classes\n\n> Task :compileTestJava\n\n> Task :processTestResources\n> Task :testClasses\n> Task :test\n> Task :jacocoTestReport\n> Task :jacocoTestCoverageVerification\n\n[Incubating] Problems report is available at: file:///Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_cwih-cnp-mgmt-preference-workflow_default-branch/default-branch/cwih-cnp-mgmt-preference-workflow/build/reports/problems/problems-report.html\n\nDeprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.\n\nYou can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.\n\nFor more on this, please refer to https://docs.gradle.org/8.14.1/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.\n\nBUILD SUCCESSFUL in 1m 53s\n7 actionable tasks: 7 executed\n\nNote: Some input files use or override a deprecated API.\nNote: Recompile with -Xlint:deprecation for details.\nNote: Some input files use unchecked or unsafe operations.\nNote: Recompile with -Xlint:unchecked for details.\nNote: Some input files use unchecked or unsafe operations.\nNote: Recompile with -Xlint:unchecked for details.\nJava HotSpot(TM) 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended\n",
         "project_dir": "/Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_cwih-cnp-mgmt-preference-workflow_default-branch/default-branch/cwih-cnp-mgmt-preference-workflow",
         "reason": "",
         "returncode": 0,

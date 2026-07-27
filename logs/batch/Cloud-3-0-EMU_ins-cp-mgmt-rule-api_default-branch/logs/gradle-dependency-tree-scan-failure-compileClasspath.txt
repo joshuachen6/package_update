@@ -14,4 +14,4 @@ A problem occurred configuring root project 'ins-cp-mgmt-rule-api'.
 > Run with --scan to get full insights.
 > Get more help at https://help.gradle.org.
 
-BUILD FAILED in 2s
+BUILD FAILED in 5s

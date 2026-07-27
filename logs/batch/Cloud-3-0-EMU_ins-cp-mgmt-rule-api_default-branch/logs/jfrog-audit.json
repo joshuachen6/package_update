@@ -1,24 +1,12 @@
 {
-  "component_count": 129,
+  "component_count": 130,
   "ecosystems": [
     "maven"
   ],
   "errors": [],
-  "vulnerability_count": 43,
-  "vulnerable_component_count": 11,
+  "vulnerability_count": 39,
+  "vulnerable_component_count": 10,
   "vulnerable_components": [
-    {
-      "component_id": "gav://ch.qos.logback:logback-core:1.5.18",
-      "cves": [
-        "CVE-2025-11226",
-        "CVE-2026-10532",
-        "CVE-2026-1225",
-        "CVE-2026-9828"
-      ],
-      "ecosystem": "maven",
-      "package": "ch.qos.logback:logback-core",
-      "version": "1.5.18"
-    },
     {
       "component_id": "gav://io.micrometer:micrometer-core:1.13.14",
       "cves": [

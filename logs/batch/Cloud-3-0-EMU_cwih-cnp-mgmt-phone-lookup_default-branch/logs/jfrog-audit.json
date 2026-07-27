@@ -4,7 +4,7 @@
     "maven"
   ],
   "errors": [],
-  "vulnerability_count": 60,
+  "vulnerability_count": 63,
   "vulnerable_component_count": 24,
   "vulnerable_components": [
     {
@@ -56,7 +56,9 @@
         "CVE-2026-42587",
         "CVE-2026-47244",
         "CVE-2026-48043",
-        "CVE-2026-50560"
+        "CVE-2026-50560",
+        "CVE-2026-56819",
+        "CVE-2026-59900"
       ],
       "ecosystem": "maven",
       "package": "io.netty:netty-codec-http2",
@@ -81,7 +83,8 @@
     {
       "component_id": "gav://io.netty:netty-codec:4.1.125.Final",
       "cves": [
-        "CVE-2026-42583"
+        "CVE-2026-42583",
+        "CVE-2026-59901"
       ],
       "ecosystem": "maven",
       "package": "io.netty:netty-codec",

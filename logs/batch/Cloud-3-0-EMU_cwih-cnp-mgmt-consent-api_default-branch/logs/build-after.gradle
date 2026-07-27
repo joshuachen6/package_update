@@ -3,10 +3,10 @@ buildscript {
         resolutionStrategy {
             // package-update: managed buildscript force block (safe to regenerate)
             force 'at.yawk.lz4:lz4-java:1.11.1'
-            force 'org.apache.neethi:neethi:3.2.3'
-            force 'org.springframework.data:spring-data-commons:3.5.13'
-            force 'org.springframework.hateoas:spring-hateoas:2.5.3'
             force 'org.springframework.data:spring-data-mongodb:4.5.13'
+            force 'org.springframework.data:spring-data-commons:3.5.13'
+            force 'org.apache.neethi:neethi:3.2.3'
+            force 'org.springframework.hateoas:spring-hateoas:2.5.3'
             force 'org.apache.cxf:cxf-core:4.2.2'
         
             force 'com.fasterxml.jackson.core:jackson-databind:2.21.5'
@@ -35,8 +35,8 @@ plugins {
 configurations.all {
     resolutionStrategy.dependencySubstitution {
         // package-update: managed dependencySubstitution block (safe to regenerate)
-        substitute module('org.springframework.data:spring-data-commons') using module('org.springframework.data:spring-data-commons:3.5.13')
         substitute module('org.springframework.data:spring-data-mongodb') using module('org.springframework.data:spring-data-mongodb:4.5.13')
+        substitute module('org.springframework.data:spring-data-commons') using module('org.springframework.data:spring-data-commons:3.5.13')
     
         substitute module('com.fasterxml.jackson.core:jackson-databind') using module('com.fasterxml.jackson.core:jackson-databind:2.21.5')
 }
@@ -46,10 +46,10 @@ configurations.all {
     resolutionStrategy {
         // package-update: managed force block (safe to regenerate)
         force 'at.yawk.lz4:lz4-java:1.11.1'
-        force 'org.apache.neethi:neethi:3.2.3'
-        force 'org.springframework.data:spring-data-commons:3.5.13'
-        force 'org.springframework.hateoas:spring-hateoas:2.5.3'
         force 'org.springframework.data:spring-data-mongodb:4.5.13'
+        force 'org.springframework.data:spring-data-commons:3.5.13'
+        force 'org.apache.neethi:neethi:3.2.3'
+        force 'org.springframework.hateoas:spring-hateoas:2.5.3'
         force 'org.apache.cxf:cxf-core:4.2.2'
     
         force 'com.fasterxml.jackson.core:jackson-databind:2.21.5'
@@ -104,7 +104,7 @@ dependencies {
     // --- Netty (Strict versions for vulnerability fixes) ---
     ['netty-codec', 'netty-codec-http', 'netty-handler'].each {
         implementation(group: 'io.netty', name: it) {
-            version { strictly '4.1.132.Final' }
+            version { strictly '4.2.16.Final' }
         }
     }
     implementation(group: 'io.netty', name: 'netty-codec-http2') {

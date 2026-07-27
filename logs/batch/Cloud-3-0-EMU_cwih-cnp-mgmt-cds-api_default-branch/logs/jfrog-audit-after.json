@@ -1,12 +1,48 @@
 {
-  "component_count": 0,
+  "component_count": 315,
   "ecosystems": [
     "maven"
   ],
   "errors": [],
-  "skipped_reason": "No resolved dependency components found. Generate package-lock.json, gradle-dependency-tree.txt, Python requirements files, or pyproject.toml before running the CVE scan.",
-  "vulnerability_count": 0,
-  "vulnerable_component_count": 0,
-  "vulnerable_components": [],
+  "vulnerability_count": 4,
+  "vulnerable_component_count": 4,
+  "vulnerable_components": [
+    {
+      "component_id": "gav://at.yawk.lz4:lz4-java:1.10.2",
+      "cves": [
+        "CVE-2026-59949"
+      ],
+      "ecosystem": "maven",
+      "package": "at.yawk.lz4:lz4-java",
+      "version": "1.10.2"
+    },
+    {
+      "component_id": "gav://com.github.jknack:handlebars:4.4.0",
+      "cves": [
+        "CVE-2026-55760"
+      ],
+      "ecosystem": "maven",
+      "package": "com.github.jknack:handlebars",
+      "version": "4.4.0"
+    },
+    {
+      "component_id": "gav://org.apache.httpcomponents.core5:httpcore5-h2:5.3.6",
+      "cves": [
+        "CVE-2026-54428"
+      ],
+      "ecosystem": "maven",
+      "package": "org.apache.httpcomponents.core5:httpcore5-h2",
+      "version": "5.3.6"
+    },
+    {
+      "component_id": "gav://org.apache.httpcomponents.core5:httpcore5:5.3.6",
+      "cves": [
+        "CVE-2026-54399"
+      ],
+      "ecosystem": "maven",
+      "package": "org.apache.httpcomponents.core5:httpcore5",
+      "version": "5.3.6"
+    }
+  ],
   "xray_host": "https://humana.jfrog.io"
 }

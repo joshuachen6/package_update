@@ -1,9 +1,6 @@
 dependency,config,old_version,new_version,remediation_guided
 com.fasterxml.jackson.core:jackson-databind,implementation,2.19.4,2.22.1,yes
-ch.qos.logback:logback-core,implementation,1.5.25,1.5.38,yes
-org.codehaus.plexus:plexus-utils,testImplementation,3.4.1,3.6.1,yes
-org.springframework:spring-framework.version,ext,6.2.17,6.2.19,transitive org.springframework:spring-core>=6.2.19
-org.springframework.kafka:spring-kafka,implementation,3.3.5,3.3.16,yes
 org.springframework:spring-webflux,implementation,6.2.17,6.2.19,yes
-ch.qos.logback:logback-classic,implementation,1.5.25,1.5.38,competing pin realigned
-com.fasterxml.jackson.core:jackson-annotations,implementation,2.19.4,2.22.1,competing pin realigned
+org.springframework.kafka:spring-kafka,implementation,3.3.5,3.3.16,yes
+ch.qos.logback:logback-core,implementation,1.5.25,1.6.0,yes
+org.codehaus.plexus:plexus-utils,testImplementation,3.4.1,3.6.1,yes

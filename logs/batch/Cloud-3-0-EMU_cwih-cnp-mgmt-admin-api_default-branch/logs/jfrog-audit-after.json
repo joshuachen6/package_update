@@ -3,10 +3,7 @@
   "ecosystems": [
     "maven"
   ],
-  "errors": [
-    "Xray CVE lookup failed: <urlopen error [Errno 8] nodename nor servname provided, or not known>",
-    "Xray CVE lookup failed: <urlopen error [Errno 8] nodename nor servname provided, or not known>"
-  ],
+  "errors": [],
   "vulnerability_count": 0,
   "vulnerable_component_count": 0,
   "vulnerable_components": [],

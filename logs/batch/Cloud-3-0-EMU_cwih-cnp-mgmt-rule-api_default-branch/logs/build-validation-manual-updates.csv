@@ -1,18 +1,6 @@
 package,change_type,old,new,status,reason
-org.springframework.boot:spring-boot-starter-validation,gradle-force,3.5.12,3.5.16,manual_update_required,build validation failed and failure isolation disabled
-org.springframework.boot:spring-boot-test-autoconfigure,gradle-force,3.5.12,3.5.16,manual_update_required,build validation failed and failure isolation disabled
-org.springframework.boot:spring-boot-test,gradle-force,3.5.12,3.5.16,manual_update_required,build validation failed and failure isolation disabled
-org.springframework.boot:spring-boot-starter-web,gradle-force,3.5.12,3.5.16,manual_update_required,build validation failed and failure isolation disabled
-org.springframework.boot:spring-boot-starter-tomcat,gradle-force,3.5.12,3.5.16,manual_update_required,build validation failed and failure isolation disabled
-org.springframework.boot:spring-boot-starter-test,gradle-force,3.5.12,3.5.16,manual_update_required,build validation failed and failure isolation disabled
-org.springframework.boot:spring-boot-starter-logging,gradle-force,3.5.12,3.5.16,manual_update_required,build validation failed and failure isolation disabled
-org.springframework.boot:spring-boot-starter-json,gradle-force,3.5.12,3.5.16,manual_update_required,build validation failed and failure isolation disabled
-org.springframework.boot:spring-boot-starter-aop,gradle-force,3.5.12,3.5.16,manual_update_required,build validation failed and failure isolation disabled
-org.springframework.boot:spring-boot-starter,gradle-force,3.5.12,3.5.16,manual_update_required,build validation failed and failure isolation disabled
-org.springframework.boot:spring-boot-autoconfigure,gradle-force,3.5.12,3.5.16,manual_update_required,build validation failed and failure isolation disabled
 org.springframework.boot:spring-boot,gradle-force,3.5.12,3.5.16,manual_update_required,build validation failed and failure isolation disabled
 org.apache.tomcat.embed:tomcat-embed-websocket,gradle-force,10.1.52,10.1.57,manual_update_required,build validation failed and failure isolation disabled
-org.apache.tomcat.embed:tomcat-embed-el,gradle-force,10.1.52,10.1.57,manual_update_required,build validation failed and failure isolation disabled
 org.apache.tomcat.embed:tomcat-embed-core,gradle,11.0.18,11.0.24,manual_update_required,build validation failed and failure isolation disabled
-ch.qos.logback:logback-core,gradle,1.5.25,1.5.38,manual_update_required,build validation failed and failure isolation disabled
-ch.qos.logback:logback-classic,gradle,1.5.25,1.5.38,manual_update_required,build validation failed and failure isolation disabled
+ch.qos.logback:logback-core,gradle,1.5.25,1.6.0,manual_update_required,build validation failed and failure isolation disabled
+ch.qos.logback:logback-classic,gradle,1.5.25,1.6.0,manual_update_required,build validation failed and failure isolation disabled

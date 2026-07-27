@@ -4,20 +4,17 @@
     "maven"
   ],
   "errors": [],
-  "vulnerability_count": 59,
+  "vulnerability_count": 57,
   "vulnerable_component_count": 29,
   "vulnerable_components": [
     {
-      "component_id": "gav://ch.qos.logback:logback-core:1.5.18",
+      "component_id": "gav://at.yawk.lz4:lz4-java:1.10.1",
       "cves": [
-        "CVE-2025-11226",
-        "CVE-2026-10532",
-        "CVE-2026-1225",
-        "CVE-2026-9828"
+        "CVE-2026-59949"
       ],
       "ecosystem": "maven",
-      "package": "ch.qos.logback:logback-core",
-      "version": "1.5.18"
+      "package": "at.yawk.lz4:lz4-java",
+      "version": "1.10.1"
     },
     {
       "component_id": "gav://com.fasterxml.jackson.core:jackson-databind:2.19.0",
@@ -63,7 +60,8 @@
     {
       "component_id": "gav://io.netty:netty-codec-compression:4.2.5.Final",
       "cves": [
-        "CVE-2026-42583"
+        "CVE-2026-42583",
+        "CVE-2026-59901"
       ],
       "ecosystem": "maven",
       "package": "io.netty:netty-codec-compression",

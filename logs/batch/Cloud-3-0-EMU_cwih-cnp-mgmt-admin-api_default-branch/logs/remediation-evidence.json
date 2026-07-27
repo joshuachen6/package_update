@@ -249,7 +249,7 @@
     ],
     "json_path": "/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_cwih-cnp-mgmt-admin-api_default-branch/logs/jfrog-audit.json"
   },
-  "classification": "Error - secondary verification scan incomplete",
+  "classification": "Success - build and tests passed; no CVEs remain",
   "diagnostic_csvs": {
     "gradle-fetch-errors.csv": [],
     "gradle-force-overrides.csv": [
@@ -272,19 +272,25 @@
         "old_version": "3.5.11"
       },
       {
-        "dependency": "org.springframework.kafka:spring-kafka",
-        "minimum_required": "3.3.16",
-        "new_version": "3.3.16",
-        "old_version": "3.3.15"
-      },
-      {
         "dependency": "org.springframework.data:spring-data-mongodb",
         "minimum_required": "4.5.13",
         "new_version": "4.5.13",
         "old_version": "4.5.11"
       },
       {
-        "dependency": "io.netty:netty-codec",
+        "dependency": "org.springframework.kafka:spring-kafka",
+        "minimum_required": "3.3.16",
+        "new_version": "3.3.16",
+        "old_version": "3.3.15"
+      },
+      {
+        "dependency": "com.fasterxml.jackson.core:jackson-databind",
+        "minimum_required": "2.22.1",
+        "new_version": "2.22.1",
+        "old_version": "2.21.2"
+      },
+      {
+        "dependency": "io.netty:netty-codec-dns",
         "minimum_required": "4.2.16.Final",
         "new_version": "4.2.16.Final",
         "old_version": "4.1.132.Final"
@@ -296,25 +302,7 @@
         "old_version": "4.1.132.Final"
       },
       {
-        "dependency": "com.fasterxml.jackson.core:jackson-databind",
-        "minimum_required": "2.22.1",
-        "new_version": "2.22.1",
-        "old_version": "2.21.2"
-      },
-      {
-        "dependency": "io.netty:netty-codec-http",
-        "minimum_required": "4.2.16.Final",
-        "new_version": "4.2.16.Final",
-        "old_version": "4.1.132.Final"
-      },
-      {
         "dependency": "io.netty:netty-codec-http2",
-        "minimum_required": "4.2.16.Final",
-        "new_version": "4.2.16.Final",
-        "old_version": "4.1.132.Final"
-      },
-      {
-        "dependency": "io.netty:netty-handler",
         "minimum_required": "4.2.16.Final",
         "new_version": "4.2.16.Final",
         "old_version": "4.1.132.Final"
@@ -326,13 +314,25 @@
         "old_version": "4.1.132.Final"
       },
       {
-        "dependency": "io.netty:netty-codec-dns",
+        "dependency": "io.netty:netty-resolver-dns",
         "minimum_required": "4.2.16.Final",
         "new_version": "4.2.16.Final",
         "old_version": "4.1.132.Final"
       },
       {
-        "dependency": "io.netty:netty-resolver-dns",
+        "dependency": "io.netty:netty-codec-http",
+        "minimum_required": "4.2.16.Final",
+        "new_version": "4.2.16.Final",
+        "old_version": "4.1.132.Final"
+      },
+      {
+        "dependency": "io.netty:netty-handler",
+        "minimum_required": "4.2.16.Final",
+        "new_version": "4.2.16.Final",
+        "old_version": "4.1.132.Final"
+      },
+      {
+        "dependency": "io.netty:netty-codec",
         "minimum_required": "4.2.16.Final",
         "new_version": "4.2.16.Final",
         "old_version": "4.1.132.Final"
@@ -366,14 +366,14 @@
     "gradle-version-changes.csv": [
       {
         "config": "implementation",
-        "dependency": "org.apache.tomcat.embed:tomcat-embed-websocket",
+        "dependency": "org.apache.tomcat.embed:tomcat-embed-core",
         "new_version": "10.1.57",
         "old_version": "10.1.52",
         "remediation_guided": "yes"
       },
       {
         "config": "implementation",
-        "dependency": "org.apache.tomcat.embed:tomcat-embed-core",
+        "dependency": "org.apache.tomcat.embed:tomcat-embed-websocket",
         "new_version": "10.1.57",
         "old_version": "10.1.52",
         "remediation_guided": "yes"
@@ -383,7 +383,7 @@
         "dependency": "org.springframework:spring-framework.version",
         "new_version": "6.2.19",
         "old_version": "6.2.18",
-        "remediation_guided": "transitive org.springframework:spring-expression>=6.2.19"
+        "remediation_guided": "transitive org.springframework:spring-core>=6.2.19"
       },
       {
         "config": "implementation",
@@ -436,14 +436,14 @@
           "change_type": "gradle",
           "new": "10.1.57",
           "old": "10.1.52",
-          "package": "org.apache.tomcat.embed:tomcat-embed-websocket",
+          "package": "org.apache.tomcat.embed:tomcat-embed-core",
           "remediation_guided": true
         },
         {
           "change_type": "gradle",
           "new": "10.1.57",
           "old": "10.1.52",
-          "package": "org.apache.tomcat.embed:tomcat-embed-core",
+          "package": "org.apache.tomcat.embed:tomcat-embed-websocket",
           "remediation_guided": true
         },
         {
@@ -490,13 +490,6 @@
         },
         {
           "change_type": "gradle-force",
-          "new": "3.3.16",
-          "old": "3.3.15",
-          "package": "org.springframework.kafka:spring-kafka",
-          "remediation_guided": true
-        },
-        {
-          "change_type": "gradle-force",
           "new": "4.5.13",
           "old": "4.5.11",
           "package": "org.springframework.data:spring-data-mongodb",
@@ -504,16 +497,9 @@
         },
         {
           "change_type": "gradle-force",
-          "new": "4.2.16.Final",
-          "old": "4.1.132.Final",
-          "package": "io.netty:netty-codec",
-          "remediation_guided": true
-        },
-        {
-          "change_type": "gradle-force",
-          "new": "4.2.16.Final",
-          "old": "4.1.132.Final",
-          "package": "io.netty:netty-handler-proxy",
+          "new": "3.3.16",
+          "old": "3.3.15",
+          "package": "org.springframework.kafka:spring-kafka",
           "remediation_guided": true
         },
         {
@@ -527,7 +513,14 @@
           "change_type": "gradle-force",
           "new": "4.2.16.Final",
           "old": "4.1.132.Final",
-          "package": "io.netty:netty-codec-http",
+          "package": "io.netty:netty-codec-dns",
+          "remediation_guided": true
+        },
+        {
+          "change_type": "gradle-force",
+          "new": "4.2.16.Final",
+          "old": "4.1.132.Final",
+          "package": "io.netty:netty-handler-proxy",
           "remediation_guided": true
         },
         {
@@ -541,13 +534,6 @@
           "change_type": "gradle-force",
           "new": "4.2.16.Final",
           "old": "4.1.132.Final",
-          "package": "io.netty:netty-handler",
-          "remediation_guided": true
-        },
-        {
-          "change_type": "gradle-force",
-          "new": "4.2.16.Final",
-          "old": "4.1.132.Final",
           "package": "io.netty:netty-transport-native-epoll",
           "remediation_guided": true
         },
@@ -555,14 +541,28 @@
           "change_type": "gradle-force",
           "new": "4.2.16.Final",
           "old": "4.1.132.Final",
-          "package": "io.netty:netty-codec-dns",
+          "package": "io.netty:netty-resolver-dns",
           "remediation_guided": true
         },
         {
           "change_type": "gradle-force",
           "new": "4.2.16.Final",
           "old": "4.1.132.Final",
-          "package": "io.netty:netty-resolver-dns",
+          "package": "io.netty:netty-codec-http",
+          "remediation_guided": true
+        },
+        {
+          "change_type": "gradle-force",
+          "new": "4.2.16.Final",
+          "old": "4.1.132.Final",
+          "package": "io.netty:netty-handler",
+          "remediation_guided": true
+        },
+        {
+          "change_type": "gradle-force",
+          "new": "4.2.16.Final",
+          "old": "4.1.132.Final",
+          "package": "io.netty:netty-codec",
           "remediation_guided": true
         },
         {
@@ -598,7 +598,7 @@
       "test_status": "passed",
       "validation_message": "",
       "validation_status": "Passed",
-      "verification_status": "Error - secondary verification scan incomplete",
+      "verification_status": "Success - build and tests passed; no CVEs remain",
       "version_inventory": {
         "at.yawk.lz4:lz4-java": [
           "1.8.1",
@@ -5970,12 +5970,12 @@
       "write_status": "Written"
     }
   ],
-  "generated_at": "2026-07-24T08:33:50",
+  "generated_at": "2026-07-24T09:56:03",
   "next_actions": [
     {
-      "action": "Regenerate the resolved dependency graph and rerun the secondary JFrog scan.",
-      "category": "verification",
-      "priority": "high"
+      "action": "No additional remediation action identified.",
+      "category": "complete",
+      "priority": "none"
     }
   ],
   "original_cves": [
@@ -6051,11 +6051,11 @@
     "CVE-2026-59949",
     "CVE-2026-9828"
   ],
-  "outcome": "Error",
+  "outcome": "Success",
   "refresh_errors": [],
   "remaining_original_cves": [],
   "remediation_budget_seconds": 300,
-  "security_status": "incomplete",
+  "security_status": "verified_clean",
   "summary": {
     "candidate_versions_considered": 5324,
     "component_cve_pairs_new": 0,
@@ -6081,7 +6081,7 @@
         ],
         "ecosystem": "gradle",
         "label": "Gradle tests",
-        "output": "To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.14.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.\nDaemon will be stopped at the end of the build \n\n> Task :compileJava\n\n> Task :processResources\n> Task :classes\n\n> Task :compileTestJava\n\n> Task :processTestResources\n> Task :testClasses\n> Task :test\n> Task :jacocoTestReport\n> Task :jacocoTestCoverageVerification\n\n[Incubating] Problems report is available at: file:///Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_cwih-cnp-mgmt-admin-api_default-branch/default-branch/cwih-cnp-mgmt-admin-api/build/reports/problems/problems-report.html\n\nDeprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.\n\nYou can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.\n\nFor more on this, please refer to https://docs.gradle.org/8.14.1/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.\n\nBUILD SUCCESSFUL in 1m 53s\n7 actionable tasks: 7 executed\n\nNote: /Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_cwih-cnp-mgmt-admin-api_default-branch/default-branch/cwih-cnp-mgmt-admin-api/src/main/java/com/humana/cnp/service/avro/AvroDeserializer.java uses or overrides a deprecated API.\nNote: Recompile with -Xlint:deprecation for details.\nNote: Some input files use unchecked or unsafe operations.\nNote: Recompile with -Xlint:unchecked for details.\nNote: Some input files use or override a deprecated API.\nNote: Recompile with -Xlint:deprecation for details.\nNote: Some input files use unchecked or unsafe operations.\nNote: Recompile with -Xlint:unchecked for details.\nJava HotSpot(TM) 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended\n",
+        "output": "To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.14.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.\nDaemon will be stopped at the end of the build \n\n> Task :compileJava\n\n> Task :processResources\n> Task :classes\n\n> Task :compileTestJava\n\n> Task :processTestResources\n> Task :testClasses\n> Task :test\n> Task :jacocoTestReport\n> Task :jacocoTestCoverageVerification\n\n[Incubating] Problems report is available at: file:///Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_cwih-cnp-mgmt-admin-api_default-branch/default-branch/cwih-cnp-mgmt-admin-api/build/reports/problems/problems-report.html\n\nDeprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.\n\nYou can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.\n\nFor more on this, please refer to https://docs.gradle.org/8.14.1/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.\n\nBUILD SUCCESSFUL in 1m 50s\n7 actionable tasks: 7 executed\n\nNote: /Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_cwih-cnp-mgmt-admin-api_default-branch/default-branch/cwih-cnp-mgmt-admin-api/src/main/java/com/humana/cnp/service/avro/AvroDeserializer.java uses or overrides a deprecated API.\nNote: Recompile with -Xlint:deprecation for details.\nNote: Some input files use unchecked or unsafe operations.\nNote: Recompile with -Xlint:unchecked for details.\nNote: Some input files use or override a deprecated API.\nNote: Recompile with -Xlint:deprecation for details.\nNote: Some input files use unchecked or unsafe operations.\nNote: Recompile with -Xlint:unchecked for details.\nJava HotSpot(TM) 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended\n",
         "project_dir": "/Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_cwih-cnp-mgmt-admin-api_default-branch/default-branch/cwih-cnp-mgmt-admin-api",
         "reason": "",
         "returncode": 0,

@@ -4,7 +4,7 @@
 |metric|value|
 |---|---|
 |Overall Status|🟡 Needs Review|
-|Generated at|2026-07-24T08:52:33|
+|Generated at|2026-07-24T09:45:51|
 |GitHub URL|https://github.com/Cloud-3-0-EMU/cwih-cnp-mgmt-admin-ui.git|
 |Project directory|/Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_cwih-cnp-mgmt-admin-ui_default-branch/default-branch/cwih-cnp-mgmt-admin-ui|
 |Dependency files|1|

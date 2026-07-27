@@ -6,6 +6,15 @@
   "before_scan": {
     "components": [
       {
+        "component_id": "gav://at.yawk.lz4:lz4-java:1.10.1",
+        "cves": [
+          "CVE-2026-59949"
+        ],
+        "ecosystem": "maven",
+        "package": "at.yawk.lz4:lz4-java",
+        "version": "1.10.1"
+      },
+      {
         "component_id": "gav://ch.qos.logback:logback-core:1.5.25",
         "cves": [
           "CVE-2026-10532",
@@ -161,16 +170,16 @@
     "gradle-fetch-errors.csv": [],
     "gradle-force-overrides.csv": [
       {
-        "dependency": "io.micrometer:micrometer-core",
-        "minimum_required": "1.17.0",
-        "new_version": "1.17.0",
-        "old_version": "1.15.11"
-      },
-      {
         "dependency": "org.springframework.data:spring-data-mongodb",
         "minimum_required": "4.5.13",
         "new_version": "4.5.13",
         "old_version": "4.5.11"
+      },
+      {
+        "dependency": "io.micrometer:micrometer-core",
+        "minimum_required": "1.17.0",
+        "new_version": "1.17.0",
+        "old_version": "1.15.11"
       },
       {
         "dependency": "org.springframework.data:spring-data-commons",
@@ -191,43 +200,19 @@
         "old_version": "2.21.2"
       },
       {
+        "dependency": "at.yawk.lz4:lz4-java",
+        "minimum_required": "1.11.1",
+        "new_version": "1.11.1",
+        "old_version": "1.10.1"
+      },
+      {
         "dependency": "org.springframework:spring-core",
         "minimum_required": "6.2.19",
         "new_version": "6.2.19",
         "old_version": "6.2.17"
       },
       {
-        "dependency": "org.springframework:spring-jcl",
-        "minimum_required": "6.2.19",
-        "new_version": "6.2.19",
-        "old_version": "6.2.17"
-      },
-      {
-        "dependency": "org.springframework:spring-context",
-        "minimum_required": "6.2.19",
-        "new_version": "6.2.19",
-        "old_version": "6.2.17"
-      },
-      {
-        "dependency": "org.springframework:spring-aop",
-        "minimum_required": "6.2.19",
-        "new_version": "6.2.19",
-        "old_version": "6.2.17"
-      },
-      {
-        "dependency": "org.springframework:spring-beans",
-        "minimum_required": "6.2.19",
-        "new_version": "6.2.19",
-        "old_version": "6.2.17"
-      },
-      {
         "dependency": "org.springframework:spring-expression",
-        "minimum_required": "6.2.19",
-        "new_version": "6.2.19",
-        "old_version": "6.2.17"
-      },
-      {
-        "dependency": "org.springframework:spring-tx",
         "minimum_required": "6.2.19",
         "new_version": "6.2.19",
         "old_version": "6.2.17"
@@ -243,48 +228,6 @@
         "minimum_required": "6.2.19",
         "new_version": "6.2.19",
         "old_version": "6.2.17"
-      },
-      {
-        "dependency": "org.springframework:spring-messaging",
-        "minimum_required": "6.2.19",
-        "new_version": "6.2.19",
-        "old_version": "6.2.17"
-      },
-      {
-        "dependency": "org.springframework:spring-test",
-        "minimum_required": "6.2.19",
-        "new_version": "6.2.19",
-        "old_version": "6.2.17"
-      },
-      {
-        "dependency": "org.apache.tomcat.embed:tomcat-embed-el",
-        "minimum_required": "10.1.57",
-        "new_version": "10.1.57",
-        "old_version": "10.1.54"
-      },
-      {
-        "dependency": "ch.qos.logback:logback-classic",
-        "minimum_required": "1.5.38",
-        "new_version": "1.5.38",
-        "old_version": "1.5.25"
-      },
-      {
-        "dependency": "io.micrometer:micrometer-observation",
-        "minimum_required": "1.17.0",
-        "new_version": "1.17.0",
-        "old_version": "1.15.11"
-      },
-      {
-        "dependency": "io.micrometer:micrometer-commons",
-        "minimum_required": "1.17.0",
-        "new_version": "1.17.0",
-        "old_version": "1.15.11"
-      },
-      {
-        "dependency": "io.micrometer:micrometer-jakarta9",
-        "minimum_required": "1.17.0",
-        "new_version": "1.17.0",
-        "old_version": "1.15.11"
       }
     ],
     "gradle-skipped.csv": [],
@@ -298,22 +241,8 @@
       },
       {
         "config": "implementation",
-        "dependency": "org.springframework:spring-webflux",
-        "new_version": "6.2.19",
-        "old_version": "6.2.17",
-        "remediation_guided": "yes"
-      },
-      {
-        "config": "implementation",
-        "dependency": "org.apache.tomcat.embed:tomcat-embed-core",
-        "new_version": "10.1.57",
-        "old_version": "10.1.54",
-        "remediation_guided": "yes"
-      },
-      {
-        "config": "implementation",
         "dependency": "ch.qos.logback:logback-core",
-        "new_version": "1.5.38",
+        "new_version": "1.6.0",
         "old_version": "1.5.25",
         "remediation_guided": "yes"
       },
@@ -326,8 +255,22 @@
       },
       {
         "config": "implementation",
+        "dependency": "org.apache.tomcat.embed:tomcat-embed-core",
+        "new_version": "10.1.57",
+        "old_version": "10.1.54",
+        "remediation_guided": "yes"
+      },
+      {
+        "config": "implementation",
+        "dependency": "org.springframework:spring-webflux",
+        "new_version": "6.2.19",
+        "old_version": "6.2.17",
+        "remediation_guided": "yes"
+      },
+      {
+        "config": "implementation",
         "dependency": "ch.qos.logback:logback-classic",
-        "new_version": "1.5.38",
+        "new_version": "1.6.0",
         "old_version": "1.5.25",
         "remediation_guided": "competing pin realigned"
       }
@@ -337,7 +280,8 @@
   "files": [
     {
       "candidate_counts": {
-        "ch.qos.logback:logback-core": 169,
+        "at.yawk.lz4:lz4-java": 9,
+        "ch.qos.logback:logback-core": 170,
         "com.fasterxml.jackson.core:jackson-databind": 229,
         "io.micrometer:micrometer-core": 257,
         "org.apache.tomcat.embed:tomcat-embed-core": 464,
@@ -365,21 +309,7 @@
         },
         {
           "change_type": "gradle",
-          "new": "6.2.19",
-          "old": "6.2.17",
-          "package": "org.springframework:spring-webflux",
-          "remediation_guided": true
-        },
-        {
-          "change_type": "gradle",
-          "new": "10.1.57",
-          "old": "10.1.54",
-          "package": "org.apache.tomcat.embed:tomcat-embed-core",
-          "remediation_guided": true
-        },
-        {
-          "change_type": "gradle",
-          "new": "1.5.38",
+          "new": "1.6.0",
           "old": "1.5.25",
           "package": "ch.qos.logback:logback-core",
           "remediation_guided": true
@@ -393,16 +323,23 @@
         },
         {
           "change_type": "gradle",
-          "new": "1.5.38",
-          "old": "1.5.25",
-          "package": "ch.qos.logback:logback-classic",
+          "new": "10.1.57",
+          "old": "10.1.54",
+          "package": "org.apache.tomcat.embed:tomcat-embed-core",
           "remediation_guided": true
         },
         {
-          "change_type": "gradle-force",
-          "new": "1.17.0",
-          "old": "1.15.11",
-          "package": "io.micrometer:micrometer-core",
+          "change_type": "gradle",
+          "new": "6.2.19",
+          "old": "6.2.17",
+          "package": "org.springframework:spring-webflux",
+          "remediation_guided": true
+        },
+        {
+          "change_type": "gradle",
+          "new": "1.6.0",
+          "old": "1.5.25",
+          "package": "ch.qos.logback:logback-classic",
           "remediation_guided": true
         },
         {
@@ -410,6 +347,13 @@
           "new": "4.5.13",
           "old": "4.5.11",
           "package": "org.springframework.data:spring-data-mongodb",
+          "remediation_guided": true
+        },
+        {
+          "change_type": "gradle-force",
+          "new": "1.17.0",
+          "old": "1.15.11",
+          "package": "io.micrometer:micrometer-core",
           "remediation_guided": true
         },
         {
@@ -435,6 +379,13 @@
         },
         {
           "change_type": "gradle-force",
+          "new": "1.11.1",
+          "old": "1.10.1",
+          "package": "at.yawk.lz4:lz4-java",
+          "remediation_guided": true
+        },
+        {
+          "change_type": "gradle-force",
           "new": "6.2.19",
           "old": "6.2.17",
           "package": "org.springframework:spring-core",
@@ -444,42 +395,7 @@
           "change_type": "gradle-force",
           "new": "6.2.19",
           "old": "6.2.17",
-          "package": "org.springframework:spring-jcl",
-          "remediation_guided": true
-        },
-        {
-          "change_type": "gradle-force",
-          "new": "6.2.19",
-          "old": "6.2.17",
-          "package": "org.springframework:spring-context",
-          "remediation_guided": true
-        },
-        {
-          "change_type": "gradle-force",
-          "new": "6.2.19",
-          "old": "6.2.17",
-          "package": "org.springframework:spring-aop",
-          "remediation_guided": true
-        },
-        {
-          "change_type": "gradle-force",
-          "new": "6.2.19",
-          "old": "6.2.17",
-          "package": "org.springframework:spring-beans",
-          "remediation_guided": true
-        },
-        {
-          "change_type": "gradle-force",
-          "new": "6.2.19",
-          "old": "6.2.17",
           "package": "org.springframework:spring-expression",
-          "remediation_guided": true
-        },
-        {
-          "change_type": "gradle-force",
-          "new": "6.2.19",
-          "old": "6.2.17",
-          "package": "org.springframework:spring-tx",
           "remediation_guided": true
         },
         {
@@ -495,55 +411,6 @@
           "old": "6.2.17",
           "package": "org.springframework:spring-webmvc",
           "remediation_guided": true
-        },
-        {
-          "change_type": "gradle-force",
-          "new": "6.2.19",
-          "old": "6.2.17",
-          "package": "org.springframework:spring-messaging",
-          "remediation_guided": true
-        },
-        {
-          "change_type": "gradle-force",
-          "new": "6.2.19",
-          "old": "6.2.17",
-          "package": "org.springframework:spring-test",
-          "remediation_guided": true
-        },
-        {
-          "change_type": "gradle-force",
-          "new": "10.1.57",
-          "old": "10.1.54",
-          "package": "org.apache.tomcat.embed:tomcat-embed-el",
-          "remediation_guided": true
-        },
-        {
-          "change_type": "gradle-force",
-          "new": "1.5.38",
-          "old": "1.5.25",
-          "package": "ch.qos.logback:logback-classic",
-          "remediation_guided": true
-        },
-        {
-          "change_type": "gradle-force",
-          "new": "1.17.0",
-          "old": "1.15.11",
-          "package": "io.micrometer:micrometer-observation",
-          "remediation_guided": true
-        },
-        {
-          "change_type": "gradle-force",
-          "new": "1.17.0",
-          "old": "1.15.11",
-          "package": "io.micrometer:micrometer-commons",
-          "remediation_guided": true
-        },
-        {
-          "change_type": "gradle-force",
-          "new": "1.17.0",
-          "old": "1.15.11",
-          "package": "io.micrometer:micrometer-jakarta9",
-          "remediation_guided": true
         }
       ],
       "skipped": [],
@@ -552,6 +419,17 @@
       "validation_status": "Passed",
       "verification_status": "Success - build and tests passed; no CVEs remain",
       "version_inventory": {
+        "at.yawk.lz4:lz4-java": [
+          "1.8.1",
+          "1.9.0",
+          "1.10.0",
+          "1.10.1",
+          "1.10.2",
+          "1.10.3",
+          "1.10.4",
+          "1.11.0",
+          "1.11.1"
+        ],
         "ch.qos.logback:logback-core": [
           "0.2.5",
           "0.3",
@@ -721,7 +599,8 @@
           "1.5.35",
           "1.5.36",
           "1.5.37",
-          "1.5.38"
+          "1.5.38",
+          "1.6.0"
         ],
         "com.fasterxml.jackson.core:jackson-databind": [
           "2.0.0-RC1",
@@ -4444,7 +4323,7 @@
       "write_status": "Written"
     }
   ],
-  "generated_at": "2026-07-22T12:57:25",
+  "generated_at": "2026-07-24T10:00:59",
   "next_actions": [
     {
       "action": "No additional remediation action identified.",
@@ -4493,6 +4372,7 @@
     "CVE-2026-59084",
     "CVE-2026-59888",
     "CVE-2026-59889",
+    "CVE-2026-59949",
     "CVE-2026-9828"
   ],
   "outcome": "Success",
@@ -4501,13 +4381,13 @@
   "remediation_budget_seconds": 300,
   "security_status": "verified_clean",
   "summary": {
-    "candidate_versions_considered": 3862,
+    "candidate_versions_considered": 3872,
     "component_cve_pairs_new": 0,
     "component_cve_pairs_remaining": 0,
-    "component_cve_pairs_removed": 44,
+    "component_cve_pairs_removed": 45,
     "dependency_files": 1,
     "vulnerability_records_after": 0,
-    "vulnerability_records_before": 44
+    "vulnerability_records_before": 45
   },
   "test_status": "passed",
   "tests": {
@@ -4525,7 +4405,7 @@
         ],
         "ecosystem": "gradle",
         "label": "Gradle tests",
-        "output": "To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.14.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.\nDaemon will be stopped at the end of the build \n\n> Task :compileJava\n\n> Task :processResources\n> Task :classes\n\n> Task :compileTestJava\n\n> Task :processTestResources NO-SOURCE\n> Task :testClasses\n> Task :test\n> Task :jacocoTestReport\n> Task :jacocoTestCoverageVerification\n\n[Incubating] Problems report is available at: file:///Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_cwih-cnp-mgmt-cds-workflow_default-branch/default-branch/cwih-cnp-mgmt-cds-workflow/build/reports/problems/problems-report.html\n\nDeprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.\n\nYou can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.\n\nFor more on this, please refer to https://docs.gradle.org/8.14.1/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.\n\nBUILD SUCCESSFUL in 23s\n6 actionable tasks: 6 executed\n\nNote: /Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_cwih-cnp-mgmt-cds-workflow_default-branch/default-branch/cwih-cnp-mgmt-cds-workflow/src/main/java/com/humana/domain/cds/service/avro/AvroDeserializer.java uses or overrides a deprecated API.\nNote: Recompile with -Xlint:deprecation for details.\nNote: /Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_cwih-cnp-mgmt-cds-workflow_default-branch/default-branch/cwih-cnp-mgmt-cds-workflow/src/main/java/com/humana/domain/cds/util/VaultPropertySourceFactory.java uses unchecked or unsafe operations.\nNote: Recompile with -Xlint:unchecked for details.\nNote: Some input files use unchecked or unsafe operations.\nNote: Recompile with -Xlint:unchecked for details.\nJava HotSpot(TM) 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended\n",
+        "output": "To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.14.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.\nDaemon will be stopped at the end of the build \n\n> Task :compileJava\n\n> Task :processResources\n> Task :classes\n\n> Task :compileTestJava\n\n> Task :processTestResources NO-SOURCE\n> Task :testClasses\n> Task :test\n> Task :jacocoTestReport\n> Task :jacocoTestCoverageVerification\n\n[Incubating] Problems report is available at: file:///Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_cwih-cnp-mgmt-cds-workflow_default-branch/default-branch/cwih-cnp-mgmt-cds-workflow/build/reports/problems/problems-report.html\n\nDeprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.\n\nYou can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.\n\nFor more on this, please refer to https://docs.gradle.org/8.14.1/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.\n\nBUILD SUCCESSFUL in 18s\n6 actionable tasks: 6 executed\n\nNote: /Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_cwih-cnp-mgmt-cds-workflow_default-branch/default-branch/cwih-cnp-mgmt-cds-workflow/src/main/java/com/humana/domain/cds/service/avro/AvroDeserializer.java uses or overrides a deprecated API.\nNote: Recompile with -Xlint:deprecation for details.\nNote: /Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_cwih-cnp-mgmt-cds-workflow_default-branch/default-branch/cwih-cnp-mgmt-cds-workflow/src/main/java/com/humana/domain/cds/util/VaultPropertySourceFactory.java uses unchecked or unsafe operations.\nNote: Recompile with -Xlint:unchecked for details.\nNote: Some input files use unchecked or unsafe operations.\nNote: Recompile with -Xlint:unchecked for details.\nJava HotSpot(TM) 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended\n",
         "project_dir": "/Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_cwih-cnp-mgmt-cds-workflow_default-branch/default-branch/cwih-cnp-mgmt-cds-workflow",
         "reason": "",
         "returncode": 0,

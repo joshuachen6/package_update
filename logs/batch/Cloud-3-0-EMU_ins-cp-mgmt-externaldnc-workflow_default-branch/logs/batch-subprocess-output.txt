@@ -1,0 +1,222 @@
+[phase2] replay=None log_dir=/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_ins-cp-mgmt-externaldnc-workflow_default-branch cache=/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_ins-cp-mgmt-externaldnc-workflow_default-branch/logs/phase2-results.json exists=True
+[phase2] FALLBACK FULL RUN /Users/jchen18/Documents/package_update/.venv/bin/python3 -u /Users/jchen18/Documents/package_update/quick_update.py --github-url https://github.com/Cloud-3-0-EMU/ins-cp-mgmt-externaldnc-workflow.git --checkout-dir /Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_ins-cp-mgmt-externaldnc-workflow_default-branch/default-branch --log-dir /Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_ins-cp-mgmt-externaldnc-workflow_default-branch
+Cloning https://github.com/Cloud-3-0-EMU/ins-cp-mgmt-externaldnc-workflow.git...
+Cloning https://github.com/Cloud-3-0-EMU/ins-cp-mgmt-externaldnc-workflow.git -> /Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_ins-cp-mgmt-externaldnc-workflow_default-branch/default-branch/ins-cp-mgmt-externaldnc-workflow
+Cloning into '/Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_ins-cp-mgmt-externaldnc-workflow_default-branch/default-branch/ins-cp-mgmt-externaldnc-workflow'...
+Found 1 dependency file(s):
+  - Gradle    >  build.gradle
+
+Pre-resolving Gradle dependencies for Gradle    >  build.gradle...
+Found 21 dependency declarations in /Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_ins-cp-mgmt-externaldnc-workflow_default-branch/default-branch/ins-cp-mgmt-externaldnc-workflow/build.gradle
+  Detected 1 maven repo(s): https://humana.jfrog.io/artifactory/ins-cp-mgmt-gradle-virtual
+
+Fetching Artifactory versions (12 workers): [------------------------------] 0/21 0%
+Fetching Artifactory versions (12 workers): [#-----------------------------] 1/21 4%
+Fetching Artifactory versions (12 workers): [##----------------------------] 2/21 9%
+Fetching Artifactory versions (12 workers): [####--------------------------] 3/21 14%
+Fetching Artifactory versions (12 workers): [#####-------------------------] 4/21 19%
+Fetching Artifactory versions (12 workers): [#######-----------------------] 5/21 23%
+Fetching Artifactory versions (12 workers): [########----------------------] 6/21 28%
+Fetching Artifactory versions (12 workers): [##########--------------------] 7/21 33%
+Fetching Artifactory versions (12 workers): [###########-------------------] 8/21 38%
+Fetching Artifactory versions (12 workers): [############------------------] 9/21 42%
+Fetching Artifactory versions (12 workers): [##############----------------] 10/21 47%
+Fetching Artifactory versions (12 workers): [###############---------------] 11/21 52%
+Fetching Artifactory versions (12 workers): [#################-------------] 12/21 57%
+Fetching Artifactory versions (12 workers): [##################------------] 13/21 61%
+Fetching Artifactory versions (12 workers): [####################----------] 14/21 66%
+Fetching Artifactory versions (12 workers): [#####################---------] 15/21 71%
+Fetching Artifactory versions (12 workers): [######################--------] 16/21 76%
+Fetching Artifactory versions (12 workers): [########################------] 17/21 80%
+Fetching Artifactory versions (12 workers): [#########################-----] 18/21 85%
+Fetching Artifactory versions (12 workers): [###########################---] 19/21 90%
+Fetching Artifactory versions (12 workers): [############################--] 20/21 95%
+Fetching Artifactory versions (12 workers): [##############################] 21/21 100%
+Resolving Gradle dependency tree... timeout=180s
+  Dependency tree -> /Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_ins-cp-mgmt-externaldnc-workflow_default-branch/logs/preaudit-gradle/1/gradle-dependency-tree.txt
+  104 packages in dependency tree
+
+------------------------------------------------------------
+JFrog CVE audit
+------------------------------------------------------------
+Running JFrog Xray API CVE scan for 104 resolved component(s)...
+JFrog Xray API CVE scan complete: 66 CVE record(s) across 19 vulnerable component(s).
+JFrog audit log -> /Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_ins-cp-mgmt-externaldnc-workflow_default-branch/logs/jfrog-audit.json
+
+------------------------------------------------------------
+Fix JFrog CVEs
+------------------------------------------------------------
+
+Fixing 19 JFrog package(s) in Gradle    >  build.gradle
+Fetching Artifactory versions for 10 JFrog package(s)...
+
+Fetching Artifactory versions (12 workers): [------------------------------] 0/10 0%
+Fetching Artifactory versions (12 workers): [###---------------------------] 1/10 10%
+Fetching Artifactory versions (12 workers): [######------------------------] 2/10 20%
+Fetching Artifactory versions (12 workers): [#########---------------------] 3/10 30%
+Fetching Artifactory versions (12 workers): [############------------------] 4/10 40%
+Fetching Artifactory versions (12 workers): [###############---------------] 5/10 50%
+Fetching Artifactory versions (12 workers): [##################------------] 6/10 60%
+Fetching Artifactory versions (12 workers): [#####################---------] 7/10 70%
+Fetching Artifactory versions (12 workers): [########################------] 8/10 80%
+Fetching Artifactory versions (12 workers): [###########################---] 9/10 90%
+Fetching Artifactory versions (12 workers): [##############################] 10/10 100%
+
+Applying updates: [------------------------------] 0/19 0%  [ext-fix] [perf] concurrent version search (io.micrometer:micrometer-core) completed in 0.99s
+  [ext-fix] [perf] transitive-parent search (io.micrometer:micrometer-core) ran 0 gradle probe(s) in 0.00s (resolved=False)
+
+Applying updates: [#-----------------------------] 1/19 5%  [ext-fix] [perf] concurrent version search (org.springframework.data:spring-data-commons) completed in 1.32s
+  [ext-fix] [perf] concurrent version search (org.springframework.boot:spring-boot-starter-actuator) completed in 1.67s
+
+Applying updates: [###---------------------------] 2/19 10%  [ext-fix] [perf] concurrent version search (org.springframework.data:spring-data-mongodb) completed in 1.81s
+  [ext-fix] [perf] concurrent version search (org.apache.commons:commons-lang3) completed in 1.98s
+  [ext-fix] [perf] concurrent version search (org.apache.tomcat.embed:tomcat-embed-websocket) completed in 2.02s
+  [ext-fix] [perf] concurrent version search (org.apache.tomcat.embed:tomcat-embed-core) completed in 2.35s
+  [ext-fix] [perf] concurrent version search (com.fasterxml.jackson.core:jackson-databind) completed in 2.37s
+  [ext-fix] [perf] concurrent version search (org.springframework.boot:spring-boot) completed in 2.38s
+  [ext-fix] [perf] concurrent version search (org.assertj:assertj-core) completed in 2.60s
+  [ext-fix] [perf] concurrent version search (org.apache.kafka:kafka-clients) completed in 2.86s
+  [ext-fix] [perf] concurrent version search (org.springframework:spring-context) completed in 1.44s
+  [ext-fix] [perf] concurrent version search (org.springframework.kafka:spring-kafka) completed in 2.28s
+  [ext-fix] [perf] concurrent version search (org.springframework:spring-context) completed in 1.38s
+  [ext-fix] [perf] concurrent version search (org.apache.tomcat.embed:tomcat-embed-core) completed in 2.15s
+
+Applying updates: [####--------------------------] 3/19 15%
+Applying updates: [######------------------------] 4/19 21%  [ext-fix] [perf] concurrent version search (org.springframework.kafka:spring-kafka) completed in 1.79s
+
+Applying updates: [#######-----------------------] 5/19 26%  [ext-fix] [perf] concurrent version search (org.lz4:lz4-java) completed in 5.31s
+  [ext-fix] [perf] transitive-parent search (org.lz4:lz4-java) ran 0 gradle probe(s) in 0.00s (resolved=False)
+
+Applying updates: [#########---------------------] 6/19 31%  [ext-fix] [perf] concurrent version search (org.apache.kafka:kafka-clients) completed in 2.70s
+
+Applying updates: [###########-------------------] 7/19 36%  [ext-fix] [perf] concurrent version search (org.springframework:spring-expression) completed in 3.21s
+  [ext-fix] [perf] concurrent version search (org.springframework:spring-core) completed in 3.30s
+  [ext-fix] [perf] concurrent version search (org.springframework:spring-webmvc) completed in 2.93s
+  [ext-fix] [perf] concurrent version search (org.springframework:spring-web) completed in 3.80s
+  [ext-fix] [perf] concurrent version search (org.springframework:spring-expression) completed in 2.77s
+
+Applying updates: [############------------------] 8/19 42%  [ext-fix] [perf] concurrent version search (org.springframework:spring-core) completed in 3.18s
+  [ext-fix] [perf] concurrent version search (org.springframework:spring-webmvc) completed in 2.49s
+  [ext-fix] [perf] concurrent version search (org.springframework:spring-web) completed in 2.12s
+
+Applying updates: [##############----------------] 9/19 47%
+Applying updates: [###############---------------] 10/19 52%
+Applying updates: [#################-------------] 11/19 57%  [ext-fix] [perf] concurrent version search (org.springframework:spring-webflux) completed in 6.46s
+  [ext-fix] [perf] concurrent version search (org.springframework:spring-webflux) completed in 0.61s
+
+Applying updates: [##################------------] 12/19 63%  [ext-fix] [perf] transitive-parent search (org.springframework.data:spring-data-mongodb) ran 1 gradle probe(s) in 11.87s (resolved=False)
+
+Applying updates: [####################----------] 13/19 68%  [ext-fix] [perf] transitive-parent search (org.springframework.data:spring-data-commons) ran 1 gradle probe(s) in 13.40s (resolved=False)
+
+Applying updates: [######################--------] 14/19 73%  [ext-fix] [perf] transitive-parent search (org.apache.commons:commons-lang3) ran 1 gradle probe(s) in 21.34s (resolved=False)
+
+Applying updates: [#######################-------] 15/19 78%  [ext-fix] [perf] transitive-parent search (org.apache.tomcat.embed:tomcat-embed-websocket) ran 1 gradle probe(s) in 26.30s (resolved=False)
+
+Applying updates: [#########################-----] 16/19 84%  [ext-fix] [perf] transitive-parent search (com.fasterxml.jackson.core:jackson-databind) ran 1 gradle probe(s) in 27.32s (resolved=False)
+
+Applying updates: [##########################----] 17/19 89%  [ext-fix] [perf] transitive-parent search (org.assertj:assertj-core) ran 1 gradle probe(s) in 27.73s (resolved=False)
+
+Applying updates: [############################--] 18/19 94%  [ext-fix] [perf] transitive-parent search (org.springframework.boot:spring-boot) ran 1 gradle probe(s) in 28.45s (resolved=False)
+
+Applying updates: [##############################] 19/19 100%
+
+Gradle counts: deps=21, updated=10, forced=10, skipped=0
+Changes: gradle_direct=10, gradle_force=10, skipped=0
+Phase2 cache generated → /Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_ins-cp-mgmt-externaldnc-workflow_default-branch/logs/phase2-results.json
+Writing /Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_ins-cp-mgmt-externaldnc-workflow_default-branch/default-branch/ins-cp-mgmt-externaldnc-workflow/build.gradle in place...
+Backup: /Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_ins-cp-mgmt-externaldnc-workflow_default-branch/default-branch/ins-cp-mgmt-externaldnc-workflow/build.gradle.bak
+Updated in place: /Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_ins-cp-mgmt-externaldnc-workflow_default-branch/default-branch/ins-cp-mgmt-externaldnc-workflow/build.gradle
+  [ext-fix] proactive check: resolving post-change dependency tree...
+  Gradle failed — 1 403-blocked package(s) detected, entering retry loop
+  [retry round 1/10] 1 new blocked package(s)…
+    com.fasterxml.jackson.core:jackson-databind: 2.21.4 ↑ 2.21.5 (forced for tree)
+  [retry round 1] retrying gradle with 1 forced version(s)…
+  [retry round 1] gradle succeeded — dependency tree resolved
+  [ext-fix] proactive check: forced 1 artifact(s) just to make the dependency tree resolve: com.fasterxml.jackson.core:jackson-databind:2.21.5
+  [ext-fix] proactive check: 73 resolved artifacts — checking accessibility...
+  [ext-fix] proactive check: all artifacts accessible — no pre-flight forces needed
+Validating updated project: gradle build --no-daemon --init-script /var/folders/cg/2rmnrrps3g77gcd8ny14r1yr0000gp/T/pkg_update_gradle_logging.gradle
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.14.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+
+> Task :compileJava
+
+> Task :processResources
+> Task :classes
+> Task :resolveMainClassName
+> Task :bootJar
+> Task :bootStartScripts
+> Task :bootDistTar
+> Task :bootDistZip
+> Task :jar
+> Task :startScripts
+> Task :distTar
+> Task :distZip
+> Task :assemble
+
+> Task :compileTestJava
+
+> Task :processTestResources NO-SOURCE
+> Task :testClasses
+> Task :test
+> Task :check
+> Task :build
+> Task :jacocoTestReport
+> Task :jacocoTestCoverageVerification
+
+[Incubating] Problems report is available at: file:///Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_ins-cp-mgmt-externaldnc-workflow_default-branch/default-branch/ins-cp-mgmt-externaldnc-workflow/build/reports/problems/problems-report.html
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/8.14.1/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD SUCCESSFUL in 49s
+15 actionable tasks: 15 executed
+Note: /Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_ins-cp-mgmt-externaldnc-workflow_default-branch/default-branch/ins-cp-mgmt-externaldnc-workflow/src/main/java/com/humana/domain/externalDnc/service/avro/AvroDeserializer.java uses or overrides a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+Note: Some input files use unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+Note: Some input files use unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+Java HotSpot(TM) 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+
+Totals: 0 npm direct, 0 npm override(s), 10 Gradle direct, 10 Gradle force(s), 0 Python direct, 0 skipped
+Logs:   /Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_ins-cp-mgmt-externaldnc-workflow_default-branch/logs
+Found 21 dependency declarations in /Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_ins-cp-mgmt-externaldnc-workflow_default-branch/default-branch/ins-cp-mgmt-externaldnc-workflow/build.gradle
+  Detected 1 maven repo(s): https://humana.jfrog.io/artifactory/ins-cp-mgmt-gradle-virtual
+
+Fetching Artifactory versions (12 workers): [------------------------------] 0/21 0%
+Fetching Artifactory versions (12 workers): [#-----------------------------] 1/21 4%
+Fetching Artifactory versions (12 workers): [##----------------------------] 2/21 9%
+Fetching Artifactory versions (12 workers): [####--------------------------] 3/21 14%
+Fetching Artifactory versions (12 workers): [#####-------------------------] 4/21 19%
+Fetching Artifactory versions (12 workers): [#######-----------------------] 5/21 23%
+Fetching Artifactory versions (12 workers): [########----------------------] 6/21 28%
+Fetching Artifactory versions (12 workers): [##########--------------------] 7/21 33%
+Fetching Artifactory versions (12 workers): [###########-------------------] 8/21 38%
+Fetching Artifactory versions (12 workers): [############------------------] 9/21 42%
+Fetching Artifactory versions (12 workers): [##############----------------] 10/21 47%
+Fetching Artifactory versions (12 workers): [###############---------------] 11/21 52%
+Fetching Artifactory versions (12 workers): [#################-------------] 12/21 57%
+Fetching Artifactory versions (12 workers): [##################------------] 13/21 61%
+Fetching Artifactory versions (12 workers): [####################----------] 14/21 66%
+Fetching Artifactory versions (12 workers): [#####################---------] 15/21 71%
+Fetching Artifactory versions (12 workers): [######################--------] 16/21 76%
+Fetching Artifactory versions (12 workers): [########################------] 17/21 80%
+Fetching Artifactory versions (12 workers): [#########################-----] 18/21 85%
+Fetching Artifactory versions (12 workers): [###########################---] 19/21 90%
+Fetching Artifactory versions (12 workers): [############################--] 20/21 95%
+Fetching Artifactory versions (12 workers): [##############################] 21/21 100%
+Resolving Gradle dependency tree... timeout=180s
+  Dependency tree -> /Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_ins-cp-mgmt-externaldnc-workflow_default-branch/logs/gradle-dependency-tree.txt
+  105 packages in dependency tree
+Running JFrog Xray API CVE scan for 105 resolved component(s)...
+JFrog Xray API CVE scan complete: 1 CVE record(s) across 1 vulnerable component(s).
+JFrog audit log -> /Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_ins-cp-mgmt-externaldnc-workflow_default-branch/logs/jfrog-audit-after.json
+Post-update verification: Partial - build passed but 1 CVE record(s) remain
+Remediation evidence -> /Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_ins-cp-mgmt-externaldnc-workflow_default-branch/logs/remediation-evidence.json
+Phase2 cache generated → /Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_ins-cp-mgmt-externaldnc-workflow_default-branch/logs/phase2-results.json
+Report generated → /Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_ins-cp-mgmt-externaldnc-workflow_default-branch/logs/task-completion-report.xlsx
+STATUS: Partial

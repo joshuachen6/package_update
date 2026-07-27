@@ -4,20 +4,20 @@
 |metric|value|
 |---|---|
 |Overall Status|🔴 Manual Update Required|
-|Generated at|2026-07-22T11:53:38|
+|Generated at|2026-07-24T10:17:52|
 |GitHub URL|https://github.com/Cloud-3-0-EMU/ins-cp-mgmt-consent-api.git|
 |Project directory|/Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_ins-cp-mgmt-consent-api_default-branch/default-branch/ins-cp-mgmt-consent-api|
 |Dependency files|1|
-|Changed packages|85|
+|Changed packages|29|
 |Skipped packages|0|
-|Validation records|83|
+|Validation records|30|
 |Taskboard CVEs tracked|40|
-|Resolved dependency changes|135|
-|Verification classification|Error - secondary verification scan incomplete|
+|Resolved dependency changes|123|
+|Verification classification|Failed - dependency updates could not be validated; manual review required|
 |Test verification|not_run|
-|Original CVEs remaining|0|
-|JFrog vulnerabilities before|62|
-|JFrog vulnerabilities after|0|
+|Original CVEs remaining|66|
+|JFrog vulnerabilities before|68|
+|JFrog vulnerabilities after|68|
 |JFrog audit before JSON|/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_ins-cp-mgmt-consent-api_default-branch/logs/jfrog-audit.json|
 |JFrog audit after JSON|/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_ins-cp-mgmt-consent-api_default-branch/logs/jfrog-audit-after.json|
 
@@ -34,96 +34,40 @@ Review:
 ## Dependency Files
 |file|ecosystem|changes|skipped|write_status|validation_status|validation_message|verification_status|test_status|
 |---|---|---|---|---|---|---|---|---|
-|build.gradle|gradle|85|0|Failed|Failed|Build validation failed. Failure isolation disabled.|Error - secondary verification scan incomplete|not_run|
+|build.gradle|gradle|29|0|Failed|Failed|Build validation failed. Failure isolation disabled.|Failed - dependency updates could not be validated; manual review required|not_run|
 
 ## Applied / Planned Changes
 |file|ecosystem|package|type|old|new|status|remediation_guided|
 |---|---|---|---|---|---|---|---|
-|build.gradle|gradle|ch.qos.logback:logback-core|gradle|1.5.21|1.5.38|Failed|True|
-|build.gradle|gradle|io.netty:netty-codec|gradle|4.1.128.Final|4.2.16.Final|Failed|True|
-|build.gradle|gradle|io.netty:netty-codec-http2|gradle|4.1.128.Final|4.2.16.Final|Failed|True|
 |build.gradle|gradle|com.fasterxml.jackson.core:jackson-databind|gradle|2.20.1|2.22.1|Failed|True|
+|build.gradle|gradle|ch.qos.logback:logback-core|gradle|1.5.21|1.6.0|Failed|True|
 |build.gradle|gradle|io.netty:netty-handler|gradle|4.1.128.Final|4.2.16.Final|Failed|True|
-|build.gradle|gradle|org.springframework:spring-framework.version|gradle|6.2.11|6.2.19|Failed|True|
+|build.gradle|gradle|io.netty:netty-codec-http2|gradle|4.1.128.Final|4.2.16.Final|Failed|True|
+|build.gradle|gradle|io.netty:netty-codec|gradle|4.1.128.Final|4.2.16.Final|Failed|True|
 |build.gradle|gradle|org.apache.kafka:kafka-clients|gradle|4.1.1|4.3.1|Failed|True|
+|build.gradle|gradle|org.springframework:spring-framework.version|gradle|6.2.11|6.2.19|Failed|True|
 |build.gradle|gradle|com.fasterxml.jackson.core:jackson-core|gradle|2.20.1|2.22.1|Failed|True|
-|build.gradle|gradle|ch.qos.logback:logback-classic|gradle|1.5.21|1.5.38|Failed|True|
+|build.gradle|gradle|ch.qos.logback:logback-classic|gradle|1.5.21|1.6.0|Failed|True|
 |build.gradle|gradle|org.apache.cxf:cxf-rt-transports-http|gradle|4.1.3|4.2.2|Failed|True|
-|build.gradle|gradle|io.netty:netty-codec-dns|gradle-force|4.1.130.Final|4.2.16.Final|Failed|True|
+|build.gradle|gradle|io.netty:netty-handler-proxy|gradle-force|4.1.130.Final|4.2.16.Final|Failed|True|
 |build.gradle|gradle|io.netty:netty-transport-native-epoll|gradle-force|4.1.130.Final|4.2.16.Final|Failed|True|
 |build.gradle|gradle|io.micrometer:micrometer-core|gradle-force|1.15.7|1.17.0|Failed|True|
-|build.gradle|gradle|io.netty:netty-codec-http|gradle-force|4.1.130.Final|4.2.16.Final|Failed|True|
 |build.gradle|gradle|io.netty:netty-resolver-dns|gradle-force|4.1.130.Final|4.2.16.Final|Failed|True|
+|build.gradle|gradle|io.netty:netty-codec-dns|gradle-force|4.1.130.Final|4.2.16.Final|Failed|True|
+|build.gradle|gradle|io.netty:netty-codec-http|gradle-force|4.1.130.Final|4.2.16.Final|Failed|True|
 |build.gradle|gradle|io.netty:netty-codec-compression|gradle-force|4.2.5.Final|4.2.16.Final|Failed|True|
-|build.gradle|gradle|io.netty:netty-handler-proxy|gradle-force|4.1.130.Final|4.2.16.Final|Failed|True|
-|build.gradle|gradle|org.springframework.data:spring-data-mongodb|gradle-force|4.5.7|4.5.13|Failed|True|
-|build.gradle|gradle|org.apache.neethi:neethi|gradle-force|3.2.1|3.2.2|Failed|True|
-|build.gradle|gradle|org.springframework.hateoas:spring-hateoas|gradle-force|2.5.1|2.5.3|Failed|True|
-|build.gradle|gradle|org.springframework.boot:spring-boot|gradle-force|3.5.9|3.5.16|Failed|True|
 |build.gradle|gradle|org.springframework.data:spring-data-commons|gradle-force|3.5.7|3.5.13|Failed|True|
 |build.gradle|gradle|org.springframework.kafka:spring-kafka|gradle-force|3.3.11|3.3.16|Failed|True|
 |build.gradle|gradle|org.springframework.boot:spring-boot-starter-actuator|gradle-force|3.5.9|3.5.16|Failed|True|
+|build.gradle|gradle|org.springframework.hateoas:spring-hateoas|gradle-force|2.5.1|2.5.3|Failed|True|
+|build.gradle|gradle|org.springframework.data:spring-data-mongodb|gradle-force|4.5.7|4.5.13|Failed|True|
+|build.gradle|gradle|org.apache.neethi:neethi|gradle-force|3.2.1|3.2.3|Failed|True|
+|build.gradle|gradle|org.springframework.boot:spring-boot|gradle-force|3.5.9|3.5.16|Failed|True|
 |build.gradle|gradle|org.apache.cxf:cxf-core|gradle-force|4.1.3|4.2.2|Failed|True|
-|build.gradle|gradle|ch.qos.logback:logback-classic|gradle-force|1.5.21|1.5.38|Failed|True|
-|build.gradle|gradle|com.fasterxml.jackson.core:jackson-core|gradle-force|2.20.1|2.22.1|Failed|True|
 |build.gradle|gradle|org.springframework:spring-core|gradle-force|6.2.11|6.2.19|Failed|True|
-|build.gradle|gradle|org.springframework:spring-jcl|gradle-force|6.2.11|6.2.19|Failed|True|
-|build.gradle|gradle|org.springframework:spring-context|gradle-force|6.2.11|6.2.19|Failed|True|
-|build.gradle|gradle|org.springframework:spring-aop|gradle-force|6.2.11|6.2.19|Failed|True|
-|build.gradle|gradle|org.springframework:spring-beans|gradle-force|6.2.11|6.2.19|Failed|True|
 |build.gradle|gradle|org.springframework:spring-expression|gradle-force|6.2.11|6.2.19|Failed|True|
 |build.gradle|gradle|org.springframework:spring-web|gradle-force|6.2.11|6.2.19|Failed|True|
 |build.gradle|gradle|org.springframework:spring-webflux|gradle-force|6.2.11|6.2.19|Failed|True|
-|build.gradle|gradle|org.springframework:spring-tx|gradle-force|6.2.11|6.2.19|Failed|True|
-|build.gradle|gradle|org.springframework:spring-oxm|gradle-force|6.2.11|6.2.19|Failed|True|
-|build.gradle|gradle|org.springframework:spring-context-support|gradle-force|6.2.11|6.2.19|Failed|True|
-|build.gradle|gradle|org.springframework:spring-messaging|gradle-force|6.2.11|6.2.19|Failed|True|
-|build.gradle|gradle|org.springframework:spring-test|gradle-force|6.2.11|6.2.19|Failed|True|
-|build.gradle|gradle|io.netty:netty-common|gradle-force|4.1.130.Final|4.2.16.Final|Failed|True|
-|build.gradle|gradle|io.netty:netty-buffer|gradle-force|4.1.130.Final|4.2.16.Final|Failed|True|
-|build.gradle|gradle|io.netty:netty-transport|gradle-force|4.1.130.Final|4.2.16.Final|Failed|True|
-|build.gradle|gradle|io.netty:netty-resolver|gradle-force|4.1.130.Final|4.2.16.Final|Failed|True|
-|build.gradle|gradle|io.netty:netty-transport-native-unix-common|gradle-force|4.1.130.Final|4.2.16.Final|Failed|True|
-|build.gradle|gradle|io.netty:netty-resolver-dns-native-macos|gradle-force|4.1.130.Final|4.2.16.Final|Failed|True|
-|build.gradle|gradle|io.netty:netty-resolver-dns-classes-macos|gradle-force|4.1.130.Final|4.2.16.Final|Failed|True|
-|build.gradle|gradle|io.netty:netty-transport-classes-epoll|gradle-force|4.1.130.Final|4.2.16.Final|Failed|True|
-|build.gradle|gradle|io.netty:netty-codec-socks|gradle-force|4.1.130.Final|4.2.16.Final|Failed|True|
-|build.gradle|gradle|io.micrometer:micrometer-observation|gradle-force|1.15.7|1.17.0|Failed|True|
-|build.gradle|gradle|io.micrometer:micrometer-commons|gradle-force|1.15.7|1.17.0|Failed|True|
-|build.gradle|gradle|io.micrometer:micrometer-jakarta9|gradle-force|1.15.7|1.17.0|Failed|True|
-|build.gradle|gradle|io.micrometer:micrometer-registry-prometheus|gradle-force|1.15.7|1.17.0|Failed|True|
-|build.gradle|gradle|io.netty:netty-codec-base|gradle-force|4.2.5.Final|4.2.16.Final|Failed|True|
-|build.gradle|gradle|org.springframework.boot:spring-boot-starter-webflux|gradle-force|3.5.9|3.5.16|Failed|True|
-|build.gradle|gradle|org.springframework.boot:spring-boot-starter|gradle-force|3.5.9|3.5.16|Failed|True|
-|build.gradle|gradle|org.springframework.boot:spring-boot-autoconfigure|gradle-force|3.5.9|3.5.16|Failed|True|
-|build.gradle|gradle|org.springframework.boot:spring-boot-starter-logging|gradle-force|3.5.9|3.5.16|Failed|True|
-|build.gradle|gradle|org.springframework.boot:spring-boot-starter-json|gradle-force|3.5.9|3.5.16|Failed|True|
-|build.gradle|gradle|org.springframework.boot:spring-boot-starter-reactor-netty|gradle-force|3.5.9|3.5.16|Failed|True|
-|build.gradle|gradle|org.springframework.boot:spring-boot-starter-data-mongodb|gradle-force|3.5.9|3.5.16|Failed|True|
-|build.gradle|gradle|org.springframework.boot:spring-boot-actuator-autoconfigure|gradle-force|3.5.9|3.5.16|Failed|True|
-|build.gradle|gradle|org.springframework.boot:spring-boot-actuator|gradle-force|3.5.9|3.5.16|Failed|True|
-|build.gradle|gradle|org.springframework.boot:spring-boot-starter-validation|gradle-force|3.5.9|3.5.16|Failed|True|
-|build.gradle|gradle|org.springframework.boot:spring-boot-configuration-processor|gradle-force|3.5.9|3.5.16|Failed|True|
-|build.gradle|gradle|org.springframework.boot:spring-boot-starter-data-redis-reactive|gradle-force|3.5.9|3.5.16|Failed|True|
-|build.gradle|gradle|org.springframework.boot:spring-boot-starter-hateoas|gradle-force|3.5.9|3.5.16|Failed|True|
-|build.gradle|gradle|org.springframework.boot:spring-boot-starter-aop|gradle-force|3.5.9|3.5.16|Failed|True|
-|build.gradle|gradle|org.springframework.boot:spring-boot-starter-test|gradle-force|3.5.9|3.5.16|Failed|True|
-|build.gradle|gradle|org.springframework.boot:spring-boot-test|gradle-force|3.5.9|3.5.16|Failed|True|
-|build.gradle|gradle|org.springframework.boot:spring-boot-test-autoconfigure|gradle-force|3.5.9|3.5.16|Failed|True|
-|build.gradle|gradle|org.springframework.data:spring-data-redis|gradle-force|3.5.7|3.5.13|Failed|True|
-|build.gradle|gradle|org.springframework.data:spring-data-keyvalue|gradle-force|3.5.7|3.5.13|Failed|True|
-|build.gradle|gradle|org.apache.cxf:cxf-spring-boot-starter-jaxws|gradle-force|4.1.3|4.2.2|Failed|True|
-|build.gradle|gradle|org.apache.cxf:cxf-spring-boot-autoconfigure|gradle-force|4.1.3|4.2.2|Failed|True|
-|build.gradle|gradle|org.apache.cxf:cxf-rt-transports-http|gradle-force|4.1.3|4.2.2|Failed|True|
-|build.gradle|gradle|org.apache.cxf:cxf-rt-frontend-jaxws|gradle-force|4.1.3|4.2.2|Failed|True|
-|build.gradle|gradle|org.apache.cxf:cxf-rt-bindings-soap|gradle-force|4.1.3|4.2.2|Failed|True|
-|build.gradle|gradle|org.apache.cxf:cxf-rt-wsdl|gradle-force|4.1.3|4.2.2|Failed|True|
-|build.gradle|gradle|org.apache.cxf:cxf-rt-databinding-jaxb|gradle-force|4.1.3|4.2.2|Failed|True|
-|build.gradle|gradle|org.apache.cxf:cxf-rt-bindings-xml|gradle-force|4.1.3|4.2.2|Failed|True|
-|build.gradle|gradle|org.apache.cxf:cxf-rt-frontend-simple|gradle-force|4.1.3|4.2.2|Failed|True|
-|build.gradle|gradle|org.apache.cxf:cxf-rt-ws-addr|gradle-force|4.1.3|4.2.2|Failed|True|
-|build.gradle|gradle|org.apache.cxf:cxf-rt-ws-policy|gradle-force|4.1.3|4.2.2|Failed|True|
-|build.gradle|gradle|org.apache.cxf:cxf-rt-features-metrics|gradle-force|4.1.3|4.2.2|Failed|True|
 
 ## Skipped / Resolved / Could Not Update
 _No rows._
@@ -132,94 +76,41 @@ _No rows._
 |package|change_type|old|new|status|reason|source|
 |---|---|---|---|---|---|---|
 |com.fasterxml.jackson.core:jackson-databind|gradle|2.20.1|2.22.1|manual_update_required|build validation failed and failure isolation disabled|build-validation-manual-updates.csv|
-|org.springframework.boot:spring-boot-starter-validation|gradle-force|3.5.9|3.5.16|manual_update_required|build validation failed and failure isolation disabled|build-validation-manual-updates.csv|
 |com.fasterxml.jackson.core:jackson-core|gradle|2.20.1|2.22.1|manual_update_required|build validation failed and failure isolation disabled|build-validation-manual-updates.csv|
-|org.springframework:spring-context-support|gradle-force|6.2.11|6.2.19|manual_update_required|build validation failed and failure isolation disabled|build-validation-manual-updates.csv|
 |org.springframework.kafka:spring-kafka|gradle-force|3.3.11|3.3.16|manual_update_required|build validation failed and failure isolation disabled|build-validation-manual-updates.csv|
-|org.apache.cxf:cxf-rt-features-metrics|gradle-force|4.1.3|4.2.2|manual_update_required|build validation failed and failure isolation disabled|build-validation-manual-updates.csv|
-|io.netty:netty-transport-classes-epoll|gradle-force|4.1.130.Final|4.2.16.Final|manual_update_required|build validation failed and failure isolation disabled|build-validation-manual-updates.csv|
-|io.netty:netty-resolver-dns-classes-macos|gradle-force|4.1.130.Final|4.2.16.Final|manual_update_required|build validation failed and failure isolation disabled|build-validation-manual-updates.csv|
 |org.apache.kafka:kafka-clients|gradle|4.1.1|4.3.1|manual_update_required|build validation failed and failure isolation disabled|build-validation-manual-updates.csv|
 |org.springframework:spring-webflux|gradle-force|6.2.11|6.2.19|manual_update_required|build validation failed and failure isolation disabled|build-validation-manual-updates.csv|
 |org.springframework:spring-web|gradle-force|6.2.11|6.2.19|manual_update_required|build validation failed and failure isolation disabled|build-validation-manual-updates.csv|
-|org.springframework:spring-tx|gradle-force|6.2.11|6.2.19|manual_update_required|build validation failed and failure isolation disabled|build-validation-manual-updates.csv|
-|org.springframework:spring-test|gradle-force|6.2.11|6.2.19|manual_update_required|build validation failed and failure isolation disabled|build-validation-manual-updates.csv|
-|org.springframework:spring-oxm|gradle-force|6.2.11|6.2.19|manual_update_required|build validation failed and failure isolation disabled|build-validation-manual-updates.csv|
-|org.springframework:spring-messaging|gradle-force|6.2.11|6.2.19|manual_update_required|build validation failed and failure isolation disabled|build-validation-manual-updates.csv|
-|org.springframework:spring-jcl|gradle-force|6.2.11|6.2.19|manual_update_required|build validation failed and failure isolation disabled|build-validation-manual-updates.csv|
 |org.springframework:spring-expression|gradle-force|6.2.11|6.2.19|manual_update_required|build validation failed and failure isolation disabled|build-validation-manual-updates.csv|
 |org.springframework:spring-core|gradle-force|6.2.11|6.2.19|manual_update_required|build validation failed and failure isolation disabled|build-validation-manual-updates.csv|
-|org.springframework:spring-context|gradle-force|6.2.11|6.2.19|manual_update_required|build validation failed and failure isolation disabled|build-validation-manual-updates.csv|
-|org.springframework:spring-beans|gradle-force|6.2.11|6.2.19|manual_update_required|build validation failed and failure isolation disabled|build-validation-manual-updates.csv|
-|org.springframework:spring-aop|gradle-force|6.2.11|6.2.19|manual_update_required|build validation failed and failure isolation disabled|build-validation-manual-updates.csv|
 |org.springframework.hateoas:spring-hateoas|gradle-force|2.5.1|2.5.3|manual_update_required|build validation failed and failure isolation disabled|build-validation-manual-updates.csv|
-|org.springframework.data:spring-data-redis|gradle-force|3.5.7|3.5.13|manual_update_required|build validation failed and failure isolation disabled|build-validation-manual-updates.csv|
 |org.springframework.data:spring-data-mongodb|gradle-force|4.5.7|4.5.13|manual_update_required|build validation failed and failure isolation disabled|build-validation-manual-updates.csv|
-|org.springframework.data:spring-data-keyvalue|gradle-force|3.5.7|3.5.13|manual_update_required|build validation failed and failure isolation disabled|build-validation-manual-updates.csv|
 |org.springframework.data:spring-data-commons|gradle-force|3.5.7|3.5.13|manual_update_required|build validation failed and failure isolation disabled|build-validation-manual-updates.csv|
-|org.springframework.boot:spring-boot-test-autoconfigure|gradle-force|3.5.9|3.5.16|manual_update_required|build validation failed and failure isolation disabled|build-validation-manual-updates.csv|
-|org.springframework.boot:spring-boot-test|gradle-force|3.5.9|3.5.16|manual_update_required|build validation failed and failure isolation disabled|build-validation-manual-updates.csv|
-|org.springframework.boot:spring-boot-starter-webflux|gradle-force|3.5.9|3.5.16|manual_update_required|build validation failed and failure isolation disabled|build-validation-manual-updates.csv|
-|org.springframework.boot:spring-boot-starter-test|gradle-force|3.5.9|3.5.16|manual_update_required|build validation failed and failure isolation disabled|build-validation-manual-updates.csv|
-|org.springframework.boot:spring-boot-starter-reactor-netty|gradle-force|3.5.9|3.5.16|manual_update_required|build validation failed and failure isolation disabled|build-validation-manual-updates.csv|
-|org.springframework.boot:spring-boot-starter-logging|gradle-force|3.5.9|3.5.16|manual_update_required|build validation failed and failure isolation disabled|build-validation-manual-updates.csv|
-|org.springframework.boot:spring-boot-starter-json|gradle-force|3.5.9|3.5.16|manual_update_required|build validation failed and failure isolation disabled|build-validation-manual-updates.csv|
-|org.springframework.boot:spring-boot-starter-hateoas|gradle-force|3.5.9|3.5.16|manual_update_required|build validation failed and failure isolation disabled|build-validation-manual-updates.csv|
-|org.springframework.boot:spring-boot-starter-data-redis-reactive|gradle-force|3.5.9|3.5.16|manual_update_required|build validation failed and failure isolation disabled|build-validation-manual-updates.csv|
-|org.springframework.boot:spring-boot-starter-data-mongodb|gradle-force|3.5.9|3.5.16|manual_update_required|build validation failed and failure isolation disabled|build-validation-manual-updates.csv|
-|org.springframework.boot:spring-boot-starter-aop|gradle-force|3.5.9|3.5.16|manual_update_required|build validation failed and failure isolation disabled|build-validation-manual-updates.csv|
 |org.springframework.boot:spring-boot-starter-actuator|gradle-force|3.5.9|3.5.16|manual_update_required|build validation failed and failure isolation disabled|build-validation-manual-updates.csv|
-|org.springframework.boot:spring-boot-starter|gradle-force|3.5.9|3.5.16|manual_update_required|build validation failed and failure isolation disabled|build-validation-manual-updates.csv|
-|org.springframework.boot:spring-boot-configuration-processor|gradle-force|3.5.9|3.5.16|manual_update_required|build validation failed and failure isolation disabled|build-validation-manual-updates.csv|
-|org.springframework.boot:spring-boot-autoconfigure|gradle-force|3.5.9|3.5.16|manual_update_required|build validation failed and failure isolation disabled|build-validation-manual-updates.csv|
-|org.springframework.boot:spring-boot-actuator-autoconfigure|gradle-force|3.5.9|3.5.16|manual_update_required|build validation failed and failure isolation disabled|build-validation-manual-updates.csv|
-|org.springframework.boot:spring-boot-actuator|gradle-force|3.5.9|3.5.16|manual_update_required|build validation failed and failure isolation disabled|build-validation-manual-updates.csv|
 |org.springframework.boot:spring-boot|gradle-force|3.5.9|3.5.16|manual_update_required|build validation failed and failure isolation disabled|build-validation-manual-updates.csv|
-|org.apache.neethi:neethi|gradle-force|3.2.1|3.2.2|manual_update_required|build validation failed and failure isolation disabled|build-validation-manual-updates.csv|
-|org.apache.cxf:cxf-spring-boot-starter-jaxws|gradle-force|4.1.3|4.2.2|manual_update_required|build validation failed and failure isolation disabled|build-validation-manual-updates.csv|
-|org.apache.cxf:cxf-spring-boot-autoconfigure|gradle-force|4.1.3|4.2.2|manual_update_required|build validation failed and failure isolation disabled|build-validation-manual-updates.csv|
-|org.apache.cxf:cxf-rt-wsdl|gradle-force|4.1.3|4.2.2|manual_update_required|build validation failed and failure isolation disabled|build-validation-manual-updates.csv|
-|org.apache.cxf:cxf-rt-ws-policy|gradle-force|4.1.3|4.2.2|manual_update_required|build validation failed and failure isolation disabled|build-validation-manual-updates.csv|
-|org.apache.cxf:cxf-rt-ws-addr|gradle-force|4.1.3|4.2.2|manual_update_required|build validation failed and failure isolation disabled|build-validation-manual-updates.csv|
-|org.apache.cxf:cxf-rt-frontend-simple|gradle-force|4.1.3|4.2.2|manual_update_required|build validation failed and failure isolation disabled|build-validation-manual-updates.csv|
-|org.apache.cxf:cxf-rt-frontend-jaxws|gradle-force|4.1.3|4.2.2|manual_update_required|build validation failed and failure isolation disabled|build-validation-manual-updates.csv|
-|org.apache.cxf:cxf-rt-databinding-jaxb|gradle-force|4.1.3|4.2.2|manual_update_required|build validation failed and failure isolation disabled|build-validation-manual-updates.csv|
-|org.apache.cxf:cxf-rt-bindings-xml|gradle-force|4.1.3|4.2.2|manual_update_required|build validation failed and failure isolation disabled|build-validation-manual-updates.csv|
-|org.apache.cxf:cxf-rt-bindings-soap|gradle-force|4.1.3|4.2.2|manual_update_required|build validation failed and failure isolation disabled|build-validation-manual-updates.csv|
+|org.apache.neethi:neethi|gradle-force|3.2.1|3.2.3|manual_update_required|build validation failed and failure isolation disabled|build-validation-manual-updates.csv|
 |org.apache.cxf:cxf-core|gradle-force|4.1.3|4.2.2|manual_update_required|build validation failed and failure isolation disabled|build-validation-manual-updates.csv|
-|io.netty:netty-transport-native-unix-common|gradle-force|4.1.130.Final|4.2.16.Final|manual_update_required|build validation failed and failure isolation disabled|build-validation-manual-updates.csv|
 |io.netty:netty-transport-native-epoll|gradle-force|4.1.130.Final|4.2.16.Final|manual_update_required|build validation failed and failure isolation disabled|build-validation-manual-updates.csv|
-|io.netty:netty-transport|gradle-force|4.1.130.Final|4.2.16.Final|manual_update_required|build validation failed and failure isolation disabled|build-validation-manual-updates.csv|
-|io.netty:netty-resolver-dns-native-macos|gradle-force|4.1.130.Final|4.2.16.Final|manual_update_required|build validation failed and failure isolation disabled|build-validation-manual-updates.csv|
 |io.netty:netty-resolver-dns|gradle-force|4.1.130.Final|4.2.16.Final|manual_update_required|build validation failed and failure isolation disabled|build-validation-manual-updates.csv|
-|io.netty:netty-resolver|gradle-force|4.1.130.Final|4.2.16.Final|manual_update_required|build validation failed and failure isolation disabled|build-validation-manual-updates.csv|
 |io.netty:netty-handler-proxy|gradle-force|4.1.130.Final|4.2.16.Final|manual_update_required|build validation failed and failure isolation disabled|build-validation-manual-updates.csv|
-|io.netty:netty-common|gradle-force|4.1.130.Final|4.2.16.Final|manual_update_required|build validation failed and failure isolation disabled|build-validation-manual-updates.csv|
-|io.netty:netty-codec-socks|gradle-force|4.1.130.Final|4.2.16.Final|manual_update_required|build validation failed and failure isolation disabled|build-validation-manual-updates.csv|
 |io.netty:netty-codec-http|gradle-force|4.1.130.Final|4.2.16.Final|manual_update_required|build validation failed and failure isolation disabled|build-validation-manual-updates.csv|
 |io.netty:netty-codec-dns|gradle-force|4.1.130.Final|4.2.16.Final|manual_update_required|build validation failed and failure isolation disabled|build-validation-manual-updates.csv|
 |io.netty:netty-codec-compression|gradle-force|4.2.5.Final|4.2.16.Final|manual_update_required|build validation failed and failure isolation disabled|build-validation-manual-updates.csv|
-|io.netty:netty-codec-base|gradle-force|4.2.5.Final|4.2.16.Final|manual_update_required|build validation failed and failure isolation disabled|build-validation-manual-updates.csv|
-|io.netty:netty-buffer|gradle-force|4.1.130.Final|4.2.16.Final|manual_update_required|build validation failed and failure isolation disabled|build-validation-manual-updates.csv|
-|io.micrometer:micrometer-registry-prometheus|gradle-force|1.15.7|1.17.0|manual_update_required|build validation failed and failure isolation disabled|build-validation-manual-updates.csv|
-|io.micrometer:micrometer-observation|gradle-force|1.15.7|1.17.0|manual_update_required|build validation failed and failure isolation disabled|build-validation-manual-updates.csv|
-|io.micrometer:micrometer-jakarta9|gradle-force|1.15.7|1.17.0|manual_update_required|build validation failed and failure isolation disabled|build-validation-manual-updates.csv|
 |io.micrometer:micrometer-core|gradle-force|1.15.7|1.17.0|manual_update_required|build validation failed and failure isolation disabled|build-validation-manual-updates.csv|
-|io.micrometer:micrometer-commons|gradle-force|1.15.7|1.17.0|manual_update_required|build validation failed and failure isolation disabled|build-validation-manual-updates.csv|
 |org.springframework:spring-framework.version|gradle|6.2.11|6.2.19|manual_update_required|build validation failed and failure isolation disabled|build-validation-manual-updates.csv|
 |org.apache.cxf:cxf-rt-transports-http|gradle|4.1.3|4.2.2|manual_update_required|build validation failed and failure isolation disabled|build-validation-manual-updates.csv|
 |io.netty:netty-handler|gradle|4.1.128.Final|4.2.16.Final|manual_update_required|build validation failed and failure isolation disabled|build-validation-manual-updates.csv|
 |io.netty:netty-codec-http2|gradle|4.1.128.Final|4.2.16.Final|manual_update_required|build validation failed and failure isolation disabled|build-validation-manual-updates.csv|
 |io.netty:netty-codec|gradle|4.1.128.Final|4.2.16.Final|manual_update_required|build validation failed and failure isolation disabled|build-validation-manual-updates.csv|
-|ch.qos.logback:logback-core|gradle|1.5.21|1.5.38|manual_update_required|build validation failed and failure isolation disabled|build-validation-manual-updates.csv|
-|ch.qos.logback:logback-classic|gradle|1.5.21|1.5.38|manual_update_required|build validation failed and failure isolation disabled|build-validation-manual-updates.csv|
+|ch.qos.logback:logback-core|gradle|1.5.21|1.6.0|manual_update_required|build validation failed and failure isolation disabled|build-validation-manual-updates.csv|
+|ch.qos.logback:logback-classic|gradle|1.5.21|1.6.0|manual_update_required|build validation failed and failure isolation disabled|build-validation-manual-updates.csv|
 |||||proactive_scan_force|forced to make the post-change dependency tree resolvable before the real build|build-validation-external-auto-fixes.csv|
 
 ## Before / After Dependency Trees
 |ecosystem|snapshot|path|exists|line_count|dependency_count|bytes|
 |---|---|---|---|---|---|---|
 |gradle|before|/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_ins-cp-mgmt-consent-api_default-branch/logs/gradle-dependency-tree-before.txt|True|2119|2004|143911|
-|gradle|after|/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_ins-cp-mgmt-consent-api_default-branch/logs/gradle-dependency-tree-after.txt|True|654|628|44475|
+|gradle|after|/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_ins-cp-mgmt-consent-api_default-branch/logs/gradle-dependency-tree-after.txt|True|654|628|44638|
 |node|before|/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_ins-cp-mgmt-consent-api_default-branch/logs/npm-dependency-tree-before.json|False|0|0|0|
 |node|after|/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_ins-cp-mgmt-consent-api_default-branch/logs/npm-dependency-tree-after.json|False|0|0|0|
 
@@ -227,12 +118,12 @@ _No rows._
 |dependency|before|after|status|
 |---|---|---|---|
 |at.yawk.lz4:lz4-java||1.10.2|added|
-|ch.qos.logback:logback-classic|1.5.21|1.5.38|changed|
-|ch.qos.logback:logback-core|1.5.21|1.5.38|changed|
+|ch.qos.logback:logback-classic|1.5.21|1.6.0|changed|
+|ch.qos.logback:logback-core|1.5.21|1.6.0|changed|
 |com.fasterxml.jackson.core:jackson-core|2.20.1|2.22.1|changed|
 |com.fasterxml.jackson.core:jackson-databind|2.20.1|2.22.1|changed|
-|com.fasterxml.jackson.datatype:jackson-datatype-jdk8|2.19.4|2.22.1|changed|
-|com.fasterxml.jackson.module:jackson-module-parameter-names|2.19.4|2.22.1|changed|
+|com.fasterxml.jackson.datatype:jackson-datatype-jdk8|2.19.4|2.21.4|changed|
+|com.fasterxml.jackson.module:jackson-module-parameter-names|2.19.4|2.21.4|changed|
 |com.fasterxml.jackson:jackson-bom|2.20.1|2.22.1|changed|
 |com.fasterxml.woodstox:woodstox-core|7.1.1|7.2.0|changed|
 |com.fasterxml:classmate|1.7.1|1.7.3|changed|
@@ -276,22 +167,11 @@ _No rows._
 |net.bytebuddy:byte-buddy|1.17.8||removed|
 |net.bytebuddy:byte-buddy-agent|1.17.8||removed|
 |org.apache.cxf:cxf-core|4.1.3|4.2.2|changed|
-|org.apache.cxf:cxf-rt-bindings-soap|4.1.3|4.2.2|changed|
-|org.apache.cxf:cxf-rt-bindings-xml|4.1.3|4.2.2|changed|
-|org.apache.cxf:cxf-rt-databinding-jaxb|4.1.3|4.2.2|changed|
-|org.apache.cxf:cxf-rt-features-metrics|4.1.3|4.2.2|changed|
-|org.apache.cxf:cxf-rt-frontend-jaxws|4.1.3|4.2.2|changed|
-|org.apache.cxf:cxf-rt-frontend-simple|4.1.3|4.2.2|changed|
 |org.apache.cxf:cxf-rt-transports-http|4.1.3|4.2.2|changed|
-|org.apache.cxf:cxf-rt-ws-addr|4.1.3|4.2.2|changed|
-|org.apache.cxf:cxf-rt-ws-policy|4.1.3|4.2.2|changed|
-|org.apache.cxf:cxf-rt-wsdl|4.1.3|4.2.2|changed|
-|org.apache.cxf:cxf-spring-boot-autoconfigure|4.1.3|4.2.2|changed|
-|org.apache.cxf:cxf-spring-boot-starter-jaxws|4.1.3|4.2.2|changed|
 |org.apache.kafka:kafka-clients|4.1.1|4.3.1|changed|
 |org.apache.kafka:kafka-raft|3.9.1|3.9.2|changed|
 |org.apache.kafka:kafka-server-common|3.9.1|3.9.2|changed|
-|org.apache.neethi:neethi|3.2.1|3.2.2|changed|
+|org.apache.neethi:neethi|3.2.1|3.2.3|changed|
 |org.apache.tomcat.embed:tomcat-embed-el|10.1.50|10.1.55|changed|
 |org.apache.ws.xmlschema:xmlschema-core|2.3.1|2.3.2|changed|
 |org.apiguardian:apiguardian-api|1.1.2||removed|
@@ -315,7 +195,6 @@ _No rows._
 |org.mockito:mockito-junit-jupiter|5.17.0||removed|
 |org.objenesis:objenesis|3.3||removed|
 |org.opentest4j:opentest4j|1.3.0||removed|
-|org.ow2.asm:asm|9.8|9.10.1|changed|
 |org.projectlombok:lombok|1.18.42|1.18.46|changed|
 |org.skyscreamer:jsonassert|1.5.3||removed|
 |org.slf4j:jul-to-slf4j|2.0.17|2.0.18|changed|

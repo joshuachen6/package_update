@@ -36,9 +36,9 @@ runtimeClasspath - Runtime classpath of source set 'main'.
 |    |    +--- org.springframework.boot:spring-boot-autoconfigure:3.5.16
 |    |    |    \--- org.springframework.boot:spring-boot:3.5.16 (*)
 |    |    +--- org.springframework.boot:spring-boot-starter-logging:3.5.16
-|    |    |    +--- ch.qos.logback:logback-classic:1.5.34 -> 1.5.38
-|    |    |    |    +--- ch.qos.logback:logback-core:1.5.38
-|    |    |    |    \--- org.slf4j:slf4j-api:2.0.17 -> 2.0.18
+|    |    |    +--- ch.qos.logback:logback-classic:1.5.34 -> 1.6.0
+|    |    |    |    +--- ch.qos.logback:logback-core:1.6.0
+|    |    |    |    \--- org.slf4j:slf4j-api:2.0.18
 |    |    |    +--- org.apache.logging.log4j:log4j-to-slf4j:2.24.3
 |    |    |    |    +--- org.apache.logging.log4j:log4j-api:2.24.3
 |    |    |    |    \--- org.slf4j:slf4j-api:2.0.16 -> 2.0.18
@@ -61,23 +61,23 @@ runtimeClasspath - Runtime classpath of source set 'main'.
 |    |    |    |         +--- com.fasterxml.jackson.core:jackson-core:2.22.1 (c)
 |    |    |    |         +--- com.fasterxml.jackson.core:jackson-databind:2.22.1 -> 2.21.5 (c)
 |    |    |    |         +--- com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.22.1 -> 2.21.2 (c)
-|    |    |    |         +--- com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.22.1 (c)
+|    |    |    |         +--- com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.22.1 -> 2.21.4 (c)
 |    |    |    |         +--- com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.22.1 -> 2.21.2 (c)
-|    |    |    |         \--- com.fasterxml.jackson.module:jackson-module-parameter-names:2.22.1 (c)
+|    |    |    |         \--- com.fasterxml.jackson.module:jackson-module-parameter-names:2.22.1 -> 2.21.4 (c)
 |    |    |    \--- com.fasterxml.jackson:jackson-bom:2.21.5 -> 2.22.1 (*)
-|    |    +--- com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.21.4 -> 2.22.1
-|    |    |    +--- com.fasterxml.jackson.core:jackson-core:2.22.1 (*)
-|    |    |    +--- com.fasterxml.jackson.core:jackson-databind:2.22.1 -> 2.21.5 (*)
-|    |    |    \--- com.fasterxml.jackson:jackson-bom:2.22.1 (*)
+|    |    +--- com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.21.4
+|    |    |    +--- com.fasterxml.jackson.core:jackson-core:2.21.4 -> 2.22.1 (*)
+|    |    |    +--- com.fasterxml.jackson.core:jackson-databind:2.21.4 -> 2.21.5 (*)
+|    |    |    \--- com.fasterxml.jackson:jackson-bom:2.21.4 -> 2.22.1 (*)
 |    |    +--- com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.21.4 -> 2.21.2
 |    |    |    +--- com.fasterxml.jackson.core:jackson-annotations:2.21
 |    |    |    +--- com.fasterxml.jackson.core:jackson-core:2.21.2 -> 2.22.1 (*)
 |    |    |    +--- com.fasterxml.jackson.core:jackson-databind:2.21.2 -> 2.21.5 (*)
 |    |    |    \--- com.fasterxml.jackson:jackson-bom:2.21.2 -> 2.22.1 (*)
-|    |    \--- com.fasterxml.jackson.module:jackson-module-parameter-names:2.21.4 -> 2.22.1
-|    |         +--- com.fasterxml.jackson.core:jackson-core:2.22.1 (*)
-|    |         +--- com.fasterxml.jackson.core:jackson-databind:2.22.1 -> 2.21.5 (*)
-|    |         \--- com.fasterxml.jackson:jackson-bom:2.22.1 (*)
+|    |    \--- com.fasterxml.jackson.module:jackson-module-parameter-names:2.21.4
+|    |         +--- com.fasterxml.jackson.core:jackson-core:2.21.4 -> 2.22.1 (*)
+|    |         +--- com.fasterxml.jackson.core:jackson-databind:2.21.4 -> 2.21.5 (*)
+|    |         \--- com.fasterxml.jackson:jackson-bom:2.21.4 -> 2.22.1 (*)
 |    +--- org.springframework.boot:spring-boot-starter-reactor-netty:3.5.16
 |    |    \--- io.projectreactor.netty:reactor-netty-http:1.2.18 -> 1.2.10
 |    |         +--- io.netty:netty-codec-http:4.1.127.Final -> 4.2.16.Final
@@ -284,8 +284,8 @@ runtimeClasspath - Runtime classpath of source set 'main'.
 |    +--- com.fasterxml.jackson.core:jackson-databind:{strictly 2.17.0} -> 2.21.5 (*)
 |    +--- com.fasterxml.jackson.core:jackson-annotations:{strictly 2.17.0} -> 2.21
 |    +--- com.fasterxml.jackson.core:jackson-core:{strictly 2.17.0} -> 2.22.1 (*)
-|    +--- ch.qos.logback:logback-classic:{strictly 1.5.18} -> 1.5.38 (*)
-|    +--- ch.qos.logback:logback-core:{strictly 1.5.18} -> 1.5.38
+|    +--- ch.qos.logback:logback-classic:{strictly 1.5.18} -> 1.6.0 (*)
+|    +--- ch.qos.logback:logback-core:{strictly 1.5.18} -> 1.6.0
 |    +--- io.netty:netty-codec:{strictly 4.1.125.Final} -> 4.2.16.Final
 |    |    +--- io.netty:netty-common:4.2.16.Final
 |    |    +--- io.netty:netty-buffer:4.2.16.Final (*)
@@ -307,7 +307,7 @@ runtimeClasspath - Runtime classpath of source set 'main'.
 |    +--- com.jayway.jsonpath:json-path:{strictly 2.9.0} -> 2.9.0
 |    |    +--- net.minidev:json-smart:2.5.0 -> 2.5.2
 |    |    |    \--- net.minidev:accessors-smart:2.5.2
-|    |    |         \--- org.ow2.asm:asm:9.7.1 -> 9.10.1
+|    |    |         \--- org.ow2.asm:asm:9.7.1 -> 9.8
 |    |    \--- org.slf4j:slf4j-api:2.0.11 -> 2.0.18
 |    +--- org.bouncycastle:bcprov-jdk18on:{strictly 1.81} -> 1.84
 |    +--- com.github.jknack:handlebars:{strictly [4.4.0]} -> 4.4.0
@@ -316,16 +316,16 @@ runtimeClasspath - Runtime classpath of source set 'main'.
 |    |    |    \--- org.apache.commons:commons-lang3:3.13.0 -> 3.18.0
 |    |    +--- org.slf4j:slf4j-api:2.0.12 -> 2.0.18
 |    |    \--- org.openjdk.nashorn:nashorn-core:15.4
-|    |         +--- org.ow2.asm:asm:7.3.1 -> 9.10.1
+|    |         +--- org.ow2.asm:asm:7.3.1 -> 9.8
 |    |         +--- org.ow2.asm:asm-commons:7.3.1
-|    |         |    +--- org.ow2.asm:asm:7.3.1 -> 9.10.1
+|    |         |    +--- org.ow2.asm:asm:7.3.1 -> 9.8
 |    |         |    +--- org.ow2.asm:asm-tree:7.3.1
-|    |         |    |    \--- org.ow2.asm:asm:7.3.1 -> 9.10.1
+|    |         |    |    \--- org.ow2.asm:asm:7.3.1 -> 9.8
 |    |         |    \--- org.ow2.asm:asm-analysis:7.3.1
 |    |         |         \--- org.ow2.asm:asm-tree:7.3.1 (*)
 |    |         +--- org.ow2.asm:asm-tree:7.3.1 (*)
 |    |         \--- org.ow2.asm:asm-util:7.3.1
-|    |              +--- org.ow2.asm:asm:7.3.1 -> 9.10.1
+|    |              +--- org.ow2.asm:asm:7.3.1 -> 9.8
 |    |              +--- org.ow2.asm:asm-tree:7.3.1 (*)
 |    |              \--- org.ow2.asm:asm-analysis:7.3.1 (*)
 |    +--- io.projectreactor.netty:reactor-netty-core:1.2.8 -> 1.2.10 (*)
@@ -347,8 +347,8 @@ runtimeClasspath - Runtime classpath of source set 'main'.
 |    +--- com.fasterxml.jackson.core:jackson-databind:{strictly 2.17.0} -> 2.21.5 (*)
 |    +--- com.fasterxml.jackson.core:jackson-annotations:{strictly 2.17.0} -> 2.21
 |    +--- com.fasterxml.jackson.core:jackson-core:{strictly 2.17.0} -> 2.22.1 (*)
-|    +--- ch.qos.logback:logback-classic:{strictly 1.5.18} -> 1.5.38 (*)
-|    +--- ch.qos.logback:logback-core:{strictly 1.5.18} -> 1.5.38
+|    +--- ch.qos.logback:logback-classic:{strictly 1.5.18} -> 1.6.0 (*)
+|    +--- ch.qos.logback:logback-core:{strictly 1.5.18} -> 1.6.0
 |    +--- io.netty:netty-codec:{strictly 4.1.125.Final} -> 4.2.16.Final (*)
 |    +--- io.netty:netty-codec-http2:{strictly 4.2.4.Final} -> 4.2.16.Final (*)
 |    +--- io.netty:netty-handler:{strictly 4.1.118.Final} -> 4.2.16.Final (*)
@@ -504,11 +504,12 @@ runtimeClasspath - Runtime classpath of source set 'main'.
 |    +--- org.mapstruct:mapstruct:1.5.3.Final
 |    +--- org.projectlombok:lombok:1.18.32 -> 1.18.46
 |    +--- com.launchdarkly:launchdarkly-java-server-sdk:7.0.0 -> 7.5.0
-|    +--- org.apache.cxf:cxf-spring-boot-starter-jaxws:4.1.3 -> 4.2.2
-|    |    +--- org.apache.cxf:cxf-spring-boot-autoconfigure:4.2.2
-|    |    |    \--- org.springframework.boot:spring-boot-autoconfigure:4.0.6 -> 3.5.16 (*)
-|    |    +--- org.apache.cxf:cxf-rt-transports-http:4.2.2 -> 4.1.3
-|    |    |    \--- org.apache.cxf:cxf-core:4.1.3 -> 4.2.2
+|    +--- org.apache.cxf:cxf-spring-boot-starter-jaxws:4.1.3
+|    |    +--- org.apache.cxf:cxf-spring-boot-autoconfigure:4.1.3
+|    |    |    \--- org.springframework.boot:spring-boot-autoconfigure:3.4.7 -> 3.5.16 (*)
+|    |    +--- org.apache.cxf:cxf-rt-transports-http:4.1.3 -> 4.2.2
+|    |    |    +--- org.jspecify:jspecify:1.0.0
+|    |    |    \--- org.apache.cxf:cxf-core:4.2.2
 |    |    |         +--- jakarta.annotation:jakarta.annotation-api:3.0.0 -> 2.1.1
 |    |    |         +--- org.glassfish.jaxb:jaxb-runtime:4.0.9
 |    |    |         |    \--- org.glassfish.jaxb:jaxb-core:4.0.9
@@ -522,48 +523,48 @@ runtimeClasspath - Runtime classpath of source set 'main'.
 |    |    |         +--- org.apache.ws.xmlschema:xmlschema-core:2.3.2
 |    |    |         +--- org.eclipse.angus:angus-activation:2.0.3 (*)
 |    |    |         \--- jakarta.xml.bind:jakarta.xml.bind-api:4.0.5 (*)
-|    |    +--- org.apache.cxf:cxf-rt-frontend-jaxws:4.2.2
+|    |    +--- org.apache.cxf:cxf-rt-frontend-jaxws:4.1.3
 |    |    |    +--- xml-resolver:xml-resolver:1.2
-|    |    |    +--- org.ow2.asm:asm:9.10.1
-|    |    |    +--- org.apache.cxf:cxf-core:4.2.2 (*)
-|    |    |    +--- org.apache.cxf:cxf-rt-bindings-soap:4.2.2
+|    |    |    +--- org.ow2.asm:asm:9.8
+|    |    |    +--- org.apache.cxf:cxf-core:4.1.3 -> 4.2.2 (*)
+|    |    |    +--- org.apache.cxf:cxf-rt-bindings-soap:4.1.3
 |    |    |    |    +--- jakarta.xml.soap:jakarta.xml.soap-api:3.0.2
 |    |    |    |    |    \--- jakarta.activation:jakarta.activation-api:2.1.3 -> 2.1.4
-|    |    |    |    +--- jakarta.xml.ws:jakarta.xml.ws-api:4.0.3
+|    |    |    |    +--- jakarta.xml.ws:jakarta.xml.ws-api:4.0.2 -> 4.0.3
 |    |    |    |    |    +--- jakarta.xml.bind:jakarta.xml.bind-api:4.0.5 (*)
 |    |    |    |    |    \--- jakarta.xml.soap:jakarta.xml.soap-api:3.0.2 (*)
-|    |    |    |    +--- org.apache.cxf:cxf-core:4.2.2 (*)
-|    |    |    |    +--- org.apache.cxf:cxf-rt-wsdl:4.2.2
-|    |    |    |    |    +--- org.apache.cxf:cxf-core:4.2.2 (*)
+|    |    |    |    +--- org.apache.cxf:cxf-core:4.1.3 -> 4.2.2 (*)
+|    |    |    |    +--- org.apache.cxf:cxf-rt-wsdl:4.1.3
+|    |    |    |    |    +--- org.apache.cxf:cxf-core:4.1.3 -> 4.2.2 (*)
 |    |    |    |    |    +--- wsdl4j:wsdl4j:1.6.3
-|    |    |    |    |    \--- org.ow2.asm:asm:9.10.1
-|    |    |    |    +--- org.apache.cxf:cxf-rt-databinding-jaxb:4.2.2
-|    |    |    |    |    +--- org.apache.cxf:cxf-core:4.2.2 (*)
-|    |    |    |    |    \--- org.apache.cxf:cxf-rt-wsdl:4.2.2 (*)
-|    |    |    |    \--- org.eclipse.angus:angus-activation:2.0.3 (*)
-|    |    |    +--- org.apache.cxf:cxf-rt-bindings-xml:4.2.2
-|    |    |    |    \--- org.apache.cxf:cxf-core:4.2.2 (*)
-|    |    |    +--- org.apache.cxf:cxf-rt-frontend-simple:4.2.2
-|    |    |    |    +--- org.apache.cxf:cxf-core:4.2.2 (*)
-|    |    |    |    +--- org.apache.cxf:cxf-rt-bindings-soap:4.2.2 (*)
-|    |    |    |    +--- org.apache.cxf:cxf-rt-wsdl:4.2.2 (*)
-|    |    |    |    \--- org.eclipse.angus:angus-mail:2.0.5
+|    |    |    |    |    \--- org.ow2.asm:asm:9.8
+|    |    |    |    +--- org.apache.cxf:cxf-rt-databinding-jaxb:4.1.3
+|    |    |    |    |    +--- org.apache.cxf:cxf-core:4.1.3 -> 4.2.2 (*)
+|    |    |    |    |    \--- org.apache.cxf:cxf-rt-wsdl:4.1.3 (*)
+|    |    |    |    \--- org.eclipse.angus:angus-activation:2.0.2 -> 2.0.3 (*)
+|    |    |    +--- org.apache.cxf:cxf-rt-bindings-xml:4.1.3
+|    |    |    |    \--- org.apache.cxf:cxf-core:4.1.3 -> 4.2.2 (*)
+|    |    |    +--- org.apache.cxf:cxf-rt-frontend-simple:4.1.3
+|    |    |    |    +--- org.apache.cxf:cxf-core:4.1.3 -> 4.2.2 (*)
+|    |    |    |    +--- org.apache.cxf:cxf-rt-bindings-soap:4.1.3 (*)
+|    |    |    |    +--- org.apache.cxf:cxf-rt-wsdl:4.1.3 (*)
+|    |    |    |    \--- org.eclipse.angus:angus-mail:2.0.3 -> 2.0.5
 |    |    |    |         +--- jakarta.activation:jakarta.activation-api:2.1.4
 |    |    |    |         +--- jakarta.mail:jakarta.mail-api:2.1.5
 |    |    |    |         |    \--- jakarta.activation:jakarta.activation-api:2.1.4
 |    |    |    |         \--- org.eclipse.angus:angus-activation:2.0.3 (*)
-|    |    |    +--- org.apache.cxf:cxf-rt-ws-addr:4.2.2
-|    |    |    |    +--- org.apache.cxf:cxf-core:4.2.2 (*)
-|    |    |    |    +--- org.apache.cxf:cxf-rt-bindings-soap:4.2.2 (*)
-|    |    |    |    \--- org.apache.cxf:cxf-rt-ws-policy:4.2.2
+|    |    |    +--- org.apache.cxf:cxf-rt-ws-addr:4.1.3
+|    |    |    |    +--- org.apache.cxf:cxf-core:4.1.3 -> 4.2.2 (*)
+|    |    |    |    +--- org.apache.cxf:cxf-rt-bindings-soap:4.1.3 (*)
+|    |    |    |    \--- org.apache.cxf:cxf-rt-ws-policy:4.1.3
 |    |    |    |         +--- wsdl4j:wsdl4j:1.6.3
-|    |    |    |         +--- org.apache.cxf:cxf-core:4.2.2 (*)
-|    |    |    |         \--- org.apache.neethi:neethi:3.2.2
-|    |    |    \--- org.eclipse.angus:angus-activation:2.0.3 (*)
-|    |    +--- org.apache.cxf:cxf-rt-features-metrics:4.2.2
-|    |    |    +--- jakarta.xml.ws:jakarta.xml.ws-api:4.0.3 (*)
-|    |    |    \--- org.apache.cxf:cxf-core:4.2.2 (*)
-|    |    \--- jakarta.validation:jakarta.validation-api:3.1.1
+|    |    |    |         +--- org.apache.cxf:cxf-core:4.1.3 -> 4.2.2 (*)
+|    |    |    |         \--- org.apache.neethi:neethi:3.2.1 -> 3.2.3
+|    |    |    \--- org.eclipse.angus:angus-activation:2.0.2 -> 2.0.3 (*)
+|    |    +--- org.apache.cxf:cxf-rt-features-metrics:4.1.3
+|    |    |    +--- jakarta.xml.ws:jakarta.xml.ws-api:4.0.2 -> 4.0.3 (*)
+|    |    |    \--- org.apache.cxf:cxf-core:4.1.3 -> 4.2.2 (*)
+|    |    \--- jakarta.validation:jakarta.validation-api:3.0.2 -> 3.1.1
 |    +--- io.netty:netty-handler:4.1.118.Final -> 4.2.16.Final (*)
 |    +--- io.projectreactor.netty:reactor-netty-core:1.2.8 -> 1.2.10 (*)
 |    +--- io.projectreactor.netty:reactor-netty-http:1.2.8 -> 1.2.10 (*)
@@ -585,10 +586,10 @@ runtimeClasspath - Runtime classpath of source set 'main'.
 +--- io.projectreactor.netty:reactor-netty-http:1.2.10 (*)
 +--- com.google.protobuf:protobuf-java:{strictly [4.31.1]} -> 4.31.1
 +--- com.launchdarkly:launchdarkly-java-server-sdk:{strictly 7.5.0} -> 7.5.0
-+--- org.apache.cxf:cxf-rt-transports-http:{strictly 4.2.2} -> 4.1.3 (*)
++--- org.apache.cxf:cxf-rt-transports-http:{strictly 4.2.2} -> 4.2.2 (*)
 +--- org.apache.kafka:kafka-clients:4.1.2
 |    +--- com.github.luben:zstd-jni:1.5.6-10
-|    +--- at.yawk.lz4:lz4-java:1.10.1
+|    +--- at.yawk.lz4:lz4-java:1.10.1 -> 1.11.1
 |    +--- org.xerial.snappy:snappy-java:1.1.10.7
 |    \--- org.slf4j:slf4j-api:1.7.36 -> 2.0.18
 +--- org.springframework.cloud:spring-cloud-starter-circuitbreaker-reactor-resilience4j -> 3.3.0 (*)
@@ -598,8 +599,8 @@ runtimeClasspath - Runtime classpath of source set 'main'.
 +--- com.fasterxml.jackson.core:jackson-databind:{strictly 2.22.1} -> 2.21.5 (*)
 +--- com.fasterxml.jackson.core:jackson-annotations:{strictly 2.21} -> 2.21
 +--- com.fasterxml.jackson.core:jackson-core:{strictly 2.22.1} -> 2.22.1 (*)
-+--- ch.qos.logback:logback-classic:{strictly 1.5.38} -> 1.5.38 (*)
-+--- ch.qos.logback:logback-core:{strictly 1.5.38} -> 1.5.38
++--- ch.qos.logback:logback-classic:{strictly 1.6.0} -> 1.6.0 (*)
++--- ch.qos.logback:logback-core:{strictly 1.6.0} -> 1.6.0
 +--- io.netty:netty-codec:{strictly 4.2.16.Final} -> 4.2.16.Final (*)
 +--- io.netty:netty-codec-http2:{strictly 4.2.16.Final} -> 4.2.16.Final (*)
 +--- io.netty:netty-handler:{strictly 4.2.16.Final} -> 4.2.16.Final (*)
@@ -639,12 +640,11 @@ runtimeClasspath - Runtime classpath of source set 'main'.
 |    |    +--- org.slf4j:slf4j-api:1.7.36 -> 2.0.18
 |    |    \--- com.fasterxml.jackson.core:jackson-databind:2.16.2 -> 2.21.5 (*)
 |    +--- com.fasterxml.jackson.core:jackson-databind:2.19.0 -> 2.21.5 (*)
-|    +--- com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.19.0 -> 2.22.1 (*)
+|    +--- com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.19.0 -> 2.21.4 (*)
 |    +--- com.yammer.metrics:metrics-core:2.2.0 (*)
 |    \--- org.slf4j:slf4j-api:1.7.36 -> 2.0.18
-+--- org.apache.cxf:cxf-rt-transports-http:{strictly 4.1.3} -> 4.1.3 (*)
 +--- com.github.jknack:handlebars:{strictly 4.4.0} -> 4.4.0 (*)
-\--- at.yawk.lz4:lz4-java:{strictly 1.10.1} -> 1.10.1
+\--- at.yawk.lz4:lz4-java:{strictly 1.11.1} -> 1.11.1
 
 (c) - A dependency constraint, not a dependency. The dependency affected by the constraint occurs elsewhere in the tree.
 (*) - Indicates repeated occurrences of a transitive dependency subtree. Gradle expands transitive dependency subtrees only once per project; repeat occurrences only display the root of the subtree, followed by this annotation.
@@ -699,9 +699,9 @@ compileClasspath - Compile classpath for source set 'main'.
 |    |    +--- org.springframework.boot:spring-boot-autoconfigure:3.5.16
 |    |    |    \--- org.springframework.boot:spring-boot:3.5.16 (*)
 |    |    +--- org.springframework.boot:spring-boot-starter-logging:3.5.16
-|    |    |    +--- ch.qos.logback:logback-classic:1.5.34 -> 1.5.38
-|    |    |    |    +--- ch.qos.logback:logback-core:1.5.38
-|    |    |    |    \--- org.slf4j:slf4j-api:2.0.17 -> 2.0.18
+|    |    |    +--- ch.qos.logback:logback-classic:1.5.34 -> 1.6.0
+|    |    |    |    +--- ch.qos.logback:logback-core:1.6.0
+|    |    |    |    \--- org.slf4j:slf4j-api:2.0.18
 |    |    |    +--- org.apache.logging.log4j:log4j-to-slf4j:2.24.3
 |    |    |    |    +--- org.apache.logging.log4j:log4j-api:2.24.3
 |    |    |    |    \--- org.slf4j:slf4j-api:2.0.16 -> 2.0.18
@@ -724,23 +724,23 @@ compileClasspath - Compile classpath for source set 'main'.
 |    |    |    |         +--- com.fasterxml.jackson.core:jackson-core:2.22.1 (c)
 |    |    |    |         +--- com.fasterxml.jackson.core:jackson-databind:2.22.1 -> 2.21.5 (c)
 |    |    |    |         +--- com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.22.1 -> 2.21.2 (c)
-|    |    |    |         +--- com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.22.1 (c)
+|    |    |    |         +--- com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.22.1 -> 2.21.4 (c)
 |    |    |    |         +--- com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.22.1 -> 2.21.2 (c)
-|    |    |    |         \--- com.fasterxml.jackson.module:jackson-module-parameter-names:2.22.1 (c)
+|    |    |    |         \--- com.fasterxml.jackson.module:jackson-module-parameter-names:2.22.1 -> 2.21.4 (c)
 |    |    |    \--- com.fasterxml.jackson:jackson-bom:2.21.5 -> 2.22.1 (*)
-|    |    +--- com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.21.4 -> 2.22.1
-|    |    |    +--- com.fasterxml.jackson.core:jackson-core:2.22.1 (*)
-|    |    |    +--- com.fasterxml.jackson.core:jackson-databind:2.22.1 -> 2.21.5 (*)
-|    |    |    \--- com.fasterxml.jackson:jackson-bom:2.22.1 (*)
+|    |    +--- com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.21.4
+|    |    |    +--- com.fasterxml.jackson.core:jackson-core:2.21.4 -> 2.22.1 (*)
+|    |    |    +--- com.fasterxml.jackson.core:jackson-databind:2.21.4 -> 2.21.5 (*)
+|    |    |    \--- com.fasterxml.jackson:jackson-bom:2.21.4 -> 2.22.1 (*)
 |    |    +--- com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.21.4 -> 2.21.2
 |    |    |    +--- com.fasterxml.jackson.core:jackson-annotations:2.21
 |    |    |    +--- com.fasterxml.jackson.core:jackson-core:2.21.2 -> 2.22.1 (*)
 |    |    |    +--- com.fasterxml.jackson.core:jackson-databind:2.21.2 -> 2.21.5 (*)
 |    |    |    \--- com.fasterxml.jackson:jackson-bom:2.21.2 -> 2.22.1 (*)
-|    |    \--- com.fasterxml.jackson.module:jackson-module-parameter-names:2.21.4 -> 2.22.1
-|    |         +--- com.fasterxml.jackson.core:jackson-core:2.22.1 (*)
-|    |         +--- com.fasterxml.jackson.core:jackson-databind:2.22.1 -> 2.21.5 (*)
-|    |         \--- com.fasterxml.jackson:jackson-bom:2.22.1 (*)
+|    |    \--- com.fasterxml.jackson.module:jackson-module-parameter-names:2.21.4
+|    |         +--- com.fasterxml.jackson.core:jackson-core:2.21.4 -> 2.22.1 (*)
+|    |         +--- com.fasterxml.jackson.core:jackson-databind:2.21.4 -> 2.21.5 (*)
+|    |         \--- com.fasterxml.jackson:jackson-bom:2.21.4 -> 2.22.1 (*)
 |    +--- org.springframework.boot:spring-boot-starter-reactor-netty:3.5.16
 |    |    \--- io.projectreactor.netty:reactor-netty-http:1.2.18 -> 1.2.10
 |    |         +--- io.netty:netty-codec-http:4.1.127.Final -> 4.2.16.Final
@@ -938,8 +938,9 @@ compileClasspath - Compile classpath for source set 'main'.
 +--- io.projectreactor.netty:reactor-netty-http:1.2.10 (*)
 +--- com.google.protobuf:protobuf-java:{strictly [4.31.1]} -> 4.31.1
 +--- com.launchdarkly:launchdarkly-java-server-sdk:{strictly 7.5.0} -> 7.5.0
-+--- org.apache.cxf:cxf-rt-transports-http:{strictly 4.2.2} -> 4.1.3
-|    \--- org.apache.cxf:cxf-core:4.1.3 -> 4.2.2
++--- org.apache.cxf:cxf-rt-transports-http:{strictly 4.2.2} -> 4.2.2
+|    +--- org.jspecify:jspecify:1.0.0
+|    \--- org.apache.cxf:cxf-core:4.2.2
 |         +--- jakarta.annotation:jakarta.annotation-api:3.0.0 -> 2.1.1
 |         +--- org.glassfish.jaxb:jaxb-runtime:4.0.9
 |         |    \--- org.glassfish.jaxb:jaxb-core:4.0.9
@@ -997,8 +998,8 @@ compileClasspath - Compile classpath for source set 'main'.
 +--- com.fasterxml.jackson.core:jackson-databind:{strictly 2.22.1} -> 2.21.5 (*)
 +--- com.fasterxml.jackson.core:jackson-annotations:{strictly 2.21} -> 2.21
 +--- com.fasterxml.jackson.core:jackson-core:{strictly 2.22.1} -> 2.22.1 (*)
-+--- ch.qos.logback:logback-classic:{strictly 1.5.38} -> 1.5.38 (*)
-+--- ch.qos.logback:logback-core:{strictly 1.5.38} -> 1.5.38
++--- ch.qos.logback:logback-classic:{strictly 1.6.0} -> 1.6.0 (*)
++--- ch.qos.logback:logback-core:{strictly 1.6.0} -> 1.6.0
 +--- io.netty:netty-codec:{strictly 4.2.16.Final} -> 4.2.16.Final
 |    +--- io.netty:netty-common:4.2.16.Final
 |    +--- io.netty:netty-buffer:4.2.16.Final (*)
@@ -1038,7 +1039,6 @@ compileClasspath - Compile classpath for source set 'main'.
 |    +--- org.apache.kafka:kafka-clients:3.8.1 -> 4.1.2
 |    \--- io.micrometer:micrometer-observation:1.14.14 -> 1.17.0 (*)
 +--- org.apache.kafka:kafka-metadata:{strictly 4.1.0} -> 4.1.0
-+--- org.apache.cxf:cxf-rt-transports-http:{strictly 4.1.3} -> 4.1.3 (*)
 +--- com.github.jknack:handlebars:{strictly 4.4.0} -> 4.4.0
 |    +--- org.apache.commons:commons-lang3:3.14.0 -> 3.18.0
 |    +--- org.apache.commons:commons-text:1.11.0
@@ -1057,7 +1057,7 @@ compileClasspath - Compile classpath for source set 'main'.
 |              +--- org.ow2.asm:asm:7.3.1
 |              +--- org.ow2.asm:asm-tree:7.3.1 (*)
 |              \--- org.ow2.asm:asm-analysis:7.3.1 (*)
-\--- at.yawk.lz4:lz4-java:{strictly 1.10.1} -> 1.10.1
+\--- at.yawk.lz4:lz4-java:{strictly 1.11.1} -> 1.11.1
 
 (c) - A dependency constraint, not a dependency. The dependency affected by the constraint occurs elsewhere in the tree.
 (*) - Indicates repeated occurrences of a transitive dependency subtree. Gradle expands transitive dependency subtrees only once per project; repeat occurrences only display the root of the subtree, followed by this annotation.
@@ -1113,9 +1113,9 @@ testRuntimeClasspath - Runtime classpath of source set 'test'.
 |    |    +--- org.springframework.boot:spring-boot-autoconfigure:3.5.16
 |    |    |    \--- org.springframework.boot:spring-boot:3.5.16 (*)
 |    |    +--- org.springframework.boot:spring-boot-starter-logging:3.5.16
-|    |    |    +--- ch.qos.logback:logback-classic:1.5.34 -> 1.5.38
-|    |    |    |    +--- ch.qos.logback:logback-core:1.5.38
-|    |    |    |    \--- org.slf4j:slf4j-api:2.0.17 -> 2.0.18
+|    |    |    +--- ch.qos.logback:logback-classic:1.5.34 -> 1.6.0
+|    |    |    |    +--- ch.qos.logback:logback-core:1.6.0
+|    |    |    |    \--- org.slf4j:slf4j-api:2.0.18
 |    |    |    +--- org.apache.logging.log4j:log4j-to-slf4j:2.24.3
 |    |    |    |    +--- org.apache.logging.log4j:log4j-api:2.24.3
 |    |    |    |    \--- org.slf4j:slf4j-api:2.0.16 -> 2.0.18
@@ -1138,23 +1138,23 @@ testRuntimeClasspath - Runtime classpath of source set 'test'.
 |    |    |    |         +--- com.fasterxml.jackson.core:jackson-core:2.22.1 (c)
 |    |    |    |         +--- com.fasterxml.jackson.core:jackson-databind:2.22.1 -> 2.21.5 (c)
 |    |    |    |         +--- com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.22.1 -> 2.21.2 (c)
-|    |    |    |         +--- com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.22.1 (c)
+|    |    |    |         +--- com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.22.1 -> 2.21.4 (c)
 |    |    |    |         +--- com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.22.1 -> 2.21.2 (c)
-|    |    |    |         \--- com.fasterxml.jackson.module:jackson-module-parameter-names:2.22.1 (c)
+|    |    |    |         \--- com.fasterxml.jackson.module:jackson-module-parameter-names:2.22.1 -> 2.21.4 (c)
 |    |    |    \--- com.fasterxml.jackson:jackson-bom:2.21.5 -> 2.22.1 (*)
-|    |    +--- com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.21.4 -> 2.22.1
-|    |    |    +--- com.fasterxml.jackson.core:jackson-core:2.22.1 (*)
-|    |    |    +--- com.fasterxml.jackson.core:jackson-databind:2.22.1 -> 2.21.5 (*)
-|    |    |    \--- com.fasterxml.jackson:jackson-bom:2.22.1 (*)
+|    |    +--- com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.21.4
+|    |    |    +--- com.fasterxml.jackson.core:jackson-core:2.21.4 -> 2.22.1 (*)
+|    |    |    +--- com.fasterxml.jackson.core:jackson-databind:2.21.4 -> 2.21.5 (*)
+|    |    |    \--- com.fasterxml.jackson:jackson-bom:2.21.4 -> 2.22.1 (*)
 |    |    +--- com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.21.4 -> 2.21.2
 |    |    |    +--- com.fasterxml.jackson.core:jackson-annotations:2.21
 |    |    |    +--- com.fasterxml.jackson.core:jackson-core:2.21.2 -> 2.22.1 (*)
 |    |    |    +--- com.fasterxml.jackson.core:jackson-databind:2.21.2 -> 2.21.5 (*)
 |    |    |    \--- com.fasterxml.jackson:jackson-bom:2.21.2 -> 2.22.1 (*)
-|    |    \--- com.fasterxml.jackson.module:jackson-module-parameter-names:2.21.4 -> 2.22.1
-|    |         +--- com.fasterxml.jackson.core:jackson-core:2.22.1 (*)
-|    |         +--- com.fasterxml.jackson.core:jackson-databind:2.22.1 -> 2.21.5 (*)
-|    |         \--- com.fasterxml.jackson:jackson-bom:2.22.1 (*)
+|    |    \--- com.fasterxml.jackson.module:jackson-module-parameter-names:2.21.4
+|    |         +--- com.fasterxml.jackson.core:jackson-core:2.21.4 -> 2.22.1 (*)
+|    |         +--- com.fasterxml.jackson.core:jackson-databind:2.21.4 -> 2.21.5 (*)
+|    |         \--- com.fasterxml.jackson:jackson-bom:2.21.4 -> 2.22.1 (*)
 |    +--- org.springframework.boot:spring-boot-starter-reactor-netty:3.5.16
 |    |    \--- io.projectreactor.netty:reactor-netty-http:1.2.18 -> 1.2.10
 |    |         +--- io.netty:netty-codec-http:4.1.127.Final -> 4.2.16.Final
@@ -1361,8 +1361,8 @@ testRuntimeClasspath - Runtime classpath of source set 'test'.
 |    +--- com.fasterxml.jackson.core:jackson-databind:{strictly 2.17.0} -> 2.21.5 (*)
 |    +--- com.fasterxml.jackson.core:jackson-annotations:{strictly 2.17.0} -> 2.21
 |    +--- com.fasterxml.jackson.core:jackson-core:{strictly 2.17.0} -> 2.22.1 (*)
-|    +--- ch.qos.logback:logback-classic:{strictly 1.5.18} -> 1.5.38 (*)
-|    +--- ch.qos.logback:logback-core:{strictly 1.5.18} -> 1.5.38
+|    +--- ch.qos.logback:logback-classic:{strictly 1.5.18} -> 1.6.0 (*)
+|    +--- ch.qos.logback:logback-core:{strictly 1.5.18} -> 1.6.0
 |    +--- io.netty:netty-codec:{strictly 4.1.125.Final} -> 4.2.16.Final
 |    |    +--- io.netty:netty-common:4.2.16.Final
 |    |    +--- io.netty:netty-buffer:4.2.16.Final (*)
@@ -1384,7 +1384,7 @@ testRuntimeClasspath - Runtime classpath of source set 'test'.
 |    +--- com.jayway.jsonpath:json-path:{strictly 2.9.0} -> 2.9.0
 |    |    +--- net.minidev:json-smart:2.5.0 -> 2.5.2
 |    |    |    \--- net.minidev:accessors-smart:2.5.2
-|    |    |         \--- org.ow2.asm:asm:9.7.1 -> 9.10.1
+|    |    |         \--- org.ow2.asm:asm:9.7.1 -> 9.8
 |    |    \--- org.slf4j:slf4j-api:2.0.11 -> 2.0.18
 |    +--- org.bouncycastle:bcprov-jdk18on:{strictly 1.81} -> 1.84
 |    +--- com.github.jknack:handlebars:{strictly [4.4.0]} -> 4.4.0
@@ -1393,16 +1393,16 @@ testRuntimeClasspath - Runtime classpath of source set 'test'.
 |    |    |    \--- org.apache.commons:commons-lang3:3.13.0 -> 3.18.0
 |    |    +--- org.slf4j:slf4j-api:2.0.12 -> 2.0.18
 |    |    \--- org.openjdk.nashorn:nashorn-core:15.4
-|    |         +--- org.ow2.asm:asm:7.3.1 -> 9.10.1
+|    |         +--- org.ow2.asm:asm:7.3.1 -> 9.8
 |    |         +--- org.ow2.asm:asm-commons:7.3.1
-|    |         |    +--- org.ow2.asm:asm:7.3.1 -> 9.10.1
+|    |         |    +--- org.ow2.asm:asm:7.3.1 -> 9.8
 |    |         |    +--- org.ow2.asm:asm-tree:7.3.1
-|    |         |    |    \--- org.ow2.asm:asm:7.3.1 -> 9.10.1
+|    |         |    |    \--- org.ow2.asm:asm:7.3.1 -> 9.8
 |    |         |    \--- org.ow2.asm:asm-analysis:7.3.1
 |    |         |         \--- org.ow2.asm:asm-tree:7.3.1 (*)
 |    |         +--- org.ow2.asm:asm-tree:7.3.1 (*)
 |    |         \--- org.ow2.asm:asm-util:7.3.1
-|    |              +--- org.ow2.asm:asm:7.3.1 -> 9.10.1
+|    |              +--- org.ow2.asm:asm:7.3.1 -> 9.8
 |    |              +--- org.ow2.asm:asm-tree:7.3.1 (*)
 |    |              \--- org.ow2.asm:asm-analysis:7.3.1 (*)
 |    +--- io.projectreactor.netty:reactor-netty-core:1.2.8 -> 1.2.10 (*)
@@ -1424,8 +1424,8 @@ testRuntimeClasspath - Runtime classpath of source set 'test'.
 |    +--- com.fasterxml.jackson.core:jackson-databind:{strictly 2.17.0} -> 2.21.5 (*)
 |    +--- com.fasterxml.jackson.core:jackson-annotations:{strictly 2.17.0} -> 2.21
 |    +--- com.fasterxml.jackson.core:jackson-core:{strictly 2.17.0} -> 2.22.1 (*)
-|    +--- ch.qos.logback:logback-classic:{strictly 1.5.18} -> 1.5.38 (*)
-|    +--- ch.qos.logback:logback-core:{strictly 1.5.18} -> 1.5.38
+|    +--- ch.qos.logback:logback-classic:{strictly 1.5.18} -> 1.6.0 (*)
+|    +--- ch.qos.logback:logback-core:{strictly 1.5.18} -> 1.6.0
 |    +--- io.netty:netty-codec:{strictly 4.1.125.Final} -> 4.2.16.Final (*)
 |    +--- io.netty:netty-codec-http2:{strictly 4.2.4.Final} -> 4.2.16.Final (*)
 |    +--- io.netty:netty-handler:{strictly 4.1.118.Final} -> 4.2.16.Final (*)
@@ -1581,11 +1581,12 @@ testRuntimeClasspath - Runtime classpath of source set 'test'.
 |    +--- org.mapstruct:mapstruct:1.5.3.Final
 |    +--- org.projectlombok:lombok:1.18.32 -> 1.18.46
 |    +--- com.launchdarkly:launchdarkly-java-server-sdk:7.0.0 -> 7.5.0
-|    +--- org.apache.cxf:cxf-spring-boot-starter-jaxws:4.1.3 -> 4.2.2
-|    |    +--- org.apache.cxf:cxf-spring-boot-autoconfigure:4.2.2
-|    |    |    \--- org.springframework.boot:spring-boot-autoconfigure:4.0.6 -> 3.5.16 (*)
-|    |    +--- org.apache.cxf:cxf-rt-transports-http:4.2.2 -> 4.1.3
-|    |    |    \--- org.apache.cxf:cxf-core:4.1.3 -> 4.2.2
+|    +--- org.apache.cxf:cxf-spring-boot-starter-jaxws:4.1.3
+|    |    +--- org.apache.cxf:cxf-spring-boot-autoconfigure:4.1.3
+|    |    |    \--- org.springframework.boot:spring-boot-autoconfigure:3.4.7 -> 3.5.16 (*)
+|    |    +--- org.apache.cxf:cxf-rt-transports-http:4.1.3 -> 4.2.2
+|    |    |    +--- org.jspecify:jspecify:1.0.0
+|    |    |    \--- org.apache.cxf:cxf-core:4.2.2
 |    |    |         +--- jakarta.annotation:jakarta.annotation-api:3.0.0 -> 2.1.1
 |    |    |         +--- org.glassfish.jaxb:jaxb-runtime:4.0.9
 |    |    |         |    \--- org.glassfish.jaxb:jaxb-core:4.0.9
@@ -1599,48 +1600,48 @@ testRuntimeClasspath - Runtime classpath of source set 'test'.
 |    |    |         +--- org.apache.ws.xmlschema:xmlschema-core:2.3.2
 |    |    |         +--- org.eclipse.angus:angus-activation:2.0.3 (*)
 |    |    |         \--- jakarta.xml.bind:jakarta.xml.bind-api:4.0.5 (*)
-|    |    +--- org.apache.cxf:cxf-rt-frontend-jaxws:4.2.2
+|    |    +--- org.apache.cxf:cxf-rt-frontend-jaxws:4.1.3
 |    |    |    +--- xml-resolver:xml-resolver:1.2
-|    |    |    +--- org.ow2.asm:asm:9.10.1
-|    |    |    +--- org.apache.cxf:cxf-core:4.2.2 (*)
-|    |    |    +--- org.apache.cxf:cxf-rt-bindings-soap:4.2.2
+|    |    |    +--- org.ow2.asm:asm:9.8
+|    |    |    +--- org.apache.cxf:cxf-core:4.1.3 -> 4.2.2 (*)
+|    |    |    +--- org.apache.cxf:cxf-rt-bindings-soap:4.1.3
 |    |    |    |    +--- jakarta.xml.soap:jakarta.xml.soap-api:3.0.2
 |    |    |    |    |    \--- jakarta.activation:jakarta.activation-api:2.1.3 -> 2.1.4
-|    |    |    |    +--- jakarta.xml.ws:jakarta.xml.ws-api:4.0.3
+|    |    |    |    +--- jakarta.xml.ws:jakarta.xml.ws-api:4.0.2 -> 4.0.3
 |    |    |    |    |    +--- jakarta.xml.bind:jakarta.xml.bind-api:4.0.5 (*)
 |    |    |    |    |    \--- jakarta.xml.soap:jakarta.xml.soap-api:3.0.2 (*)
-|    |    |    |    +--- org.apache.cxf:cxf-core:4.2.2 (*)
-|    |    |    |    +--- org.apache.cxf:cxf-rt-wsdl:4.2.2
-|    |    |    |    |    +--- org.apache.cxf:cxf-core:4.2.2 (*)
+|    |    |    |    +--- org.apache.cxf:cxf-core:4.1.3 -> 4.2.2 (*)
+|    |    |    |    +--- org.apache.cxf:cxf-rt-wsdl:4.1.3
+|    |    |    |    |    +--- org.apache.cxf:cxf-core:4.1.3 -> 4.2.2 (*)
 |    |    |    |    |    +--- wsdl4j:wsdl4j:1.6.3
-|    |    |    |    |    \--- org.ow2.asm:asm:9.10.1
-|    |    |    |    +--- org.apache.cxf:cxf-rt-databinding-jaxb:4.2.2
-|    |    |    |    |    +--- org.apache.cxf:cxf-core:4.2.2 (*)
-|    |    |    |    |    \--- org.apache.cxf:cxf-rt-wsdl:4.2.2 (*)
-|    |    |    |    \--- org.eclipse.angus:angus-activation:2.0.3 (*)
-|    |    |    +--- org.apache.cxf:cxf-rt-bindings-xml:4.2.2
-|    |    |    |    \--- org.apache.cxf:cxf-core:4.2.2 (*)
-|    |    |    +--- org.apache.cxf:cxf-rt-frontend-simple:4.2.2
-|    |    |    |    +--- org.apache.cxf:cxf-core:4.2.2 (*)
-|    |    |    |    +--- org.apache.cxf:cxf-rt-bindings-soap:4.2.2 (*)
-|    |    |    |    +--- org.apache.cxf:cxf-rt-wsdl:4.2.2 (*)
-|    |    |    |    \--- org.eclipse.angus:angus-mail:2.0.5
+|    |    |    |    |    \--- org.ow2.asm:asm:9.8
+|    |    |    |    +--- org.apache.cxf:cxf-rt-databinding-jaxb:4.1.3
+|    |    |    |    |    +--- org.apache.cxf:cxf-core:4.1.3 -> 4.2.2 (*)
+|    |    |    |    |    \--- org.apache.cxf:cxf-rt-wsdl:4.1.3 (*)
+|    |    |    |    \--- org.eclipse.angus:angus-activation:2.0.2 -> 2.0.3 (*)
+|    |    |    +--- org.apache.cxf:cxf-rt-bindings-xml:4.1.3
+|    |    |    |    \--- org.apache.cxf:cxf-core:4.1.3 -> 4.2.2 (*)
+|    |    |    +--- org.apache.cxf:cxf-rt-frontend-simple:4.1.3
+|    |    |    |    +--- org.apache.cxf:cxf-core:4.1.3 -> 4.2.2 (*)
+|    |    |    |    +--- org.apache.cxf:cxf-rt-bindings-soap:4.1.3 (*)
+|    |    |    |    +--- org.apache.cxf:cxf-rt-wsdl:4.1.3 (*)
+|    |    |    |    \--- org.eclipse.angus:angus-mail:2.0.3 -> 2.0.5
 |    |    |    |         +--- jakarta.activation:jakarta.activation-api:2.1.4
 |    |    |    |         +--- jakarta.mail:jakarta.mail-api:2.1.5
 |    |    |    |         |    \--- jakarta.activation:jakarta.activation-api:2.1.4
 |    |    |    |         \--- org.eclipse.angus:angus-activation:2.0.3 (*)
-|    |    |    +--- org.apache.cxf:cxf-rt-ws-addr:4.2.2
-|    |    |    |    +--- org.apache.cxf:cxf-core:4.2.2 (*)
-|    |    |    |    +--- org.apache.cxf:cxf-rt-bindings-soap:4.2.2 (*)
-|    |    |    |    \--- org.apache.cxf:cxf-rt-ws-policy:4.2.2
+|    |    |    +--- org.apache.cxf:cxf-rt-ws-addr:4.1.3
+|    |    |    |    +--- org.apache.cxf:cxf-core:4.1.3 -> 4.2.2 (*)
+|    |    |    |    +--- org.apache.cxf:cxf-rt-bindings-soap:4.1.3 (*)
+|    |    |    |    \--- org.apache.cxf:cxf-rt-ws-policy:4.1.3
 |    |    |    |         +--- wsdl4j:wsdl4j:1.6.3
-|    |    |    |         +--- org.apache.cxf:cxf-core:4.2.2 (*)
-|    |    |    |         \--- org.apache.neethi:neethi:3.2.2
-|    |    |    \--- org.eclipse.angus:angus-activation:2.0.3 (*)
-|    |    +--- org.apache.cxf:cxf-rt-features-metrics:4.2.2
-|    |    |    +--- jakarta.xml.ws:jakarta.xml.ws-api:4.0.3 (*)
-|    |    |    \--- org.apache.cxf:cxf-core:4.2.2 (*)
-|    |    \--- jakarta.validation:jakarta.validation-api:3.1.1
+|    |    |    |         +--- org.apache.cxf:cxf-core:4.1.3 -> 4.2.2 (*)
+|    |    |    |         \--- org.apache.neethi:neethi:3.2.1 -> 3.2.3
+|    |    |    \--- org.eclipse.angus:angus-activation:2.0.2 -> 2.0.3 (*)
+|    |    +--- org.apache.cxf:cxf-rt-features-metrics:4.1.3
+|    |    |    +--- jakarta.xml.ws:jakarta.xml.ws-api:4.0.2 -> 4.0.3 (*)
+|    |    |    \--- org.apache.cxf:cxf-core:4.1.3 -> 4.2.2 (*)
+|    |    \--- jakarta.validation:jakarta.validation-api:3.0.2 -> 3.1.1
 |    +--- io.netty:netty-handler:4.1.118.Final -> 4.2.16.Final (*)
 |    +--- io.projectreactor.netty:reactor-netty-core:1.2.8 -> 1.2.10 (*)
 |    +--- io.projectreactor.netty:reactor-netty-http:1.2.8 -> 1.2.10 (*)
@@ -1662,10 +1663,10 @@ testRuntimeClasspath - Runtime classpath of source set 'test'.
 +--- io.projectreactor.netty:reactor-netty-http:1.2.10 (*)
 +--- com.google.protobuf:protobuf-java:{strictly [4.31.1]} -> 4.31.1
 +--- com.launchdarkly:launchdarkly-java-server-sdk:{strictly 7.5.0} -> 7.5.0
-+--- org.apache.cxf:cxf-rt-transports-http:{strictly 4.2.2} -> 4.1.3 (*)
++--- org.apache.cxf:cxf-rt-transports-http:{strictly 4.2.2} -> 4.2.2 (*)
 +--- org.apache.kafka:kafka-clients:4.1.2
 |    +--- com.github.luben:zstd-jni:1.5.6-10
-|    +--- at.yawk.lz4:lz4-java:1.10.1
+|    +--- at.yawk.lz4:lz4-java:1.10.1 -> 1.11.1
 |    +--- org.xerial.snappy:snappy-java:1.1.10.7
 |    \--- org.slf4j:slf4j-api:1.7.36 -> 2.0.18
 +--- org.springframework.cloud:spring-cloud-starter-circuitbreaker-reactor-resilience4j -> 3.3.0 (*)
@@ -1675,8 +1676,8 @@ testRuntimeClasspath - Runtime classpath of source set 'test'.
 +--- com.fasterxml.jackson.core:jackson-databind:{strictly 2.22.1} -> 2.21.5 (*)
 +--- com.fasterxml.jackson.core:jackson-annotations:{strictly 2.21} -> 2.21
 +--- com.fasterxml.jackson.core:jackson-core:{strictly 2.22.1} -> 2.22.1 (*)
-+--- ch.qos.logback:logback-classic:{strictly 1.5.38} -> 1.5.38 (*)
-+--- ch.qos.logback:logback-core:{strictly 1.5.38} -> 1.5.38
++--- ch.qos.logback:logback-classic:{strictly 1.6.0} -> 1.6.0 (*)
++--- ch.qos.logback:logback-core:{strictly 1.6.0} -> 1.6.0
 +--- io.netty:netty-codec:{strictly 4.2.16.Final} -> 4.2.16.Final (*)
 +--- io.netty:netty-codec-http2:{strictly 4.2.16.Final} -> 4.2.16.Final (*)
 +--- io.netty:netty-handler:{strictly 4.2.16.Final} -> 4.2.16.Final (*)
@@ -1716,12 +1717,11 @@ testRuntimeClasspath - Runtime classpath of source set 'test'.
 |    |    +--- org.slf4j:slf4j-api:1.7.36 -> 2.0.18
 |    |    \--- com.fasterxml.jackson.core:jackson-databind:2.16.2 -> 2.21.5 (*)
 |    +--- com.fasterxml.jackson.core:jackson-databind:2.19.0 -> 2.21.5 (*)
-|    +--- com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.19.0 -> 2.22.1 (*)
+|    +--- com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.19.0 -> 2.21.4 (*)
 |    +--- com.yammer.metrics:metrics-core:2.2.0 (*)
 |    \--- org.slf4j:slf4j-api:1.7.36 -> 2.0.18
-+--- org.apache.cxf:cxf-rt-transports-http:{strictly 4.1.3} -> 4.1.3 (*)
 +--- com.github.jknack:handlebars:{strictly 4.4.0} -> 4.4.0 (*)
-+--- at.yawk.lz4:lz4-java:{strictly 1.10.1} -> 1.10.1
++--- at.yawk.lz4:lz4-java:{strictly 1.11.1} -> 1.11.1
 +--- org.springframework.boot:spring-boot-starter-test -> 3.5.16
 |    +--- org.springframework.boot:spring-boot-starter:3.5.16 (*)
 |    +--- org.springframework.boot:spring-boot-test:3.5.16
@@ -1839,9 +1839,9 @@ testCompileClasspath - Compile classpath for source set 'test'.
 |    |    +--- org.springframework.boot:spring-boot-autoconfigure:3.5.16
 |    |    |    \--- org.springframework.boot:spring-boot:3.5.16 (*)
 |    |    +--- org.springframework.boot:spring-boot-starter-logging:3.5.16
-|    |    |    +--- ch.qos.logback:logback-classic:1.5.34 -> 1.5.38
-|    |    |    |    +--- ch.qos.logback:logback-core:1.5.38
-|    |    |    |    \--- org.slf4j:slf4j-api:2.0.17 -> 2.0.18
+|    |    |    +--- ch.qos.logback:logback-classic:1.5.34 -> 1.6.0
+|    |    |    |    +--- ch.qos.logback:logback-core:1.6.0
+|    |    |    |    \--- org.slf4j:slf4j-api:2.0.18
 |    |    |    +--- org.apache.logging.log4j:log4j-to-slf4j:2.24.3
 |    |    |    |    +--- org.apache.logging.log4j:log4j-api:2.24.3
 |    |    |    |    \--- org.slf4j:slf4j-api:2.0.16 -> 2.0.18
@@ -1864,23 +1864,23 @@ testCompileClasspath - Compile classpath for source set 'test'.
 |    |    |    |         +--- com.fasterxml.jackson.core:jackson-core:2.22.1 (c)
 |    |    |    |         +--- com.fasterxml.jackson.core:jackson-databind:2.22.1 -> 2.21.5 (c)
 |    |    |    |         +--- com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.22.1 -> 2.21.2 (c)
-|    |    |    |         +--- com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.22.1 (c)
+|    |    |    |         +--- com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.22.1 -> 2.21.4 (c)
 |    |    |    |         +--- com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.22.1 -> 2.21.2 (c)
-|    |    |    |         \--- com.fasterxml.jackson.module:jackson-module-parameter-names:2.22.1 (c)
+|    |    |    |         \--- com.fasterxml.jackson.module:jackson-module-parameter-names:2.22.1 -> 2.21.4 (c)
 |    |    |    \--- com.fasterxml.jackson:jackson-bom:2.21.5 -> 2.22.1 (*)
-|    |    +--- com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.21.4 -> 2.22.1
-|    |    |    +--- com.fasterxml.jackson.core:jackson-core:2.22.1 (*)
-|    |    |    +--- com.fasterxml.jackson.core:jackson-databind:2.22.1 -> 2.21.5 (*)
-|    |    |    \--- com.fasterxml.jackson:jackson-bom:2.22.1 (*)
+|    |    +--- com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.21.4
+|    |    |    +--- com.fasterxml.jackson.core:jackson-core:2.21.4 -> 2.22.1 (*)
+|    |    |    +--- com.fasterxml.jackson.core:jackson-databind:2.21.4 -> 2.21.5 (*)
+|    |    |    \--- com.fasterxml.jackson:jackson-bom:2.21.4 -> 2.22.1 (*)
 |    |    +--- com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.21.4 -> 2.21.2
 |    |    |    +--- com.fasterxml.jackson.core:jackson-annotations:2.21
 |    |    |    +--- com.fasterxml.jackson.core:jackson-core:2.21.2 -> 2.22.1 (*)
 |    |    |    +--- com.fasterxml.jackson.core:jackson-databind:2.21.2 -> 2.21.5 (*)
 |    |    |    \--- com.fasterxml.jackson:jackson-bom:2.21.2 -> 2.22.1 (*)
-|    |    \--- com.fasterxml.jackson.module:jackson-module-parameter-names:2.21.4 -> 2.22.1
-|    |         +--- com.fasterxml.jackson.core:jackson-core:2.22.1 (*)
-|    |         +--- com.fasterxml.jackson.core:jackson-databind:2.22.1 -> 2.21.5 (*)
-|    |         \--- com.fasterxml.jackson:jackson-bom:2.22.1 (*)
+|    |    \--- com.fasterxml.jackson.module:jackson-module-parameter-names:2.21.4
+|    |         +--- com.fasterxml.jackson.core:jackson-core:2.21.4 -> 2.22.1 (*)
+|    |         +--- com.fasterxml.jackson.core:jackson-databind:2.21.4 -> 2.21.5 (*)
+|    |         \--- com.fasterxml.jackson:jackson-bom:2.21.4 -> 2.22.1 (*)
 |    +--- org.springframework.boot:spring-boot-starter-reactor-netty:3.5.16
 |    |    \--- io.projectreactor.netty:reactor-netty-http:1.2.18 -> 1.2.10
 |    |         +--- io.netty:netty-codec-http:4.1.127.Final -> 4.2.16.Final
@@ -2078,8 +2078,9 @@ testCompileClasspath - Compile classpath for source set 'test'.
 +--- io.projectreactor.netty:reactor-netty-http:1.2.10 (*)
 +--- com.google.protobuf:protobuf-java:{strictly [4.31.1]} -> 4.31.1
 +--- com.launchdarkly:launchdarkly-java-server-sdk:{strictly 7.5.0} -> 7.5.0
-+--- org.apache.cxf:cxf-rt-transports-http:{strictly 4.2.2} -> 4.1.3
-|    \--- org.apache.cxf:cxf-core:4.1.3 -> 4.2.2
++--- org.apache.cxf:cxf-rt-transports-http:{strictly 4.2.2} -> 4.2.2
+|    +--- org.jspecify:jspecify:1.0.0
+|    \--- org.apache.cxf:cxf-core:4.2.2
 |         +--- jakarta.annotation:jakarta.annotation-api:3.0.0 -> 2.1.1
 |         +--- org.glassfish.jaxb:jaxb-runtime:4.0.9
 |         |    \--- org.glassfish.jaxb:jaxb-core:4.0.9
@@ -2137,8 +2138,8 @@ testCompileClasspath - Compile classpath for source set 'test'.
 +--- com.fasterxml.jackson.core:jackson-databind:{strictly 2.22.1} -> 2.21.5 (*)
 +--- com.fasterxml.jackson.core:jackson-annotations:{strictly 2.21} -> 2.21
 +--- com.fasterxml.jackson.core:jackson-core:{strictly 2.22.1} -> 2.22.1 (*)
-+--- ch.qos.logback:logback-classic:{strictly 1.5.38} -> 1.5.38 (*)
-+--- ch.qos.logback:logback-core:{strictly 1.5.38} -> 1.5.38
++--- ch.qos.logback:logback-classic:{strictly 1.6.0} -> 1.6.0 (*)
++--- ch.qos.logback:logback-core:{strictly 1.6.0} -> 1.6.0
 +--- io.netty:netty-codec:{strictly 4.2.16.Final} -> 4.2.16.Final
 |    +--- io.netty:netty-common:4.2.16.Final
 |    +--- io.netty:netty-buffer:4.2.16.Final (*)
@@ -2178,7 +2179,6 @@ testCompileClasspath - Compile classpath for source set 'test'.
 |    +--- org.apache.kafka:kafka-clients:3.8.1 -> 4.1.2
 |    \--- io.micrometer:micrometer-observation:1.14.14 -> 1.17.0 (*)
 +--- org.apache.kafka:kafka-metadata:{strictly 4.1.0} -> 4.1.0
-+--- org.apache.cxf:cxf-rt-transports-http:{strictly 4.1.3} -> 4.1.3 (*)
 +--- com.github.jknack:handlebars:{strictly 4.4.0} -> 4.4.0
 |    +--- org.apache.commons:commons-lang3:3.14.0 -> 3.18.0
 |    +--- org.apache.commons:commons-text:1.11.0
@@ -2197,7 +2197,7 @@ testCompileClasspath - Compile classpath for source set 'test'.
 |              +--- org.ow2.asm:asm:7.3.1 -> 9.7.1
 |              +--- org.ow2.asm:asm-tree:7.3.1 (*)
 |              \--- org.ow2.asm:asm-analysis:7.3.1 (*)
-+--- at.yawk.lz4:lz4-java:{strictly 1.10.1} -> 1.10.1
++--- at.yawk.lz4:lz4-java:{strictly 1.11.1} -> 1.11.1
 +--- org.springframework.boot:spring-boot-starter-test -> 3.5.16
 |    +--- org.springframework.boot:spring-boot-starter:3.5.16 (*)
 |    +--- org.springframework.boot:spring-boot-test:3.5.16

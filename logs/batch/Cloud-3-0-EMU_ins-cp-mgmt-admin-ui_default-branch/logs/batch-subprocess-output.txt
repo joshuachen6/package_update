@@ -1,0 +1,244 @@
+[phase2] replay=None log_dir=/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_ins-cp-mgmt-admin-ui_default-branch cache=/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_ins-cp-mgmt-admin-ui_default-branch/logs/phase2-results.json exists=True
+[phase2] FALLBACK FULL RUN /Users/jchen18/Documents/package_update/.venv/bin/python3 -u /Users/jchen18/Documents/package_update/quick_update.py --github-url https://github.com/Cloud-3-0-EMU/ins-cp-mgmt-admin-ui.git --checkout-dir /Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_ins-cp-mgmt-admin-ui_default-branch/default-branch --log-dir /Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_ins-cp-mgmt-admin-ui_default-branch
+Cloning https://github.com/Cloud-3-0-EMU/ins-cp-mgmt-admin-ui.git...
+Cloning https://github.com/Cloud-3-0-EMU/ins-cp-mgmt-admin-ui.git -> /Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_ins-cp-mgmt-admin-ui_default-branch/default-branch/ins-cp-mgmt-admin-ui
+Cloning into '/Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_ins-cp-mgmt-admin-ui_default-branch/default-branch/ins-cp-mgmt-admin-ui'...
+Found 1 dependency file(s):
+  - Node/npm  >  package.json
+
+------------------------------------------------------------
+JFrog CVE audit
+------------------------------------------------------------
+Running JFrog Xray API CVE scan for 870 resolved component(s)...
+JFrog Xray API CVE scan complete: 31 CVE record(s) across 11 vulnerable component(s).
+JFrog audit log -> /Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_ins-cp-mgmt-admin-ui_default-branch/logs/jfrog-audit.json
+
+------------------------------------------------------------
+Fix JFrog CVEs
+------------------------------------------------------------
+
+Fixing 11 JFrog package(s) in Node/npm  >  package.json
+
+Querying npm/JFrog versions (12 workers): [------------------------------] 0/11 0%
+Querying npm/JFrog versions (12 workers): [##----------------------------] 1/11 9%
+Querying npm/JFrog versions (12 workers): [#####-------------------------] 2/11 18%
+Querying npm/JFrog versions (12 workers): [########----------------------] 3/11 27%
+Querying npm/JFrog versions (12 workers): [##########--------------------] 4/11 36%
+Querying npm/JFrog versions (12 workers): [#############-----------------] 5/11 45%
+Querying npm/JFrog versions (12 workers): [################--------------] 6/11 54%
+Querying npm/JFrog versions (12 workers): [###################-----------] 7/11 63%
+Querying npm/JFrog versions (12 workers): [#####################---------] 8/11 72%
+Querying npm/JFrog versions (12 workers): [########################------] 9/11 81%
+Querying npm/JFrog versions (12 workers): [###########################---] 10/11 90%
+Querying npm/JFrog versions (12 workers): [##############################] 11/11 100%
+Pre-fetching npm versions for 56 direct deps...
+
+Querying npm/JFrog versions (12 workers): [------------------------------] 0/56 0%
+Querying npm/JFrog versions (12 workers): [------------------------------] 1/56 1%
+Querying npm/JFrog versions (12 workers): [#-----------------------------] 2/56 3%
+Querying npm/JFrog versions (12 workers): [#-----------------------------] 3/56 5%
+Querying npm/JFrog versions (12 workers): [##----------------------------] 4/56 7%
+Querying npm/JFrog versions (12 workers): [##----------------------------] 5/56 8%
+Querying npm/JFrog versions (12 workers): [###---------------------------] 6/56 10%
+Querying npm/JFrog versions (12 workers): [###---------------------------] 7/56 12%
+Querying npm/JFrog versions (12 workers): [####--------------------------] 8/56 14%
+Querying npm/JFrog versions (12 workers): [####--------------------------] 9/56 16%
+Querying npm/JFrog versions (12 workers): [#####-------------------------] 10/56 17%
+Querying npm/JFrog versions (12 workers): [#####-------------------------] 11/56 19%
+Querying npm/JFrog versions (12 workers): [######------------------------] 12/56 21%
+Querying npm/JFrog versions (12 workers): [######------------------------] 13/56 23%
+Querying npm/JFrog versions (12 workers): [#######-----------------------] 14/56 25%
+Querying npm/JFrog versions (12 workers): [########----------------------] 15/56 26%
+Querying npm/JFrog versions (12 workers): [########----------------------] 16/56 28%
+Querying npm/JFrog versions (12 workers): [#########---------------------] 17/56 30%
+Querying npm/JFrog versions (12 workers): [#########---------------------] 18/56 32%
+Querying npm/JFrog versions (12 workers): [##########--------------------] 19/56 33%
+Querying npm/JFrog versions (12 workers): [##########--------------------] 20/56 35%
+Querying npm/JFrog versions (12 workers): [###########-------------------] 21/56 37%
+Querying npm/JFrog versions (12 workers): [###########-------------------] 22/56 39%
+Querying npm/JFrog versions (12 workers): [############------------------] 23/56 41%
+Querying npm/JFrog versions (12 workers): [############------------------] 24/56 42%
+Querying npm/JFrog versions (12 workers): [#############-----------------] 25/56 44%
+Querying npm/JFrog versions (12 workers): [#############-----------------] 26/56 46%
+Querying npm/JFrog versions (12 workers): [##############----------------] 27/56 48%
+Querying npm/JFrog versions (12 workers): [###############---------------] 28/56 50%
+Querying npm/JFrog versions (12 workers): [###############---------------] 29/56 51%
+Querying npm/JFrog versions (12 workers): [################--------------] 30/56 53%
+Querying npm/JFrog versions (12 workers): [################--------------] 31/56 55%
+Querying npm/JFrog versions (12 workers): [#################-------------] 32/56 57%
+Querying npm/JFrog versions (12 workers): [#################-------------] 33/56 58%
+Querying npm/JFrog versions (12 workers): [##################------------] 34/56 60%
+Querying npm/JFrog versions (12 workers): [##################------------] 35/56 62%
+Querying npm/JFrog versions (12 workers): [###################-----------] 36/56 64%
+Querying npm/JFrog versions (12 workers): [###################-----------] 37/56 66%
+Querying npm/JFrog versions (12 workers): [####################----------] 38/56 67%
+Querying npm/JFrog versions (12 workers): [####################----------] 39/56 69%
+Querying npm/JFrog versions (12 workers): [#####################---------] 40/56 71%
+Querying npm/JFrog versions (12 workers): [#####################---------] 41/56 73%
+Querying npm/JFrog versions (12 workers): [######################--------] 42/56 75%
+Querying npm/JFrog versions (12 workers): [#######################-------] 43/56 76%
+Querying npm/JFrog versions (12 workers): [#######################-------] 44/56 78%
+Querying npm/JFrog versions (12 workers): [########################------] 45/56 80%
+Querying npm/JFrog versions (12 workers): [########################------] 46/56 82%
+Querying npm/JFrog versions (12 workers): [#########################-----] 47/56 83%
+Querying npm/JFrog versions (12 workers): [#########################-----] 48/56 85%
+Querying npm/JFrog versions (12 workers): [##########################----] 49/56 87%
+Querying npm/JFrog versions (12 workers): [##########################----] 50/56 89%
+Querying npm/JFrog versions (12 workers): [###########################---] 51/56 91%
+Querying npm/JFrog versions (12 workers): [###########################---] 52/56 92%
+Querying npm/JFrog versions (12 workers): [############################--] 53/56 94%
+Querying npm/JFrog versions (12 workers): [############################--] 54/56 96%
+Querying npm/JFrog versions (12 workers): [#############################-] 55/56 98%
+Querying npm/JFrog versions (12 workers): [##############################] 56/56 100%
+
+Node counts: remediation_packages=11, direct=2, overrides=8, skipped=1
+Changes: npm_direct=2, npm_override=8, skipped=1
+Phase2 cache generated → /Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_ins-cp-mgmt-admin-ui_default-branch/logs/phase2-results.json
+Writing /Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_ins-cp-mgmt-admin-ui_default-branch/default-branch/ins-cp-mgmt-admin-ui/package.json in place...
+Backup created: /Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_ins-cp-mgmt-admin-ui_default-branch/default-branch/ins-cp-mgmt-admin-ui/package.json.bak
+Updated package.json written to: /Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_ins-cp-mgmt-admin-ui_default-branch/default-branch/ins-cp-mgmt-admin-ui/package.json
+Validating updated project: npm install --no-audit --no-fund
+
+added 807 packages in 48s
+npm warn ERESOLVE overriding peer dependency
+npm warn While resolving: jest-config@29.7.0
+npm warn Found: @types/node@25.3.0
+npm warn node_modules/@types/node
+npm warn   dev @types/node@"^25.0.3" from the root project
+npm warn   8 more (@jest/console, @jest/core, @jest/reporters, @jest/types, ...)
+npm warn
+npm warn Could not resolve dependency:
+npm warn peerOptional @types/node@"*" from jest-config@29.7.0
+npm warn node_modules/jest-config
+npm warn   jest-config@"^29.7.0" from @jest/core@29.7.0
+npm warn   node_modules/@jest/core
+npm warn   2 more (create-jest, jest-cli)
+npm warn ERESOLVE overriding peer dependency
+npm warn While resolving: ts-node@10.9.2
+npm warn Found: @types/node@25.3.0
+npm warn node_modules/@types/node
+npm warn   dev @types/node@"^25.0.3" from the root project
+npm warn   8 more (@jest/console, @jest/core, @jest/reporters, @jest/types, ...)
+npm warn
+npm warn Could not resolve dependency:
+npm warn peer @types/node@"*" from ts-node@10.9.2
+npm warn node_modules/ts-node
+npm warn   dev ts-node@"^10.9.2" from the root project
+npm warn   1 more (jest-config)
+npm warn deprecated lodash.isequal@4.5.0: This package is deprecated. Use require('node:util').isDeepStrictEqual instead.
+npm warn deprecated @humanwhocodes/config-array@0.13.0: Use @eslint/config-array instead
+npm warn deprecated rimraf@3.0.2: Rimraf versions prior to v4 are no longer supported
+npm warn deprecated abab@2.0.6: Use your platform's native atob() and btoa() methods instead
+npm warn deprecated whatwg-encoding@2.0.0: Use @exodus/bytes instead for a more spec-conformant and faster implementation
+npm warn deprecated @humanwhocodes/object-schema@2.0.3: Use @eslint/object-schema instead
+npm warn deprecated domexception@4.0.0: Use your platform's native DOMException instead
+npm warn deprecated glob@9.0.0: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
+npm warn deprecated eslint@8.57.1: This version is no longer supported. Please see https://eslint.org/version-support for other options.
+Validating updated project: npm run build
+
+> ins-cp-mgmt-admin-ui@0.1.0 build
+> next build
+
+   ▲ Next.js 15.5.19
+
+   Creating an optimized production build ...
+ ✓ Compiled successfully in 8.7s
+   Linting and checking validity of types ...
+   Collecting page data ...
+   Generating static pages (0/57) ...
+   Generating static pages (14/57) 
+   Generating static pages (28/57) 
+   Generating static pages (42/57) 
+ ✓ Generating static pages (57/57)
+   Finalizing page optimization ...
+   Collecting build traces ...
+
+Route (app)                                  Size  First Load JS
+┌ ○ /                                       166 B         109 kB
+├ ○ /_not-found                             246 B         104 kB
+├ ƒ /api/auth/[...nextauth]                 246 B         104 kB
+├ ƒ /api/auth/logout                        246 B         104 kB
+├ ƒ /api/auth/user                          246 B         104 kB
+├ ƒ /api/common/callmethod                  246 B         104 kB
+├ ƒ /api/common/channels                    246 B         104 kB
+├ ƒ /api/common/contacttypes                246 B         104 kB
+├ ƒ /api/common/intent                      246 B         104 kB
+├ ƒ /api/common/phonenetworktype            246 B         104 kB
+├ ƒ /api/common/sourcesystemnames           246 B         104 kB
+├ ƒ /api/common/sub-intent                  246 B         104 kB
+├ ƒ /api/common/thenresponses               246 B         104 kB
+├ ƒ /api/dashboard/analytics                246 B         104 kB
+├ ƒ /api/dashboard/analytics/user           246 B         104 kB
+├ ƒ /api/dashboard/templates                246 B         104 kB
+├ ƒ /api/internalDnc                        246 B         104 kB
+├ ƒ /api/internalDnc/create                 246 B         104 kB
+├ ƒ /api/internalDnc/history/[id]           246 B         104 kB
+├ ƒ /api/internalDnc/search                 246 B         104 kB
+├ ƒ /api/internalDnc/search/[phone]         246 B         104 kB
+├ ƒ /api/internalDnc/update                 246 B         104 kB
+├ ƒ /api/internalDnc/update-end-datetime    246 B         104 kB
+├ ƒ /api/rule                               246 B         104 kB
+├ ƒ /api/rule/consumption                   246 B         104 kB
+├ ƒ /api/rule/donotcall                     246 B         104 kB
+├ ƒ /api/rule/history                       246 B         104 kB
+├ ƒ /api/rule/ingestion                     246 B         104 kB
+├ ƒ /api/rule/templates/consent             246 B         104 kB
+├ ƒ /api/rule/templates/preference          246 B         104 kB
+├ ƒ /api/template/business/entities         246 B         104 kB
+├ ƒ /api/template/business/locations        246 B         104 kB
+├ ƒ /api/template/business/sourcesystems    246 B         104 kB
+├ ƒ /api/template/business/units            246 B         104 kB
+├ ƒ /api/template/business/units/[id]       246 B         104 kB
+├ ƒ /api/template/category                  246 B         104 kB
+├ ƒ /api/template/create/consent            246 B         104 kB
+├ ƒ /api/template/create/preference         246 B         104 kB
+├ ƒ /api/template/fetch/consent             246 B         104 kB
+├ ƒ /api/template/fetch/consent/Id          246 B         104 kB
+├ ƒ /api/template/fetch/preference          246 B         104 kB
+├ ƒ /api/template/fetch/preference/Id       246 B         104 kB
+├ ƒ /api/template/history                   246 B         104 kB
+├ ƒ /api/template/update/consent            246 B         104 kB
+├ ƒ /api/template/update/preference         246 B         104 kB
+├ ƒ /api/user/groups                        246 B         104 kB
+├ ƒ /api/user/role                          246 B         104 kB
+├ ○ /auth                                   246 B         104 kB
+├ ○ /auth/ssoLogin                          185 B         109 kB
+├ ƒ /dashboard                            6.12 kB         110 kB
+├ ○ /internalDnc                            30 kB         191 kB
+├ ○ /rule                                 12.9 kB         170 kB
+├ ○ /rule/consumption                     1.66 kB         174 kB
+├ ƒ /rule/details/[type]/[id]             13.4 kB         341 kB
+├ ○ /rule/donotcall                       1.95 kB         174 kB
+├ ƒ /rule/edit/consumption/[id]            1.9 kB         174 kB
+├ ƒ /rule/edit/donotcall/[id]             2.28 kB         174 kB
+├ ƒ /rule/edit/ingestion/[id]             2.02 kB         171 kB
+├ ○ /rule/ingestion                       1.75 kB         171 kB
+├ ○ /templates                            11.7 kB         176 kB
+├ ○ /templates/consent                    2.95 kB         175 kB
+├ ƒ /templates/details/[type]/[id]        7.95 kB         335 kB
+├ ƒ /templates/edit/[type]/[id]           4.89 kB         177 kB
+└ ○ /templates/preference                 4.22 kB         177 kB
++ First Load JS shared by all              104 kB
+  ├ chunks/1255-b8cf77ab14370e57.js         46 kB
+  ├ chunks/4bd1b696-100b9d70ed4e49c1.js   54.2 kB
+  └ other shared chunks (total)           3.43 kB
+
+
+ƒ Middleware                              90.2 kB
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+
+NOT SUPPORTED: option missingRefs. Pass empty schema with $id that should be ignored to ajv.addSchema.
+ ⨯ ESLint: Cannot set properties of undefined (setting 'defaultMeta')
+
+Totals: 2 npm direct, 8 npm override(s), 0 Gradle direct, 0 Gradle force(s), 0 Python direct, 1 skipped
+Logs:   /Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_ins-cp-mgmt-admin-ui_default-branch/logs
+Running JFrog Xray API CVE scan for 870 resolved component(s)...
+JFrog Xray API CVE scan complete: 15 CVE record(s) across 7 vulnerable component(s).
+JFrog audit log -> /Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_ins-cp-mgmt-admin-ui_default-branch/logs/jfrog-audit-after.json
+Post-update verification: Partial - build passed but 15 CVE record(s) remain
+Remediation evidence -> /Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_ins-cp-mgmt-admin-ui_default-branch/logs/remediation-evidence.json
+Phase2 cache generated → /Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_ins-cp-mgmt-admin-ui_default-branch/logs/phase2-results.json
+Report generated → /Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_ins-cp-mgmt-admin-ui_default-branch/logs/task-completion-report.xlsx
+STATUS: Partial

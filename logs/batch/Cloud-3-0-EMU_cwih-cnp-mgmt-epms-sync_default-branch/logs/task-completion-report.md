@@ -4,19 +4,19 @@
 |metric|value|
 |---|---|
 |Overall Status|🟢 Success|
-|Generated at|2026-07-22T11:58:05|
+|Generated at|2026-07-24T10:21:46|
 |GitHub URL|https://github.com/Cloud-3-0-EMU/cwih-cnp-mgmt-epms-sync.git|
 |Project directory|/Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_cwih-cnp-mgmt-epms-sync_default-branch/default-branch/cwih-cnp-mgmt-epms-sync|
 |Dependency files|1|
-|Changed packages|56|
+|Changed packages|24|
 |Skipped packages|0|
 |Validation records|1|
 |Taskboard CVEs tracked|3|
-|Resolved dependency changes|68|
+|Resolved dependency changes|69|
 |Verification classification|Success - build and tests passed; no CVEs remain|
 |Test verification|passed|
 |Original CVEs remaining|0|
-|JFrog vulnerabilities before|66|
+|JFrog vulnerabilities before|69|
 |JFrog vulnerabilities after|0|
 |JFrog audit before JSON|/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_cwih-cnp-mgmt-epms-sync_default-branch/logs/jfrog-audit.json|
 |JFrog audit after JSON|/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_cwih-cnp-mgmt-epms-sync_default-branch/logs/jfrog-audit-after.json|
@@ -30,67 +30,35 @@ All remediation actions completed successfully.
 ## Dependency Files
 |file|ecosystem|changes|skipped|write_status|validation_status|validation_message|verification_status|test_status|
 |---|---|---|---|---|---|---|---|---|
-|build.gradle|gradle|56|0|Written|Passed||Success - build and tests passed; no CVEs remain|passed|
+|build.gradle|gradle|24|0|Written|Passed||Success - build and tests passed; no CVEs remain|passed|
 
 ## Applied / Planned Changes
 |file|ecosystem|package|type|old|new|status|remediation_guided|
 |---|---|---|---|---|---|---|---|
-|build.gradle|gradle|ch.qos.logback:logback-core|gradle|1.5.25|1.5.38|Passed|True|
+|build.gradle|gradle|ch.qos.logback:logback-core|gradle|1.5.25|1.6.0|Passed|True|
 |build.gradle|gradle|org.apache.tomcat.embed:tomcat-embed-core|gradle|11.0.18|11.0.24|Passed|True|
 |build.gradle|gradle|org.springframework:spring-framework.version|gradle|6.2.17|6.2.19|Passed|True|
-|build.gradle|gradle|ch.qos.logback:logback-classic|gradle|1.5.25|1.5.38|Passed|True|
-|build.gradle|gradle|com.fasterxml.jackson.core:jackson-databind|gradle-force|2.19.4|2.22.1|Passed|True|
-|build.gradle|gradle|io.netty:netty-codec-dns|gradle-force|4.1.131.Final|4.2.16.Final|Passed|True|
-|build.gradle|gradle|io.netty:netty-handler-proxy|gradle-force|4.1.131.Final|4.2.16.Final|Passed|True|
-|build.gradle|gradle|org.springframework.boot:spring-boot|gradle-force|3.5.12|3.5.16|Passed|True|
-|build.gradle|gradle|org.apache.tomcat.embed:tomcat-embed-websocket|gradle-force|10.1.52|10.1.57|Passed|True|
-|build.gradle|gradle|org.springframework.kafka:spring-kafka|gradle-force|3.3.14|3.3.16|Passed|True|
-|build.gradle|gradle|io.netty:netty-resolver-dns|gradle-force|4.1.131.Final|4.2.16.Final|Passed|True|
-|build.gradle|gradle|io.netty:netty-codec-compression|gradle-force|4.2.9.Final|4.2.16.Final|Passed|True|
-|build.gradle|gradle|io.netty:netty-codec-http3|gradle-force|4.2.9.Final|4.2.16.Final|Passed|True|
+|build.gradle|gradle|ch.qos.logback:logback-classic|gradle|1.5.25|1.6.0|Passed|True|
+|build.gradle|gradle|at.yawk.lz4:lz4-java|gradle-force|1.10.1|1.11.1|Passed|True|
 |build.gradle|gradle|io.netty:netty-codec|gradle-force|4.1.131.Final|4.2.16.Final|Passed|True|
-|build.gradle|gradle|io.netty:netty-codec-classes-quic|gradle-force|4.2.9.Final|4.2.16.Final|Passed|True|
+|build.gradle|gradle|com.fasterxml.jackson.core:jackson-databind|gradle-force|2.19.4|2.22.1|Passed|True|
+|build.gradle|gradle|org.apache.tomcat.embed:tomcat-embed-websocket|gradle-force|10.1.52|10.1.57|Passed|True|
+|build.gradle|gradle|io.netty:netty-codec-compression|gradle-force|4.2.9.Final|4.2.16.Final|Passed|True|
 |build.gradle|gradle|io.netty:netty-codec-http2|gradle-force|4.1.131.Final|4.2.16.Final|Passed|True|
+|build.gradle|gradle|io.netty:netty-handler-proxy|gradle-force|4.1.131.Final|4.2.16.Final|Passed|True|
+|build.gradle|gradle|org.springframework.kafka:spring-kafka|gradle-force|3.3.14|3.3.16|Passed|True|
+|build.gradle|gradle|org.springframework.boot:spring-boot|gradle-force|3.5.12|3.5.16|Passed|True|
+|build.gradle|gradle|io.netty:netty-codec-http3|gradle-force|4.2.9.Final|4.2.16.Final|Passed|True|
 |build.gradle|gradle|io.netty:netty-codec-http|gradle-force|4.1.131.Final|4.2.16.Final|Passed|True|
 |build.gradle|gradle|io.netty:netty-handler|gradle-force|4.1.131.Final|4.2.16.Final|Passed|True|
+|build.gradle|gradle|io.netty:netty-resolver-dns|gradle-force|4.1.131.Final|4.2.16.Final|Passed|True|
+|build.gradle|gradle|io.netty:netty-codec-dns|gradle-force|4.1.131.Final|4.2.16.Final|Passed|True|
+|build.gradle|gradle|io.netty:netty-codec-classes-quic|gradle-force|4.2.9.Final|4.2.16.Final|Passed|True|
 |build.gradle|gradle|io.netty:netty-transport-native-epoll|gradle-force|4.1.131.Final|4.2.16.Final|Passed|True|
-|build.gradle|gradle|ch.qos.logback:logback-classic|gradle-force|1.5.25|1.5.38|Passed|True|
 |build.gradle|gradle|org.springframework:spring-core|gradle-force|6.2.17|6.2.19|Passed|True|
-|build.gradle|gradle|org.springframework:spring-jcl|gradle-force|6.2.17|6.2.19|Passed|True|
-|build.gradle|gradle|org.springframework:spring-context|gradle-force|6.2.17|6.2.19|Passed|True|
-|build.gradle|gradle|org.springframework:spring-aop|gradle-force|6.2.17|6.2.19|Passed|True|
-|build.gradle|gradle|org.springframework:spring-beans|gradle-force|6.2.17|6.2.19|Passed|True|
 |build.gradle|gradle|org.springframework:spring-expression|gradle-force|6.2.17|6.2.19|Passed|True|
 |build.gradle|gradle|org.springframework:spring-web|gradle-force|6.2.17|6.2.19|Passed|True|
 |build.gradle|gradle|org.springframework:spring-webmvc|gradle-force|6.2.17|6.2.19|Passed|True|
-|build.gradle|gradle|org.springframework:spring-messaging|gradle-force|6.2.17|6.2.19|Passed|True|
-|build.gradle|gradle|org.springframework:spring-tx|gradle-force|6.2.17|6.2.19|Passed|True|
-|build.gradle|gradle|org.springframework:spring-test|gradle-force|6.2.17|6.2.19|Passed|True|
-|build.gradle|gradle|com.fasterxml.jackson.core:jackson-annotations|gradle-force|2.19.4|2.22.1|Passed|True|
-|build.gradle|gradle|com.fasterxml.jackson.core:jackson-core|gradle-force|2.19.4|2.22.1|Passed|True|
-|build.gradle|gradle|io.netty:netty-common|gradle-force|4.1.131.Final|4.2.16.Final|Passed|True|
-|build.gradle|gradle|io.netty:netty-buffer|gradle-force|4.1.131.Final|4.2.16.Final|Passed|True|
-|build.gradle|gradle|io.netty:netty-transport|gradle-force|4.1.131.Final|4.2.16.Final|Passed|True|
-|build.gradle|gradle|io.netty:netty-resolver|gradle-force|4.1.131.Final|4.2.16.Final|Passed|True|
-|build.gradle|gradle|io.netty:netty-transport-native-unix-common|gradle-force|4.1.131.Final|4.2.16.Final|Passed|True|
-|build.gradle|gradle|io.netty:netty-resolver-dns-native-macos|gradle-force|4.1.131.Final|4.2.16.Final|Passed|True|
-|build.gradle|gradle|io.netty:netty-resolver-dns-classes-macos|gradle-force|4.1.131.Final|4.2.16.Final|Passed|True|
-|build.gradle|gradle|io.netty:netty-transport-classes-epoll|gradle-force|4.1.131.Final|4.2.16.Final|Passed|True|
-|build.gradle|gradle|io.netty:netty-codec-socks|gradle-force|4.1.131.Final|4.2.16.Final|Passed|True|
-|build.gradle|gradle|org.springframework.boot:spring-boot-starter-web|gradle-force|3.5.12|3.5.16|Passed|True|
-|build.gradle|gradle|org.springframework.boot:spring-boot-starter|gradle-force|3.5.12|3.5.16|Passed|True|
-|build.gradle|gradle|org.springframework.boot:spring-boot-autoconfigure|gradle-force|3.5.12|3.5.16|Passed|True|
-|build.gradle|gradle|org.springframework.boot:spring-boot-starter-logging|gradle-force|3.5.12|3.5.16|Passed|True|
-|build.gradle|gradle|org.springframework.boot:spring-boot-starter-json|gradle-force|3.5.12|3.5.16|Passed|True|
-|build.gradle|gradle|org.springframework.boot:spring-boot-starter-tomcat|gradle-force|3.5.12|3.5.16|Passed|True|
-|build.gradle|gradle|org.springframework.boot:spring-boot-starter-aop|gradle-force|3.5.12|3.5.16|Passed|True|
-|build.gradle|gradle|org.springframework.boot:spring-boot-starter-validation|gradle-force|3.5.12|3.5.16|Passed|True|
-|build.gradle|gradle|org.springframework.boot:spring-boot-starter-test|gradle-force|3.5.12|3.5.16|Passed|True|
-|build.gradle|gradle|org.springframework.boot:spring-boot-test|gradle-force|3.5.12|3.5.16|Passed|True|
-|build.gradle|gradle|org.springframework.boot:spring-boot-test-autoconfigure|gradle-force|3.5.12|3.5.16|Passed|True|
-|build.gradle|gradle|org.apache.tomcat.embed:tomcat-embed-el|gradle-force|10.1.52|10.1.57|Passed|True|
-|build.gradle|gradle|io.netty:netty-codec-base|gradle-force|4.2.9.Final|4.2.16.Final|Passed|True|
-|build.gradle|gradle|io.netty:netty-codec-native-quic|gradle-force|4.2.9.Final|4.2.16.Final|Passed|True|
 
 ## Skipped / Resolved / Could Not Update
 _No rows._
@@ -103,16 +71,17 @@ _No rows._
 ## Before / After Dependency Trees
 |ecosystem|snapshot|path|exists|line_count|dependency_count|bytes|
 |---|---|---|---|---|---|---|
-|gradle|before|/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_cwih-cnp-mgmt-epms-sync_default-branch/logs/gradle-dependency-tree-before.txt|True|1052|945|65708|
-|gradle|after|/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_cwih-cnp-mgmt-epms-sync_default-branch/logs/gradle-dependency-tree-after.txt|True|1066|959|66712|
+|gradle|before|/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_cwih-cnp-mgmt-epms-sync_default-branch/logs/gradle-dependency-tree-before.txt|True|1052|945|65707|
+|gradle|after|/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_cwih-cnp-mgmt-epms-sync_default-branch/logs/gradle-dependency-tree-after.txt|True|1066|959|66676|
 |node|before|/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_cwih-cnp-mgmt-epms-sync_default-branch/logs/npm-dependency-tree-before.json|False|0|0|0|
 |node|after|/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_cwih-cnp-mgmt-epms-sync_default-branch/logs/npm-dependency-tree-after.json|False|0|0|0|
 
 ## Resolved Dependency Changes
 |dependency|before|after|status|
 |---|---|---|---|
-|ch.qos.logback:logback-classic|1.5.25|1.5.38|changed|
-|ch.qos.logback:logback-core|1.5.25|1.5.38|changed|
+|at.yawk.lz4:lz4-java|1.10.1|1.11.1|changed|
+|ch.qos.logback:logback-classic|1.5.25|1.6.0|changed|
+|ch.qos.logback:logback-core|1.5.25|1.6.0|changed|
 |com.fasterxml.jackson.core:jackson-annotations|2.19.4|2.22|changed|
 |com.fasterxml.jackson.core:jackson-core|2.19.4|2.22.1|changed|
 |com.fasterxml.jackson.core:jackson-databind|2.19.4|2.21.5|changed|

@@ -104,133 +104,14 @@
           "package": "ch.qos.logback:logback-core",
           "change_type": "gradle-force",
           "old": "1.5.32",
-          "new": "1.5.38",
+          "new": "1.6.0",
           "remediation_guided": true
         },
         {
-          "package": "io.netty:netty-bom",
+          "package": "at.yawk.lz4:lz4-java",
           "change_type": "gradle-force",
-          "old": "4.1.135.Final",
-          "new": "4.2.16.Final",
-          "remediation_guided": true
-        },
-        {
-          "package": "io.netty:netty-buffer",
-          "change_type": "gradle-force",
-          "old": "4.1.135.Final",
-          "new": "4.2.16.Final",
-          "remediation_guided": true
-        },
-        {
-          "package": "io.netty:netty-codec",
-          "change_type": "gradle-force",
-          "old": "4.1.135.Final",
-          "new": "4.2.16.Final",
-          "remediation_guided": true
-        },
-        {
-          "package": "io.netty:netty-codec-dns",
-          "change_type": "gradle-force",
-          "old": "4.1.135.Final",
-          "new": "4.2.16.Final",
-          "remediation_guided": true
-        },
-        {
-          "package": "io.netty:netty-codec-http2",
-          "change_type": "gradle-force",
-          "old": "4.1.135.Final",
-          "new": "4.2.16.Final",
-          "remediation_guided": true
-        },
-        {
-          "package": "io.netty:netty-common",
-          "change_type": "gradle-force",
-          "old": "4.1.135.Final",
-          "new": "4.2.16.Final",
-          "remediation_guided": true
-        },
-        {
-          "package": "io.netty:netty-handler",
-          "change_type": "gradle-force",
-          "old": "4.1.135.Final",
-          "new": "4.2.16.Final",
-          "remediation_guided": true
-        },
-        {
-          "package": "io.netty:netty-transport",
-          "change_type": "gradle-force",
-          "old": "4.1.135.Final",
-          "new": "4.2.16.Final",
-          "remediation_guided": true
-        },
-        {
-          "package": "io.netty:netty-transport-native-epoll",
-          "change_type": "gradle-force",
-          "old": "4.1.135.Final",
-          "new": "4.2.16.Final",
-          "remediation_guided": true
-        },
-        {
-          "package": "io.netty:netty-resolver-dns",
-          "change_type": "gradle-force",
-          "old": "4.1.135.Final",
-          "new": "4.2.16.Final",
-          "remediation_guided": true
-        },
-        {
-          "package": "io.netty:netty-resolver-dns-native-macos",
-          "change_type": "gradle-force",
-          "old": "4.1.135.Final",
-          "new": "4.2.16.Final",
-          "remediation_guided": true
-        },
-        {
-          "package": "io.netty:netty-transport-native-unix-common",
-          "change_type": "gradle-force",
-          "old": "4.1.135.Final",
-          "new": "4.2.16.Final",
-          "remediation_guided": true
-        },
-        {
-          "package": "io.netty:netty-transport-classes-epoll",
-          "change_type": "gradle-force",
-          "old": "4.1.135.Final",
-          "new": "4.2.16.Final",
-          "remediation_guided": true
-        },
-        {
-          "package": "io.netty:netty-resolver",
-          "change_type": "gradle-force",
-          "old": "4.1.135.Final",
-          "new": "4.2.16.Final",
-          "remediation_guided": true
-        },
-        {
-          "package": "io.netty:netty-handler-proxy",
-          "change_type": "gradle-force",
-          "old": "4.1.135.Final",
-          "new": "4.2.16.Final",
-          "remediation_guided": true
-        },
-        {
-          "package": "io.netty:netty-resolver-dns-classes-macos",
-          "change_type": "gradle-force",
-          "old": "4.1.135.Final",
-          "new": "4.2.16.Final",
-          "remediation_guided": true
-        },
-        {
-          "package": "io.netty:netty-codec-socks",
-          "change_type": "gradle-force",
-          "old": "4.1.135.Final",
-          "new": "4.2.16.Final",
-          "remediation_guided": true
-        },
-        {
-          "package": "ch.qos.logback:logback-classic",
-          "change_type": "gradle-force",
-          "old": "1.5.32",
-          "new": "1.5.38",
+          "old": "1.10.1",
+          "new": "1.11.1",
           "remediation_guided": true
         },
         {
@@ -381,134 +262,14 @@
         {
           "dependency": "ch.qos.logback:logback-core",
           "old_version": "1.5.32",
-          "new_version": "1.5.38",
-          "minimum_required": "1.5.38"
+          "new_version": "1.6.0",
+          "minimum_required": "1.6.0"
         },
         {
-          "dependency": "io.netty:netty-bom",
-          "old_version": "4.1.135.Final",
-          "new_version": "4.2.16.Final",
-          "minimum_required": "4.2.16.Final",
-          "remediation_guided": "version-locked sibling of io.netty:netty-codec-http"
-        },
-        {
-          "dependency": "io.netty:netty-buffer",
-          "old_version": "4.1.135.Final",
-          "new_version": "4.2.16.Final",
-          "minimum_required": "4.2.16.Final",
-          "remediation_guided": "version-locked sibling of io.netty:netty-codec-http"
-        },
-        {
-          "dependency": "io.netty:netty-codec",
-          "old_version": "4.1.135.Final",
-          "new_version": "4.2.16.Final",
-          "minimum_required": "4.2.16.Final",
-          "remediation_guided": "version-locked sibling of io.netty:netty-codec-http"
-        },
-        {
-          "dependency": "io.netty:netty-codec-dns",
-          "old_version": "4.1.135.Final",
-          "new_version": "4.2.16.Final",
-          "minimum_required": "4.2.16.Final",
-          "remediation_guided": "version-locked sibling of io.netty:netty-codec-http"
-        },
-        {
-          "dependency": "io.netty:netty-codec-http2",
-          "old_version": "4.1.135.Final",
-          "new_version": "4.2.16.Final",
-          "minimum_required": "4.2.16.Final",
-          "remediation_guided": "version-locked sibling of io.netty:netty-codec-http"
-        },
-        {
-          "dependency": "io.netty:netty-common",
-          "old_version": "4.1.135.Final",
-          "new_version": "4.2.16.Final",
-          "minimum_required": "4.2.16.Final",
-          "remediation_guided": "version-locked sibling of io.netty:netty-codec-http"
-        },
-        {
-          "dependency": "io.netty:netty-handler",
-          "old_version": "4.1.135.Final",
-          "new_version": "4.2.16.Final",
-          "minimum_required": "4.2.16.Final",
-          "remediation_guided": "version-locked sibling of io.netty:netty-codec-http"
-        },
-        {
-          "dependency": "io.netty:netty-transport",
-          "old_version": "4.1.135.Final",
-          "new_version": "4.2.16.Final",
-          "minimum_required": "4.2.16.Final",
-          "remediation_guided": "version-locked sibling of io.netty:netty-codec-http"
-        },
-        {
-          "dependency": "io.netty:netty-transport-native-epoll",
-          "old_version": "4.1.135.Final",
-          "new_version": "4.2.16.Final",
-          "minimum_required": "4.2.16.Final",
-          "remediation_guided": "version-locked sibling of io.netty:netty-codec-http"
-        },
-        {
-          "dependency": "io.netty:netty-resolver-dns",
-          "old_version": "4.1.135.Final",
-          "new_version": "4.2.16.Final",
-          "minimum_required": "4.2.16.Final",
-          "remediation_guided": "version-locked sibling of io.netty:netty-codec-http"
-        },
-        {
-          "dependency": "io.netty:netty-resolver-dns-native-macos",
-          "old_version": "4.1.135.Final",
-          "new_version": "4.2.16.Final",
-          "minimum_required": "4.2.16.Final",
-          "remediation_guided": "version-locked sibling of io.netty:netty-codec-http"
-        },
-        {
-          "dependency": "io.netty:netty-transport-native-unix-common",
-          "old_version": "4.1.135.Final",
-          "new_version": "4.2.16.Final",
-          "minimum_required": "4.2.16.Final",
-          "remediation_guided": "version-locked sibling of io.netty:netty-codec-http"
-        },
-        {
-          "dependency": "io.netty:netty-transport-classes-epoll",
-          "old_version": "4.1.135.Final",
-          "new_version": "4.2.16.Final",
-          "minimum_required": "4.2.16.Final",
-          "remediation_guided": "version-locked sibling of io.netty:netty-codec-http"
-        },
-        {
-          "dependency": "io.netty:netty-resolver",
-          "old_version": "4.1.135.Final",
-          "new_version": "4.2.16.Final",
-          "minimum_required": "4.2.16.Final",
-          "remediation_guided": "version-locked sibling of io.netty:netty-codec-http"
-        },
-        {
-          "dependency": "io.netty:netty-handler-proxy",
-          "old_version": "4.1.135.Final",
-          "new_version": "4.2.16.Final",
-          "minimum_required": "4.2.16.Final",
-          "remediation_guided": "version-locked sibling of io.netty:netty-codec-http"
-        },
-        {
-          "dependency": "io.netty:netty-resolver-dns-classes-macos",
-          "old_version": "4.1.135.Final",
-          "new_version": "4.2.16.Final",
-          "minimum_required": "4.2.16.Final",
-          "remediation_guided": "version-locked sibling of io.netty:netty-codec-http"
-        },
-        {
-          "dependency": "io.netty:netty-codec-socks",
-          "old_version": "4.1.135.Final",
-          "new_version": "4.2.16.Final",
-          "minimum_required": "4.2.16.Final",
-          "remediation_guided": "version-locked sibling of io.netty:netty-codec-http"
-        },
-        {
-          "dependency": "ch.qos.logback:logback-classic",
-          "old_version": "1.5.32",
-          "new_version": "1.5.38",
-          "minimum_required": "1.5.38",
-          "remediation_guided": "version-locked sibling of ch.qos.logback:logback-core"
+          "dependency": "at.yawk.lz4:lz4-java",
+          "old_version": "1.10.1",
+          "new_version": "1.11.1",
+          "minimum_required": "1.11.1"
         },
         {
           "dependency": "org.apache.httpcomponents.core5:httpcore5",
@@ -527,6 +288,17 @@
       "build_file": "/Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_ins-cp-mgmt-preference-workflow_default-branch/default-branch/ins-cp-mgmt-preference-workflow/build.gradle",
       "fetch_errors": [],
       "version_inventory": {
+        "at.yawk.lz4:lz4-java": [
+          "1.8.1",
+          "1.9.0",
+          "1.10.0",
+          "1.10.1",
+          "1.10.2",
+          "1.10.3",
+          "1.10.4",
+          "1.11.0",
+          "1.11.1"
+        ],
         "ch.qos.logback:logback-core": [
           "0.2.5",
           "0.3",
@@ -696,7 +468,8 @@
           "1.5.35",
           "1.5.36",
           "1.5.37",
-          "1.5.38"
+          "1.5.38",
+          "1.6.0"
         ],
         "io.netty:netty-codec-http": [
           "4.0.0.Alpha1",
@@ -2157,6 +1930,7 @@
         ]
       },
       "dm_type": "gradle",
+      "preaudit_gradle_tree_path": "/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_ins-cp-mgmt-preference-workflow_default-branch/logs/preaudit-gradle/1/gradle-dependency-tree.txt",
       "write_status": "Written",
       "validation_status": "Passed",
       "verification_status": "Success - build and tests passed; no CVEs remain",

@@ -307,12 +307,6 @@
         "old_version": "3.5.13"
       },
       {
-        "dependency": "org.springframework.data:spring-data-mongodb",
-        "minimum_required": "4.5.13",
-        "new_version": "4.5.13",
-        "old_version": "4.5.10"
-      },
-      {
         "dependency": "org.springframework.data:spring-data-commons",
         "minimum_required": "3.5.13",
         "new_version": "3.5.13",
@@ -325,28 +319,16 @@
         "old_version": "3.3.14"
       },
       {
+        "dependency": "org.springframework.data:spring-data-mongodb",
+        "minimum_required": "4.5.13",
+        "new_version": "4.5.13",
+        "old_version": "4.5.10"
+      },
+      {
         "dependency": "com.fasterxml.jackson.core:jackson-databind",
         "minimum_required": "2.22.1",
         "new_version": "2.22.1",
         "old_version": "2.21.2"
-      },
-      {
-        "dependency": "io.netty:netty-handler",
-        "minimum_required": "4.2.16.Final",
-        "new_version": "4.2.16.Final",
-        "old_version": "4.1.132.Final"
-      },
-      {
-        "dependency": "io.netty:netty-codec-dns",
-        "minimum_required": "4.2.16.Final",
-        "new_version": "4.2.16.Final",
-        "old_version": "4.1.132.Final"
-      },
-      {
-        "dependency": "io.netty:netty-transport-native-epoll",
-        "minimum_required": "4.2.16.Final",
-        "new_version": "4.2.16.Final",
-        "old_version": "4.1.132.Final"
       },
       {
         "dependency": "io.netty:netty-resolver-dns",
@@ -355,7 +337,7 @@
         "old_version": "4.1.132.Final"
       },
       {
-        "dependency": "io.netty:netty-codec",
+        "dependency": "io.netty:netty-handler-proxy",
         "minimum_required": "4.2.16.Final",
         "new_version": "4.2.16.Final",
         "old_version": "4.1.132.Final"
@@ -367,7 +349,25 @@
         "old_version": "4.1.132.Final"
       },
       {
-        "dependency": "io.netty:netty-handler-proxy",
+        "dependency": "io.netty:netty-codec-dns",
+        "minimum_required": "4.2.16.Final",
+        "new_version": "4.2.16.Final",
+        "old_version": "4.1.132.Final"
+      },
+      {
+        "dependency": "io.netty:netty-codec",
+        "minimum_required": "4.2.16.Final",
+        "new_version": "4.2.16.Final",
+        "old_version": "4.1.132.Final"
+      },
+      {
+        "dependency": "io.netty:netty-handler",
+        "minimum_required": "4.2.16.Final",
+        "new_version": "4.2.16.Final",
+        "old_version": "4.1.132.Final"
+      },
+      {
+        "dependency": "io.netty:netty-transport-native-epoll",
         "minimum_required": "4.2.16.Final",
         "new_version": "4.2.16.Final",
         "old_version": "4.1.132.Final"
@@ -424,7 +424,7 @@
         "dependency": "org.springframework:spring-framework.version",
         "new_version": "6.2.19",
         "old_version": "6.2.17",
-        "remediation_guided": "transitive org.springframework:spring-web>=6.2.19"
+        "remediation_guided": "transitive org.springframework:spring-core>=6.2.19"
       },
       {
         "config": "implementation",
@@ -554,13 +554,6 @@
         },
         {
           "change_type": "gradle-force",
-          "new": "4.5.13",
-          "old": "4.5.10",
-          "package": "org.springframework.data:spring-data-mongodb",
-          "remediation_guided": true
-        },
-        {
-          "change_type": "gradle-force",
           "new": "3.5.13",
           "old": "3.5.10",
           "package": "org.springframework.data:spring-data-commons",
@@ -575,30 +568,16 @@
         },
         {
           "change_type": "gradle-force",
+          "new": "4.5.13",
+          "old": "4.5.10",
+          "package": "org.springframework.data:spring-data-mongodb",
+          "remediation_guided": true
+        },
+        {
+          "change_type": "gradle-force",
           "new": "2.22.1",
           "old": "2.21.2",
           "package": "com.fasterxml.jackson.core:jackson-databind",
-          "remediation_guided": true
-        },
-        {
-          "change_type": "gradle-force",
-          "new": "4.2.16.Final",
-          "old": "4.1.132.Final",
-          "package": "io.netty:netty-handler",
-          "remediation_guided": true
-        },
-        {
-          "change_type": "gradle-force",
-          "new": "4.2.16.Final",
-          "old": "4.1.132.Final",
-          "package": "io.netty:netty-codec-dns",
-          "remediation_guided": true
-        },
-        {
-          "change_type": "gradle-force",
-          "new": "4.2.16.Final",
-          "old": "4.1.132.Final",
-          "package": "io.netty:netty-transport-native-epoll",
           "remediation_guided": true
         },
         {
@@ -612,7 +591,7 @@
           "change_type": "gradle-force",
           "new": "4.2.16.Final",
           "old": "4.1.132.Final",
-          "package": "io.netty:netty-codec",
+          "package": "io.netty:netty-handler-proxy",
           "remediation_guided": true
         },
         {
@@ -626,7 +605,28 @@
           "change_type": "gradle-force",
           "new": "4.2.16.Final",
           "old": "4.1.132.Final",
-          "package": "io.netty:netty-handler-proxy",
+          "package": "io.netty:netty-codec-dns",
+          "remediation_guided": true
+        },
+        {
+          "change_type": "gradle-force",
+          "new": "4.2.16.Final",
+          "old": "4.1.132.Final",
+          "package": "io.netty:netty-codec",
+          "remediation_guided": true
+        },
+        {
+          "change_type": "gradle-force",
+          "new": "4.2.16.Final",
+          "old": "4.1.132.Final",
+          "package": "io.netty:netty-handler",
+          "remediation_guided": true
+        },
+        {
+          "change_type": "gradle-force",
+          "new": "4.2.16.Final",
+          "old": "4.1.132.Final",
+          "package": "io.netty:netty-transport-native-epoll",
           "remediation_guided": true
         },
         {
@@ -6592,7 +6592,7 @@
       "write_status": "Written"
     }
   ],
-  "generated_at": "2026-07-24T09:11:37",
+  "generated_at": "2026-07-24T09:55:08",
   "next_actions": [
     {
       "action": "No additional remediation action identified.",

@@ -17,12 +17,17 @@ io.micrometer:micrometer-registry-prometheus,1.15.10,1.17.0,changed
 io.micrometer:micrometer-tracing,1.5.10,1.5.12,changed
 io.micrometer:micrometer-tracing-bridge-brave,1.5.10,1.5.12,changed
 io.netty:netty-buffer,4.1.132.Final,4.2.16.Final,changed
+io.netty:netty-codec,4.1.132.Final,4.2.16.Final,changed
 io.netty:netty-codec-base,4.2.10.Final,4.2.16.Final,changed
 io.netty:netty-codec-compression,4.2.5.Final,4.2.16.Final,changed
 io.netty:netty-codec-dns,4.1.132.Final,4.2.16.Final,changed
+io.netty:netty-codec-http,4.1.132.Final,4.2.16.Final,changed
 io.netty:netty-codec-http2,4.2.10.Final,4.2.16.Final,changed
+io.netty:netty-codec-marshalling,,4.2.16.Final,added
+io.netty:netty-codec-protobuf,,4.2.16.Final,added
 io.netty:netty-codec-socks,4.1.132.Final,4.2.16.Final,changed
 io.netty:netty-common,4.1.132.Final,4.2.16.Final,changed
+io.netty:netty-handler,4.1.132.Final,4.2.16.Final,changed
 io.netty:netty-handler-proxy,4.1.132.Final,4.2.16.Final,changed
 io.netty:netty-resolver,4.1.132.Final,4.2.16.Final,changed
 io.netty:netty-resolver-dns,4.1.132.Final,4.2.16.Final,changed

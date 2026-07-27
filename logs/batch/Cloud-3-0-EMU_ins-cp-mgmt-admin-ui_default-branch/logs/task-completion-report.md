@@ -4,20 +4,20 @@
 |metric|value|
 |---|---|
 |Overall Status|🟡 Needs Review|
-|Generated at|2026-07-22T12:04:09|
+|Generated at|2026-07-24T10:32:03|
 |GitHub URL|https://github.com/Cloud-3-0-EMU/ins-cp-mgmt-admin-ui.git|
 |Project directory|/Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_ins-cp-mgmt-admin-ui_default-branch/default-branch/ins-cp-mgmt-admin-ui|
 |Dependency files|1|
-|Changed packages|8|
+|Changed packages|10|
 |Skipped packages|1|
 |Validation records|0|
 |Taskboard CVEs tracked|13|
 |Resolved dependency changes|0|
-|Verification classification|Partial - build passed but 7 CVE record(s) remain|
+|Verification classification|Partial - build passed but 15 CVE record(s) remain|
 |Test verification|passed|
-|Original CVEs remaining|7|
-|JFrog vulnerabilities before|15|
-|JFrog vulnerabilities after|7|
+|Original CVEs remaining|15|
+|JFrog vulnerabilities before|31|
+|JFrog vulnerabilities after|15|
 |JFrog audit before JSON|/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_ins-cp-mgmt-admin-ui_default-branch/logs/jfrog-audit.json|
 |JFrog audit after JSON|/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_ins-cp-mgmt-admin-ui_default-branch/logs/jfrog-audit-after.json|
 
@@ -34,16 +34,18 @@ Review:
 ## Dependency Files
 |file|ecosystem|changes|skipped|write_status|validation_status|validation_message|verification_status|test_status|
 |---|---|---|---|---|---|---|---|---|
-|package.json|node|8|1|Written|Passed||Partial - build passed but 7 CVE record(s) remain|passed|
+|package.json|node|10|1|Written|Passed||Partial - build passed but 15 CVE record(s) remain|passed|
 
 ## Applied / Planned Changes
 |file|ecosystem|package|type|old|new|status|remediation_guided|
 |---|---|---|---|---|---|---|---|
 |package.json|node|dompurify|direct|3.4.0|3.4.3|Passed|True|
+|package.json|node|next|direct|15.5.18|15.5.19|Passed|True|
 |package.json|node|@babel/core|override||7.29.6|Passed|True|
 |package.json|node|brace-expansion|override|5.0.6|5.0.7|Passed|True|
 |package.json|node|fast-uri|override|3.1.2|3.1.3|Passed|True|
 |package.json|node|form-data|override||4.0.6|Passed|True|
+|package.json|node|immutable|override|5.1.6|5.1.7|Passed|True|
 |package.json|node|js-yaml|override|4.1.1|4.2.0|Passed|True|
 |package.json|node|postcss|override||8.4.32|Passed|True|
 |package.json|node|ws|override|8.20.1|8.21.0|Passed|True|
@@ -62,7 +64,7 @@ _No rows._
 |gradle|before|/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_ins-cp-mgmt-admin-ui_default-branch/logs/gradle-dependency-tree-before.txt|False|0|0|0|
 |gradle|after|/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_ins-cp-mgmt-admin-ui_default-branch/logs/gradle-dependency-tree-after.txt|False|0|0|0|
 |node|before|/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_ins-cp-mgmt-admin-ui_default-branch/logs/npm-dependency-tree-before.json|True|1|871|394978|
-|node|after|/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_ins-cp-mgmt-admin-ui_default-branch/logs/npm-dependency-tree-after.json|True|1|871|395151|
+|node|after|/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_ins-cp-mgmt-admin-ui_default-branch/logs/npm-dependency-tree-after.json|True|1|871|395030|
 
 ## Resolved Dependency Changes
 _No rows._

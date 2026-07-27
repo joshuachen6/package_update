@@ -2,45 +2,7 @@
 timed out after 180s
 
 [compileClasspath]
-exit code 1
-The message received from the daemon indicates that the daemon has disappeared.
-Build request sent: Build{id=38953f7a-cea8-4a4e-a8f7-9798b12576c3, currentDir=/Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_cwih-cnp-mgmt-evaluation-workflow_default-branch/default-branch/cwih-cnp-mgmt-evaluation-workflow}
-Attempting to read last messages from the daemon log...
-Daemon pid: 37793
-  log file: /Users/jchen18/.gradle/daemon/8.14.1/daemon-37793.out.log
------ Last 20 lines from daemon log file - daemon-37793.out.log -----
-2026-07-23T10:02:04.443-0400 [DEBUG] [org.gradle.launcher.daemon.server.DaemonStateCoordinator] resetting idle timer
-2026-07-23T10:02:04.444-0400 [DEBUG] [org.gradle.launcher.daemon.server.DaemonStateCoordinator] daemon is running. Sleeping until state changes.
-2026-07-23T10:02:04.444-0400 [INFO] [org.gradle.launcher.daemon.server.exec.StartBuildOrRespondWithBusy] Daemon is about to start building Build{id=38953f7a-cea8-4a4e-a8f7-9798b12576c3, currentDir=/Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_cwih-cnp-mgmt-evaluation-workflow_default-branch/default-branch/cwih-cnp-mgmt-evaluation-workflow}. Dispatching build started information...
-2026-07-23T10:02:04.445-0400 [DEBUG] [org.gradle.launcher.daemon.server.SynchronizedDispatchConnection] thread 23: dispatching org.gradle.launcher.daemon.protocol.BuildStarted@65151cc4
-2026-07-23T10:02:04.446-0400 [DEBUG] [org.gradle.launcher.daemon.server.exec.EstablishBuildEnvironment] Configuring env variables: [PATH, MallocNanoZone, ZDOTDIR, MANPATH, JAVA_HOME, MAKEFLAGS, TERM, LANG, VSCODE_GIT_IPC_HANDLE, VSCODE_PYTHON_AUTOACTIVATE_GUARD, COMMAND_MODE, VSCODE_GIT_ASKPASS_MAIN, CLOUDSDK_PYTHON, COPILOT_DEBUG_NONCE, VSCODE_INJECTION, COLORTERM, VSCODE_PROFILE_INITIALIZED, NODE_EXTRA_CA_CERTS, VSCODE_GIT_ASKPASS_EXTRA_ARGS, MFLAGS, LOGNAME, VSCODE_GIT_ASKPASS_NODE, XPC_SERVICE_NAME, PWD, TERM_PROGRAM_VERSION, GIT_ASKPASS, ARTIFACTORY_USERNAME, __CFBundleIdentifier, SHELL, TERM_PROGRAM, REQUESTS_CA_BUNDLE, USER_ZDOTDIR, USER, TMPDIR, SSH_AUTH_SOCK, OSLogRateLimit, VIRTUAL_ENV, XPC_FLAGS, ARTIFACTORY_SOURCE, MAKELEVEL, __CF_USER_TEXT_ENCODING, ARTIFACTORY_PASSWORD, VIRTUAL_ENV_PROMPT, HOME, SHLVL]
-2026-07-23T10:02:04.448-0400 [DEBUG] [org.gradle.launcher.daemon.server.exec.LogToClient] About to start relaying all logs to the client via the connection.
-2026-07-23T10:02:04.448-0400 [INFO] [org.gradle.launcher.daemon.server.exec.LogToClient] The client will now receive all logging from the daemon (pid: 37793). The daemon log file: /Users/jchen18/.gradle/daemon/8.14.1/daemon-37793.out.log
-2026-07-23T10:02:04.449-0400 [DEBUG] [org.gradle.launcher.daemon.server.exec.RequestStopIfSingleUsedDaemon] Requesting daemon stop after processing Build{id=38953f7a-cea8-4a4e-a8f7-9798b12576c3, currentDir=/Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_cwih-cnp-mgmt-evaluation-workflow_default-branch/default-branch/cwih-cnp-mgmt-evaluation-workflow}
-2026-07-23T10:02:04.450-0400 [LIFECYCLE] [org.gradle.launcher.daemon.server.DaemonStateCoordinator] Daemon will be stopped at the end of the build 
-2026-07-23T10:02:04.450-0400 [DEBUG] [org.gradle.launcher.daemon.server.DaemonStateCoordinator] Stop as soon as idle requested. The daemon is busy
-2026-07-23T10:02:04.450-0400 [DEBUG] [org.gradle.launcher.daemon.server.DaemonStateCoordinator] daemon stop has been requested. Sleeping until state changes.
-2026-07-23T10:02:04.450-0400 [DEBUG] [org.gradle.launcher.daemon.server.exec.ExecuteBuild] The daemon has started executing the build.
-2026-07-23T10:02:04.450-0400 [DEBUG] [org.gradle.launcher.daemon.server.exec.ExecuteBuild] Executing build with daemon context: DefaultDaemonContext[uid=5214d6ea-658d-4d6e-8ac3-8b18d5079844,javaHome=/Library/Java/JavaVirtualMachines/jdk-17.jdk/Contents/Home,javaVersion=17,javaVendor=Oracle Corporation,daemonRegistryDir=/Users/jchen18/.gradle/daemon,pid=37793,idleTimeout=120000,priority=NORMAL,applyInstrumentationAgent=true,nativeServicesMode=ENABLED,daemonOpts=-XX:MaxMetaspaceSize=384m,-XX:+HeapDumpOnOutOfMemoryError,-Xms256m,-Xmx512m,-Dfile.encoding=UTF-8,-Duser.country=US,-Duser.language=en,-Duser.variant]
-
-------------------------------------------------------------
-Root project 'cde-evaluation'
-------------------------------------------------------------
-
-compileClasspath - Compile classpath for source set 'main'.
-Daemon vm is shutting down... The daemon has exited normally or was terminated in response to a user interrupt.----- End of the daemon log -----
-
-
-FAILURE: Build failed with an exception.
-
-* What went wrong:
-Gradle build daemon disappeared unexpectedly (it may have been killed or may have crashed)
-
-* Try:
-> Run with --stacktrace option to get the stack trace.
-> Run with --info or --debug option to get more log output.
-> Run with --scan to get full insights.
-> Get more help at https://help.gradle.org.
+timed out after 180s
 
 [testRuntimeClasspath]
 timed out after 180s

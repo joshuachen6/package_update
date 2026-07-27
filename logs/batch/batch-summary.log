@@ -112,3 +112,60 @@ Per-repo:
   [Success] https://github.com/Cloud-3-0-EMU/cwih-cnp-mgmt-preference-publish-api.git — 4:00
   [Aborted] https://github.com/Cloud-3-0-EMU/ins-cp-mgmt-evaluation-workflow.git — 10:42
 
+=== Batch summary: 2026-07-24T10:42:10 ===
+Batch remediation complete
+
+Repos processed: 33
+  Successful: 13
+  Partial: 11
+  Failed: 8
+  Other (error/aborted): 1
+
+Full remediation rate: 39.4%
+Useful remediation rate (full + partial): 72.7%
+
+Unique CVEs cleared: 163
+Total CVEs cleared (counts duplicates across repos): 1441
+
+Vulnerable packages before: 668
+Vulnerable packages after: 174
+Instances cleared: 494
+Clearance rate: 74.0%
+
+Average repo fix time: 4:59
+
+Per-repo:
+  [Partial] https://github.com/Cloud-3-0-EMU/cwih-cnp-mgmt-admin-ui.git — 4:30
+  [Success] https://github.com/Cloud-3-0-EMU/cwih-cnp-mgmt-preference-workflow.git — 6:08
+  [Success] https://github.com/Cloud-3-0-EMU/ins-cp-mgmt-admin-api.git — 7:14
+  [Success] https://github.com/Cloud-3-0-EMU/cwih-cnp-mgmt-consent-api.git — 3:56
+  [Success] https://github.com/Cloud-3-0-EMU/cwih-cnp-mgmt-preference-api.git — 4:09
+  [Success] https://github.com/Cloud-3-0-EMU/cwih-cnp-mgmt-consent-workflow.git — 3:29
+  [Success] https://github.com/Cloud-3-0-EMU/cwih-cnp-mgmt-admin-api.git — 6:16
+  [Partial] https://github.com/Cloud-3-0-EMU/ins-cp-mgmt-cds-api.git — 2:38
+  [Success] https://github.com/Cloud-3-0-EMU/cwih-cnp-mgmt-preference-publish-api.git — 4:11
+  [Success] https://github.com/Cloud-3-0-EMU/cwih-cnp-mgmt-cds-workflow.git — 2:18
+  [Partial] https://github.com/Cloud-3-0-EMU/ins-cp-mgmt-cds-workflow.git — 3:03
+  [Partial] https://github.com/Cloud-3-0-EMU/cwih-cnp-mgmt-cds-api.git — 3:18
+  [Partial] https://github.com/Cloud-3-0-EMU/ins-cp-mgmt-externaldnc-workflow.git — 3:19
+  [Failed] https://github.com/Cloud-3-0-EMU/cwih-cnp-mgmt-dnc-publish-api.git — 1:57
+  [Failed] https://github.com/Cloud-3-0-EMU/ins-cp-mgmt-evaluation-workflow.git — 18:56
+  [Failed] https://github.com/Cloud-3-0-EMU/ins-cp-mgmt-rule-api.git — 1:55
+  [Success] https://github.com/Cloud-3-0-EMU/cwih-cnp-mgmt-consent-publish-api.git — 4:08
+  [Partial] https://github.com/Cloud-3-0-EMU/cwih-cnp-mgmt-phone-lookup.git — 2:26
+  [Failed] https://github.com/Cloud-3-0-EMU/ins-cp-mgmt-consent-publish-api.git — 3:07
+  [Partial] https://github.com/Cloud-3-0-EMU/ins-cp-mgmt-phoneattribute-workflow.git — 4:47
+  [Failed] https://github.com/Cloud-3-0-EMU/cwih-cnp-mgmt-rule-api.git — 1:25
+  [Success] https://github.com/Cloud-3-0-EMU/ins-cp-mgmt-consent-workflow.git — 9:40
+  [Failed] https://github.com/Cloud-3-0-EMU/ins-cp-mgmt-consent-api.git — 2:45
+  [Partial] https://github.com/Cloud-3-0-EMU/ins-cp-mgmt-dnc-publish-api.git — 4:25
+  [Success] https://github.com/Cloud-3-0-EMU/cwih-cnp-mgmt-epms-sync.git — 3:54
+  [Failed] https://github.com/Cloud-3-0-EMU/ins-cp-mgmt-ecrdnc-workflow.git — 2:17
+  [Success] https://github.com/Cloud-3-0-EMU/cwih-cnp-mgmt-externaldnc-workflow.git — 2:20
+  [Failed] https://github.com/Cloud-3-0-EMU/ins-cp-mgmt-ecrphoneattribute-workflow.git — 2:06
+  [Partial] https://github.com/Cloud-3-0-EMU/ins-cp-mgmt-preference-api.git — 3:50
+  [Partial] https://github.com/Cloud-3-0-EMU/ins-cp-mgmt-preferencepublish-api.git — 3:18
+  [Partial] https://github.com/Cloud-3-0-EMU/ins-cp-mgmt-admin-ui.git — 2:45
+  [Success] https://github.com/Cloud-3-0-EMU/ins-cp-mgmt-preference-workflow.git — 6:32
+  [Aborted] https://github.com/Cloud-3-0-EMU/cwih-cnp-mgmt-evaluation-workflow.git — 27:34
+

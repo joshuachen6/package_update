@@ -1,6 +1,62 @@
 {
   "after_scan": {
-    "components": [],
+    "components": [
+      {
+        "component_id": "gav://ch.qos.logback:logback-core:1.5.25",
+        "cves": [
+          "CVE-2026-10532",
+          "CVE-2026-9828"
+        ],
+        "ecosystem": "maven",
+        "package": "ch.qos.logback:logback-core",
+        "version": "1.5.25"
+      },
+      {
+        "component_id": "gav://org.apache.tomcat.embed:tomcat-embed-core:11.0.18",
+        "cves": [
+          "CVE-2026-24880",
+          "CVE-2026-25854",
+          "CVE-2026-29129",
+          "CVE-2026-32990",
+          "CVE-2026-34483",
+          "CVE-2026-41284",
+          "CVE-2026-41293",
+          "CVE-2026-43512",
+          "CVE-2026-43513",
+          "CVE-2026-43514",
+          "CVE-2026-43515",
+          "CVE-2026-50229",
+          "CVE-2026-53404",
+          "CVE-2026-53434",
+          "CVE-2026-55276",
+          "CVE-2026-55955",
+          "CVE-2026-55956",
+          "CVE-2026-59083",
+          "CVE-2026-59084"
+        ],
+        "ecosystem": "maven",
+        "package": "org.apache.tomcat.embed:tomcat-embed-core",
+        "version": "11.0.18"
+      },
+      {
+        "component_id": "gav://org.apache.tomcat.embed:tomcat-embed-websocket:10.1.52",
+        "cves": [
+          "CVE-2026-42498"
+        ],
+        "ecosystem": "maven",
+        "package": "org.apache.tomcat.embed:tomcat-embed-websocket",
+        "version": "10.1.52"
+      },
+      {
+        "component_id": "gav://org.springframework.boot:spring-boot:3.5.12",
+        "cves": [
+          "CVE-2026-40973"
+        ],
+        "ecosystem": "maven",
+        "package": "org.springframework.boot:spring-boot",
+        "version": "3.5.12"
+      }
+    ],
     "json_path": "/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_cwih-cnp-mgmt-rule-api_default-branch/logs/jfrog-audit-after.json"
   },
   "before_scan": {
@@ -63,7 +119,7 @@
     ],
     "json_path": "/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_cwih-cnp-mgmt-rule-api_default-branch/logs/jfrog-audit.json"
   },
-  "classification": "Error - secondary verification scan incomplete",
+  "classification": "Failed - dependency updates could not be validated; manual review required",
   "diagnostic_csvs": {
     "build-validation-external-auto-fixes.csv": [
       {
@@ -75,94 +131,6 @@
       }
     ],
     "build-validation-manual-updates.csv": [
-      {
-        "change_type": "gradle-force",
-        "new": "3.5.16",
-        "old": "3.5.12",
-        "package": "org.springframework.boot:spring-boot-starter-validation",
-        "reason": "build validation failed and failure isolation disabled",
-        "status": "manual_update_required"
-      },
-      {
-        "change_type": "gradle-force",
-        "new": "3.5.16",
-        "old": "3.5.12",
-        "package": "org.springframework.boot:spring-boot-test-autoconfigure",
-        "reason": "build validation failed and failure isolation disabled",
-        "status": "manual_update_required"
-      },
-      {
-        "change_type": "gradle-force",
-        "new": "3.5.16",
-        "old": "3.5.12",
-        "package": "org.springframework.boot:spring-boot-test",
-        "reason": "build validation failed and failure isolation disabled",
-        "status": "manual_update_required"
-      },
-      {
-        "change_type": "gradle-force",
-        "new": "3.5.16",
-        "old": "3.5.12",
-        "package": "org.springframework.boot:spring-boot-starter-web",
-        "reason": "build validation failed and failure isolation disabled",
-        "status": "manual_update_required"
-      },
-      {
-        "change_type": "gradle-force",
-        "new": "3.5.16",
-        "old": "3.5.12",
-        "package": "org.springframework.boot:spring-boot-starter-tomcat",
-        "reason": "build validation failed and failure isolation disabled",
-        "status": "manual_update_required"
-      },
-      {
-        "change_type": "gradle-force",
-        "new": "3.5.16",
-        "old": "3.5.12",
-        "package": "org.springframework.boot:spring-boot-starter-test",
-        "reason": "build validation failed and failure isolation disabled",
-        "status": "manual_update_required"
-      },
-      {
-        "change_type": "gradle-force",
-        "new": "3.5.16",
-        "old": "3.5.12",
-        "package": "org.springframework.boot:spring-boot-starter-logging",
-        "reason": "build validation failed and failure isolation disabled",
-        "status": "manual_update_required"
-      },
-      {
-        "change_type": "gradle-force",
-        "new": "3.5.16",
-        "old": "3.5.12",
-        "package": "org.springframework.boot:spring-boot-starter-json",
-        "reason": "build validation failed and failure isolation disabled",
-        "status": "manual_update_required"
-      },
-      {
-        "change_type": "gradle-force",
-        "new": "3.5.16",
-        "old": "3.5.12",
-        "package": "org.springframework.boot:spring-boot-starter-aop",
-        "reason": "build validation failed and failure isolation disabled",
-        "status": "manual_update_required"
-      },
-      {
-        "change_type": "gradle-force",
-        "new": "3.5.16",
-        "old": "3.5.12",
-        "package": "org.springframework.boot:spring-boot-starter",
-        "reason": "build validation failed and failure isolation disabled",
-        "status": "manual_update_required"
-      },
-      {
-        "change_type": "gradle-force",
-        "new": "3.5.16",
-        "old": "3.5.12",
-        "package": "org.springframework.boot:spring-boot-autoconfigure",
-        "reason": "build validation failed and failure isolation disabled",
-        "status": "manual_update_required"
-      },
       {
         "change_type": "gradle-force",
         "new": "3.5.16",
@@ -180,14 +148,6 @@
         "status": "manual_update_required"
       },
       {
-        "change_type": "gradle-force",
-        "new": "10.1.57",
-        "old": "10.1.52",
-        "package": "org.apache.tomcat.embed:tomcat-embed-el",
-        "reason": "build validation failed and failure isolation disabled",
-        "status": "manual_update_required"
-      },
-      {
         "change_type": "gradle",
         "new": "11.0.24",
         "old": "11.0.18",
@@ -197,7 +157,7 @@
       },
       {
         "change_type": "gradle",
-        "new": "1.5.38",
+        "new": "1.6.0",
         "old": "1.5.25",
         "package": "ch.qos.logback:logback-core",
         "reason": "build validation failed and failure isolation disabled",
@@ -205,7 +165,7 @@
       },
       {
         "change_type": "gradle",
-        "new": "1.5.38",
+        "new": "1.6.0",
         "old": "1.5.25",
         "package": "ch.qos.logback:logback-classic",
         "reason": "build validation failed and failure isolation disabled",
@@ -225,88 +185,17 @@
         "minimum_required": "10.1.57",
         "new_version": "10.1.57",
         "old_version": "10.1.52"
-      },
-      {
-        "dependency": "ch.qos.logback:logback-classic",
-        "minimum_required": "1.5.38",
-        "new_version": "1.5.38",
-        "old_version": "1.5.25"
-      },
-      {
-        "dependency": "org.springframework.boot:spring-boot-starter-web",
-        "minimum_required": "3.5.16",
-        "new_version": "3.5.16",
-        "old_version": "3.5.12"
-      },
-      {
-        "dependency": "org.springframework.boot:spring-boot-starter",
-        "minimum_required": "3.5.16",
-        "new_version": "3.5.16",
-        "old_version": "3.5.12"
-      },
-      {
-        "dependency": "org.springframework.boot:spring-boot-autoconfigure",
-        "minimum_required": "3.5.16",
-        "new_version": "3.5.16",
-        "old_version": "3.5.12"
-      },
-      {
-        "dependency": "org.springframework.boot:spring-boot-starter-logging",
-        "minimum_required": "3.5.16",
-        "new_version": "3.5.16",
-        "old_version": "3.5.12"
-      },
-      {
-        "dependency": "org.springframework.boot:spring-boot-starter-json",
-        "minimum_required": "3.5.16",
-        "new_version": "3.5.16",
-        "old_version": "3.5.12"
-      },
-      {
-        "dependency": "org.springframework.boot:spring-boot-starter-tomcat",
-        "minimum_required": "3.5.16",
-        "new_version": "3.5.16",
-        "old_version": "3.5.12"
-      },
-      {
-        "dependency": "org.springframework.boot:spring-boot-starter-aop",
-        "minimum_required": "3.5.16",
-        "new_version": "3.5.16",
-        "old_version": "3.5.12"
-      },
-      {
-        "dependency": "org.springframework.boot:spring-boot-starter-validation",
-        "minimum_required": "3.5.16",
-        "new_version": "3.5.16",
-        "old_version": "3.5.12"
-      },
-      {
-        "dependency": "org.springframework.boot:spring-boot-starter-test",
-        "minimum_required": "3.5.16",
-        "new_version": "3.5.16",
-        "old_version": "3.5.12"
-      },
-      {
-        "dependency": "org.springframework.boot:spring-boot-test",
-        "minimum_required": "3.5.16",
-        "new_version": "3.5.16",
-        "old_version": "3.5.12"
-      },
-      {
-        "dependency": "org.springframework.boot:spring-boot-test-autoconfigure",
-        "minimum_required": "3.5.16",
-        "new_version": "3.5.16",
-        "old_version": "3.5.12"
-      },
-      {
-        "dependency": "org.apache.tomcat.embed:tomcat-embed-el",
-        "minimum_required": "10.1.57",
-        "new_version": "10.1.57",
-        "old_version": "10.1.52"
       }
     ],
     "gradle-skipped.csv": [],
     "gradle-version-changes.csv": [
+      {
+        "config": "implementation",
+        "dependency": "ch.qos.logback:logback-core",
+        "new_version": "1.6.0",
+        "old_version": "1.5.25",
+        "remediation_guided": "yes"
+      },
       {
         "config": "implementation",
         "dependency": "org.apache.tomcat.embed:tomcat-embed-core",
@@ -316,15 +205,8 @@
       },
       {
         "config": "implementation",
-        "dependency": "ch.qos.logback:logback-core",
-        "new_version": "1.5.38",
-        "old_version": "1.5.25",
-        "remediation_guided": "yes"
-      },
-      {
-        "config": "implementation",
         "dependency": "ch.qos.logback:logback-classic",
-        "new_version": "1.5.38",
+        "new_version": "1.6.0",
         "old_version": "1.5.25",
         "remediation_guided": "competing pin realigned"
       }
@@ -334,7 +216,7 @@
   "files": [
     {
       "candidate_counts": {
-        "ch.qos.logback:logback-core": 169,
+        "ch.qos.logback:logback-core": 170,
         "org.apache.tomcat.embed:tomcat-embed-core": 464,
         "org.apache.tomcat.embed:tomcat-embed-websocket": 428,
         "org.springframework.boot:spring-boot": 290
@@ -346,6 +228,13 @@
       "selected_changes": [
         {
           "change_type": "gradle",
+          "new": "1.6.0",
+          "old": "1.5.25",
+          "package": "ch.qos.logback:logback-core",
+          "remediation_guided": true
+        },
+        {
+          "change_type": "gradle",
           "new": "11.0.24",
           "old": "11.0.18",
           "package": "org.apache.tomcat.embed:tomcat-embed-core",
@@ -353,14 +242,7 @@
         },
         {
           "change_type": "gradle",
-          "new": "1.5.38",
-          "old": "1.5.25",
-          "package": "ch.qos.logback:logback-core",
-          "remediation_guided": true
-        },
-        {
-          "change_type": "gradle",
-          "new": "1.5.38",
+          "new": "1.6.0",
           "old": "1.5.25",
           "package": "ch.qos.logback:logback-classic",
           "remediation_guided": true
@@ -378,104 +260,13 @@
           "old": "10.1.52",
           "package": "org.apache.tomcat.embed:tomcat-embed-websocket",
           "remediation_guided": true
-        },
-        {
-          "change_type": "gradle-force",
-          "new": "1.5.38",
-          "old": "1.5.25",
-          "package": "ch.qos.logback:logback-classic",
-          "remediation_guided": true
-        },
-        {
-          "change_type": "gradle-force",
-          "new": "3.5.16",
-          "old": "3.5.12",
-          "package": "org.springframework.boot:spring-boot-starter-web",
-          "remediation_guided": true
-        },
-        {
-          "change_type": "gradle-force",
-          "new": "3.5.16",
-          "old": "3.5.12",
-          "package": "org.springframework.boot:spring-boot-starter",
-          "remediation_guided": true
-        },
-        {
-          "change_type": "gradle-force",
-          "new": "3.5.16",
-          "old": "3.5.12",
-          "package": "org.springframework.boot:spring-boot-autoconfigure",
-          "remediation_guided": true
-        },
-        {
-          "change_type": "gradle-force",
-          "new": "3.5.16",
-          "old": "3.5.12",
-          "package": "org.springframework.boot:spring-boot-starter-logging",
-          "remediation_guided": true
-        },
-        {
-          "change_type": "gradle-force",
-          "new": "3.5.16",
-          "old": "3.5.12",
-          "package": "org.springframework.boot:spring-boot-starter-json",
-          "remediation_guided": true
-        },
-        {
-          "change_type": "gradle-force",
-          "new": "3.5.16",
-          "old": "3.5.12",
-          "package": "org.springframework.boot:spring-boot-starter-tomcat",
-          "remediation_guided": true
-        },
-        {
-          "change_type": "gradle-force",
-          "new": "3.5.16",
-          "old": "3.5.12",
-          "package": "org.springframework.boot:spring-boot-starter-aop",
-          "remediation_guided": true
-        },
-        {
-          "change_type": "gradle-force",
-          "new": "3.5.16",
-          "old": "3.5.12",
-          "package": "org.springframework.boot:spring-boot-starter-validation",
-          "remediation_guided": true
-        },
-        {
-          "change_type": "gradle-force",
-          "new": "3.5.16",
-          "old": "3.5.12",
-          "package": "org.springframework.boot:spring-boot-starter-test",
-          "remediation_guided": true
-        },
-        {
-          "change_type": "gradle-force",
-          "new": "3.5.16",
-          "old": "3.5.12",
-          "package": "org.springframework.boot:spring-boot-test",
-          "remediation_guided": true
-        },
-        {
-          "change_type": "gradle-force",
-          "new": "3.5.16",
-          "old": "3.5.12",
-          "package": "org.springframework.boot:spring-boot-test-autoconfigure",
-          "remediation_guided": true
-        },
-        {
-          "change_type": "gradle-force",
-          "new": "10.1.57",
-          "old": "10.1.52",
-          "package": "org.apache.tomcat.embed:tomcat-embed-el",
-          "remediation_guided": true
         }
       ],
       "skipped": [],
       "test_status": "not_run",
       "validation_message": "Build validation failed. Failure isolation disabled.",
       "validation_status": "Failed",
-      "verification_status": "Error - secondary verification scan incomplete",
+      "verification_status": "Failed - dependency updates could not be validated; manual review required",
       "version_inventory": {
         "ch.qos.logback:logback-core": [
           "0.2.5",
@@ -646,7 +437,8 @@
           "1.5.35",
           "1.5.36",
           "1.5.37",
-          "1.5.38"
+          "1.5.38",
+          "1.6.0"
         ],
         "org.apache.tomcat.embed:tomcat-embed-core": [
           "7.0.0",
@@ -1840,7 +1632,7 @@
       "write_status": "Failed"
     }
   ],
-  "generated_at": "2026-07-22T13:11:38",
+  "generated_at": "2026-07-24T10:15:07",
   "next_actions": [
     {
       "action": "Review exhaustive-isolation failures and try alternative safe versions for the implicated packages instead of retaining the rollback.",
@@ -1848,8 +1640,8 @@
       "priority": "high"
     },
     {
-      "action": "Regenerate the resolved dependency graph and rerun the secondary JFrog scan.",
-      "category": "verification",
+      "action": "Try coordinated platform/BOM upgrades for: spring, tomcat.",
+      "category": "platform_or_bom",
       "priority": "high"
     }
   ],
@@ -1878,18 +1670,42 @@
     "CVE-2026-59084",
     "CVE-2026-9828"
   ],
-  "outcome": "Error",
+  "outcome": "Failed",
   "refresh_errors": [],
-  "remaining_original_cves": [],
+  "remaining_original_cves": [
+    "CVE-2026-10532",
+    "CVE-2026-24880",
+    "CVE-2026-25854",
+    "CVE-2026-29129",
+    "CVE-2026-32990",
+    "CVE-2026-34483",
+    "CVE-2026-40973",
+    "CVE-2026-41284",
+    "CVE-2026-41293",
+    "CVE-2026-42498",
+    "CVE-2026-43512",
+    "CVE-2026-43513",
+    "CVE-2026-43514",
+    "CVE-2026-43515",
+    "CVE-2026-50229",
+    "CVE-2026-53404",
+    "CVE-2026-53434",
+    "CVE-2026-55276",
+    "CVE-2026-55955",
+    "CVE-2026-55956",
+    "CVE-2026-59083",
+    "CVE-2026-59084",
+    "CVE-2026-9828"
+  ],
   "remediation_budget_seconds": 300,
-  "security_status": "incomplete",
+  "security_status": "still_vulnerable",
   "summary": {
-    "candidate_versions_considered": 1351,
+    "candidate_versions_considered": 1352,
     "component_cve_pairs_new": 0,
-    "component_cve_pairs_remaining": 0,
-    "component_cve_pairs_removed": 23,
+    "component_cve_pairs_remaining": 23,
+    "component_cve_pairs_removed": 0,
     "dependency_files": 1,
-    "vulnerability_records_after": 0,
+    "vulnerability_records_after": 23,
     "vulnerability_records_before": 23
   },
   "test_status": "not_run",

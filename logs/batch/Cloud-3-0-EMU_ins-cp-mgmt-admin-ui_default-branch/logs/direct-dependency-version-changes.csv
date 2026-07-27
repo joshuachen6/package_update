@@ -1,2 +1,3 @@
 package,section,old_spec,new_spec,minimum_required,selected_version,path
 dompurify,dependencies,3.4.0,3.4.3,3.4.0,3.4.3,dependencies.dompurify
+next,dependencies,15.5.18,15.5.19,15.5.18,15.5.19,dependencies.next

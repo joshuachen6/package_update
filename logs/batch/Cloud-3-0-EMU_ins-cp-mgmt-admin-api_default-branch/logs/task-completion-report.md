@@ -4,7 +4,7 @@
 |metric|value|
 |---|---|
 |Overall Status|🟢 Success|
-|Generated at|2026-07-24T08:22:47|
+|Generated at|2026-07-24T09:48:35|
 |GitHub URL|https://github.com/Cloud-3-0-EMU/ins-cp-mgmt-admin-api.git|
 |Project directory|/Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_ins-cp-mgmt-admin-api_default-branch/default-branch/ins-cp-mgmt-admin-api|
 |Dependency files|1|
@@ -36,8 +36,8 @@ All remediation actions completed successfully.
 |file|ecosystem|package|type|old|new|status|remediation_guided|
 |---|---|---|---|---|---|---|---|
 |build.gradle|gradle|com.fasterxml.jackson.core:jackson-core|gradle|2.21.2|2.22.1|Passed|True|
-|build.gradle|gradle|ch.qos.logback:logback-core|gradle-force|1.5.32|1.6.0|Passed|True|
 |build.gradle|gradle|org.springframework.kafka:spring-kafka|gradle-force|3.3.15|3.3.16|Passed|True|
+|build.gradle|gradle|ch.qos.logback:logback-core|gradle-force|1.5.32|1.6.0|Passed|True|
 |build.gradle|gradle|at.yawk.lz4:lz4-java|gradle-force|1.10.1|1.11.1|Passed|True|
 |build.gradle|gradle|org.apache.tomcat.embed:tomcat-embed-core|gradle-force|10.1.54|10.1.57|Passed|True|
 |build.gradle|gradle|com.fasterxml.jackson.core:jackson-databind|gradle-force|2.21.2|2.22.1|Passed|True|
