@@ -881,18 +881,28 @@ def write_spring_boot_managed_properties(
 
     # Remove old values for properties this run controls. This supports both
     # set('name', "version") and ext['name'] = 'version' declarations.
+    #
+    # The trailing "(?://[^\n]*)?" is required: these lines are commonly
+    # annotated with a CVE comment (e.g. `set('netty.version', "4.1.135.Final")
+    # //Fix for CVE-2026-33870`), and the original pattern anchored "\s*\)\s*$"
+    # right after the closing paren -- a comment there isn't whitespace, so
+    # the match (and therefore the deletion) silently failed. The old line
+    # survived untouched while a brand-new, comment-free line with the
+    # updated version was still unconditionally appended below, leaving two
+    # coexisting values for the same property, one stale and one current
+    # (confirmed live via a manual post-pipeline diff on netty.version).
     for property_name in selected_versions:
         build_text = re.sub(
             r"(?m)^\s*set\(\s*['\"]"
             + re.escape(property_name)
-            + r"['\"]\s*,\s*['\"][^'\"]+['\"]\s*\)\s*$\n?",
+            + r"['\"]\s*,\s*['\"][^'\"]+['\"]\s*\)\s*(?://[^\n]*)?$\n?",
             "",
             build_text,
         )
         build_text = re.sub(
             r"(?m)^\s*ext\[\s*['\"]"
             + re.escape(property_name)
-            + r"['\"]\s*\]\s*=\s*['\"][^'\"]+['\"]\s*$\n?",
+            + r"['\"]\s*\]\s*=\s*['\"][^'\"]+['\"]\s*(?://[^\n]*)?$\n?",
             "",
             build_text,
         )

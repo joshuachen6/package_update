@@ -1281,6 +1281,49 @@ dependencies {
     assert "set('netty.version', \"4.1.136.Final\")" in updated
 
 
+def test_gradle_writer_replaces_managed_property_line_with_trailing_comment():
+    """Real-world bug (confirmed via a coworker's manual post-pipeline diff):
+    ext { set('netty.version', "4.1.135.Final") //Fix for CVE-2026-33870 }
+    -- the deletion regex anchored "\\s*\\)\\s*$" right after the closing
+    paren, so a trailing "//..." comment (not whitespace) meant end-of-line
+    never matched and the old line was never removed. A brand-new,
+    comment-free `set('netty.version', "...")` line was still appended
+    unconditionally, leaving two values for the same property: the stale
+    one (with its comment, untouched) sitting right next to the current one.
+    """
+    from output.gradle import write_spring_boot_managed_properties
+
+    build_text = """plugins {
+    id 'org.springframework.boot' version '3.5.14'
+    id 'io.spring.dependency-management' version '1.1.7'
+}
+
+ext {
+    set('netty.version', "4.1.135.Final") //Fix for CVE-2026-33870
+}
+
+dependencies {
+    implementation 'io.netty:netty-handler'
+}
+"""
+    forces = [
+        {
+            "dependency": "io.netty:netty-handler",
+            "new_version": "4.2.16.Final",
+        },
+    ]
+
+    updated, remaining = write_spring_boot_managed_properties(
+        build_text,
+        forces,
+    )
+
+    assert remaining == []
+    assert updated.count("netty.version") == 1
+    assert "4.1.135.Final" not in updated
+    assert "set('netty.version', \"4.2.16.Final\")" in updated
+
+
 def test_gradle_writer_does_not_treat_spring_data_module_as_bom_version():
     from output.gradle import write_spring_boot_managed_properties
 

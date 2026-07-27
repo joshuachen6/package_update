@@ -65,6 +65,69 @@ _EACH_LIST_HEADER_RE = re.compile(
 _QUOTED_ITEM_RE = re.compile(r"""['"]([^'"]+)['"]""")
 
 
+def _mask_comments(text):
+    """Return a same-length copy of text with // and /* */ comments blanked
+    out (replaced with spaces; newlines kept as-is).
+
+    Used so dependency-detection regexes never match inside dead/commented
+    code -- a fully commented-out declaration like
+    ``//implementation 'g:a:1.0'`` still contains the code-shaped substring
+    ``implementation 'g:a:1.0'``, which the regexes below would otherwise
+    match as if it were live, producing a phantom GradleDep alongside the
+    real one for the same artifact (confirmed live: duplicate rows for
+    org.apache.tomcat.embed:tomcat-embed-core in gradle-version-changes.csv,
+    one from a real declaration, one from three lines away inside a comment).
+
+    Because the output is the same length as the input, every match_start/
+    match_end computed against the masked text is still a valid offset into
+    the original text. String literals are scanned over untouched (not
+    blanked) so a URL like "https://..." inside a string is never mistaken
+    for a comment start.
+    """
+    out = list(text)
+    n = len(text)
+    i = 0
+    in_string = None  # active quote delimiter: "'", '"', "'''", or '"""'
+    while i < n:
+        if in_string:
+            if text[i] == "\\" and in_string in ("'", '"'):
+                i += 2
+                continue
+            if text.startswith(in_string, i):
+                i += len(in_string)
+                in_string = None
+                continue
+            i += 1
+            continue
+
+        if text.startswith("'''", i) or text.startswith('"""', i):
+            in_string = text[i : i + 3]
+            i += 3
+            continue
+        if text[i] in ("'", '"'):
+            in_string = text[i]
+            i += 1
+            continue
+        if text.startswith("//", i):
+            end = text.find("\n", i)
+            if end < 0:
+                end = n
+            for k in range(i, end):
+                out[k] = " "
+            i = end
+            continue
+        if text.startswith("/*", i):
+            close = text.find("*/", i + 2)
+            end = close + 2 if close >= 0 else n
+            for k in range(i, end):
+                if out[k] != "\n":
+                    out[k] = " "
+            i = end
+            continue
+        i += 1
+    return "".join(out)
+
+
 def _extract_gradle_attr(attrs, name):
     m = re.search(r"\b" + re.escape(name) + r"\s*:\s*(['\"])(.*?)\1", attrs)
     return m.group(2) if m else None
@@ -267,8 +330,14 @@ def normalize_gradle_version_for_probe(version):
 
 def parse_gradle_deps(build_text):
     deps = []
+    # Match against comment-blanked text so a fully commented-out
+    # declaration (e.g. "//implementation 'g:a:1.0'") is invisible to every
+    # pattern below, while match_start/match_end/original still index into
+    # the real build_text -- masking preserves length and only clears
+    # comment characters. See _mask_comments for why this exists.
+    masked = _mask_comments(build_text)
 
-    for m in DEPENDENCY_PATTERN.finditer(build_text):
+    for m in DEPENDENCY_PATTERN.finditer(masked):
         deps.append(
             GradleDep(
                 config=m.group("config"),
@@ -281,7 +350,7 @@ def parse_gradle_deps(build_text):
             )
         )
 
-    for m in DEPENDENCY_PAREN_STRING_PATTERN.finditer(build_text):
+    for m in DEPENDENCY_PAREN_STRING_PATTERN.finditer(masked):
         deps.append(
             GradleDep(
                 config=m.group("config"),
@@ -294,7 +363,7 @@ def parse_gradle_deps(build_text):
             )
         )
 
-    for m in _STRICT_DEP_HEADER_RE.finditer(build_text):
+    for m in _STRICT_DEP_HEADER_RE.finditer(masked):
         config = m.group(1)
         attrs = m.group(2)
 
@@ -303,16 +372,15 @@ def parse_gradle_deps(build_text):
         if not group or not artifact:
             continue
 
-        open_idx = build_text.find("{", m.start(), m.end())
+        open_idx = masked.find("{", m.start(), m.end())
         if open_idx < 0:
             continue
 
-        close_idx = _find_matching_brace(build_text, open_idx)
+        close_idx = _find_matching_brace(masked, open_idx)
         if close_idx < 0:
             continue
 
-        original = build_text[m.start() : close_idx + 1]
-        version = _extract_strict_version(original)
+        version = _extract_strict_version(masked[m.start() : close_idx + 1])
         if not version:
             continue
 
@@ -322,24 +390,23 @@ def parse_gradle_deps(build_text):
                 group=group,
                 artifact=artifact,
                 version=version,
-                original=original,
+                original=build_text[m.start() : close_idx + 1],
                 match_start=m.start(),
                 match_end=close_idx + 1,
             )
         )
 
-    for m in _STRICT_STRING_DEP_HEADER_RE.finditer(build_text):
+    for m in _STRICT_STRING_DEP_HEADER_RE.finditer(masked):
         config = m.group(1)
         group = m.group(3)
         artifact = m.group(4)
-        open_idx = build_text.find("{", m.start(), m.end())
+        open_idx = masked.find("{", m.start(), m.end())
         if open_idx < 0:
             continue
-        close_idx = _find_matching_brace(build_text, open_idx)
+        close_idx = _find_matching_brace(masked, open_idx)
         if close_idx < 0:
             continue
-        original = build_text[m.start() : close_idx + 1]
-        version = _extract_strict_version(original)
+        version = _extract_strict_version(masked[m.start() : close_idx + 1])
         if not version:
             continue
         deps.append(
@@ -348,25 +415,25 @@ def parse_gradle_deps(build_text):
                 group=group,
                 artifact=artifact,
                 version=version,
-                original=original,
+                original=build_text[m.start() : close_idx + 1],
                 match_start=m.start(),
                 match_end=close_idx + 1,
             )
         )
 
-    for m in _EACH_LIST_HEADER_RE.finditer(build_text):
+    for m in _EACH_LIST_HEADER_RE.finditer(masked):
         names = _QUOTED_ITEM_RE.findall(m.group("names"))
         if not names:
             continue
-        each_close = _find_matching_brace(build_text, m.start("each_open"))
+        each_close = _find_matching_brace(masked, m.start("each_open"))
         if each_close < 0:
             continue
-        original = build_text[m.start() : each_close + 1]
         version = _extract_strict_version(
-            build_text[m.start("inner_open") : each_close]
+            masked[m.start("inner_open") : each_close]
         )
         if not version:
             continue
+        original = build_text[m.start() : each_close + 1]
         config = m.group("config")
         group = m.group("group")
         for artifact in names:
