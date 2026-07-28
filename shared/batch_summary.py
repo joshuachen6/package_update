@@ -55,6 +55,7 @@ def aggregate_batch_summary(repo_results: list[dict[str, Any]]) -> dict[str, Any
     useful_remediation_rate = (successful + partial) / processed if processed else 0.0
 
     unique_cves_cleared: set[str] = set()
+    cves_cleared_by_repo: dict[str, list[str]] = {}
     total_cves_cleared = 0
     vulnerable_packages_before = 0
     vulnerable_packages_after = 0
@@ -71,6 +72,8 @@ def aggregate_batch_summary(repo_results: list[dict[str, Any]]) -> dict[str, Any
         cleared = evidence["original_cves"] - evidence["remaining_cves"]
         unique_cves_cleared |= cleared
         total_cves_cleared += len(cleared)
+        for cve in cleared:
+            cves_cleared_by_repo.setdefault(cve, []).append(r.get("url", ""))
         vulnerable_packages_before += evidence["vulnerable_packages_before"]
         vulnerable_packages_after += evidence["vulnerable_packages_after"]
 
@@ -90,6 +93,7 @@ def aggregate_batch_summary(repo_results: list[dict[str, Any]]) -> dict[str, Any
         "useful_remediation_rate": useful_remediation_rate,
         "unique_cves_cleared": len(unique_cves_cleared),
         "total_cves_cleared": total_cves_cleared,
+        "cves_cleared_by_repo": cves_cleared_by_repo,
         "vulnerable_packages_before": vulnerable_packages_before,
         "vulnerable_packages_after": vulnerable_packages_after,
         "instances_cleared": instances_cleared,
@@ -144,5 +148,12 @@ def format_summary_log(summary: dict[str, Any], repo_results: list[dict[str, Any
         duration = r.get("duration_seconds")
         duration_text = format_duration(duration) if duration is not None else "n/a"
         lines.append(f"  [{r.get('status', '')}] {label} — {duration_text}")
+
+    cves_cleared_by_repo = summary.get("cves_cleared_by_repo") or {}
+    lines.append("")
+    lines.append(f"CVEs resolved ({len(cves_cleared_by_repo)}):")
+    for cve in sorted(cves_cleared_by_repo):
+        repos = ", ".join(sorted(cves_cleared_by_repo[cve]))
+        lines.append(f"  {cve} — {repos}")
     lines.append("")
     return "\n".join(lines)
