@@ -1,5 +1,5 @@
 dependency,config,old_version,new_version,remediation_guided
-ch.qos.logback:logback-core,implementation,1.5.25,1.6.0,yes
+ch.qos.logback:logback-core,implementation,1.5.25,1.6.1,yes
 org.apache.tomcat.embed:tomcat-embed-core,implementation,11.0.18,11.0.24,yes
-org.springframework:spring-framework.version,ext,6.2.17,6.2.19,transitive org.springframework:spring-web>=6.2.19
-ch.qos.logback:logback-classic,implementation,1.5.25,1.6.0,competing pin realigned
+org.springframework:spring-framework.version,ext,6.2.17,6.2.19,transitive org.springframework:spring-core>=6.2.19
+ch.qos.logback:logback-classic,implementation,1.5.25,1.6.1,competing pin realigned

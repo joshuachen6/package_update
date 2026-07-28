@@ -1,13 +1,13 @@
 dependency,config,old_version,new_version,remediation_guided
-io.netty:netty-codec,implementation,4.1.132.Final,4.2.16.Final,yes
-io.netty:netty-codec-http,implementation,4.1.132.Final,4.2.16.Final,yes
 com.fasterxml.jackson.core:jackson-databind,implementation,2.17.0,2.22.1,yes
 io.netty:netty-handler,implementation,4.1.132.Final,4.2.16.Final,yes
-io.netty:netty-codec-http2,implementation,4.1.132.Final,4.2.16.Final,yes
+io.netty:netty-codec-http,implementation,4.1.132.Final,4.2.16.Final,yes
 io.projectreactor.netty:reactor-netty-http,implementation,1.2.1,1.3.6,yes
+io.netty:netty-codec-http2,implementation,4.1.132.Final,4.2.16.Final,yes
+io.netty:netty-codec,implementation,4.1.132.Final,4.2.16.Final,yes
 org.apache.kafka:kafka-clients,implementation,4.0.0,4.3.1,yes
-org.apache.tomcat.embed:tomcat-embed-core,implementation,10.1.52,10.1.57,yes
 org.bouncycastle:bcprov-jdk18on,implementation,1.77,1.85,yes
+org.apache.tomcat.embed:tomcat-embed-core,implementation,10.1.52,10.1.57,yes
 org.springframework:spring-framework.version,ext,6.2.0,6.2.19,transitive org.springframework:spring-context>=6.2.19
 org.springframework.kafka:spring-kafka,implementation,3.3.2,3.3.16,yes
 org.springframework:spring-webflux,implementation,6.2.17,6.2.19,yes

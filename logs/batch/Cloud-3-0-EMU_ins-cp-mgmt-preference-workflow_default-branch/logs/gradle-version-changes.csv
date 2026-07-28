@@ -1,8 +1,10 @@
 dependency,config,old_version,new_version,remediation_guided
+io.netty:netty-codec-http,implementation,4.1.135.Final,4.2.16.Final,yes
+io.netty:netty-codec-http3,implementation,4.2.15.Final,4.2.16.Final,yes
+io.netty:netty-codec-compression,implementation,4.2.15.Final,4.2.16.Final,yes
+org.apache.tomcat.embed:tomcat-embed-websocket,implementation,11.0.18,11.0.24,yes
 org.apache.tomcat.embed:tomcat-embed-core,implementation,11.0.18,11.0.24,yes
 org.apache.tomcat.embed:tomcat-embed-core,implementation,11.0.22,11.0.24,yes
-io.netty:netty-codec-http,implementation,4.1.135.Final,4.2.16.Final,yes
-org.apache.tomcat.embed:tomcat-embed-websocket,implementation,11.0.18,11.0.24,yes
 io.netty:netty-codec,implementation,4.1.135.Final,4.2.16.Final,competing pin realigned
 io.netty:netty-codec-dns,implementation,4.1.135.Final,4.2.16.Final,competing pin realigned
 io.netty:netty-transport-native-epoll,implementation,4.1.135.Final,4.2.16.Final,competing pin realigned

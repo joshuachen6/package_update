@@ -24,6 +24,13 @@
           "remediation_guided": true
         },
         {
+          "package": "ch.qos.logback:logback-core",
+          "change_type": "gradle",
+          "old": "1.5.25",
+          "new": "1.6.1",
+          "remediation_guided": true
+        },
+        {
           "package": "org.apache.tomcat.embed:tomcat-embed-core",
           "change_type": "gradle",
           "old": "10.1.52",
@@ -31,10 +38,10 @@
           "remediation_guided": true
         },
         {
-          "package": "ch.qos.logback:logback-core",
+          "package": "org.springframework:spring-framework.version",
           "change_type": "gradle",
-          "old": "1.5.25",
-          "new": "1.6.0",
+          "old": "6.2.17",
+          "new": "6.2.19",
           "remediation_guided": true
         },
         {
@@ -52,13 +59,6 @@
           "remediation_guided": true
         },
         {
-          "package": "org.springframework:spring-framework.version",
-          "change_type": "gradle",
-          "old": "6.2.17",
-          "new": "6.2.19",
-          "remediation_guided": true
-        },
-        {
           "package": "org.springframework:spring-webflux",
           "change_type": "gradle",
           "old": "6.2.17",
@@ -69,7 +69,7 @@
           "package": "ch.qos.logback:logback-classic",
           "change_type": "gradle",
           "old": "1.5.25",
-          "new": "1.6.0",
+          "new": "1.6.1",
           "remediation_guided": true
         },
         {
@@ -87,13 +87,6 @@
           "remediation_guided": true
         },
         {
-          "package": "org.springframework.data:spring-data-mongodb",
-          "change_type": "gradle-force",
-          "old": "4.5.11",
-          "new": "4.5.13",
-          "remediation_guided": true
-        },
-        {
           "package": "org.springframework.data:spring-data-commons",
           "change_type": "gradle-force",
           "old": "3.5.11",
@@ -101,7 +94,35 @@
           "remediation_guided": true
         },
         {
-          "package": "io.netty:netty-resolver-dns",
+          "package": "org.springframework.data:spring-data-mongodb",
+          "change_type": "gradle-force",
+          "old": "4.5.11",
+          "new": "4.5.13",
+          "remediation_guided": true
+        },
+        {
+          "package": "io.netty:netty-transport-native-epoll",
+          "change_type": "gradle-force",
+          "old": "4.1.132.Final",
+          "new": "4.2.16.Final",
+          "remediation_guided": true
+        },
+        {
+          "package": "at.yawk.lz4:lz4-java",
+          "change_type": "gradle-force",
+          "old": "1.10.1",
+          "new": "1.11.1",
+          "remediation_guided": true
+        },
+        {
+          "package": "com.fasterxml.jackson.core:jackson-databind",
+          "change_type": "gradle-force",
+          "old": "2.21.2",
+          "new": "2.22.1",
+          "remediation_guided": true
+        },
+        {
+          "package": "io.netty:netty-codec-dns",
           "change_type": "gradle-force",
           "old": "4.1.132.Final",
           "new": "4.2.16.Final",
@@ -115,35 +136,14 @@
           "remediation_guided": true
         },
         {
-          "package": "io.netty:netty-codec-dns",
-          "change_type": "gradle-force",
-          "old": "4.1.132.Final",
-          "new": "4.2.16.Final",
-          "remediation_guided": true
-        },
-        {
-          "package": "io.netty:netty-transport-native-epoll",
-          "change_type": "gradle-force",
-          "old": "4.1.132.Final",
-          "new": "4.2.16.Final",
-          "remediation_guided": true
-        },
-        {
-          "package": "com.fasterxml.jackson.core:jackson-databind",
-          "change_type": "gradle-force",
-          "old": "2.21.2",
-          "new": "2.22.1",
-          "remediation_guided": true
-        },
-        {
-          "package": "at.yawk.lz4:lz4-java",
-          "change_type": "gradle-force",
-          "old": "1.10.1",
-          "new": "1.11.1",
-          "remediation_guided": true
-        },
-        {
           "package": "io.netty:netty-handler-proxy",
+          "change_type": "gradle-force",
+          "old": "4.1.132.Final",
+          "new": "4.2.16.Final",
+          "remediation_guided": true
+        },
+        {
+          "package": "io.netty:netty-resolver-dns",
           "change_type": "gradle-force",
           "old": "4.1.132.Final",
           "new": "4.2.16.Final",
@@ -204,6 +204,15 @@
           "replacement": "implementation(group: 'io.netty', name: 'netty-codec-http') {\n        version {\n            strictly '4.2.16.Final' // Fix of CVE CVE-2025-67735\n        }\n    }"
         },
         {
+          "dependency": "ch.qos.logback:logback-core",
+          "config": "implementation",
+          "old_version": "1.5.25",
+          "new_version": "1.6.1",
+          "remediation_guided": "yes",
+          "original": "implementation 'ch.qos.logback:logback-core:1.5.25'",
+          "replacement": "implementation 'ch.qos.logback:logback-core:1.6.1'"
+        },
+        {
           "dependency": "org.apache.tomcat.embed:tomcat-embed-core",
           "config": "implementation",
           "old_version": "10.1.52",
@@ -213,13 +222,13 @@
           "replacement": "implementation('org.apache.tomcat.embed:tomcat-embed-core:10.1.57')"
         },
         {
-          "dependency": "ch.qos.logback:logback-core",
-          "config": "implementation",
-          "old_version": "1.5.25",
-          "new_version": "1.6.0",
-          "remediation_guided": "yes",
-          "original": "implementation 'ch.qos.logback:logback-core:1.5.25'",
-          "replacement": "implementation 'ch.qos.logback:logback-core:1.6.0'"
+          "dependency": "org.springframework:spring-framework.version",
+          "config": "ext",
+          "old_version": "6.2.17",
+          "new_version": "6.2.19",
+          "remediation_guided": "transitive org.springframework:spring-core>=6.2.19",
+          "original": "set('spring-framework.version', \"6.2.17\")",
+          "replacement": "set('spring-framework.version', \"6.2.19\")"
         },
         {
           "dependency": "org.apache.tomcat.embed:tomcat-embed-websocket",
@@ -240,15 +249,6 @@
           "replacement": "implementation('org.springframework.kafka:spring-kafka:3.3.16')"
         },
         {
-          "dependency": "org.springframework:spring-framework.version",
-          "config": "ext",
-          "old_version": "6.2.17",
-          "new_version": "6.2.19",
-          "remediation_guided": "transitive org.springframework:spring-web>=6.2.19",
-          "original": "set('spring-framework.version', \"6.2.17\")",
-          "replacement": "set('spring-framework.version', \"6.2.19\")"
-        },
-        {
           "dependency": "org.springframework:spring-webflux",
           "config": "implementation",
           "old_version": "6.2.17",
@@ -261,10 +261,10 @@
           "dependency": "ch.qos.logback:logback-classic",
           "config": "implementation",
           "old_version": "1.5.25",
-          "new_version": "1.6.0",
+          "new_version": "1.6.1",
           "remediation_guided": "competing pin realigned",
           "original": "implementation 'ch.qos.logback:logback-classic:1.5.25'",
-          "replacement": "implementation 'ch.qos.logback:logback-classic:1.6.0'"
+          "replacement": "implementation 'ch.qos.logback:logback-classic:1.6.1'"
         },
         {
           "dependency": "io.netty:netty-codec",
@@ -284,19 +284,37 @@
           "minimum_required": "1.17.0"
         },
         {
-          "dependency": "org.springframework.data:spring-data-mongodb",
-          "old_version": "4.5.11",
-          "new_version": "4.5.13",
-          "minimum_required": "4.5.13"
-        },
-        {
           "dependency": "org.springframework.data:spring-data-commons",
           "old_version": "3.5.11",
           "new_version": "3.5.13",
           "minimum_required": "3.5.13"
         },
         {
-          "dependency": "io.netty:netty-resolver-dns",
+          "dependency": "org.springframework.data:spring-data-mongodb",
+          "old_version": "4.5.11",
+          "new_version": "4.5.13",
+          "minimum_required": "4.5.13"
+        },
+        {
+          "dependency": "io.netty:netty-transport-native-epoll",
+          "old_version": "4.1.132.Final",
+          "new_version": "4.2.16.Final",
+          "minimum_required": "4.2.16.Final"
+        },
+        {
+          "dependency": "at.yawk.lz4:lz4-java",
+          "old_version": "1.10.1",
+          "new_version": "1.11.1",
+          "minimum_required": "1.11.1"
+        },
+        {
+          "dependency": "com.fasterxml.jackson.core:jackson-databind",
+          "old_version": "2.21.2",
+          "new_version": "2.22.1",
+          "minimum_required": "2.22.1"
+        },
+        {
+          "dependency": "io.netty:netty-codec-dns",
           "old_version": "4.1.132.Final",
           "new_version": "4.2.16.Final",
           "minimum_required": "4.2.16.Final"
@@ -308,31 +326,13 @@
           "minimum_required": "4.2.16.Final"
         },
         {
-          "dependency": "io.netty:netty-codec-dns",
-          "old_version": "4.1.132.Final",
-          "new_version": "4.2.16.Final",
-          "minimum_required": "4.2.16.Final"
-        },
-        {
-          "dependency": "io.netty:netty-transport-native-epoll",
-          "old_version": "4.1.132.Final",
-          "new_version": "4.2.16.Final",
-          "minimum_required": "4.2.16.Final"
-        },
-        {
-          "dependency": "com.fasterxml.jackson.core:jackson-databind",
-          "old_version": "2.21.2",
-          "new_version": "2.22.1",
-          "minimum_required": "2.22.1"
-        },
-        {
-          "dependency": "at.yawk.lz4:lz4-java",
-          "old_version": "1.10.1",
-          "new_version": "1.11.1",
-          "minimum_required": "1.11.1"
-        },
-        {
           "dependency": "io.netty:netty-handler-proxy",
+          "old_version": "4.1.132.Final",
+          "new_version": "4.2.16.Final",
+          "minimum_required": "4.2.16.Final"
+        },
+        {
+          "dependency": "io.netty:netty-resolver-dns",
           "old_version": "4.1.132.Final",
           "new_version": "4.2.16.Final",
           "minimum_required": "4.2.16.Final"
@@ -544,7 +544,8 @@
           "1.5.36",
           "1.5.37",
           "1.5.38",
-          "1.6.0"
+          "1.6.0",
+          "1.6.1"
         ],
         "com.fasterxml.jackson.core:jackson-databind": [
           "2.0.0-RC1",

@@ -2,8 +2,8 @@ buildscript {
     configurations.all {
         resolutionStrategy {
             // package-update: managed buildscript force block (safe to regenerate)
-            force 'org.springframework.data:spring-data-mongodb:4.5.13'
             force 'org.springframework.data:spring-data-commons:3.5.13'
+            force 'org.springframework.data:spring-data-mongodb:4.5.13'
             force 'at.yawk.lz4:lz4-java:1.11.1'
         }
     }
@@ -37,16 +37,16 @@ plugins {
 configurations.all {
     resolutionStrategy.dependencySubstitution {
         // package-update: managed dependencySubstitution block (safe to regenerate)
-        substitute module('org.springframework.data:spring-data-mongodb') using module('org.springframework.data:spring-data-mongodb:4.5.13')
         substitute module('org.springframework.data:spring-data-commons') using module('org.springframework.data:spring-data-commons:3.5.13')
+        substitute module('org.springframework.data:spring-data-mongodb') using module('org.springframework.data:spring-data-mongodb:4.5.13')
     }
 }
 
 configurations.all {
     resolutionStrategy {
         // package-update: managed force block (safe to regenerate)
-        force 'org.springframework.data:spring-data-mongodb:4.5.13'
         force 'org.springframework.data:spring-data-commons:3.5.13'
+        force 'org.springframework.data:spring-data-mongodb:4.5.13'
         force 'at.yawk.lz4:lz4-java:1.11.1'
     }
 }
@@ -103,7 +103,6 @@ repositories {
 
 ext {
     set('springCloudVersion', "2024.0.1")
-    set('spring-framework.version', "6.2.19")//Fix of CVE-2025-41249
     set('jackson-bom.version', "2.22.1")
     set('micrometer.version', "1.17.0")
     set('netty.version', "4.2.16.Final")
@@ -141,8 +140,8 @@ dependencies {
     }
     implementation 'org.springframework:spring-webflux:6.2.19'
     implementation 'io.projectreactor.netty:reactor-netty-http:1.2.9'
-    implementation 'ch.qos.logback:logback-classic:1.6.0' //Fix of CVE-2025-11226 & CVE-2026-1225
-    implementation 'ch.qos.logback:logback-core:1.6.0'  //Fix of CVE-2025-11226 & CVE-2026-1225
+    implementation 'ch.qos.logback:logback-classic:1.6.1' //Fix of CVE-2025-11226 & CVE-2026-1225
+    implementation 'ch.qos.logback:logback-core:1.6.1'  //Fix of CVE-2025-11226 & CVE-2026-1225
 
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'

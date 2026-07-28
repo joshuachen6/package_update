@@ -25,6 +25,24 @@
         "version": "1.5.32"
       },
       {
+        "component_id": "gav://io.netty:netty-codec-compression:4.2.15.Final",
+        "cves": [
+          "CVE-2026-59901"
+        ],
+        "ecosystem": "maven",
+        "package": "io.netty:netty-codec-compression",
+        "version": "4.2.15.Final"
+      },
+      {
+        "component_id": "gav://io.netty:netty-codec-http3:4.2.15.Final",
+        "cves": [
+          "CVE-2026-56816"
+        ],
+        "ecosystem": "maven",
+        "package": "io.netty:netty-codec-http3",
+        "version": "4.2.15.Final"
+      },
+      {
         "component_id": "gav://io.netty:netty-codec-http:4.1.135.Final",
         "cves": [
           "CVE-2026-55831",
@@ -85,16 +103,16 @@
     "gradle-fetch-errors.csv": [],
     "gradle-force-overrides.csv": [
       {
+        "dependency": "ch.qos.logback:logback-core",
+        "minimum_required": "1.6.1",
+        "new_version": "1.6.1",
+        "old_version": "1.5.32"
+      },
+      {
         "dependency": "org.springframework.data:spring-data-mongodb",
         "minimum_required": "4.5.13",
         "new_version": "4.5.13",
         "old_version": "4.5.11"
-      },
-      {
-        "dependency": "ch.qos.logback:logback-core",
-        "minimum_required": "1.6.0",
-        "new_version": "1.6.0",
-        "old_version": "1.5.32"
       },
       {
         "dependency": "at.yawk.lz4:lz4-java",
@@ -119,6 +137,34 @@
     "gradle-version-changes.csv": [
       {
         "config": "implementation",
+        "dependency": "io.netty:netty-codec-http",
+        "new_version": "4.2.16.Final",
+        "old_version": "4.1.135.Final",
+        "remediation_guided": "yes"
+      },
+      {
+        "config": "implementation",
+        "dependency": "io.netty:netty-codec-http3",
+        "new_version": "4.2.16.Final",
+        "old_version": "4.2.15.Final",
+        "remediation_guided": "yes"
+      },
+      {
+        "config": "implementation",
+        "dependency": "io.netty:netty-codec-compression",
+        "new_version": "4.2.16.Final",
+        "old_version": "4.2.15.Final",
+        "remediation_guided": "yes"
+      },
+      {
+        "config": "implementation",
+        "dependency": "org.apache.tomcat.embed:tomcat-embed-websocket",
+        "new_version": "11.0.24",
+        "old_version": "11.0.18",
+        "remediation_guided": "yes"
+      },
+      {
+        "config": "implementation",
         "dependency": "org.apache.tomcat.embed:tomcat-embed-core",
         "new_version": "11.0.24",
         "old_version": "11.0.18",
@@ -129,20 +175,6 @@
         "dependency": "org.apache.tomcat.embed:tomcat-embed-core",
         "new_version": "11.0.24",
         "old_version": "11.0.22",
-        "remediation_guided": "yes"
-      },
-      {
-        "config": "implementation",
-        "dependency": "io.netty:netty-codec-http",
-        "new_version": "4.2.16.Final",
-        "old_version": "4.1.135.Final",
-        "remediation_guided": "yes"
-      },
-      {
-        "config": "implementation",
-        "dependency": "org.apache.tomcat.embed:tomcat-embed-websocket",
-        "new_version": "11.0.24",
-        "old_version": "11.0.18",
         "remediation_guided": "yes"
       },
       {
@@ -215,8 +247,10 @@
     {
       "candidate_counts": {
         "at.yawk.lz4:lz4-java": 9,
-        "ch.qos.logback:logback-core": 170,
+        "ch.qos.logback:logback-core": 171,
+        "io.netty:netty-codec-compression": 25,
         "io.netty:netty-codec-http": 259,
+        "io.netty:netty-codec-http3": 15,
         "org.apache.tomcat.embed:tomcat-embed-core": 464,
         "org.apache.tomcat.embed:tomcat-embed-websocket": 428,
         "org.springframework.data:spring-data-mongodb": 298
@@ -226,6 +260,34 @@
       "file_path": "/Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_ins-cp-mgmt-preference-workflow_default-branch/default-branch/ins-cp-mgmt-preference-workflow/build.gradle",
       "raw_skipped": [],
       "selected_changes": [
+        {
+          "change_type": "gradle",
+          "new": "4.2.16.Final",
+          "old": "4.1.135.Final",
+          "package": "io.netty:netty-codec-http",
+          "remediation_guided": true
+        },
+        {
+          "change_type": "gradle",
+          "new": "4.2.16.Final",
+          "old": "4.2.15.Final",
+          "package": "io.netty:netty-codec-http3",
+          "remediation_guided": true
+        },
+        {
+          "change_type": "gradle",
+          "new": "4.2.16.Final",
+          "old": "4.2.15.Final",
+          "package": "io.netty:netty-codec-compression",
+          "remediation_guided": true
+        },
+        {
+          "change_type": "gradle",
+          "new": "11.0.24",
+          "old": "11.0.18",
+          "package": "org.apache.tomcat.embed:tomcat-embed-websocket",
+          "remediation_guided": true
+        },
         {
           "change_type": "gradle",
           "new": "11.0.24",
@@ -238,20 +300,6 @@
           "new": "11.0.24",
           "old": "11.0.22",
           "package": "org.apache.tomcat.embed:tomcat-embed-core",
-          "remediation_guided": true
-        },
-        {
-          "change_type": "gradle",
-          "new": "4.2.16.Final",
-          "old": "4.1.135.Final",
-          "package": "io.netty:netty-codec-http",
-          "remediation_guided": true
-        },
-        {
-          "change_type": "gradle",
-          "new": "11.0.24",
-          "old": "11.0.18",
-          "package": "org.apache.tomcat.embed:tomcat-embed-websocket",
           "remediation_guided": true
         },
         {
@@ -319,16 +367,16 @@
         },
         {
           "change_type": "gradle-force",
-          "new": "4.5.13",
-          "old": "4.5.11",
-          "package": "org.springframework.data:spring-data-mongodb",
+          "new": "1.6.1",
+          "old": "1.5.32",
+          "package": "ch.qos.logback:logback-core",
           "remediation_guided": true
         },
         {
           "change_type": "gradle-force",
-          "new": "1.6.0",
-          "old": "1.5.32",
-          "package": "ch.qos.logback:logback-core",
+          "new": "4.5.13",
+          "old": "4.5.11",
+          "package": "org.springframework.data:spring-data-mongodb",
           "remediation_guided": true
         },
         {
@@ -540,7 +588,35 @@
           "1.5.36",
           "1.5.37",
           "1.5.38",
-          "1.6.0"
+          "1.6.0",
+          "1.6.1"
+        ],
+        "io.netty:netty-codec-compression": [
+          "4.2.0.Alpha3",
+          "4.2.0.Alpha4",
+          "4.2.0.Alpha5",
+          "4.2.0.Beta1",
+          "4.2.0.RC1",
+          "4.2.0.RC2",
+          "4.2.0.RC3",
+          "4.2.0.RC4",
+          "4.2.0.Final",
+          "4.2.1.Final",
+          "4.2.2.Final",
+          "4.2.3.Final",
+          "4.2.4.Final",
+          "4.2.5.Final",
+          "4.2.6.Final",
+          "4.2.7.Final",
+          "4.2.8.Final",
+          "4.2.9.Final",
+          "4.2.10.Final",
+          "4.2.11.Final",
+          "4.2.12.Final",
+          "4.2.13.Final",
+          "4.2.14.Final",
+          "4.2.15.Final",
+          "4.2.16.Final"
         ],
         "io.netty:netty-codec-http": [
           "4.0.0.Alpha1",
@@ -802,6 +878,23 @@
           "4.2.16.Final",
           "5.0.0.Alpha1",
           "5.0.0.Alpha2"
+        ],
+        "io.netty:netty-codec-http3": [
+          "4.2.2.Final",
+          "4.2.3.Final",
+          "4.2.4.Final",
+          "4.2.5.Final",
+          "4.2.6.Final",
+          "4.2.7.Final",
+          "4.2.8.Final",
+          "4.2.9.Final",
+          "4.2.10.Final",
+          "4.2.11.Final",
+          "4.2.12.Final",
+          "4.2.13.Final",
+          "4.2.14.Final",
+          "4.2.15.Final",
+          "4.2.16.Final"
         ],
         "org.apache.tomcat.embed:tomcat-embed-core": [
           "7.0.0",
@@ -2003,7 +2096,7 @@
       "write_status": "Written"
     }
   ],
-  "generated_at": "2026-07-24T10:34:28",
+  "generated_at": "2026-07-28T09:24:23",
   "next_actions": [
     {
       "action": "No additional remediation action identified.",
@@ -2023,8 +2116,10 @@
     "CVE-2026-55833",
     "CVE-2026-55955",
     "CVE-2026-55956",
+    "CVE-2026-56816",
     "CVE-2026-59083",
     "CVE-2026-59084",
+    "CVE-2026-59901",
     "CVE-2026-59949",
     "CVE-2026-9828"
   ],
@@ -2034,13 +2129,13 @@
   "remediation_budget_seconds": 300,
   "security_status": "verified_clean",
   "summary": {
-    "candidate_versions_considered": 1628,
+    "candidate_versions_considered": 1669,
     "component_cve_pairs_new": 0,
     "component_cve_pairs_remaining": 0,
-    "component_cve_pairs_removed": 15,
+    "component_cve_pairs_removed": 17,
     "dependency_files": 1,
     "vulnerability_records_after": 0,
-    "vulnerability_records_before": 15
+    "vulnerability_records_before": 17
   },
   "test_status": "passed",
   "tests": {
@@ -2058,7 +2153,7 @@
         ],
         "ecosystem": "gradle",
         "label": "Gradle tests",
-        "output": "To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.14.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.\nDaemon will be stopped at the end of the build \n\n> Task :compileJava\n\n> Task :processResources\n> Task :classes\n\n> Task :compileTestJava\n\n> Task :processTestResources\n> Task :testClasses\n> Task :test\n> Task :jacocoTestReport\n> Task :jacocoTestCoverageVerification\n\n[Incubating] Problems report is available at: file:///Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_ins-cp-mgmt-preference-workflow_default-branch/default-branch/ins-cp-mgmt-preference-workflow/build/reports/problems/problems-report.html\n\nDeprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.\n\nYou can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.\n\nFor more on this, please refer to https://docs.gradle.org/8.14.1/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.\n\nBUILD SUCCESSFUL in 1m 28s\n7 actionable tasks: 7 executed\n\nNote: Some input files use or override a deprecated API.\nNote: Recompile with -Xlint:deprecation for details.\nNote: Some input files use unchecked or unsafe operations.\nNote: Recompile with -Xlint:unchecked for details.\nNote: Some input files use unchecked or unsafe operations.\nNote: Recompile with -Xlint:unchecked for details.\nJava HotSpot(TM) 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended\n",
+        "output": "To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.14.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.\nDaemon will be stopped at the end of the build \n\n> Task :compileJava\n\n> Task :processResources\n> Task :classes\n\n> Task :compileTestJava\n\n> Task :processTestResources\n> Task :testClasses\n> Task :test\n> Task :jacocoTestReport\n> Task :jacocoTestCoverageVerification\n\n[Incubating] Problems report is available at: file:///Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_ins-cp-mgmt-preference-workflow_default-branch/default-branch/ins-cp-mgmt-preference-workflow/build/reports/problems/problems-report.html\n\nDeprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.\n\nYou can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.\n\nFor more on this, please refer to https://docs.gradle.org/8.14.1/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.\n\nBUILD SUCCESSFUL in 1m 43s\n7 actionable tasks: 7 executed\n\nNote: Some input files use or override a deprecated API.\nNote: Recompile with -Xlint:deprecation for details.\nNote: Some input files use unchecked or unsafe operations.\nNote: Recompile with -Xlint:unchecked for details.\nNote: Some input files use unchecked or unsafe operations.\nNote: Recompile with -Xlint:unchecked for details.\nJava HotSpot(TM) 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended\n",
         "project_dir": "/Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_ins-cp-mgmt-preference-workflow_default-branch/default-branch/ins-cp-mgmt-preference-workflow",
         "reason": "",
         "returncode": 0,

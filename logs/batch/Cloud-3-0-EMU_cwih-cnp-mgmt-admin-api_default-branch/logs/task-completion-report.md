@@ -4,7 +4,7 @@
 |metric|value|
 |---|---|
 |Overall Status|🟢 Success|
-|Generated at|2026-07-24T09:56:03|
+|Generated at|2026-07-28T08:47:25|
 |GitHub URL|https://github.com/Cloud-3-0-EMU/cwih-cnp-mgmt-admin-api.git|
 |Project directory|/Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_cwih-cnp-mgmt-admin-api_default-branch/default-branch/cwih-cnp-mgmt-admin-api|
 |Dependency files|1|
@@ -40,20 +40,20 @@ All remediation actions completed successfully.
 |build.gradle|gradle|org.springframework:spring-framework.version|gradle|6.2.18|6.2.19|Passed|True|
 |build.gradle|gradle|org.springframework:spring-webflux|gradle|6.2.18|6.2.19|Passed|True|
 |build.gradle|gradle|org.apache.tomcat.embed:tomcat-embed-el|gradle|10.1.52|10.1.57|Passed|True|
-|build.gradle|gradle|ch.qos.logback:logback-core|gradle-force|1.5.32|1.6.0|Passed|True|
+|build.gradle|gradle|ch.qos.logback:logback-core|gradle-force|1.5.32|1.6.1|Passed|True|
 |build.gradle|gradle|at.yawk.lz4:lz4-java|gradle-force|1.10.1|1.11.1|Passed|True|
 |build.gradle|gradle|org.springframework.data:spring-data-commons|gradle-force|3.5.11|3.5.13|Passed|True|
 |build.gradle|gradle|org.springframework.data:spring-data-mongodb|gradle-force|4.5.11|4.5.13|Passed|True|
 |build.gradle|gradle|org.springframework.kafka:spring-kafka|gradle-force|3.3.15|3.3.16|Passed|True|
+|build.gradle|gradle|io.netty:netty-resolver-dns|gradle-force|4.1.132.Final|4.2.16.Final|Passed|True|
+|build.gradle|gradle|io.netty:netty-handler-proxy|gradle-force|4.1.132.Final|4.2.16.Final|Passed|True|
+|build.gradle|gradle|io.netty:netty-codec|gradle-force|4.1.132.Final|4.2.16.Final|Passed|True|
 |build.gradle|gradle|com.fasterxml.jackson.core:jackson-databind|gradle-force|2.21.2|2.22.1|Passed|True|
 |build.gradle|gradle|io.netty:netty-codec-dns|gradle-force|4.1.132.Final|4.2.16.Final|Passed|True|
-|build.gradle|gradle|io.netty:netty-handler-proxy|gradle-force|4.1.132.Final|4.2.16.Final|Passed|True|
 |build.gradle|gradle|io.netty:netty-codec-http2|gradle-force|4.1.132.Final|4.2.16.Final|Passed|True|
 |build.gradle|gradle|io.netty:netty-transport-native-epoll|gradle-force|4.1.132.Final|4.2.16.Final|Passed|True|
-|build.gradle|gradle|io.netty:netty-resolver-dns|gradle-force|4.1.132.Final|4.2.16.Final|Passed|True|
-|build.gradle|gradle|io.netty:netty-codec-http|gradle-force|4.1.132.Final|4.2.16.Final|Passed|True|
 |build.gradle|gradle|io.netty:netty-handler|gradle-force|4.1.132.Final|4.2.16.Final|Passed|True|
-|build.gradle|gradle|io.netty:netty-codec|gradle-force|4.1.132.Final|4.2.16.Final|Passed|True|
+|build.gradle|gradle|io.netty:netty-codec-http|gradle-force|4.1.132.Final|4.2.16.Final|Passed|True|
 |build.gradle|gradle|org.springframework:spring-core|gradle-force|6.2.18|6.2.19|Passed|True|
 |build.gradle|gradle|org.springframework:spring-expression|gradle-force|6.2.18|6.2.19|Passed|True|
 |build.gradle|gradle|org.springframework:spring-web|gradle-force|6.2.18|6.2.19|Passed|True|
@@ -68,7 +68,7 @@ _No rows._
 ## Before / After Dependency Trees
 |ecosystem|snapshot|path|exists|line_count|dependency_count|bytes|
 |---|---|---|---|---|---|---|
-|gradle|before|/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_cwih-cnp-mgmt-admin-api_default-branch/logs/gradle-dependency-tree-before.txt|True|1332|1225|84882|
+|gradle|before|/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_cwih-cnp-mgmt-admin-api_default-branch/logs/gradle-dependency-tree-before.txt|True|1332|1225|84881|
 |gradle|after|/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_cwih-cnp-mgmt-admin-api_default-branch/logs/gradle-dependency-tree-after.txt|True|1356|1249|87391|
 |node|before|/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_cwih-cnp-mgmt-admin-api_default-branch/logs/npm-dependency-tree-before.json|False|0|0|0|
 |node|after|/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_cwih-cnp-mgmt-admin-api_default-branch/logs/npm-dependency-tree-after.json|False|0|0|0|
@@ -77,8 +77,8 @@ _No rows._
 |dependency|before|after|status|
 |---|---|---|---|
 |at.yawk.lz4:lz4-java|1.10.1|1.11.1|changed|
-|ch.qos.logback:logback-classic|1.5.32|1.6.0|changed|
-|ch.qos.logback:logback-core|1.5.32|1.6.0|changed|
+|ch.qos.logback:logback-classic|1.5.32|1.6.1|changed|
+|ch.qos.logback:logback-core|1.5.32|1.6.1|changed|
 |com.fasterxml.jackson.core:jackson-annotations|2.21|2.22|changed|
 |com.fasterxml.jackson.core:jackson-core|2.21.2|2.22.1|changed|
 |com.fasterxml.jackson.core:jackson-databind|2.21.2|2.22.1|changed|

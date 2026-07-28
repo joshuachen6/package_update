@@ -4,7 +4,7 @@
 |metric|value|
 |---|---|
 |Overall Status|🟡 Needs Review|
-|Generated at|2026-07-24T10:27:56|
+|Generated at|2026-07-28T09:19:50|
 |GitHub URL|https://github.com/Cloud-3-0-EMU/ins-cp-mgmt-preference-api.git|
 |Project directory|/Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_ins-cp-mgmt-preference-api_default-branch/default-branch/ins-cp-mgmt-preference-api|
 |Dependency files|1|
@@ -16,7 +16,7 @@
 |Verification classification|Partial - build passed but 1 CVE record(s) remain|
 |Test verification|passed|
 |Original CVEs remaining|0|
-|JFrog vulnerabilities before|64|
+|JFrog vulnerabilities before|67|
 |JFrog vulnerabilities after|1|
 |JFrog audit before JSON|/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_ins-cp-mgmt-preference-api_default-branch/logs/jfrog-audit.json|
 |JFrog audit after JSON|/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_ins-cp-mgmt-preference-api_default-branch/logs/jfrog-audit-after.json|
@@ -39,28 +39,28 @@ Review:
 ## Applied / Planned Changes
 |file|ecosystem|package|type|old|new|status|remediation_guided|
 |---|---|---|---|---|---|---|---|
-|build.gradle|gradle|ch.qos.logback:logback-core|gradle|1.5.25|1.6.0|Passed|True|
-|build.gradle|gradle|io.netty:netty-codec-http2|gradle|4.1.132.Final|4.2.16.Final|Passed|True|
 |build.gradle|gradle|io.netty:netty-codec-http|gradle|4.1.132.Final|4.2.16.Final|Passed|True|
-|build.gradle|gradle|org.springframework:spring-framework.version|gradle|6.2.17|6.2.19|Passed|True|
+|build.gradle|gradle|io.netty:netty-codec-http2|gradle|4.1.132.Final|4.2.16.Final|Passed|True|
 |build.gradle|gradle|org.apache.kafka:kafka-clients|gradle|4.1.1|4.3.1|Passed|True|
-|build.gradle|gradle|ch.qos.logback:logback-classic|gradle|1.5.25|1.6.0|Passed|True|
-|build.gradle|gradle|io.netty:netty-handler-proxy|gradle-force|4.1.131.Final|4.2.16.Final|Passed|True|
-|build.gradle|gradle|io.netty:netty-codec-compression|gradle-force|4.2.5.Final|4.2.16.Final|Passed|True|
-|build.gradle|gradle|io.netty:netty-transport-native-epoll|gradle-force|4.1.131.Final|4.2.16.Final|Passed|True|
+|build.gradle|gradle|ch.qos.logback:logback-core|gradle|1.5.25|1.6.1|Passed|True|
+|build.gradle|gradle|org.springframework:spring-framework.version|gradle|6.2.17|6.2.19|Passed|True|
+|build.gradle|gradle|ch.qos.logback:logback-classic|gradle|1.5.25|1.6.1|Passed|True|
 |build.gradle|gradle|io.netty:netty-codec-dns|gradle-force|4.1.131.Final|4.2.16.Final|Passed|True|
+|build.gradle|gradle|io.netty:netty-handler-proxy|gradle-force|4.1.131.Final|4.2.16.Final|Passed|True|
+|build.gradle|gradle|io.netty:netty-transport-native-epoll|gradle-force|4.1.131.Final|4.2.16.Final|Passed|True|
 |build.gradle|gradle|io.netty:netty-resolver-dns|gradle-force|4.1.131.Final|4.2.16.Final|Passed|True|
 |build.gradle|gradle|io.micrometer:micrometer-core|gradle-force|1.15.10|1.17.0|Passed|True|
-|build.gradle|gradle|org.apache.cxf:cxf-core|gradle-force|4.1.3|4.2.2|Passed|True|
+|build.gradle|gradle|io.netty:netty-codec-compression|gradle-force|4.2.5.Final|4.2.16.Final|Passed|True|
 |build.gradle|gradle|org.springframework.boot:spring-boot|gradle-force|3.5.12|3.5.16|Passed|True|
-|build.gradle|gradle|org.springframework.hateoas:spring-hateoas|gradle-force|2.5.2|2.5.3|Passed|True|
-|build.gradle|gradle|org.springframework.kafka:spring-kafka|gradle-force|3.3.14|3.3.16|Passed|True|
-|build.gradle|gradle|org.springframework.data:spring-data-commons|gradle-force|3.5.10|3.5.13|Passed|True|
-|build.gradle|gradle|org.apache.neethi:neethi|gradle-force|3.2.1|3.2.3|Passed|True|
 |build.gradle|gradle|org.springframework.data:spring-data-mongodb|gradle-force|4.5.10|4.5.13|Passed|True|
-|build.gradle|gradle|io.netty:netty-codec|gradle-force|4.1.131.Final|4.2.16.Final|Passed|True|
+|build.gradle|gradle|org.springframework.data:spring-data-commons|gradle-force|3.5.10|3.5.13|Passed|True|
+|build.gradle|gradle|org.springframework.kafka:spring-kafka|gradle-force|3.3.14|3.3.16|Passed|True|
+|build.gradle|gradle|org.apache.cxf:cxf-core|gradle-force|4.1.3|4.2.2|Passed|True|
+|build.gradle|gradle|org.springframework.hateoas:spring-hateoas|gradle-force|2.5.2|2.5.3|Passed|True|
+|build.gradle|gradle|org.apache.neethi:neethi|gradle-force|3.2.1|3.2.3|Passed|True|
 |build.gradle|gradle|com.fasterxml.jackson.core:jackson-databind|gradle-force|2.19.4|2.22.1|Passed|True|
 |build.gradle|gradle|io.netty:netty-handler|gradle-force|4.1.131.Final|4.2.16.Final|Passed|True|
+|build.gradle|gradle|io.netty:netty-codec|gradle-force|4.1.131.Final|4.2.16.Final|Passed|True|
 |build.gradle|gradle|org.springframework:spring-core|gradle-force|6.2.17|6.2.19|Passed|True|
 |build.gradle|gradle|org.springframework:spring-expression|gradle-force|6.2.17|6.2.19|Passed|True|
 |build.gradle|gradle|org.springframework:spring-web|gradle-force|6.2.17|6.2.19|Passed|True|
@@ -77,8 +77,8 @@ _No rows._
 ## Before / After Dependency Trees
 |ecosystem|snapshot|path|exists|line_count|dependency_count|bytes|
 |---|---|---|---|---|---|---|
-|gradle|before|/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_ins-cp-mgmt-preference-api_default-branch/logs/gradle-dependency-tree-before.txt|True|2015|1900|136487|
-|gradle|after|/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_ins-cp-mgmt-preference-api_default-branch/logs/gradle-dependency-tree-after.txt|True|2077|1962|139867|
+|gradle|before|/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_ins-cp-mgmt-preference-api_default-branch/logs/gradle-dependency-tree-before.txt|True|2015|1900|136491|
+|gradle|after|/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_ins-cp-mgmt-preference-api_default-branch/logs/gradle-dependency-tree-after.txt|True|2077|1962|139870|
 |node|before|/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_ins-cp-mgmt-preference-api_default-branch/logs/npm-dependency-tree-before.json|False|0|0|0|
 |node|after|/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_ins-cp-mgmt-preference-api_default-branch/logs/npm-dependency-tree-after.json|False|0|0|0|
 
@@ -86,8 +86,8 @@ _No rows._
 |dependency|before|after|status|
 |---|---|---|---|
 |at.yawk.lz4:lz4-java||1.10.2|added|
-|ch.qos.logback:logback-classic|1.5.25|1.6.0|changed|
-|ch.qos.logback:logback-core|1.5.25|1.6.0|changed|
+|ch.qos.logback:logback-classic|1.5.25|1.6.1|changed|
+|ch.qos.logback:logback-core|1.5.25|1.6.1|changed|
 |com.fasterxml.jackson.core:jackson-databind|2.19.4|2.21.5|changed|
 |com.fasterxml.jackson.datatype:jackson-datatype-jdk8|2.19.4|2.22.1|changed|
 |com.fasterxml.jackson.module:jackson-module-parameter-names|2.19.4|2.22.1|changed|

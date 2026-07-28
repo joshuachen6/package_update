@@ -1,0 +1,9 @@
+dependency,old_version,new_version,minimum_required
+io.micrometer:micrometer-core,1.15.11,1.17.0,1.17.0
+org.springframework.data:spring-data-mongodb,4.5.11,4.5.13,4.5.13
+at.yawk.lz4:lz4-java,1.10.1,1.11.1,1.11.1
+io.netty:netty-codec-http,4.1.135.Final,4.2.16.Final,4.2.16.Final
+org.springframework.kafka:spring-kafka,3.3.15,3.3.16,3.3.16
+org.springframework.data:spring-data-commons,3.5.11,3.5.13,3.5.13
+org.apache.tomcat.embed:tomcat-embed-websocket,11.0.21,11.0.24,11.0.24
+com.fasterxml.jackson.core:jackson-databind,2.21.2,2.22.1,2.22.1

@@ -6,7 +6,7 @@
           "package": "ch.qos.logback:logback-core",
           "change_type": "gradle",
           "old": "1.5.25",
-          "new": "1.6.0",
+          "new": "1.6.1",
           "remediation_guided": true
         },
         {
@@ -34,7 +34,7 @@
           "package": "ch.qos.logback:logback-classic",
           "change_type": "gradle",
           "old": "1.5.25",
-          "new": "1.6.0",
+          "new": "1.6.1",
           "remediation_guided": true
         },
         {
@@ -59,13 +59,6 @@
           "remediation_guided": true
         },
         {
-          "package": "org.apache.tomcat.embed:tomcat-embed-websocket",
-          "change_type": "gradle-force",
-          "old": "10.1.53",
-          "new": "10.1.57",
-          "remediation_guided": true
-        },
-        {
           "package": "org.springframework.boot:spring-boot",
           "change_type": "gradle-force",
           "old": "3.5.13",
@@ -73,31 +66,10 @@
           "remediation_guided": true
         },
         {
-          "package": "org.springframework.data:spring-data-commons",
+          "package": "org.apache.tomcat.embed:tomcat-embed-websocket",
           "change_type": "gradle-force",
-          "old": "3.5.10",
-          "new": "3.5.13",
-          "remediation_guided": true
-        },
-        {
-          "package": "org.springframework.kafka:spring-kafka",
-          "change_type": "gradle-force",
-          "old": "3.3.14",
-          "new": "3.3.16",
-          "remediation_guided": true
-        },
-        {
-          "package": "org.springframework.data:spring-data-mongodb",
-          "change_type": "gradle-force",
-          "old": "4.5.10",
-          "new": "4.5.13",
-          "remediation_guided": true
-        },
-        {
-          "package": "com.fasterxml.jackson.core:jackson-databind",
-          "change_type": "gradle-force",
-          "old": "2.21.2",
-          "new": "2.22.1",
+          "old": "10.1.53",
+          "new": "10.1.57",
           "remediation_guided": true
         },
         {
@@ -108,10 +80,24 @@
           "remediation_guided": true
         },
         {
-          "package": "io.netty:netty-handler-proxy",
+          "package": "org.springframework.data:spring-data-commons",
           "change_type": "gradle-force",
-          "old": "4.1.132.Final",
-          "new": "4.2.16.Final",
+          "old": "3.5.10",
+          "new": "3.5.13",
+          "remediation_guided": true
+        },
+        {
+          "package": "org.springframework.data:spring-data-mongodb",
+          "change_type": "gradle-force",
+          "old": "4.5.10",
+          "new": "4.5.13",
+          "remediation_guided": true
+        },
+        {
+          "package": "org.springframework.kafka:spring-kafka",
+          "change_type": "gradle-force",
+          "old": "3.3.14",
+          "new": "3.3.16",
           "remediation_guided": true
         },
         {
@@ -122,21 +108,7 @@
           "remediation_guided": true
         },
         {
-          "package": "io.netty:netty-codec-dns",
-          "change_type": "gradle-force",
-          "old": "4.1.132.Final",
-          "new": "4.2.16.Final",
-          "remediation_guided": true
-        },
-        {
           "package": "io.netty:netty-codec",
-          "change_type": "gradle-force",
-          "old": "4.1.132.Final",
-          "new": "4.2.16.Final",
-          "remediation_guided": true
-        },
-        {
-          "package": "io.netty:netty-handler",
           "change_type": "gradle-force",
           "old": "4.1.132.Final",
           "new": "4.2.16.Final",
@@ -151,6 +123,34 @@
         },
         {
           "package": "io.netty:netty-codec-http2",
+          "change_type": "gradle-force",
+          "old": "4.1.132.Final",
+          "new": "4.2.16.Final",
+          "remediation_guided": true
+        },
+        {
+          "package": "com.fasterxml.jackson.core:jackson-databind",
+          "change_type": "gradle-force",
+          "old": "2.21.2",
+          "new": "2.22.1",
+          "remediation_guided": true
+        },
+        {
+          "package": "io.netty:netty-handler",
+          "change_type": "gradle-force",
+          "old": "4.1.132.Final",
+          "new": "4.2.16.Final",
+          "remediation_guided": true
+        },
+        {
+          "package": "io.netty:netty-codec-dns",
+          "change_type": "gradle-force",
+          "old": "4.1.132.Final",
+          "new": "4.2.16.Final",
+          "remediation_guided": true
+        },
+        {
+          "package": "io.netty:netty-handler-proxy",
           "change_type": "gradle-force",
           "old": "4.1.132.Final",
           "new": "4.2.16.Final",
@@ -194,10 +194,10 @@
           "dependency": "ch.qos.logback:logback-core",
           "config": "implementation",
           "old_version": "1.5.25",
-          "new_version": "1.6.0",
+          "new_version": "1.6.1",
           "remediation_guided": "yes",
           "original": "implementation \"ch.qos.logback:logback-core:1.5.25\"",
-          "replacement": "implementation \"ch.qos.logback:logback-core:1.6.0\""
+          "replacement": "implementation \"ch.qos.logback:logback-core:1.6.1\""
         },
         {
           "dependency": "org.apache.tomcat.embed:tomcat-embed-core",
@@ -230,10 +230,10 @@
           "dependency": "ch.qos.logback:logback-classic",
           "config": "implementation",
           "old_version": "1.5.25",
-          "new_version": "1.6.0",
+          "new_version": "1.6.1",
           "remediation_guided": "competing pin realigned",
           "original": "implementation \"ch.qos.logback:logback-classic:1.5.25\"",
-          "replacement": "implementation \"ch.qos.logback:logback-classic:1.6.0\""
+          "replacement": "implementation \"ch.qos.logback:logback-classic:1.6.1\""
         },
         {
           "dependency": "com.fasterxml.jackson.core:jackson-core",
@@ -259,40 +259,16 @@
           "minimum_required": "1.17.0"
         },
         {
-          "dependency": "org.apache.tomcat.embed:tomcat-embed-websocket",
-          "old_version": "10.1.53",
-          "new_version": "10.1.57",
-          "minimum_required": "10.1.57"
-        },
-        {
           "dependency": "org.springframework.boot:spring-boot",
           "old_version": "3.5.13",
           "new_version": "3.5.16",
           "minimum_required": "3.5.16"
         },
         {
-          "dependency": "org.springframework.data:spring-data-commons",
-          "old_version": "3.5.10",
-          "new_version": "3.5.13",
-          "minimum_required": "3.5.13"
-        },
-        {
-          "dependency": "org.springframework.kafka:spring-kafka",
-          "old_version": "3.3.14",
-          "new_version": "3.3.16",
-          "minimum_required": "3.3.16"
-        },
-        {
-          "dependency": "org.springframework.data:spring-data-mongodb",
-          "old_version": "4.5.10",
-          "new_version": "4.5.13",
-          "minimum_required": "4.5.13"
-        },
-        {
-          "dependency": "com.fasterxml.jackson.core:jackson-databind",
-          "old_version": "2.21.2",
-          "new_version": "2.22.1",
-          "minimum_required": "2.22.1"
+          "dependency": "org.apache.tomcat.embed:tomcat-embed-websocket",
+          "old_version": "10.1.53",
+          "new_version": "10.1.57",
+          "minimum_required": "10.1.57"
         },
         {
           "dependency": "io.netty:netty-resolver-dns",
@@ -301,10 +277,22 @@
           "minimum_required": "4.2.16.Final"
         },
         {
-          "dependency": "io.netty:netty-handler-proxy",
-          "old_version": "4.1.132.Final",
-          "new_version": "4.2.16.Final",
-          "minimum_required": "4.2.16.Final"
+          "dependency": "org.springframework.data:spring-data-commons",
+          "old_version": "3.5.10",
+          "new_version": "3.5.13",
+          "minimum_required": "3.5.13"
+        },
+        {
+          "dependency": "org.springframework.data:spring-data-mongodb",
+          "old_version": "4.5.10",
+          "new_version": "4.5.13",
+          "minimum_required": "4.5.13"
+        },
+        {
+          "dependency": "org.springframework.kafka:spring-kafka",
+          "old_version": "3.3.14",
+          "new_version": "3.3.16",
+          "minimum_required": "3.3.16"
         },
         {
           "dependency": "io.netty:netty-codec-http",
@@ -313,19 +301,7 @@
           "minimum_required": "4.2.16.Final"
         },
         {
-          "dependency": "io.netty:netty-codec-dns",
-          "old_version": "4.1.132.Final",
-          "new_version": "4.2.16.Final",
-          "minimum_required": "4.2.16.Final"
-        },
-        {
           "dependency": "io.netty:netty-codec",
-          "old_version": "4.1.132.Final",
-          "new_version": "4.2.16.Final",
-          "minimum_required": "4.2.16.Final"
-        },
-        {
-          "dependency": "io.netty:netty-handler",
           "old_version": "4.1.132.Final",
           "new_version": "4.2.16.Final",
           "minimum_required": "4.2.16.Final"
@@ -338,6 +314,30 @@
         },
         {
           "dependency": "io.netty:netty-codec-http2",
+          "old_version": "4.1.132.Final",
+          "new_version": "4.2.16.Final",
+          "minimum_required": "4.2.16.Final"
+        },
+        {
+          "dependency": "com.fasterxml.jackson.core:jackson-databind",
+          "old_version": "2.21.2",
+          "new_version": "2.22.1",
+          "minimum_required": "2.22.1"
+        },
+        {
+          "dependency": "io.netty:netty-handler",
+          "old_version": "4.1.132.Final",
+          "new_version": "4.2.16.Final",
+          "minimum_required": "4.2.16.Final"
+        },
+        {
+          "dependency": "io.netty:netty-codec-dns",
+          "old_version": "4.1.132.Final",
+          "new_version": "4.2.16.Final",
+          "minimum_required": "4.2.16.Final"
+        },
+        {
+          "dependency": "io.netty:netty-handler-proxy",
           "old_version": "4.1.132.Final",
           "new_version": "4.2.16.Final",
           "minimum_required": "4.2.16.Final"
@@ -556,7 +556,8 @@
           "1.5.36",
           "1.5.37",
           "1.5.38",
-          "1.6.0"
+          "1.6.0",
+          "1.6.1"
         ],
         "com.fasterxml.jackson.core:jackson-databind": [
           "2.0.0-RC1",

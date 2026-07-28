@@ -1,6 +1,6 @@
 dependency,old_version,new_version,minimum_required
+ch.qos.logback:logback-core,1.5.32,1.6.1,1.6.1
 org.springframework.data:spring-data-mongodb,4.5.11,4.5.13,4.5.13
-ch.qos.logback:logback-core,1.5.32,1.6.0,1.6.0
 at.yawk.lz4:lz4-java,1.10.1,1.11.1,1.11.1
 org.apache.httpcomponents.core5:httpcore5,,5.4.3,5.4.3
 org.apache.httpcomponents.core5:httpcore5-h2,,5.4.3,5.4.3

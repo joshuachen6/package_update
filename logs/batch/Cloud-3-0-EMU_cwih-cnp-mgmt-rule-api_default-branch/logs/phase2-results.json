@@ -6,7 +6,7 @@
           "package": "ch.qos.logback:logback-core",
           "change_type": "gradle",
           "old": "1.5.25",
-          "new": "1.6.0",
+          "new": "1.6.1",
           "remediation_guided": true
         },
         {
@@ -20,7 +20,7 @@
           "package": "ch.qos.logback:logback-classic",
           "change_type": "gradle",
           "old": "1.5.25",
-          "new": "1.6.0",
+          "new": "1.6.1",
           "remediation_guided": true
         },
         {
@@ -47,10 +47,10 @@
           "dependency": "ch.qos.logback:logback-core",
           "config": "implementation",
           "old_version": "1.5.25",
-          "new_version": "1.6.0",
+          "new_version": "1.6.1",
           "remediation_guided": "yes",
           "original": "implementation \"ch.qos.logback:logback-core:1.5.25\"",
-          "replacement": "implementation \"ch.qos.logback:logback-core:1.6.0\""
+          "replacement": "implementation \"ch.qos.logback:logback-core:1.6.1\""
         },
         {
           "dependency": "org.apache.tomcat.embed:tomcat-embed-core",
@@ -65,10 +65,10 @@
           "dependency": "ch.qos.logback:logback-classic",
           "config": "implementation",
           "old_version": "1.5.25",
-          "new_version": "1.6.0",
+          "new_version": "1.6.1",
           "remediation_guided": "competing pin realigned",
           "original": "implementation \"ch.qos.logback:logback-classic:1.5.25\"",
-          "replacement": "implementation \"ch.qos.logback:logback-classic:1.6.0\""
+          "replacement": "implementation \"ch.qos.logback:logback-classic:1.6.1\""
         }
       ],
       "force_entries": [
@@ -259,7 +259,8 @@
           "1.5.36",
           "1.5.37",
           "1.5.38",
-          "1.6.0"
+          "1.6.0",
+          "1.6.1"
         ],
         "org.apache.tomcat.embed:tomcat-embed-core": [
           "7.0.0",

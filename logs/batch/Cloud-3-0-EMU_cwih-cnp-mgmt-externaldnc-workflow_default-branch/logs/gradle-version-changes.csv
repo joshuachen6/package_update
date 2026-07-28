@@ -2,11 +2,11 @@ dependency,config,old_version,new_version,remediation_guided
 io.netty:netty-codec-http2,implementation,4.2.11.Final,4.2.16.Final,yes
 io.netty:netty-handler,implementation,4.2.5.Final,4.2.16.Final,yes
 io.netty:netty-codec-http,implementation,4.2.11.Final,4.2.16.Final,yes
+ch.qos.logback:logback-core,implementation,1.5.25,1.6.1,yes
 org.apache.tomcat.embed:tomcat-embed-core,implementation,10.1.52,10.1.57,yes
-ch.qos.logback:logback-core,implementation,1.5.25,1.6.0,yes
+org.springframework:spring-framework.version,ext,6.2.17,6.2.19,transitive org.springframework:spring-core>=6.2.19
 org.apache.tomcat.embed:tomcat-embed-websocket,implementation,10.1.52,10.1.57,yes
 org.springframework.kafka:spring-kafka,implementation,3.3.6,3.3.16,yes
-org.springframework:spring-framework.version,ext,6.2.17,6.2.19,transitive org.springframework:spring-web>=6.2.19
 org.springframework:spring-webflux,implementation,6.2.17,6.2.19,yes
-ch.qos.logback:logback-classic,implementation,1.5.25,1.6.0,competing pin realigned
+ch.qos.logback:logback-classic,implementation,1.5.25,1.6.1,competing pin realigned
 io.netty:netty-codec,implementation,4.2.11.Final,4.2.16.Final,competing pin realigned

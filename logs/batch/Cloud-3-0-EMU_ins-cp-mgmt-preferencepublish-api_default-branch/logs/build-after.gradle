@@ -4,9 +4,9 @@ buildscript {
             // package-update: managed buildscript force block (safe to regenerate)
             force 'org.apache.cxf:cxf-core:4.2.2'
             force 'org.apache.neethi:neethi:3.2.3'
-            force 'org.springframework.data:spring-data-mongodb:4.5.13'
             force 'org.springframework.data:spring-data-commons:3.5.13'
             force 'org.springframework.hateoas:spring-hateoas:2.5.3'
+            force 'org.springframework.data:spring-data-mongodb:4.5.13'
         }
     }
 
@@ -38,8 +38,8 @@ plugins {
 configurations.all {
     resolutionStrategy.dependencySubstitution {
         // package-update: managed dependencySubstitution block (safe to regenerate)
-        substitute module('org.springframework.data:spring-data-mongodb') using module('org.springframework.data:spring-data-mongodb:4.5.13')
         substitute module('org.springframework.data:spring-data-commons') using module('org.springframework.data:spring-data-commons:3.5.13')
+        substitute module('org.springframework.data:spring-data-mongodb') using module('org.springframework.data:spring-data-mongodb:4.5.13')
     }
 }
 
@@ -48,9 +48,9 @@ configurations.all {
         // package-update: managed force block (safe to regenerate)
         force 'org.apache.cxf:cxf-core:4.2.2'
         force 'org.apache.neethi:neethi:3.2.3'
-        force 'org.springframework.data:spring-data-mongodb:4.5.13'
         force 'org.springframework.data:spring-data-commons:3.5.13'
         force 'org.springframework.hateoas:spring-hateoas:2.5.3'
+        force 'org.springframework.data:spring-data-mongodb:4.5.13'
     }
 }
 
@@ -156,13 +156,13 @@ dependencies {
 
     implementation(group: 'ch.qos.logback', name: 'logback-classic') {
         version {
-            strictly '1.6.0'
+            strictly '1.6.1'
         }
     }
 
     implementation(group: 'ch.qos.logback', name: 'logback-core') {
         version {
-            strictly '1.6.0'
+            strictly '1.6.1'
         }
     }
 

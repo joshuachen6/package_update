@@ -97,8 +97,8 @@ dependencies {
     implementation 'org.springframework.kafka:spring-kafka'
     implementation 'org.apache.kafka:kafka-clients'
     implementation 'org.apache.tomcat.embed:tomcat-embed-core:11.0.24'
-    implementation "ch.qos.logback:logback-core:1.6.0"//Vit Fix CVE-2025-11226
-    implementation "ch.qos.logback:logback-classic:1.6.0"//Vit Fix CVE-2025-11226
+    implementation "ch.qos.logback:logback-core:1.6.1"//Vit Fix CVE-2025-11226
+    implementation "ch.qos.logback:logback-classic:1.6.1"//Vit Fix CVE-2025-11226
     implementation 'org.apache.avro:avro:1.12.0'
     implementation 'io.projectreactor.netty:reactor-netty-http:1.3.2'
     compileOnly 'org.projectlombok:lombok'

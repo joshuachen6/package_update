@@ -2,11 +2,11 @@ buildscript {
     configurations.all {
         resolutionStrategy {
             // package-update: managed buildscript force block (safe to regenerate)
+            force 'org.springframework.data:spring-data-mongodb:4.5.13'
+            force 'org.springframework.data:spring-data-commons:3.5.13'
             force 'org.apache.cxf:cxf-core:4.2.2'
             force 'org.springframework.hateoas:spring-hateoas:2.5.3'
-            force 'org.springframework.data:spring-data-commons:3.5.13'
             force 'org.apache.neethi:neethi:3.2.3'
-            force 'org.springframework.data:spring-data-mongodb:4.5.13'
         
             force 'com.fasterxml.jackson.core:jackson-databind:2.21.5'
 }
@@ -40,8 +40,8 @@ plugins {
 configurations.all {
     resolutionStrategy.dependencySubstitution {
         // package-update: managed dependencySubstitution block (safe to regenerate)
-        substitute module('org.springframework.data:spring-data-commons') using module('org.springframework.data:spring-data-commons:3.5.13')
         substitute module('org.springframework.data:spring-data-mongodb') using module('org.springframework.data:spring-data-mongodb:4.5.13')
+        substitute module('org.springframework.data:spring-data-commons') using module('org.springframework.data:spring-data-commons:3.5.13')
     
         substitute module('com.fasterxml.jackson.core:jackson-databind') using module('com.fasterxml.jackson.core:jackson-databind:2.21.5')
 }
@@ -50,11 +50,11 @@ configurations.all {
 configurations.all {
     resolutionStrategy {
         // package-update: managed force block (safe to regenerate)
+        force 'org.springframework.data:spring-data-mongodb:4.5.13'
+        force 'org.springframework.data:spring-data-commons:3.5.13'
         force 'org.apache.cxf:cxf-core:4.2.2'
         force 'org.springframework.hateoas:spring-hateoas:2.5.3'
-        force 'org.springframework.data:spring-data-commons:3.5.13'
         force 'org.apache.neethi:neethi:3.2.3'
-        force 'org.springframework.data:spring-data-mongodb:4.5.13'
     
         force 'com.fasterxml.jackson.core:jackson-databind:2.21.5'
 }
@@ -154,12 +154,12 @@ dependencies {
 
     implementation(group: 'ch.qos.logback', name: 'logback-core') {
         version {
-            strictly '1.6.0'
+            strictly '1.6.1'
         }
     }
     implementation(group: 'ch.qos.logback', name: 'logback-classic') {
         version {
-            strictly '1.6.0'
+            strictly '1.6.1'
         }
     }
     implementation(group: 'org.apache.commons', name: 'commons-lang3') {

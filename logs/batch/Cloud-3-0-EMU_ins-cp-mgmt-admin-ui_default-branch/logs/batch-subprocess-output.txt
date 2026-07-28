@@ -10,27 +10,28 @@ Found 1 dependency file(s):
 JFrog CVE audit
 ------------------------------------------------------------
 Running JFrog Xray API CVE scan for 870 resolved component(s)...
-JFrog Xray API CVE scan complete: 31 CVE record(s) across 11 vulnerable component(s).
+JFrog Xray API CVE scan complete: 32 CVE record(s) across 12 vulnerable component(s).
 JFrog audit log -> /Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_ins-cp-mgmt-admin-ui_default-branch/logs/jfrog-audit.json
 
 ------------------------------------------------------------
 Fix JFrog CVEs
 ------------------------------------------------------------
 
-Fixing 11 JFrog package(s) in Node/npm  >  package.json
+Fixing 12 JFrog package(s) in Node/npm  >  package.json
 
-Querying npm/JFrog versions (12 workers): [------------------------------] 0/11 0%
-Querying npm/JFrog versions (12 workers): [##----------------------------] 1/11 9%
-Querying npm/JFrog versions (12 workers): [#####-------------------------] 2/11 18%
-Querying npm/JFrog versions (12 workers): [########----------------------] 3/11 27%
-Querying npm/JFrog versions (12 workers): [##########--------------------] 4/11 36%
-Querying npm/JFrog versions (12 workers): [#############-----------------] 5/11 45%
-Querying npm/JFrog versions (12 workers): [################--------------] 6/11 54%
-Querying npm/JFrog versions (12 workers): [###################-----------] 7/11 63%
-Querying npm/JFrog versions (12 workers): [#####################---------] 8/11 72%
-Querying npm/JFrog versions (12 workers): [########################------] 9/11 81%
-Querying npm/JFrog versions (12 workers): [###########################---] 10/11 90%
-Querying npm/JFrog versions (12 workers): [##############################] 11/11 100%
+Querying npm/JFrog versions (12 workers): [------------------------------] 0/12 0%
+Querying npm/JFrog versions (12 workers): [##----------------------------] 1/12 8%
+Querying npm/JFrog versions (12 workers): [#####-------------------------] 2/12 16%
+Querying npm/JFrog versions (12 workers): [#######-----------------------] 3/12 25%
+Querying npm/JFrog versions (12 workers): [##########--------------------] 4/12 33%
+Querying npm/JFrog versions (12 workers): [############------------------] 5/12 41%
+Querying npm/JFrog versions (12 workers): [###############---------------] 6/12 50%
+Querying npm/JFrog versions (12 workers): [#################-------------] 7/12 58%
+Querying npm/JFrog versions (12 workers): [####################----------] 8/12 66%
+Querying npm/JFrog versions (12 workers): [######################--------] 9/12 75%
+Querying npm/JFrog versions (12 workers): [#########################-----] 10/12 83%
+Querying npm/JFrog versions (12 workers): [###########################---] 11/12 91%
+Querying npm/JFrog versions (12 workers): [##############################] 12/12 100%
 Pre-fetching npm versions for 56 direct deps...
 
 Querying npm/JFrog versions (12 workers): [------------------------------] 0/56 0%
@@ -91,15 +92,15 @@ Querying npm/JFrog versions (12 workers): [############################--] 54/56
 Querying npm/JFrog versions (12 workers): [#############################-] 55/56 98%
 Querying npm/JFrog versions (12 workers): [##############################] 56/56 100%
 
-Node counts: remediation_packages=11, direct=2, overrides=8, skipped=1
-Changes: npm_direct=2, npm_override=8, skipped=1
+Node counts: remediation_packages=12, direct=2, overrides=9, skipped=1
+Changes: npm_direct=2, npm_override=9, skipped=1
 Phase2 cache generated → /Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_ins-cp-mgmt-admin-ui_default-branch/logs/phase2-results.json
 Writing /Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_ins-cp-mgmt-admin-ui_default-branch/default-branch/ins-cp-mgmt-admin-ui/package.json in place...
 Backup created: /Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_ins-cp-mgmt-admin-ui_default-branch/default-branch/ins-cp-mgmt-admin-ui/package.json.bak
 Updated package.json written to: /Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_ins-cp-mgmt-admin-ui_default-branch/default-branch/ins-cp-mgmt-admin-ui/package.json
 Validating updated project: npm install --no-audit --no-fund
 
-added 807 packages in 48s
+added 807 packages in 50s
 npm warn ERESOLVE overriding peer dependency
 npm warn While resolving: jest-config@29.7.0
 npm warn Found: @types/node@25.3.0
@@ -142,7 +143,7 @@ Validating updated project: npm run build
    ▲ Next.js 15.5.19
 
    Creating an optimized production build ...
- ✓ Compiled successfully in 8.7s
+ ✓ Compiled successfully in 17.7s
    Linting and checking validity of types ...
    Collecting page data ...
    Generating static pages (0/57) ...
@@ -232,7 +233,7 @@ Route (app)                                  Size  First Load JS
 NOT SUPPORTED: option missingRefs. Pass empty schema with $id that should be ignored to ajv.addSchema.
  ⨯ ESLint: Cannot set properties of undefined (setting 'defaultMeta')
 
-Totals: 2 npm direct, 8 npm override(s), 0 Gradle direct, 0 Gradle force(s), 0 Python direct, 1 skipped
+Totals: 2 npm direct, 9 npm override(s), 0 Gradle direct, 0 Gradle force(s), 0 Python direct, 1 skipped
 Logs:   /Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_ins-cp-mgmt-admin-ui_default-branch/logs
 Running JFrog Xray API CVE scan for 870 resolved component(s)...
 JFrog Xray API CVE scan complete: 15 CVE record(s) across 7 vulnerable component(s).

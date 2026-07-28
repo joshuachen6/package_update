@@ -24,14 +24,14 @@
           "remediation_guided": true
         },
         {
-          "package": "org.xmlunit:xmlunit-core",
+          "package": "org.apache.tomcat.embed:tomcat-embed-core",
           "change_type": "gradle-force",
-          "old": "2.9.1",
-          "new": "2.12.0",
+          "old": "10.1.41",
+          "new": "10.1.57",
           "remediation_guided": true
         },
         {
-          "package": "org.apache.tomcat.embed:tomcat-embed-core",
+          "package": "org.apache.tomcat.embed:tomcat-embed-websocket",
           "change_type": "gradle-force",
           "old": "10.1.41",
           "new": "10.1.57",
@@ -45,17 +45,17 @@
           "remediation_guided": true
         },
         {
+          "package": "org.xmlunit:xmlunit-core",
+          "change_type": "gradle-force",
+          "old": "2.9.1",
+          "new": "2.12.0",
+          "remediation_guided": true
+        },
+        {
           "package": "org.assertj:assertj-core",
           "change_type": "gradle-force",
           "old": "3.25.3",
           "new": "3.27.7",
-          "remediation_guided": true
-        },
-        {
-          "package": "org.apache.tomcat.embed:tomcat-embed-websocket",
-          "change_type": "gradle-force",
-          "old": "10.1.41",
-          "new": "10.1.57",
           "remediation_guided": true
         },
         {
@@ -113,13 +113,13 @@
           "minimum_required": "3.5.16"
         },
         {
-          "dependency": "org.xmlunit:xmlunit-core",
-          "old_version": "2.9.1",
-          "new_version": "2.12.0",
-          "minimum_required": "2.12.0"
+          "dependency": "org.apache.tomcat.embed:tomcat-embed-core",
+          "old_version": "10.1.41",
+          "new_version": "10.1.57",
+          "minimum_required": "10.1.57"
         },
         {
-          "dependency": "org.apache.tomcat.embed:tomcat-embed-core",
+          "dependency": "org.apache.tomcat.embed:tomcat-embed-websocket",
           "old_version": "10.1.41",
           "new_version": "10.1.57",
           "minimum_required": "10.1.57"
@@ -131,16 +131,16 @@
           "minimum_required": "1.17.0"
         },
         {
+          "dependency": "org.xmlunit:xmlunit-core",
+          "old_version": "2.9.1",
+          "new_version": "2.12.0",
+          "minimum_required": "2.12.0"
+        },
+        {
           "dependency": "org.assertj:assertj-core",
           "old_version": "3.25.3",
           "new_version": "3.27.7",
           "minimum_required": "3.27.7"
-        },
-        {
-          "dependency": "org.apache.tomcat.embed:tomcat-embed-websocket",
-          "old_version": "10.1.41",
-          "new_version": "10.1.57",
-          "minimum_required": "10.1.57"
         },
         {
           "dependency": "org.apache.commons:commons-lang3",

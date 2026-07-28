@@ -4,7 +4,7 @@
 |metric|value|
 |---|---|
 |Overall Status|🟡 Needs Review|
-|Generated at|2026-07-24T10:05:41|
+|Generated at|2026-07-28T08:54:46|
 |GitHub URL|https://github.com/Cloud-3-0-EMU/ins-cp-mgmt-externaldnc-workflow.git|
 |Project directory|/Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_ins-cp-mgmt-externaldnc-workflow_default-branch/default-branch/ins-cp-mgmt-externaldnc-workflow|
 |Dependency files|1|
@@ -39,26 +39,26 @@ Review:
 ## Applied / Planned Changes
 |file|ecosystem|package|type|old|new|status|remediation_guided|
 |---|---|---|---|---|---|---|---|
-|build.gradle|gradle|org.springframework:spring-context|gradle|6.2.0|6.2.19|Passed|True|
+|build.gradle|gradle|org.apache.kafka:kafka-clients|gradle|4.0.0|4.3.1|Passed|True|
 |build.gradle|gradle|org.apache.tomcat.embed:tomcat-embed-core|gradle|10.1.25|10.1.57|Passed|True|
 |build.gradle|gradle|org.springframework.kafka:spring-kafka|gradle|3.3.0|3.3.16|Passed|True|
-|build.gradle|gradle|org.apache.kafka:kafka-clients|gradle|4.0.0|4.3.1|Passed|True|
 |build.gradle|gradle|org.springframework:spring-expression|gradle|6.2.0|6.2.19|Passed|True|
-|build.gradle|gradle|org.springframework:spring-webmvc|gradle|6.2.10|6.2.19|Passed|True|
+|build.gradle|gradle|org.springframework:spring-context|gradle|6.2.0|6.2.19|Passed|True|
+|build.gradle|gradle|org.springframework:spring-webflux|gradle|6.2.0|6.2.19|Passed|True|
 |build.gradle|gradle|org.springframework:spring-core|gradle|6.2.0|6.2.19|Passed|True|
 |build.gradle|gradle|org.springframework:spring-web|gradle|6.2.10|6.2.19|Passed|True|
-|build.gradle|gradle|org.springframework:spring-webflux|gradle|6.2.0|6.2.19|Passed|True|
+|build.gradle|gradle|org.springframework:spring-webmvc|gradle|6.2.10|6.2.19|Passed|True|
 |build.gradle|gradle|org.springframework:spring-beans|gradle|6.2.0|6.2.19|Passed|True|
-|build.gradle|gradle|io.micrometer:micrometer-core|gradle-force|1.13.14|1.17.0|Passed|True|
 |build.gradle|gradle|org.springframework.boot:spring-boot-starter-actuator|gradle-force|3.3.12|3.5.16|Passed|True|
 |build.gradle|gradle|org.lz4:lz4-java|gradle-force|1.8.0|1.8.0|Passed|True|
-|build.gradle|gradle|org.springframework.data:spring-data-mongodb|gradle-force|4.3.12|4.5.13|Passed|True|
+|build.gradle|gradle|io.micrometer:micrometer-core|gradle-force|1.13.14|1.17.0|Passed|True|
 |build.gradle|gradle|org.springframework.data:spring-data-commons|gradle-force|3.3.12|3.5.13|Passed|True|
 |build.gradle|gradle|org.apache.commons:commons-lang3|gradle-force|3.14.0|3.20.0|Passed|True|
-|build.gradle|gradle|org.apache.tomcat.embed:tomcat-embed-websocket|gradle-force|10.1.41|10.1.57|Passed|True|
-|build.gradle|gradle|com.fasterxml.jackson.core:jackson-databind|gradle-force|2.17.3|2.22.1|Passed|True|
-|build.gradle|gradle|org.assertj:assertj-core|gradle-force|3.25.3|3.27.7|Passed|True|
 |build.gradle|gradle|org.springframework.boot:spring-boot|gradle-force|3.3.12|3.5.16|Passed|True|
+|build.gradle|gradle|org.apache.tomcat.embed:tomcat-embed-websocket|gradle-force|10.1.41|10.1.57|Passed|True|
+|build.gradle|gradle|org.assertj:assertj-core|gradle-force|3.25.3|3.27.7|Passed|True|
+|build.gradle|gradle|com.fasterxml.jackson.core:jackson-databind|gradle-force|2.17.3|2.22.1|Passed|True|
+|build.gradle|gradle|org.springframework.data:spring-data-mongodb|gradle-force|4.3.12|4.5.13|Passed|True|
 
 ## Skipped / Resolved / Could Not Update
 _No rows._

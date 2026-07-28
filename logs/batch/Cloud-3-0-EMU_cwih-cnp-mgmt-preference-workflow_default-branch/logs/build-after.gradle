@@ -125,8 +125,8 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-redis'
     implementation 'redis.clients:jedis:5.2.0'
     implementation 'com.humana.cpms.cds:cds-utilities:1.0.0'
-    implementation "ch.qos.logback:logback-core:1.6.0"//Vit Fix CVE-2025-11226
-    implementation "ch.qos.logback:logback-classic:1.6.0"//Vit Fix CVE-2025-11226
+    implementation "ch.qos.logback:logback-core:1.6.1"//Vit Fix CVE-2025-11226
+    implementation "ch.qos.logback:logback-classic:1.6.1"//Vit Fix CVE-2025-11226
     implementation(group: 'org.apache.commons', name: 'commons-lang3') {
         version {
             strictly '3.20.0'

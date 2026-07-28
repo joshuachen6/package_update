@@ -157,7 +157,7 @@
       },
       {
         "change_type": "gradle",
-        "new": "1.6.0",
+        "new": "1.6.1",
         "old": "1.5.25",
         "package": "ch.qos.logback:logback-core",
         "reason": "build validation failed and failure isolation disabled",
@@ -165,7 +165,7 @@
       },
       {
         "change_type": "gradle",
-        "new": "1.6.0",
+        "new": "1.6.1",
         "old": "1.5.25",
         "package": "ch.qos.logback:logback-classic",
         "reason": "build validation failed and failure isolation disabled",
@@ -192,7 +192,7 @@
       {
         "config": "implementation",
         "dependency": "ch.qos.logback:logback-core",
-        "new_version": "1.6.0",
+        "new_version": "1.6.1",
         "old_version": "1.5.25",
         "remediation_guided": "yes"
       },
@@ -206,7 +206,7 @@
       {
         "config": "implementation",
         "dependency": "ch.qos.logback:logback-classic",
-        "new_version": "1.6.0",
+        "new_version": "1.6.1",
         "old_version": "1.5.25",
         "remediation_guided": "competing pin realigned"
       }
@@ -216,7 +216,7 @@
   "files": [
     {
       "candidate_counts": {
-        "ch.qos.logback:logback-core": 170,
+        "ch.qos.logback:logback-core": 171,
         "org.apache.tomcat.embed:tomcat-embed-core": 464,
         "org.apache.tomcat.embed:tomcat-embed-websocket": 428,
         "org.springframework.boot:spring-boot": 290
@@ -228,7 +228,7 @@
       "selected_changes": [
         {
           "change_type": "gradle",
-          "new": "1.6.0",
+          "new": "1.6.1",
           "old": "1.5.25",
           "package": "ch.qos.logback:logback-core",
           "remediation_guided": true
@@ -242,7 +242,7 @@
         },
         {
           "change_type": "gradle",
-          "new": "1.6.0",
+          "new": "1.6.1",
           "old": "1.5.25",
           "package": "ch.qos.logback:logback-classic",
           "remediation_guided": true
@@ -438,7 +438,8 @@
           "1.5.36",
           "1.5.37",
           "1.5.38",
-          "1.6.0"
+          "1.6.0",
+          "1.6.1"
         ],
         "org.apache.tomcat.embed:tomcat-embed-core": [
           "7.0.0",
@@ -1632,7 +1633,7 @@
       "write_status": "Failed"
     }
   ],
-  "generated_at": "2026-07-24T10:15:07",
+  "generated_at": "2026-07-28T09:01:56",
   "next_actions": [
     {
       "action": "Review exhaustive-isolation failures and try alternative safe versions for the implicated packages instead of retaining the rollback.",
@@ -1700,7 +1701,7 @@
   "remediation_budget_seconds": 300,
   "security_status": "still_vulnerable",
   "summary": {
-    "candidate_versions_considered": 1352,
+    "candidate_versions_considered": 1353,
     "component_cve_pairs_new": 0,
     "component_cve_pairs_remaining": 23,
     "component_cve_pairs_removed": 0,

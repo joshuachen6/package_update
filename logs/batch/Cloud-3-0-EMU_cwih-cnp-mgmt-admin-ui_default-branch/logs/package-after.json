@@ -107,6 +107,7 @@
     "immutable": "5.1.8",
     "js-yaml": "4.3.0",
     "postcss": "8.4.32",
-    "unzipper": "0.11.2"
+    "unzipper": "0.11.2",
+    "ws": "8.21.1"
   }
 }

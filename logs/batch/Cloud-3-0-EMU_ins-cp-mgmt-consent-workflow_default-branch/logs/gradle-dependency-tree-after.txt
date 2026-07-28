@@ -29,8 +29,8 @@ runtimeClasspath - Runtime classpath of source set 'main'.
 |    |    +--- org.springframework.boot:spring-boot-autoconfigure:3.5.14
 |    |    |    \--- org.springframework.boot:spring-boot:3.5.14 (*)
 |    |    +--- org.springframework.boot:spring-boot-starter-logging:3.5.14
-|    |    |    +--- ch.qos.logback:logback-classic:1.5.32 -> 1.6.0
-|    |    |    |    +--- ch.qos.logback:logback-core:1.6.0
+|    |    |    +--- ch.qos.logback:logback-classic:1.5.32 -> 1.6.1
+|    |    |    |    +--- ch.qos.logback:logback-core:1.6.1
 |    |    |    |    \--- org.slf4j:slf4j-api:2.0.18 -> 2.0.17
 |    |    |    +--- org.apache.logging.log4j:log4j-to-slf4j:2.24.3
 |    |    |    |    +--- org.apache.logging.log4j:log4j-api:2.24.3
@@ -331,7 +331,7 @@ You can use '--warning-mode all' to show the individual deprecation warnings and
 
 For more on this, please refer to https://docs.gradle.org/8.14.1/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
 
-BUILD SUCCESSFUL in 5s
+BUILD SUCCESSFUL in 4s
 1 actionable task: 1 executed
 
 To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.14.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
@@ -366,8 +366,8 @@ compileClasspath - Compile classpath for source set 'main'.
 |    |    +--- org.springframework.boot:spring-boot-autoconfigure:3.5.14
 |    |    |    \--- org.springframework.boot:spring-boot:3.5.14 (*)
 |    |    +--- org.springframework.boot:spring-boot-starter-logging:3.5.14
-|    |    |    +--- ch.qos.logback:logback-classic:1.5.32 -> 1.6.0
-|    |    |    |    +--- ch.qos.logback:logback-core:1.6.0
+|    |    |    +--- ch.qos.logback:logback-classic:1.5.32 -> 1.6.1
+|    |    |    |    +--- ch.qos.logback:logback-core:1.6.1
 |    |    |    |    \--- org.slf4j:slf4j-api:2.0.18 -> 2.0.17
 |    |    |    +--- org.apache.logging.log4j:log4j-to-slf4j:2.24.3
 |    |    |    |    +--- org.apache.logging.log4j:log4j-api:2.24.3
@@ -647,7 +647,7 @@ You can use '--warning-mode all' to show the individual deprecation warnings and
 
 For more on this, please refer to https://docs.gradle.org/8.14.1/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
 
-BUILD SUCCESSFUL in 6s
+BUILD SUCCESSFUL in 4s
 1 actionable task: 1 executed
 
 To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.14.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
@@ -681,8 +681,8 @@ testRuntimeClasspath - Runtime classpath of source set 'test'.
 |    |    +--- org.springframework.boot:spring-boot-autoconfigure:3.5.14
 |    |    |    \--- org.springframework.boot:spring-boot:3.5.14 (*)
 |    |    +--- org.springframework.boot:spring-boot-starter-logging:3.5.14
-|    |    |    +--- ch.qos.logback:logback-classic:1.5.32 -> 1.6.0
-|    |    |    |    +--- ch.qos.logback:logback-core:1.6.0
+|    |    |    +--- ch.qos.logback:logback-classic:1.5.32 -> 1.6.1
+|    |    |    |    +--- ch.qos.logback:logback-core:1.6.1
 |    |    |    |    \--- org.slf4j:slf4j-api:2.0.18 -> 2.0.17
 |    |    |    +--- org.apache.logging.log4j:log4j-to-slf4j:2.24.3
 |    |    |    |    +--- org.apache.logging.log4j:log4j-api:2.24.3
@@ -1080,8 +1080,8 @@ testCompileClasspath - Compile classpath for source set 'test'.
 |    |    +--- org.springframework.boot:spring-boot-autoconfigure:3.5.14
 |    |    |    \--- org.springframework.boot:spring-boot:3.5.14 (*)
 |    |    +--- org.springframework.boot:spring-boot-starter-logging:3.5.14
-|    |    |    +--- ch.qos.logback:logback-classic:1.5.32 -> 1.6.0
-|    |    |    |    +--- ch.qos.logback:logback-core:1.6.0
+|    |    |    +--- ch.qos.logback:logback-classic:1.5.32 -> 1.6.1
+|    |    |    |    +--- ch.qos.logback:logback-core:1.6.1
 |    |    |    |    \--- org.slf4j:slf4j-api:2.0.18 -> 2.0.17
 |    |    |    +--- org.apache.logging.log4j:log4j-to-slf4j:2.24.3
 |    |    |    |    +--- org.apache.logging.log4j:log4j-api:2.24.3
@@ -1411,5 +1411,5 @@ You can use '--warning-mode all' to show the individual deprecation warnings and
 
 For more on this, please refer to https://docs.gradle.org/8.14.1/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
 
-BUILD SUCCESSFUL in 6s
+BUILD SUCCESSFUL in 7s
 1 actionable task: 1 executed

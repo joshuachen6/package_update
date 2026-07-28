@@ -1,6 +1,7 @@
 dependency,before,after,status
-ch.qos.logback:logback-classic,1.5.18,,removed
-ch.qos.logback:logback-core,1.5.18,,removed
+at.yawk.lz4:lz4-java,,1.10.2,added
+ch.qos.logback:logback-classic,1.5.18,1.5.34,changed
+ch.qos.logback:logback-core,1.5.18,1.5.34,changed
 com.fasterxml.jackson.core:jackson-annotations,2.17.3,2.22,changed
 com.fasterxml.jackson.core:jackson-core,2.17.3,2.22.1,changed
 com.fasterxml.jackson.core:jackson-databind,2.17.3,2.22.1,changed
@@ -9,7 +10,7 @@ com.fasterxml.jackson.datatype:jackson-datatype-jsr310,2.17.3,2.22.1,changed
 com.fasterxml.jackson.module:jackson-module-parameter-names,2.17.3,2.22.1,changed
 com.fasterxml.jackson:jackson-bom,2.17.3,2.22.1,changed
 com.fasterxml:classmate,1.7.0,1.7.3,changed
-com.github.luben:zstd-jni,1.5.6-6,,removed
+com.github.luben:zstd-jni,1.5.6-6,1.5.6-10,changed
 com.jayway.jsonpath:json-path,2.9.0,,removed
 com.vaadin.external.google:android-json,0.0.20131108.vaadin1,,removed
 commons-codec:commons-codec,1.16.1,1.18.0,changed
@@ -55,7 +56,7 @@ org.apache.commons:commons-lang3,3.14.0,3.17.0,changed
 org.apache.kafka:kafka-clients,4.0.0,4.3.1,changed
 org.apache.logging.log4j:log4j-api,2.23.1,2.24.3,changed
 org.apache.logging.log4j:log4j-to-slf4j,2.23.1,2.24.3,changed
-org.apache.tomcat.embed:tomcat-embed-core,10.1.47,11.0.24,changed
+org.apache.tomcat.embed:tomcat-embed-core,10.1.47,10.1.57,changed
 org.apache.tomcat.embed:tomcat-embed-el,10.1.41,10.1.57,changed
 org.apache.tomcat.embed:tomcat-embed-websocket,10.1.41,10.1.57,changed
 org.apache.tomcat:tomcat-annotations-api,10.1.41,10.1.57,changed
@@ -64,7 +65,6 @@ org.aspectj:aspectjweaver,1.9.24,1.9.25.1,changed
 org.assertj:assertj-core,3.25.3,,removed
 org.awaitility:awaitility,4.2.2,,removed
 org.hamcrest:hamcrest,2.2,,removed
-org.hdrhistogram:HdrHistogram,2.2.2,,removed
 org.hibernate.validator:hibernate-validator,8.0.2.Final,8.0.3.Final,changed
 org.jboss.logging:jboss-logging,3.5.3.Final,3.6.3.Final,changed
 org.jspecify:jspecify,,1.0.0,added
@@ -80,13 +80,13 @@ org.lz4:lz4-java,1.8.0,,removed
 org.mockito:mockito-core,5.1.1,,removed
 org.mockito:mockito-junit-jupiter,5.10.0,,removed
 org.mongodb:bson,5.0.1,5.5.2,changed
-org.mongodb:bson-record-codec,5.0.1,,removed
+org.mongodb:bson-record-codec,5.0.1,5.5.2,changed
 org.mongodb:mongodb-driver-core,5.0.1,5.5.2,changed
 org.mongodb:mongodb-driver-sync,5.0.1,5.5.2,changed
 org.objenesis:objenesis,3.3,,removed
 org.opentest4j:opentest4j,1.3.0,,removed
 org.ow2.asm:asm,9.7.1,,removed
-org.projectlombok:lombok,1.18.38,1.18.46,changed
+org.projectlombok:lombok,1.18.38,,removed
 org.skyscreamer:jsonassert,1.5.3,,removed
 org.slf4j:jul-to-slf4j,2.0.17,2.0.18,changed
 org.slf4j:slf4j-api,2.0.17,2.0.18,changed

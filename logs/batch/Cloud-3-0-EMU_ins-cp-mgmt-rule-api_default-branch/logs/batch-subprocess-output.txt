@@ -49,30 +49,30 @@ Fetching Artifactory versions (12 workers): [##########################----] 8/9
 Fetching Artifactory versions (12 workers): [##############################] 9/9 100%
 
 Applying updates: [------------------------------] 0/10 0%
-Applying updates: [###---------------------------] 1/10 10%  [ext-fix] [perf] concurrent version search (org.springframework.boot:spring-boot-starter-actuator) completed in 0.94s
+Applying updates: [###---------------------------] 1/10 10%  [ext-fix] [perf] concurrent version search (org.springframework.boot:spring-boot-starter-actuator) completed in 0.50s
 
-Applying updates: [######------------------------] 2/10 20%  [ext-fix] [perf] concurrent version search (org.springframework:spring-context) completed in 0.96s
-
-Applying updates: [#########---------------------] 3/10 30%  [ext-fix] [perf] concurrent version search (org.xmlunit:xmlunit-core) completed in 1.86s
-  [ext-fix] [perf] transitive-parent search (org.xmlunit:xmlunit-core) ran 0 gradle probe(s) in 0.00s (resolved=False)
-
-Applying updates: [############------------------] 4/10 40%  [ext-fix] [perf] concurrent version search (org.apache.tomcat.embed:tomcat-embed-core) completed in 2.20s
+Applying updates: [######------------------------] 2/10 20%  [ext-fix] [perf] concurrent version search (org.apache.tomcat.embed:tomcat-embed-core) completed in 0.51s
   [ext-fix] [perf] transitive-parent search (org.apache.tomcat.embed:tomcat-embed-core) ran 0 gradle probe(s) in 0.00s (resolved=False)
 
-Applying updates: [###############---------------] 5/10 50%  [ext-fix] [perf] concurrent version search (io.micrometer:micrometer-core) completed in 2.21s
-  [ext-fix] [perf] transitive-parent search (io.micrometer:micrometer-core) ran 0 gradle probe(s) in 0.00s (resolved=False)
+Applying updates: [#########---------------------] 3/10 30%  [ext-fix] [perf] concurrent version search (org.apache.commons:commons-lang3) completed in 0.52s
+  [ext-fix] [perf] concurrent version search (org.springframework:spring-context) completed in 0.53s
 
-Applying updates: [##################------------] 6/10 60%  [ext-fix] [perf] concurrent version search (org.apache.commons:commons-lang3) completed in 3.71s
-  [ext-fix] [perf] concurrent version search (org.springframework:spring-webmvc) completed in 3.73s
-  [ext-fix] [perf] concurrent version search (org.assertj:assertj-core) completed in 3.90s
-  [ext-fix] [perf] transitive-parent search (org.assertj:assertj-core) ran 0 gradle probe(s) in 0.00s (resolved=False)
-
-Applying updates: [#####################---------] 7/10 70%  [ext-fix] [perf] concurrent version search (org.apache.tomcat.embed:tomcat-embed-websocket) completed in 4.49s
+Applying updates: [############------------------] 4/10 40%  [ext-fix] [perf] concurrent version search (org.apache.tomcat.embed:tomcat-embed-websocket) completed in 0.59s
   [ext-fix] [perf] transitive-parent search (org.apache.tomcat.embed:tomcat-embed-websocket) ran 0 gradle probe(s) in 0.00s (resolved=False)
 
-Applying updates: [########################------] 8/10 80%  [ext-fix] [perf] concurrent version search (org.springframework:spring-webmvc) completed in 2.16s
+Applying updates: [###############---------------] 5/10 50%  [ext-fix] [perf] concurrent version search (org.springframework:spring-webmvc) completed in 0.60s
+  [ext-fix] [perf] concurrent version search (io.micrometer:micrometer-core) completed in 0.60s
+  [ext-fix] [perf] transitive-parent search (io.micrometer:micrometer-core) ran 0 gradle probe(s) in 0.00s (resolved=False)
 
-Applying updates: [###########################---] 9/10 90%  [ext-fix] [perf] transitive-parent search (org.apache.commons:commons-lang3) ran 1 gradle probe(s) in 4.92s (resolved=False)
+Applying updates: [##################------------] 6/10 60%  [ext-fix] [perf] concurrent version search (org.xmlunit:xmlunit-core) completed in 0.78s
+  [ext-fix] [perf] transitive-parent search (org.xmlunit:xmlunit-core) ran 0 gradle probe(s) in 0.00s (resolved=False)
+
+Applying updates: [#####################---------] 7/10 70%  [ext-fix] [perf] concurrent version search (org.assertj:assertj-core) completed in 0.83s
+  [ext-fix] [perf] transitive-parent search (org.assertj:assertj-core) ran 0 gradle probe(s) in 0.00s (resolved=False)
+
+Applying updates: [########################------] 8/10 80%  [ext-fix] [perf] concurrent version search (org.springframework:spring-webmvc) completed in 0.24s
+
+Applying updates: [###########################---] 9/10 90%  [ext-fix] [perf] transitive-parent search (org.apache.commons:commons-lang3) ran 1 gradle probe(s) in 8.89s (resolved=False)
 
 Applying updates: [##############################] 10/10 100%
 
@@ -136,11 +136,11 @@ A problem occurred configuring root project 'ins-cp-mgmt-rule-api'.
 > Run with --scan to get full insights.
 > Get more help at https://help.gradle.org.
 
-BUILD FAILED in 5s
+BUILD FAILED in 4s
   [ext-fix] round 1: 1 new blocked packages
   [ext-fix] com.fasterxml.jackson.core:jackson-databind:2.21.4 — listing from https://humana.jfrog.io/artifactory/ins-cp-mgmt-gradle-virtual, checking access via https://humana.jfrog.io/artifactory/plugins-release
   [ext-fix] com.fasterxml.jackson.core:jackson-databind:2.21.4 — 229 versions available
-  [ext-fix] [perf] concurrent version search (com.fasterxml.jackson.core:jackson-databind) completed in 1.80s
+  [ext-fix] [perf] concurrent version search (com.fasterxml.jackson.core:jackson-databind) completed in 0.26s
   [ext-fix] com.fasterxml.jackson.core:jackson-databind:2.21.4 — find_accessible_version -> '2.21.5'
 Validating updated project: gradle build --no-daemon --init-script /var/folders/cg/2rmnrrps3g77gcd8ny14r1yr0000gp/T/pkg_update_gradle_logging.gradle
 To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.14.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.

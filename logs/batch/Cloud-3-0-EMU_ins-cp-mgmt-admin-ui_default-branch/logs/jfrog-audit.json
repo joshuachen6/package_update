@@ -4,8 +4,8 @@
     "npm"
   ],
   "errors": [],
-  "vulnerability_count": 31,
-  "vulnerable_component_count": 11,
+  "vulnerability_count": 32,
+  "vulnerable_component_count": 12,
   "vulnerable_components": [
     {
       "component_id": "npm://@babel/core:7.29.0",
@@ -51,6 +51,15 @@
       "ecosystem": "npm",
       "package": "fast-uri",
       "version": "3.1.2"
+    },
+    {
+      "component_id": "npm://fflate:0.8.2",
+      "cves": [
+        "CVE-2026-45820"
+      ],
+      "ecosystem": "npm",
+      "package": "fflate",
+      "version": "0.8.2"
     },
     {
       "component_id": "npm://form-data:4.0.5",

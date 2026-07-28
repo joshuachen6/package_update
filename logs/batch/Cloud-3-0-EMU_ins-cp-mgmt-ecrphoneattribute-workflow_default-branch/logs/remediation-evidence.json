@@ -319,6 +319,14 @@
       },
       {
         "change_type": "gradle-force",
+        "new": "10.1.57",
+        "old": "10.1.41",
+        "package": "org.apache.tomcat.embed:tomcat-embed-core",
+        "reason": "build validation failed and failure isolation disabled",
+        "status": "manual_update_required"
+      },
+      {
+        "change_type": "gradle-force",
         "new": "3.20.0",
         "old": "3.14.0",
         "package": "org.apache.commons:commons-lang3",
@@ -367,14 +375,6 @@
       },
       {
         "change_type": "gradle",
-        "new": "11.0.24",
-        "old": "11.0.5",
-        "package": "org.apache.tomcat.embed:tomcat-embed-core",
-        "reason": "build validation failed and failure isolation disabled",
-        "status": "manual_update_required"
-      },
-      {
-        "change_type": "gradle",
         "new": "4.3.1",
         "old": "4.0.0",
         "package": "org.apache.kafka:kafka-clients",
@@ -403,6 +403,12 @@
         "old_version": "1.8.0"
       },
       {
+        "dependency": "org.apache.commons:commons-lang3",
+        "minimum_required": "3.20.0",
+        "new_version": "3.20.0",
+        "old_version": "3.14.0"
+      },
+      {
         "dependency": "org.apache.tomcat.embed:tomcat-embed-websocket",
         "minimum_required": "10.1.57",
         "new_version": "10.1.57",
@@ -421,14 +427,21 @@
         "old_version": "4.1.121.Final"
       },
       {
-        "dependency": "org.apache.commons:commons-lang3",
-        "minimum_required": "3.20.0",
-        "new_version": "3.20.0",
-        "old_version": "3.14.0"
+        "dependency": "org.apache.tomcat.embed:tomcat-embed-core",
+        "minimum_required": "10.1.57",
+        "new_version": "10.1.57",
+        "old_version": "10.1.41"
       }
     ],
     "gradle-skipped.csv": [],
     "gradle-version-changes.csv": [
+      {
+        "config": "implementation",
+        "dependency": "org.springframework:spring-context",
+        "new_version": "6.2.19",
+        "old_version": "6.2.3",
+        "remediation_guided": "yes"
+      },
       {
         "config": "implementation",
         "dependency": "org.apache.kafka:kafka-clients",
@@ -438,23 +451,9 @@
       },
       {
         "config": "implementation",
-        "dependency": "org.apache.tomcat.embed:tomcat-embed-core",
-        "new_version": "11.0.24",
-        "old_version": "11.0.5",
-        "remediation_guided": "yes"
-      },
-      {
-        "config": "implementation",
         "dependency": "org.springframework:spring-webmvc",
         "new_version": "6.2.19",
         "old_version": "6.2.10",
-        "remediation_guided": "yes"
-      },
-      {
-        "config": "implementation",
-        "dependency": "org.springframework:spring-context",
-        "new_version": "6.2.19",
-        "old_version": "6.2.3",
         "remediation_guided": "yes"
       },
       {
@@ -489,6 +488,13 @@
       "selected_changes": [
         {
           "change_type": "gradle",
+          "new": "6.2.19",
+          "old": "6.2.3",
+          "package": "org.springframework:spring-context",
+          "remediation_guided": true
+        },
+        {
+          "change_type": "gradle",
           "new": "4.3.1",
           "old": "4.0.0",
           "package": "org.apache.kafka:kafka-clients",
@@ -496,23 +502,9 @@
         },
         {
           "change_type": "gradle",
-          "new": "11.0.24",
-          "old": "11.0.5",
-          "package": "org.apache.tomcat.embed:tomcat-embed-core",
-          "remediation_guided": true
-        },
-        {
-          "change_type": "gradle",
           "new": "6.2.19",
           "old": "6.2.10",
           "package": "org.springframework:spring-webmvc",
-          "remediation_guided": true
-        },
-        {
-          "change_type": "gradle",
-          "new": "6.2.19",
-          "old": "6.2.3",
-          "package": "org.springframework:spring-context",
           "remediation_guided": true
         },
         {
@@ -545,6 +537,13 @@
         },
         {
           "change_type": "gradle-force",
+          "new": "3.20.0",
+          "old": "3.14.0",
+          "package": "org.apache.commons:commons-lang3",
+          "remediation_guided": true
+        },
+        {
+          "change_type": "gradle-force",
           "new": "10.1.57",
           "old": "10.1.41",
           "package": "org.apache.tomcat.embed:tomcat-embed-websocket",
@@ -566,9 +565,9 @@
         },
         {
           "change_type": "gradle-force",
-          "new": "3.20.0",
-          "old": "3.14.0",
-          "package": "org.apache.commons:commons-lang3",
+          "new": "10.1.57",
+          "old": "10.1.41",
+          "package": "org.apache.tomcat.embed:tomcat-embed-core",
           "remediation_guided": true
         }
       ],
@@ -3169,7 +3168,7 @@
       "write_status": "Failed"
     }
   ],
-  "generated_at": "2026-07-24T10:26:01",
+  "generated_at": "2026-07-28T09:15:54",
   "next_actions": [
     {
       "action": "Review exhaustive-isolation failures and try alternative safe versions for the implicated packages instead of retaining the rollback.",

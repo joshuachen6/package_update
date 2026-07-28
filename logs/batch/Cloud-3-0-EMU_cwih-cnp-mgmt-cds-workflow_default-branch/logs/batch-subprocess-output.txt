@@ -57,43 +57,43 @@ Fetching Artifactory versions (12 workers): [########################------] 8/1
 Fetching Artifactory versions (12 workers): [###########################---] 9/10 90%
 Fetching Artifactory versions (12 workers): [##############################] 10/10 100%
 
-Applying updates: [------------------------------] 0/14 0%  [ext-fix] [perf] concurrent version search (ch.qos.logback:logback-core) completed in 1.20s
-  [ext-fix] [perf] concurrent version search (org.apache.tomcat.embed:tomcat-embed-websocket) completed in 1.24s
-  [ext-fix] [perf] concurrent version search (com.fasterxml.jackson.core:jackson-databind) completed in 1.30s
-  [ext-fix] [perf] concurrent version search (at.yawk.lz4:lz4-java) completed in 1.33s
-  [ext-fix] [perf] concurrent version search (org.springframework.data:spring-data-mongodb) completed in 1.36s
-  [ext-fix] [perf] transitive-parent search (org.springframework.data:spring-data-mongodb) ran 0 gradle probe(s) in 0.00s (resolved=False)
+Applying updates: [------------------------------] 0/14 0%  [ext-fix] [perf] concurrent version search (org.apache.tomcat.embed:tomcat-embed-core) completed in 0.50s
+  [ext-fix] [perf] concurrent version search (org.apache.tomcat.embed:tomcat-embed-core) completed in 0.58s
 
-Applying updates: [##----------------------------] 1/14 7%  [ext-fix] [perf] concurrent version search (org.springframework:spring-web) completed in 1.43s
-
-Applying updates: [####--------------------------] 2/14 14%  [ext-fix] [perf] concurrent version search (org.springframework:spring-core) completed in 1.50s
-
-Applying updates: [######------------------------] 3/14 21%  [ext-fix] [perf] concurrent version search (org.apache.tomcat.embed:tomcat-embed-core) completed in 1.60s
-  [ext-fix] [perf] concurrent version search (ch.qos.logback:logback-core) completed in 0.56s
-
-Applying updates: [########----------------------] 4/14 28%  [ext-fix] [perf] concurrent version search (org.springframework.kafka:spring-kafka) completed in 2.12s
-  [ext-fix] [perf] concurrent version search (io.micrometer:micrometer-core) completed in 2.30s
+Applying updates: [##----------------------------] 1/14 7%  [ext-fix] [perf] concurrent version search (org.springframework.kafka:spring-kafka) completed in 1.16s
+  [ext-fix] [perf] concurrent version search (io.micrometer:micrometer-core) completed in 1.29s
   [ext-fix] [perf] transitive-parent search (io.micrometer:micrometer-core) ran 0 gradle probe(s) in 0.00s (resolved=False)
 
-Applying updates: [##########--------------------] 5/14 35%  [ext-fix] [perf] concurrent version search (org.springframework.kafka:spring-kafka) completed in 0.56s
+Applying updates: [####--------------------------] 2/14 14%  [ext-fix] [perf] concurrent version search (org.springframework.kafka:spring-kafka) completed in 0.26s
 
-Applying updates: [############------------------] 6/14 42%  [ext-fix] [perf] concurrent version search (org.springframework:spring-webflux) completed in 1.32s
-  [ext-fix] [perf] concurrent version search (org.springframework.data:spring-data-commons) completed in 2.69s
+Applying updates: [######------------------------] 3/14 21%  [ext-fix] [perf] concurrent version search (com.fasterxml.jackson.core:jackson-databind) completed in 1.50s
+  [ext-fix] [perf] concurrent version search (org.springframework:spring-webflux) completed in 0.59s
+  [ext-fix] [perf] concurrent version search (org.springframework:spring-webmvc) completed in 0.53s
+
+Applying updates: [########----------------------] 4/14 28%  [ext-fix] [perf] concurrent version search (org.springframework:spring-webflux) completed in 0.23s
+
+Applying updates: [##########--------------------] 5/14 35%  [ext-fix] [perf] concurrent version search (org.springframework:spring-expression) completed in 1.91s
+
+Applying updates: [############------------------] 6/14 42%  [ext-fix] [perf] concurrent version search (org.springframework.data:spring-data-commons) completed in 2.10s
   [ext-fix] [perf] transitive-parent search (org.springframework.data:spring-data-commons) ran 0 gradle probe(s) in 0.00s (resolved=False)
 
-Applying updates: [###############---------------] 7/14 50%  [ext-fix] [perf] concurrent version search (org.springframework:spring-expression) completed in 3.26s
+Applying updates: [###############---------------] 7/14 50%  [ext-fix] [perf] concurrent version search (at.yawk.lz4:lz4-java) completed in 2.16s
+  [ext-fix] [perf] concurrent version search (org.apache.tomcat.embed:tomcat-embed-websocket) completed in 2.25s
+  [ext-fix] [perf] concurrent version search (org.springframework:spring-web) completed in 2.59s
 
-Applying updates: [#################-------------] 8/14 57%  [ext-fix] [perf] concurrent version search (org.apache.tomcat.embed:tomcat-embed-core) completed in 2.30s
+Applying updates: [#################-------------] 8/14 57%  [ext-fix] [perf] concurrent version search (org.springframework.data:spring-data-mongodb) completed in 2.93s
+  [ext-fix] [perf] transitive-parent search (org.springframework.data:spring-data-mongodb) ran 0 gradle probe(s) in 0.00s (resolved=False)
 
-Applying updates: [###################-----------] 9/14 64%  [ext-fix] [perf] concurrent version search (org.springframework:spring-webmvc) completed in 2.64s
+Applying updates: [###################-----------] 9/14 64%  [ext-fix] [perf] concurrent version search (ch.qos.logback:logback-core) completed in 3.04s
+  [ext-fix] [perf] concurrent version search (ch.qos.logback:logback-core) completed in 0.23s
 
-Applying updates: [#####################---------] 10/14 71%  [ext-fix] [perf] concurrent version search (org.springframework:spring-webflux) completed in 1.52s
+Applying updates: [#####################---------] 10/14 71%  [ext-fix] [perf] concurrent version search (org.springframework:spring-core) completed in 3.70s
 
-Applying updates: [#######################-------] 11/14 78%  [ext-fix] [perf] transitive-parent search (org.apache.tomcat.embed:tomcat-embed-websocket) ran 1 gradle probe(s) in 7.78s (resolved=False)
+Applying updates: [#######################-------] 11/14 78%  [ext-fix] [perf] transitive-parent search (com.fasterxml.jackson.core:jackson-databind) ran 1 gradle probe(s) in 16.84s (resolved=False)
 
-Applying updates: [#########################-----] 12/14 85%  [ext-fix] [perf] transitive-parent search (com.fasterxml.jackson.core:jackson-databind) ran 1 gradle probe(s) in 11.49s (resolved=False)
+Applying updates: [#########################-----] 12/14 85%  [ext-fix] [perf] transitive-parent search (org.apache.tomcat.embed:tomcat-embed-websocket) ran 1 gradle probe(s) in 18.91s (resolved=False)
 
-Applying updates: [###########################---] 13/14 92%  [ext-fix] [perf] transitive-parent search (at.yawk.lz4:lz4-java) ran 1 gradle probe(s) in 12.48s (resolved=False)
+Applying updates: [###########################---] 13/14 92%  [ext-fix] [perf] transitive-parent search (at.yawk.lz4:lz4-java) ran 1 gradle probe(s) in 22.88s (resolved=False)
 
 Applying updates: [##############################] 14/14 100%
 
@@ -119,60 +119,6 @@ Daemon will be stopped at the end of the build
 > Task :bootStartScripts
 > Task :bootDistTar
 > Task :bootDistZip
-Note: /Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_cwih-cnp-mgmt-cds-workflow_default-branch/default-branch/cwih-cnp-mgmt-cds-workflow/src/main/java/com/humana/domain/cds/service/avro/AvroDeserializer.java uses or overrides a deprecated API.
-Note: Recompile with -Xlint:deprecation for details.
-Note: /Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_cwih-cnp-mgmt-cds-workflow_default-branch/default-branch/cwih-cnp-mgmt-cds-workflow/src/main/java/com/humana/domain/cds/util/VaultPropertySourceFactory.java uses unchecked or unsafe operations.
-Note: Recompile with -Xlint:unchecked for details.
-The message received from the daemon indicates that the daemon has disappeared.
-Build request sent: Build{id=6d7c6e58-fcee-435d-87be-46389c674b47, currentDir=/Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_cwih-cnp-mgmt-cds-workflow_default-branch/default-branch/cwih-cnp-mgmt-cds-workflow}
-Attempting to read last messages from the daemon log...
-Daemon pid: 74128
-  log file: /Users/jchen18/.gradle/daemon/8.14.1/daemon-74128.out.log
------ Last 20 lines from daemon log file - daemon-74128.out.log -----
-2026-07-24T09:59:42.566-0400 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Lock acquired on daemon addresses registry.
-2026-07-24T09:59:42.579-0400 [DEBUG] [org.gradle.cache.internal.DefaultFileLockManager] Releasing lock on daemon addresses registry.
-2026-07-24T09:59:42.579-0400 [DEBUG] [org.gradle.launcher.daemon.server.DaemonStateCoordinator] resetting idle timer
-2026-07-24T09:59:42.580-0400 [DEBUG] [org.gradle.launcher.daemon.server.DaemonStateCoordinator] daemon is running. Sleeping until state changes.
-2026-07-24T09:59:42.580-0400 [INFO] [org.gradle.launcher.daemon.server.exec.StartBuildOrRespondWithBusy] Daemon is about to start building Build{id=6d7c6e58-fcee-435d-87be-46389c674b47, currentDir=/Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_cwih-cnp-mgmt-cds-workflow_default-branch/default-branch/cwih-cnp-mgmt-cds-workflow}. Dispatching build started information...
-2026-07-24T09:59:42.580-0400 [DEBUG] [org.gradle.launcher.daemon.server.SynchronizedDispatchConnection] thread 23: dispatching org.gradle.launcher.daemon.protocol.BuildStarted@4146abd3
-2026-07-24T09:59:42.581-0400 [DEBUG] [org.gradle.launcher.daemon.server.exec.EstablishBuildEnvironment] Configuring env variables: [PATH, MallocNanoZone, ZDOTDIR, MANPATH, JAVA_HOME, MAKEFLAGS, TERM, LANG, VSCODE_GIT_IPC_HANDLE, VSCODE_PYTHON_AUTOACTIVATE_GUARD, COMMAND_MODE, VSCODE_GIT_ASKPASS_MAIN, CLOUDSDK_PYTHON, COPILOT_DEBUG_NONCE, VSCODE_INJECTION, COLORTERM, VSCODE_PROFILE_INITIALIZED, NODE_EXTRA_CA_CERTS, VSCODE_GIT_ASKPASS_EXTRA_ARGS, MFLAGS, LOGNAME, VSCODE_GIT_ASKPASS_NODE, XPC_SERVICE_NAME, PWD, TERM_PROGRAM_VERSION, GIT_ASKPASS, ARTIFACTORY_USERNAME, __CFBundleIdentifier, SHELL, TERM_PROGRAM, REQUESTS_CA_BUNDLE, USER_ZDOTDIR, USER, TMPDIR, SSH_AUTH_SOCK, OSLogRateLimit, VIRTUAL_ENV, XPC_FLAGS, ARTIFACTORY_SOURCE, MAKELEVEL, __CF_USER_TEXT_ENCODING, ARTIFACTORY_PASSWORD, VIRTUAL_ENV_PROMPT, HOME, SHLVL]
-2026-07-24T09:59:42.583-0400 [DEBUG] [org.gradle.launcher.daemon.server.exec.LogToClient] About to start relaying all logs to the client via the connection.
-2026-07-24T09:59:42.583-0400 [INFO] [org.gradle.launcher.daemon.server.exec.LogToClient] The client will now receive all logging from the daemon (pid: 74128). The daemon log file: /Users/jchen18/.gradle/daemon/8.14.1/daemon-74128.out.log
-2026-07-24T09:59:42.584-0400 [DEBUG] [org.gradle.launcher.daemon.server.exec.RequestStopIfSingleUsedDaemon] Requesting daemon stop after processing Build{id=6d7c6e58-fcee-435d-87be-46389c674b47, currentDir=/Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_cwih-cnp-mgmt-cds-workflow_default-branch/default-branch/cwih-cnp-mgmt-cds-workflow}
-2026-07-24T09:59:42.584-0400 [LIFECYCLE] [org.gradle.launcher.daemon.server.DaemonStateCoordinator] Daemon will be stopped at the end of the build 
-2026-07-24T09:59:42.584-0400 [DEBUG] [org.gradle.launcher.daemon.server.DaemonStateCoordinator] Stop as soon as idle requested. The daemon is busy
-2026-07-24T09:59:42.584-0400 [DEBUG] [org.gradle.launcher.daemon.server.DaemonStateCoordinator] daemon stop has been requested. Sleeping until state changes.
-2026-07-24T09:59:42.584-0400 [DEBUG] [org.gradle.launcher.daemon.server.exec.ExecuteBuild] The daemon has started executing the build.
-2026-07-24T09:59:42.584-0400 [DEBUG] [org.gradle.launcher.daemon.server.exec.ExecuteBuild] Executing build with daemon context: DefaultDaemonContext[uid=4801f844-420d-4de3-866f-ae7aa865b97d,javaHome=/Library/Java/JavaVirtualMachines/jdk-17.jdk/Contents/Home,javaVersion=17,javaVendor=Oracle Corporation,daemonRegistryDir=/Users/jchen18/.gradle/daemon,pid=74128,idleTimeout=120000,priority=NORMAL,applyInstrumentationAgent=true,nativeServicesMode=ENABLED,daemonOpts=-XX:MaxMetaspaceSize=384m,-XX:+HeapDumpOnOutOfMemoryError,-Xms256m,-Xmx512m,-Dfile.encoding=UTF-8,-Duser.country=US,-Duser.language=en,-Duser.variant]
-Note: /Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_cwih-cnp-mgmt-cds-workflow_default-branch/default-branch/cwih-cnp-mgmt-cds-workflow/src/main/java/com/humana/domain/cds/service/avro/AvroDeserializer.java uses or overrides a deprecated API.
-Note: Recompile with -Xlint:deprecation for details.
-Note: /Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_cwih-cnp-mgmt-cds-workflow_default-branch/default-branch/cwih-cnp-mgmt-cds-workflow/src/main/java/com/humana/domain/cds/util/VaultPropertySourceFactory.java uses unchecked or unsafe operations.
-Note: Recompile with -Xlint:unchecked for details.
-Daemon vm is shutting down... The daemon has exited normally or was terminated in response to a user interrupt.----- End of the daemon log -----
-
-
-FAILURE: Build failed with an exception.
-
-* What went wrong:
-Gradle build daemon disappeared unexpectedly (it may have been killed or may have crashed)
-
-* Try:
-> Run with --stacktrace option to get the stack trace.
-> Run with --info or --debug option to get more log output.
-> Run with --scan to get full insights.
-> Get more help at https://help.gradle.org.
-  [ext-fix] initial Gradle validation timed out or hit a transient daemon crash; retrying the complete updated build with a 450s timeout before isolation
-Validating updated project: gradle build --no-daemon --init-script /var/folders/cg/2rmnrrps3g77gcd8ny14r1yr0000gp/T/pkg_update_gradle_logging.gradle
-To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.14.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
-Daemon will be stopped at the end of the build 
-> Task :compileJava UP-TO-DATE
-> Task :processResources UP-TO-DATE
-> Task :classes UP-TO-DATE
-> Task :resolveMainClassName UP-TO-DATE
-> Task :bootJar UP-TO-DATE
-> Task :bootStartScripts UP-TO-DATE
-> Task :bootDistTar UP-TO-DATE
-> Task :bootDistZip
 > Task :jar
 > Task :startScripts
 > Task :distTar
@@ -183,17 +129,6 @@ Daemon will be stopped at the end of the build
 
 > Task :processTestResources NO-SOURCE
 > Task :testClasses
-2026-07-24 10:00:15.028 INFO  [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] o.a.k.c.c.i.ConsumerCoordinator - [batchId=NA] [transactionId=NA] [Consumer clientId=consumer-cgrp-CNPINDDSUB-DNC-1, groupId=cgrp-CNPINDDSUB-DNC] Resetting generation and member id due to: consumer pro-actively leaving the group
-2026-07-24 10:00:15.028 INFO  [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] o.a.k.c.c.i.ConsumerCoordinator - [batchId=NA] [transactionId=NA] [Consumer clientId=consumer-cgrp-CNPINDDSUB-DNC-1, groupId=cgrp-CNPINDDSUB-DNC] Request joining group due to: consumer pro-actively leaving the group
-2026-07-24 10:00:15.028 INFO  [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] o.a.k.c.c.i.ClassicKafkaConsumer - [batchId=NA] [transactionId=NA] [Consumer clientId=consumer-cgrp-CNPINDDSUB-DNC-1, groupId=cgrp-CNPINDDSUB-DNC] Unsubscribed all topics or patterns and assigned partitions
-2026-07-24 10:00:15.030 INFO  [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] o.a.k.c.c.i.ConsumerCoordinator - [batchId=NA] [transactionId=NA] [Consumer clientId=consumer-cgrp-CNPINDDSUB-DNC-1, groupId=cgrp-CNPINDDSUB-DNC] Resetting generation and member id due to: consumer pro-actively leaving the group
-2026-07-24 10:00:15.030 INFO  [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] o.a.k.c.c.i.ConsumerCoordinator - [batchId=NA] [transactionId=NA] [Consumer clientId=consumer-cgrp-CNPINDDSUB-DNC-1, groupId=cgrp-CNPINDDSUB-DNC] Request joining group due to: consumer pro-actively leaving the group
-2026-07-24 10:00:15.032 INFO  [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] o.a.k.c.m.Metrics - [batchId=NA] [transactionId=NA] Metrics scheduler closed
-2026-07-24 10:00:15.032 INFO  [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] o.a.k.c.m.Metrics - [batchId=NA] [transactionId=NA] Closing reporter org.apache.kafka.common.metrics.JmxReporter
-2026-07-24 10:00:15.032 INFO  [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] o.a.k.c.m.Metrics - [batchId=NA] [transactionId=NA] Closing reporter org.apache.kafka.common.telemetry.internals.ClientTelemetryReporter
-2026-07-24 10:00:15.032 INFO  [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] o.a.k.c.m.Metrics - [batchId=NA] [transactionId=NA] Metrics reporters closed
-2026-07-24 10:00:15.037 INFO  [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] o.a.k.c.u.AppInfoParser - [batchId=NA] [transactionId=NA] App info kafka.consumer for consumer-cgrp-CNPINDDSUB-DNC-1 unregistered
-2026-07-24 10:00:15.037 INFO  [org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] o.s.k.l.KafkaMessageListenerContainer - [batchId=NA] [transactionId=NA] cgrp-CNPINDDSUB-DNC: Consumer stopped
 > Task :test
 > Task :check
 > Task :build
@@ -208,8 +143,12 @@ You can use '--warning-mode all' to show the individual deprecation warnings and
 
 For more on this, please refer to https://docs.gradle.org/8.14.1/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
 
-BUILD SUCCESSFUL in 19s
-15 actionable tasks: 9 executed, 6 up-to-date
+BUILD SUCCESSFUL in 30s
+15 actionable tasks: 15 executed
+Note: /Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_cwih-cnp-mgmt-cds-workflow_default-branch/default-branch/cwih-cnp-mgmt-cds-workflow/src/main/java/com/humana/domain/cds/service/avro/AvroDeserializer.java uses or overrides a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+Note: /Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_cwih-cnp-mgmt-cds-workflow_default-branch/default-branch/cwih-cnp-mgmt-cds-workflow/src/main/java/com/humana/domain/cds/util/VaultPropertySourceFactory.java uses unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
 Note: Some input files use unchecked or unsafe operations.
 Note: Recompile with -Xlint:unchecked for details.
 Java HotSpot(TM) 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended

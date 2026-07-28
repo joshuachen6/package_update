@@ -3,6 +3,13 @@
     {
       "display_changes": [
         {
+          "package": "org.springframework:spring-context",
+          "change_type": "gradle",
+          "old": "6.2.3",
+          "new": "6.2.19",
+          "remediation_guided": true
+        },
+        {
           "package": "org.apache.kafka:kafka-clients",
           "change_type": "gradle",
           "old": "4.0.0",
@@ -10,23 +17,9 @@
           "remediation_guided": true
         },
         {
-          "package": "org.apache.tomcat.embed:tomcat-embed-core",
-          "change_type": "gradle",
-          "old": "11.0.5",
-          "new": "11.0.24",
-          "remediation_guided": true
-        },
-        {
           "package": "org.springframework:spring-webmvc",
           "change_type": "gradle",
           "old": "6.2.10",
-          "new": "6.2.19",
-          "remediation_guided": true
-        },
-        {
-          "package": "org.springframework:spring-context",
-          "change_type": "gradle",
-          "old": "6.2.3",
           "new": "6.2.19",
           "remediation_guided": true
         },
@@ -59,6 +52,13 @@
           "remediation_guided": true
         },
         {
+          "package": "org.apache.commons:commons-lang3",
+          "change_type": "gradle-force",
+          "old": "3.14.0",
+          "new": "3.20.0",
+          "remediation_guided": true
+        },
+        {
           "package": "org.apache.tomcat.embed:tomcat-embed-websocket",
           "change_type": "gradle-force",
           "old": "10.1.41",
@@ -80,10 +80,10 @@
           "remediation_guided": true
         },
         {
-          "package": "org.apache.commons:commons-lang3",
+          "package": "org.apache.tomcat.embed:tomcat-embed-core",
           "change_type": "gradle-force",
-          "old": "3.14.0",
-          "new": "3.20.0",
+          "old": "10.1.41",
+          "new": "10.1.57",
           "remediation_guided": true
         }
       ],
@@ -92,6 +92,15 @@
       "tree_failed": false,
       "build_text": "plugins {\n    id 'org.springframework.boot' version '3.3.12'\n\tid 'io.spring.dependency-management' version '1.1.7'\n\tid 'java'\n    id 'maven-publish'\n    id 'jacoco'\n    id \"org.sonarqube\" version \"4.2.0.3129\"\n}\n\n\ngroup = 'com.humana.domain.ecrphoneattribute'\nversion = '2.0.0.453'\njava {\n    toolchain {\n        languageVersion = JavaLanguageVersion.of(17)\n    }\n}\n\nconfigurations {\n//    compileOnly {\n//        extendsFrom annotationProcessor\n//    }\n}\n\nrepositories {\n    mavenLocal()\n    maven {\n        url 'https://humana.jfrog.io/artifactory/plugins-release'\n        credentials {\n            username System.getenv('ARTIFACTORY_USERNAME')\n            password System.getenv('ARTIFACTORY_PASSWORD')\n        }\n    }\n}\next {\n    set('springCloudVersion', \"2023.0.3\")\n    set('spring-security.version', \"6.2.3\")\n    set('spring-framework.version', \"6.2.0\")\n}\n\n\ndependencies {\n    implementation 'org.springframework.boot:spring-boot-starter-actuator'\n    implementation 'org.springframework:spring-beans:6.2.3'\n    implementation 'org.springframework:spring-context:6.2.3'\n    implementation 'org.springframework:spring-core:6.2.3'\n    implementation 'org.springframework:spring-expression:6.2.3'\n\n\n    implementation('org.springframework.boot:spring-boot-starter-web:3.4.0')\n            {\n                exclude group: 'org.springframework', module: 'spring-webmvc'\n                exclude group: 'org.springframework', module: 'spring-web'\n                //exclude group: 'org.apache.tomcat.embed', module: 'tomcat-embed-core'\n                //exclude group: 'com.fasterxml.jackson.core', module: 'jackson-core'\n            }\n    implementation('org.springframework:spring-webmvc:6.2.10')\n    implementation('org.springframework:spring-web:6.2.10')\n\n    implementation 'org.springframework.boot:spring-boot-starter-aop:3.4.0'\n\n    //implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.6.0'\n    implementation('org.springframework.kafka:spring-kafka:3.3.2') {\n        exclude group: 'org.xerial.snappy', module: 'snappy-java'\n        exclude group: 'org.apache.kafka', module: 'kafka-clients'\n    }\n    implementation 'org.apache.kafka:kafka-clients:4.0.0'\n    //implementation 'org.apache.tomcat.embed:tomcat-embed-core:11.0.5'\n    implementation('org.apache.avro:avro:1.12.0') {\n    }\n    implementation 'org.springframework:spring-webflux:6.2.2'\n    //implementation 'io.projectreactor.netty:reactor-netty-http'\n    compileOnly 'org.projectlombok:lombok'\n//\tdevelopmentOnly 'org.springframework.boot:spring-boot-devtools'\n    annotationProcessor 'org.projectlombok:lombok'\n    testImplementation('org.springframework.boot:spring-boot-starter-test:3.4.3') {\n        exclude group: 'org.xmlunit', module: 'xmlunit-core'\n    }\n    testImplementation 'org.xmlunit:xmlunit-core:2.10.0'\n    testImplementation 'org.mockito:mockito-core:5.1.1'\n    testImplementation 'org.mockito:mockito-junit-jupiter:5.10.0'\n    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.10.0'\n    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.10.0'\n    implementation 'net.bytebuddy:byte-buddy:1.12.0'\n    implementation 'org.xerial.snappy:snappy-java:1.1.10.7'\n    implementation 'org.springframework.boot:spring-boot-starter-validation:3.4.3'\n\n    implementation(group: 'io.netty', name: 'netty-handler') {\n        version {\n            strictly '4.1.118.Final'\n        }\n    }\n}\ndependencyManagement {\n    imports {\n        mavenBom \"org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}\"\n    }\n}\n\nsonarqube {\n    properties {\n        property \"sonar.projectKey\", \"MACS.ConsentAndPreferences.MACS.ConsentAndPreferences.EcrPhoneAttributeWorkflow\"\n        property \"sonar.host.url\", \"http://analysis-devops.humana.com\"\n        property \"sonar.login\", System.getenv(\"SONARQUBE_TOKEN\")\n        property \"sonar.java.binaries\", \"${layout.buildDirectory.get()}/classes/java/main\"\n        property \"sonar.junit.reportsPath\", \"${layout.buildDirectory.get()}/test-results/test/\"\n        property \"sonar.jacoco.reportPaths\", \"${layout.buildDirectory.get()}/reports/jacoco/test/jacocoTestReport.xml\"\n        property 'sonar.coverage.exclusions',\n                \"**/com/humana/domain/ecrphoneattribute/App.java,\" +\n                        \"**/com/humana/domain/ecrphoneattribute/client/**,\" +\n                        \"**/com/humana/domain/ecrphoneattribute/config/**,\" +\n                        \"**/com/humana/domain/ecrphoneattribute/contract/**,\" +\n                        \"**/com/humana/domain/ecrphoneattribute/constants/**,\" +\n                        \"**/com/humana/domain/ecrphoneattribute/dto/**,\" +\n                        \"**/com/humana/domain/ecrphoneattribute/entity/**,\" +\n                        \"**/com/humana/domain/ecrphoneattribute/exceptions/**,\" +\n                        \"**/com/humana/domain/ecrphoneattribute/repository/**,\" +\n                        \"**/com/humana/domain/ecrphoneattribute/interfaces/**,\" +\n                        \"**/com/humana/domain/ecrphoneattribute/model/**,\" +\n                        \"**/com/humana/domain/ecrphoneattribute/service/avro/**,\" +\n                        \"**/com/humana/domain/ecrphoneattribute/util/VaultPropertySourceFactory.java\"\n    }\n}\n\napply plugin: 'jacoco'\n\ntest {\n    useJUnitPlatform()\n\n    jacocoTestReport {\n        reports {\n            xml.required.set(true)\n            html.required.set(true)\n            xml.destination file(\"${layout.buildDirectory.get()}/reports/jacoco/test/jacocoTestReport.xml\")\n            html.destination file(\"${layout.buildDirectory.get()}/jacocoReport\")\n        }\n        finalizedBy jacocoTestCoverageVerification\n        afterEvaluate {\n            classDirectories.setFrom(files(classDirectories.files.collect {\n                fileTree(dir: it, exclude: [\n                        \"**/com/humana/domain/ecrphoneattribute/App.java,\" +\n                                \"**/com/humana/domain/ecrphoneattribute/client/**,\" +\n                                \"**/com/humana/domain/ecrphoneattribute/config/**,\" +\n                                \"**/com/humana/domain/ecrphoneattribute/contract/**,\" +\n                                \"**/com/humana/domain/ecrphoneattribute/constants/**,\" +\n                                \"**/com/humana/domain/ecrphoneattribute/dto/**,\" +\n                                \"**/com/humana/domain/ecrphoneattribute/entity/**,\" +\n                                \"**/com/humana/domain/ecrphoneattribute/exceptions/**,\" +\n                                \"**/com/humana/domain/ecrphoneattribute/repository/**,\" +\n                                \"**/com/humana/domain/ecrphoneattribute/interfaces/**,\" +\n                                \"**/com/humana/domain/ecrphoneattribute/model/**,\" +\n                                \"**/com/humana/domain/ecrphoneattribute/util/VaultPropertySourceFactory.java\"\n                ])\n            }))\n        }\n    }\n    test.finalizedBy jacocoTestReport\n    //jvmArgs '--add-opens', 'java.base/java.lang=ALL-UNNAMED'\n    jvmArgs += [\n            \"--add-opens\", \"java.base/java.lang=ALL-UNNAMED\",\n            \"--add-opens\", \"java.base/java.lang.reflect=ALL-UNNAMED\",\n            \"--add-opens\", \"java.base/java.util=ALL-UNNAMED\"\n    ]\n}\ntasks.named('test') {\n    useJUnitPlatform()\n}\n\ntasks.sonarqube.dependsOn = []\n\ntasks.register('ins-cp-mgmt-ecrphoneattribute-workflow') {\n    doLast {\n        println 'Running ins-cp-mgmt-ecrphoneattribute-workflow task'\n    }\n}\n",
       "changes": [
+        {
+          "dependency": "org.springframework:spring-context",
+          "config": "implementation",
+          "old_version": "6.2.3",
+          "new_version": "6.2.19",
+          "remediation_guided": "yes",
+          "original": "implementation 'org.springframework:spring-context:6.2.3'",
+          "replacement": "implementation 'org.springframework:spring-context:6.2.19'"
+        },
         {
           "dependency": "org.apache.kafka:kafka-clients",
           "config": "implementation",
@@ -102,15 +111,6 @@
           "replacement": "implementation 'org.apache.kafka:kafka-clients:4.3.1'"
         },
         {
-          "dependency": "org.apache.tomcat.embed:tomcat-embed-core",
-          "config": "implementation",
-          "old_version": "11.0.5",
-          "new_version": "11.0.24",
-          "remediation_guided": "yes",
-          "original": "implementation 'org.apache.tomcat.embed:tomcat-embed-core:11.0.5'",
-          "replacement": "implementation 'org.apache.tomcat.embed:tomcat-embed-core:11.0.24'"
-        },
-        {
           "dependency": "org.springframework:spring-webmvc",
           "config": "implementation",
           "old_version": "6.2.10",
@@ -118,15 +118,6 @@
           "remediation_guided": "yes",
           "original": "implementation('org.springframework:spring-webmvc:6.2.10')",
           "replacement": "implementation('org.springframework:spring-webmvc:6.2.19')"
-        },
-        {
-          "dependency": "org.springframework:spring-context",
-          "config": "implementation",
-          "old_version": "6.2.3",
-          "new_version": "6.2.19",
-          "remediation_guided": "yes",
-          "original": "implementation 'org.springframework:spring-context:6.2.3'",
-          "replacement": "implementation 'org.springframework:spring-context:6.2.19'"
         },
         {
           "dependency": "org.springframework:spring-beans",
@@ -158,6 +149,12 @@
           "minimum_required": "1.8.0"
         },
         {
+          "dependency": "org.apache.commons:commons-lang3",
+          "old_version": "3.14.0",
+          "new_version": "3.20.0",
+          "minimum_required": "3.20.0"
+        },
+        {
           "dependency": "org.apache.tomcat.embed:tomcat-embed-websocket",
           "old_version": "10.1.41",
           "new_version": "10.1.57",
@@ -176,10 +173,10 @@
           "minimum_required": "4.2.16.Final"
         },
         {
-          "dependency": "org.apache.commons:commons-lang3",
-          "old_version": "3.14.0",
-          "new_version": "3.20.0",
-          "minimum_required": "3.20.0"
+          "dependency": "org.apache.tomcat.embed:tomcat-embed-core",
+          "old_version": "10.1.41",
+          "new_version": "10.1.57",
+          "minimum_required": "10.1.57"
         }
       ],
       "skipped_raw": [],

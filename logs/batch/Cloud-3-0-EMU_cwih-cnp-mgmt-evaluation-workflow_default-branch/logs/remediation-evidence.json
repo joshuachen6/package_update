@@ -1,10 +1,15 @@
 {
   "after_scan": {
-    "components": [],
-    "json_path": "/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_cwih-cnp-mgmt-evaluation-workflow_default-branch/logs/jfrog-audit-after.json"
-  },
-  "before_scan": {
     "components": [
+      {
+        "component_id": "gav://at.yawk.lz4:lz4-java:1.10.1",
+        "cves": [
+          "CVE-2026-59949"
+        ],
+        "ecosystem": "maven",
+        "package": "at.yawk.lz4:lz4-java",
+        "version": "1.10.1"
+      },
       {
         "component_id": "gav://ch.qos.logback:logback-core:1.5.25",
         "cves": [
@@ -38,13 +43,261 @@
         "version": "4.4.0"
       },
       {
-        "component_id": "gav://commons-beanutils:commons-beanutils:1.9.4",
+        "component_id": "gav://io.micrometer:micrometer-core:1.15.11",
         "cves": [
-          "CVE-2025-48734"
+          "CVE-2026-40983",
+          "CVE-2026-40984"
         ],
         "ecosystem": "maven",
-        "package": "commons-beanutils:commons-beanutils",
-        "version": "1.9.4"
+        "package": "io.micrometer:micrometer-core",
+        "version": "1.15.11"
+      },
+      {
+        "component_id": "gav://io.netty:netty-codec-dns:4.1.132.Final",
+        "cves": [
+          "CVE-2026-42579"
+        ],
+        "ecosystem": "maven",
+        "package": "io.netty:netty-codec-dns",
+        "version": "4.1.132.Final"
+      },
+      {
+        "component_id": "gav://io.netty:netty-codec-http2:4.1.132.Final",
+        "cves": [
+          "CVE-2026-42587",
+          "CVE-2026-47244",
+          "CVE-2026-48043",
+          "CVE-2026-50560",
+          "CVE-2026-56819",
+          "CVE-2026-59900"
+        ],
+        "ecosystem": "maven",
+        "package": "io.netty:netty-codec-http2",
+        "version": "4.1.132.Final"
+      },
+      {
+        "component_id": "gav://io.netty:netty-codec-http:4.1.132.Final",
+        "cves": [
+          "CVE-2026-41417",
+          "CVE-2026-42580",
+          "CVE-2026-42581",
+          "CVE-2026-42584",
+          "CVE-2026-42585",
+          "CVE-2026-42587",
+          "CVE-2026-50020",
+          "CVE-2026-55831",
+          "CVE-2026-55833",
+          "CVE-2026-56745",
+          "CVE-2026-56746",
+          "CVE-2026-59898",
+          "CVE-2026-59899",
+          "CVE-2026-59921"
+        ],
+        "ecosystem": "maven",
+        "package": "io.netty:netty-codec-http",
+        "version": "4.1.132.Final"
+      },
+      {
+        "component_id": "gav://io.netty:netty-codec:4.1.132.Final",
+        "cves": [
+          "CVE-2026-42583",
+          "CVE-2026-59901"
+        ],
+        "ecosystem": "maven",
+        "package": "io.netty:netty-codec",
+        "version": "4.1.132.Final"
+      },
+      {
+        "component_id": "gav://io.netty:netty-handler-proxy:4.1.132.Final",
+        "cves": [
+          "CVE-2026-42578"
+        ],
+        "ecosystem": "maven",
+        "package": "io.netty:netty-handler-proxy",
+        "version": "4.1.132.Final"
+      },
+      {
+        "component_id": "gav://io.netty:netty-handler:4.1.132.Final",
+        "cves": [
+          "CVE-2026-44249",
+          "CVE-2026-45416",
+          "CVE-2026-50010"
+        ],
+        "ecosystem": "maven",
+        "package": "io.netty:netty-handler",
+        "version": "4.1.132.Final"
+      },
+      {
+        "component_id": "gav://io.netty:netty-resolver-dns:4.1.132.Final",
+        "cves": [
+          "CVE-2026-45673",
+          "CVE-2026-45674",
+          "CVE-2026-47691"
+        ],
+        "ecosystem": "maven",
+        "package": "io.netty:netty-resolver-dns",
+        "version": "4.1.132.Final"
+      },
+      {
+        "component_id": "gav://io.netty:netty-transport-native-epoll:4.1.132.Final",
+        "cves": [
+          "CVE-2026-45536"
+        ],
+        "ecosystem": "maven",
+        "package": "io.netty:netty-transport-native-epoll",
+        "version": "4.1.132.Final"
+      },
+      {
+        "component_id": "gav://org.apache.cxf:cxf-core:4.1.3",
+        "cves": [
+          "CVE-2026-49875",
+          "CVE-2026-50645"
+        ],
+        "ecosystem": "maven",
+        "package": "org.apache.cxf:cxf-core",
+        "version": "4.1.3"
+      },
+      {
+        "component_id": "gav://org.apache.httpcomponents.core5:httpcore5-h2:5.3.6",
+        "cves": [
+          "CVE-2026-54428"
+        ],
+        "ecosystem": "maven",
+        "package": "org.apache.httpcomponents.core5:httpcore5-h2",
+        "version": "5.3.6"
+      },
+      {
+        "component_id": "gav://org.apache.httpcomponents.core5:httpcore5:5.3.6",
+        "cves": [
+          "CVE-2026-54399"
+        ],
+        "ecosystem": "maven",
+        "package": "org.apache.httpcomponents.core5:httpcore5",
+        "version": "5.3.6"
+      },
+      {
+        "component_id": "gav://org.codehaus.plexus:plexus-utils:3.4.1",
+        "cves": [
+          "CVE-2025-67030"
+        ],
+        "ecosystem": "maven",
+        "package": "org.codehaus.plexus:plexus-utils",
+        "version": "3.4.1"
+      },
+      {
+        "component_id": "gav://org.springframework.data:spring-data-commons:3.5.11",
+        "cves": [
+          "CVE-2026-41695",
+          "CVE-2026-41716"
+        ],
+        "ecosystem": "maven",
+        "package": "org.springframework.data:spring-data-commons",
+        "version": "3.5.11"
+      },
+      {
+        "component_id": "gav://org.springframework.data:spring-data-mongodb:4.5.11",
+        "cves": [
+          "CVE-2026-41717"
+        ],
+        "ecosystem": "maven",
+        "package": "org.springframework.data:spring-data-mongodb",
+        "version": "4.5.11"
+      },
+      {
+        "component_id": "gav://org.springframework.kafka:spring-kafka:3.3.5",
+        "cves": [
+          "CVE-2026-41726",
+          "CVE-2026-41731"
+        ],
+        "ecosystem": "maven",
+        "package": "org.springframework.kafka:spring-kafka",
+        "version": "3.3.5"
+      },
+      {
+        "component_id": "gav://org.springframework:spring-core:6.2.17",
+        "cves": [
+          "CVE-2026-41848"
+        ],
+        "ecosystem": "maven",
+        "package": "org.springframework:spring-core",
+        "version": "6.2.17"
+      },
+      {
+        "component_id": "gav://org.springframework:spring-expression:6.2.17",
+        "cves": [
+          "CVE-2026-41850",
+          "CVE-2026-41851"
+        ],
+        "ecosystem": "maven",
+        "package": "org.springframework:spring-expression",
+        "version": "6.2.17"
+      },
+      {
+        "component_id": "gav://org.springframework:spring-web:6.2.17",
+        "cves": [
+          "CVE-2026-41845"
+        ],
+        "ecosystem": "maven",
+        "package": "org.springframework:spring-web",
+        "version": "6.2.17"
+      },
+      {
+        "component_id": "gav://org.springframework:spring-webflux:6.2.17",
+        "cves": [
+          "CVE-2026-22740",
+          "CVE-2026-22741",
+          "CVE-2026-22745",
+          "CVE-2026-41842"
+        ],
+        "ecosystem": "maven",
+        "package": "org.springframework:spring-webflux",
+        "version": "6.2.17"
+      }
+    ],
+    "json_path": "/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_cwih-cnp-mgmt-evaluation-workflow_default-branch/logs/jfrog-audit-after.json"
+  },
+  "before_scan": {
+    "components": [
+      {
+        "component_id": "gav://at.yawk.lz4:lz4-java:1.10.1",
+        "cves": [
+          "CVE-2026-59949"
+        ],
+        "ecosystem": "maven",
+        "package": "at.yawk.lz4:lz4-java",
+        "version": "1.10.1"
+      },
+      {
+        "component_id": "gav://ch.qos.logback:logback-core:1.5.25",
+        "cves": [
+          "CVE-2026-10532",
+          "CVE-2026-9828"
+        ],
+        "ecosystem": "maven",
+        "package": "ch.qos.logback:logback-core",
+        "version": "1.5.25"
+      },
+      {
+        "component_id": "gav://com.fasterxml.jackson.core:jackson-databind:2.19.4",
+        "cves": [
+          "CVE-2026-54512",
+          "CVE-2026-54513",
+          "CVE-2026-54514",
+          "CVE-2026-54515",
+          "CVE-2026-59888"
+        ],
+        "ecosystem": "maven",
+        "package": "com.fasterxml.jackson.core:jackson-databind",
+        "version": "2.19.4"
+      },
+      {
+        "component_id": "gav://com.github.jknack:handlebars:4.4.0",
+        "cves": [
+          "CVE-2026-55760"
+        ],
+        "ecosystem": "maven",
+        "package": "com.github.jknack:handlebars",
+        "version": "4.4.0"
       },
       {
         "component_id": "gav://io.micrometer:micrometer-core:1.15.11",
@@ -71,7 +324,9 @@
           "CVE-2026-42587",
           "CVE-2026-47244",
           "CVE-2026-48043",
-          "CVE-2026-50560"
+          "CVE-2026-50560",
+          "CVE-2026-56819",
+          "CVE-2026-59900"
         ],
         "ecosystem": "maven",
         "package": "io.netty:netty-codec-http2",
@@ -88,7 +343,12 @@
           "CVE-2026-42587",
           "CVE-2026-50020",
           "CVE-2026-55831",
-          "CVE-2026-55833"
+          "CVE-2026-55833",
+          "CVE-2026-56745",
+          "CVE-2026-56746",
+          "CVE-2026-59898",
+          "CVE-2026-59899",
+          "CVE-2026-59921"
         ],
         "ecosystem": "maven",
         "package": "io.netty:netty-codec-http",
@@ -97,7 +357,8 @@
       {
         "component_id": "gav://io.netty:netty-codec:4.1.132.Final",
         "cves": [
-          "CVE-2026-42583"
+          "CVE-2026-42583",
+          "CVE-2026-59901"
         ],
         "ecosystem": "maven",
         "package": "io.netty:netty-codec",
@@ -252,214 +513,14 @@
     ],
     "json_path": "/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_cwih-cnp-mgmt-evaluation-workflow_default-branch/logs/jfrog-audit.json"
   },
-  "classification": "Error - secondary verification scan incomplete",
+  "classification": "Failed - dependency updates could not be validated; manual review required",
   "diagnostic_csvs": {
     "build-validation-manual-updates.csv": [
-      {
-        "change_type": "gradle",
-        "new": "2.22.1",
-        "old": "2.19.4",
-        "package": "com.fasterxml.jackson.core:jackson-annotations",
-        "reason": "build validation failed and failure isolation disabled",
-        "status": "manual_update_required"
-      },
-      {
-        "change_type": "gradle",
-        "new": "2.22.1",
-        "old": "2.19.4",
-        "package": "com.fasterxml.jackson.core:jackson-databind",
-        "reason": "build validation failed and failure isolation disabled",
-        "status": "manual_update_required"
-      },
-      {
-        "change_type": "gradle-force",
-        "new": "6.2.19",
-        "old": "6.2.17",
-        "package": "org.springframework:spring-web",
-        "reason": "build validation failed and failure isolation disabled",
-        "status": "manual_update_required"
-      },
-      {
-        "change_type": "gradle-force",
-        "new": "6.2.19",
-        "old": "6.2.17",
-        "package": "org.springframework:spring-tx",
-        "reason": "build validation failed and failure isolation disabled",
-        "status": "manual_update_required"
-      },
-      {
-        "change_type": "gradle-force",
-        "new": "6.2.19",
-        "old": "6.2.17",
-        "package": "org.springframework:spring-test",
-        "reason": "build validation failed and failure isolation disabled",
-        "status": "manual_update_required"
-      },
-      {
-        "change_type": "gradle-force",
-        "new": "6.2.19",
-        "old": "6.2.17",
-        "package": "org.springframework:spring-messaging",
-        "reason": "build validation failed and failure isolation disabled",
-        "status": "manual_update_required"
-      },
-      {
-        "change_type": "gradle-force",
-        "new": "6.2.19",
-        "old": "6.2.17",
-        "package": "org.springframework:spring-jcl",
-        "reason": "build validation failed and failure isolation disabled",
-        "status": "manual_update_required"
-      },
       {
         "change_type": "gradle-force",
         "new": "6.2.19",
         "old": "6.2.17",
         "package": "org.springframework:spring-expression",
-        "reason": "build validation failed and failure isolation disabled",
-        "status": "manual_update_required"
-      },
-      {
-        "change_type": "gradle-force",
-        "new": "6.2.19",
-        "old": "6.2.17",
-        "package": "org.springframework:spring-core",
-        "reason": "build validation failed and failure isolation disabled",
-        "status": "manual_update_required"
-      },
-      {
-        "change_type": "gradle-force",
-        "new": "6.2.19",
-        "old": "6.2.17",
-        "package": "org.springframework:spring-context",
-        "reason": "build validation failed and failure isolation disabled",
-        "status": "manual_update_required"
-      },
-      {
-        "change_type": "gradle-force",
-        "new": "6.2.19",
-        "old": "6.2.17",
-        "package": "org.springframework:spring-beans",
-        "reason": "build validation failed and failure isolation disabled",
-        "status": "manual_update_required"
-      },
-      {
-        "change_type": "gradle-force",
-        "new": "6.2.19",
-        "old": "6.2.17",
-        "package": "org.springframework:spring-aop",
-        "reason": "build validation failed and failure isolation disabled",
-        "status": "manual_update_required"
-      },
-      {
-        "change_type": "gradle-force",
-        "new": "4.5.13",
-        "old": "4.5.11",
-        "package": "org.springframework.data:spring-data-mongodb",
-        "reason": "build validation failed and failure isolation disabled",
-        "status": "manual_update_required"
-      },
-      {
-        "change_type": "gradle-force",
-        "new": "3.5.13",
-        "old": "3.5.11",
-        "package": "org.springframework.data:spring-data-commons",
-        "reason": "build validation failed and failure isolation disabled",
-        "status": "manual_update_required"
-      },
-      {
-        "change_type": "gradle-force",
-        "new": "5.4.3",
-        "old": "5.3.6",
-        "package": "org.apache.httpcomponents.core5:httpcore5-h2",
-        "reason": "build validation failed and failure isolation disabled",
-        "status": "manual_update_required"
-      },
-      {
-        "change_type": "gradle-force",
-        "new": "5.4.3",
-        "old": "5.3.6",
-        "package": "org.apache.httpcomponents.core5:httpcore5",
-        "reason": "build validation failed and failure isolation disabled",
-        "status": "manual_update_required"
-      },
-      {
-        "change_type": "gradle-force",
-        "new": "4.2.2",
-        "old": "4.1.3",
-        "package": "org.apache.cxf:cxf-core",
-        "reason": "build validation failed and failure isolation disabled",
-        "status": "manual_update_required"
-      },
-      {
-        "change_type": "gradle-force",
-        "new": "4.2.16.Final",
-        "old": "4.1.132.Final",
-        "package": "io.netty:netty-transport-native-unix-common",
-        "reason": "build validation failed and failure isolation disabled",
-        "status": "manual_update_required"
-      },
-      {
-        "change_type": "gradle-force",
-        "new": "4.2.16.Final",
-        "old": "4.1.132.Final",
-        "package": "io.netty:netty-transport-native-epoll",
-        "reason": "build validation failed and failure isolation disabled",
-        "status": "manual_update_required"
-      },
-      {
-        "change_type": "gradle-force",
-        "new": "4.2.16.Final",
-        "old": "4.1.132.Final",
-        "package": "io.netty:netty-transport-classes-epoll",
-        "reason": "build validation failed and failure isolation disabled",
-        "status": "manual_update_required"
-      },
-      {
-        "change_type": "gradle-force",
-        "new": "4.2.16.Final",
-        "old": "4.1.132.Final",
-        "package": "io.netty:netty-transport",
-        "reason": "build validation failed and failure isolation disabled",
-        "status": "manual_update_required"
-      },
-      {
-        "change_type": "gradle-force",
-        "new": "4.2.16.Final",
-        "old": "4.1.132.Final",
-        "package": "io.netty:netty-resolver-dns-native-macos",
-        "reason": "build validation failed and failure isolation disabled",
-        "status": "manual_update_required"
-      },
-      {
-        "change_type": "gradle-force",
-        "new": "4.2.16.Final",
-        "old": "4.1.132.Final",
-        "package": "io.netty:netty-resolver-dns-classes-macos",
-        "reason": "build validation failed and failure isolation disabled",
-        "status": "manual_update_required"
-      },
-      {
-        "change_type": "gradle-force",
-        "new": "4.2.16.Final",
-        "old": "4.1.132.Final",
-        "package": "io.netty:netty-resolver-dns",
-        "reason": "build validation failed and failure isolation disabled",
-        "status": "manual_update_required"
-      },
-      {
-        "change_type": "gradle-force",
-        "new": "4.2.16.Final",
-        "old": "4.1.132.Final",
-        "package": "io.netty:netty-resolver",
-        "reason": "build validation failed and failure isolation disabled",
-        "status": "manual_update_required"
-      },
-      {
-        "change_type": "gradle-force",
-        "new": "4.2.16.Final",
-        "old": "4.1.132.Final",
-        "package": "io.netty:netty-handler-proxy",
         "reason": "build validation failed and failure isolation disabled",
         "status": "manual_update_required"
       },
@@ -475,7 +536,31 @@
         "change_type": "gradle-force",
         "new": "4.2.16.Final",
         "old": "4.1.132.Final",
-        "package": "io.netty:netty-common",
+        "package": "io.netty:netty-handler-proxy",
+        "reason": "build validation failed and failure isolation disabled",
+        "status": "manual_update_required"
+      },
+      {
+        "change_type": "gradle",
+        "new": "6.2.19",
+        "old": "6.2.17",
+        "package": "org.springframework:spring-framework.version",
+        "reason": "build validation failed and failure isolation disabled",
+        "status": "manual_update_required"
+      },
+      {
+        "change_type": "gradle-force",
+        "new": "6.2.19",
+        "old": "6.2.17",
+        "package": "org.springframework:spring-web",
+        "reason": "build validation failed and failure isolation disabled",
+        "status": "manual_update_required"
+      },
+      {
+        "change_type": "gradle-force",
+        "new": "6.2.19",
+        "old": "6.2.17",
+        "package": "org.springframework:spring-core",
         "reason": "build validation failed and failure isolation disabled",
         "status": "manual_update_required"
       },
@@ -483,7 +568,15 @@
         "change_type": "gradle-force",
         "new": "4.2.16.Final",
         "old": "4.1.132.Final",
-        "package": "io.netty:netty-codec-socks",
+        "package": "io.netty:netty-transport-native-epoll",
+        "reason": "build validation failed and failure isolation disabled",
+        "status": "manual_update_required"
+      },
+      {
+        "change_type": "gradle-force",
+        "new": "4.2.16.Final",
+        "old": "4.1.132.Final",
+        "package": "io.netty:netty-resolver-dns",
         "reason": "build validation failed and failure isolation disabled",
         "status": "manual_update_required"
       },
@@ -520,26 +613,58 @@
         "status": "manual_update_required"
       },
       {
-        "change_type": "gradle-force",
-        "new": "4.2.16.Final",
-        "old": "4.1.132.Final",
-        "package": "io.netty:netty-buffer",
+        "change_type": "gradle",
+        "new": "6.2.19",
+        "old": "6.2.17",
+        "package": "org.springframework:spring-webflux",
         "reason": "build validation failed and failure isolation disabled",
         "status": "manual_update_required"
       },
       {
         "change_type": "gradle-force",
-        "new": "1.17.0",
-        "old": "1.15.11",
-        "package": "io.micrometer:micrometer-observation",
+        "new": "4.5.13",
+        "old": "4.5.11",
+        "package": "org.springframework.data:spring-data-mongodb",
         "reason": "build validation failed and failure isolation disabled",
         "status": "manual_update_required"
       },
       {
         "change_type": "gradle-force",
-        "new": "1.17.0",
-        "old": "1.15.11",
-        "package": "io.micrometer:micrometer-jakarta9",
+        "new": "3.5.13",
+        "old": "3.5.11",
+        "package": "org.springframework.data:spring-data-commons",
+        "reason": "build validation failed and failure isolation disabled",
+        "status": "manual_update_required"
+      },
+      {
+        "change_type": "gradle",
+        "new": "3.3.16",
+        "old": "3.3.5",
+        "package": "org.springframework.kafka:spring-kafka",
+        "reason": "build validation failed and failure isolation disabled",
+        "status": "manual_update_required"
+      },
+      {
+        "change_type": "gradle-force",
+        "new": "5.4.3",
+        "old": "5.3.6",
+        "package": "org.apache.httpcomponents.core5:httpcore5-h2",
+        "reason": "build validation failed and failure isolation disabled",
+        "status": "manual_update_required"
+      },
+      {
+        "change_type": "gradle-force",
+        "new": "5.4.3",
+        "old": "5.3.6",
+        "package": "org.apache.httpcomponents.core5:httpcore5",
+        "reason": "build validation failed and failure isolation disabled",
+        "status": "manual_update_required"
+      },
+      {
+        "change_type": "gradle-force",
+        "new": "4.2.2",
+        "old": "4.1.3",
+        "package": "org.apache.cxf:cxf-core",
         "reason": "build validation failed and failure isolation disabled",
         "status": "manual_update_required"
       },
@@ -553,41 +678,9 @@
       },
       {
         "change_type": "gradle-force",
-        "new": "1.17.0",
-        "old": "1.15.11",
-        "package": "io.micrometer:micrometer-commons",
-        "reason": "build validation failed and failure isolation disabled",
-        "status": "manual_update_required"
-      },
-      {
-        "change_type": "gradle-force",
-        "new": "1.11.0",
-        "old": "1.9.4",
-        "package": "commons-beanutils:commons-beanutils",
-        "reason": "build validation failed and failure isolation disabled",
-        "status": "manual_update_required"
-      },
-      {
-        "change_type": "gradle",
-        "new": "6.2.19",
-        "old": "6.2.17",
-        "package": "org.springframework:spring-webflux",
-        "reason": "build validation failed and failure isolation disabled",
-        "status": "manual_update_required"
-      },
-      {
-        "change_type": "gradle",
-        "new": "6.2.19",
-        "old": "6.2.17",
-        "package": "org.springframework:spring-framework.version",
-        "reason": "build validation failed and failure isolation disabled",
-        "status": "manual_update_required"
-      },
-      {
-        "change_type": "gradle",
-        "new": "3.3.16",
-        "old": "3.3.5",
-        "package": "org.springframework.kafka:spring-kafka",
+        "new": "1.11.1",
+        "old": "1.10.1",
+        "package": "at.yawk.lz4:lz4-java",
         "reason": "build validation failed and failure isolation disabled",
         "status": "manual_update_required"
       },
@@ -601,7 +694,23 @@
       },
       {
         "change_type": "gradle",
-        "new": "1.5.38",
+        "new": "2.22.1",
+        "old": "2.19.4",
+        "package": "com.fasterxml.jackson.core:jackson-databind",
+        "reason": "build validation failed and failure isolation disabled",
+        "status": "manual_update_required"
+      },
+      {
+        "change_type": "gradle",
+        "new": "2.22",
+        "old": "2.19.4",
+        "package": "com.fasterxml.jackson.core:jackson-annotations",
+        "reason": "build validation failed and failure isolation disabled",
+        "status": "manual_update_required"
+      },
+      {
+        "change_type": "gradle",
+        "new": "1.6.1",
         "old": "1.5.25",
         "package": "ch.qos.logback:logback-core",
         "reason": "build validation failed and failure isolation disabled",
@@ -609,7 +718,7 @@
       },
       {
         "change_type": "gradle",
-        "new": "1.5.38",
+        "new": "1.6.1",
         "old": "1.5.25",
         "package": "ch.qos.logback:logback-classic",
         "reason": "build validation failed and failure isolation disabled",
@@ -619,13 +728,7 @@
     "gradle-fetch-errors.csv": [],
     "gradle-force-overrides.csv": [
       {
-        "dependency": "io.netty:netty-codec",
-        "minimum_required": "4.2.16.Final",
-        "new_version": "4.2.16.Final",
-        "old_version": "4.1.132.Final"
-      },
-      {
-        "dependency": "io.netty:netty-handler",
+        "dependency": "io.netty:netty-handler-proxy",
         "minimum_required": "4.2.16.Final",
         "new_version": "4.2.16.Final",
         "old_version": "4.1.132.Final"
@@ -637,25 +740,7 @@
         "old_version": "4.1.132.Final"
       },
       {
-        "dependency": "io.netty:netty-codec-http2",
-        "minimum_required": "4.2.16.Final",
-        "new_version": "4.2.16.Final",
-        "old_version": "4.1.132.Final"
-      },
-      {
-        "dependency": "io.micrometer:micrometer-core",
-        "minimum_required": "1.17.0",
-        "new_version": "1.17.0",
-        "old_version": "1.15.11"
-      },
-      {
-        "dependency": "io.netty:netty-codec-http",
-        "minimum_required": "4.2.16.Final",
-        "new_version": "4.2.16.Final",
-        "old_version": "4.1.132.Final"
-      },
-      {
-        "dependency": "io.netty:netty-handler-proxy",
+        "dependency": "io.netty:netty-handler",
         "minimum_required": "4.2.16.Final",
         "new_version": "4.2.16.Final",
         "old_version": "4.1.132.Final"
@@ -667,10 +752,28 @@
         "old_version": "4.1.132.Final"
       },
       {
+        "dependency": "io.netty:netty-codec",
+        "minimum_required": "4.2.16.Final",
+        "new_version": "4.2.16.Final",
+        "old_version": "4.1.132.Final"
+      },
+      {
+        "dependency": "io.netty:netty-codec-http2",
+        "minimum_required": "4.2.16.Final",
+        "new_version": "4.2.16.Final",
+        "old_version": "4.1.132.Final"
+      },
+      {
         "dependency": "io.netty:netty-resolver-dns",
         "minimum_required": "4.2.16.Final",
         "new_version": "4.2.16.Final",
         "old_version": "4.1.132.Final"
+      },
+      {
+        "dependency": "io.micrometer:micrometer-core",
+        "minimum_required": "1.17.0",
+        "new_version": "1.17.0",
+        "old_version": "1.15.11"
       },
       {
         "dependency": "org.springframework.data:spring-data-mongodb",
@@ -679,28 +782,22 @@
         "old_version": "4.5.11"
       },
       {
+        "dependency": "io.netty:netty-codec-http",
+        "minimum_required": "4.2.16.Final",
+        "new_version": "4.2.16.Final",
+        "old_version": "4.1.132.Final"
+      },
+      {
         "dependency": "org.springframework.data:spring-data-commons",
         "minimum_required": "3.5.13",
         "new_version": "3.5.13",
         "old_version": "3.5.11"
       },
       {
-        "dependency": "commons-beanutils:commons-beanutils",
-        "minimum_required": "1.11.0",
-        "new_version": "1.11.0",
-        "old_version": "1.9.4"
-      },
-      {
-        "dependency": "org.apache.cxf:cxf-core",
-        "minimum_required": "4.2.2",
-        "new_version": "4.2.2",
-        "old_version": "4.1.3"
-      },
-      {
-        "dependency": "org.apache.httpcomponents.core5:httpcore5-h2",
-        "minimum_required": "5.4.3",
-        "new_version": "5.4.3",
-        "old_version": "5.3.6"
+        "dependency": "at.yawk.lz4:lz4-java",
+        "minimum_required": "1.11.1",
+        "new_version": "1.11.1",
+        "old_version": "1.10.1"
       },
       {
         "dependency": "org.apache.httpcomponents.core5:httpcore5",
@@ -709,43 +806,19 @@
         "old_version": "5.3.6"
       },
       {
-        "dependency": "com.fasterxml.jackson.core:jackson-annotations",
-        "minimum_required": "2.22.1",
-        "new_version": "2.22.1",
-        "old_version": "2.19.4"
+        "dependency": "org.apache.httpcomponents.core5:httpcore5-h2",
+        "minimum_required": "5.4.3",
+        "new_version": "5.4.3",
+        "old_version": "5.3.6"
       },
       {
-        "dependency": "ch.qos.logback:logback-classic",
-        "minimum_required": "1.5.38",
-        "new_version": "1.5.38",
-        "old_version": "1.5.25"
+        "dependency": "org.apache.cxf:cxf-core",
+        "minimum_required": "4.2.2",
+        "new_version": "4.2.2",
+        "old_version": "4.1.3"
       },
       {
         "dependency": "org.springframework:spring-core",
-        "minimum_required": "6.2.19",
-        "new_version": "6.2.19",
-        "old_version": "6.2.17"
-      },
-      {
-        "dependency": "org.springframework:spring-jcl",
-        "minimum_required": "6.2.19",
-        "new_version": "6.2.19",
-        "old_version": "6.2.17"
-      },
-      {
-        "dependency": "org.springframework:spring-context",
-        "minimum_required": "6.2.19",
-        "new_version": "6.2.19",
-        "old_version": "6.2.17"
-      },
-      {
-        "dependency": "org.springframework:spring-aop",
-        "minimum_required": "6.2.19",
-        "new_version": "6.2.19",
-        "old_version": "6.2.17"
-      },
-      {
-        "dependency": "org.springframework:spring-beans",
         "minimum_required": "6.2.19",
         "new_version": "6.2.19",
         "old_version": "6.2.17"
@@ -761,96 +834,6 @@
         "minimum_required": "6.2.19",
         "new_version": "6.2.19",
         "old_version": "6.2.17"
-      },
-      {
-        "dependency": "org.springframework:spring-tx",
-        "minimum_required": "6.2.19",
-        "new_version": "6.2.19",
-        "old_version": "6.2.17"
-      },
-      {
-        "dependency": "org.springframework:spring-messaging",
-        "minimum_required": "6.2.19",
-        "new_version": "6.2.19",
-        "old_version": "6.2.17"
-      },
-      {
-        "dependency": "org.springframework:spring-test",
-        "minimum_required": "6.2.19",
-        "new_version": "6.2.19",
-        "old_version": "6.2.17"
-      },
-      {
-        "dependency": "io.netty:netty-common",
-        "minimum_required": "4.2.16.Final",
-        "new_version": "4.2.16.Final",
-        "old_version": "4.1.132.Final"
-      },
-      {
-        "dependency": "io.netty:netty-buffer",
-        "minimum_required": "4.2.16.Final",
-        "new_version": "4.2.16.Final",
-        "old_version": "4.1.132.Final"
-      },
-      {
-        "dependency": "io.netty:netty-transport",
-        "minimum_required": "4.2.16.Final",
-        "new_version": "4.2.16.Final",
-        "old_version": "4.1.132.Final"
-      },
-      {
-        "dependency": "io.netty:netty-resolver",
-        "minimum_required": "4.2.16.Final",
-        "new_version": "4.2.16.Final",
-        "old_version": "4.1.132.Final"
-      },
-      {
-        "dependency": "io.netty:netty-transport-native-unix-common",
-        "minimum_required": "4.2.16.Final",
-        "new_version": "4.2.16.Final",
-        "old_version": "4.1.132.Final"
-      },
-      {
-        "dependency": "io.netty:netty-resolver-dns-native-macos",
-        "minimum_required": "4.2.16.Final",
-        "new_version": "4.2.16.Final",
-        "old_version": "4.1.132.Final"
-      },
-      {
-        "dependency": "io.netty:netty-resolver-dns-classes-macos",
-        "minimum_required": "4.2.16.Final",
-        "new_version": "4.2.16.Final",
-        "old_version": "4.1.132.Final"
-      },
-      {
-        "dependency": "io.netty:netty-transport-classes-epoll",
-        "minimum_required": "4.2.16.Final",
-        "new_version": "4.2.16.Final",
-        "old_version": "4.1.132.Final"
-      },
-      {
-        "dependency": "io.netty:netty-codec-socks",
-        "minimum_required": "4.2.16.Final",
-        "new_version": "4.2.16.Final",
-        "old_version": "4.1.132.Final"
-      },
-      {
-        "dependency": "io.micrometer:micrometer-observation",
-        "minimum_required": "1.17.0",
-        "new_version": "1.17.0",
-        "old_version": "1.15.11"
-      },
-      {
-        "dependency": "io.micrometer:micrometer-commons",
-        "minimum_required": "1.17.0",
-        "new_version": "1.17.0",
-        "old_version": "1.15.11"
-      },
-      {
-        "dependency": "io.micrometer:micrometer-jakarta9",
-        "minimum_required": "1.17.0",
-        "new_version": "1.17.0",
-        "old_version": "1.15.11"
       }
     ],
     "gradle-skipped.csv": [
@@ -864,6 +847,13 @@
     "gradle-version-changes.csv": [
       {
         "config": "implementation",
+        "dependency": "ch.qos.logback:logback-core",
+        "new_version": "1.6.1",
+        "old_version": "1.5.25",
+        "remediation_guided": "yes"
+      },
+      {
+        "config": "implementation",
         "dependency": "com.fasterxml.jackson.core:jackson-databind",
         "new_version": "2.22.1",
         "old_version": "2.19.4",
@@ -871,16 +861,9 @@
       },
       {
         "config": "implementation",
-        "dependency": "ch.qos.logback:logback-core",
-        "new_version": "1.5.38",
-        "old_version": "1.5.25",
-        "remediation_guided": "yes"
-      },
-      {
-        "config": "testImplementation",
-        "dependency": "org.codehaus.plexus:plexus-utils",
-        "new_version": "3.6.1",
-        "old_version": "3.4.1",
+        "dependency": "org.springframework.kafka:spring-kafka",
+        "new_version": "3.3.16",
+        "old_version": "3.3.5",
         "remediation_guided": "yes"
       },
       {
@@ -891,10 +874,10 @@
         "remediation_guided": "transitive org.springframework:spring-core>=6.2.19"
       },
       {
-        "config": "implementation",
-        "dependency": "org.springframework.kafka:spring-kafka",
-        "new_version": "3.3.16",
-        "old_version": "3.3.5",
+        "config": "testImplementation",
+        "dependency": "org.codehaus.plexus:plexus-utils",
+        "new_version": "3.6.1",
+        "old_version": "3.4.1",
         "remediation_guided": "yes"
       },
       {
@@ -907,14 +890,14 @@
       {
         "config": "implementation",
         "dependency": "ch.qos.logback:logback-classic",
-        "new_version": "1.5.38",
+        "new_version": "1.6.1",
         "old_version": "1.5.25",
         "remediation_guided": "competing pin realigned"
       },
       {
         "config": "implementation",
         "dependency": "com.fasterxml.jackson.core:jackson-annotations",
-        "new_version": "2.22.1",
+        "new_version": "2.22",
         "old_version": "2.19.4",
         "remediation_guided": "competing pin realigned"
       }
@@ -924,10 +907,10 @@
   "files": [
     {
       "candidate_counts": {
-        "ch.qos.logback:logback-core": 169,
+        "at.yawk.lz4:lz4-java": 9,
+        "ch.qos.logback:logback-core": 171,
         "com.fasterxml.jackson.core:jackson-databind": 229,
         "com.github.jknack:handlebars": 57,
-        "commons-beanutils:commons-beanutils": 21,
         "io.micrometer:micrometer-core": 257,
         "io.netty:netty-codec": 259,
         "io.netty:netty-codec-dns": 180,
@@ -963,30 +946,16 @@
       "selected_changes": [
         {
           "change_type": "gradle",
-          "new": "2.22.1",
-          "old": "2.19.4",
-          "package": "com.fasterxml.jackson.core:jackson-databind",
-          "remediation_guided": true
-        },
-        {
-          "change_type": "gradle",
-          "new": "1.5.38",
+          "new": "1.6.1",
           "old": "1.5.25",
           "package": "ch.qos.logback:logback-core",
           "remediation_guided": true
         },
         {
           "change_type": "gradle",
-          "new": "3.6.1",
-          "old": "3.4.1",
-          "package": "org.codehaus.plexus:plexus-utils",
-          "remediation_guided": true
-        },
-        {
-          "change_type": "gradle",
-          "new": "6.2.19",
-          "old": "6.2.17",
-          "package": "org.springframework:spring-framework.version",
+          "new": "2.22.1",
+          "old": "2.19.4",
+          "package": "com.fasterxml.jackson.core:jackson-databind",
           "remediation_guided": true
         },
         {
@@ -1000,63 +969,35 @@
           "change_type": "gradle",
           "new": "6.2.19",
           "old": "6.2.17",
+          "package": "org.springframework:spring-framework.version",
+          "remediation_guided": true
+        },
+        {
+          "change_type": "gradle",
+          "new": "3.6.1",
+          "old": "3.4.1",
+          "package": "org.codehaus.plexus:plexus-utils",
+          "remediation_guided": true
+        },
+        {
+          "change_type": "gradle",
+          "new": "6.2.19",
+          "old": "6.2.17",
           "package": "org.springframework:spring-webflux",
           "remediation_guided": true
         },
         {
           "change_type": "gradle",
-          "new": "1.5.38",
+          "new": "1.6.1",
           "old": "1.5.25",
           "package": "ch.qos.logback:logback-classic",
           "remediation_guided": true
         },
         {
           "change_type": "gradle",
-          "new": "2.22.1",
+          "new": "2.22",
           "old": "2.19.4",
           "package": "com.fasterxml.jackson.core:jackson-annotations",
-          "remediation_guided": true
-        },
-        {
-          "change_type": "gradle-force",
-          "new": "4.2.16.Final",
-          "old": "4.1.132.Final",
-          "package": "io.netty:netty-codec",
-          "remediation_guided": true
-        },
-        {
-          "change_type": "gradle-force",
-          "new": "4.2.16.Final",
-          "old": "4.1.132.Final",
-          "package": "io.netty:netty-handler",
-          "remediation_guided": true
-        },
-        {
-          "change_type": "gradle-force",
-          "new": "4.2.16.Final",
-          "old": "4.1.132.Final",
-          "package": "io.netty:netty-codec-dns",
-          "remediation_guided": true
-        },
-        {
-          "change_type": "gradle-force",
-          "new": "4.2.16.Final",
-          "old": "4.1.132.Final",
-          "package": "io.netty:netty-codec-http2",
-          "remediation_guided": true
-        },
-        {
-          "change_type": "gradle-force",
-          "new": "1.17.0",
-          "old": "1.15.11",
-          "package": "io.micrometer:micrometer-core",
-          "remediation_guided": true
-        },
-        {
-          "change_type": "gradle-force",
-          "new": "4.2.16.Final",
-          "old": "4.1.132.Final",
-          "package": "io.netty:netty-codec-http",
           "remediation_guided": true
         },
         {
@@ -1070,7 +1011,35 @@
           "change_type": "gradle-force",
           "new": "4.2.16.Final",
           "old": "4.1.132.Final",
+          "package": "io.netty:netty-codec-dns",
+          "remediation_guided": true
+        },
+        {
+          "change_type": "gradle-force",
+          "new": "4.2.16.Final",
+          "old": "4.1.132.Final",
+          "package": "io.netty:netty-handler",
+          "remediation_guided": true
+        },
+        {
+          "change_type": "gradle-force",
+          "new": "4.2.16.Final",
+          "old": "4.1.132.Final",
           "package": "io.netty:netty-transport-native-epoll",
+          "remediation_guided": true
+        },
+        {
+          "change_type": "gradle-force",
+          "new": "4.2.16.Final",
+          "old": "4.1.132.Final",
+          "package": "io.netty:netty-codec",
+          "remediation_guided": true
+        },
+        {
+          "change_type": "gradle-force",
+          "new": "4.2.16.Final",
+          "old": "4.1.132.Final",
+          "package": "io.netty:netty-codec-http2",
           "remediation_guided": true
         },
         {
@@ -1082,9 +1051,23 @@
         },
         {
           "change_type": "gradle-force",
+          "new": "1.17.0",
+          "old": "1.15.11",
+          "package": "io.micrometer:micrometer-core",
+          "remediation_guided": true
+        },
+        {
+          "change_type": "gradle-force",
           "new": "4.5.13",
           "old": "4.5.11",
           "package": "org.springframework.data:spring-data-mongodb",
+          "remediation_guided": true
+        },
+        {
+          "change_type": "gradle-force",
+          "new": "4.2.16.Final",
+          "old": "4.1.132.Final",
+          "package": "io.netty:netty-codec-http",
           "remediation_guided": true
         },
         {
@@ -1096,23 +1079,9 @@
         },
         {
           "change_type": "gradle-force",
-          "new": "1.11.0",
-          "old": "1.9.4",
-          "package": "commons-beanutils:commons-beanutils",
-          "remediation_guided": true
-        },
-        {
-          "change_type": "gradle-force",
-          "new": "4.2.2",
-          "old": "4.1.3",
-          "package": "org.apache.cxf:cxf-core",
-          "remediation_guided": true
-        },
-        {
-          "change_type": "gradle-force",
-          "new": "5.4.3",
-          "old": "5.3.6",
-          "package": "org.apache.httpcomponents.core5:httpcore5-h2",
+          "new": "1.11.1",
+          "old": "1.10.1",
+          "package": "at.yawk.lz4:lz4-java",
           "remediation_guided": true
         },
         {
@@ -1124,16 +1093,16 @@
         },
         {
           "change_type": "gradle-force",
-          "new": "2.22.1",
-          "old": "2.19.4",
-          "package": "com.fasterxml.jackson.core:jackson-annotations",
+          "new": "5.4.3",
+          "old": "5.3.6",
+          "package": "org.apache.httpcomponents.core5:httpcore5-h2",
           "remediation_guided": true
         },
         {
           "change_type": "gradle-force",
-          "new": "1.5.38",
-          "old": "1.5.25",
-          "package": "ch.qos.logback:logback-classic",
+          "new": "4.2.2",
+          "old": "4.1.3",
+          "package": "org.apache.cxf:cxf-core",
           "remediation_guided": true
         },
         {
@@ -1141,34 +1110,6 @@
           "new": "6.2.19",
           "old": "6.2.17",
           "package": "org.springframework:spring-core",
-          "remediation_guided": true
-        },
-        {
-          "change_type": "gradle-force",
-          "new": "6.2.19",
-          "old": "6.2.17",
-          "package": "org.springframework:spring-jcl",
-          "remediation_guided": true
-        },
-        {
-          "change_type": "gradle-force",
-          "new": "6.2.19",
-          "old": "6.2.17",
-          "package": "org.springframework:spring-context",
-          "remediation_guided": true
-        },
-        {
-          "change_type": "gradle-force",
-          "new": "6.2.19",
-          "old": "6.2.17",
-          "package": "org.springframework:spring-aop",
-          "remediation_guided": true
-        },
-        {
-          "change_type": "gradle-force",
-          "new": "6.2.19",
-          "old": "6.2.17",
-          "package": "org.springframework:spring-beans",
           "remediation_guided": true
         },
         {
@@ -1184,111 +1125,6 @@
           "old": "6.2.17",
           "package": "org.springframework:spring-web",
           "remediation_guided": true
-        },
-        {
-          "change_type": "gradle-force",
-          "new": "6.2.19",
-          "old": "6.2.17",
-          "package": "org.springframework:spring-tx",
-          "remediation_guided": true
-        },
-        {
-          "change_type": "gradle-force",
-          "new": "6.2.19",
-          "old": "6.2.17",
-          "package": "org.springframework:spring-messaging",
-          "remediation_guided": true
-        },
-        {
-          "change_type": "gradle-force",
-          "new": "6.2.19",
-          "old": "6.2.17",
-          "package": "org.springframework:spring-test",
-          "remediation_guided": true
-        },
-        {
-          "change_type": "gradle-force",
-          "new": "4.2.16.Final",
-          "old": "4.1.132.Final",
-          "package": "io.netty:netty-common",
-          "remediation_guided": true
-        },
-        {
-          "change_type": "gradle-force",
-          "new": "4.2.16.Final",
-          "old": "4.1.132.Final",
-          "package": "io.netty:netty-buffer",
-          "remediation_guided": true
-        },
-        {
-          "change_type": "gradle-force",
-          "new": "4.2.16.Final",
-          "old": "4.1.132.Final",
-          "package": "io.netty:netty-transport",
-          "remediation_guided": true
-        },
-        {
-          "change_type": "gradle-force",
-          "new": "4.2.16.Final",
-          "old": "4.1.132.Final",
-          "package": "io.netty:netty-resolver",
-          "remediation_guided": true
-        },
-        {
-          "change_type": "gradle-force",
-          "new": "4.2.16.Final",
-          "old": "4.1.132.Final",
-          "package": "io.netty:netty-transport-native-unix-common",
-          "remediation_guided": true
-        },
-        {
-          "change_type": "gradle-force",
-          "new": "4.2.16.Final",
-          "old": "4.1.132.Final",
-          "package": "io.netty:netty-resolver-dns-native-macos",
-          "remediation_guided": true
-        },
-        {
-          "change_type": "gradle-force",
-          "new": "4.2.16.Final",
-          "old": "4.1.132.Final",
-          "package": "io.netty:netty-resolver-dns-classes-macos",
-          "remediation_guided": true
-        },
-        {
-          "change_type": "gradle-force",
-          "new": "4.2.16.Final",
-          "old": "4.1.132.Final",
-          "package": "io.netty:netty-transport-classes-epoll",
-          "remediation_guided": true
-        },
-        {
-          "change_type": "gradle-force",
-          "new": "4.2.16.Final",
-          "old": "4.1.132.Final",
-          "package": "io.netty:netty-codec-socks",
-          "remediation_guided": true
-        },
-        {
-          "change_type": "gradle-force",
-          "new": "1.17.0",
-          "old": "1.15.11",
-          "package": "io.micrometer:micrometer-observation",
-          "remediation_guided": true
-        },
-        {
-          "change_type": "gradle-force",
-          "new": "1.17.0",
-          "old": "1.15.11",
-          "package": "io.micrometer:micrometer-commons",
-          "remediation_guided": true
-        },
-        {
-          "change_type": "gradle-force",
-          "new": "1.17.0",
-          "old": "1.15.11",
-          "package": "io.micrometer:micrometer-jakarta9",
-          "remediation_guided": true
         }
       ],
       "skipped": [
@@ -1303,8 +1139,19 @@
       "test_status": "not_run",
       "validation_message": "Build validation failed. Failure isolation disabled.",
       "validation_status": "Failed",
-      "verification_status": "Error - secondary verification scan incomplete",
+      "verification_status": "Failed - dependency updates could not be validated; manual review required",
       "version_inventory": {
+        "at.yawk.lz4:lz4-java": [
+          "1.8.1",
+          "1.9.0",
+          "1.10.0",
+          "1.10.1",
+          "1.10.2",
+          "1.10.3",
+          "1.10.4",
+          "1.11.0",
+          "1.11.1"
+        ],
         "ch.qos.logback:logback-core": [
           "0.2.5",
           "0.3",
@@ -1474,7 +1321,9 @@
           "1.5.35",
           "1.5.36",
           "1.5.37",
-          "1.5.38"
+          "1.5.38",
+          "1.6.0",
+          "1.6.1"
         ],
         "com.fasterxml.jackson.core:jackson-databind": [
           "2.0.0-RC1",
@@ -1765,29 +1614,6 @@
           "4.5.1",
           "4.5.2",
           "4.5.3"
-        ],
-        "commons-beanutils:commons-beanutils": [
-          "1.0",
-          "1.2",
-          "1.3",
-          "1.4",
-          "1.4.1",
-          "1.5",
-          "1.6",
-          "1.6.1",
-          "1.7.0",
-          "1.8.0",
-          "1.8.1",
-          "1.8.2",
-          "1.8.3",
-          "1.9.0",
-          "1.9.1",
-          "1.9.2",
-          "1.9.3",
-          "1.9.4",
-          "1.10.0",
-          "1.10.1",
-          "1.11.0"
         ],
         "io.micrometer:micrometer-core": [
           "0.6.3.RELEASE",
@@ -6103,7 +5929,7 @@
       "write_status": "Failed"
     }
   ],
-  "generated_at": "2026-07-22T11:53:57",
+  "generated_at": "2026-07-28T09:12:04",
   "next_actions": [
     {
       "action": "Review exhaustive-isolation failures and try alternative safe versions for the implicated packages instead of retaining the rollback.",
@@ -6111,13 +5937,12 @@
       "priority": "high"
     },
     {
-      "action": "Regenerate the resolved dependency graph and rerun the secondary JFrog scan.",
-      "category": "verification",
+      "action": "Try coordinated platform/BOM upgrades for: jackson, netty, spring.",
+      "category": "platform_or_bom",
       "priority": "high"
     }
   ],
   "original_cves": [
-    "CVE-2025-48734",
     "CVE-2025-67030",
     "CVE-2026-10532",
     "CVE-2026-22740",
@@ -6166,22 +5991,91 @@
     "CVE-2026-55760",
     "CVE-2026-55831",
     "CVE-2026-55833",
+    "CVE-2026-56745",
+    "CVE-2026-56746",
+    "CVE-2026-56819",
     "CVE-2026-59888",
+    "CVE-2026-59898",
+    "CVE-2026-59899",
+    "CVE-2026-59900",
+    "CVE-2026-59901",
+    "CVE-2026-59921",
+    "CVE-2026-59949",
     "CVE-2026-9828"
   ],
-  "outcome": "Error",
+  "outcome": "Failed",
   "refresh_errors": [],
-  "remaining_original_cves": [],
+  "remaining_original_cves": [
+    "CVE-2025-67030",
+    "CVE-2026-10532",
+    "CVE-2026-22740",
+    "CVE-2026-22741",
+    "CVE-2026-22745",
+    "CVE-2026-40983",
+    "CVE-2026-40984",
+    "CVE-2026-41417",
+    "CVE-2026-41695",
+    "CVE-2026-41716",
+    "CVE-2026-41717",
+    "CVE-2026-41726",
+    "CVE-2026-41731",
+    "CVE-2026-41842",
+    "CVE-2026-41845",
+    "CVE-2026-41848",
+    "CVE-2026-41850",
+    "CVE-2026-41851",
+    "CVE-2026-42578",
+    "CVE-2026-42579",
+    "CVE-2026-42580",
+    "CVE-2026-42581",
+    "CVE-2026-42583",
+    "CVE-2026-42584",
+    "CVE-2026-42585",
+    "CVE-2026-42587",
+    "CVE-2026-44249",
+    "CVE-2026-45416",
+    "CVE-2026-45536",
+    "CVE-2026-45673",
+    "CVE-2026-45674",
+    "CVE-2026-47244",
+    "CVE-2026-47691",
+    "CVE-2026-48043",
+    "CVE-2026-49875",
+    "CVE-2026-50010",
+    "CVE-2026-50020",
+    "CVE-2026-50560",
+    "CVE-2026-50645",
+    "CVE-2026-54399",
+    "CVE-2026-54428",
+    "CVE-2026-54512",
+    "CVE-2026-54513",
+    "CVE-2026-54514",
+    "CVE-2026-54515",
+    "CVE-2026-55760",
+    "CVE-2026-55831",
+    "CVE-2026-55833",
+    "CVE-2026-56745",
+    "CVE-2026-56746",
+    "CVE-2026-56819",
+    "CVE-2026-59888",
+    "CVE-2026-59898",
+    "CVE-2026-59899",
+    "CVE-2026-59900",
+    "CVE-2026-59901",
+    "CVE-2026-59921",
+    "CVE-2026-59949",
+    "CVE-2026-9828"
+  ],
   "remediation_budget_seconds": 300,
-  "security_status": "incomplete",
+  "security_status": "still_vulnerable",
   "summary": {
-    "candidate_versions_considered": 4746,
+    "candidate_versions_considered": 4736,
     "component_cve_pairs_new": 0,
-    "component_cve_pairs_remaining": 0,
-    "component_cve_pairs_removed": 52,
+    "component_cve_pairs_remaining": 60,
+    "component_cve_pairs_removed": 0,
     "dependency_files": 1,
-    "vulnerability_records_after": 0,
-    "vulnerability_records_before": 52
+    "vulnerability_records_after": 60,
+    "vulnerability_records_before": 60
   },
   "test_status": "not_run",
   "tests": {

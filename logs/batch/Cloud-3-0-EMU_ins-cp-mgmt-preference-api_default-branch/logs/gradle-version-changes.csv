@@ -1,7 +1,7 @@
 dependency,config,old_version,new_version,remediation_guided
-ch.qos.logback:logback-core,implementation,1.5.25,1.6.0,yes
-io.netty:netty-codec-http2,implementation,4.1.132.Final,4.2.16.Final,yes
 io.netty:netty-codec-http,implementation,4.1.132.Final,4.2.16.Final,yes
-org.springframework:spring-framework.version,ext,6.2.17,6.2.19,transitive org.springframework:spring-core>=6.2.19
+io.netty:netty-codec-http2,implementation,4.1.132.Final,4.2.16.Final,yes
 org.apache.kafka:kafka-clients,implementation,4.1.1,4.3.1,yes
-ch.qos.logback:logback-classic,implementation,1.5.25,1.6.0,competing pin realigned
+ch.qos.logback:logback-core,implementation,1.5.25,1.6.1,yes
+org.springframework:spring-framework.version,ext,6.2.17,6.2.19,transitive org.springframework:spring-core>=6.2.19
+ch.qos.logback:logback-classic,implementation,1.5.25,1.6.1,competing pin realigned

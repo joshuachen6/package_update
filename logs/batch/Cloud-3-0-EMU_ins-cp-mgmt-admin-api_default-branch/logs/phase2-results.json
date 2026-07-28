@@ -20,7 +20,14 @@
           "package": "ch.qos.logback:logback-core",
           "change_type": "gradle-force",
           "old": "1.5.32",
-          "new": "1.6.0",
+          "new": "1.6.1",
+          "remediation_guided": true
+        },
+        {
+          "package": "com.fasterxml.jackson.core:jackson-databind",
+          "change_type": "gradle-force",
+          "old": "2.21.2",
+          "new": "2.22.1",
           "remediation_guided": true
         },
         {
@@ -35,13 +42,6 @@
           "change_type": "gradle-force",
           "old": "10.1.54",
           "new": "10.1.57",
-          "remediation_guided": true
-        },
-        {
-          "package": "com.fasterxml.jackson.core:jackson-databind",
-          "change_type": "gradle-force",
-          "old": "2.21.2",
-          "new": "2.22.1",
           "remediation_guided": true
         }
       ],
@@ -70,8 +70,14 @@
         {
           "dependency": "ch.qos.logback:logback-core",
           "old_version": "1.5.32",
-          "new_version": "1.6.0",
-          "minimum_required": "1.6.0"
+          "new_version": "1.6.1",
+          "minimum_required": "1.6.1"
+        },
+        {
+          "dependency": "com.fasterxml.jackson.core:jackson-databind",
+          "old_version": "2.21.2",
+          "new_version": "2.22.1",
+          "minimum_required": "2.22.1"
         },
         {
           "dependency": "at.yawk.lz4:lz4-java",
@@ -84,12 +90,6 @@
           "old_version": "10.1.54",
           "new_version": "10.1.57",
           "minimum_required": "10.1.57"
-        },
-        {
-          "dependency": "com.fasterxml.jackson.core:jackson-databind",
-          "old_version": "2.21.2",
-          "new_version": "2.22.1",
-          "minimum_required": "2.22.1"
         }
       ],
       "skipped_raw": [],
@@ -277,7 +277,8 @@
           "1.5.36",
           "1.5.37",
           "1.5.38",
-          "1.6.0"
+          "1.6.0",
+          "1.6.1"
         ],
         "com.fasterxml.jackson.core:jackson-databind": [
           "2.0.0-RC1",

@@ -192,3 +192,67 @@ A problem occurred configuring root project 'ecrphoneattribute-workflow'.
 BUILD FAILED in 4s
 [2026-07-24 10:25:59] round 2: 0 new blocked packages
 [2026-07-24 10:25:59] 403s cleared; returning partial-fix state for candidate rollback
+[2026-07-28 09:13:57] [perf] concurrent version search (org.springframework:spring-context) completed in 0.48s
+[2026-07-28 09:13:57] [perf] concurrent version search (org.springframework.boot:spring-boot-starter-actuator) completed in 0.53s
+[2026-07-28 09:13:57] [perf] concurrent version search (org.springframework:spring-context) completed in 0.21s
+[2026-07-28 09:13:58] [perf] concurrent version search (org.apache.commons:commons-lang3) completed in 0.80s
+[2026-07-28 09:13:58] [perf] concurrent version search (org.apache.kafka:kafka-clients) completed in 0.81s
+[2026-07-28 09:13:58] [perf] concurrent version search (io.micrometer:micrometer-core) completed in 0.91s
+[2026-07-28 09:13:58] [perf] transitive-parent search (io.micrometer:micrometer-core) ran 0 gradle probe(s) in 0.00s (resolved=False)
+[2026-07-28 09:13:58] [perf] concurrent version search (org.springframework:spring-webmvc) completed in 0.91s
+[2026-07-28 09:13:58] [perf] concurrent version search (org.apache.tomcat.embed:tomcat-embed-websocket) completed in 0.99s
+[2026-07-28 09:13:58] [perf] concurrent version search (org.apache.kafka:kafka-clients) completed in 0.23s
+[2026-07-28 09:13:58] [perf] concurrent version search (io.netty:netty-codec) completed in 1.09s
+[2026-07-28 09:13:58] [perf] concurrent version search (org.springframework:spring-webmvc) completed in 0.29s
+[2026-07-28 09:13:58] [perf] concurrent version search (org.assertj:assertj-core) completed in 1.22s
+[2026-07-28 09:13:59] [perf] concurrent version search (org.apache.tomcat.embed:tomcat-embed-core) completed in 2.03s
+[2026-07-28 09:14:00] [perf] concurrent version search (org.lz4:lz4-java) completed in 3.00s
+[2026-07-28 09:14:00] [perf] transitive-parent search (org.lz4:lz4-java) ran 0 gradle probe(s) in 0.00s (resolved=False)
+[2026-07-28 09:14:22] [perf] transitive-parent search (org.apache.commons:commons-lang3) ran 1 gradle probe(s) in 24.37s (resolved=False)
+[2026-07-28 09:14:24] [perf] transitive-parent search (org.apache.tomcat.embed:tomcat-embed-websocket) ran 1 gradle probe(s) in 26.09s (resolved=False)
+[2026-07-28 09:14:29] [perf] transitive-parent search (org.assertj:assertj-core) ran 1 gradle probe(s) in 30.54s (resolved=False)
+[2026-07-28 09:14:30] [perf] transitive-parent search (io.netty:netty-codec) ran 1 gradle probe(s) in 31.63s (resolved=False)
+[2026-07-28 09:14:33] [perf] transitive-parent search (org.apache.tomcat.embed:tomcat-embed-core) ran 1 gradle probe(s) in 34.30s (resolved=False)
+[2026-07-28 09:14:33] proactive check: resolving post-change dependency tree...
+[2026-07-28 09:14:57] proactive check: runtimeClasspath failed — exit code 1
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+A problem occurred configuring root project 'ecrphoneattribute-workflow'.
+> Could not resolve all artifacts for configuration '
+[2026-07-28 09:15:20] proactive check: compileClasspath failed — exit code 1
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+A problem occurred configuring root project 'ecrphoneattribute-workflow'.
+> Could not resolve all artifacts for configuration '
+[2026-07-28 09:15:20] proactive check: forced 1 artifact(s) just to make the dependency tree resolve: com.fasterxml.jackson.core:jackson-databind:2.21.5
+[2026-07-28 09:15:20] proactive check: could not resolve dependency tree even after forcing accessible replacements, skipping
+[2026-07-28 09:15:35] round 1: 1 new blocked packages
+[2026-07-28 09:15:35] com.fasterxml.jackson.core:jackson-databind:2.21.4 — listing from https://humana.jfrog.io/artifactory/ins-cp-mgmt-gradle-virtual, checking access via https://humana.jfrog.io/artifactory/plugins-release
+[2026-07-28 09:15:36] com.fasterxml.jackson.core:jackson-databind:2.21.4 — 229 versions available
+[2026-07-28 09:15:36] [perf] concurrent version search (com.fasterxml.jackson.core:jackson-databind) completed in 0.37s
+[2026-07-28 09:15:36] com.fasterxml.jackson.core:jackson-databind:2.21.4 — find_accessible_version -> '2.21.5'
+[2026-07-28 09:15:52] round 1 build still failed: arning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/8.14.1/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+A problem occurred configuring root project 'ecrphoneattribute-workflow'.
+> Could not resolve all artifacts for configuration 'classpath'.
+   > Could not download jackson-databind-2.21.4.jar (com.fasterxml.jackson.core:jackson-databind:2.21.4)
+      > Could not get resource 'https://humana.jfrog.io/artifactory/ins-cp-mgmt-gradle-virtual/com/fasterxml/jackson/core/jackson-databind/2.21.4/jackson-databind-2.21.4.jar'.
+         > Could not GET 'https://humana.jfrog.io/artifactory/ins-cp-mgmt-gradle-virtual/com/fasterxml/jackson/core/jackson-databind/2.21.4/jackson-databind-2.21.4.jar'. Received status code 403 from server: 
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+> Get more help at https://help.gradle.org.
+
+BUILD FAILED in 13s
+[2026-07-28 09:15:52] round 2: 0 new blocked packages
+[2026-07-28 09:15:52] 403s cleared; returning partial-fix state for candidate rollback

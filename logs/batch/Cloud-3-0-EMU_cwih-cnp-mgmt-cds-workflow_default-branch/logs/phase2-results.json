@@ -3,17 +3,10 @@
     {
       "display_changes": [
         {
-          "package": "org.springframework:spring-framework.version",
+          "package": "org.apache.tomcat.embed:tomcat-embed-core",
           "change_type": "gradle",
-          "old": "6.2.17",
-          "new": "6.2.19",
-          "remediation_guided": true
-        },
-        {
-          "package": "ch.qos.logback:logback-core",
-          "change_type": "gradle",
-          "old": "1.5.25",
-          "new": "1.6.0",
+          "old": "10.1.54",
+          "new": "10.1.57",
           "remediation_guided": true
         },
         {
@@ -24,10 +17,10 @@
           "remediation_guided": true
         },
         {
-          "package": "org.apache.tomcat.embed:tomcat-embed-core",
+          "package": "org.springframework:spring-framework.version",
           "change_type": "gradle",
-          "old": "10.1.54",
-          "new": "10.1.57",
+          "old": "6.2.17",
+          "new": "6.2.19",
           "remediation_guided": true
         },
         {
@@ -38,17 +31,17 @@
           "remediation_guided": true
         },
         {
-          "package": "ch.qos.logback:logback-classic",
+          "package": "ch.qos.logback:logback-core",
           "change_type": "gradle",
           "old": "1.5.25",
-          "new": "1.6.0",
+          "new": "1.6.1",
           "remediation_guided": true
         },
         {
-          "package": "org.springframework.data:spring-data-mongodb",
-          "change_type": "gradle-force",
-          "old": "4.5.11",
-          "new": "4.5.13",
+          "package": "ch.qos.logback:logback-classic",
+          "change_type": "gradle",
+          "old": "1.5.25",
+          "new": "1.6.1",
           "remediation_guided": true
         },
         {
@@ -66,10 +59,10 @@
           "remediation_guided": true
         },
         {
-          "package": "org.apache.tomcat.embed:tomcat-embed-websocket",
+          "package": "org.springframework.data:spring-data-mongodb",
           "change_type": "gradle-force",
-          "old": "10.1.54",
-          "new": "10.1.57",
+          "old": "4.5.11",
+          "new": "4.5.13",
           "remediation_guided": true
         },
         {
@@ -77,6 +70,13 @@
           "change_type": "gradle-force",
           "old": "2.21.2",
           "new": "2.22.1",
+          "remediation_guided": true
+        },
+        {
+          "package": "org.apache.tomcat.embed:tomcat-embed-websocket",
+          "change_type": "gradle-force",
+          "old": "10.1.54",
+          "new": "10.1.57",
           "remediation_guided": true
         },
         {
@@ -121,22 +121,13 @@
       "build_text": "buildscript {\n    repositories {\n        maven {\n            url 'https://humana.jfrog.io/artifactory/cwih-cnp-mgmt-gradle-virtual'\n            credentials {\n                username System.getenv('ARTIFACTORY_USERNAME')\n                password System.getenv('ARTIFACTORY_PASSWORD')\n            }\n        }\n\n    }\n    dependencies {\n        //Check for the latest version here: http://plugins.gradle.org/plugin/com.jfrog.artifactory\n        classpath \"org.jfrog.buildinfo:build-info-extractor-gradle:4+\"\n    }\n}\n\nplugins {\n    id 'java'\n    id 'org.springframework.boot' version '3.5.14'\n    id 'io.spring.dependency-management' version '1.1.7'\n    id 'application'\n    id 'jacoco'\n    id \"org.sonarqube\" version \"5.1.0.4882\"\n\n}\n\ngroup = 'com.humana.domain.cds'\nversion = '0.0.1-SNAPSHOT'\n\njava {\n    toolchain {\n        languageVersion = JavaLanguageVersion.of(17)\n    }\n}\n\nconfigurations {\n    compileOnly {\n        extendsFrom annotationProcessor\n    }\n}\n\nallprojects {\n    apply plugin: \"com.jfrog.artifactory\"\n}\nartifactory {\n    contextUrl = \"${System.getenv('ARTIFACTORY_SOURCE')}\"\n    //The base Artifactory URL if not overridden by the publisher/resolver\n    publish {\n        repository {\n            repoKey = 'cwih-cnp-mgmt-gradle-local'\n            username = \"${System.getenv('ARTIFACTORY_USERNAME')}\"\n            password = \"${System.getenv('ARTIFACTORY_PASSWORD')}\"\n            maven = true\n        }\n    }\n    resolve {\n        repository {\n            repoKey = 'cwih-cnp-mgmt-gradle-virtual'\n            username = \"${System.getenv('ARTIFACTORY_USERNAME')}\"\n            password = \"${System.getenv('ARTIFACTORY_PASSWORD')}\"\n            maven = true\n        }\n    }\n}\nrepositories {\n    mavenLocal()\n    maven {\n        url 'https://humana.jfrog.io/artifactory/cwih-cnp-mgmt-gradle-virtual'\n        credentials {\n            username System.getenv('ARTIFACTORY_USERNAME')\n            password System.getenv('ARTIFACTORY_PASSWORD')\n        }\n    }\n}\n\next {\n    set('springCloudVersion', \"2024.0.1\")\n    set('spring-framework.version', \"6.2.17\")\n}\n\ndependencies {\n\n    implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'\n\n    implementation 'org.springframework.boot:spring-boot-starter-actuator'\n\n    implementation('org.springframework.boot:spring-boot-starter-web:3.5.13')\n            {\n                exclude group: 'org.apache.tomcat.embed', module: 'tomcat-embed-core'\n            }\n    implementation 'org.springframework.boot:spring-boot-starter-aop:3.5.13'\n    //Vit Fix CVE-2025-11226\n    implementation \"ch.qos.logback:logback-core:1.5.25\"\n    implementation \"ch.qos.logback:logback-classic:1.5.25\"\n    // fix of GHSA-72hv-8253-57qq\n    implementation \"com.fasterxml.jackson.core:jackson-core:2.21.1\"\n    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310'\n\n    implementation('org.springframework.kafka:spring-kafka:3.3.6') {\n        exclude group: 'org.xerial.snappy', module: 'snappy-java'\n        exclude group: 'org.apache.kafka', module: 'kafka-clients'\n    }\n    implementation 'org.apache.kafka:kafka-clients:4.2.0'\n    implementation 'org.apache.tomcat.embed:tomcat-embed-core:10.1.54'\n    implementation('org.apache.avro:avro:1.12.0') {\n        //exclude group: 'com.fasterxml.jackson.core', module: 'jackson-core'\n    }\n\n    implementation(group: 'org.apache.commons', name: 'commons-lang3') {\n        version {\n            strictly '3.18.0'\n        }\n    }\n    implementation 'org.springframework:spring-webflux:6.2.17'\n    compileOnly 'org.projectlombok:lombok'\n    annotationProcessor 'org.projectlombok:lombok'\n    testImplementation('org.springframework.boot:spring-boot-starter-test:3.5.13') {\n        exclude group: 'org.xmlunit', module: 'xmlunit-core'\n    }\n    testImplementation 'org.xmlunit:xmlunit-core:2.10.1'\n    testImplementation 'org.mockito:mockito-core:5.18.0'\n    implementation 'org.xerial.snappy:snappy-java:1.1.10.7'\n    implementation 'org.springframework.boot:spring-boot-starter-validation:3.5.13'\n}\n\napplication {\n    mainClass = 'com.humana.domain.cds.IngestionServiceApplication'\n}\nsonarqube {\n    properties {\n        property \"sonar.projectKey\", \"IntegratedHealth.ConsentAndPreferences.IntegratedHealth.ConsentAndPreferences.CdsWorkflow\"\n        property \"sonar.host.url\", \"http://analysis-devops.humana.com\"\n        property \"sonar.login\", System.getenv(\"SONARQUBE_TOKEN\")\n        property \"sonar.java.binaries\", \"${layout.buildDirectory.get()}/classes/java/main\"\n        property \"sonar.junit.reportsPath\", \"${layout.buildDirectory.get()}/test-results/test/\"\n        property \"sonar.jacoco.reportPaths\", \"${layout.buildDirectory.get()}/reports/jacoco/test/jacocoTestReport.xml\"\n        property 'sonar.coverage.exclusions',\n                \"**/com/humana/domain/cds/IngestionServiceApplication.java,\" +\n                        \"**/com/humana/domain/cds/config/**,\" +\n                        \"**/com/humana/domain/cds/constants/**,\" +\n                        \"**/com/humana/domain/cds/contract/**,\" +\n                        \"**/com/humana/domain/cds/dto/**,\" +\n                        \"**/com/humana/domain/cds/entity/**,\" +\n                        \"**/com/humana/domain/cds/enums/**,\" +\n                        \"**/com/humana/domain/cds/exceptions/**,\" +\n                        \"**/com/humana/domain/cds/logging/**,\" +\n                        \"**/com/humana/domain/cds/model/**,\" +\n                        \"**/com/humana/domain/cds/repository/**,\" +\n                        \"**/com/humana/domain/cds/service/avro/**,\" +\n                        \"**/com/humana/domain/cds/util/**\"\n    }\n}\n\napply plugin: 'jacoco'\n\ntest {\n    useJUnitPlatform()\n\n    jacocoTestReport {\n        reports {\n            xml.required.set(true)\n            html.required.set(true)\n            xml.destination file(\"${layout.buildDirectory.get()}/reports/jacoco/test/jacocoTestReport.xml\")\n            html.destination file(\"${layout.buildDirectory.get()}/jacocoReport\")\n        }\n        finalizedBy jacocoTestCoverageVerification\n        afterEvaluate {\n            classDirectories.setFrom(files(classDirectories.files.collect {\n                fileTree(dir: it, exclude: [\n                        \"**/com/humana/domain/cds/entity/**,\" +\n                                \"**/com/humana/domain/cds/config/**,\" +\n                                \"**/com/humana/domain/cds/constants/**,\" +\n                                \"**/com/humana/domain/cds/contract/**,\" +\n                                \"**/com/humana/domain/cds/dto/**,\" +\n                                \"**/com/humana/domain/cds/entity/**,\" +\n                                \"**/com/humana/domain/cds/enums/**,\" +\n                                \"**/com/humana/domain/cds/exceptions/**,\" +\n                                \"**/com/humana/domain/cds/logging/**,\" +\n                                \"**/com/humana/domain/cds/model/**,\" +\n                                \"**/com/humana/domain/cds/repository/**,\" +\n                                \"**/com/humana/domain/cds/service/avro/**,\" +\n                                \"**/com/humana/domain/cds/util/**\"\n                ])\n            }))\n        }\n    }\n    test.finalizedBy jacocoTestReport\n}\n\n\ntasks.named('test') {\n    useJUnitPlatform()\n}\n\ntasks.sonarqube.dependsOn = []",
       "changes": [
         {
-          "dependency": "org.springframework:spring-framework.version",
-          "config": "ext",
-          "old_version": "6.2.17",
-          "new_version": "6.2.19",
-          "remediation_guided": "transitive org.springframework:spring-web>=6.2.19",
-          "original": "set('spring-framework.version', \"6.2.17\")",
-          "replacement": "set('spring-framework.version', \"6.2.19\")"
-        },
-        {
-          "dependency": "ch.qos.logback:logback-core",
+          "dependency": "org.apache.tomcat.embed:tomcat-embed-core",
           "config": "implementation",
-          "old_version": "1.5.25",
-          "new_version": "1.6.0",
+          "old_version": "10.1.54",
+          "new_version": "10.1.57",
           "remediation_guided": "yes",
-          "original": "implementation \"ch.qos.logback:logback-core:1.5.25\"",
-          "replacement": "implementation \"ch.qos.logback:logback-core:1.6.0\""
+          "original": "implementation 'org.apache.tomcat.embed:tomcat-embed-core:10.1.54'",
+          "replacement": "implementation 'org.apache.tomcat.embed:tomcat-embed-core:10.1.57'"
         },
         {
           "dependency": "org.springframework.kafka:spring-kafka",
@@ -148,13 +139,13 @@
           "replacement": "implementation('org.springframework.kafka:spring-kafka:3.3.16')"
         },
         {
-          "dependency": "org.apache.tomcat.embed:tomcat-embed-core",
-          "config": "implementation",
-          "old_version": "10.1.54",
-          "new_version": "10.1.57",
-          "remediation_guided": "yes",
-          "original": "implementation 'org.apache.tomcat.embed:tomcat-embed-core:10.1.54'",
-          "replacement": "implementation 'org.apache.tomcat.embed:tomcat-embed-core:10.1.57'"
+          "dependency": "org.springframework:spring-framework.version",
+          "config": "ext",
+          "old_version": "6.2.17",
+          "new_version": "6.2.19",
+          "remediation_guided": "transitive org.springframework:spring-webmvc>=6.2.19",
+          "original": "set('spring-framework.version', \"6.2.17\")",
+          "replacement": "set('spring-framework.version', \"6.2.19\")"
         },
         {
           "dependency": "org.springframework:spring-webflux",
@@ -166,22 +157,25 @@
           "replacement": "implementation 'org.springframework:spring-webflux:6.2.19'"
         },
         {
+          "dependency": "ch.qos.logback:logback-core",
+          "config": "implementation",
+          "old_version": "1.5.25",
+          "new_version": "1.6.1",
+          "remediation_guided": "yes",
+          "original": "implementation \"ch.qos.logback:logback-core:1.5.25\"",
+          "replacement": "implementation \"ch.qos.logback:logback-core:1.6.1\""
+        },
+        {
           "dependency": "ch.qos.logback:logback-classic",
           "config": "implementation",
           "old_version": "1.5.25",
-          "new_version": "1.6.0",
+          "new_version": "1.6.1",
           "remediation_guided": "competing pin realigned",
           "original": "implementation \"ch.qos.logback:logback-classic:1.5.25\"",
-          "replacement": "implementation \"ch.qos.logback:logback-classic:1.6.0\""
+          "replacement": "implementation \"ch.qos.logback:logback-classic:1.6.1\""
         }
       ],
       "force_entries": [
-        {
-          "dependency": "org.springframework.data:spring-data-mongodb",
-          "old_version": "4.5.11",
-          "new_version": "4.5.13",
-          "minimum_required": "4.5.13"
-        },
         {
           "dependency": "io.micrometer:micrometer-core",
           "old_version": "1.15.11",
@@ -195,16 +189,22 @@
           "minimum_required": "3.5.13"
         },
         {
-          "dependency": "org.apache.tomcat.embed:tomcat-embed-websocket",
-          "old_version": "10.1.54",
-          "new_version": "10.1.57",
-          "minimum_required": "10.1.57"
+          "dependency": "org.springframework.data:spring-data-mongodb",
+          "old_version": "4.5.11",
+          "new_version": "4.5.13",
+          "minimum_required": "4.5.13"
         },
         {
           "dependency": "com.fasterxml.jackson.core:jackson-databind",
           "old_version": "2.21.2",
           "new_version": "2.22.1",
           "minimum_required": "2.22.1"
+        },
+        {
+          "dependency": "org.apache.tomcat.embed:tomcat-embed-websocket",
+          "old_version": "10.1.54",
+          "new_version": "10.1.57",
+          "minimum_required": "10.1.57"
         },
         {
           "dependency": "at.yawk.lz4:lz4-java",
@@ -426,7 +426,8 @@
           "1.5.36",
           "1.5.37",
           "1.5.38",
-          "1.6.0"
+          "1.6.0",
+          "1.6.1"
         ],
         "com.fasterxml.jackson.core:jackson-databind": [
           "2.0.0-RC1",

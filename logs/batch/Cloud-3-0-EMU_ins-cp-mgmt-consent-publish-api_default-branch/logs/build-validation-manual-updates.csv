@@ -26,5 +26,5 @@ io.netty:netty-codec-http2,gradle,4.1.128.Final,4.2.16.Final,manual_update_requi
 io.netty:netty-codec,gradle,4.1.128.Final,4.2.16.Final,manual_update_required,build validation failed and failure isolation disabled
 com.fasterxml.jackson.core:jackson-databind,gradle,2.20.1,2.22.1,manual_update_required,build validation failed and failure isolation disabled
 com.fasterxml.jackson.core:jackson-core,gradle,2.20.1,2.22.1,manual_update_required,build validation failed and failure isolation disabled
-ch.qos.logback:logback-core,gradle,1.5.21,1.6.0,manual_update_required,build validation failed and failure isolation disabled
-ch.qos.logback:logback-classic,gradle,1.5.21,1.6.0,manual_update_required,build validation failed and failure isolation disabled
+ch.qos.logback:logback-core,gradle,1.5.21,1.6.1,manual_update_required,build validation failed and failure isolation disabled
+ch.qos.logback:logback-classic,gradle,1.5.21,1.6.1,manual_update_required,build validation failed and failure isolation disabled

@@ -6,8 +6,6 @@ com.fasterxml.jackson.datatype:jackson-datatype-jdk8,2.21.2,2.21.4,changed
 com.fasterxml.jackson.module:jackson-module-parameter-names,2.21.2,2.21.4,changed
 com.fasterxml.jackson:jackson-bom,2.21.2,2.21.5,changed
 com.fasterxml.woodstox:woodstox-core,7.1.1,7.2.0,changed
-commons-beanutils:commons-beanutils,1.9.4,1.11.0,changed
-commons-logging:commons-logging,1.2,1.3.5,changed
 io.micrometer:context-propagation,1.1.4,1.2.1,changed
 io.micrometer:micrometer-commons,1.15.10,1.17.0,changed
 io.micrometer:micrometer-core,1.15.10,1.17.0,changed

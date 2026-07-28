@@ -116,8 +116,8 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
-    implementation "ch.qos.logback:logback-core:1.6.0"//Vit Fix CVE-2025-11226
-    implementation "ch.qos.logback:logback-classic:1.6.0"//Vit Fix CVE-2025-11226
+    implementation "ch.qos.logback:logback-core:1.6.1"//Vit Fix CVE-2025-11226
+    implementation "ch.qos.logback:logback-classic:1.6.1"//Vit Fix CVE-2025-11226
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
         exclude group: 'org.xmlunit', module: 'xmlunit-core'
     }

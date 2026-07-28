@@ -3,28 +3,7 @@
     {
       "display_changes": [
         {
-          "package": "org.apache.kafka:kafka-clients",
-          "change_type": "gradle",
-          "old": "3.9.1",
-          "new": "3.9.2",
-          "remediation_guided": true
-        },
-        {
           "package": "org.springframework:spring-context",
-          "change_type": "gradle",
-          "old": "6.2.0",
-          "new": "6.2.19",
-          "remediation_guided": true
-        },
-        {
-          "package": "org.springframework:spring-web",
-          "change_type": "gradle",
-          "old": "6.2.10",
-          "new": "6.2.19",
-          "remediation_guided": true
-        },
-        {
-          "package": "org.springframework:spring-core",
           "change_type": "gradle",
           "old": "6.2.0",
           "new": "6.2.19",
@@ -38,17 +17,38 @@
           "remediation_guided": true
         },
         {
-          "package": "org.springframework:spring-webmvc",
+          "package": "org.springframework.kafka:spring-kafka",
+          "change_type": "gradle",
+          "old": "3.3.0",
+          "new": "3.3.16",
+          "remediation_guided": true
+        },
+        {
+          "package": "org.springframework:spring-core",
+          "change_type": "gradle",
+          "old": "6.2.0",
+          "new": "6.2.19",
+          "remediation_guided": true
+        },
+        {
+          "package": "org.springframework:spring-web",
           "change_type": "gradle",
           "old": "6.2.10",
           "new": "6.2.19",
           "remediation_guided": true
         },
         {
-          "package": "org.springframework.kafka:spring-kafka",
+          "package": "org.apache.kafka:kafka-clients",
           "change_type": "gradle",
-          "old": "3.3.0",
-          "new": "3.3.16",
+          "old": "3.9.1",
+          "new": "3.9.2",
+          "remediation_guided": true
+        },
+        {
+          "package": "org.springframework:spring-webmvc",
+          "change_type": "gradle",
+          "old": "6.2.10",
+          "new": "6.2.19",
           "remediation_guided": true
         },
         {
@@ -63,6 +63,13 @@
           "change_type": "gradle-force",
           "old": "1.13.14",
           "new": "1.17.0",
+          "remediation_guided": true
+        },
+        {
+          "package": "org.springframework.data:spring-data-mongodb",
+          "change_type": "gradle-force",
+          "old": "4.3.12",
+          "new": "4.5.13",
           "remediation_guided": true
         },
         {
@@ -87,10 +94,17 @@
           "remediation_guided": true
         },
         {
-          "package": "org.springframework.data:spring-data-mongodb",
+          "package": "org.apache.commons:commons-lang3",
           "change_type": "gradle-force",
-          "old": "4.3.12",
-          "new": "4.5.13",
+          "old": "3.14.0",
+          "new": "3.20.0",
+          "remediation_guided": true
+        },
+        {
+          "package": "org.springframework.boot:spring-boot",
+          "change_type": "gradle-force",
+          "old": "3.3.12",
+          "new": "3.5.16",
           "remediation_guided": true
         },
         {
@@ -108,17 +122,10 @@
           "remediation_guided": true
         },
         {
-          "package": "org.apache.commons:commons-lang3",
+          "package": "com.fasterxml.jackson.core:jackson-databind",
           "change_type": "gradle-force",
-          "old": "3.14.0",
-          "new": "3.20.0",
-          "remediation_guided": true
-        },
-        {
-          "package": "org.springframework.boot:spring-boot",
-          "change_type": "gradle-force",
-          "old": "3.3.12",
-          "new": "3.5.16",
+          "old": "2.17.3",
+          "new": "2.22.1",
           "remediation_guided": true
         },
         {
@@ -134,13 +141,6 @@
           "old": "10.1.41",
           "new": "10.1.57",
           "remediation_guided": true
-        },
-        {
-          "package": "com.fasterxml.jackson.core:jackson-databind",
-          "change_type": "gradle-force",
-          "old": "2.17.3",
-          "new": "2.22.1",
-          "remediation_guided": true
         }
       ],
       "skipped_display": [],
@@ -149,15 +149,6 @@
       "build_text": "buildscript {\n    repositories {\n        maven {\n            url 'https://humana.jfrog.io/artifactory/ins-cp-mgmt-gradle-virtual'\n            credentials {\n                username System.getenv('ARTIFACTORY_USERNAME')\n                password System.getenv('ARTIFACTORY_PASSWORD')\n            }\n        }\n\n    }\n    dependencies {\n        //Check for the latest version here: http://plugins.gradle.org/plugin/com.jfrog.artifactory\n        classpath \"org.jfrog.buildinfo:build-info-extractor-gradle:4+\"\n    }\n}\n\nplugins {\n    id 'java'\n    id 'org.springframework.boot' version '3.3.12'\n    id 'io.spring.dependency-management' version '1.1.6'\n    id 'application'\n    id 'jacoco'\n    id \"org.sonarqube\" version \"5.1.0.4882\"\n\n}\n\ngroup = 'com.humana.domain.phone.attributes'\nversion = '0.0.1-SNAPSHOT'\n\njava {\n    toolchain {\n        languageVersion = JavaLanguageVersion.of(17)\n    }\n}\n\nconfigurations {\n    compileOnly {\n        extendsFrom annotationProcessor\n    }\n}\n\nallprojects {\n    apply plugin: \"com.jfrog.artifactory\"\n}\nartifactory {\n    contextUrl = \"${System.getenv('ARTIFACTORY_SOURCE')}\"   //The base Artifactory URL if not overridden by the publisher/resolver\n    publish {\n        repository {\n            repoKey = 'ins-cp-mgmt-gradle-local'\n            username = \"${System.getenv('ARTIFACTORY_USERNAME')}\"\n            password = \"${System.getenv('ARTIFACTORY_PASSWORD')}\"\n            maven = true\n        }\n    }\n    resolve {\n        repository {\n            repoKey = 'ins-cp-mgmt-gradle-virtual'\n            username = \"${System.getenv('ARTIFACTORY_USERNAME')}\"\n            password = \"${System.getenv('ARTIFACTORY_PASSWORD')}\"\n            maven = true\n        }\n    }\n}\nrepositories {\n    mavenLocal()\n    maven {\n        url 'https://humana.jfrog.io/artifactory/ins-cp-mgmt-gradle-virtual'\n        credentials {\n            username System.getenv('ARTIFACTORY_USERNAME')\n            password System.getenv('ARTIFACTORY_PASSWORD')\n        }\n    }\n}\n\next {\n    set('springCloudVersion', \"2023.0.4\")\n}\n\ndependencies {\n\n    implementation 'org.springframework.boot:spring-boot-starter-actuator'\n    implementation('org.springframework.boot:spring-boot-starter-data-mongodb') {\n        exclude group: 'org.springframework', module: 'spring-beans'\n        exclude group: 'org.springframework', module: 'spring-context'\n        exclude group: 'org.springframework', module: 'spring-core'\n        exclude group: 'org.springframework', module: 'spring-expression'\n    }\n    implementation 'org.springframework:spring-beans:6.2.0'\n    implementation 'org.springframework:spring-context:6.2.0'\n    implementation 'org.springframework:spring-core:6.2.0'\n    implementation 'org.springframework:spring-expression:6.2.0'\n\n\n    implementation('org.springframework.boot:spring-boot-starter-web:3.4.0')\n            {\n                exclude group: 'org.springframework', module: 'spring-webmvc'\n                exclude group: 'org.springframework', module: 'spring-web'\n                exclude group: 'org.apache.tomcat.embed', module: 'tomcat-embed-core'\n                //exclude group: 'com.fasterxml.jackson.core', module: 'jackson-core'\n            }\n    implementation('org.springframework:spring-webmvc:6.2.10')\n    implementation('org.springframework:spring-web:6.2.10')\n    implementation 'org.springframework.boot:spring-boot-starter-aop:3.4.0'\n    implementation('org.springframework.kafka:spring-kafka:3.3.0') {\n        exclude group: 'org.xerial.snappy', module: 'snappy-java'\n        exclude group: 'org.apache.kafka', module: 'kafka-clients'\n    }\n    implementation 'org.apache.kafka:kafka-clients:3.9.1'\n    implementation 'org.apache.tomcat.embed:tomcat-embed-core'\n    implementation('org.apache.avro:avro:1.12.0') {\n        //exclude group: 'com.fasterxml.jackson.core', module: 'jackson-core'\n    }\n    implementation 'org.springframework:spring-webflux'\n    compileOnly 'org.projectlombok:lombok'\n    annotationProcessor 'org.projectlombok:lombok'\n    testImplementation('org.springframework.boot:spring-boot-starter-test:3.4.0') {\n        exclude group: 'org.xmlunit', module: 'xmlunit-core'\n    }\n    testImplementation 'org.xmlunit:xmlunit-core:2.10.0'\n    testImplementation 'org.mockito:mockito-core:5.1.1'\n    implementation 'org.xerial.snappy:snappy-java:1.1.10.7'\n    implementation 'org.springframework.boot:spring-boot-starter-validation:3.4.0'\n}\n\napplication {\n    mainClass = 'com.humana.domain.phone.attributes.IngestionServiceApplication'\n}\n\n\nsonarqube {\n    properties {\n        property \"sonar.projectKey\", \"MACS.ConsentAndPreferences.MACS.ConsentAndPreferences.PhoneAttributeWorkflow\"\n        property \"sonar.host.url\", \"http://analysis-devops.humana.com\"\n        property \"sonar.login\", System.getenv(\"SONARQUBE_TOKEN\")\n        property \"sonar.java.binaries\", \"${layout.buildDirectory.get()}/classes/java/main\"\n        property \"sonar.junit.reportsPath\", \"${layout.buildDirectory.get()}/test-results/test/\"\n        property \"sonar.jacoco.reportPaths\", \"${layout.buildDirectory.get()}/reports/jacoco/test/jacocoTestReport.xml\"\n        property 'sonar.coverage.exclusions',\n                \"**/com/humana/domain/phone/attributes/App.java,\" +\n                        \"**/com/humana/domain/phone/attributes/client/**,\" +\n                        \"**/com/humana/domain/phone/attributes/config/**,\" +\n                        \"**/com/humana/domain/phone/attributes/contract/**,\" +\n                        \"**/com/humana/domain/phone/attributes/constants/**,\" +\n                        \"**/com/humana/domain/phone/attributes/dto/**,\" +\n                        \"**/com/humana/domain/phone/attributes/entity/**,\" +\n                        \"**/com/humana/domain/phone/attributes/exceptions/**,\" +\n                        \"**/com/humana/domain/phone/attributes/repository/**,\" +\n                        \"**/com/humana/domain/phone/attributes/interfaces/**,\" +\n                        \"**/com/humana/domain/phone/attributes/model/**,\" +\n                        \"**/com/humana/domain/phone/attributes/service/avro/**,\" +\n                        \"**/com/humana/domain/phone/attributes/util/**\"\n    }\n}\n\napply plugin: 'jacoco'\n\ntest {\n    useJUnitPlatform()\n\n    jacocoTestReport {\n        reports {\n            xml.required.set(true)\n            html.required.set(true)\n            xml.destination file(\"${layout.buildDirectory.get()}/reports/jacoco/test/jacocoTestReport.xml\")\n            html.destination file(\"${layout.buildDirectory.get()}/jacocoReport\")\n        }\n        finalizedBy jacocoTestCoverageVerification\n        afterEvaluate {\n            classDirectories.setFrom(files(classDirectories.files.collect {\n                fileTree(dir: it, exclude: [\n                        \"**/com/humana/domain/phone/attributes/App.java,\" +\n                                \"**/com/humana/domain/phone/attributes/client/**,\" +\n                                \"**/com/humana/domain/phone/attributes/config/**,\" +\n                                \"**/com/humana/domain/phone/attributes/contract/**,\" +\n                                \"**/com/humana/domain/phone/attributes/constants/**,\" +\n                                \"**/com/humana/domain/phone/attributes/dto/**,\" +\n                                \"**/com/humana/domain/phone/attributes/entity/**,\" +\n                                \"**/com/humana/domain/phone/attributes/exceptions/**,\" +\n                                \"**/com/humana/domain/phone/attributes/repository/**,\" +\n                                \"**/com/humana/domain/phone/attributes/interfaces/**,\" +\n                                \"**/com/humana/domain/phone/attributes/model/**,\" +\n                                \"**/com/humana/domain/phone/attributes/util/VaultPropertySourceFactory.java\"\n                ])\n            }))\n        }\n    }\n    test.finalizedBy jacocoTestReport\n    //jvmArgs '--add-opens', 'java.base/java.lang=ALL-UNNAMED'\n    jvmArgs += [\n            \"--add-opens\", \"java.base/java.lang=ALL-UNNAMED\",\n            \"--add-opens\", \"java.base/java.lang.reflect=ALL-UNNAMED\",\n            \"--add-opens\", \"java.base/java.util=ALL-UNNAMED\"\n    ]\n}\ntasks.named('test') {\n    useJUnitPlatform()\n}\n\ntasks.sonarqube.dependsOn = []\n\ntasks.register('ins-cp-mgmt-phone-attributes-workflow') {\n    doLast {\n        println 'Running ins-cp-mgmt-phone-attributes-workflow task'\n    }\n}\n",
       "changes": [
         {
-          "dependency": "org.apache.kafka:kafka-clients",
-          "config": "implementation",
-          "old_version": "3.9.1",
-          "new_version": "3.9.2",
-          "remediation_guided": "yes",
-          "original": "implementation 'org.apache.kafka:kafka-clients:3.9.1'",
-          "replacement": "implementation 'org.apache.kafka:kafka-clients:3.9.2'"
-        },
-        {
           "dependency": "org.springframework:spring-context",
           "config": "implementation",
           "old_version": "6.2.0",
@@ -165,24 +156,6 @@
           "remediation_guided": "yes",
           "original": "implementation 'org.springframework:spring-context:6.2.0'",
           "replacement": "implementation 'org.springframework:spring-context:6.2.19'"
-        },
-        {
-          "dependency": "org.springframework:spring-web",
-          "config": "implementation",
-          "old_version": "6.2.10",
-          "new_version": "6.2.19",
-          "remediation_guided": "yes",
-          "original": "implementation('org.springframework:spring-web:6.2.10')",
-          "replacement": "implementation('org.springframework:spring-web:6.2.19')"
-        },
-        {
-          "dependency": "org.springframework:spring-core",
-          "config": "implementation",
-          "old_version": "6.2.0",
-          "new_version": "6.2.19",
-          "remediation_guided": "yes",
-          "original": "implementation 'org.springframework:spring-core:6.2.0'",
-          "replacement": "implementation 'org.springframework:spring-core:6.2.19'"
         },
         {
           "dependency": "org.springframework:spring-expression",
@@ -194,15 +167,6 @@
           "replacement": "implementation 'org.springframework:spring-expression:6.2.19'"
         },
         {
-          "dependency": "org.springframework:spring-webmvc",
-          "config": "implementation",
-          "old_version": "6.2.10",
-          "new_version": "6.2.19",
-          "remediation_guided": "yes",
-          "original": "implementation('org.springframework:spring-webmvc:6.2.10')",
-          "replacement": "implementation('org.springframework:spring-webmvc:6.2.19')"
-        },
-        {
           "dependency": "org.springframework.kafka:spring-kafka",
           "config": "implementation",
           "old_version": "3.3.0",
@@ -210,6 +174,42 @@
           "remediation_guided": "yes",
           "original": "implementation('org.springframework.kafka:spring-kafka:3.3.0')",
           "replacement": "implementation('org.springframework.kafka:spring-kafka:3.3.16')"
+        },
+        {
+          "dependency": "org.springframework:spring-core",
+          "config": "implementation",
+          "old_version": "6.2.0",
+          "new_version": "6.2.19",
+          "remediation_guided": "yes",
+          "original": "implementation 'org.springframework:spring-core:6.2.0'",
+          "replacement": "implementation 'org.springframework:spring-core:6.2.19'"
+        },
+        {
+          "dependency": "org.springframework:spring-web",
+          "config": "implementation",
+          "old_version": "6.2.10",
+          "new_version": "6.2.19",
+          "remediation_guided": "yes",
+          "original": "implementation('org.springframework:spring-web:6.2.10')",
+          "replacement": "implementation('org.springframework:spring-web:6.2.19')"
+        },
+        {
+          "dependency": "org.apache.kafka:kafka-clients",
+          "config": "implementation",
+          "old_version": "3.9.1",
+          "new_version": "3.9.2",
+          "remediation_guided": "yes",
+          "original": "implementation 'org.apache.kafka:kafka-clients:3.9.1'",
+          "replacement": "implementation 'org.apache.kafka:kafka-clients:3.9.2'"
+        },
+        {
+          "dependency": "org.springframework:spring-webmvc",
+          "config": "implementation",
+          "old_version": "6.2.10",
+          "new_version": "6.2.19",
+          "remediation_guided": "yes",
+          "original": "implementation('org.springframework:spring-webmvc:6.2.10')",
+          "replacement": "implementation('org.springframework:spring-webmvc:6.2.19')"
         },
         {
           "dependency": "org.springframework:spring-beans",
@@ -227,6 +227,12 @@
           "old_version": "1.13.14",
           "new_version": "1.17.0",
           "minimum_required": "1.17.0"
+        },
+        {
+          "dependency": "org.springframework.data:spring-data-mongodb",
+          "old_version": "4.3.12",
+          "new_version": "4.5.13",
+          "minimum_required": "4.5.13"
         },
         {
           "dependency": "org.springframework.boot:spring-boot-starter-actuator",
@@ -247,10 +253,16 @@
           "minimum_required": "3.5.13"
         },
         {
-          "dependency": "org.springframework.data:spring-data-mongodb",
-          "old_version": "4.3.12",
-          "new_version": "4.5.13",
-          "minimum_required": "4.5.13"
+          "dependency": "org.apache.commons:commons-lang3",
+          "old_version": "3.14.0",
+          "new_version": "3.20.0",
+          "minimum_required": "3.20.0"
+        },
+        {
+          "dependency": "org.springframework.boot:spring-boot",
+          "old_version": "3.3.12",
+          "new_version": "3.5.16",
+          "minimum_required": "3.5.16"
         },
         {
           "dependency": "org.springframework:spring-webflux",
@@ -265,16 +277,10 @@
           "minimum_required": "1.8.0"
         },
         {
-          "dependency": "org.apache.commons:commons-lang3",
-          "old_version": "3.14.0",
-          "new_version": "3.20.0",
-          "minimum_required": "3.20.0"
-        },
-        {
-          "dependency": "org.springframework.boot:spring-boot",
-          "old_version": "3.3.12",
-          "new_version": "3.5.16",
-          "minimum_required": "3.5.16"
+          "dependency": "com.fasterxml.jackson.core:jackson-databind",
+          "old_version": "2.17.3",
+          "new_version": "2.22.1",
+          "minimum_required": "2.22.1"
         },
         {
           "dependency": "org.assertj:assertj-core",
@@ -287,12 +293,6 @@
           "old_version": "10.1.41",
           "new_version": "10.1.57",
           "minimum_required": "10.1.57"
-        },
-        {
-          "dependency": "com.fasterxml.jackson.core:jackson-databind",
-          "old_version": "2.17.3",
-          "new_version": "2.22.1",
-          "minimum_required": "2.22.1"
         }
       ],
       "skipped_raw": [],

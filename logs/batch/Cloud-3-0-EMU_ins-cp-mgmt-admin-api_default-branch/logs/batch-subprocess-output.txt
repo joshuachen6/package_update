@@ -52,19 +52,19 @@ Fetching Artifactory versions (12 workers): [##################------------] 3/5
 Fetching Artifactory versions (12 workers): [########################------] 4/5 80%
 Fetching Artifactory versions (12 workers): [##############################] 5/5 100%
 
-Applying updates: [------------------------------] 0/5 0%  [ext-fix] [perf] concurrent version search (org.springframework.kafka:spring-kafka) completed in 1.94s
+Applying updates: [------------------------------] 0/5 0%  [ext-fix] [perf] concurrent version search (org.apache.tomcat.embed:tomcat-embed-core) completed in 0.55s
+  [ext-fix] [perf] concurrent version search (com.fasterxml.jackson.core:jackson-databind) completed in 0.60s
+  [ext-fix] [perf] concurrent version search (at.yawk.lz4:lz4-java) completed in 1.09s
+  [ext-fix] [perf] concurrent version search (org.springframework.kafka:spring-kafka) completed in 1.49s
 
-Applying updates: [######------------------------] 1/5 20%  [ext-fix] [perf] concurrent version search (ch.qos.logback:logback-core) completed in 2.22s
+Applying updates: [######------------------------] 1/5 20%  [ext-fix] [perf] concurrent version search (ch.qos.logback:logback-core) completed in 2.19s
   [ext-fix] [perf] transitive-parent search (ch.qos.logback:logback-core) ran 0 gradle probe(s) in 0.00s (resolved=False)
 
-Applying updates: [############------------------] 2/5 40%  [ext-fix] [perf] concurrent version search (at.yawk.lz4:lz4-java) completed in 2.45s
-  [ext-fix] [perf] concurrent version search (org.apache.tomcat.embed:tomcat-embed-core) completed in 3.50s
-  [ext-fix] [perf] concurrent version search (com.fasterxml.jackson.core:jackson-databind) completed in 4.24s
-  [ext-fix] [perf] transitive-parent search (at.yawk.lz4:lz4-java) ran 1 gradle probe(s) in 15.05s (resolved=False)
+Applying updates: [############------------------] 2/5 40%  [ext-fix] [perf] transitive-parent search (com.fasterxml.jackson.core:jackson-databind) ran 1 gradle probe(s) in 39.06s (resolved=False)
 
-Applying updates: [##################------------] 3/5 60%  [ext-fix] [perf] transitive-parent search (org.apache.tomcat.embed:tomcat-embed-core) ran 1 gradle probe(s) in 21.55s (resolved=False)
+Applying updates: [##################------------] 3/5 60%  [ext-fix] [perf] transitive-parent search (at.yawk.lz4:lz4-java) ran 1 gradle probe(s) in 39.70s (resolved=False)
 
-Applying updates: [########################------] 4/5 80%  [ext-fix] [perf] transitive-parent search (com.fasterxml.jackson.core:jackson-databind) ran 1 gradle probe(s) in 22.71s (resolved=False)
+Applying updates: [########################------] 4/5 80%  [ext-fix] [perf] transitive-parent search (org.apache.tomcat.embed:tomcat-embed-core) ran 1 gradle probe(s) in 47.30s (resolved=False)
 
 Applying updates: [##############################] 5/5 100%
 
@@ -77,9 +77,9 @@ Updated in place: /Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_ins-cp-
   [ext-fix] proactive check: resolving post-change dependency tree...
   [ext-fix] proactive check: 106 resolved artifacts — checking accessibility...
   [ext-fix] proactive check: 1 blocked artifact(s) — finding replacements...
-  [ext-fix] [perf] concurrent version search (io.netty:netty-codec) completed in 3.92s
+  [ext-fix] [perf] concurrent version search (io.netty:netty-codec) completed in 3.36s
   [ext-fix] proactive check: metadata for io.netty:netty-codec returned 259 version(s) in 0.00s
-  [ext-fix] proactive check: replacement search for io.netty:netty-codec:4.1.133.Final completed in 3.92s -> '4.1.136.Final'
+  [ext-fix] proactive check: replacement search for io.netty:netty-codec:4.1.133.Final completed in 3.36s -> '4.1.136.Final'
 Proactive block check: forced 1 blocked transitive(s): io.netty:netty-codec:4.1.136.Final
 Validating updated project: gradle build --no-daemon --init-script /var/folders/cg/2rmnrrps3g77gcd8ny14r1yr0000gp/T/pkg_update_gradle_logging.gradle
 To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.14.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.

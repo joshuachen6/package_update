@@ -349,13 +349,13 @@
         "old_version": "3.3.12"
       },
       {
-        "dependency": "org.xmlunit:xmlunit-core",
-        "minimum_required": "2.12.0",
-        "new_version": "2.12.0",
-        "old_version": "2.9.1"
+        "dependency": "org.apache.tomcat.embed:tomcat-embed-core",
+        "minimum_required": "10.1.57",
+        "new_version": "10.1.57",
+        "old_version": "10.1.41"
       },
       {
-        "dependency": "org.apache.tomcat.embed:tomcat-embed-core",
+        "dependency": "org.apache.tomcat.embed:tomcat-embed-websocket",
         "minimum_required": "10.1.57",
         "new_version": "10.1.57",
         "old_version": "10.1.41"
@@ -367,16 +367,16 @@
         "old_version": "1.13.14"
       },
       {
+        "dependency": "org.xmlunit:xmlunit-core",
+        "minimum_required": "2.12.0",
+        "new_version": "2.12.0",
+        "old_version": "2.9.1"
+      },
+      {
         "dependency": "org.assertj:assertj-core",
         "minimum_required": "3.27.7",
         "new_version": "3.27.7",
         "old_version": "3.25.3"
-      },
-      {
-        "dependency": "org.apache.tomcat.embed:tomcat-embed-websocket",
-        "minimum_required": "10.1.57",
-        "new_version": "10.1.57",
-        "old_version": "10.1.41"
       },
       {
         "dependency": "org.apache.commons:commons-lang3",
@@ -466,16 +466,16 @@
         },
         {
           "change_type": "gradle-force",
-          "new": "2.12.0",
-          "old": "2.9.1",
-          "package": "org.xmlunit:xmlunit-core",
+          "new": "10.1.57",
+          "old": "10.1.41",
+          "package": "org.apache.tomcat.embed:tomcat-embed-core",
           "remediation_guided": true
         },
         {
           "change_type": "gradle-force",
           "new": "10.1.57",
           "old": "10.1.41",
-          "package": "org.apache.tomcat.embed:tomcat-embed-core",
+          "package": "org.apache.tomcat.embed:tomcat-embed-websocket",
           "remediation_guided": true
         },
         {
@@ -487,16 +487,16 @@
         },
         {
           "change_type": "gradle-force",
-          "new": "3.27.7",
-          "old": "3.25.3",
-          "package": "org.assertj:assertj-core",
+          "new": "2.12.0",
+          "old": "2.9.1",
+          "package": "org.xmlunit:xmlunit-core",
           "remediation_guided": true
         },
         {
           "change_type": "gradle-force",
-          "new": "10.1.57",
-          "old": "10.1.41",
-          "package": "org.apache.tomcat.embed:tomcat-embed-websocket",
+          "new": "3.27.7",
+          "old": "3.25.3",
+          "package": "org.assertj:assertj-core",
           "remediation_guided": true
         },
         {
@@ -2853,7 +2853,7 @@
       "write_status": "Failed"
     }
   ],
-  "generated_at": "2026-07-24T10:08:10",
+  "generated_at": "2026-07-28T08:55:58",
   "next_actions": [
     {
       "action": "Review exhaustive-isolation failures and try alternative safe versions for the implicated packages instead of retaining the rollback.",

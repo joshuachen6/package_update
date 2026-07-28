@@ -97,9 +97,15 @@
       },
       {
         "dependency": "ch.qos.logback:logback-core",
-        "minimum_required": "1.6.0",
-        "new_version": "1.6.0",
+        "minimum_required": "1.6.1",
+        "new_version": "1.6.1",
         "old_version": "1.5.32"
+      },
+      {
+        "dependency": "com.fasterxml.jackson.core:jackson-databind",
+        "minimum_required": "2.22.1",
+        "new_version": "2.22.1",
+        "old_version": "2.21.2"
       },
       {
         "dependency": "at.yawk.lz4:lz4-java",
@@ -112,12 +118,6 @@
         "minimum_required": "10.1.57",
         "new_version": "10.1.57",
         "old_version": "10.1.54"
-      },
-      {
-        "dependency": "com.fasterxml.jackson.core:jackson-databind",
-        "minimum_required": "2.22.1",
-        "new_version": "2.22.1",
-        "old_version": "2.21.2"
       }
     ],
     "gradle-skipped.csv": [],
@@ -136,7 +136,7 @@
     {
       "candidate_counts": {
         "at.yawk.lz4:lz4-java": 9,
-        "ch.qos.logback:logback-core": 170,
+        "ch.qos.logback:logback-core": 171,
         "com.fasterxml.jackson.core:jackson-databind": 229,
         "org.apache.tomcat.embed:tomcat-embed-core": 464,
         "org.springframework.kafka:spring-kafka": 248
@@ -162,9 +162,16 @@
         },
         {
           "change_type": "gradle-force",
-          "new": "1.6.0",
+          "new": "1.6.1",
           "old": "1.5.32",
           "package": "ch.qos.logback:logback-core",
+          "remediation_guided": true
+        },
+        {
+          "change_type": "gradle-force",
+          "new": "2.22.1",
+          "old": "2.21.2",
+          "package": "com.fasterxml.jackson.core:jackson-databind",
           "remediation_guided": true
         },
         {
@@ -179,13 +186,6 @@
           "new": "10.1.57",
           "old": "10.1.54",
           "package": "org.apache.tomcat.embed:tomcat-embed-core",
-          "remediation_guided": true
-        },
-        {
-          "change_type": "gradle-force",
-          "new": "2.22.1",
-          "old": "2.21.2",
-          "package": "com.fasterxml.jackson.core:jackson-databind",
           "remediation_guided": true
         }
       ],
@@ -376,7 +376,8 @@
           "1.5.36",
           "1.5.37",
           "1.5.38",
-          "1.6.0"
+          "1.6.0",
+          "1.6.1"
         ],
         "com.fasterxml.jackson.core:jackson-databind": [
           "2.0.0-RC1",
@@ -1329,7 +1330,7 @@
       "write_status": "Written"
     }
   ],
-  "generated_at": "2026-07-24T09:48:35",
+  "generated_at": "2026-07-28T08:39:25",
   "next_actions": [
     {
       "action": "No additional remediation action identified.",
@@ -1373,7 +1374,7 @@
   "remediation_budget_seconds": 300,
   "security_status": "verified_clean",
   "summary": {
-    "candidate_versions_considered": 1120,
+    "candidate_versions_considered": 1121,
     "component_cve_pairs_new": 0,
     "component_cve_pairs_remaining": 0,
     "component_cve_pairs_removed": 28,
@@ -1397,7 +1398,7 @@
         ],
         "ecosystem": "gradle",
         "label": "Gradle tests",
-        "output": "To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.14.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.\nDaemon will be stopped at the end of the build \n\n> Task :compileJava\n\n> Task :processResources\n> Task :classes\n> Task :compileTestJava\n> Task :processTestResources\n> Task :testClasses\n> Task :test\n> Task :jacocoTestReport\n> Task :jacocoTestCoverageVerification\n\n[Incubating] Problems report is available at: file:///Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_ins-cp-mgmt-admin-api_default-branch/default-branch/ins-cp-mgmt-admin-api/build/reports/problems/problems-report.html\n\nDeprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.\n\nYou can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.\n\nFor more on this, please refer to https://docs.gradle.org/8.14.1/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.\n\nBUILD SUCCESSFUL in 1m 55s\n7 actionable tasks: 7 executed\n\nNote: /Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_ins-cp-mgmt-admin-api_default-branch/default-branch/ins-cp-mgmt-admin-api/src/main/java/com/humana/cnp/service/avro/AvroDeserializer.java uses or overrides a deprecated API.\nNote: Recompile with -Xlint:deprecation for details.\nNote: Some input files use unchecked or unsafe operations.\nNote: Recompile with -Xlint:unchecked for details.\nJava HotSpot(TM) 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended\n",
+        "output": "To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.14.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.\nDaemon will be stopped at the end of the build \n\n> Task :compileJava\n\n> Task :processResources\n> Task :classes\n> Task :compileTestJava\n> Task :processTestResources\n> Task :testClasses\n> Task :test\n> Task :jacocoTestReport\n> Task :jacocoTestCoverageVerification\n\n[Incubating] Problems report is available at: file:///Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_ins-cp-mgmt-admin-api_default-branch/default-branch/ins-cp-mgmt-admin-api/build/reports/problems/problems-report.html\n\nDeprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.\n\nYou can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.\n\nFor more on this, please refer to https://docs.gradle.org/8.14.1/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.\n\nBUILD SUCCESSFUL in 1m 59s\n7 actionable tasks: 7 executed\n\nNote: /Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_ins-cp-mgmt-admin-api_default-branch/default-branch/ins-cp-mgmt-admin-api/src/main/java/com/humana/cnp/service/avro/AvroDeserializer.java uses or overrides a deprecated API.\nNote: Recompile with -Xlint:deprecation for details.\nNote: Some input files use unchecked or unsafe operations.\nNote: Recompile with -Xlint:unchecked for details.\nJava HotSpot(TM) 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended\n",
         "project_dir": "/Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_ins-cp-mgmt-admin-api_default-branch/default-branch/ins-cp-mgmt-admin-api",
         "reason": "",
         "returncode": 0,

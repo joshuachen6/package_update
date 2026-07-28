@@ -4,7 +4,7 @@
 |metric|value|
 |---|---|
 |Overall Status|🔴 Manual Update Required|
-|Generated at|2026-07-24T10:08:10|
+|Generated at|2026-07-28T08:55:58|
 |GitHub URL|https://github.com/Cloud-3-0-EMU/ins-cp-mgmt-rule-api.git|
 |Project directory|/Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_ins-cp-mgmt-rule-api_default-branch/default-branch/ins-cp-mgmt-rule-api|
 |Dependency files|1|
@@ -42,11 +42,11 @@ Review:
 |build.gradle|gradle|org.springframework:spring-framework.version|gradle|6.2.0|6.2.19|Failed|True|
 |build.gradle|gradle|org.springframework:spring-webmvc|gradle|6.2.10|6.2.19|Failed|True|
 |build.gradle|gradle|org.springframework.boot:spring-boot-starter-actuator|gradle-force|3.3.12|3.5.16|Failed|True|
-|build.gradle|gradle|org.xmlunit:xmlunit-core|gradle-force|2.9.1|2.12.0|Failed|True|
 |build.gradle|gradle|org.apache.tomcat.embed:tomcat-embed-core|gradle-force|10.1.41|10.1.57|Failed|True|
-|build.gradle|gradle|io.micrometer:micrometer-core|gradle-force|1.13.14|1.17.0|Failed|True|
-|build.gradle|gradle|org.assertj:assertj-core|gradle-force|3.25.3|3.27.7|Failed|True|
 |build.gradle|gradle|org.apache.tomcat.embed:tomcat-embed-websocket|gradle-force|10.1.41|10.1.57|Failed|True|
+|build.gradle|gradle|io.micrometer:micrometer-core|gradle-force|1.13.14|1.17.0|Failed|True|
+|build.gradle|gradle|org.xmlunit:xmlunit-core|gradle-force|2.9.1|2.12.0|Failed|True|
+|build.gradle|gradle|org.assertj:assertj-core|gradle-force|3.25.3|3.27.7|Failed|True|
 |build.gradle|gradle|org.apache.commons:commons-lang3|gradle-force|3.14.0|3.20.0|Failed|True|
 |build.gradle|gradle|org.springframework:spring-context|gradle-force|6.2.0|6.2.19|Failed|True|
 
@@ -73,7 +73,7 @@ Review:
 ## Before / After Dependency Trees
 |ecosystem|snapshot|path|exists|line_count|dependency_count|bytes|
 |---|---|---|---|---|---|---|
-|gradle|before|/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_ins-cp-mgmt-rule-api_default-branch/logs/gradle-dependency-tree-before.txt|True|1331|1224|84335|
+|gradle|before|/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_ins-cp-mgmt-rule-api_default-branch/logs/gradle-dependency-tree-before.txt|True|1331|1224|84336|
 |gradle|after|/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_ins-cp-mgmt-rule-api_default-branch/logs/gradle-dependency-tree-after.txt|True|1331|1224|84336|
 |node|before|/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_ins-cp-mgmt-rule-api_default-branch/logs/npm-dependency-tree-before.json|False|0|0|0|
 |node|after|/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_ins-cp-mgmt-rule-api_default-branch/logs/npm-dependency-tree-after.json|False|0|0|0|

@@ -4,8 +4,8 @@
     "maven"
   ],
   "errors": [],
-  "vulnerability_count": 15,
-  "vulnerable_component_count": 6,
+  "vulnerability_count": 17,
+  "vulnerable_component_count": 8,
   "vulnerable_components": [
     {
       "component_id": "gav://at.yawk.lz4:lz4-java:1.10.1",
@@ -25,6 +25,24 @@
       "ecosystem": "maven",
       "package": "ch.qos.logback:logback-core",
       "version": "1.5.32"
+    },
+    {
+      "component_id": "gav://io.netty:netty-codec-compression:4.2.15.Final",
+      "cves": [
+        "CVE-2026-59901"
+      ],
+      "ecosystem": "maven",
+      "package": "io.netty:netty-codec-compression",
+      "version": "4.2.15.Final"
+    },
+    {
+      "component_id": "gav://io.netty:netty-codec-http3:4.2.15.Final",
+      "cves": [
+        "CVE-2026-56816"
+      ],
+      "ecosystem": "maven",
+      "package": "io.netty:netty-codec-http3",
+      "version": "4.2.15.Final"
     },
     {
       "component_id": "gav://io.netty:netty-codec-http:4.1.135.Final",

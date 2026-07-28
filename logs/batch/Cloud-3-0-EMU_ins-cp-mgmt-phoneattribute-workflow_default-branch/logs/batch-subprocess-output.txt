@@ -59,59 +59,59 @@ Fetching Artifactory versions (12 workers): [#########################-----] 10/
 Fetching Artifactory versions (12 workers): [###########################---] 11/12 91%
 Fetching Artifactory versions (12 workers): [##############################] 12/12 100%
 
-Applying updates: [------------------------------] 0/19 0%  [ext-fix] [perf] concurrent version search (org.springframework.boot:spring-boot) completed in 1.19s
-  [ext-fix] [perf] concurrent version search (com.fasterxml.jackson.core:jackson-databind) completed in 1.63s
-  [ext-fix] [perf] concurrent version search (org.apache.tomcat.embed:tomcat-embed-websocket) completed in 2.51s
-  [ext-fix] [perf] concurrent version search (io.micrometer:micrometer-core) completed in 3.10s
+Applying updates: [------------------------------] 0/19 0%  [ext-fix] [perf] concurrent version search (org.apache.commons:commons-lang3) completed in 0.48s
+  [ext-fix] [perf] concurrent version search (io.micrometer:micrometer-core) completed in 0.48s
   [ext-fix] [perf] transitive-parent search (io.micrometer:micrometer-core) ran 0 gradle probe(s) in 0.00s (resolved=False)
 
-Applying updates: [#-----------------------------] 1/19 5%  [ext-fix] [perf] concurrent version search (org.apache.kafka:kafka-clients) completed in 3.37s
-  [ext-fix] [perf] concurrent version search (org.springframework.boot:spring-boot-starter-actuator) completed in 3.56s
-
-Applying updates: [###---------------------------] 2/19 10%  [ext-fix] [perf] concurrent version search (org.apache.commons:commons-lang3) completed in 3.59s
-  [ext-fix] [perf] concurrent version search (org.apache.tomcat.embed:tomcat-embed-core) completed in 3.77s
-
-Applying updates: [####--------------------------] 3/19 15%  [ext-fix] [perf] concurrent version search (org.springframework.data:spring-data-commons) completed in 4.02s
-  [ext-fix] [perf] concurrent version search (org.assertj:assertj-core) completed in 4.02s
-  [ext-fix] [perf] transitive-parent search (org.springframework.data:spring-data-commons) ran 0 gradle probe(s) in 0.00s (resolved=False)
-
-Applying updates: [######------------------------] 4/19 21%  [ext-fix] [perf] concurrent version search (org.springframework.data:spring-data-mongodb) completed in 4.80s
+Applying updates: [#-----------------------------] 1/19 5%  [ext-fix] [perf] concurrent version search (org.springframework.data:spring-data-mongodb) completed in 0.52s
   [ext-fix] [perf] transitive-parent search (org.springframework.data:spring-data-mongodb) ran 0 gradle probe(s) in 0.00s (resolved=False)
 
-Applying updates: [#######-----------------------] 5/19 26%  [ext-fix] [perf] concurrent version search (org.apache.kafka:kafka-clients) completed in 2.57s
+Applying updates: [###---------------------------] 2/19 10%  [ext-fix] [perf] concurrent version search (org.springframework.boot:spring-boot) completed in 0.55s
+  [ext-fix] [perf] concurrent version search (org.apache.tomcat.embed:tomcat-embed-core) completed in 0.61s
+  [ext-fix] [perf] concurrent version search (org.springframework.boot:spring-boot-starter-actuator) completed in 0.61s
 
-Applying updates: [#########---------------------] 6/19 31%  [ext-fix] [perf] concurrent version search (org.springframework:spring-web) completed in 2.74s
-  [ext-fix] [perf] concurrent version search (org.springframework:spring-context) completed in 4.01s
-  [ext-fix] [perf] concurrent version search (org.springframework:spring-core) completed in 4.34s
-  [ext-fix] [perf] concurrent version search (org.springframework:spring-context) completed in 0.54s
+Applying updates: [####--------------------------] 3/19 15%
+Applying updates: [######------------------------] 4/19 21%  [ext-fix] [perf] concurrent version search (org.springframework.data:spring-data-commons) completed in 0.97s
+  [ext-fix] [perf] transitive-parent search (org.springframework.data:spring-data-commons) ran 0 gradle probe(s) in 0.00s (resolved=False)
 
-Applying updates: [###########-------------------] 7/19 36%  [ext-fix] [perf] concurrent version search (org.springframework:spring-webflux) completed in 2.24s
+Applying updates: [#######-----------------------] 5/19 26%  [ext-fix] [perf] concurrent version search (org.springframework:spring-context) completed in 0.45s
+  [ext-fix] [perf] concurrent version search (org.springframework:spring-expression) completed in 0.49s
+  [ext-fix] [perf] concurrent version search (com.fasterxml.jackson.core:jackson-databind) completed in 1.18s
+  [ext-fix] [perf] concurrent version search (org.springframework:spring-context) completed in 0.20s
 
-Applying updates: [############------------------] 8/19 42%  [ext-fix] [perf] concurrent version search (org.springframework:spring-expression) completed in 4.27s
-  [ext-fix] [perf] concurrent version search (org.springframework:spring-web) completed in 1.26s
+Applying updates: [#########---------------------] 6/19 31%  [ext-fix] [perf] concurrent version search (org.springframework:spring-expression) completed in 0.17s
 
-Applying updates: [##############----------------] 9/19 47%  [ext-fix] [perf] concurrent version search (org.springframework:spring-core) completed in 0.72s
+Applying updates: [###########-------------------] 7/19 36%  [ext-fix] [perf] transitive-parent search (org.apache.commons:commons-lang3) ran 1 gradle probe(s) in 0.96s (resolved=False)
 
-Applying updates: [###############---------------] 10/19 52%  [ext-fix] [perf] concurrent version search (org.springframework:spring-expression) completed in 0.65s
+Applying updates: [############------------------] 8/19 42%  [ext-fix] [perf] transitive-parent search (org.springframework.boot:spring-boot) ran 1 gradle probe(s) in 0.89s (resolved=False)
 
-Applying updates: [#################-------------] 11/19 57%  [ext-fix] [perf] concurrent version search (org.lz4:lz4-java) completed in 9.42s
+Applying updates: [##############----------------] 9/19 47%  [ext-fix] [perf] concurrent version search (org.assertj:assertj-core) completed in 1.45s
+  [ext-fix] [perf] concurrent version search (org.springframework:spring-web) completed in 0.51s
+  [ext-fix] [perf] concurrent version search (org.springframework.kafka:spring-kafka) completed in 1.25s
+  [ext-fix] [perf] concurrent version search (org.springframework:spring-core) completed in 1.18s
+  [ext-fix] [perf] concurrent version search (org.springframework.kafka:spring-kafka) completed in 0.21s
+
+Applying updates: [###############---------------] 10/19 52%  [ext-fix] [perf] concurrent version search (org.springframework:spring-core) completed in 0.20s
+
+Applying updates: [#################-------------] 11/19 57%  [ext-fix] [perf] concurrent version search (org.springframework:spring-web) completed in 0.67s
+
+Applying updates: [##################------------] 12/19 63%  [ext-fix] [perf] concurrent version search (org.springframework:spring-webflux) completed in 0.99s
+
+Applying updates: [####################----------] 13/19 68%  [ext-fix] [perf] concurrent version search (org.apache.kafka:kafka-clients) completed in 2.23s
+  [ext-fix] [perf] concurrent version search (org.lz4:lz4-java) completed in 2.27s
   [ext-fix] [perf] transitive-parent search (org.lz4:lz4-java) ran 0 gradle probe(s) in 0.00s (resolved=False)
 
-Applying updates: [##################------------] 12/19 63%  [ext-fix] [perf] concurrent version search (org.springframework:spring-webmvc) completed in 2.81s
-  [ext-fix] [perf] concurrent version search (org.springframework.kafka:spring-kafka) completed in 7.93s
-  [ext-fix] [perf] concurrent version search (org.springframework:spring-webmvc) completed in 0.41s
+Applying updates: [######################--------] 14/19 73%  [ext-fix] [perf] concurrent version search (org.apache.kafka:kafka-clients) completed in 0.22s
 
-Applying updates: [####################----------] 13/19 68%  [ext-fix] [perf] concurrent version search (org.springframework.kafka:spring-kafka) completed in 1.11s
+Applying updates: [#######################-------] 15/19 78%  [ext-fix] [perf] concurrent version search (org.springframework:spring-webmvc) completed in 1.19s
+  [ext-fix] [perf] concurrent version search (org.apache.tomcat.embed:tomcat-embed-websocket) completed in 2.65s
+  [ext-fix] [perf] concurrent version search (org.springframework:spring-webmvc) completed in 1.29s
 
-Applying updates: [######################--------] 14/19 73%  [ext-fix] [perf] transitive-parent search (org.apache.commons:commons-lang3) ran 1 gradle probe(s) in 10.34s (resolved=False)
+Applying updates: [#########################-----] 16/19 84%  [ext-fix] [perf] transitive-parent search (com.fasterxml.jackson.core:jackson-databind) ran 1 gradle probe(s) in 12.15s (resolved=False)
 
-Applying updates: [#######################-------] 15/19 78%  [ext-fix] [perf] transitive-parent search (org.springframework.boot:spring-boot) ran 1 gradle probe(s) in 12.80s (resolved=False)
+Applying updates: [##########################----] 17/19 89%  [ext-fix] [perf] transitive-parent search (org.assertj:assertj-core) ran 1 gradle probe(s) in 12.42s (resolved=False)
 
-Applying updates: [#########################-----] 16/19 84%  [ext-fix] [perf] transitive-parent search (org.assertj:assertj-core) ran 1 gradle probe(s) in 10.01s (resolved=False)
-
-Applying updates: [##########################----] 17/19 89%  [ext-fix] [perf] transitive-parent search (org.apache.tomcat.embed:tomcat-embed-websocket) ran 1 gradle probe(s) in 11.56s (resolved=False)
-
-Applying updates: [############################--] 18/19 94%  [ext-fix] [perf] transitive-parent search (com.fasterxml.jackson.core:jackson-databind) ran 1 gradle probe(s) in 12.48s (resolved=False)
+Applying updates: [############################--] 18/19 94%  [ext-fix] [perf] transitive-parent search (org.apache.tomcat.embed:tomcat-embed-websocket) ran 1 gradle probe(s) in 19.81s (resolved=False)
 
 Applying updates: [##############################] 19/19 100%
 
@@ -167,7 +167,7 @@ You can use '--warning-mode all' to show the individual deprecation warnings and
 
 For more on this, please refer to https://docs.gradle.org/8.14.1/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
 
-BUILD SUCCESSFUL in 52s
+BUILD SUCCESSFUL in 48s
 15 actionable tasks: 15 executed
 Note: /Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_ins-cp-mgmt-phoneattribute-workflow_default-branch/default-branch/ins-cp-mgmt-phoneattribute-workflow/src/main/java/com/humana/domain/phone/attributes/service/avro/AvroDeserializer.java uses or overrides a deprecated API.
 Note: Recompile with -Xlint:deprecation for details.

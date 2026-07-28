@@ -29,8 +29,8 @@ runtimeClasspath - Runtime classpath of source set 'main'.
 |    |    +--- org.springframework.boot:spring-boot-autoconfigure:3.5.14
 |    |    |    \--- org.springframework.boot:spring-boot:3.5.14 (*)
 |    |    +--- org.springframework.boot:spring-boot-starter-logging:3.5.14
-|    |    |    +--- ch.qos.logback:logback-classic:1.5.32 -> 1.6.0
-|    |    |    |    +--- ch.qos.logback:logback-core:1.6.0
+|    |    |    +--- ch.qos.logback:logback-classic:1.5.32 -> 1.6.1
+|    |    |    |    +--- ch.qos.logback:logback-core:1.6.1
 |    |    |    |    \--- org.slf4j:slf4j-api:2.0.18 -> 2.0.17
 |    |    |    +--- org.apache.logging.log4j:log4j-to-slf4j:2.24.3
 |    |    |    |    +--- org.apache.logging.log4j:log4j-api:2.24.3
@@ -127,8 +127,8 @@ runtimeClasspath - Runtime classpath of source set 'main'.
 |    +--- org.springframework.boot:spring-boot-starter:3.5.13 -> 3.5.14 (*)
 |    +--- org.springframework:spring-aop:6.2.17 -> 6.2.19 (*)
 |    \--- org.aspectj:aspectjweaver:1.9.25.1
-+--- ch.qos.logback:logback-core:1.6.0
-+--- ch.qos.logback:logback-classic:1.6.0 (*)
++--- ch.qos.logback:logback-core:1.6.1
++--- ch.qos.logback:logback-classic:1.6.1 (*)
 +--- com.fasterxml.jackson.core:jackson-core:2.21.1 (*)
 +--- com.fasterxml.jackson.datatype:jackson-datatype-jsr310 -> 2.22.1 (*)
 +--- org.springframework.kafka:spring-kafka:3.3.16
@@ -183,7 +183,7 @@ You can use '--warning-mode all' to show the individual deprecation warnings and
 
 For more on this, please refer to https://docs.gradle.org/8.14.1/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
 
-BUILD SUCCESSFUL in 6s
+BUILD SUCCESSFUL in 10s
 1 actionable task: 1 executed
 
 To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.14.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
@@ -218,8 +218,8 @@ compileClasspath - Compile classpath for source set 'main'.
 |    |    +--- org.springframework.boot:spring-boot-autoconfigure:3.5.14
 |    |    |    \--- org.springframework.boot:spring-boot:3.5.14 (*)
 |    |    +--- org.springframework.boot:spring-boot-starter-logging:3.5.14
-|    |    |    +--- ch.qos.logback:logback-classic:1.5.32 -> 1.6.0
-|    |    |    |    +--- ch.qos.logback:logback-core:1.6.0
+|    |    |    +--- ch.qos.logback:logback-classic:1.5.32 -> 1.6.1
+|    |    |    |    +--- ch.qos.logback:logback-core:1.6.1
 |    |    |    |    \--- org.slf4j:slf4j-api:2.0.18 -> 2.0.17
 |    |    |    +--- org.apache.logging.log4j:log4j-to-slf4j:2.24.3
 |    |    |    |    +--- org.apache.logging.log4j:log4j-api:2.24.3
@@ -311,8 +311,8 @@ compileClasspath - Compile classpath for source set 'main'.
 |    +--- org.springframework.boot:spring-boot-starter:3.5.13 -> 3.5.14 (*)
 |    +--- org.springframework:spring-aop:6.2.17 -> 6.2.19 (*)
 |    \--- org.aspectj:aspectjweaver:1.9.25.1
-+--- ch.qos.logback:logback-core:1.6.0
-+--- ch.qos.logback:logback-classic:1.6.0 (*)
++--- ch.qos.logback:logback-core:1.6.1
++--- ch.qos.logback:logback-classic:1.6.1 (*)
 +--- com.fasterxml.jackson.core:jackson-core:2.21.1 (*)
 +--- com.fasterxml.jackson.datatype:jackson-datatype-jsr310 -> 2.22.1 (*)
 +--- org.springframework.kafka:spring-kafka:3.3.16
@@ -363,7 +363,7 @@ You can use '--warning-mode all' to show the individual deprecation warnings and
 
 For more on this, please refer to https://docs.gradle.org/8.14.1/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
 
-BUILD SUCCESSFUL in 3s
+BUILD SUCCESSFUL in 10s
 1 actionable task: 1 executed
 
 To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.14.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
@@ -397,8 +397,8 @@ testRuntimeClasspath - Runtime classpath of source set 'test'.
 |    |    +--- org.springframework.boot:spring-boot-autoconfigure:3.5.14
 |    |    |    \--- org.springframework.boot:spring-boot:3.5.14 (*)
 |    |    +--- org.springframework.boot:spring-boot-starter-logging:3.5.14
-|    |    |    +--- ch.qos.logback:logback-classic:1.5.32 -> 1.6.0
-|    |    |    |    +--- ch.qos.logback:logback-core:1.6.0
+|    |    |    +--- ch.qos.logback:logback-classic:1.5.32 -> 1.6.1
+|    |    |    |    +--- ch.qos.logback:logback-core:1.6.1
 |    |    |    |    \--- org.slf4j:slf4j-api:2.0.18 -> 2.0.17
 |    |    |    +--- org.apache.logging.log4j:log4j-to-slf4j:2.24.3
 |    |    |    |    +--- org.apache.logging.log4j:log4j-api:2.24.3
@@ -495,8 +495,8 @@ testRuntimeClasspath - Runtime classpath of source set 'test'.
 |    +--- org.springframework.boot:spring-boot-starter:3.5.13 -> 3.5.14 (*)
 |    +--- org.springframework:spring-aop:6.2.17 -> 6.2.19 (*)
 |    \--- org.aspectj:aspectjweaver:1.9.25.1
-+--- ch.qos.logback:logback-core:1.6.0
-+--- ch.qos.logback:logback-classic:1.6.0 (*)
++--- ch.qos.logback:logback-core:1.6.1
++--- ch.qos.logback:logback-classic:1.6.1 (*)
 +--- com.fasterxml.jackson.core:jackson-core:2.21.1 (*)
 +--- com.fasterxml.jackson.datatype:jackson-datatype-jsr310 -> 2.22.1 (*)
 +--- org.springframework.kafka:spring-kafka:3.3.16
@@ -614,7 +614,7 @@ You can use '--warning-mode all' to show the individual deprecation warnings and
 
 For more on this, please refer to https://docs.gradle.org/8.14.1/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
 
-BUILD SUCCESSFUL in 3s
+BUILD SUCCESSFUL in 6s
 1 actionable task: 1 executed
 
 To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.14.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
@@ -648,8 +648,8 @@ testCompileClasspath - Compile classpath for source set 'test'.
 |    |    +--- org.springframework.boot:spring-boot-autoconfigure:3.5.14
 |    |    |    \--- org.springframework.boot:spring-boot:3.5.14 (*)
 |    |    +--- org.springframework.boot:spring-boot-starter-logging:3.5.14
-|    |    |    +--- ch.qos.logback:logback-classic:1.5.32 -> 1.6.0
-|    |    |    |    +--- ch.qos.logback:logback-core:1.6.0
+|    |    |    +--- ch.qos.logback:logback-classic:1.5.32 -> 1.6.1
+|    |    |    |    +--- ch.qos.logback:logback-core:1.6.1
 |    |    |    |    \--- org.slf4j:slf4j-api:2.0.18 -> 2.0.17
 |    |    |    +--- org.apache.logging.log4j:log4j-to-slf4j:2.24.3
 |    |    |    |    +--- org.apache.logging.log4j:log4j-api:2.24.3
@@ -741,8 +741,8 @@ testCompileClasspath - Compile classpath for source set 'test'.
 |    +--- org.springframework.boot:spring-boot-starter:3.5.13 -> 3.5.14 (*)
 |    +--- org.springframework:spring-aop:6.2.17 -> 6.2.19 (*)
 |    \--- org.aspectj:aspectjweaver:1.9.25.1
-+--- ch.qos.logback:logback-core:1.6.0
-+--- ch.qos.logback:logback-classic:1.6.0 (*)
++--- ch.qos.logback:logback-core:1.6.1
++--- ch.qos.logback:logback-classic:1.6.1 (*)
 +--- com.fasterxml.jackson.core:jackson-core:2.21.1 (*)
 +--- com.fasterxml.jackson.datatype:jackson-datatype-jsr310 -> 2.22.1 (*)
 +--- org.springframework.kafka:spring-kafka:3.3.16
@@ -842,5 +842,5 @@ You can use '--warning-mode all' to show the individual deprecation warnings and
 
 For more on this, please refer to https://docs.gradle.org/8.14.1/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
 
-BUILD SUCCESSFUL in 3s
+BUILD SUCCESSFUL in 5s
 1 actionable task: 1 executed

@@ -10,7 +10,7 @@ Found 1 dependency file(s):
 JFrog CVE audit
 ------------------------------------------------------------
 Running JFrog Xray API CVE scan for 1012 resolved component(s)...
-JFrog Xray API CVE scan complete: 17 CVE record(s) across 8 vulnerable component(s).
+JFrog Xray API CVE scan complete: 18 CVE record(s) across 8 vulnerable component(s).
 JFrog audit log -> /Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_cwih-cnp-mgmt-admin-ui_default-branch/logs/jfrog-audit.json
 
 ------------------------------------------------------------
@@ -97,15 +97,15 @@ Querying npm/JFrog versions (12 workers): [#############################-] 63/65
 Querying npm/JFrog versions (12 workers): [#############################-] 64/65 98%
 Querying npm/JFrog versions (12 workers): [##############################] 65/65 100%
 
-Node counts: remediation_packages=8, direct=2, overrides=4, skipped=2
-Changes: npm_direct=2, npm_override=4, skipped=2
+Node counts: remediation_packages=8, direct=2, overrides=5, skipped=1
+Changes: npm_direct=2, npm_override=5, skipped=1
 Phase2 cache generated → /Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_cwih-cnp-mgmt-admin-ui_default-branch/logs/phase2-results.json
 Writing /Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_cwih-cnp-mgmt-admin-ui_default-branch/default-branch/cwih-cnp-mgmt-admin-ui/package.json in place...
 Backup created: /Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_cwih-cnp-mgmt-admin-ui_default-branch/default-branch/cwih-cnp-mgmt-admin-ui/package.json.bak
 Updated package.json written to: /Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_cwih-cnp-mgmt-admin-ui_default-branch/default-branch/cwih-cnp-mgmt-admin-ui/package.json
 Validating updated project: npm install --no-audit --no-fund
 
-added 931 packages in 49s
+added 931 packages in 48s
 npm warn deprecated rimraf@2.7.1: Rimraf versions prior to v4 are no longer supported
 npm warn deprecated lodash.isequal@4.5.0: This package is deprecated. Use require('node:util').isDeepStrictEqual instead.
 npm warn deprecated @humanwhocodes/config-array@0.13.0: Use @eslint/config-array instead
@@ -223,7 +223,7 @@ Route (app)                                         Size  First Load JS
 ○  (Static)   prerendered as static content
 ƒ  (Dynamic)  server-rendered on demand
 
- ⚠ Compiled with warnings in 10.9s
+ ⚠ Compiled with warnings in 10.5s
 
 ./node_modules/jose/dist/webapi/lib/deflate.js
 A Node.js API is used (CompressionStream at line: 10) which is not supported in the Edge Runtime.
@@ -246,12 +246,12 @@ Import trace for requested module:
 ./src/lib/sso/index.ts
 
 
-Totals: 2 npm direct, 4 npm override(s), 0 Gradle direct, 0 Gradle force(s), 0 Python direct, 2 skipped
+Totals: 2 npm direct, 5 npm override(s), 0 Gradle direct, 0 Gradle force(s), 0 Python direct, 1 skipped
 Logs:   /Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_cwih-cnp-mgmt-admin-ui_default-branch/logs
 Running JFrog Xray API CVE scan for 998 resolved component(s)...
-JFrog Xray API CVE scan complete: 4 CVE record(s) across 4 vulnerable component(s).
+JFrog Xray API CVE scan complete: 3 CVE record(s) across 3 vulnerable component(s).
 JFrog audit log -> /Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_cwih-cnp-mgmt-admin-ui_default-branch/logs/jfrog-audit-after.json
-Post-update verification: Partial - build passed but 4 CVE record(s) remain
+Post-update verification: Partial - build passed but 3 CVE record(s) remain
 Remediation evidence -> /Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_cwih-cnp-mgmt-admin-ui_default-branch/logs/remediation-evidence.json
 Phase2 cache generated → /Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_cwih-cnp-mgmt-admin-ui_default-branch/logs/phase2-results.json
 Report generated → /Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_cwih-cnp-mgmt-admin-ui_default-branch/logs/task-completion-report.xlsx

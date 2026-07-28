@@ -7,40 +7,39 @@ Found 1 dependency file(s):
   - Gradle    >  build.gradle
 
 Pre-resolving Gradle dependencies for Gradle    >  build.gradle...
-Found 31 dependency declarations in /Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_ins-cp-mgmt-evaluation-workflow_default-branch/default-branch/ins-cp-mgmt-evaluation-workflow/build.gradle
+Found 29 dependency declarations in /Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_ins-cp-mgmt-evaluation-workflow_default-branch/default-branch/ins-cp-mgmt-evaluation-workflow/build.gradle
   Detected 1 maven repo(s): https://humana.jfrog.io/artifactory/plugins-release
 
-Fetching Artifactory versions (12 workers): [------------------------------] 0/30 0%
-Fetching Artifactory versions (12 workers): [#-----------------------------] 1/30 3%
-Fetching Artifactory versions (12 workers): [##----------------------------] 2/30 6%
-Fetching Artifactory versions (12 workers): [###---------------------------] 3/30 10%
-Fetching Artifactory versions (12 workers): [####--------------------------] 4/30 13%
-Fetching Artifactory versions (12 workers): [#####-------------------------] 5/30 16%
-Fetching Artifactory versions (12 workers): [######------------------------] 6/30 20%
-Fetching Artifactory versions (12 workers): [#######-----------------------] 7/30 23%
-Fetching Artifactory versions (12 workers): [########----------------------] 8/30 26%
-Fetching Artifactory versions (12 workers): [#########---------------------] 9/30 30%
-Fetching Artifactory versions (12 workers): [##########--------------------] 10/30 33%
-Fetching Artifactory versions (12 workers): [###########-------------------] 11/30 36%
-Fetching Artifactory versions (12 workers): [############------------------] 12/30 40%
-Fetching Artifactory versions (12 workers): [#############-----------------] 13/30 43%
-Fetching Artifactory versions (12 workers): [##############----------------] 14/30 46%
-Fetching Artifactory versions (12 workers): [###############---------------] 15/30 50%
-Fetching Artifactory versions (12 workers): [################--------------] 16/30 53%
-Fetching Artifactory versions (12 workers): [#################-------------] 17/30 56%
-Fetching Artifactory versions (12 workers): [##################------------] 18/30 60%
-Fetching Artifactory versions (12 workers): [###################-----------] 19/30 63%
-Fetching Artifactory versions (12 workers): [####################----------] 20/30 66%
-Fetching Artifactory versions (12 workers): [#####################---------] 21/30 70%
-Fetching Artifactory versions (12 workers): [######################--------] 22/30 73%
-Fetching Artifactory versions (12 workers): [#######################-------] 23/30 76%
-Fetching Artifactory versions (12 workers): [########################------] 24/30 80%
-Fetching Artifactory versions (12 workers): [#########################-----] 25/30 83%
-Fetching Artifactory versions (12 workers): [##########################----] 26/30 86%
-Fetching Artifactory versions (12 workers): [###########################---] 27/30 90%
-Fetching Artifactory versions (12 workers): [############################--] 28/30 93%
-Fetching Artifactory versions (12 workers): [#############################-] 29/30 96%
-Fetching Artifactory versions (12 workers): [##############################] 30/30 100%
+Fetching Artifactory versions (12 workers): [------------------------------] 0/29 0%
+Fetching Artifactory versions (12 workers): [#-----------------------------] 1/29 3%
+Fetching Artifactory versions (12 workers): [##----------------------------] 2/29 6%
+Fetching Artifactory versions (12 workers): [###---------------------------] 3/29 10%
+Fetching Artifactory versions (12 workers): [####--------------------------] 4/29 13%
+Fetching Artifactory versions (12 workers): [#####-------------------------] 5/29 17%
+Fetching Artifactory versions (12 workers): [######------------------------] 6/29 20%
+Fetching Artifactory versions (12 workers): [#######-----------------------] 7/29 24%
+Fetching Artifactory versions (12 workers): [########----------------------] 8/29 27%
+Fetching Artifactory versions (12 workers): [#########---------------------] 9/29 31%
+Fetching Artifactory versions (12 workers): [##########--------------------] 10/29 34%
+Fetching Artifactory versions (12 workers): [###########-------------------] 11/29 37%
+Fetching Artifactory versions (12 workers): [############------------------] 12/29 41%
+Fetching Artifactory versions (12 workers): [#############-----------------] 13/29 44%
+Fetching Artifactory versions (12 workers): [##############----------------] 14/29 48%
+Fetching Artifactory versions (12 workers): [###############---------------] 15/29 51%
+Fetching Artifactory versions (12 workers): [################--------------] 16/29 55%
+Fetching Artifactory versions (12 workers): [#################-------------] 17/29 58%
+Fetching Artifactory versions (12 workers): [##################------------] 18/29 62%
+Fetching Artifactory versions (12 workers): [###################-----------] 19/29 65%
+Fetching Artifactory versions (12 workers): [####################----------] 20/29 68%
+Fetching Artifactory versions (12 workers): [#####################---------] 21/29 72%
+Fetching Artifactory versions (12 workers): [######################--------] 22/29 75%
+Fetching Artifactory versions (12 workers): [#######################-------] 23/29 79%
+Fetching Artifactory versions (12 workers): [########################------] 24/29 82%
+Fetching Artifactory versions (12 workers): [#########################-----] 25/29 86%
+Fetching Artifactory versions (12 workers): [##########################----] 26/29 89%
+Fetching Artifactory versions (12 workers): [###########################---] 27/29 93%
+Fetching Artifactory versions (12 workers): [############################--] 28/29 96%
+Fetching Artifactory versions (12 workers): [##############################] 29/29 100%
 Resolving Gradle dependency tree... timeout=180s
   Dependency tree -> /Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_ins-cp-mgmt-evaluation-workflow_default-branch/logs/preaudit-gradle/1/gradle-dependency-tree.txt
   135 packages in dependency tree
@@ -76,84 +75,84 @@ Fetching Artifactory versions (12 workers): [##########################----] 13/
 Fetching Artifactory versions (12 workers): [############################--] 14/15 93%
 Fetching Artifactory versions (12 workers): [##############################] 15/15 100%
 
-Applying updates: [------------------------------] 0/25 0%  [ext-fix] [perf] concurrent version search (io.netty:netty-codec-http2) completed in 1.47s
-  [ext-fix] [perf] concurrent version search (io.netty:netty-handler) completed in 1.90s
-  [ext-fix] [perf] concurrent version search (io.netty:netty-handler-proxy) completed in 2.06s
-  [ext-fix] [perf] transitive-parent search (io.netty:netty-handler-proxy) ran 0 gradle probe(s) in 0.00s (resolved=False)
-
-Applying updates: [#-----------------------------] 1/25 4%  [ext-fix] [perf] concurrent version search (io.micrometer:micrometer-core) completed in 2.26s
-  [ext-fix] [perf] transitive-parent search (io.micrometer:micrometer-core) ran 0 gradle probe(s) in 0.00s (resolved=False)
-
-Applying updates: [##----------------------------] 2/25 8%  [ext-fix] [perf] concurrent version search (io.netty:netty-transport-native-epoll) completed in 2.43s
-  [ext-fix] [perf] transitive-parent search (io.netty:netty-transport-native-epoll) ran 0 gradle probe(s) in 0.00s (resolved=False)
-
-Applying updates: [###---------------------------] 3/25 12%  [ext-fix] [perf] concurrent version search (org.apache.kafka:kafka-clients) completed in 2.45s
-  [ext-fix] [perf] concurrent version search (io.netty:netty-codec-http) completed in 2.92s
-  [ext-fix] [perf] concurrent version search (io.netty:netty-resolver-dns) completed in 2.98s
-  [ext-fix] [perf] transitive-parent search (io.netty:netty-resolver-dns) ran 0 gradle probe(s) in 0.00s (resolved=False)
-
-Applying updates: [####--------------------------] 4/25 16%  [ext-fix] [perf] concurrent version search (com.fasterxml.jackson.core:jackson-databind) completed in 3.18s
-  [ext-fix] [perf] concurrent version search (io.netty:netty-codec-http2) completed in 1.72s
-
-Applying updates: [######------------------------] 5/25 20%  [ext-fix] [perf] concurrent version search (io.netty:netty-handler) completed in 1.36s
-
-Applying updates: [#######-----------------------] 6/25 24%  [ext-fix] [perf] concurrent version search (io.netty:netty-codec-http) completed in 0.49s
-
-Applying updates: [########----------------------] 7/25 28%  [ext-fix] [perf] concurrent version search (io.netty:netty-codec-compression) completed in 3.57s
+Applying updates: [------------------------------] 0/25 0%  [ext-fix] [perf] concurrent version search (io.netty:netty-codec-compression) completed in 0.49s
   [ext-fix] [perf] transitive-parent search (io.netty:netty-codec-compression) ran 0 gradle probe(s) in 0.00s (resolved=False)
 
-Applying updates: [#########---------------------] 8/25 32%  [ext-fix] [perf] concurrent version search (org.assertj:assertj-core) completed in 1.28s
-  [ext-fix] [perf] concurrent version search (org.apache.kafka:kafka-clients) completed in 1.32s
+Applying updates: [#-----------------------------] 1/25 4%  [ext-fix] [perf] concurrent version search (io.netty:netty-codec-http) completed in 0.51s
+  [ext-fix] [perf] concurrent version search (com.fasterxml.jackson.core:jackson-databind) completed in 0.52s
+  [ext-fix] [perf] concurrent version search (io.netty:netty-transport-native-epoll) completed in 0.54s
+  [ext-fix] [perf] transitive-parent search (io.netty:netty-transport-native-epoll) ran 0 gradle probe(s) in 0.00s (resolved=False)
 
-Applying updates: [##########--------------------] 9/25 36%  [ext-fix] [perf] concurrent version search (io.netty:netty-codec-dns) completed in 3.90s
+Applying updates: [##----------------------------] 2/25 8%  [ext-fix] [perf] concurrent version search (io.netty:netty-codec-dns) completed in 0.60s
   [ext-fix] [perf] transitive-parent search (io.netty:netty-codec-dns) ran 0 gradle probe(s) in 0.00s (resolved=False)
 
-Applying updates: [############------------------] 10/25 40%  [ext-fix] [perf] concurrent version search (org.springframework.boot:spring-boot) completed in 1.33s
-  [ext-fix] [perf] concurrent version search (org.apache.tomcat.embed:tomcat-embed-core) completed in 2.63s
-  [ext-fix] [perf] concurrent version search (org.springframework.boot:spring-boot-starter-actuator) completed in 1.69s
-  [ext-fix] [perf] concurrent version search (org.apache.commons:commons-lang3) completed in 5.07s
-  [ext-fix] [perf] concurrent version search (org.apache.tomcat.embed:tomcat-embed-core) completed in 0.54s
+Applying updates: [###---------------------------] 3/25 12%  [ext-fix] [perf] concurrent version search (io.netty:netty-codec-http) completed in 0.23s
 
-Applying updates: [#############-----------------] 11/25 44%  [ext-fix] [perf] concurrent version search (org.springframework.data:spring-data-commons) completed in 2.28s
-  [ext-fix] [perf] concurrent version search (org.apache.tomcat.embed:tomcat-embed-websocket) completed in 4.12s
-  [ext-fix] [perf] concurrent version search (org.springframework:spring-context) completed in 2.91s
-  [ext-fix] [perf] concurrent version search (org.springframework.data:spring-data-mongodb) completed in 3.32s
-  [ext-fix] [perf] concurrent version search (org.springframework.boot:spring-boot-starter-actuator) completed in 2.01s
+Applying updates: [####--------------------------] 4/25 16%  [ext-fix] [perf] concurrent version search (io.netty:netty-codec-http2) completed in 0.96s
+  [ext-fix] [perf] concurrent version search (io.netty:netty-codec-http2) completed in 0.17s
 
-Applying updates: [##############----------------] 12/25 48%  [ext-fix] [perf] concurrent version search (org.springframework.kafka:spring-kafka) completed in 3.81s
-  [ext-fix] [perf] concurrent version search (org.springframework:spring-context) completed in 2.51s
+Applying updates: [######------------------------] 5/25 20%  [ext-fix] [perf] concurrent version search (io.micrometer:micrometer-core) completed in 1.40s
+  [ext-fix] [perf] transitive-parent search (io.micrometer:micrometer-core) ran 0 gradle probe(s) in 0.00s (resolved=False)
 
-Applying updates: [###############---------------] 13/25 52%  [ext-fix] [perf] concurrent version search (org.springframework:spring-web) completed in 4.42s
-  [ext-fix] [perf] concurrent version search (org.springframework.kafka:spring-kafka) completed in 2.07s
+Applying updates: [#######-----------------------] 6/25 24%  [ext-fix] [perf] concurrent version search (org.assertj:assertj-core) completed in 0.92s
+  [ext-fix] [perf] concurrent version search (io.netty:netty-resolver-dns) completed in 1.54s
+  [ext-fix] [perf] transitive-parent search (io.netty:netty-resolver-dns) ran 0 gradle probe(s) in 0.00s (resolved=False)
 
-Applying updates: [################--------------] 14/25 56%  [ext-fix] [perf] concurrent version search (org.springframework:spring-webflux) completed in 4.32s
+Applying updates: [########----------------------] 7/25 28%  [ext-fix] [perf] concurrent version search (org.apache.kafka:kafka-clients) completed in 1.55s
+  [ext-fix] [perf] concurrent version search (org.apache.tomcat.embed:tomcat-embed-core) completed in 1.09s
+  [ext-fix] [perf] concurrent version search (io.netty:netty-handler) completed in 1.60s
+  [ext-fix] [perf] concurrent version search (org.apache.kafka:kafka-clients) completed in 0.21s
 
-Applying updates: [##################------------] 15/25 60%  [ext-fix] [perf] concurrent version search (org.springframework:spring-web) completed in 1.79s
+Applying updates: [#########---------------------] 8/25 32%  [ext-fix] [perf] concurrent version search (io.netty:netty-handler) completed in 0.21s
 
-Applying updates: [###################-----------] 16/25 64%  [ext-fix] [perf] concurrent version search (org.springframework:spring-webmvc) completed in 3.38s
-  [ext-fix] [perf] concurrent version search (org.springframework:spring-webmvc) completed in 2.09s
+Applying updates: [##########--------------------] 9/25 36%  [ext-fix] [perf] concurrent version search (org.apache.tomcat.embed:tomcat-embed-websocket) completed in 1.32s
+  [ext-fix] [perf] concurrent version search (org.springframework.data:spring-data-commons) completed in 0.53s
+  [ext-fix] [perf] concurrent version search (org.apache.tomcat.embed:tomcat-embed-core) completed in 0.51s
 
-Applying updates: [####################----------] 17/25 68%  [ext-fix] [perf] concurrent version search (org.lz4:lz4-java) completed in 14.30s
+Applying updates: [############------------------] 10/25 40%  [ext-fix] [perf] concurrent version search (org.apache.commons:commons-lang3) completed in 2.10s
+  [ext-fix] [perf] concurrent version search (org.springframework.kafka:spring-kafka) completed in 0.48s
+  [ext-fix] [perf] concurrent version search (org.springframework.kafka:spring-kafka) completed in 0.16s
+
+Applying updates: [#############-----------------] 11/25 44%  [ext-fix] [perf] concurrent version search (io.netty:netty-handler-proxy) completed in 2.62s
+  [ext-fix] [perf] transitive-parent search (io.netty:netty-handler-proxy) ran 0 gradle probe(s) in 0.00s (resolved=False)
+
+Applying updates: [##############----------------] 12/25 48%  [ext-fix] [perf] concurrent version search (org.springframework.data:spring-data-mongodb) completed in 1.04s
+  [ext-fix] [perf] concurrent version search (org.springframework:spring-webflux) completed in 0.55s
+
+Applying updates: [###############---------------] 13/25 52%  [ext-fix] [perf] concurrent version search (org.springframework.boot:spring-boot) completed in 2.08s
+  [ext-fix] [perf] concurrent version search (org.springframework.boot:spring-boot-starter-actuator) completed in 2.33s
+  [ext-fix] [perf] concurrent version search (org.springframework.boot:spring-boot-starter-actuator) completed in 1.07s
+
+Applying updates: [################--------------] 14/25 56%  [ext-fix] [perf] concurrent version search (org.springframework:spring-web) completed in 2.65s
+  [ext-fix] [perf] concurrent version search (org.springframework:spring-context) completed in 3.17s
+  [ext-fix] [perf] concurrent version search (org.springframework:spring-web) completed in 0.20s
+
+Applying updates: [##################------------] 15/25 60%  [ext-fix] [perf] concurrent version search (org.springframework:spring-webmvc) completed in 2.28s
+  [ext-fix] [perf] concurrent version search (org.springframework:spring-context) completed in 0.44s
+
+Applying updates: [###################-----------] 16/25 64%  [ext-fix] [perf] concurrent version search (org.springframework:spring-webmvc) completed in 0.27s
+
+Applying updates: [####################----------] 17/25 68%  [ext-fix] [perf] concurrent version search (org.lz4:lz4-java) completed in 6.81s
   [ext-fix] [perf] transitive-parent search (org.lz4:lz4-java) ran 0 gradle probe(s) in 0.00s (resolved=False)
 
-Applying updates: [#####################---------] 18/25 72%  [ext-fix] [perf] transitive-parent search (org.assertj:assertj-core) ran 1 gradle probe(s) in 22.80s (resolved=False)
+Applying updates: [#####################---------] 18/25 72%  [ext-fix] [perf] transitive-parent search (com.fasterxml.jackson.core:jackson-databind) ran 1 gradle probe(s) in 12.01s (resolved=False)
 
-Applying updates: [######################--------] 19/25 76%  [ext-fix] [perf] transitive-parent search (org.springframework.boot:spring-boot) ran 1 gradle probe(s) in 22.82s (resolved=False)
+Applying updates: [######################--------] 19/25 76%  [ext-fix] [perf] transitive-parent search (org.apache.tomcat.embed:tomcat-embed-websocket) ran 1 gradle probe(s) in 13.34s (resolved=False)
 
-Applying updates: [########################------] 20/25 80%  [ext-fix] [perf] transitive-parent search (org.springframework.data:spring-data-commons) ran 1 gradle probe(s) in 28.60s (resolved=False)
+Applying updates: [########################------] 20/25 80%  [ext-fix] [perf] transitive-parent search (org.assertj:assertj-core) ran 1 gradle probe(s) in 17.06s (resolved=False)
 
-Applying updates: [#########################-----] 21/25 84%  [ext-fix] [perf] transitive-parent search (org.apache.tomcat.embed:tomcat-embed-websocket) ran 1 gradle probe(s) in 29.28s (resolved=False)
+Applying updates: [#########################-----] 21/25 84%  [ext-fix] [perf] transitive-parent search (org.springframework.data:spring-data-mongodb) ran 1 gradle probe(s) in 16.77s (resolved=False)
 
-Applying updates: [##########################----] 22/25 88%  [ext-fix] [perf] transitive-parent search (org.springframework.data:spring-data-mongodb) ran 1 gradle probe(s) in 33.28s (resolved=False)
+Applying updates: [##########################----] 22/25 88%  [ext-fix] [perf] transitive-parent search (org.springframework.data:spring-data-commons) ran 1 gradle probe(s) in 20.25s (resolved=False)
 
-Applying updates: [###########################---] 23/25 92%  [ext-fix] [perf] transitive-parent search (com.fasterxml.jackson.core:jackson-databind) ran 1 gradle probe(s) in 73.71s (resolved=False)
+Applying updates: [###########################---] 23/25 92%  [ext-fix] [perf] transitive-parent search (org.springframework.boot:spring-boot) ran 1 gradle probe(s) in 19.85s (resolved=False)
 
-Applying updates: [############################--] 24/25 96%  [ext-fix] [perf] transitive-parent search (org.apache.commons:commons-lang3) ran 1 gradle probe(s) in 83.36s (resolved=False)
+Applying updates: [############################--] 24/25 96%  [ext-fix] [perf] transitive-parent search (org.apache.commons:commons-lang3) ran 1 gradle probe(s) in 21.82s (resolved=False)
 
 Applying updates: [##############################] 25/25 100%
 
-Gradle counts: deps=31, updated=17, forced=15, skipped=0
-Changes: gradle_direct=17, gradle_force=15, skipped=0
+Gradle counts: deps=29, updated=16, forced=15, skipped=0
+Changes: gradle_direct=16, gradle_force=15, skipped=0
 Phase2 cache generated → /Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_ins-cp-mgmt-evaluation-workflow_default-branch/logs/phase2-results.json
 Writing /Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_ins-cp-mgmt-evaluation-workflow_default-branch/default-branch/ins-cp-mgmt-evaluation-workflow/build.gradle in place...
 Backup: /Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_ins-cp-mgmt-evaluation-workflow_default-branch/default-branch/ins-cp-mgmt-evaluation-workflow/build.gradle.bak
@@ -163,23 +162,140 @@ Updated in place: /Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_ins-cp-
   [retry round 1/10] 1 new blocked package(s)…
     com.fasterxml.jackson.core:jackson-databind: 2.21.4 ↑ 2.21.5 (forced for tree)
   [retry round 1] retrying gradle with 1 forced version(s)…
-  [retry round 1] gradle still failing — 0 blocked package(s) remain
-  [ext-fix] proactive check: runtimeClasspath failed — timed out after 180s
-  Gradle failed — 1 403-blocked package(s) detected, entering retry loop
-  [retry round 1/10] 1 new blocked package(s)…
-    com.fasterxml.jackson.core:jackson-databind: 2.21.4 ↑ 2.21.5 (forced for tree)
-  [retry round 1] retrying gradle with 1 forced version(s)…
-  [retry round 1] gradle still failing — 0 blocked package(s) remain
-  [ext-fix] proactive check: compileClasspath failed — timed out after 180s
+  [retry round 1] gradle succeeded — dependency tree resolved
   [ext-fix] proactive check: forced 1 artifact(s) just to make the dependency tree resolve: com.fasterxml.jackson.core:jackson-databind:2.21.5
-  [ext-fix] proactive check: could not resolve dependency tree even after forcing accessible replacements, skipping
+  [ext-fix] proactive check: 104 resolved artifacts — checking accessibility...
+  [ext-fix] proactive check: all artifacts accessible — no pre-flight forces needed
 Validating updated project: gradle build --no-daemon --init-script /var/folders/cg/2rmnrrps3g77gcd8ny14r1yr0000gp/T/pkg_update_gradle_logging.gradle
-  [ext-fix] initial Gradle validation timed out or hit a transient daemon crash; retrying the complete updated build with a 450s timeout before isolation
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.14.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+
+> Configure project :
+The 'sonarqube' task depends on compile tasks. This behavior is now deprecated and will be removed in version 5.x. To avoid implicit compilation, set property 'sonar.gradle.skipCompile' to 'true' and make sure your project is compiled, before analysis has started.
+The 'sonar' task depends on compile tasks. This behavior is now deprecated and will be removed in version 5.x. To avoid implicit compilation, set property 'sonar.gradle.skipCompile' to 'true' and make sure your project is compiled, before analysis has started.
+
+> Task :compileJava FAILED
+
+[Incubating] Problems report is available at: file:///Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_ins-cp-mgmt-evaluation-workflow_default-branch/default-branch/ins-cp-mgmt-evaluation-workflow/build/reports/problems/problems-report.html
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/8.14.1/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+1 actionable task: 1 executed
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':compileJava'.
+> Could not resolve all files for configuration ':compileClasspath'.
+   > Could not resolve org.springframework:spring-core:6.2.11.
+     Required by:
+         root project :
+      > Could not resolve org.springframework:spring-core:6.2.11.
+         > Could not get resource 'https://repo.maven.apache.org/maven2/org/springframework/spring-core/6.2.11/spring-core-6.2.11.pom'.
+            > Could not HEAD 'https://repo.maven.apache.org/maven2/org/springframework/spring-core/6.2.11/spring-core-6.2.11.pom'.
+               > Got SSL handshake exception during request. It might be caused by SSL misconfiguration
+                  > (certificate_unknown) PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target
+      > Could not resolve org.springframework:spring-core:6.2.11.
+         > Could not get resource 'https://humana.jfrog.io/artifactory/plugins-release/org/springframework/spring-core/6.2.11/spring-core-6.2.11.module'.
+            > Could not HEAD 'https://humana.jfrog.io/artifactory/plugins-release/org/springframework/spring-core/6.2.11/spring-core-6.2.11.module'. Received status code 403 from server: 
+   > Could not resolve org.springframework:spring-expression:6.2.3.
+     Required by:
+         root project :
+      > Could not resolve org.springframework:spring-expression:6.2.3.
+         > Could not get resource 'https://repo.maven.apache.org/maven2/org/springframework/spring-expression/6.2.3/spring-expression-6.2.3.pom'.
+            > Could not HEAD 'https://repo.maven.apache.org/maven2/org/springframework/spring-expression/6.2.3/spring-expression-6.2.3.pom'.
+               > Got SSL handshake exception during request. It might be caused by SSL misconfiguration
+                  > (certificate_unknown) PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target
+      > Could not resolve org.springframework:spring-expression:6.2.3.
+         > Could not get resource 'https://humana.jfrog.io/artifactory/plugins-release/org/springframework/spring-expression/6.2.3/spring-expression-6.2.3.module'.
+            > Could not GET 'https://humana.jfrog.io/artifactory/plugins-release/org/springframework/spring-expression/6.2.3/spring-expression-6.2.3.module'. Received status code 403 from server: 
+> There are 2 more failures with identical causes.
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+> Get more help at https://help.gradle.org.
+
+BUILD FAILED in 43s
+  [ext-fix] round 1: 2 new blocked packages
+  [ext-fix] org.springframework:spring-core:6.2.11 — listing from https://humana.jfrog.io/artifactory/ins-cp-mgmt-gradle-virtual, checking access via https://humana.jfrog.io/artifactory/plugins-release
+  [ext-fix] org.springframework:spring-core:6.2.11 — 333 versions available
+  [ext-fix] [perf] concurrent version search (org.springframework:spring-core) completed in 2.09s
+  [ext-fix] org.springframework:spring-core:6.2.11 — find_accessible_version -> '6.2.19'
+  [ext-fix] org.springframework:spring-expression:6.2.3 — listing from https://humana.jfrog.io/artifactory/ins-cp-mgmt-gradle-virtual, checking access via https://humana.jfrog.io/artifactory/plugins-release
+  [ext-fix] org.springframework:spring-expression:6.2.3 — 288 versions available
+  [ext-fix] [perf] concurrent version search (org.springframework:spring-expression) completed in 3.92s
+  [ext-fix] org.springframework:spring-expression:6.2.3 — find_accessible_version -> None
 Validating updated project: gradle build --no-daemon --init-script /var/folders/cg/2rmnrrps3g77gcd8ny14r1yr0000gp/T/pkg_update_gradle_logging.gradle
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.14.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+
+> Configure project :
+The 'sonarqube' task depends on compile tasks. This behavior is now deprecated and will be removed in version 5.x. To avoid implicit compilation, set property 'sonar.gradle.skipCompile' to 'true' and make sure your project is compiled, before analysis has started.
+The 'sonar' task depends on compile tasks. This behavior is now deprecated and will be removed in version 5.x. To avoid implicit compilation, set property 'sonar.gradle.skipCompile' to 'true' and make sure your project is compiled, before analysis has started.
+
+> Task :compileJava FAILED
+
+[Incubating] Problems report is available at: file:///Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_ins-cp-mgmt-evaluation-workflow_default-branch/default-branch/ins-cp-mgmt-evaluation-workflow/build/reports/problems/problems-report.html
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/8.14.1/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+1 actionable task: 1 executed
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':compileJava'.
+> Could not resolve all files for configuration ':compileClasspath'.
+   > Could not resolve org.springframework:spring-expression:6.2.3.
+     Required by:
+         root project :
+      > Could not resolve org.springframework:spring-expression:6.2.3.
+         > Could not get resource 'https://repo.maven.apache.org/maven2/org/springframework/spring-expression/6.2.3/spring-expression-6.2.3.pom'.
+            > Could not HEAD 'https://repo.maven.apache.org/maven2/org/springframework/spring-expression/6.2.3/spring-expression-6.2.3.pom'.
+               > Got SSL handshake exception during request. It might be caused by SSL misconfiguration
+                  > (certificate_unknown) PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target
+      > Could not resolve org.springframework:spring-expression:6.2.3.
+         > Could not get resource 'https://humana.jfrog.io/artifactory/plugins-release/org/springframework/spring-expression/6.2.3/spring-expression-6.2.3.module'.
+            > Could not GET 'https://humana.jfrog.io/artifactory/plugins-release/org/springframework/spring-expression/6.2.3/spring-expression-6.2.3.module'. Received status code 403 from server: 
+> There is 1 more failure with an identical cause.
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+> Get more help at https://help.gradle.org.
+
+BUILD FAILED in 31s
+  [ext-fix] round 1 build still failed: k/spring-expression/6.2.3/spring-expression-6.2.3.pom'.
+            > Could not HEAD 'https://repo.maven.apache.org/maven2/org/springframework/spring-expression/6.2.3/spring-expression-6.2.3.pom'.
+               > Got SSL handshake exception during request. It might be caused by SSL misconfiguration
+                  > (certificate_unknown) PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target
+      > Could not resolve org.springframework:spring-expression:6.2.3.
+         > Could not get resource 'https://humana.jfrog.io/artifactory/plugins-release/org/springframework/spring-expression/6.2.3/spring-expression-6.2.3.module'.
+            > Could not GET 'https://humana.jfrog.io/artifactory/plugins-release/org/springframework/spring-expression/6.2.3/spring-expression-6.2.3.module'. Received status code 403 from server: 
+> There is 1 more failure with an identical cause.
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+> Get more help at https://help.gradle.org.
+
+BUILD FAILED in 31s
+  [ext-fix] round 2: 0 new blocked packages
+  [ext-fix] 403s cleared; returning partial-fix state for candidate rollback
 Build validation failed; rollback isolation is disabled.
 Write/validation failed: Build validation failed. Failure isolation disabled.
 
-Totals: 0 npm direct, 0 npm override(s), 17 Gradle direct, 15 Gradle force(s), 0 Python direct, 0 skipped
+Totals: 0 npm direct, 0 npm override(s), 16 Gradle direct, 15 Gradle force(s), 0 Python direct, 0 skipped
 Logs:   /Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_ins-cp-mgmt-evaluation-workflow_default-branch/logs
 Running JFrog Xray API CVE scan for 135 resolved component(s)...
 JFrog Xray API CVE scan complete: 78 CVE record(s) across 25 vulnerable component(s).

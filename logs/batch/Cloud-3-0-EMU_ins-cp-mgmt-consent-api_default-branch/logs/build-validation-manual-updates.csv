@@ -26,5 +26,5 @@ org.apache.cxf:cxf-rt-transports-http,gradle,4.1.3,4.2.2,manual_update_required,
 io.netty:netty-handler,gradle,4.1.128.Final,4.2.16.Final,manual_update_required,build validation failed and failure isolation disabled
 io.netty:netty-codec-http2,gradle,4.1.128.Final,4.2.16.Final,manual_update_required,build validation failed and failure isolation disabled
 io.netty:netty-codec,gradle,4.1.128.Final,4.2.16.Final,manual_update_required,build validation failed and failure isolation disabled
-ch.qos.logback:logback-core,gradle,1.5.21,1.6.0,manual_update_required,build validation failed and failure isolation disabled
-ch.qos.logback:logback-classic,gradle,1.5.21,1.6.0,manual_update_required,build validation failed and failure isolation disabled
+ch.qos.logback:logback-core,gradle,1.5.21,1.6.1,manual_update_required,build validation failed and failure isolation disabled
+ch.qos.logback:logback-classic,gradle,1.5.21,1.6.1,manual_update_required,build validation failed and failure isolation disabled
