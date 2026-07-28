@@ -1,0 +1,269 @@
+[phase2] replay=None log_dir=/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_cwih-cnp-mgmt-phone-lookup_default-branch cache=/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_cwih-cnp-mgmt-phone-lookup_default-branch/logs/phase2-results.json exists=True
+[phase2] FALLBACK FULL RUN /Users/jchen18/Documents/package_update/.venv/bin/python3 -u /Users/jchen18/Documents/package_update/quick_update.py --github-url https://github.com/Cloud-3-0-EMU/cwih-cnp-mgmt-phone-lookup.git --checkout-dir /Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_cwih-cnp-mgmt-phone-lookup_default-branch/default-branch --log-dir /Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_cwih-cnp-mgmt-phone-lookup_default-branch
+Cloning https://github.com/Cloud-3-0-EMU/cwih-cnp-mgmt-phone-lookup.git...
+Cloning https://github.com/Cloud-3-0-EMU/cwih-cnp-mgmt-phone-lookup.git -> /Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_cwih-cnp-mgmt-phone-lookup_default-branch/default-branch/cwih-cnp-mgmt-phone-lookup
+Cloning into '/Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_cwih-cnp-mgmt-phone-lookup_default-branch/default-branch/cwih-cnp-mgmt-phone-lookup'...
+Found 1 dependency file(s):
+  - Gradle    >  build.gradle
+
+Pre-resolving Gradle dependencies for Gradle    >  build.gradle...
+Found 41 dependency declarations in /Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_cwih-cnp-mgmt-phone-lookup_default-branch/default-branch/cwih-cnp-mgmt-phone-lookup/build.gradle
+
+Fetching Artifactory versions (12 workers): [------------------------------] 0/41 0%
+Fetching Artifactory versions (12 workers): [------------------------------] 1/41 2%
+Fetching Artifactory versions (12 workers): [#-----------------------------] 2/41 4%
+Fetching Artifactory versions (12 workers): [##----------------------------] 3/41 7%
+Fetching Artifactory versions (12 workers): [##----------------------------] 4/41 9%
+Fetching Artifactory versions (12 workers): [###---------------------------] 5/41 12%
+Fetching Artifactory versions (12 workers): [####--------------------------] 6/41 14%
+Fetching Artifactory versions (12 workers): [#####-------------------------] 7/41 17%
+Fetching Artifactory versions (12 workers): [#####-------------------------] 8/41 19%
+Fetching Artifactory versions (12 workers): [######------------------------] 9/41 21%
+Fetching Artifactory versions (12 workers): [#######-----------------------] 10/41 24%
+Fetching Artifactory versions (12 workers): [########----------------------] 11/41 26%
+Fetching Artifactory versions (12 workers): [########----------------------] 12/41 29%
+Fetching Artifactory versions (12 workers): [#########---------------------] 13/41 31%
+Fetching Artifactory versions (12 workers): [##########--------------------] 14/41 34%
+Fetching Artifactory versions (12 workers): [##########--------------------] 15/41 36%
+Fetching Artifactory versions (12 workers): [###########-------------------] 16/41 39%
+Fetching Artifactory versions (12 workers): [############------------------] 17/41 41%
+Fetching Artifactory versions (12 workers): [#############-----------------] 18/41 43%
+Fetching Artifactory versions (12 workers): [#############-----------------] 19/41 46%
+Fetching Artifactory versions (12 workers): [##############----------------] 20/41 48%
+Fetching Artifactory versions (12 workers): [###############---------------] 21/41 51%
+Fetching Artifactory versions (12 workers): [################--------------] 22/41 53%
+Fetching Artifactory versions (12 workers): [################--------------] 23/41 56%
+Fetching Artifactory versions (12 workers): [#################-------------] 24/41 58%
+Fetching Artifactory versions (12 workers): [##################------------] 25/41 60%
+Fetching Artifactory versions (12 workers): [###################-----------] 26/41 63%
+Fetching Artifactory versions (12 workers): [###################-----------] 27/41 65%
+Fetching Artifactory versions (12 workers): [####################----------] 28/41 68%
+Fetching Artifactory versions (12 workers): [#####################---------] 29/41 70%
+Fetching Artifactory versions (12 workers): [#####################---------] 30/41 73%
+Fetching Artifactory versions (12 workers): [######################--------] 31/41 75%
+Fetching Artifactory versions (12 workers): [#######################-------] 32/41 78%
+Fetching Artifactory versions (12 workers): [########################------] 33/41 80%
+Fetching Artifactory versions (12 workers): [########################------] 34/41 82%
+Fetching Artifactory versions (12 workers): [#########################-----] 35/41 85%
+Fetching Artifactory versions (12 workers): [##########################----] 36/41 87%
+Fetching Artifactory versions (12 workers): [###########################---] 37/41 90%
+Fetching Artifactory versions (12 workers): [###########################---] 38/41 92%
+Fetching Artifactory versions (12 workers): [############################--] 39/41 95%
+Fetching Artifactory versions (12 workers): [#############################-] 40/41 97%
+Fetching Artifactory versions (12 workers): [##############################] 41/41 100%
+Resolving Gradle dependency tree... timeout=180s
+  Dependency tree -> /Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_cwih-cnp-mgmt-phone-lookup_default-branch/logs/preaudit-gradle/1/gradle-dependency-tree.txt
+  230 packages in dependency tree
+
+------------------------------------------------------------
+JFrog CVE audit
+------------------------------------------------------------
+Running JFrog Xray API CVE scan for 233 resolved component(s)...
+JFrog Xray API CVE scan complete: 63 CVE record(s) across 24 vulnerable component(s).
+JFrog audit log -> /Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_cwih-cnp-mgmt-phone-lookup_default-branch/logs/jfrog-audit.json
+
+------------------------------------------------------------
+Fix JFrog CVEs
+------------------------------------------------------------
+
+Fixing 24 JFrog package(s) in Gradle    >  build.gradle
+Fetching Artifactory versions for 16 JFrog package(s)...
+
+Fetching Artifactory versions (12 workers): [------------------------------] 0/16 0%
+Fetching Artifactory versions (12 workers): [#-----------------------------] 1/16 6%
+Fetching Artifactory versions (12 workers): [###---------------------------] 2/16 12%
+Fetching Artifactory versions (12 workers): [#####-------------------------] 3/16 18%
+Fetching Artifactory versions (12 workers): [#######-----------------------] 4/16 25%
+Fetching Artifactory versions (12 workers): [#########---------------------] 5/16 31%
+Fetching Artifactory versions (12 workers): [###########-------------------] 6/16 37%
+Fetching Artifactory versions (12 workers): [#############-----------------] 7/16 43%
+Fetching Artifactory versions (12 workers): [###############---------------] 8/16 50%
+Fetching Artifactory versions (12 workers): [################--------------] 9/16 56%
+Fetching Artifactory versions (12 workers): [##################------------] 10/16 62%
+Fetching Artifactory versions (12 workers): [####################----------] 11/16 68%
+Fetching Artifactory versions (12 workers): [######################--------] 12/16 75%
+Fetching Artifactory versions (12 workers): [########################------] 13/16 81%
+Fetching Artifactory versions (12 workers): [##########################----] 14/16 87%
+Fetching Artifactory versions (12 workers): [############################--] 15/16 93%
+Fetching Artifactory versions (12 workers): [##############################] 16/16 100%
+
+Applying updates: [------------------------------] 0/24 0%  [ext-fix] [perf] concurrent version search (ch.qos.logback:logback-core) completed in 1.41s
+  [ext-fix] [perf] concurrent version search (io.netty:netty-resolver-dns) completed in 1.66s
+  [ext-fix] [perf] transitive-parent search (io.netty:netty-resolver-dns) ran 0 gradle probe(s) in 0.00s (resolved=False)
+
+Applying updates: [#-----------------------------] 1/24 4%  [ext-fix] [perf] concurrent version search (ch.qos.logback:logback-core) completed in 0.37s
+
+Applying updates: [##----------------------------] 2/24 8%  [ext-fix] [perf] concurrent version search (io.netty:netty-codec) completed in 1.80s
+  [ext-fix] [perf] concurrent version search (io.netty:netty-handler-proxy) completed in 2.13s
+  [ext-fix] [perf] transitive-parent search (io.netty:netty-handler-proxy) ran 0 gradle probe(s) in 0.00s (resolved=False)
+
+Applying updates: [###---------------------------] 3/24 12%  [ext-fix] [perf] concurrent version search (io.netty:netty-codec) completed in 0.56s
+
+Applying updates: [#####-------------------------] 4/24 16%  [ext-fix] [perf] concurrent version search (io.netty:netty-codec-http2) completed in 2.68s
+  [ext-fix] [perf] concurrent version search (io.netty:netty-codec-http) completed in 2.82s
+  [ext-fix] [perf] concurrent version search (io.netty:netty-transport-native-epoll) completed in 3.07s
+  [ext-fix] [perf] transitive-parent search (io.netty:netty-transport-native-epoll) ran 0 gradle probe(s) in 0.00s (resolved=False)
+
+Applying updates: [######------------------------] 5/24 20%  [ext-fix] [perf] concurrent version search (io.netty:netty-codec-http2) completed in 0.41s
+
+Applying updates: [#######-----------------------] 6/24 25%  [ext-fix] [perf] concurrent version search (org.apache.cxf:cxf-core) completed in 3.21s
+  [ext-fix] [perf] transitive-parent search (org.apache.cxf:cxf-core) ran 0 gradle probe(s) in 0.00s (resolved=False)
+
+Applying updates: [########----------------------] 7/24 29%  [ext-fix] [perf] concurrent version search (io.micrometer:micrometer-core) completed in 3.31s
+  [ext-fix] [perf] transitive-parent search (io.micrometer:micrometer-core) ran 0 gradle probe(s) in 0.00s (resolved=False)
+
+Applying updates: [##########--------------------] 8/24 33%  [ext-fix] [perf] concurrent version search (io.netty:netty-handler) completed in 3.39s
+  [ext-fix] [perf] concurrent version search (com.fasterxml.jackson.core:jackson-databind) completed in 3.42s
+  [ext-fix] [perf] concurrent version search (org.springframework.boot:spring-boot) completed in 1.23s
+  [ext-fix] [perf] transitive-parent search (org.springframework.boot:spring-boot) ran 0 gradle probe(s) in 0.00s (resolved=False)
+
+Applying updates: [###########-------------------] 9/24 37%  [ext-fix] [perf] concurrent version search (io.netty:netty-codec-http) completed in 0.98s
+
+Applying updates: [############------------------] 10/24 41%  [ext-fix] [perf] concurrent version search (io.netty:netty-codec-dns) completed in 3.84s
+  [ext-fix] [perf] transitive-parent search (io.netty:netty-codec-dns) ran 0 gradle probe(s) in 0.00s (resolved=False)
+
+Applying updates: [#############-----------------] 11/24 45%  [ext-fix] [perf] concurrent version search (org.apache.neethi:neethi) completed in 2.07s
+  [ext-fix] [perf] transitive-parent search (org.apache.neethi:neethi) ran 0 gradle probe(s) in 0.00s (resolved=False)
+
+Applying updates: [###############---------------] 12/24 50%  [ext-fix] [perf] concurrent version search (com.fasterxml.jackson.core:jackson-databind) completed in 0.74s
+
+Applying updates: [################--------------] 13/24 54%  [ext-fix] [perf] concurrent version search (org.bouncycastle:bcprov-jdk18on) completed in 2.48s
+  [ext-fix] [perf] concurrent version search (org.apache.kafka:kafka-clients) completed in 3.01s
+  [ext-fix] [perf] concurrent version search (io.netty:netty-handler) completed in 1.35s
+
+Applying updates: [#################-------------] 14/24 58%  [ext-fix] [perf] concurrent version search (org.springframework:spring-core) completed in 1.39s
+
+Applying updates: [##################------------] 15/24 62%  [ext-fix] [perf] concurrent version search (org.springframework.boot:spring-boot-starter-actuator) completed in 2.21s
+
+Applying updates: [####################----------] 16/24 66%  [ext-fix] [perf] concurrent version search (org.springframework.boot:spring-boot-devtools) completed in 2.25s
+
+Applying updates: [#####################---------] 17/24 70%  [ext-fix] [perf] concurrent version search (org.springframework.hateoas:spring-hateoas) completed in 2.06s
+  [ext-fix] [perf] transitive-parent search (org.springframework.hateoas:spring-hateoas) ran 0 gradle probe(s) in 0.00s (resolved=False)
+
+Applying updates: [######################--------] 18/24 75%  [ext-fix] [perf] concurrent version search (org.bouncycastle:bcprov-jdk18on) completed in 0.97s
+
+Applying updates: [#######################-------] 19/24 79%  [ext-fix] [perf] concurrent version search (org.springframework.data:spring-data-commons) completed in 2.44s
+
+Applying updates: [#########################-----] 20/24 83%  [ext-fix] [perf] concurrent version search (org.apache.kafka:kafka-clients) completed in 1.07s
+
+Applying updates: [##########################----] 21/24 87%  [ext-fix] [perf] concurrent version search (org.springframework:spring-expression) completed in 2.05s
+
+Applying updates: [###########################---] 22/24 91%  [ext-fix] [perf] concurrent version search (org.springframework:spring-webflux) completed in 2.36s
+
+Applying updates: [############################--] 23/24 95%  [ext-fix] [perf] concurrent version search (org.springframework:spring-web) completed in 3.38s
+
+Applying updates: [##############################] 24/24 100%
+
+Gradle counts: deps=41, updated=13, forced=16, skipped=0
+Changes: gradle_direct=13, gradle_force=16, skipped=0
+Phase2 cache generated → /Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_cwih-cnp-mgmt-phone-lookup_default-branch/logs/phase2-results.json
+Writing /Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_cwih-cnp-mgmt-phone-lookup_default-branch/default-branch/cwih-cnp-mgmt-phone-lookup/build.gradle in place...
+Backup: /Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_cwih-cnp-mgmt-phone-lookup_default-branch/default-branch/cwih-cnp-mgmt-phone-lookup/build.gradle.bak
+Updated in place: /Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_cwih-cnp-mgmt-phone-lookup_default-branch/default-branch/cwih-cnp-mgmt-phone-lookup/build.gradle
+  [ext-fix] proactive check: resolving post-change dependency tree...
+  Gradle failed — 1 403-blocked package(s) detected, entering retry loop
+  [retry round 1/10] 1 new blocked package(s)…
+    com.fasterxml.jackson.core:jackson-databind: 2.21.4 ↑ 2.21.5 (forced for tree)
+  [retry round 1] retrying gradle with 1 forced version(s)…
+  [retry round 1] gradle succeeded — dependency tree resolved
+  [ext-fix] proactive check: forced 1 artifact(s) just to make the dependency tree resolve: com.fasterxml.jackson.core:jackson-databind:2.21.5
+  [ext-fix] proactive check: 205 resolved artifacts — checking accessibility...
+  [ext-fix] proactive check: all artifacts accessible — no pre-flight forces needed
+Validating updated project: gradle build --no-daemon --init-script /var/folders/cg/2rmnrrps3g77gcd8ny14r1yr0000gp/T/pkg_update_gradle_logging.gradle
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.14.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+
+> Task :compileJava
+
+> Task :processResources
+> Task :classes
+> Task :resolveMainClassName
+> Task :bootJar
+> Task :jar
+> Task :assemble
+
+> Task :compileTestJava
+
+> Task :processTestResources NO-SOURCE
+> Task :testClasses
+> Task :test
+> Task :check
+> Task :build
+> Task :jacocoTestReport
+> Task :jacocoTestCoverageVerification
+
+[Incubating] Problems report is available at: file:///Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_cwih-cnp-mgmt-phone-lookup_default-branch/default-branch/cwih-cnp-mgmt-phone-lookup/build/reports/problems/problems-report.html
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/8.14.1/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD SUCCESSFUL in 12s
+9 actionable tasks: 9 executed
+Note: /Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_cwih-cnp-mgmt-phone-lookup_default-branch/default-branch/cwih-cnp-mgmt-phone-lookup/src/main/java/com/humana/enterprise/phone/number/lookup/config/RedisCacheConfig.java uses or overrides a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+Note: /Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_cwih-cnp-mgmt-phone-lookup_default-branch/default-branch/cwih-cnp-mgmt-phone-lookup/src/main/java/com/humana/enterprise/phone/number/lookup/util/VaultPropertySourceFactory.java uses unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+Note: /Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_cwih-cnp-mgmt-phone-lookup_default-branch/default-branch/cwih-cnp-mgmt-phone-lookup/src/test/java/com/humana/enterprise/phone/number/lookup/service/v20/ReassignedNumberDatabaseLookupServiceV20Test.java uses unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+Java HotSpot(TM) 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+
+Totals: 0 npm direct, 0 npm override(s), 13 Gradle direct, 16 Gradle force(s), 0 Python direct, 0 skipped
+Logs:   /Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_cwih-cnp-mgmt-phone-lookup_default-branch/logs
+Found 41 dependency declarations in /Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_cwih-cnp-mgmt-phone-lookup_default-branch/default-branch/cwih-cnp-mgmt-phone-lookup/build.gradle
+
+Fetching Artifactory versions (12 workers): [------------------------------] 0/41 0%
+Fetching Artifactory versions (12 workers): [------------------------------] 1/41 2%
+Fetching Artifactory versions (12 workers): [#-----------------------------] 2/41 4%
+Fetching Artifactory versions (12 workers): [##----------------------------] 3/41 7%
+Fetching Artifactory versions (12 workers): [##----------------------------] 4/41 9%
+Fetching Artifactory versions (12 workers): [###---------------------------] 5/41 12%
+Fetching Artifactory versions (12 workers): [####--------------------------] 6/41 14%
+Fetching Artifactory versions (12 workers): [#####-------------------------] 7/41 17%
+Fetching Artifactory versions (12 workers): [#####-------------------------] 8/41 19%
+Fetching Artifactory versions (12 workers): [######------------------------] 9/41 21%
+Fetching Artifactory versions (12 workers): [#######-----------------------] 10/41 24%
+Fetching Artifactory versions (12 workers): [########----------------------] 11/41 26%
+Fetching Artifactory versions (12 workers): [########----------------------] 12/41 29%
+Fetching Artifactory versions (12 workers): [#########---------------------] 13/41 31%
+Fetching Artifactory versions (12 workers): [##########--------------------] 14/41 34%
+Fetching Artifactory versions (12 workers): [##########--------------------] 15/41 36%
+Fetching Artifactory versions (12 workers): [###########-------------------] 16/41 39%
+Fetching Artifactory versions (12 workers): [############------------------] 17/41 41%
+Fetching Artifactory versions (12 workers): [#############-----------------] 18/41 43%
+Fetching Artifactory versions (12 workers): [#############-----------------] 19/41 46%
+Fetching Artifactory versions (12 workers): [##############----------------] 20/41 48%
+Fetching Artifactory versions (12 workers): [###############---------------] 21/41 51%
+Fetching Artifactory versions (12 workers): [################--------------] 22/41 53%
+Fetching Artifactory versions (12 workers): [################--------------] 23/41 56%
+Fetching Artifactory versions (12 workers): [#################-------------] 24/41 58%
+Fetching Artifactory versions (12 workers): [##################------------] 25/41 60%
+Fetching Artifactory versions (12 workers): [###################-----------] 26/41 63%
+Fetching Artifactory versions (12 workers): [###################-----------] 27/41 65%
+Fetching Artifactory versions (12 workers): [####################----------] 28/41 68%
+Fetching Artifactory versions (12 workers): [#####################---------] 29/41 70%
+Fetching Artifactory versions (12 workers): [#####################---------] 30/41 73%
+Fetching Artifactory versions (12 workers): [######################--------] 31/41 75%
+Fetching Artifactory versions (12 workers): [#######################-------] 32/41 78%
+Fetching Artifactory versions (12 workers): [########################------] 33/41 80%
+Fetching Artifactory versions (12 workers): [########################------] 34/41 82%
+Fetching Artifactory versions (12 workers): [#########################-----] 35/41 85%
+Fetching Artifactory versions (12 workers): [##########################----] 36/41 87%
+Fetching Artifactory versions (12 workers): [###########################---] 37/41 90%
+Fetching Artifactory versions (12 workers): [###########################---] 38/41 92%
+Fetching Artifactory versions (12 workers): [############################--] 39/41 95%
+Fetching Artifactory versions (12 workers): [#############################-] 40/41 97%
+Fetching Artifactory versions (12 workers): [##############################] 41/41 100%
+Resolving Gradle dependency tree... timeout=180s
+  Dependency tree -> /Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_cwih-cnp-mgmt-phone-lookup_default-branch/logs/gradle-dependency-tree.txt
+  234 packages in dependency tree
+Running JFrog Xray API CVE scan for 236 resolved component(s)...
+JFrog Xray API CVE scan complete: 1 CVE record(s) across 1 vulnerable component(s).
+JFrog audit log -> /Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_cwih-cnp-mgmt-phone-lookup_default-branch/logs/jfrog-audit-after.json
+Post-update verification: Partial - build passed but 1 CVE record(s) remain
+Remediation evidence -> /Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_cwih-cnp-mgmt-phone-lookup_default-branch/logs/remediation-evidence.json
+Phase2 cache generated → /Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_cwih-cnp-mgmt-phone-lookup_default-branch/logs/phase2-results.json
+Report generated → /Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_cwih-cnp-mgmt-phone-lookup_default-branch/logs/task-completion-report.xlsx
+STATUS: Partial

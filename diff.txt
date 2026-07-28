@@ -1,0 +1,89 @@
+diff --git a/build.gradle b/build.gradle
+index cabd08e..cf27e93 100644
+--- a/build.gradle
++++ b/build.gradle
+@@ -2,12 +2,7 @@ buildscript {
+     configurations.all {
+         resolutionStrategy {
+             // package-update: managed buildscript force block (safe to regenerate)
+-            force 'org.springframework.data:spring-data-mongodb:4.5.13'
+-            force 'org.springframework.data:spring-data-commons:3.5.13'
+-            force 'org.apache.cxf:cxf-core:4.2.2'
+-            force 'org.springframework.hateoas:spring-hateoas:2.5.3'
+-
+-            force 'com.fasterxml.jackson.core:jackson-databind:2.21.5'
++            force 'com.fasterxml.jackson.core:jackson-databind:2.22.1'
+         }
+     }
+ 
+@@ -31,27 +26,6 @@ plugins {
+     id 'jacoco'
+     id "org.sonarqube" version "6.3.1.5724"
+ }
+-configurations.all {
+-    resolutionStrategy.dependencySubstitution {
+-        // package-update: managed dependencySubstitution block (safe to regenerate)
+-        substitute module('org.springframework.data:spring-data-mongodb') using module('org.springframework.data:spring-data-mongodb:4.5.13')
+-        substitute module('org.springframework.data:spring-data-commons') using module('org.springframework.data:spring-data-commons:3.5.13')
+-
+-        substitute module('com.fasterxml.jackson.core:jackson-databind') using module('com.fasterxml.jackson.core:jackson-databind:2.21.5')
+-    }
+-}
+-
+-configurations.all {
+-    resolutionStrategy {
+-        // package-update: managed force block (safe to regenerate)
+-        force 'org.springframework.data:spring-data-mongodb:4.5.13'
+-        force 'org.springframework.data:spring-data-commons:3.5.13'
+-        force 'org.apache.cxf:cxf-core:4.2.2'
+-        force 'org.springframework.hateoas:spring-hateoas:2.5.3'
+-
+-        force 'com.fasterxml.jackson.core:jackson-databind:2.21.5'
+-    }
+-}
+ 
+ 
+ 
+@@ -72,10 +46,8 @@ repositories {
+ ext {
+     set('springCloudVersion', "2025.0.0")
+     set('spring-framework.version', "6.2.19")// Fix for CVE-2026-22735,CVE-2026-22737
+-    set('netty.version', "4.1.135.Final") //Fix for CVE-2026-33870
++    set('netty.version', "4.2.16.Final") //Fix for CVE-2026-33870
+     set('micrometer.version', "1.17.0")
+-    set('netty.version', "4.2.16.Final")
+-    set('spring-framework.version', "6.2.19")
+     set('spring-kafka.version', "3.3.16")
+ }
+ 
+@@ -113,7 +85,7 @@ dependencies {
+     implementation 'io.projectreactor.netty:reactor-netty-core:1.2.10'
+     implementation 'io.projectreactor.netty:reactor-netty-http:1.2.10'
+     implementation "org.apache.neethi:neethi:3.2.2" // Fix for CVE-2026-42404
+-    implementation platform('io.netty:netty-bom:4.1.135.Final') //Fix for CVE-2026-33870
++    implementation platform('io.netty:netty-bom:4.2.16.Final') //Fix for CVE-2026-33870
+     implementation 'org.codehaus.plexus:plexus-utils:4.0.3' //Fix for CVE‑2025‑67030
+     implementation(group: 'com.google.protobuf', name: 'protobuf-java') {
+         version {
+@@ -226,21 +198,6 @@ dependencies {
+         }
+     }
+ 
+-    implementation(group: 'com.google.protobuf', name: 'protobuf-java') {
+-        version {
+-            strictly '[4.31.1]'
+-        }
+-    }
+-    implementation(group: 'com.launchdarkly', name: 'launchdarkly-java-server-sdk') {
+-        version {
+-            strictly '7.5.0'
+-        }
+-    }
+-    implementation(group: 'org.apache.cxf', name: 'cxf-rt-transports-http') {
+-        version {
+-            strictly '4.2.2'
+-        }
+-    }
+     implementation(group: 'com.github.jknack', name: 'handlebars') {
+         version {
+             strictly '4.4.0'

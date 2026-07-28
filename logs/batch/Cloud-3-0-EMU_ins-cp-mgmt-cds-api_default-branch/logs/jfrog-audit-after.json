@@ -1,0 +1,39 @@
+{
+  "component_count": 313,
+  "ecosystems": [
+    "maven"
+  ],
+  "errors": [],
+  "vulnerability_count": 3,
+  "vulnerable_component_count": 3,
+  "vulnerable_components": [
+    {
+      "component_id": "gav://com.github.jknack:handlebars:4.4.0",
+      "cves": [
+        "CVE-2026-55760"
+      ],
+      "ecosystem": "maven",
+      "package": "com.github.jknack:handlebars",
+      "version": "4.4.0"
+    },
+    {
+      "component_id": "gav://org.apache.httpcomponents.core5:httpcore5-h2:5.3.6",
+      "cves": [
+        "CVE-2026-54428"
+      ],
+      "ecosystem": "maven",
+      "package": "org.apache.httpcomponents.core5:httpcore5-h2",
+      "version": "5.3.6"
+    },
+    {
+      "component_id": "gav://org.apache.httpcomponents.core5:httpcore5:5.3.6",
+      "cves": [
+        "CVE-2026-54399"
+      ],
+      "ecosystem": "maven",
+      "package": "org.apache.httpcomponents.core5:httpcore5",
+      "version": "5.3.6"
+    }
+  ],
+  "xray_host": "https://humana.jfrog.io"
+}

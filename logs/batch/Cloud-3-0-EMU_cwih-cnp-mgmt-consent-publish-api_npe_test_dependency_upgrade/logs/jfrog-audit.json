@@ -1,0 +1,23 @@
+{
+  "component_count": 250,
+  "ecosystems": [
+    "maven"
+  ],
+  "errors": [],
+  "vulnerability_count": 3,
+  "vulnerable_component_count": 1,
+  "vulnerable_components": [
+    {
+      "component_id": "gav://org.apache.neethi:neethi:3.2.2",
+      "cves": [
+        "CVE-2026-66142",
+        "CVE-2026-66143",
+        "CVE-2026-66144"
+      ],
+      "ecosystem": "maven",
+      "package": "org.apache.neethi:neethi",
+      "version": "3.2.2"
+    }
+  ],
+  "xray_host": "https://humana.jfrog.io"
+}

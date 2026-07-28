@@ -1,0 +1,7 @@
+dependency,config,old_version,new_version,remediation_guided
+org.springframework:spring-framework.version,ext,6.2.17,6.2.19,transitive org.springframework:spring-web>=6.2.19
+ch.qos.logback:logback-core,implementation,1.5.25,1.6.0,yes
+org.springframework.kafka:spring-kafka,implementation,3.3.6,3.3.16,yes
+org.apache.tomcat.embed:tomcat-embed-core,implementation,10.1.54,10.1.57,yes
+org.springframework:spring-webflux,implementation,6.2.17,6.2.19,yes
+ch.qos.logback:logback-classic,implementation,1.5.25,1.6.0,competing pin realigned

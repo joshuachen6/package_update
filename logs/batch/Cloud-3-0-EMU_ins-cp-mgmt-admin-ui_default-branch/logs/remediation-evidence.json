@@ -1,0 +1,489 @@
+{
+  "after_scan": {
+    "components": [
+      {
+        "component_id": "npm://brace-expansion:5.0.7",
+        "cves": [
+          "CVE-2026-14257"
+        ],
+        "ecosystem": "npm",
+        "package": "brace-expansion",
+        "version": "5.0.7"
+      },
+      {
+        "component_id": "npm://dompurify:3.4.3",
+        "cves": [
+          "CVE-2026-49458",
+          "CVE-2026-49459",
+          "CVE-2026-49978",
+          "CVE-2026-65898",
+          "CVE-2026-65899",
+          "CVE-2026-65900",
+          "CVE-2026-65901",
+          "CVE-2026-65902"
+        ],
+        "ecosystem": "npm",
+        "package": "dompurify",
+        "version": "3.4.3"
+      },
+      {
+        "component_id": "npm://fast-uri:3.1.3",
+        "cves": [
+          "CVE-2026-16221"
+        ],
+        "ecosystem": "npm",
+        "package": "fast-uri",
+        "version": "3.1.3"
+      },
+      {
+        "component_id": "npm://immutable:5.1.7",
+        "cves": [
+          "CVE-2026-59879",
+          "CVE-2026-59880"
+        ],
+        "ecosystem": "npm",
+        "package": "immutable",
+        "version": "5.1.7"
+      },
+      {
+        "component_id": "npm://js-yaml:4.2.0",
+        "cves": [
+          "CVE-2026-59869"
+        ],
+        "ecosystem": "npm",
+        "package": "js-yaml",
+        "version": "4.2.0"
+      },
+      {
+        "component_id": "npm://quill:2.0.3",
+        "cves": [
+          "CVE-2025-15056"
+        ],
+        "ecosystem": "npm",
+        "package": "quill",
+        "version": "2.0.3"
+      },
+      {
+        "component_id": "npm://ws:8.21.0",
+        "cves": [
+          "CVE-2026-62389"
+        ],
+        "ecosystem": "npm",
+        "package": "ws",
+        "version": "8.21.0"
+      }
+    ],
+    "json_path": "/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_ins-cp-mgmt-admin-ui_default-branch/logs/jfrog-audit-after.json"
+  },
+  "before_scan": {
+    "components": [
+      {
+        "component_id": "npm://@babel/core:7.29.0",
+        "cves": [
+          "CVE-2026-49356"
+        ],
+        "ecosystem": "npm",
+        "package": "@babel/core",
+        "version": "7.29.0"
+      },
+      {
+        "component_id": "npm://brace-expansion:5.0.6",
+        "cves": [
+          "CVE-2026-13149",
+          "CVE-2026-14257"
+        ],
+        "ecosystem": "npm",
+        "package": "brace-expansion",
+        "version": "5.0.6"
+      },
+      {
+        "component_id": "npm://dompurify:3.4.0",
+        "cves": [
+          "CVE-2026-49458",
+          "CVE-2026-49459",
+          "CVE-2026-49978",
+          "CVE-2026-65898",
+          "CVE-2026-65899",
+          "CVE-2026-65900",
+          "CVE-2026-65901",
+          "CVE-2026-65902"
+        ],
+        "ecosystem": "npm",
+        "package": "dompurify",
+        "version": "3.4.0"
+      },
+      {
+        "component_id": "npm://fast-uri:3.1.2",
+        "cves": [
+          "CVE-2026-13676",
+          "CVE-2026-16221"
+        ],
+        "ecosystem": "npm",
+        "package": "fast-uri",
+        "version": "3.1.2"
+      },
+      {
+        "component_id": "npm://form-data:4.0.5",
+        "cves": [
+          "CVE-2026-12143"
+        ],
+        "ecosystem": "npm",
+        "package": "form-data",
+        "version": "4.0.5"
+      },
+      {
+        "component_id": "npm://immutable:5.1.6",
+        "cves": [
+          "CVE-2026-59879",
+          "CVE-2026-59880"
+        ],
+        "ecosystem": "npm",
+        "package": "immutable",
+        "version": "5.1.6"
+      },
+      {
+        "component_id": "npm://js-yaml:4.1.1",
+        "cves": [
+          "CVE-2026-53550",
+          "CVE-2026-59869"
+        ],
+        "ecosystem": "npm",
+        "package": "js-yaml",
+        "version": "4.1.1"
+      },
+      {
+        "component_id": "npm://next:15.5.18",
+        "cves": [
+          "CVE-2026-64641",
+          "CVE-2026-64643",
+          "CVE-2026-64644",
+          "CVE-2026-64645",
+          "CVE-2026-64646",
+          "CVE-2026-64647",
+          "CVE-2026-64648",
+          "CVE-2026-64649"
+        ],
+        "ecosystem": "npm",
+        "package": "next",
+        "version": "15.5.18"
+      },
+      {
+        "component_id": "npm://postcss:8.4.31",
+        "cves": [
+          "CVE-2026-41305",
+          "CVE-2026-45623"
+        ],
+        "ecosystem": "npm",
+        "package": "postcss",
+        "version": "8.4.31"
+      },
+      {
+        "component_id": "npm://quill:2.0.3",
+        "cves": [
+          "CVE-2025-15056"
+        ],
+        "ecosystem": "npm",
+        "package": "quill",
+        "version": "2.0.3"
+      },
+      {
+        "component_id": "npm://ws:8.20.1",
+        "cves": [
+          "CVE-2026-48779",
+          "CVE-2026-62389"
+        ],
+        "ecosystem": "npm",
+        "package": "ws",
+        "version": "8.20.1"
+      }
+    ],
+    "json_path": "/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_ins-cp-mgmt-admin-ui_default-branch/logs/jfrog-audit.json"
+  },
+  "classification": "Partial - build passed but 15 CVE record(s) remain",
+  "diagnostic_csvs": {
+    "direct-dependency-version-changes.csv": [
+      {
+        "minimum_required": "3.4.0",
+        "new_spec": "3.4.3",
+        "old_spec": "3.4.0",
+        "package": "dompurify",
+        "path": "dependencies.dompurify",
+        "section": "dependencies",
+        "selected_version": "3.4.3"
+      },
+      {
+        "minimum_required": "15.5.18",
+        "new_spec": "15.5.19",
+        "old_spec": "15.5.18",
+        "package": "next",
+        "path": "dependencies.next",
+        "section": "dependencies",
+        "selected_version": "15.5.19"
+      }
+    ],
+    "forced-overrides-changes.csv": [
+      {
+        "minimum_required": "7.29.0",
+        "new_override": "7.29.6",
+        "old_override": "",
+        "package": "@babel/core",
+        "removed_nested_override_paths": ""
+      },
+      {
+        "minimum_required": "5.0.6",
+        "new_override": "5.0.7",
+        "old_override": "5.0.6",
+        "package": "brace-expansion",
+        "removed_nested_override_paths": ""
+      },
+      {
+        "minimum_required": "3.1.2",
+        "new_override": "3.1.3",
+        "old_override": "3.1.2",
+        "package": "fast-uri",
+        "removed_nested_override_paths": ""
+      },
+      {
+        "minimum_required": "4.0.5",
+        "new_override": "4.0.6",
+        "old_override": "",
+        "package": "form-data",
+        "removed_nested_override_paths": ""
+      },
+      {
+        "minimum_required": "5.1.6",
+        "new_override": "5.1.7",
+        "old_override": "5.1.6",
+        "package": "immutable",
+        "removed_nested_override_paths": ""
+      },
+      {
+        "minimum_required": "4.1.1",
+        "new_override": "4.2.0",
+        "old_override": "4.1.1",
+        "package": "js-yaml",
+        "removed_nested_override_paths": ""
+      },
+      {
+        "minimum_required": "8.4.31",
+        "new_override": "8.4.32",
+        "old_override": "",
+        "package": "postcss",
+        "removed_nested_override_paths": ""
+      },
+      {
+        "minimum_required": "8.20.1",
+        "new_override": "8.21.0",
+        "old_override": "8.20.1",
+        "package": "ws",
+        "removed_nested_override_paths": ""
+      }
+    ],
+    "forced-overrides-skipped.csv": [
+      {
+        "details": "current=2.0.3, selected=2.0.3",
+        "package": "quill",
+        "reason": "direct dependency already meets selected version"
+      }
+    ],
+    "npm-view-errors.csv": []
+  },
+  "failure_isolation_enabled": false,
+  "files": [
+    {
+      "candidate_counts": {},
+      "dependency_manager": "node",
+      "fetch_errors": [],
+      "file_path": "/Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_ins-cp-mgmt-admin-ui_default-branch/default-branch/ins-cp-mgmt-admin-ui/package.json",
+      "raw_skipped": [
+        {
+          "current": "2.0.3",
+          "details": "current=2.0.3, selected=2.0.3",
+          "package": "quill",
+          "reason": "direct dependency already meets selected version",
+          "target": "2.0.3"
+        }
+      ],
+      "selected_changes": [
+        {
+          "change_type": "direct",
+          "new": "3.4.3",
+          "old": "3.4.0",
+          "package": "dompurify",
+          "remediation_guided": true
+        },
+        {
+          "change_type": "direct",
+          "new": "15.5.19",
+          "old": "15.5.18",
+          "package": "next",
+          "remediation_guided": true
+        },
+        {
+          "change_type": "override",
+          "new": "7.29.6",
+          "old": "",
+          "package": "@babel/core",
+          "remediation_guided": true
+        },
+        {
+          "change_type": "override",
+          "new": "5.0.7",
+          "old": "5.0.6",
+          "package": "brace-expansion",
+          "remediation_guided": true
+        },
+        {
+          "change_type": "override",
+          "new": "3.1.3",
+          "old": "3.1.2",
+          "package": "fast-uri",
+          "remediation_guided": true
+        },
+        {
+          "change_type": "override",
+          "new": "4.0.6",
+          "old": "",
+          "package": "form-data",
+          "remediation_guided": true
+        },
+        {
+          "change_type": "override",
+          "new": "5.1.7",
+          "old": "5.1.6",
+          "package": "immutable",
+          "remediation_guided": true
+        },
+        {
+          "change_type": "override",
+          "new": "4.2.0",
+          "old": "4.1.1",
+          "package": "js-yaml",
+          "remediation_guided": true
+        },
+        {
+          "change_type": "override",
+          "new": "8.4.32",
+          "old": "",
+          "package": "postcss",
+          "remediation_guided": true
+        },
+        {
+          "change_type": "override",
+          "new": "8.21.0",
+          "old": "8.20.1",
+          "package": "ws",
+          "remediation_guided": true
+        }
+      ],
+      "skipped": [
+        {
+          "current": "2.0.3",
+          "detail": "current=2.0.3, selected=2.0.3",
+          "package": "quill",
+          "reason": "direct dependency already meets selected version",
+          "target": "2.0.3"
+        }
+      ],
+      "test_status": "passed",
+      "validation_message": "",
+      "validation_status": "Passed",
+      "verification_status": "Partial - build passed but 15 CVE record(s) remain",
+      "version_inventory": {},
+      "write_status": "Written"
+    }
+  ],
+  "generated_at": "2026-07-24T10:32:03",
+  "next_actions": [
+    {
+      "action": "No additional remediation action identified.",
+      "category": "complete",
+      "priority": "none"
+    }
+  ],
+  "original_cves": [
+    "CVE-2025-15056",
+    "CVE-2026-12143",
+    "CVE-2026-13149",
+    "CVE-2026-13676",
+    "CVE-2026-14257",
+    "CVE-2026-16221",
+    "CVE-2026-41305",
+    "CVE-2026-45623",
+    "CVE-2026-48779",
+    "CVE-2026-49356",
+    "CVE-2026-49458",
+    "CVE-2026-49459",
+    "CVE-2026-49978",
+    "CVE-2026-53550",
+    "CVE-2026-59869",
+    "CVE-2026-59879",
+    "CVE-2026-59880",
+    "CVE-2026-62389",
+    "CVE-2026-64641",
+    "CVE-2026-64643",
+    "CVE-2026-64644",
+    "CVE-2026-64645",
+    "CVE-2026-64646",
+    "CVE-2026-64647",
+    "CVE-2026-64648",
+    "CVE-2026-64649",
+    "CVE-2026-65898",
+    "CVE-2026-65899",
+    "CVE-2026-65900",
+    "CVE-2026-65901",
+    "CVE-2026-65902"
+  ],
+  "outcome": "Partial",
+  "refresh_errors": [],
+  "remaining_original_cves": [
+    "CVE-2025-15056",
+    "CVE-2026-14257",
+    "CVE-2026-16221",
+    "CVE-2026-49458",
+    "CVE-2026-49459",
+    "CVE-2026-49978",
+    "CVE-2026-59869",
+    "CVE-2026-59879",
+    "CVE-2026-59880",
+    "CVE-2026-62389",
+    "CVE-2026-65898",
+    "CVE-2026-65899",
+    "CVE-2026-65900",
+    "CVE-2026-65901",
+    "CVE-2026-65902"
+  ],
+  "remediation_budget_seconds": 300,
+  "security_status": "still_vulnerable",
+  "summary": {
+    "candidate_versions_considered": 0,
+    "component_cve_pairs_new": 14,
+    "component_cve_pairs_remaining": 1,
+    "component_cve_pairs_removed": 30,
+    "dependency_files": 1,
+    "vulnerability_records_after": 15,
+    "vulnerability_records_before": 31
+  },
+  "test_status": "passed",
+  "tests": {
+    "failed": 0,
+    "not_run": 0,
+    "passed": 1,
+    "results": [
+      {
+        "command": [
+          "npm",
+          "test"
+        ],
+        "ecosystem": "node",
+        "label": "npm tests",
+        "output": ".js:8247:11\n      at callback (node_modules/next/src/shared/lib/loadable.shared-runtime.tsx:236:48)\n          at Set.forEach (<anonymous>)\n      at LoadableSubscription.forEach (node_modules/next/src/shared/lib/loadable.shared-runtime.tsx:236:21)\n      at _update (node_modules/next/src/shared/lib/loadable.shared-runtime.tsx:218:14)\n\nPASS __tests__/dashboard/_components/cardIndicator.test.tsx\nPASS __tests__/components/ClickAwayListner.test.tsx\nPASS __tests__/dashboard/_components/templateReport.test.tsx\n  \u25cf Console\n\n    console.error\n      An update to ForwardRef(LoadableComponent) inside a test was not wrapped in act(...).\n      \n      When testing, code that causes React state updates should be wrapped into act(...):\n      \n      act(() => {\n        /* fire events that update state */\n      });\n      /* assert on the output */\n      \n      This ensures that you're testing the behavior the user would see in the browser. Learn more at https://react.dev/link/wrap-tests-with-act\n\n      at node_modules/react-dom/cjs/react-dom-client.development.js:18758:19\n      at runWithFiberInDEV (node_modules/react-dom/cjs/react-dom-client.development.js:874:13)\n      at warnIfUpdatesNotWrappedWithActDEV (node_modules/react-dom/cjs/react-dom-client.development.js:18757:9)\n      at scheduleUpdateOnFiber (node_modules/react-dom/cjs/react-dom-client.development.js:16409:11)\n      at forceStoreRerender (node_modules/react-dom/cjs/react-dom-client.development.js:8262:24)\n      at node_modules/react-dom/cjs/react-dom-client.development.js:8247:11\n      at callback (node_modules/next/src/shared/lib/loadable.shared-runtime.tsx:236:48)\n          at Set.forEach (<anonymous>)\n      at LoadableSubscription.forEach (node_modules/next/src/shared/lib/loadable.shared-runtime.tsx:236:21)\n      at _update (node_modules/next/src/shared/lib/loadable.shared-runtime.tsx:218:14)\n\nPASS __tests__/internalDnc/components/chip.test.tsx\nPASS __tests__/rule/components/ruleFilter.test.tsx\nPASS __tests__/internalDnc/components/ruleFilter.test.tsx\nPASS __tests__/components/ErrorMessage.test.jsx\nPASS __tests__/actions/groups.test.ts\nPASS __tests__/lib/userSlice.test.ts\nPASS __tests__/api/template/consent.test.ts\nPASS __tests__/api/rule/history.test.ts\nPASS __tests__/rule/components/outline.test.tsx\nPASS __tests__/components/NoAccess.test.tsx\nPASS __tests__/rule/components/IconButton.test.tsx\nPASS __tests__/api/internalDnc/history.test.ts\nPASS __tests__/api/rule/rule.test.ts\nPASS __tests__/api/dashboard/templates.test.ts\nPASS __tests__/api/internalDnc/search.test.ts\n  \u25cf Console\n\n    console.log\n      123456789\n\n      at log (src/app/api/internalDnc/search/route.ts:22:15)\n\nPASS __tests__/rule/components/NoFilter.test.tsx\nPASS __tests__/rule/components/Donotcallfooter.test.tsx\nPASS __tests__/api/dashboard/analytics.test.tsx\nPASS __tests__/lib/ruleFilterSlice.test.ts\nPASS __tests__/components/ChipText.test.tsx\nPASS __tests__/api/internalDnc/update-reactivate-datetime.test.ts\nPASS __tests__/components/chip.test.tsx\nPASS __tests__/components/Dialog.test.tsx\nPASS __tests__/internalDnc/components/button.test.tsx\nPASS __tests__/lib/filterSlice.test.ts\nPASS __tests__/lib/dncSlice.test.ts\nPASS __tests__/api/internalDnc/update-end-datetime.test.ts\nPASS __tests__/components/indicator.test.tsx\nPASS __tests__/Loading.test.tsx\nPASS __tests__/internalDnc/components/textChip.test.tsx\nPASS __tests__/template/components/DetailCard.test.tsx\nPASS __tests__/actions/cookies.test.ts\nPASS __tests__/lib/internalDncSlice.test.ts\nPASS __tests__/api/rule/preference.test.ts\nPASS __tests__/api/rule/donotcall.test.ts\nPASS __tests__/api/template/category.test.ts\nPASS __tests__/components/StatusChip.test.tsx\nPASS __tests__/lib/ruleSlice.test.ts\nPASS __tests__/api/rule/consumption.test.ts\nPASS __tests__/api/rule/consent.test.ts\nPASS __tests__/api/business/utils.test.ts\n\nTest Suites: 158 passed, 158 total\nTests:       462 passed, 462 total\nSnapshots:   1 passed, 1 total\nTime:        21.569 s\nRan all test suites.\n",
+        "project_dir": "/Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_ins-cp-mgmt-admin-ui_default-branch/default-branch/ins-cp-mgmt-admin-ui",
+        "reason": "",
+        "returncode": 0,
+        "status": "passed"
+      }
+    ],
+    "status": "passed"
+  }
+}

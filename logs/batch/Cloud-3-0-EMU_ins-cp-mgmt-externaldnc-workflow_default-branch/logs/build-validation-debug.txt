@@ -1,0 +1,168 @@
+[2026-07-22 11:32:16] [perf] concurrent version search (com.fasterxml.jackson.core:jackson-databind) completed in 0.56s
+[2026-07-22 11:32:16] [perf] concurrent version search (ch.qos.logback:logback-core) completed in 0.66s
+[2026-07-22 11:32:16] [perf] transitive-parent search (ch.qos.logback:logback-core) ran 0 gradle probe(s) in 0.00s (resolved=False)
+[2026-07-22 11:32:16] [perf] concurrent version search (io.micrometer:micrometer-core) completed in 0.67s
+[2026-07-22 11:32:16] [perf] transitive-parent search (io.micrometer:micrometer-core) ran 0 gradle probe(s) in 0.00s (resolved=False)
+[2026-07-22 11:32:16] [perf] concurrent version search (org.apache.commons:commons-lang3) completed in 0.74s
+[2026-07-22 11:32:16] [perf] concurrent version search (org.apache.kafka:kafka-clients) completed in 0.85s
+[2026-07-22 11:32:16] [perf] concurrent version search (org.assertj:assertj-core) completed in 0.87s
+[2026-07-22 11:32:16] [perf] concurrent version search (org.springframework.data:spring-data-commons) completed in 0.88s
+[2026-07-22 11:32:16] [perf] concurrent version search (org.apache.tomcat.embed:tomcat-embed-websocket) completed in 0.97s
+[2026-07-22 11:32:17] [perf] concurrent version search (org.springframework.kafka:spring-kafka) completed in 0.58s
+[2026-07-22 11:32:17] [perf] concurrent version search (org.springframework.data:spring-data-mongodb) completed in 0.61s
+[2026-07-22 11:32:17] [perf] concurrent version search (org.springframework.boot:spring-boot) completed in 1.31s
+[2026-07-22 11:32:17] [perf] concurrent version search (org.springframework.boot:spring-boot-starter-actuator) completed in 1.48s
+[2026-07-22 11:32:17] [perf] concurrent version search (org.springframework.kafka:spring-kafka) completed in 0.25s
+[2026-07-22 11:32:17] [perf] concurrent version search (org.apache.tomcat.embed:tomcat-embed-core) completed in 1.97s
+[2026-07-22 11:32:17] [perf] concurrent version search (org.apache.kafka:kafka-clients) completed in 1.16s
+[2026-07-22 11:32:17] [perf] concurrent version search (org.springframework:spring-core) completed in 0.62s
+[2026-07-22 11:32:18] [perf] concurrent version search (org.lz4:lz4-java) completed in 2.19s
+[2026-07-22 11:32:18] [perf] transitive-parent search (org.lz4:lz4-java) ran 0 gradle probe(s) in 0.00s (resolved=False)
+[2026-07-22 11:32:18] [perf] concurrent version search (org.apache.tomcat.embed:tomcat-embed-core) completed in 0.35s
+[2026-07-22 11:32:18] [perf] concurrent version search (org.springframework:spring-core) completed in 0.30s
+[2026-07-22 11:32:18] [perf] concurrent version search (org.springframework:spring-expression) completed in 0.67s
+[2026-07-22 11:32:18] [perf] concurrent version search (org.springframework:spring-expression) completed in 0.27s
+[2026-07-22 11:32:18] [perf] concurrent version search (org.springframework:spring-context) completed in 1.48s
+[2026-07-22 11:32:19] [perf] concurrent version search (org.springframework:spring-context) completed in 0.33s
+[2026-07-22 11:32:19] [perf] concurrent version search (org.springframework:spring-webmvc) completed in 0.93s
+[2026-07-22 11:32:19] [perf] concurrent version search (org.springframework:spring-web) completed in 1.20s
+[2026-07-22 11:32:19] [perf] concurrent version search (org.springframework:spring-webmvc) completed in 0.35s
+[2026-07-22 11:32:19] [perf] concurrent version search (org.springframework:spring-web) completed in 0.36s
+[2026-07-22 11:32:20] [perf] concurrent version search (org.springframework:spring-webflux) completed in 2.00s
+[2026-07-22 11:32:20] [perf] concurrent version search (org.springframework:spring-webflux) completed in 0.30s
+[2026-07-22 11:32:29] [perf] transitive-parent search (com.fasterxml.jackson.core:jackson-databind) ran 1 gradle probe(s) in 13.26s (resolved=False)
+[2026-07-22 11:32:34] [perf] transitive-parent search (org.apache.commons:commons-lang3) ran 1 gradle probe(s) in 17.85s (resolved=False)
+[2026-07-22 11:32:34] [perf] transitive-parent search (org.assertj:assertj-core) ran 1 gradle probe(s) in 18.10s (resolved=False)
+[2026-07-22 11:32:36] [perf] transitive-parent search (org.apache.tomcat.embed:tomcat-embed-websocket) ran 1 gradle probe(s) in 19.80s (resolved=False)
+[2026-07-22 11:32:38] [perf] transitive-parent search (org.springframework.boot:spring-boot) ran 1 gradle probe(s) in 20.83s (resolved=False)
+[2026-07-22 11:32:42] [perf] transitive-parent search (org.springframework.data:spring-data-mongodb) ran 1 gradle probe(s) in 25.15s (resolved=False)
+[2026-07-22 11:32:42] [perf] transitive-parent search (org.springframework.data:spring-data-commons) ran 1 gradle probe(s) in 25.99s (resolved=False)
+[2026-07-22 11:32:42] proactive check: resolving post-change dependency tree...
+[2026-07-22 11:33:00] proactive check: forced 1 artifact(s) just to make the dependency tree resolve: com.fasterxml.jackson.core:jackson-databind:2.21.5
+[2026-07-22 11:33:00] proactive check: 73 resolved artifacts — checking accessibility...
+[2026-07-22 11:33:05] proactive check: all artifacts accessible — no pre-flight forces needed
+[2026-07-22 12:59:51] [perf] concurrent version search (org.springframework.boot:spring-boot-starter-actuator) completed in 0.92s
+[2026-07-22 12:59:51] [perf] concurrent version search (com.fasterxml.jackson.core:jackson-databind) completed in 0.96s
+[2026-07-22 12:59:51] [perf] concurrent version search (org.apache.commons:commons-lang3) completed in 1.03s
+[2026-07-22 12:59:51] [perf] concurrent version search (org.springframework.data:spring-data-commons) completed in 1.52s
+[2026-07-22 12:59:52] [perf] concurrent version search (org.springframework.boot:spring-boot) completed in 2.41s
+[2026-07-22 12:59:52] [perf] concurrent version search (org.springframework.data:spring-data-mongodb) completed in 1.90s
+[2026-07-22 12:59:53] [perf] concurrent version search (org.assertj:assertj-core) completed in 3.54s
+[2026-07-22 12:59:53] [perf] concurrent version search (org.apache.tomcat.embed:tomcat-embed-core) completed in 3.78s
+[2026-07-22 12:59:53] [perf] concurrent version search (ch.qos.logback:logback-core) completed in 3.78s
+[2026-07-22 12:59:53] [perf] transitive-parent search (ch.qos.logback:logback-core) ran 0 gradle probe(s) in 0.00s (resolved=False)
+[2026-07-22 12:59:53] [perf] concurrent version search (org.apache.tomcat.embed:tomcat-embed-websocket) completed in 3.78s
+[2026-07-22 12:59:54] [perf] concurrent version search (org.apache.kafka:kafka-clients) completed in 4.42s
+[2026-07-22 12:59:54] [perf] concurrent version search (io.micrometer:micrometer-core) completed in 4.42s
+[2026-07-22 12:59:54] [perf] transitive-parent search (io.micrometer:micrometer-core) ran 0 gradle probe(s) in 0.00s (resolved=False)
+[2026-07-22 12:59:55] [perf] concurrent version search (org.apache.tomcat.embed:tomcat-embed-core) completed in 1.99s
+[2026-07-22 12:59:56] [perf] concurrent version search (org.apache.kafka:kafka-clients) completed in 2.08s
+[2026-07-22 12:59:57] [perf] concurrent version search (org.lz4:lz4-java) completed in 7.12s
+[2026-07-22 12:59:57] [perf] transitive-parent search (org.lz4:lz4-java) ran 0 gradle probe(s) in 0.00s (resolved=False)
+[2026-07-22 12:59:57] [perf] concurrent version search (org.springframework.kafka:spring-kafka) completed in 3.42s
+[2026-07-22 12:59:58] [perf] concurrent version search (org.springframework:spring-context) completed in 3.80s
+[2026-07-22 12:59:59] [perf] concurrent version search (org.springframework:spring-context) completed in 0.73s
+[2026-07-22 12:59:59] [perf] concurrent version search (org.springframework.kafka:spring-kafka) completed in 1.75s
+[2026-07-22 12:59:59] [perf] concurrent version search (org.springframework:spring-expression) completed in 2.81s
+[2026-07-22 12:59:59] [perf] concurrent version search (org.springframework:spring-core) completed in 3.60s
+[2026-07-22 12:59:59] [perf] concurrent version search (org.springframework:spring-expression) completed in 0.52s
+[2026-07-22 12:59:59] [perf] concurrent version search (org.springframework:spring-core) completed in 0.51s
+[2026-07-22 13:00:00] [perf] concurrent version search (org.springframework:spring-web) completed in 3.68s
+[2026-07-22 13:00:02] [perf] concurrent version search (org.springframework:spring-webflux) completed in 3.26s
+[2026-07-22 13:00:03] [perf] concurrent version search (org.springframework:spring-web) completed in 2.54s
+[2026-07-22 13:00:03] [perf] concurrent version search (org.springframework:spring-webflux) completed in 1.29s
+[2026-07-22 13:00:03] [perf] concurrent version search (org.springframework:spring-webmvc) completed in 4.56s
+[2026-07-22 13:00:04] [perf] transitive-parent search (org.apache.commons:commons-lang3) ran 1 gradle probe(s) in 13.32s (resolved=False)
+[2026-07-22 13:00:05] [perf] transitive-parent search (com.fasterxml.jackson.core:jackson-databind) ran 1 gradle probe(s) in 14.05s (resolved=False)
+[2026-07-22 13:00:05] [perf] concurrent version search (org.springframework:spring-webmvc) completed in 1.64s
+[2026-07-22 13:00:06] [perf] transitive-parent search (org.springframework.data:spring-data-commons) ran 1 gradle probe(s) in 14.37s (resolved=False)
+[2026-07-22 13:00:08] [perf] transitive-parent search (org.springframework.boot:spring-boot) ran 1 gradle probe(s) in 16.17s (resolved=False)
+[2026-07-22 13:00:11] [perf] transitive-parent search (org.apache.tomcat.embed:tomcat-embed-websocket) ran 1 gradle probe(s) in 17.96s (resolved=False)
+[2026-07-22 13:00:15] [perf] transitive-parent search (org.springframework.data:spring-data-mongodb) ran 1 gradle probe(s) in 22.17s (resolved=False)
+[2026-07-22 13:00:16] [perf] transitive-parent search (org.assertj:assertj-core) ran 1 gradle probe(s) in 22.62s (resolved=False)
+[2026-07-22 13:00:16] proactive check: resolving post-change dependency tree...
+[2026-07-22 13:00:30] proactive check: forced 1 artifact(s) just to make the dependency tree resolve: com.fasterxml.jackson.core:jackson-databind:2.21.5
+[2026-07-22 13:00:30] proactive check: 73 resolved artifacts — checking accessibility...
+[2026-07-22 13:00:47] proactive check: all artifacts accessible — no pre-flight forces needed
+[2026-07-24 09:18:43] [perf] concurrent version search (org.springframework.boot:spring-boot-starter-actuator) completed in 0.94s
+[2026-07-24 09:18:43] [perf] concurrent version search (io.micrometer:micrometer-core) completed in 1.01s
+[2026-07-24 09:18:43] [perf] transitive-parent search (io.micrometer:micrometer-core) ran 0 gradle probe(s) in 0.00s (resolved=False)
+[2026-07-24 09:18:44] [perf] concurrent version search (org.apache.tomcat.embed:tomcat-embed-core) completed in 1.33s
+[2026-07-24 09:18:44] [perf] concurrent version search (org.apache.commons:commons-lang3) completed in 1.41s
+[2026-07-24 09:18:44] [perf] concurrent version search (org.springframework.data:spring-data-mongodb) completed in 1.57s
+[2026-07-24 09:18:44] [perf] concurrent version search (org.apache.kafka:kafka-clients) completed in 1.57s
+[2026-07-24 09:18:44] [perf] concurrent version search (org.springframework.boot:spring-boot) completed in 1.69s
+[2026-07-24 09:18:44] [perf] concurrent version search (org.apache.tomcat.embed:tomcat-embed-core) completed in 0.54s
+[2026-07-24 09:18:44] [perf] concurrent version search (org.apache.tomcat.embed:tomcat-embed-websocket) completed in 1.87s
+[2026-07-24 09:18:44] [perf] concurrent version search (org.assertj:assertj-core) completed in 1.87s
+[2026-07-24 09:18:45] [perf] concurrent version search (org.springframework.data:spring-data-commons) completed in 2.27s
+[2026-07-24 09:18:45] [perf] concurrent version search (com.fasterxml.jackson.core:jackson-databind) completed in 2.28s
+[2026-07-24 09:18:45] [perf] concurrent version search (org.apache.kafka:kafka-clients) completed in 0.97s
+[2026-07-24 09:18:45] [perf] concurrent version search (org.springframework.kafka:spring-kafka) completed in 2.00s
+[2026-07-24 09:18:46] [perf] concurrent version search (org.springframework:spring-context) completed in 2.15s
+[2026-07-24 09:18:46] [perf] concurrent version search (org.springframework:spring-core) completed in 1.96s
+[2026-07-24 09:18:47] [perf] concurrent version search (org.springframework:spring-context) completed in 1.25s
+[2026-07-24 09:18:47] [perf] concurrent version search (org.springframework:spring-expression) completed in 1.87s
+[2026-07-24 09:18:47] [perf] concurrent version search (org.springframework.kafka:spring-kafka) completed in 1.63s
+[2026-07-24 09:18:48] [perf] concurrent version search (org.springframework:spring-core) completed in 1.50s
+[2026-07-24 09:18:51] [perf] concurrent version search (org.springframework:spring-expression) completed in 3.75s
+[2026-07-24 09:18:51] [perf] concurrent version search (org.springframework:spring-web) completed in 4.57s
+[2026-07-24 09:18:51] [perf] concurrent version search (org.springframework:spring-webflux) completed in 4.42s
+[2026-07-24 09:18:51] [perf] concurrent version search (org.lz4:lz4-java) completed in 9.07s
+[2026-07-24 09:18:51] [perf] transitive-parent search (org.lz4:lz4-java) ran 0 gradle probe(s) in 0.00s (resolved=False)
+[2026-07-24 09:18:53] [perf] concurrent version search (org.springframework:spring-webflux) completed in 1.29s
+[2026-07-24 09:18:53] [perf] concurrent version search (org.springframework:spring-web) completed in 1.40s
+[2026-07-24 09:18:53] [perf] concurrent version search (org.springframework:spring-webmvc) completed in 5.53s
+[2026-07-24 09:18:55] [perf] concurrent version search (org.springframework:spring-webmvc) completed in 2.21s
+[2026-07-24 09:18:57] [perf] transitive-parent search (org.apache.commons:commons-lang3) ran 1 gradle probe(s) in 13.66s (resolved=False)
+[2026-07-24 09:19:04] [perf] transitive-parent search (org.springframework.boot:spring-boot) ran 1 gradle probe(s) in 20.16s (resolved=False)
+[2026-07-24 09:19:05] [perf] transitive-parent search (org.springframework.data:spring-data-mongodb) ran 1 gradle probe(s) in 21.04s (resolved=False)
+[2026-07-24 09:19:08] [perf] transitive-parent search (org.assertj:assertj-core) ran 1 gradle probe(s) in 23.79s (resolved=False)
+[2026-07-24 09:19:13] [perf] transitive-parent search (org.apache.tomcat.embed:tomcat-embed-websocket) ran 1 gradle probe(s) in 28.82s (resolved=False)
+[2026-07-24 09:19:15] [perf] transitive-parent search (com.fasterxml.jackson.core:jackson-databind) ran 1 gradle probe(s) in 29.83s (resolved=False)
+[2026-07-24 09:19:15] [perf] transitive-parent search (org.springframework.data:spring-data-commons) ran 1 gradle probe(s) in 30.01s (resolved=False)
+[2026-07-24 09:19:15] proactive check: resolving post-change dependency tree...
+[2026-07-24 09:19:30] proactive check: forced 1 artifact(s) just to make the dependency tree resolve: com.fasterxml.jackson.core:jackson-databind:2.21.5
+[2026-07-24 09:19:30] proactive check: 73 resolved artifacts — checking accessibility...
+[2026-07-24 09:19:40] proactive check: all artifacts accessible — no pre-flight forces needed
+[2026-07-24 10:02:48] [perf] concurrent version search (io.micrometer:micrometer-core) completed in 0.99s
+[2026-07-24 10:02:48] [perf] transitive-parent search (io.micrometer:micrometer-core) ran 0 gradle probe(s) in 0.00s (resolved=False)
+[2026-07-24 10:02:49] [perf] concurrent version search (org.springframework.data:spring-data-commons) completed in 1.32s
+[2026-07-24 10:02:49] [perf] concurrent version search (org.springframework.boot:spring-boot-starter-actuator) completed in 1.67s
+[2026-07-24 10:02:49] [perf] concurrent version search (org.springframework.data:spring-data-mongodb) completed in 1.81s
+[2026-07-24 10:02:49] [perf] concurrent version search (org.apache.commons:commons-lang3) completed in 1.98s
+[2026-07-24 10:02:49] [perf] concurrent version search (org.apache.tomcat.embed:tomcat-embed-websocket) completed in 2.02s
+[2026-07-24 10:02:50] [perf] concurrent version search (org.apache.tomcat.embed:tomcat-embed-core) completed in 2.35s
+[2026-07-24 10:02:50] [perf] concurrent version search (com.fasterxml.jackson.core:jackson-databind) completed in 2.37s
+[2026-07-24 10:02:50] [perf] concurrent version search (org.springframework.boot:spring-boot) completed in 2.38s
+[2026-07-24 10:02:50] [perf] concurrent version search (org.assertj:assertj-core) completed in 2.60s
+[2026-07-24 10:02:50] [perf] concurrent version search (org.apache.kafka:kafka-clients) completed in 2.86s
+[2026-07-24 10:02:50] [perf] concurrent version search (org.springframework:spring-context) completed in 1.44s
+[2026-07-24 10:02:51] [perf] concurrent version search (org.springframework.kafka:spring-kafka) completed in 2.28s
+[2026-07-24 10:02:52] [perf] concurrent version search (org.springframework:spring-context) completed in 1.38s
+[2026-07-24 10:02:52] [perf] concurrent version search (org.apache.tomcat.embed:tomcat-embed-core) completed in 2.15s
+[2026-07-24 10:02:52] [perf] concurrent version search (org.springframework.kafka:spring-kafka) completed in 1.79s
+[2026-07-24 10:02:53] [perf] concurrent version search (org.lz4:lz4-java) completed in 5.31s
+[2026-07-24 10:02:53] [perf] transitive-parent search (org.lz4:lz4-java) ran 0 gradle probe(s) in 0.00s (resolved=False)
+[2026-07-24 10:02:53] [perf] concurrent version search (org.apache.kafka:kafka-clients) completed in 2.70s
+[2026-07-24 10:02:55] [perf] concurrent version search (org.springframework:spring-expression) completed in 3.21s
+[2026-07-24 10:02:55] [perf] concurrent version search (org.springframework:spring-core) completed in 3.30s
+[2026-07-24 10:02:56] [perf] concurrent version search (org.springframework:spring-webmvc) completed in 2.93s
+[2026-07-24 10:02:56] [perf] concurrent version search (org.springframework:spring-web) completed in 3.80s
+[2026-07-24 10:02:58] [perf] concurrent version search (org.springframework:spring-expression) completed in 2.77s
+[2026-07-24 10:02:58] [perf] concurrent version search (org.springframework:spring-web) completed in 2.12s
+[2026-07-24 10:02:58] [perf] concurrent version search (org.springframework:spring-webmvc) completed in 2.49s
+[2026-07-24 10:02:58] [perf] concurrent version search (org.springframework:spring-core) completed in 3.18s
+[2026-07-24 10:02:59] [perf] concurrent version search (org.springframework:spring-webflux) completed in 6.46s
+[2026-07-24 10:03:00] [perf] concurrent version search (org.springframework:spring-webflux) completed in 0.61s
+[2026-07-24 10:03:01] [perf] transitive-parent search (org.springframework.data:spring-data-mongodb) ran 1 gradle probe(s) in 11.87s (resolved=False)
+[2026-07-24 10:03:02] [perf] transitive-parent search (org.springframework.data:spring-data-commons) ran 1 gradle probe(s) in 13.40s (resolved=False)
+[2026-07-24 10:03:11] [perf] transitive-parent search (org.apache.commons:commons-lang3) ran 1 gradle probe(s) in 21.34s (resolved=False)
+[2026-07-24 10:03:16] [perf] transitive-parent search (org.apache.tomcat.embed:tomcat-embed-websocket) ran 1 gradle probe(s) in 26.30s (resolved=False)
+[2026-07-24 10:03:17] [perf] transitive-parent search (com.fasterxml.jackson.core:jackson-databind) ran 1 gradle probe(s) in 27.32s (resolved=False)
+[2026-07-24 10:03:18] [perf] transitive-parent search (org.assertj:assertj-core) ran 1 gradle probe(s) in 27.73s (resolved=False)
+[2026-07-24 10:03:18] [perf] transitive-parent search (org.springframework.boot:spring-boot) ran 1 gradle probe(s) in 28.45s (resolved=False)
+[2026-07-24 10:03:18] proactive check: resolving post-change dependency tree...
+[2026-07-24 10:03:36] proactive check: forced 1 artifact(s) just to make the dependency tree resolve: com.fasterxml.jackson.core:jackson-databind:2.21.5
+[2026-07-24 10:03:36] proactive check: 73 resolved artifacts — checking accessibility...
+[2026-07-24 10:03:47] proactive check: all artifacts accessible — no pre-flight forces needed

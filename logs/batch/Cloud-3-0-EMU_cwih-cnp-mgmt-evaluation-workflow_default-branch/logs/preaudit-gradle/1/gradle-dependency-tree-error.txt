@@ -1,0 +1,11 @@
+[runtimeClasspath]
+timed out after 180s
+
+[compileClasspath]
+timed out after 180s
+
+[testRuntimeClasspath]
+timed out after 180s
+
+[testCompileClasspath]
+timed out after 180s

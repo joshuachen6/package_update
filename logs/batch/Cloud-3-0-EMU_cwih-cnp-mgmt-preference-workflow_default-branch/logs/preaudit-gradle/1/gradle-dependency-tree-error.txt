@@ -1,0 +1,109 @@
+[runtimeClasspath]
+exit code 1
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+A problem occurred configuring root project 'cwih-cnp-mgmt-preference-workflow-service'.
+> Could not resolve all artifacts for configuration 'classpath'.
+   > Could not resolve org.jfrog.buildinfo:build-info-extractor-gradle:4+.
+     Required by:
+         root project :
+      > Failed to list versions for org.jfrog.buildinfo:build-info-extractor-gradle.
+         > Unable to load Maven meta-data from https://humana.jfrog.io/artifactory/cwih-cnp-mgmt-gradle-virtual/org/jfrog/buildinfo/build-info-extractor-gradle/maven-metadata.xml.
+            > Could not HEAD 'https://humana.jfrog.io/artifactory/cwih-cnp-mgmt-gradle-virtual/org/jfrog/buildinfo/build-info-extractor-gradle/maven-metadata.xml'.
+               > Got socket exception during request. It might be caused by SSL misconfiguration
+                  > Network is unreachable
+      > Failed to list versions for org.jfrog.buildinfo:build-info-extractor-gradle.
+         > Unable to load Maven meta-data from https://humana.jfrog.io/artifactory/cwih-cnp-mgmt-gradle-virtual/org/jfrog/buildinfo/build-info-extractor-gradle/maven-metadata.xml.
+            > Could not HEAD 'https://humana.jfrog.io/artifactory/cwih-cnp-mgmt-gradle-virtual/org/jfrog/buildinfo/build-info-extractor-gradle/maven-metadata.xml'.
+               > Got socket exception during request. It might be caused by SSL misconfiguration
+                  > Network is unreachable
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+> Get more help at https://help.gradle.org.
+
+BUILD FAILED in 14m 57s
+
+[compileClasspath]
+exit code 1
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+A problem occurred configuring root project 'cwih-cnp-mgmt-preference-workflow-service'.
+> Could not resolve all artifacts for configuration 'classpath'.
+   > Could not resolve org.jfrog.buildinfo:build-info-extractor-gradle:4+.
+     Required by:
+         root project :
+      > Failed to list versions for org.jfrog.buildinfo:build-info-extractor-gradle.
+         > Unable to load Maven meta-data from https://humana.jfrog.io/artifactory/cwih-cnp-mgmt-gradle-virtual/org/jfrog/buildinfo/build-info-extractor-gradle/maven-metadata.xml.
+            > Could not HEAD 'https://humana.jfrog.io/artifactory/cwih-cnp-mgmt-gradle-virtual/org/jfrog/buildinfo/build-info-extractor-gradle/maven-metadata.xml'.
+               > humana.jfrog.io
+      > Failed to list versions for org.jfrog.buildinfo:build-info-extractor-gradle.
+         > Unable to load Maven meta-data from https://humana.jfrog.io/artifactory/cwih-cnp-mgmt-gradle-virtual/org/jfrog/buildinfo/build-info-extractor-gradle/maven-metadata.xml.
+            > Could not HEAD 'https://humana.jfrog.io/artifactory/cwih-cnp-mgmt-gradle-virtual/org/jfrog/buildinfo/build-info-extractor-gradle/maven-metadata.xml'.
+               > humana.jfrog.io
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+> Get more help at https://help.gradle.org.
+
+BUILD FAILED in 9s
+
+[testRuntimeClasspath]
+exit code 1
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+A problem occurred configuring root project 'cwih-cnp-mgmt-preference-workflow-service'.
+> Could not resolve all artifacts for configuration 'classpath'.
+   > Could not resolve org.jfrog.buildinfo:build-info-extractor-gradle:4+.
+     Required by:
+         root project :
+      > Failed to list versions for org.jfrog.buildinfo:build-info-extractor-gradle.
+         > Unable to load Maven meta-data from https://humana.jfrog.io/artifactory/cwih-cnp-mgmt-gradle-virtual/org/jfrog/buildinfo/build-info-extractor-gradle/maven-metadata.xml.
+            > Could not HEAD 'https://humana.jfrog.io/artifactory/cwih-cnp-mgmt-gradle-virtual/org/jfrog/buildinfo/build-info-extractor-gradle/maven-metadata.xml'.
+               > humana.jfrog.io
+      > Failed to list versions for org.jfrog.buildinfo:build-info-extractor-gradle.
+         > Unable to load Maven meta-data from https://humana.jfrog.io/artifactory/cwih-cnp-mgmt-gradle-virtual/org/jfrog/buildinfo/build-info-extractor-gradle/maven-metadata.xml.
+            > Could not HEAD 'https://humana.jfrog.io/artifactory/cwih-cnp-mgmt-gradle-virtual/org/jfrog/buildinfo/build-info-extractor-gradle/maven-metadata.xml'.
+               > humana.jfrog.io
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+> Get more help at https://help.gradle.org.
+
+BUILD FAILED in 2s
+
+[testCompileClasspath]
+exit code 1
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+A problem occurred configuring root project 'cwih-cnp-mgmt-preference-workflow-service'.
+> Could not resolve all artifacts for configuration 'classpath'.
+   > Could not resolve org.jfrog.buildinfo:build-info-extractor-gradle:4+.
+     Required by:
+         root project :
+      > Failed to list versions for org.jfrog.buildinfo:build-info-extractor-gradle.
+         > Unable to load Maven meta-data from https://humana.jfrog.io/artifactory/cwih-cnp-mgmt-gradle-virtual/org/jfrog/buildinfo/build-info-extractor-gradle/maven-metadata.xml.
+            > Could not HEAD 'https://humana.jfrog.io/artifactory/cwih-cnp-mgmt-gradle-virtual/org/jfrog/buildinfo/build-info-extractor-gradle/maven-metadata.xml'.
+               > humana.jfrog.io
+      > Failed to list versions for org.jfrog.buildinfo:build-info-extractor-gradle.
+         > Unable to load Maven meta-data from https://humana.jfrog.io/artifactory/cwih-cnp-mgmt-gradle-virtual/org/jfrog/buildinfo/build-info-extractor-gradle/maven-metadata.xml.
+            > Could not HEAD 'https://humana.jfrog.io/artifactory/cwih-cnp-mgmt-gradle-virtual/org/jfrog/buildinfo/build-info-extractor-gradle/maven-metadata.xml'.
+               > humana.jfrog.io
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+> Get more help at https://help.gradle.org.
+
+BUILD FAILED in 8s

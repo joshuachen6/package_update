@@ -1,0 +1,21 @@
+{
+  "component_count": 244,
+  "ecosystems": [
+    "maven"
+  ],
+  "errors": [],
+  "vulnerability_count": 1,
+  "vulnerable_component_count": 1,
+  "vulnerable_components": [
+    {
+      "component_id": "gav://at.yawk.lz4:lz4-java:1.10.2",
+      "cves": [
+        "CVE-2026-59949"
+      ],
+      "ecosystem": "maven",
+      "package": "at.yawk.lz4:lz4-java",
+      "version": "1.10.2"
+    }
+  ],
+  "xray_host": "https://humana.jfrog.io"
+}

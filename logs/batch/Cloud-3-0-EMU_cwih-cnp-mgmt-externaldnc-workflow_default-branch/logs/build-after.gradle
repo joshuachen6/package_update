@@ -1,0 +1,253 @@
+buildscript {
+    configurations.all {
+        resolutionStrategy {
+            // package-update: managed buildscript force block (safe to regenerate)
+            force 'org.springframework.data:spring-data-mongodb:4.5.13'
+            force 'org.springframework.data:spring-data-commons:3.5.13'
+            force 'at.yawk.lz4:lz4-java:1.11.1'
+        }
+    }
+
+    repositories {
+        maven {
+            url 'https://humana.jfrog.io/artifactory/cwih-cnp-mgmt-gradle-virtual'
+            credentials {
+                username System.getenv('ARTIFACTORY_USERNAME')
+                password System.getenv('ARTIFACTORY_PASSWORD')
+
+            }
+        }
+
+    }
+    dependencies {
+        //Check for the latest version here: http://plugins.gradle.org/plugin/com.jfrog.artifactory
+        classpath "org.jfrog.buildinfo:build-info-extractor-gradle:4+"
+    }
+}
+
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.5.14'
+    id 'io.spring.dependency-management' version '1.1.7'
+    id 'application'
+    id 'jacoco'
+    id "org.sonarqube" version "5.1.0.4882"
+
+}
+configurations.all {
+    resolutionStrategy.dependencySubstitution {
+        // package-update: managed dependencySubstitution block (safe to regenerate)
+        substitute module('org.springframework.data:spring-data-mongodb') using module('org.springframework.data:spring-data-mongodb:4.5.13')
+        substitute module('org.springframework.data:spring-data-commons') using module('org.springframework.data:spring-data-commons:3.5.13')
+    }
+}
+
+configurations.all {
+    resolutionStrategy {
+        // package-update: managed force block (safe to regenerate)
+        force 'org.springframework.data:spring-data-mongodb:4.5.13'
+        force 'org.springframework.data:spring-data-commons:3.5.13'
+        force 'at.yawk.lz4:lz4-java:1.11.1'
+    }
+}
+
+
+group = 'com.humana.domain.externaldnc'
+version = '0.0.1-SNAPSHOT'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+allprojects {
+    apply plugin: "com.jfrog.artifactory"
+}
+artifactory {
+    contextUrl = "${System.getenv('ARTIFACTORY_SOURCE')}"   //The base Artifactory URL if not overridden by the publisher/resolver
+    publish {
+        repository {
+            repoKey = 'cwih-cnp-mgmt-gradle-local'
+            username = "${System.getenv('ARTIFACTORY_USERNAME')}"
+            password = "${System.getenv('ARTIFACTORY_PASSWORD')}"
+            maven = true
+        }
+    }
+    resolve {
+        repository {
+            repoKey = 'cwih-cnp-mgmt-gradle-virtual'
+            username = "${System.getenv('ARTIFACTORY_USERNAME')}"
+            password = "${System.getenv('ARTIFACTORY_PASSWORD')}"
+            maven = true
+        }
+    }
+}
+repositories {
+    mavenLocal()
+    maven {
+        url 'https://humana.jfrog.io/artifactory/cwih-cnp-mgmt-gradle-virtual'
+        credentials {
+            username System.getenv('ARTIFACTORY_USERNAME')
+            password System.getenv('ARTIFACTORY_PASSWORD')
+
+        }
+    }
+}
+
+ext {
+    set('springCloudVersion', "2024.0.1")
+    set('spring-framework.version', "6.2.19")//Fix of CVE-2025-41249
+    set('jackson-bom.version', "2.22.1")
+    set('micrometer.version', "1.17.0")
+    set('netty.version', "4.2.16.Final")
+    set('spring-framework.version', "6.2.19")
+}
+
+dependencies {
+    implementation 'com.fasterxml.jackson.core:jackson-core:2.21.1'// Fix of GHSA-72hv-8253-57qq
+    implementation('org.springframework.boot:spring-boot-starter-data-mongodb') {
+        exclude group: 'org.springframework', module: 'spring-beans'
+        exclude group: 'org.springframework', module: 'spring-context'
+        exclude group: 'org.springframework', module: 'spring-core'
+        exclude group: 'org.springframework', module: 'spring-expression'
+    }
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+
+    implementation('org.springframework.boot:spring-boot-starter-web:3.5.0')
+            {
+                exclude group: 'org.springframework', module: 'spring-webmvc'
+                exclude group: 'org.springframework', module: 'spring-web'
+                exclude group: 'org.apache.tomcat.embed', module: 'tomcat-embed-core'
+                //exclude group: 'com.fasterxml.jackson.core', module: 'jackson-core'
+            }
+
+    implementation 'org.springframework.boot:spring-boot-starter-aop:3.5.0'
+    implementation('org.springframework.kafka:spring-kafka:3.3.16') {
+        exclude group: 'org.xerial.snappy', module: 'snappy-java'
+        exclude group: 'org.apache.kafka', module: 'kafka-clients'
+    }
+    implementation 'org.apache.kafka:kafka-clients:4.2.0'
+    implementation('org.apache.tomcat.embed:tomcat-embed-websocket:10.1.57')// Fix CVE of CVE-2026-24733
+    implementation('org.apache.tomcat.embed:tomcat-embed-core:10.1.57') // Fix CVE of CVE-2026-24733
+    implementation('org.apache.avro:avro:1.12.0') {
+        //exclude group: 'com.fasterxml.jackson.core', module: 'jackson-core'
+    }
+    implementation 'org.springframework:spring-webflux:6.2.19'
+    implementation 'io.projectreactor.netty:reactor-netty-http:1.2.9'
+    implementation 'ch.qos.logback:logback-classic:1.6.0' //Fix of CVE-2025-11226 & CVE-2026-1225
+    implementation 'ch.qos.logback:logback-core:1.6.0'  //Fix of CVE-2025-11226 & CVE-2026-1225
+
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation('org.springframework.boot:spring-boot-starter-test:3.5.0') {
+        exclude group: 'org.xmlunit', module: 'xmlunit-core'
+    }
+    testImplementation 'org.xmlunit:xmlunit-core:2.10.1'
+    testImplementation 'org.mockito:mockito-core:5.18.0'
+    implementation 'org.xerial.snappy:snappy-java:1.1.10.7'
+    implementation 'org.springframework.boot:spring-boot-starter-validation:3.5.0'
+    implementation(group: 'io.netty', name: 'netty-handler') {
+        version {
+            strictly '4.2.16.Final'
+        }
+    }
+    implementation(group: 'org.apache.commons', name: 'commons-lang3') {
+        version {
+            strictly '3.18.0'
+        }
+    }
+    implementation(group: 'io.netty', name: 'netty-codec-http2') {
+        version {
+            strictly '4.2.16.Final' // Fix of CVE CVE-2025-67735
+        }
+    }
+    implementation(group: 'io.netty', name: 'netty-codec') {
+        version {
+            strictly '4.2.16.Final' // Fix of CVE CVE-2025-67735
+        }
+    }
+    implementation(group: 'io.netty', name: 'netty-codec-http') {
+        version {
+            strictly '4.2.16.Final' // Fix of CVE CVE-2025-67735
+        }
+    }
+
+}
+
+application {
+    mainClass = 'com.humana.domain.cds.IngestionServiceApplication'
+}
+sonarqube {
+    properties {
+        property "sonar.projectKey", "IntegratedHealth.ConsentAndPreferences.IntegratedHealth.ConsentAndPreferences.ExternalDncWorkflow"
+        property "sonar.host.url", "http://analysis-devops.humana.com"
+        property "sonar.login", System.getenv("SONARQUBE_TOKEN")
+        property "sonar.java.binaries", "${layout.buildDirectory.get()}/classes/java/main"
+        property "sonar.junit.reportsPath", "${layout.buildDirectory.get()}/test-results/test/"
+        property "sonar.jacoco.reportPaths", "${layout.buildDirectory.get()}/reports/jacoco/test/jacocoTestReport.xml"
+        property 'sonar.coverage.exclusions',
+                "**/com/humana/domain/cds/IngestionServiceApplication.java," +
+                        "**/com/humana/domain/cds/config/**," +
+                        "**/com/humana/domain/cds/constants/**," +
+                        "**/com/humana/domain/cds/contract/**," +
+                        "**/com/humana/domain/cds/dto/**," +
+                        "**/com/humana/domain/cds/entity/**," +
+                        "**/com/humana/domain/cds/enums/**," +
+                        "**/com/humana/domain/cds/exceptions/**," +
+                        "**/com/humana/domain/cds/logging/**," +
+                        "**/com/humana/domain/cds/model/**," +
+                        "**/com/humana/domain/cds/repository/**," +
+                        "**/com/humana/domain/cds/service/avro/**," +
+                        "**/com/humana/domain/cds/util/**"
+    }
+}
+
+apply plugin: 'jacoco'
+
+test {
+    useJUnitPlatform()
+
+    jacocoTestReport {
+        reports {
+            xml.required.set(true)
+            html.required.set(true)
+            xml.destination file("${layout.buildDirectory.get()}/reports/jacoco/test/jacocoTestReport.xml")
+            html.destination file("${layout.buildDirectory.get()}/jacocoReport")
+        }
+        finalizedBy jacocoTestCoverageVerification
+        afterEvaluate {
+            classDirectories.setFrom(files(classDirectories.files.collect {
+                fileTree(dir: it, exclude: [
+                        "**/com/humana/domain/cds/entity/**," +
+                                "**/com/humana/domain/cds/config/**," +
+                                "**/com/humana/domain/cds/constants/**," +
+                                "**/com/humana/domain/cds/contract/**," +
+                                "**/com/humana/domain/cds/dto/**," +
+                                "**/com/humana/domain/cds/entity/**," +
+                                "**/com/humana/domain/cds/enums/**," +
+                                "**/com/humana/domain/cds/exceptions/**," +
+                                "**/com/humana/domain/cds/logging/**," +
+                                "**/com/humana/domain/cds/model/**," +
+                                "**/com/humana/domain/cds/repository/**," +
+                                "**/com/humana/domain/cds/service/avro/**," +
+                                "**/com/humana/domain/cds/util/**"
+                ])
+            }))
+        }
+    }
+    test.finalizedBy jacocoTestReport
+}
+
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
+
+tasks.sonarqube.dependsOn = []

@@ -1,0 +1,161 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.5.14'
+    id 'io.spring.dependency-management' version '1.1.7'
+    id 'application'
+    id 'jacoco'
+    id "org.sonarqube" version "4.3.1.3277"
+}
+
+group = 'com.humana.cnp'
+version = '0.0.1-SNAPSHOT'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenLocal()
+    maven {
+        url 'https://humana.jfrog.io/artifactory/cwih-cnp-mgmt-gradle-virtual'
+        credentials {
+            username System.getenv('ARTIFACTORY_USERNAME')
+            password System.getenv('ARTIFACTORY_PASSWORD')
+        }
+    }
+}
+
+ext {
+    set('springCloudVersion', "2025.0.0")
+    set('spring-framework.version', "6.2.18")
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-aop'
+    implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.13'
+
+    implementation('org.apache.tomcat.embed:tomcat-embed-websocket:10.1.52') //CVE-2025-61795
+    implementation('org.apache.tomcat.embed:tomcat-embed-core:10.1.52') //CVE-2025-61795
+    implementation('org.apache.tomcat.embed:tomcat-embed-el:10.1.52') //CVE-2025-61795
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    testImplementation 'org.mockito:mockito-core:5.19.0'
+    testImplementation 'org.mockito:mockito-inline:5.2.0'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.12.2'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.12.2'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation 'io.jsonwebtoken:jjwt-api:0.12.6'
+    implementation 'com.nimbusds:nimbus-jose-jwt:10.5'
+    implementation 'com.auth0:java-jwt:4.4.0'
+//    implementation 'org.powermock:powermock-module-junit4:2.0.9'
+//    implementation 'org.powermock:powermock-api-mockito2:2.0.9'
+    implementation 'org.springframework.kafka:spring-kafka'
+    implementation 'org.apache.avro:avro:1.12.0'
+    implementation 'io.projectreactor.netty:reactor-netty-http:1.2.9'
+    implementation 'org.springframework:spring-webflux:6.2.18'
+    implementation 'com.microsoft.graph:microsoft-graph:5.76.0'
+
+    implementation(group: 'org.apache.commons', name: 'commons-lang3') {
+        version {
+            strictly '3.20.0'
+        }
+    }
+
+}
+
+sonarqube {
+    properties {
+        property "sonar.projectKey", "IntegratedHealth.ConsentAndPreferences.cwih-cnp-mgmt-admin-api"
+        property "sonar.host.url", "http://analysis-devops.humana.com"
+        property "sonar.login", System.getenv("SONARQUBE_TOKEN")
+        property "sonar.java.binaries", "${layout.buildDirectory.get()}/classes/java/main"
+        property "sonar.junit.reportsPath", "${layout.buildDirectory.get()}/test-results/test/"
+        property "sonar.jacoco.reportPaths", "${layout.buildDirectory.get()}/reports/jacoco/test/jacocoTestReport.xml"
+        property 'sonar.coverage.exclusions',
+                "**/com/humana/cnp/ConsentAndPreferenceTemplateApplication*," +
+                        "**/com/humana/cnp/entity/*," +
+                        "**/com/humana/cnp/config/**," +
+                        "**/com/humana/cnp/constants/**," +
+                        "**/com/humana/cnp/dto/**," +
+                        "**/com/humana/cnp/logging/**," +
+                        "**/com/humana/cnp/repository/**," +
+                        "**/com/humana/cnp/exceptions/**," +
+                        "**/com/humana/cnp/enums/**," +
+                        "**/com/humana/cnp/annotations/**," +
+                        "**/com/humana/cnp/dataseeder/**," +
+                        "**/com/humana/cnp/filter/**," +
+                        "**/com/humana/cnp/service/avro/**," +
+                        "**/com/humana/cnp/util/RankScopeUtil.java," +
+                        "**/com/humana/cnp/util/VaultPropertySourceFactory.java"
+    }
+}
+
+apply plugin: 'jacoco'
+
+test {
+    useJUnitPlatform()
+
+    jacocoTestReport {
+        reports {
+            xml.required.set(true)
+            html.required.set(true)
+            xml.destination file("${layout.buildDirectory.get()}/reports/jacoco/test/jacocoTestReport.xml")
+            html.destination file("${layout.buildDirectory.get()}/jacocoReport")
+        }
+        finalizedBy jacocoTestCoverageVerification
+        afterEvaluate {
+            classDirectories.setFrom(files(classDirectories.files.collect {
+                fileTree(dir: it, exclude: [
+                        "com/humana/cnp/ConsentAndPreferenceTemplateApplication.class",
+                        "com/humana/cnp/entity/*",
+                        "com/humana/cnp/config/**",
+                        "com/humana/cnp/constants/**",
+                        "com/humana/cnp/dto/**",
+                        "com/humana/cnp/logging/**",
+                        "com/humana/cnp/repository/**",
+                        "com/humana/cnp/exceptions/**",
+                        "com/humana/cnp/enums/**",
+                        "com/humana/cnp/annotations/**",
+                        "com/humana/cnp/dataseeder/**",
+                        "com/humana/cnp/filter/**",
+                        "**/com/humana/cnp/service/avro/**,",
+                        "com/humana/cnp/util/RankScopeUtil.java",
+                        "com/humana/cnp/util/VaultPropertySourceFactory.java"
+                ])
+            }))
+        }
+    }
+    test.finalizedBy jacocoTestReport
+    jvmArgs += [
+            "--add-opens", "java.base/java.lang=ALL-UNNAMED",
+            "--add-opens", "java.base/java.lang.reflect=ALL-UNNAMED",
+            "--add-opens", "java.base/java.util=ALL-UNNAMED"
+    ]
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
+
+tasks.sonarqube.dependsOn = []
+
+application {
+    mainClass = 'com.humana.cnp.ConsentAndPreferenceTemplateApplication'
+}
+tasks.register('cwih-cnp-mgmt-admin-api') {
+    doLast {
+        println 'Running cwih-cnp-mgmt-admin-api task'
+    }
+}

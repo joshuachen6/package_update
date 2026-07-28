@@ -119,6 +119,38 @@ def test_aggregate_deduplicates_unique_cves_but_not_total_cves_across_repos():
     assert summary["clearance_rate"] == 4 / 5
 
 
+def test_aggregate_tracks_which_repos_cleared_each_cve():
+    repo_results = [
+        {
+            "status": "Success",
+            "url": "org/repo-a",
+            "evidence": {
+                "original_cves": {"CVE-2026-1", "CVE-2026-2"},
+                "remaining_cves": set(),
+                "vulnerable_packages_before": 2,
+                "vulnerable_packages_after": 0,
+            },
+        },
+        {
+            "status": "Success",
+            "url": "org/repo-b",
+            "evidence": {
+                "original_cves": {"CVE-2026-1"},
+                "remaining_cves": set(),
+                "vulnerable_packages_before": 1,
+                "vulnerable_packages_after": 0,
+            },
+        },
+    ]
+
+    summary = aggregate_batch_summary(repo_results)
+
+    assert summary["cves_cleared_by_repo"] == {
+        "CVE-2026-1": ["org/repo-a", "org/repo-b"],
+        "CVE-2026-2": ["org/repo-a"],
+    }
+
+
 def test_aggregate_repo_with_no_evidence_still_counts_toward_processed_but_not_cve_stats():
     repo_results = [
         {"status": "Error"},  # crashed before writing remediation-evidence.json
@@ -224,6 +256,62 @@ def test_format_summary_log_lists_each_repo_with_its_own_duration():
     assert "0:17" in text
     assert "[Success]" in text
     assert "[Failed]" in text
+
+
+def test_format_summary_log_lists_every_resolved_cve_with_its_repos():
+    repo_results = [
+        {
+            "status": "Success",
+            "url": "org/repo-a",
+            "evidence": {
+                "original_cves": {"CVE-2026-1", "CVE-2026-2"},
+                "remaining_cves": set(),
+                "vulnerable_packages_before": 2,
+                "vulnerable_packages_after": 0,
+            },
+        },
+        {
+            "status": "Success",
+            "url": "org/repo-b",
+            "evidence": {
+                "original_cves": {"CVE-2026-1"},
+                "remaining_cves": set(),
+                "vulnerable_packages_before": 1,
+                "vulnerable_packages_after": 0,
+            },
+        },
+    ]
+    summary = aggregate_batch_summary(repo_results)
+
+    text = format_summary_log(summary, repo_results)
+
+    assert "CVEs resolved (2):" in text
+    assert "CVE-2026-1 — org/repo-a, org/repo-b" in text
+    assert "CVE-2026-2 — org/repo-a" in text
+
+
+def test_format_summary_popup_does_not_list_individual_cves():
+    """The user asked for the full CVE list to live in the log file only --
+    the popup should stay a high-level summary, not grow a long per-CVE list.
+    """
+    repo_results = [
+        {
+            "status": "Success",
+            "url": "org/repo-a",
+            "evidence": {
+                "original_cves": {"CVE-2026-1"},
+                "remaining_cves": set(),
+                "vulnerable_packages_before": 1,
+                "vulnerable_packages_after": 0,
+            },
+        },
+    ]
+    summary = aggregate_batch_summary(repo_results)
+
+    text = format_summary_popup(summary)
+
+    assert "CVE-2026-1" not in text
+    assert "CVEs resolved" not in text
 
 
 def test_batch_worker_records_result_and_emits_summary_after_all_repos():

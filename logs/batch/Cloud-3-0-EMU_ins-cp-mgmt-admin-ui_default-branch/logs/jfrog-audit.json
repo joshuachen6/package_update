@@ -1,0 +1,131 @@
+{
+  "component_count": 870,
+  "ecosystems": [
+    "npm"
+  ],
+  "errors": [],
+  "vulnerability_count": 31,
+  "vulnerable_component_count": 11,
+  "vulnerable_components": [
+    {
+      "component_id": "npm://@babel/core:7.29.0",
+      "cves": [
+        "CVE-2026-49356"
+      ],
+      "ecosystem": "npm",
+      "package": "@babel/core",
+      "version": "7.29.0"
+    },
+    {
+      "component_id": "npm://brace-expansion:5.0.6",
+      "cves": [
+        "CVE-2026-13149",
+        "CVE-2026-14257"
+      ],
+      "ecosystem": "npm",
+      "package": "brace-expansion",
+      "version": "5.0.6"
+    },
+    {
+      "component_id": "npm://dompurify:3.4.0",
+      "cves": [
+        "CVE-2026-49458",
+        "CVE-2026-49459",
+        "CVE-2026-49978",
+        "CVE-2026-65898",
+        "CVE-2026-65899",
+        "CVE-2026-65900",
+        "CVE-2026-65901",
+        "CVE-2026-65902"
+      ],
+      "ecosystem": "npm",
+      "package": "dompurify",
+      "version": "3.4.0"
+    },
+    {
+      "component_id": "npm://fast-uri:3.1.2",
+      "cves": [
+        "CVE-2026-13676",
+        "CVE-2026-16221"
+      ],
+      "ecosystem": "npm",
+      "package": "fast-uri",
+      "version": "3.1.2"
+    },
+    {
+      "component_id": "npm://form-data:4.0.5",
+      "cves": [
+        "CVE-2026-12143"
+      ],
+      "ecosystem": "npm",
+      "package": "form-data",
+      "version": "4.0.5"
+    },
+    {
+      "component_id": "npm://immutable:5.1.6",
+      "cves": [
+        "CVE-2026-59879",
+        "CVE-2026-59880"
+      ],
+      "ecosystem": "npm",
+      "package": "immutable",
+      "version": "5.1.6"
+    },
+    {
+      "component_id": "npm://js-yaml:4.1.1",
+      "cves": [
+        "CVE-2026-53550",
+        "CVE-2026-59869"
+      ],
+      "ecosystem": "npm",
+      "package": "js-yaml",
+      "version": "4.1.1"
+    },
+    {
+      "component_id": "npm://next:15.5.18",
+      "cves": [
+        "CVE-2026-64641",
+        "CVE-2026-64643",
+        "CVE-2026-64644",
+        "CVE-2026-64645",
+        "CVE-2026-64646",
+        "CVE-2026-64647",
+        "CVE-2026-64648",
+        "CVE-2026-64649"
+      ],
+      "ecosystem": "npm",
+      "package": "next",
+      "version": "15.5.18"
+    },
+    {
+      "component_id": "npm://postcss:8.4.31",
+      "cves": [
+        "CVE-2026-41305",
+        "CVE-2026-45623"
+      ],
+      "ecosystem": "npm",
+      "package": "postcss",
+      "version": "8.4.31"
+    },
+    {
+      "component_id": "npm://quill:2.0.3",
+      "cves": [
+        "CVE-2025-15056"
+      ],
+      "ecosystem": "npm",
+      "package": "quill",
+      "version": "2.0.3"
+    },
+    {
+      "component_id": "npm://ws:8.20.1",
+      "cves": [
+        "CVE-2026-48779",
+        "CVE-2026-62389"
+      ],
+      "ecosystem": "npm",
+      "package": "ws",
+      "version": "8.20.1"
+    }
+  ],
+  "xray_host": "https://humana.jfrog.io"
+}

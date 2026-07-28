@@ -1,0 +1,276 @@
+buildscript {
+    configurations.all {
+        resolutionStrategy {
+            // package-update: managed buildscript force block (safe to regenerate)
+            force 'org.springframework.data:spring-data-mongodb:4.5.13'
+            force 'at.yawk.lz4:lz4-java:1.11.1'
+            force 'org.apache.httpcomponents.core5:httpcore5:5.4.3'
+            force 'org.apache.httpcomponents.core5:httpcore5-h2:5.4.3'
+        
+            force 'io.netty:netty-codec-compression:4.2.16.Final'
+            force 'io.netty:netty-codec-http3:4.2.16.Final'
+
+            force 'com.fasterxml.jackson.core:jackson-databind:2.21.5'
+}
+    }
+
+    repositories {
+        maven {
+            url 'https://humana.jfrog.io/artifactory/plugins-release'
+            credentials {
+                username System.getenv('ARTIFACTORY_USERNAME')
+                password System.getenv('ARTIFACTORY_PASSWORD')
+            }
+        }
+
+    }
+    dependencies {
+        //Check for the latest version here: http://plugins.gradle.org/plugin/com.jfrog.artifactory
+        classpath "org.jfrog.buildinfo:build-info-extractor-gradle:4+"
+    }
+      configurations.all {
+        resolutionStrategy {
+            force 'com.fasterxml.jackson.core:jackson-core:2.21.1'
+            force 'org.apache.tomcat.embed:tomcat-embed-websocket:11.0.24'
+        }
+    }
+}
+
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.5.14'
+    id 'io.spring.dependency-management' version '1.1.7'
+    id 'application'
+    id 'jacoco'
+    id "org.sonarqube" version "6.3.1.5724"
+}
+configurations.all {
+    resolutionStrategy.dependencySubstitution {
+        // package-update: managed dependencySubstitution block (safe to regenerate)
+        substitute module('org.springframework.data:spring-data-mongodb') using module('org.springframework.data:spring-data-mongodb:4.5.13')
+    
+        substitute module('io.netty:netty-codec-compression') using module('io.netty:netty-codec-compression:4.2.16.Final')
+        substitute module('io.netty:netty-codec-http3') using module('io.netty:netty-codec-http3:4.2.16.Final')
+
+        substitute module('com.fasterxml.jackson.core:jackson-databind') using module('com.fasterxml.jackson.core:jackson-databind:2.21.5')
+}
+}
+
+configurations.all {
+    resolutionStrategy {
+        // package-update: managed force block (safe to regenerate)
+        force 'org.springframework.data:spring-data-mongodb:4.5.13'
+        force 'at.yawk.lz4:lz4-java:1.11.1'
+        force 'org.apache.httpcomponents.core5:httpcore5:5.4.3'
+        force 'org.apache.httpcomponents.core5:httpcore5-h2:5.4.3'
+    
+        force 'io.netty:netty-codec-compression:4.2.16.Final'
+        force 'io.netty:netty-codec-http3:4.2.16.Final'
+
+        force 'com.fasterxml.jackson.core:jackson-databind:2.21.5'
+}
+}
+
+
+group = 'com.humana.domain.preference'
+version = '0.0.1-SNAPSHOT'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+allprojects {
+    apply plugin: "com.jfrog.artifactory"
+}
+repositories {
+    mavenLocal()
+    maven {
+        url 'https://humana.jfrog.io/artifactory/plugins-release'
+        credentials {
+            username System.getenv('ARTIFACTORY_USERNAME')
+            password System.getenv('ARTIFACTORY_PASSWORD')
+        }
+
+    }
+
+}
+
+ext {
+    set('springCloudVersion', "2025.0.0")
+    set('spring-framework.version', "6.2.19")
+    set('netty.version', "4.1.135.Final")
+    set('micrometer.version',"1.17.0-RC1")
+    set('logback.version', "1.6.0")
+}
+
+dependencies {
+
+    implementation('org.springframework.boot:spring-boot-starter-data-mongodb') {
+        exclude group: 'org.springframework.data', module: 'spring-data-commons'
+    }
+    implementation 'org.springframework.data:spring-data-commons:3.5.12'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-aop'
+
+    implementation('org.springframework.boot:spring-boot-starter-actuator') {
+        exclude group: 'io.micrometer', module: 'micrometer-core'
+        exclude group: 'io.micrometer', module: 'micrometer-commons'
+        exclude group: 'io.micrometer', module: 'micrometer-observation'
+        exclude group: 'io.micrometer', module: 'micrometer-jakarta9'
+    }
+    implementation 'io.micrometer:micrometer-core:1.17.0-RC1'
+    implementation 'io.micrometer:micrometer-commons:1.17.0-RC1'
+    implementation 'io.micrometer:micrometer-observation:1.17.0-RC1'
+    implementation 'io.micrometer:micrometer-jakarta9:1.17.0-RC1'
+    implementation 'org.springframework.kafka:spring-kafka:3.3.16'
+    implementation 'org.apache.kafka:kafka-clients'
+    implementation 'org.apache.tomcat.embed:tomcat-embed-core:11.0.24'
+    implementation 'org.apache.avro:avro:1.12.0'
+    implementation 'com.fasterxml.jackson.core:jackson-core:2.21.1'
+    implementation 'org.springframework:spring-webflux'
+
+    implementation platform('io.netty:netty-bom:4.1.135.Final')
+    implementation 'io.projectreactor.netty:reactor-netty:1.3.5'
+    implementation('io.projectreactor.netty:reactor-netty-http:1.2.9') {
+        exclude group: 'io.netty', module: 'netty-codec-dns'
+        exclude group: 'io.netty', module: 'netty-transport-native-epoll'
+        exclude group: 'io.netty', module: 'netty-codec'
+    }
+    implementation 'io.netty:netty-codec:4.2.16.Final'
+    implementation 'io.netty:netty-codec-dns:4.2.16.Final'
+    implementation 'io.netty:netty-transport-native-epoll:4.2.16.Final'
+
+    implementation 'io.netty:netty-codec-http:4.2.16.Final'
+    implementation 'io.netty:netty-codec-http2:4.2.16.Final'
+    implementation 'io.netty:netty-codec-http3:4.2.15.Final'
+    implementation 'io.netty:netty-codec-compression:4.2.15.Final'
+    implementation ('io.netty:netty-common'){
+        version {
+            strictly '4.2.16.Final'
+        }
+    }
+
+    implementation ('io.netty:netty-buffer'){
+        version {
+            strictly '4.2.16.Final'
+        }
+    }
+    implementation ('io.netty:netty-transport'){
+        version {
+            strictly '4.2.16.Final'
+        }
+    }
+    implementation ('io.netty:netty-handler'){
+        version {
+            strictly '4.2.16.Final'
+        }
+    }
+
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.xmlunit', module: 'xmlunit-core'
+    }
+    testImplementation 'org.xmlunit:xmlunit-core:2.10.3'
+    testImplementation 'org.mockito:mockito-core:5.19.0'
+    implementation 'org.xerial.snappy:snappy-java:1.1.10.7'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+    implementation 'redis.clients:jedis:5.2.0'
+    implementation(group: 'org.apache.commons', name: 'commons-lang3') {
+        version {
+            strictly '3.18.0'
+        }
+    }
+    implementation 'io.micrometer:micrometer-tracing-bridge-brave'
+    implementation 'io.micrometer:micrometer-registry-prometheus'
+    implementation 'org.apache.tomcat.embed:tomcat-embed-core:11.0.24'
+    implementation 'org.apache.tomcat.embed:tomcat-embed-websocket:11.0.24'
+}
+
+application {
+    mainClass = 'com.humana.domain.preference.PreferenceIngestionServiceApplication'
+}
+
+sonarqube {
+    properties {
+        property "sonar.projectKey", "IntegratedHealth.ConsentAndPreferences.preference-workflow"
+        property "sonar.host.url", "http://analysis-devops.humana.com"
+        property "sonar.login", System.getenv("SONARQUBE_TOKEN")
+        property "sonar.java.binaries", "${layout.buildDirectory.get()}/classes/java/main"
+        property "sonar.junit.reportsPath", "${layout.buildDirectory.get()}/test-results/test/"
+        property "sonar.jacoco.reportPaths", "${layout.buildDirectory.get()}/reports/jacoco/test/jacocoTestReport.xml"
+        property 'sonar.coverage.exclusions',
+                "**/com/humana/domain/preference/PreferenceIngestionServiceApplication.java," +
+                        "**/com/humana/domain/preference/service/CacheService.java," +
+                        "**/com/humana/domain/preference/config/**," +
+                        "**/com/humana/domain/preference/config/ExecutorServiceConfig.java," +
+                        "**/com/humana/domain/preference/constants/**," +
+                        "**/com/humana/domain/preference/contract/**," +
+                        "**/com/humana/domain/preference/dto/**," +
+                        "**/com/humana/domain/preference/entity/**," +
+                        "**/com/humana/domain/preference/enums/**," +
+                        "**/com/humana/domain/preference/exceptions/**," +
+                        "**/com/humana/domain/preference/logging/**," +
+                        "**/com/humana/domain/preference/model/**," +
+                        "**/com/humana/domain/preference/repository/**," +
+                        "**/com/humana/domain/preference/service/avro/**," +
+                        "**/com/humana/domain/preference/util/VaultPropertySourceFactory.java," +
+                        "**/com/humana/domain/preference/util/OutboundIngestionServiceUtil.java," +
+                        "**/com/humana/domain/preference/config/CacheControllerOld.java"
+
+    }
+}
+
+apply plugin: 'jacoco'
+
+test {
+    useJUnitPlatform()
+
+    jacocoTestReport {
+        reports {
+            xml.required.set(true)
+            html.required.set(true)
+            xml.outputLocation.set(file("${layout.buildDirectory.get()}/reports/jacoco/test/jacocoTestReport.xml"))
+            html.outputLocation.set(file("${layout.buildDirectory.get()}/jacocoReport"))
+        }
+        finalizedBy jacocoTestCoverageVerification
+        afterEvaluate {
+            classDirectories.setFrom(files(classDirectories.files.collect {
+                fileTree(dir: it, exclude: [
+                        "**/com/humana/domain/preference/entity/**," +
+                                "**/com/humana/domain/preference/service/CacheService.java," +
+                                "**/com/humana/domain/preference/config/**," +
+                                "**/com/humana/domain/preference/constants/**," +
+                                "**/com/humana/domain/preference/contract/**," +
+                                "**/com/humana/domain/preference/dto/**," +
+                                "**/com/humana/domain/preference/entity/**," +
+                                "**/com/humana/domain/preference/enums/**," +
+                                "**/com/humana/domain/preference/exceptions/**," +
+                                "**/com/humana/domain/preference/logging/**," +
+                                "**/com/humana/domain/preference/model/**," +
+                                "**/com/humana/domain/preference/repository/**," +
+                                "**/com/humana/domain/preference/service/avro/**," +
+                                "**/com/humana/domain/preference/util/VaultPropertySourceFactory.java," +
+                                "**/com/humana/domain/preference/util/OutboundIngestionServiceUtil.java" +
+                                "**/com/humana/domain/preference/CacheControllerOld.java"
+                ])
+            }))
+        }
+    }
+    test.finalizedBy jacocoTestReport
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
+
+tasks.sonarqube.dependsOn = []

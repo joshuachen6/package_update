@@ -1,0 +1,341 @@
+buildscript {
+    configurations.all {
+        resolutionStrategy {
+            // package-update: managed buildscript force block (safe to regenerate)
+            force 'org.apache.neethi:neethi:3.2.3'
+            force 'org.springframework.data:spring-data-mongodb:4.5.13'
+            force 'org.springframework.data:spring-data-commons:3.5.13'
+            force 'org.springframework.hateoas:spring-hateoas:2.5.3'
+            force 'commons-beanutils:commons-beanutils:1.11.0'
+            force 'at.yawk.lz4:lz4-java:1.11.1'
+            force 'org.apache.cxf:cxf-core:4.2.2'
+            force 'org.apache.httpcomponents.core5:httpcore5:5.4.3'
+            force 'org.codehaus.plexus:plexus-utils:3.6.1'
+            force 'org.apache.httpcomponents.core5:httpcore5-h2:5.4.3'
+        
+            force 'com.fasterxml.jackson.core:jackson-databind:2.21.5'
+}
+    }
+
+    repositories {
+        mavenLocal()
+        maven {
+            url = "${ARTIFACTORY_SOURCE}"
+            credentials {
+                username System.getenv('ARTIFACTORY_USERNAME')
+                password System.getenv('ARTIFACTORY_PASSWORD')
+            }
+        }
+    }
+}
+plugins {
+    id 'org.springframework.boot' version '3.5.16'
+    id 'io.spring.dependency-management' version '1.1.7'
+    id 'java'
+    id 'maven-publish'
+    id 'jacoco'
+    id "org.sonarqube" version "5.1.0.4882"
+}
+configurations.all {
+    resolutionStrategy.dependencySubstitution {
+        // package-update: managed dependencySubstitution block (safe to regenerate)
+        substitute module('org.springframework.data:spring-data-mongodb') using module('org.springframework.data:spring-data-mongodb:4.5.13')
+        substitute module('org.springframework.data:spring-data-commons') using module('org.springframework.data:spring-data-commons:3.5.13')
+    
+        substitute module('com.fasterxml.jackson.core:jackson-databind') using module('com.fasterxml.jackson.core:jackson-databind:2.21.5')
+}
+}
+
+configurations.all {
+    resolutionStrategy {
+        // package-update: managed force block (safe to regenerate)
+        force 'org.apache.neethi:neethi:3.2.3'
+        force 'org.springframework.data:spring-data-mongodb:4.5.13'
+        force 'org.springframework.data:spring-data-commons:3.5.13'
+        force 'org.springframework.hateoas:spring-hateoas:2.5.3'
+        force 'commons-beanutils:commons-beanutils:1.11.0'
+        force 'at.yawk.lz4:lz4-java:1.11.1'
+        force 'org.apache.cxf:cxf-core:4.2.2'
+        force 'org.apache.httpcomponents.core5:httpcore5:5.4.3'
+        force 'org.codehaus.plexus:plexus-utils:3.6.1'
+        force 'org.apache.httpcomponents.core5:httpcore5-h2:5.4.3'
+    
+        force 'com.fasterxml.jackson.core:jackson-databind:2.21.5'
+}
+}
+
+
+
+group = 'com.humana.enterprise'
+version = '2.2.0.1001'
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenLocal()
+    maven {
+        url = "${ARTIFACTORY_SOURCE}"
+        credentials {
+            username System.getenv('ARTIFACTORY_USERNAME')
+            password System.getenv('ARTIFACTORY_PASSWORD')
+        }
+    }
+}
+ext {
+    set('springCloudVersion', "2025.0.1")
+    set('spring-security.version', "6.5.1")
+    set('micrometer.version', "1.17.0")
+    set('netty.version', "4.2.16.Final")
+    set('spring-framework.version', "6.2.19")
+}
+
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-webflux'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
+    implementation 'org.springframework.data:spring-data-commons'
+    // micrometer for sluth migration
+    implementation 'io.micrometer:micrometer-tracing-bridge-brave'
+    implementation('org.springframework.kafka:spring-kafka:3.3.16') {
+        exclude group: 'org.xerial.snappy', module: 'snappy-java'
+        exclude group: 'org.apache.kafka', module: 'kafka-clients'
+    }
+    implementation 'org.apache.kafka:kafka-clients:4.0.0'
+
+    implementation('org.apache.kafka:kafka-clients:4.2.0') {
+        exclude group: 'io.netty'
+    }
+    implementation('org.apache.avro:avro:1.12.1') {
+    }
+    implementation 'org.springdoc:springdoc-openapi-starter-webflux-ui:2.8.5'
+    implementation 'org.webjars:webjars-locator-core:0.59'
+    implementation 'io.projectreactor.netty:reactor-netty-core:1.2.8'
+    implementation 'io.projectreactor.netty:reactor-netty-http:1.2.8'
+
+    implementation 'com.google.code.findbugs:jsr305:3.0.2'
+    implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.19.0'
+    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.19.0'
+    implementation 'org.openapitools:jackson-databind-nullable:0.2.6'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+
+    implementation 'jakarta.validation:jakarta.validation-api:3.1.1'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    implementation 'com.humana.enterprise:contact-eligibility-model-v22:2.2.0.1001'
+    implementation 'com.humana.enterprise:contact-eligibility-api-v22:2.2.0.1001'
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    implementation 'com.humana.eai:eai-chassis-rest:2.8.3'
+    implementation 'com.auth0:java-jwt:4.4.0'
+    //********************** Resilience ***************************
+    implementation 'org.springframework.cloud:spring-cloud-starter-circuitbreaker-reactor-resilience4j'
+    implementation 'org.springframework.boot:spring-boot-starter-aop'
+    testImplementation 'io.projectreactor:reactor-test'
+
+    implementation 'org.mapstruct:mapstruct:1.5.5.Final'
+    annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.5.Final'
+
+    //**************** Container Security Vulnerability Fixes *********************
+    implementation 'org.springframework.cloud:spring-cloud-contract-shade:4.2.1'
+
+
+    implementation(group: 'org.yaml', name: 'snakeyaml') {
+        version {
+            strictly '2.4'
+        }
+    }
+
+    implementation('com.fasterxml.jackson.core:jackson-databind') {
+        version {
+            strictly '2.22.1'
+        }
+    }
+    implementation('com.fasterxml.jackson.core:jackson-annotations') {
+        version {
+            strictly '2.22'
+        }
+    }
+    implementation('com.fasterxml.jackson.core:jackson-core') {
+        version {
+            strictly '2.21.2'
+        }
+    }
+
+    implementation(group: 'ch.qos.logback', name: 'logback-classic') {
+        version {
+            strictly '1.5.18'
+        }
+    }
+
+    implementation(group: 'ch.qos.logback', name: 'logback-core') {
+        version {
+            strictly '1.5.18'
+        }
+    }
+
+    implementation(group: 'io.netty', name: 'netty-codec') {
+        version {
+            strictly '4.2.16.Final'
+        }
+    }
+    implementation( group:'io.netty', name:'netty-codec-http') {
+        version {
+            strictly '4.2.16.Final'
+        }
+    }
+
+    implementation(group: 'io.netty', name: 'netty-codec-http2') {
+        version {
+            strictly '4.2.16.Final'
+        }
+    }
+
+    implementation(group: 'io.netty', name: 'netty-handler') {
+        version {
+            strictly '4.2.16.Final'
+        }
+    }
+    implementation(group: 'com.jayway.jsonpath', name: 'json-path') {
+        version {
+            strictly '2.9.0'
+        }
+    }
+
+    implementation(group: 'org.bouncycastle', name: 'bcprov-jdk18on') {
+        version {
+            strictly '1.85'
+        }
+    }
+    implementation(group: 'com.google.protobuf', name: 'protobuf-java') {
+        version {
+            strictly "[4.30.1]"
+        }
+    }
+    implementation(group: 'com.launchdarkly', name: 'launchdarkly-java-server-sdk') {
+        version {
+            strictly '7.5.0'
+        }
+    }
+    implementation(group: 'org.apache.cxf', name: 'cxf-rt-transports-http') {
+        version {
+            strictly '4.1.1'
+        }
+    }
+    implementation 'io.swagger.core.v3:swagger-annotations:2.2.26'
+    testImplementation 'org.junit.platform:junit-platform-launcher'
+    testImplementation 'org.springframework.cloud:spring-cloud-starter-contract-stub-runner:4.2.1'
+    implementation(group: 'org.apache.commons', name: 'commons-lang3') {
+        version {
+            strictly '3.18.0'
+        }
+    }
+    implementation(group: 'com.github.jknack', name: 'handlebars') {
+        version {
+            strictly "[4.4.0]"
+        }
+    }
+
+    testImplementation('com.google.guava:guava') {
+        version {
+            strictly '33.4.8-jre'
+        }
+    }
+    testImplementation 'org.mockito:mockito-core:5.15.2'
+    testImplementation 'org.mockito:mockito-inline:5.2.0'
+}
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+    }
+}
+
+sonarqube {
+    properties {
+        property "sonar.projectKey", "MACS.ConsentAndPreferences.CdsApi"
+        property "sonar.host.url", "http://analysis-devops.humana.com"
+        property "sonar.login", System.getenv("SONARQUBE_TOKEN")
+        property "sonar.java.binaries", "${layout.buildDirectory.get()}/classes/java/main"
+        property "sonar.junit.reportsPath", "${layout.buildDirectory.get()}/test-results/test/"
+        property "sonar.jacoco.reportPaths", "${layout.buildDirectory.get()}/reports/jacoco/test/jacocoTestReport.xml"
+        property 'sonar.coverage.exclusions',
+                "**/com/humana/enterprise/contact/eligibility/App.java," +
+                        "**/com/humana/enterprise/contact/eligibility/client/**," +
+                        "**/com/humana/enterprise/contact/eligibility/config/**," +
+                        "**/com/humana/enterprise/contact/eligibility/constants/**," +
+                        "**/com/humana/enterprise/contact/eligibility/dto/**," +
+                        "**/com/humana/enterprise/contact/eligibility/entity/**," +
+                        "**/com/humana/enterprise/contact/eligibility/exceptions/**," +
+                        "**/com/humana/enterprise/contact/eligibility/repository/**," +
+                        "**/com/humana/enterprise/contact/eligibility/interfaces/**," +
+                        "**/com/humana/enterprise/contact/eligibility/model/**," +
+                        "**/com/humana/enterprise/contact/eligibility/service/**," +
+                        "**/com/humana/enterprise/contact/eligibility/logging/**," +
+                        "**/com/humana/enterprise/contact/eligibility/Kafka/**," +
+                        "**/com/humana/enterprise/contact/eligibility/contract/**," +
+                        "**/com/humana/enterprise/contact/eligibility/util/**"
+    }
+}
+
+apply plugin: 'jacoco'
+
+test {
+    useJUnitPlatform()
+
+    jacocoTestReport {
+        reports {
+            xml.required.set(true)
+            html.required.set(true)
+            xml.destination file("${layout.buildDirectory.get()}/reports/jacoco/test/jacocoTestReport.xml")
+            html.destination file("${layout.buildDirectory.get()}/jacocoReport")
+        }
+        finalizedBy jacocoTestCoverageVerification
+        afterEvaluate {
+            classDirectories.setFrom(files(classDirectories.files.collect {
+                fileTree(dir: it, exclude: [
+                        "**/com/humana/enterprise/contact/eligibility/App.java," +
+                                "**/com/humana/enterprise/contact/eligibility/client/**," +
+                                "**/com/humana/enterprise/contact/eligibility/config/**," +
+                                "**/com/humana/enterprise/contact/eligibility/constants/**," +
+                                "**/com/humana/enterprise/contact/eligibility/dto/**," +
+                                "**/com/humana/enterprise/contact/eligibility/entity/**," +
+                                "**/com/humana/enterprise/contact/eligibility/exceptions/**," +
+                                "**/com/humana/enterprise/contact/eligibility/repository/**," +
+                                "**/com/humana/enterprise/contact/eligibility/interfaces/**," +
+                                "**/com/humana/enterprise/contact/eligibility/model/**," +
+                                "**/com/humana/enterprise/contact/eligibility/service/**," +
+                                "**/com/humana/enterprise/contact/eligibility/logging/**," +
+                                "**/com/humana/enterprise/contact/eligibility/Kafka/**," +
+                                "**/com/humana/enterprise/contact/eligibility/contract/**," +
+                                "**/com/humana/enterprise/contact/eligibility/util/**"
+                ])
+            }))
+        }
+    }
+    test.finalizedBy jacocoTestReport
+    //jvmArgs '--add-opens', 'java.base/java.lang=ALL-UNNAMED'
+    jvmArgs += [
+            "--add-opens", "java.base/java.lang=ALL-UNNAMED",
+            "--add-opens", "java.base/java.lang.reflect=ALL-UNNAMED",
+            "--add-opens", "java.base/java.util=ALL-UNNAMED"
+    ]
+}
+tasks.named('test') {
+    useJUnitPlatform()
+}
+
+tasks.sonarqube.dependsOn = []
+
+tasks.register('ins-cp-mgmt-cds-api') {
+    doLast {
+        println 'Running ins-cp-mgmt-cds-api task'
+    }
+}

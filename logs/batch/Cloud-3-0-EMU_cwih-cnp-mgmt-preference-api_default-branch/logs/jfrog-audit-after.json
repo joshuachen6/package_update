@@ -1,0 +1,11 @@
+{
+  "component_count": 237,
+  "ecosystems": [
+    "maven"
+  ],
+  "errors": [],
+  "vulnerability_count": 0,
+  "vulnerable_component_count": 0,
+  "vulnerable_components": [],
+  "xray_host": "https://humana.jfrog.io"
+}

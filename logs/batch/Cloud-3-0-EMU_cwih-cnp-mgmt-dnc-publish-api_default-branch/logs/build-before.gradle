@@ -1,0 +1,253 @@
+buildscript {
+    repositories {
+        mavenLocal()
+        maven {
+            url = "${ARTIFACTORY_SOURCE}"
+            credentials {
+                username System.getenv('ARTIFACTORY_USERNAME')
+                password System.getenv('ARTIFACTORY_PASSWORD')
+            }
+        }
+    }
+}
+
+plugins {
+    id 'org.springframework.boot' version '3.5.12'
+    id 'io.spring.dependency-management' version '1.1.7'
+    id 'java'
+    id 'maven-publish'
+    id 'jacoco'
+    id 'org.sonarqube' version '5.1.0.4882'
+}
+
+group = 'com.humana.domain'
+version = '2.0.0.678'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenLocal()
+    maven {
+        url = "${ARTIFACTORY_SOURCE}"
+        credentials {
+            username System.getenv('ARTIFACTORY_USERNAME')
+            password System.getenv('ARTIFACTORY_PASSWORD')
+        }
+    }
+}
+
+ext {
+    springCloudVersion = '2025.0.0'
+
+    // app/module versions (keep aligned with project version as needed)
+    dncModelV20Version = '2.0.0.678'
+    dncApiV20Version = '2.0.0.678'
+
+    // pinned/vuln-fix versions
+    jacksonVersion = '2.19.0'
+    reactorNettyVersion = '1.2.9'
+    set('logback.version', "1.5.25")
+    nettyVersion = '4.1.127.Final'
+    set('spring-framework.version', "6.2.17")
+}
+
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+        mavenBom "io.netty:netty-bom:4.1.127.Final"
+    }
+}
+
+dependencies {
+    // --- Spring Boot starters / core app deps ---
+    implementation 'org.springframework.boot:spring-boot-starter-webflux'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation 'io.micrometer:micrometer-tracing-bridge-brave'
+
+    // --- OpenAPI / web ---
+    implementation 'org.springdoc:springdoc-openapi-starter-webflux-ui:2.8.5'
+    implementation 'org.webjars:webjars-locator-core:0.59'
+    implementation 'io.swagger.core.v3:swagger-annotations:2.2.26'
+
+    // --- Reactor Netty (version pinned via constraints below) ---
+    implementation 'io.projectreactor.netty:reactor-netty'
+    implementation 'io.projectreactor.netty:reactor-netty-core'
+    implementation 'io.projectreactor.netty:reactor-netty-http'
+
+    // --- Data / Jackson / misc ---
+    implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-yaml'
+    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310'
+    implementation 'org.openapitools:jackson-databind-nullable:0.2.6'
+    implementation 'com.google.code.findbugs:jsr305:3.0.2'
+    implementation 'jakarta.validation:jakarta.validation-api:3.1.1'
+
+    // --- Internal libs ---
+    implementation "com.humana.domain:publish-patient-dnc-model-v20:${dncModelV20Version}"
+    implementation "com.humana.domain:publish-patient-dnc-api-v20:${dncApiV20Version}"
+    implementation 'com.humana.eai:eai-chassis-rest:2.8.3'
+
+    // --- Resilience ---
+    implementation 'org.springframework.cloud:spring-cloud-starter-circuitbreaker-reactor-resilience4j'
+    implementation 'org.springframework.boot:spring-boot-starter-aop'
+
+    // --- Kafka ---
+    implementation('org.springframework.kafka:spring-kafka:3.3.6') {
+        exclude group: 'org.xerial.snappy', module: 'snappy-java'
+        exclude group: 'org.apache.kafka', module: 'kafka-clients'
+    }
+    implementation 'org.apache.kafka:kafka-clients:4.0.0'
+
+    // --- Other libs ---
+    implementation 'org.apache.avro:avro:1.12.0'
+
+    // --- Container Security Vulnerability Fixes / pins ---
+    implementation 'org.springframework.cloud:spring-cloud-contract-shade:4.2.1'
+    implementation 'org.apache.tomcat.embed:tomcat-embed-core:11.0.18'
+
+    // --- Lombok ---
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+
+    //---Upgraded version commons-lang3 3.18.0 to strictly 3.18.0
+    implementation("org.apache.commons:commons-lang3")version {strictly "3.18.0"}
+
+    // --- Tests ---
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'io.projectreactor:reactor-test'
+    testImplementation 'org.junit.platform:junit-platform-launcher'
+    testImplementation 'org.springframework.cloud:spring-cloud-starter-contract-stub-runner:4.2.1'
+
+    // Centralized strict/pinned versions (keeps the main deps list readable)
+    constraints {
+        // Jackson pins
+        implementation("com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}")
+        implementation("com.fasterxml.jackson.core:jackson-annotations:${jacksonVersion}")
+        implementation("com.fasterxml.jackson.core:jackson-core:${jacksonVersion}")
+        implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:${jacksonVersion}")
+        implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:${jacksonVersion}")
+
+        // Reactor Netty pins
+        implementation("io.projectreactor.netty:reactor-netty:${reactorNettyVersion}")
+        implementation("io.projectreactor.netty:reactor-netty-core:${reactorNettyVersion}")
+        implementation("io.projectreactor.netty:reactor-netty-http:${reactorNettyVersion}")
+
+        // Logback pins
+        implementation("ch.qos.logback:logback-classic")
+        implementation("ch.qos.logback:logback-core")
+
+        // Netty pins
+        implementation("io.netty:netty-codec:${nettyVersion}")
+        implementation("io.netty:netty-codec-http2:${nettyVersion}")
+        implementation("io.netty:netty-handler:${nettyVersion}")
+
+        // Other strict pins
+        implementation("org.yaml:snakeyaml:2.4")
+        implementation("com.jayway.jsonpath:json-path:2.9.0")
+        implementation("org.bouncycastle:bcprov-jdk18on:1.80")
+        implementation("com.google.protobuf:protobuf-java:4.30.1")
+        implementation("com.launchdarkly:launchdarkly-java-server-sdk:7.5.0")
+        implementation("org.apache.cxf:cxf-rt-transports-http:4.1.3")
+
+        implementation("com.github.jknack:handlebars:4.4.0")
+        implementation 'org.eclipse.angus:jakarta.mail:2.0.5'
+        implementation('org.eclipse.angus:angus-mail:2.0.5') {
+            version {
+                strictly '2.0.5'
+            }
+        }
+        testImplementation("com.google.guava:guava:33.4.8-jre")
+    }
+}
+
+sonarqube {
+    properties {
+        property "sonar.projectKey", "IntegratedHealth.ConsentAndPreferences.IntegratedHealth.ConsentAndPreferences.DncPublishApi"
+        property "sonar.host.url", "http://analysis-devops.humana.com"
+        property "sonar.login", System.getenv("SONARQUBE_TOKEN")
+        property "sonar.java.binaries", "${layout.buildDirectory.get()}/classes/java/main"
+        property "sonar.junit.reportsPath", "${layout.buildDirectory.get()}/test-results/test/"
+        property "sonar.jacoco.reportPaths", "${layout.buildDirectory.get()}/reports/jacoco/test/jacocoTestReport.xml"
+        property "sonar.coverage.exclusions", [
+                "**/com/humana/domain/publish/patient/dnc/App.java",
+                "**/com/humana/domain/publish/patient/dnc/client.v20/**",
+                "**/com/humana/domain/publish/patient/dnc/config/**",
+                "**/com/humana/domain/publish/patient/dnc/constants/**",
+                "**/com/humana/domain/publish/patient/dnc/contract/**",
+                "**/com/humana/domain/publish/patient/dnc/dto/**",
+                "**/com/humana/domain/publish/patient/dnc/entity/**",
+                "**/com/humana/domain/publish/patient/dnc/enums/**",
+                "**/com/humana/domain/publish/patient/dnc/exceptions/**",
+                "**/com/humana/domain/publish/patient/dnc/repository/**",
+                "**/com/humana/domain/publish/patient/dnc/model/**",
+                "**/com/humana/domain/publish/patient/dnc/service/avro/**",
+                "**/com/humana/domain/publish/patient/dnc/util/**"
+        ]
+    }
+}
+
+test {
+    useJUnitPlatform()
+
+    jvmArgs += [
+            "--add-opens", "java.base/java.lang=ALL-UNNAMED",
+            "--add-opens", "java.base/java.lang.reflect=ALL-UNNAMED",
+            "--add-opens", "java.base/java.util=ALL-UNNAMED"
+    ]
+
+    finalizedBy jacocoTestReport
+}
+
+jacocoTestReport {
+    reports {
+        xml.required.set(true)
+        html.required.set(true)
+        xml.destination file("${layout.buildDirectory.get()}/reports/jacoco/test/jacocoTestReport.xml")
+        html.destination file("${layout.buildDirectory.get()}/jacocoReport")
+    }
+
+    finalizedBy jacocoTestCoverageVerification
+
+    afterEvaluate {
+        classDirectories.setFrom(files(classDirectories.files.collect {
+            fileTree(dir: it, exclude: [
+                    "**/com/humana/domain/publish/patient/dnc/App.java",
+                    "**/com/humana/domain/publish/patient/dnc/client.v20/**",
+                    "**/com/humana/domain/publish/patient/dnc/config/**",
+                    "**/com/humana/domain/publish/patient/dnc/constants/**",
+                    "**/com/humana/domain/publish/patient/dnc/contract/**",
+                    "**/com/humana/domain/publish/patient/dnc/dto/**",
+                    "**/com/humana/domain/publish/patient/dnc/entity/**",
+                    "**/com/humana/domain/publish/patient/dnc/enums/**",
+                    "**/com/humana/domain/publish/patient/dnc/exceptions/**",
+                    "**/com/humana/domain/publish/patient/dnc/repository/**",
+                    "**/com/humana/domain/publish/patient/dnc/model/**",
+                    "**/com/humana/domain/publish/patient/dnc/service/avro/**",
+                    "**/com/humana/domain/publish/patient/dnc/util/**"
+            ])
+        }))
+    }
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
+
+tasks.sonarqube.dependsOn = []
+
+tasks.register('cwih-cnp-mgmt-dnc-publish-api') {
+    doLast {
+        println 'Running cwih-cnp-mgmt-dnc-publish-api task'
+    }
+}

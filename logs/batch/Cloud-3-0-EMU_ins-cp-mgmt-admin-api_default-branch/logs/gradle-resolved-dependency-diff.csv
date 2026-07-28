@@ -1,0 +1,17 @@
+dependency,before,after,status
+at.yawk.lz4:lz4-java,1.10.1,1.11.1,changed
+ch.qos.logback:logback-classic,1.5.32,1.6.0,changed
+ch.qos.logback:logback-core,1.5.32,1.6.0,changed
+com.fasterxml.jackson.core:jackson-annotations,2.21,2.22,changed
+com.fasterxml.jackson.core:jackson-core,2.21.2,2.22.1,changed
+com.fasterxml.jackson.core:jackson-databind,2.21.2,2.22.1,changed
+com.fasterxml.jackson.dataformat:jackson-dataformat-yaml,2.21.2,2.22.1,changed
+com.fasterxml.jackson.datatype:jackson-datatype-jdk8,2.21.2,2.22.1,changed
+com.fasterxml.jackson.datatype:jackson-datatype-jsr310,2.21.2,2.22.1,changed
+com.fasterxml.jackson.module:jackson-module-parameter-names,2.21.2,2.22.1,changed
+com.fasterxml.jackson:jackson-bom,2.21.2,2.22.1,changed
+io.netty:netty-codec,4.1.133.Final,4.1.136.Final,changed
+org.apache.tomcat.embed:tomcat-embed-core,10.1.54,10.1.57,changed
+org.apache.tomcat.embed:tomcat-embed-el,10.1.54,10.1.57,changed
+org.apache.tomcat:tomcat-annotations-api,10.1.54,10.1.57,changed
+org.springframework.kafka:spring-kafka,3.3.15,3.3.16,changed

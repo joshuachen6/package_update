@@ -1,0 +1,17 @@
+exit code 1
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+A problem occurred configuring root project 'cwih-cnp-mgmt-rule-api'.
+> Could not resolve all artifacts for configuration 'classpath'.
+   > Could not download jackson-databind-2.21.4.jar (com.fasterxml.jackson.core:jackson-databind:2.21.4)
+      > Could not get resource 'https://humana.jfrog.io/artifactory/cwih-cnp-mgmt-gradle-virtual/com/fasterxml/jackson/core/jackson-databind/2.21.4/jackson-databind-2.21.4.jar'.
+         > Could not GET 'https://humana.jfrog.io/artifactory/cwih-cnp-mgmt-gradle-virtual/com/fasterxml/jackson/core/jackson-databind/2.21.4/jackson-databind-2.21.4.jar'. Received status code 403 from server: 
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+> Get more help at https://help.gradle.org.
+
+BUILD FAILED in 2s

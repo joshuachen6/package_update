@@ -1,0 +1,6 @@
+dependency,old_version,new_version,minimum_required
+org.springframework.kafka:spring-kafka,3.3.15,3.3.16,3.3.16
+ch.qos.logback:logback-core,1.5.32,1.6.0,1.6.0
+at.yawk.lz4:lz4-java,1.10.1,1.11.1,1.11.1
+org.apache.tomcat.embed:tomcat-embed-core,10.1.54,10.1.57,10.1.57
+com.fasterxml.jackson.core:jackson-databind,2.21.2,2.22.1,2.22.1
