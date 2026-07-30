@@ -1,9 +1,12 @@
 """Parse Maven pom.xml files and resolve dependency trees via mvn dependency:tree."""
 from __future__ import annotations
 
+import contextlib
 import os
 import re
 import subprocess
+import tempfile
+import textwrap
 from dataclasses import dataclass, field
 from pathlib import Path
 
@@ -173,6 +176,55 @@ def parse_pom_text(pom_text: str, file_path: str = '') -> PomParsed:
     )
 
 
+def _write_temp_settings(base_url: str, auth: tuple[str, str]) -> str:
+    """Write a temporary Maven settings.xml that routes all repositories through
+    Artifactory with the provided credentials.
+
+    The mirror uses mirrorOf=* so every repository reference in the pom.xml
+    (including Maven Central) resolves through the Artifactory proxy — exactly
+    the same behaviour as the Gradle pipeline which hard-routes all HTTP fetches
+    through the configured Artifactory base URL.
+
+    Returns the file path. Caller must delete it when done.
+    """
+    username, password = auth
+    # Escape XML special chars in credentials
+    def _esc(s: str) -> str:
+        return s.replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;').replace('"', '&quot;')
+
+    content = textwrap.dedent(f"""\
+        <?xml version="1.0" encoding="UTF-8"?>
+        <settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0
+                  http://maven.apache.org/xsd/settings-1.0.0.xsd">
+          <mirrors>
+            <mirror>
+              <id>artifactory-proxy</id>
+              <mirrorOf>*</mirrorOf>
+              <url>{base_url}</url>
+            </mirror>
+          </mirrors>
+          <servers>
+            <server>
+              <id>artifactory-proxy</id>
+              <username>{_esc(username)}</username>
+              <password>{_esc(password)}</password>
+            </server>
+          </servers>
+        </settings>
+    """)
+    fd, path = tempfile.mkstemp(suffix='.xml', prefix='pkg_update_mvn_settings_')
+    try:
+        with os.fdopen(fd, 'w', encoding='utf-8') as fh:
+            fh.write(content)
+    except Exception:
+        with contextlib.suppress(OSError):
+            os.unlink(path)
+        raise
+    return path
+
+
 def get_maven_cmd(project_dir: str) -> str:
     """Return mvnw path if present, else 'mvn'."""
     project_path = Path(project_dir)
@@ -227,54 +279,71 @@ def run_maven_dependency_tree(
     pom_file: str,
     maven_cmd: str,
     timeout: int,
+    base_url: str | None = None,
+    auth: tuple[str, str] | None = None,
 ) -> tuple[str | None, str | None, str]:
     """Run mvn dependency:tree with fallback variants.
 
     Returns (tree_output_or_None, short_error_or_None, verbose_log_for_error_file).
 
+    When base_url and auth are provided a temporary settings.xml is generated
+    that routes all Maven repository traffic through Artifactory with the given
+    credentials (same as how the Gradle and HTTP registry calls work).
+
     Tries progressively simpler invocations so that older Maven wrappers
-    (pre-3.6.1) still work and so that projects with partial resolution
-    failures still produce a usable dependency tree.
+    (pre-3.6.1) still work and projects with partial resolution failures still
+    produce a usable dependency tree.
     """
-    # Note: --no-transfer-progress requires Maven >= 3.6.1 — omitted intentionally
-    # to stay compatible with older mvnw wrappers used in enterprise repos.
-    candidates = [
-        [maven_cmd, 'dependency:tree', '-f', pom_file, '-B'],
-        # Without -f: let Maven discover pom.xml from project_dir (handles some
-        # wrapper configurations that don't forward -f correctly)
-        [maven_cmd, 'dependency:tree', '-B'],
-        # No -B: handles rare cases where batch mode itself causes issues
-        [maven_cmd, 'dependency:tree', '-f', pom_file],
-    ]
+    settings_path: str | None = None
+    try:
+        if base_url and auth:
+            settings_path = _write_temp_settings(base_url, auth)
 
-    last_err: str | None = None
-    last_full: str = ''
+        sf = ['-s', settings_path] if settings_path else []
 
-    for cmd in candidates:
-        tree_out, err, full_output = _run_cmd(cmd, project_dir, timeout)
-        if tree_out:
-            # Partial tree is usable — dependency resolution warnings are common
-            # in enterprise repos with restricted artifact scopes.
-            return tree_out, err, full_output
-        if err and 'command not found' in err:
-            return None, err, full_output  # binary missing — retrying won't help
-        last_err = err or last_err
-        last_full = full_output or last_full
+        # Note: --no-transfer-progress requires Maven >= 3.6.1 — omitted to stay
+        # compatible with older mvnw wrappers common in enterprise repos.
+        candidates = [
+            [maven_cmd, 'dependency:tree', '-f', pom_file, '-B'] + sf,
+            # Without -f: let Maven discover pom.xml from project_dir
+            [maven_cmd, 'dependency:tree', '-B'] + sf,
+            # No -B: handles edge cases where batch mode misbehaves
+            [maven_cmd, 'dependency:tree', '-f', pom_file] + sf,
+        ]
 
-    # All silent attempts failed. Run once more with -e (Maven error detail) so
-    # the error log contains actionable diagnostics (stack traces, plugin errors,
-    # resolution failures) rather than just an exit code.
-    verbose_cmd = [maven_cmd, 'dependency:tree', '-f', pom_file, '-e']
-    _, _, verbose_full = _run_cmd(verbose_cmd, project_dir, timeout)
+        last_err: str | None = None
+        last_full: str = ''
 
-    header = (
-        f'cmd: {" ".join(candidates[0])}\n'
-        f'cwd: {project_dir}\n'
-        f'error: {last_err}\n\n'
-        '--- verbose run (-e) ---\n'
-    )
-    combined_log = header + (verbose_full or last_full)
-    return None, last_err, combined_log
+        for cmd in candidates:
+            tree_out, err, full_output = _run_cmd(cmd, project_dir, timeout)
+            if tree_out:
+                # Partial tree is usable — dependency resolution warnings are
+                # common in enterprise repos with restricted artifact scopes.
+                return tree_out, err, full_output
+            if err and 'command not found' in err:
+                return None, err, full_output  # binary missing — retrying won't help
+            last_err = err or last_err
+            last_full = full_output or last_full
+
+        # All silent attempts failed. Re-run with -e so the error log contains
+        # stack traces, plugin errors, and resolution detail — not just exit code 1.
+        verbose_cmd = [maven_cmd, 'dependency:tree', '-f', pom_file, '-e'] + sf
+        _, _, verbose_full = _run_cmd(verbose_cmd, project_dir, timeout)
+
+        creds_note = f'Artifactory mirror: {base_url}' if base_url else 'no Artifactory mirror configured'
+        header = (
+            f'cmd: {" ".join(candidates[0])}\n'
+            f'cwd: {project_dir}\n'
+            f'error: {last_err}\n'
+            f'{creds_note}\n\n'
+            '--- verbose run (-e) ---\n'
+        )
+        return None, last_err, header + (verbose_full or last_full)
+
+    finally:
+        if settings_path:
+            with contextlib.suppress(OSError):
+                os.unlink(settings_path)
 
 
 def parse_maven_dep_tree(output: str) -> tuple[dict[str, MavenVersion], dict[str, set[str]]]:

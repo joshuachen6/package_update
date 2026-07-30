@@ -73,7 +73,9 @@ class MavenPomParser:
         print(f'Resolving Maven dependency tree... timeout={timeout}s')
 
         tree_output, tree_err, verbose_log = run_maven_dependency_tree(
-            project_dir, file_path, maven_cmd, timeout
+            project_dir, file_path, maven_cmd, timeout,
+            base_url=base_url,
+            auth=auth,
         )
 
         installed: dict = {}
