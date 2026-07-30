@@ -6,7 +6,6 @@ import os
 import re
 import subprocess
 import tempfile
-import textwrap
 from dataclasses import dataclass, field
 from pathlib import Path
 
@@ -245,24 +244,24 @@ def _write_temp_settings(
         for sid in all_ids
     )
 
-    content = textwrap.dedent(f"""\
-        <?xml version="1.0" encoding="UTF-8"?>
-        <settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
-                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                  xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0
-                  http://maven.apache.org/xsd/settings-1.0.0.xsd">
-          <mirrors>
-            <mirror>
-              <id>artifactory-proxy</id>
-              <mirrorOf>*</mirrorOf>
-              <url>{base_url}</url>
-            </mirror>
-          </mirrors>
-          <servers>
-        {server_blocks}
-          </servers>
-        </settings>
-    """)
+    content = (
+        '<?xml version="1.0" encoding="UTF-8"?>\n'
+        '<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"\n'
+        '          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"\n'
+        '          xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0'
+        ' http://maven.apache.org/xsd/settings-1.0.0.xsd">\n'
+        '  <mirrors>\n'
+        '    <mirror>\n'
+        '      <id>artifactory-proxy</id>\n'
+        '      <mirrorOf>*</mirrorOf>\n'
+        f'      <url>{base_url}</url>\n'
+        '    </mirror>\n'
+        '  </mirrors>\n'
+        '  <servers>\n'
+        f'{server_blocks}\n'
+        '  </servers>\n'
+        '</settings>\n'
+    )
 
     fd, path = tempfile.mkstemp(suffix='.xml', prefix='pkg_update_mvn_settings_')
     try:
