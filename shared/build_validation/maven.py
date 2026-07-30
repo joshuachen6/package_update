@@ -1,6 +1,7 @@
 """Maven-specific build validation: run mvn, validate, and rollback on failure."""
 from __future__ import annotations
 
+import contextlib
 import os
 from pathlib import Path
 
@@ -46,11 +47,31 @@ def validate_maven_project(
     pom_file: str,
     mvn_cmd: str = 'mvn',
     timeout: int = 300,
+    base_url: str | None = None,
+    auth: tuple | None = None,
+    extra_server_ids: list[str] | None = None,
 ) -> None:
-    """Validate an updated Maven project by running mvn test-compile."""
+    """Validate an updated Maven project by running mvn test-compile.
+
+    When base_url and auth are provided a temporary settings.xml is written
+    (same as for dependency:tree) so Maven resolves all repos through
+    Artifactory with credentials — preventing 401 failures on BOM sub-POMs.
+    """
+    from parsers.pom import _write_temp_settings
+
     project_dir = os.path.dirname(os.path.abspath(pom_file))
-    cmd = [mvn_cmd, 'test-compile', '-f', pom_file, '--no-transfer-progress', '-B']
-    _run_build_command(cmd, project_dir, timeout, 'mvn test-compile validation')
+    settings_path: str | None = None
+    try:
+        if base_url and auth:
+            settings_path = _write_temp_settings(base_url, auth, extra_server_ids)
+        sf = ['-s', settings_path] if settings_path else []
+        # --no-transfer-progress requires Maven >= 3.6.1 — omitted for compatibility
+        cmd = [mvn_cmd, 'test-compile', '-f', pom_file, '-B'] + sf
+        _run_build_command(cmd, project_dir, timeout, 'mvn test-compile validation')
+    finally:
+        if settings_path:
+            with contextlib.suppress(OSError):
+                os.unlink(settings_path)
 
 
 def validate_maven_project_or_rollback(
@@ -62,9 +83,18 @@ def validate_maven_project_or_rollback(
     dm_overrides: list[dict] | None = None,
     log_dir: str | None = None,
     enable_failure_isolation: bool = False,
+    base_url: str | None = None,
+    auth: tuple | None = None,
+    extra_server_ids: list[str] | None = None,
 ) -> None:
+    def _validate():
+        validate_maven_project(
+            pom_file, mvn_cmd=mvn_cmd, timeout=timeout,
+            base_url=base_url, auth=auth, extra_server_ids=extra_server_ids,
+        )
+
     try:
-        validate_maven_project(pom_file, mvn_cmd=mvn_cmd, timeout=timeout)
+        _validate()
         _clear_stale_validation_csvs(log_dir)
         return
     except BuildValidationError as first_error:
@@ -80,7 +110,7 @@ def validate_maven_project_or_rollback(
         current_text,
         failure_output,
         _maven_candidates(all_changes),
-        build_fn=lambda: validate_maven_project(pom_file, mvn_cmd=mvn_cmd, timeout=timeout),
+        build_fn=_validate,
         revert_fn=_revert_maven_dep,
         log_dir=log_dir,
         ecosystem='maven-pom',

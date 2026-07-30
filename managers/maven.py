@@ -485,7 +485,7 @@ class MavenPomManager:
     def make_write_plan(self, cfg: Any, result: dict, log_dir: str | None) -> 'WritePlan':
         from managers import WritePlan
         from output.maven_pom import write_pom_file
-        from parsers.pom import get_maven_cmd
+        from parsers.pom import _extract_repo_ids, get_maven_cmd
         from shared.build_validation.maven import validate_maven_project_or_rollback
 
         path = result.get('pom_file') or result.get('file_path', '')
@@ -496,6 +496,17 @@ class MavenPomManager:
         project_dir = str(Path(path).resolve().parent)
         maven_cmd = getattr(cfg, 'maven_cmd', None) or get_maven_cmd(project_dir)
         timeout = max(getattr(cfg, 'maven_timeout', 150), 300)
+
+        art_src = (getattr(cfg, 'artifactory_source', '') or '').rstrip('/')
+        art_repo = getattr(cfg, 'artifactory_repo', '') or ''
+        base_url = f'{art_src}/{art_repo}'.rstrip('/') if art_src else None
+        auth: tuple | None = (
+            (cfg.artifactory_username, cfg.artifactory_password)
+            if getattr(cfg, 'artifactory_username', None) else None
+        )
+        # Re-extract repo IDs from the *updated* pom text so credentials cover
+        # any repos still referenced after our edits.
+        extra_server_ids = _extract_repo_ids(updated_text or pom_text)
 
         return WritePlan(
             has_changes=bool(changes or dm_overrides),
@@ -510,6 +521,9 @@ class MavenPomManager:
                 dm_overrides=dm_overrides,
                 log_dir=log_dir,
                 enable_failure_isolation=getattr(cfg, 'enable_failure_isolation', False),
+                base_url=base_url,
+                auth=auth,
+                extra_server_ids=extra_server_ids,
             ),
         )
 
