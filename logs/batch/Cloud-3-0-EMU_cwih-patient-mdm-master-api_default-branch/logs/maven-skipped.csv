@@ -1,2 +1,1 @@
 dependency,reason,current,target
-org.springframework.boot:spring-boot-devtools,dependency tree failed and no version declared in pom.xml — cannot determine current version,,

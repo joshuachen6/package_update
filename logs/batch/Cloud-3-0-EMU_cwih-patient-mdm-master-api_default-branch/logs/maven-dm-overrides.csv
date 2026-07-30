@@ -1,1 +1,10 @@
 dependency,old_version,new_version
+io.micrometer:micrometer-core,1.15.10,1.15.11
+org.apache.httpcomponents.core5:httpcore5,5.3.6,5.4
+org.apache.httpcomponents.core5:httpcore5-h2,5.3.6,5.4
+org.apache.tomcat.embed:tomcat-embed-websocket,10.1.52,10.1.53
+org.springframework.boot:spring-boot,3.5.12,3.5.13
+org.springframework.boot:spring-boot-devtools,3.5.12,3.5.13
+org.springframework.data:spring-data-commons,3.5.10,3.5.11
+org.springframework.data:spring-data-mongodb,4.5.10,4.5.11
+org.springframework:spring-expression,6.2.17,6.2.18

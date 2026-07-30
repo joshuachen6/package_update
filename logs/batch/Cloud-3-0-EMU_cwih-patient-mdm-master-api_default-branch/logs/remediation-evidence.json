@@ -191,6 +191,14 @@
     "build-validation-manual-updates.csv": [
       {
         "change_type": "maven-managed",
+        "new": "6.2.18",
+        "old": "6.2.17",
+        "package": "org.springframework:spring-expression",
+        "reason": "build validation failed and failure isolation disabled",
+        "status": "manual_update_required"
+      },
+      {
+        "change_type": "maven-managed",
         "new": "6.2.12",
         "old": "6.2.11",
         "package": "org.springframework:spring-core",
@@ -210,6 +218,70 @@
         "new": "6.2.10",
         "old": "6.2.9",
         "package": "org.springframework:spring-web",
+        "reason": "build validation failed and failure isolation disabled",
+        "status": "manual_update_required"
+      },
+      {
+        "change_type": "maven-managed",
+        "new": "4.5.11",
+        "old": "4.5.10",
+        "package": "org.springframework.data:spring-data-mongodb",
+        "reason": "build validation failed and failure isolation disabled",
+        "status": "manual_update_required"
+      },
+      {
+        "change_type": "maven-managed",
+        "new": "3.5.11",
+        "old": "3.5.10",
+        "package": "org.springframework.data:spring-data-commons",
+        "reason": "build validation failed and failure isolation disabled",
+        "status": "manual_update_required"
+      },
+      {
+        "change_type": "maven-managed",
+        "new": "3.5.13",
+        "old": "3.5.12",
+        "package": "org.springframework.boot:spring-boot-devtools",
+        "reason": "build validation failed and failure isolation disabled",
+        "status": "manual_update_required"
+      },
+      {
+        "change_type": "maven-managed",
+        "new": "3.5.13",
+        "old": "3.5.12",
+        "package": "org.springframework.boot:spring-boot",
+        "reason": "build validation failed and failure isolation disabled",
+        "status": "manual_update_required"
+      },
+      {
+        "change_type": "maven-managed",
+        "new": "10.1.53",
+        "old": "10.1.52",
+        "package": "org.apache.tomcat.embed:tomcat-embed-websocket",
+        "reason": "build validation failed and failure isolation disabled",
+        "status": "manual_update_required"
+      },
+      {
+        "change_type": "maven-managed",
+        "new": "5.4",
+        "old": "5.3.6",
+        "package": "org.apache.httpcomponents.core5:httpcore5-h2",
+        "reason": "build validation failed and failure isolation disabled",
+        "status": "manual_update_required"
+      },
+      {
+        "change_type": "maven-managed",
+        "new": "5.4",
+        "old": "5.3.6",
+        "package": "org.apache.httpcomponents.core5:httpcore5",
+        "reason": "build validation failed and failure isolation disabled",
+        "status": "manual_update_required"
+      },
+      {
+        "change_type": "maven-managed",
+        "new": "1.15.11",
+        "old": "1.15.10",
+        "package": "io.micrometer:micrometer-core",
         "reason": "build validation failed and failure isolation disabled",
         "status": "manual_update_required"
       },
@@ -254,14 +326,7 @@
       "dependency_manager": "maven",
       "fetch_errors": [],
       "file_path": "/Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_cwih-patient-mdm-master-api_default-branch/default-branch/cwih-patient-mdm-master-api/pom.xml",
-      "raw_skipped": [
-        {
-          "current": "",
-          "dependency": "org.springframework.boot:spring-boot-devtools",
-          "reason": "dependency tree failed and no version declared in pom.xml \u2014 cannot determine current version",
-          "target": ""
-        }
-      ],
+      "raw_skipped": [],
       "selected_changes": [
         {
           "change_type": "maven-managed",
@@ -311,17 +376,72 @@
           "old": "6.2.17",
           "package": "org.springframework:spring-webmvc",
           "remediation_guided": true
-        }
-      ],
-      "skipped": [
+        },
         {
-          "current": "",
-          "detail": "",
+          "change_type": "maven-managed",
+          "new": "1.15.11",
+          "old": "1.15.10",
+          "package": "io.micrometer:micrometer-core",
+          "remediation_guided": true
+        },
+        {
+          "change_type": "maven-managed",
+          "new": "5.4",
+          "old": "5.3.6",
+          "package": "org.apache.httpcomponents.core5:httpcore5",
+          "remediation_guided": true
+        },
+        {
+          "change_type": "maven-managed",
+          "new": "5.4",
+          "old": "5.3.6",
+          "package": "org.apache.httpcomponents.core5:httpcore5-h2",
+          "remediation_guided": true
+        },
+        {
+          "change_type": "maven-managed",
+          "new": "10.1.53",
+          "old": "10.1.52",
+          "package": "org.apache.tomcat.embed:tomcat-embed-websocket",
+          "remediation_guided": true
+        },
+        {
+          "change_type": "maven-managed",
+          "new": "3.5.13",
+          "old": "3.5.12",
+          "package": "org.springframework.boot:spring-boot",
+          "remediation_guided": true
+        },
+        {
+          "change_type": "maven-managed",
+          "new": "3.5.13",
+          "old": "3.5.12",
           "package": "org.springframework.boot:spring-boot-devtools",
-          "reason": "dependency tree failed and no version declared in pom.xml \u2014 cannot determine current version",
-          "target": ""
+          "remediation_guided": true
+        },
+        {
+          "change_type": "maven-managed",
+          "new": "3.5.11",
+          "old": "3.5.10",
+          "package": "org.springframework.data:spring-data-commons",
+          "remediation_guided": true
+        },
+        {
+          "change_type": "maven-managed",
+          "new": "4.5.11",
+          "old": "4.5.10",
+          "package": "org.springframework.data:spring-data-mongodb",
+          "remediation_guided": true
+        },
+        {
+          "change_type": "maven-managed",
+          "new": "6.2.18",
+          "old": "6.2.17",
+          "package": "org.springframework:spring-expression",
+          "remediation_guided": true
         }
       ],
+      "skipped": [],
       "test_status": "not_run",
       "validation_message": "Build validation failed. Failure isolation disabled.",
       "validation_status": "Failed",
@@ -330,7 +450,7 @@
       "write_status": "Failed"
     }
   ],
-  "generated_at": "2026-07-30T12:28:57",
+  "generated_at": "2026-07-30T12:40:27",
   "next_actions": [
     {
       "action": "Review exhaustive-isolation failures and try alternative safe versions for the implicated packages instead of retaining the rollback.",
