@@ -183,14 +183,12 @@ def get_maven_cmd(project_dir: str) -> str:
     return 'mvn'
 
 
-def run_maven_dependency_tree(
+def _run_cmd(
+    cmd: list[str],
     project_dir: str,
-    pom_file: str,
-    maven_cmd: str,
     timeout: int,
 ) -> tuple[str | None, str | None]:
-    """Run mvn dependency:tree; return (stdout, error_message)."""
-    cmd = [maven_cmd, 'dependency:tree', '-f', pom_file, '--no-transfer-progress', '-B']
+    """Run a command; return (stdout_if_tree_found, error_message)."""
     try:
         result = subprocess.run(
             cmd,
@@ -201,9 +199,9 @@ def run_maven_dependency_tree(
             shell=False,
         )
     except subprocess.TimeoutExpired:
-        return None, f'mvn dependency:tree timed out after {timeout}s'
+        return None, f'timed out after {timeout}s'
     except FileNotFoundError:
-        return None, f'command not found: {maven_cmd!r}'
+        return None, f'command not found: {cmd[0]!r}'
     except Exception as exc:
         return None, str(exc)
 
@@ -215,9 +213,46 @@ def run_maven_dependency_tree(
         msg = f'exit code {result.returncode}'
         stderr = (result.stderr or '').strip()
         if stderr:
-            msg = f'{msg}\n{stderr}'
+            msg = f'{msg}\n{stderr[:2000]}'
         return tree_out, msg
     return tree_out, None
+
+
+def run_maven_dependency_tree(
+    project_dir: str,
+    pom_file: str,
+    maven_cmd: str,
+    timeout: int,
+) -> tuple[str | None, str | None]:
+    """Run mvn dependency:tree with fallback variants; return (stdout, error_message).
+
+    Tries progressively simpler invocations so that older Maven wrappers
+    (pre-3.6.1, which don't know --no-transfer-progress) still work, and
+    so that projects with resolution failures still produce a partial tree.
+    """
+    # Attempt 1: modern flags (-B batch mode, explicit pom file)
+    # Note: --no-transfer-progress requires Maven >= 3.6.1; omitted intentionally
+    # to keep compatibility with older mvnw wrappers used in enterprise repos.
+    candidates = [
+        [maven_cmd, 'dependency:tree', '-f', pom_file, '-B'],
+        # Attempt 2: without -f (run in project_dir, rely on default pom.xml discovery)
+        [maven_cmd, 'dependency:tree', '-B'],
+        # Attempt 3: no batch flag at all (handles edge cases where -B itself misbehaves)
+        [maven_cmd, 'dependency:tree', '-f', pom_file],
+    ]
+
+    last_err: str | None = None
+    for cmd in candidates:
+        tree_out, err = _run_cmd(cmd, project_dir, timeout)
+        if tree_out:
+            # Partial tree is usable even if there was an error (dependency resolution
+            # warnings are common in enterprise repos with restricted scopes).
+            return tree_out, err
+        if err and 'command not found' in err:
+            return None, err  # no point retrying if the binary isn't there
+        last_err = err or last_err
+
+    return None, last_err
 
 
 def parse_maven_dep_tree(output: str) -> tuple[dict[str, MavenVersion], dict[str, set[str]]]:
