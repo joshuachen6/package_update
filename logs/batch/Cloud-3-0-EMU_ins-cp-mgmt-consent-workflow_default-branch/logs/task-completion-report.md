@@ -3,34 +3,38 @@
 ## Summary
 |metric|value|
 |---|---|
-|Overall Status|🟢 Success|
-|Generated at|2026-07-28T09:04:35|
+|Overall Status|🟡 Needs Review|
+|Generated at|2026-07-29T08:24:57|
 |GitHub URL|https://github.com/Cloud-3-0-EMU/ins-cp-mgmt-consent-workflow.git|
 |Project directory|/Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_ins-cp-mgmt-consent-workflow_default-branch/default-branch/ins-cp-mgmt-consent-workflow|
 |Dependency files|1|
 |Changed packages|22|
 |Skipped packages|0|
 |Validation records|0|
-|Taskboard CVEs tracked|6|
+|Taskboard CVEs tracked|0|
 |Resolved dependency changes|56|
-|Verification classification|Success - build and tests passed; no CVEs remain|
+|Verification classification|Partial - build passed but 1 CVE record(s) remain|
 |Test verification|passed|
-|Original CVEs remaining|0|
-|JFrog vulnerabilities before|71|
-|JFrog vulnerabilities after|0|
+|Original CVEs remaining|1|
+|JFrog vulnerabilities before|72|
+|JFrog vulnerabilities after|1|
 |JFrog audit before JSON|/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_ins-cp-mgmt-consent-workflow_default-branch/logs/jfrog-audit.json|
 |JFrog audit after JSON|/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_ins-cp-mgmt-consent-workflow_default-branch/logs/jfrog-audit-after.json|
 
 ## Remediation Outcome
 
-🟢 **SUCCESS**
+🟡 **REVIEW RECOMMENDED**
 
-All remediation actions completed successfully.
+The build passed, but some findings remain (unresolved CVE records and/or alternate versions selected during validation).
+
+Review:
+- the post-update JFrog audit for remaining CVE records
+- build-validation-external-auto-fixes.csv (if present)
 
 ## Dependency Files
 |file|ecosystem|changes|skipped|write_status|validation_status|validation_message|verification_status|test_status|
 |---|---|---|---|---|---|---|---|---|
-|build.gradle|gradle|22|0|Written|Passed||Success - build and tests passed; no CVEs remain|passed|
+|build.gradle|gradle|22|0|Written|Passed||Partial - build passed but 1 CVE record(s) remain|passed|
 
 ## Applied / Planned Changes
 |file|ecosystem|package|type|old|new|status|remediation_guided|
@@ -38,19 +42,19 @@ All remediation actions completed successfully.
 |build.gradle|gradle|io.netty:netty-codec-http2|gradle|4.1.132.Final|4.2.16.Final|Passed|True|
 |build.gradle|gradle|io.netty:netty-codec-http|gradle|4.1.132.Final|4.2.16.Final|Passed|True|
 |build.gradle|gradle|io.netty:netty-handler|gradle-force|4.1.132.Final|4.2.16.Final|Passed|True|
-|build.gradle|gradle|io.netty:netty-codec-dns|gradle-force|4.1.132.Final|4.2.16.Final|Passed|True|
-|build.gradle|gradle|io.netty:netty-resolver-dns|gradle-force|4.1.132.Final|4.2.16.Final|Passed|True|
 |build.gradle|gradle|io.netty:netty-transport-native-epoll|gradle-force|4.1.132.Final|4.2.16.Final|Passed|True|
-|build.gradle|gradle|org.apache.tomcat.embed:tomcat-embed-core|gradle-force|10.1.54|10.1.57|Passed|True|
+|build.gradle|gradle|ch.qos.logback:logback-core|gradle-force|1.5.32|1.6.1|Passed|True|
+|build.gradle|gradle|io.netty:netty-handler-proxy|gradle-force|4.1.132.Final|4.2.16.Final|Passed|True|
+|build.gradle|gradle|io.netty:netty-codec-dns|gradle-force|4.1.132.Final|4.2.16.Final|Passed|True|
+|build.gradle|gradle|io.micrometer:micrometer-core|gradle-force|1.15.11|1.17.0|Passed|True|
+|build.gradle|gradle|io.netty:netty-resolver-dns|gradle-force|4.1.132.Final|4.2.16.Final|Passed|True|
 |build.gradle|gradle|org.springframework.data:spring-data-commons|gradle-force|3.5.11|3.5.13|Passed|True|
 |build.gradle|gradle|at.yawk.lz4:lz4-java|gradle-force|1.10.1|1.11.1|Passed|True|
-|build.gradle|gradle|org.springframework.data:spring-data-mongodb|gradle-force|4.5.11|4.5.13|Passed|True|
-|build.gradle|gradle|ch.qos.logback:logback-core|gradle-force|1.5.32|1.6.1|Passed|True|
-|build.gradle|gradle|org.apache.tomcat.embed:tomcat-embed-websocket|gradle-force|10.1.54|10.1.57|Passed|True|
-|build.gradle|gradle|io.micrometer:micrometer-core|gradle-force|1.15.11|1.17.0|Passed|True|
 |build.gradle|gradle|io.netty:netty-codec|gradle-force|4.1.132.Final|4.2.16.Final|Passed|True|
-|build.gradle|gradle|io.netty:netty-handler-proxy|gradle-force|4.1.132.Final|4.2.16.Final|Passed|True|
 |build.gradle|gradle|org.springframework.kafka:spring-kafka|gradle-force|3.3.15|3.3.16|Passed|True|
+|build.gradle|gradle|org.apache.tomcat.embed:tomcat-embed-core|gradle-force|10.1.54|10.1.57|Passed|True|
+|build.gradle|gradle|org.apache.tomcat.embed:tomcat-embed-websocket|gradle-force|10.1.54|10.1.57|Passed|True|
+|build.gradle|gradle|org.springframework.data:spring-data-mongodb|gradle-force|4.5.11|4.5.13|Passed|True|
 |build.gradle|gradle|org.springframework:spring-webflux|gradle-force|6.2.18|6.2.19|Passed|True|
 |build.gradle|gradle|com.fasterxml.jackson.core:jackson-databind|gradle-force|2.21.2|2.22.1|Passed|True|
 |build.gradle|gradle|org.springframework:spring-core|gradle-force|6.2.18|6.2.19|Passed|True|
@@ -131,13 +135,3 @@ _No rows._
 |org.springframework:spring-web|6.2.18|6.2.19|changed|
 |org.springframework:spring-webflux|6.2.18|6.2.19|changed|
 |org.springframework:spring-webmvc|6.2.18|6.2.19|changed|
-
-## Taskboard CVEs
-|cve_id|status|
-|---|---|
-|CVE-2025-11226|Not found in dependency graph|
-|CVE-2025-11839|Not found in dependency graph|
-|CVE-2025-11840|Not found in dependency graph|
-|CVE-2025-55752|Not found in dependency graph|
-|CVE-2025-55754|Not found in dependency graph|
-|CVE-2025-61795|Not found in dependency graph|

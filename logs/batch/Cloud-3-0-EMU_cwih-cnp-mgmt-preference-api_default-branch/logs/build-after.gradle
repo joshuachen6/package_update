@@ -4,10 +4,10 @@ buildscript {
             // package-update: managed buildscript force block (safe to regenerate)
             force 'at.yawk.lz4:lz4-java:1.11.1'
             force 'org.apache.neethi:neethi:3.2.3'
-            force 'org.springframework.hateoas:spring-hateoas:2.5.3'
-            force 'org.apache.cxf:cxf-core:4.2.2'
             force 'org.springframework.data:spring-data-commons:3.5.13'
+            force 'org.apache.cxf:cxf-core:4.2.2'
             force 'org.springframework.data:spring-data-mongodb:4.5.13'
+            force 'org.springframework.hateoas:spring-hateoas:2.5.3'
         
             force 'com.fasterxml.jackson.core:jackson-databind:2.21.5'
 }
@@ -48,10 +48,10 @@ configurations.all {
         // package-update: managed force block (safe to regenerate)
         force 'at.yawk.lz4:lz4-java:1.11.1'
         force 'org.apache.neethi:neethi:3.2.3'
-        force 'org.springframework.hateoas:spring-hateoas:2.5.3'
-        force 'org.apache.cxf:cxf-core:4.2.2'
         force 'org.springframework.data:spring-data-commons:3.5.13'
+        force 'org.apache.cxf:cxf-core:4.2.2'
         force 'org.springframework.data:spring-data-mongodb:4.5.13'
+        force 'org.springframework.hateoas:spring-hateoas:2.5.3'
     
         force 'com.fasterxml.jackson.core:jackson-databind:2.21.5'
 }

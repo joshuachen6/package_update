@@ -253,3 +253,105 @@ A problem occurred configuring root project 'cwih-cnp-mgmt-rule-api'.
 BUILD FAILED in 2s
 [2026-07-28 09:01:54] round 2: 0 new blocked packages
 [2026-07-28 09:01:54] 403s cleared; returning partial-fix state for candidate rollback
+[2026-07-28 18:03:07] [perf] concurrent version search (org.apache.tomcat.embed:tomcat-embed-websocket) completed in 1.43s
+[2026-07-28 18:03:07] [perf] transitive-parent search (org.apache.tomcat.embed:tomcat-embed-websocket) ran 0 gradle probe(s) in 0.00s (resolved=False)
+[2026-07-28 18:03:07] [perf] concurrent version search (org.springframework.boot:spring-boot) completed in 1.53s
+[2026-07-28 18:03:07] [perf] transitive-parent search (org.springframework.boot:spring-boot) ran 0 gradle probe(s) in 0.00s (resolved=False)
+[2026-07-28 18:03:07] [perf] concurrent version search (ch.qos.logback:logback-core) completed in 1.57s
+[2026-07-28 18:03:07] [perf] concurrent version search (org.apache.tomcat.embed:tomcat-embed-core) completed in 1.64s
+[2026-07-28 18:03:07] [perf] concurrent version search (ch.qos.logback:logback-core) completed in 0.40s
+[2026-07-28 18:03:07] [perf] concurrent version search (org.apache.tomcat.embed:tomcat-embed-core) completed in 0.37s
+[2026-07-28 18:03:07] proactive check: resolving post-change dependency tree...
+[2026-07-28 18:03:19] proactive check: runtimeClasspath failed — exit code 1
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+A problem occurred configuring root project 'cwih-cnp-mgmt-rule-api'.
+> Could not resolve all artifacts for configuration 'clas
+[2026-07-28 18:04:28] proactive check: compileClasspath failed — exit code 1
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+A problem occurred configuring root project 'cwih-cnp-mgmt-rule-api'.
+> Could not resolve all artifacts for configuration 'clas
+[2026-07-28 18:04:28] proactive check: forced 1 artifact(s) just to make the dependency tree resolve: com.fasterxml.jackson.core:jackson-databind:2.21.5
+[2026-07-28 18:04:28] proactive check: could not resolve dependency tree even after forcing accessible replacements, skipping
+[2026-07-28 18:04:37] round 1: 1 new blocked packages
+[2026-07-28 18:04:37] com.fasterxml.jackson.core:jackson-databind:2.21.4 — listing from https://humana.jfrog.io/artifactory/ins-cp-mgmt-gradle-virtual, checking access via https://humana.jfrog.io/artifactory/plugins-release
+[2026-07-28 18:04:38] com.fasterxml.jackson.core:jackson-databind:2.21.4 — 229 versions available
+[2026-07-28 18:04:39] [perf] concurrent version search (com.fasterxml.jackson.core:jackson-databind) completed in 1.09s
+[2026-07-28 18:04:39] com.fasterxml.jackson.core:jackson-databind:2.21.4 — find_accessible_version -> '2.21.5'
+[2026-07-28 18:04:53] round 1 build still failed: arning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/8.14.1/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+A problem occurred configuring root project 'cwih-cnp-mgmt-rule-api'.
+> Could not resolve all artifacts for configuration 'classpath'.
+   > Could not download jackson-databind-2.21.4.jar (com.fasterxml.jackson.core:jackson-databind:2.21.4)
+      > Could not get resource 'https://humana.jfrog.io/artifactory/cwih-cnp-mgmt-gradle-virtual/com/fasterxml/jackson/core/jackson-databind/2.21.4/jackson-databind-2.21.4.jar'.
+         > Could not GET 'https://humana.jfrog.io/artifactory/cwih-cnp-mgmt-gradle-virtual/com/fasterxml/jackson/core/jackson-databind/2.21.4/jackson-databind-2.21.4.jar'. Received status code 403 from server: 
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+> Get more help at https://help.gradle.org.
+
+BUILD FAILED in 12s
+[2026-07-28 18:04:53] round 2: 0 new blocked packages
+[2026-07-28 18:04:53] 403s cleared; returning partial-fix state for candidate rollback
+[2026-07-29 07:58:04] [perf] concurrent version search (org.springframework.boot:spring-boot) completed in 0.47s
+[2026-07-29 07:58:04] [perf] transitive-parent search (org.springframework.boot:spring-boot) ran 0 gradle probe(s) in 0.00s (resolved=False)
+[2026-07-29 07:58:05] [perf] concurrent version search (org.apache.tomcat.embed:tomcat-embed-websocket) completed in 0.83s
+[2026-07-29 07:58:05] [perf] transitive-parent search (org.apache.tomcat.embed:tomcat-embed-websocket) ran 0 gradle probe(s) in 0.00s (resolved=False)
+[2026-07-29 07:58:05] [perf] concurrent version search (org.apache.tomcat.embed:tomcat-embed-core) completed in 0.89s
+[2026-07-29 07:58:06] [perf] concurrent version search (ch.qos.logback:logback-core) completed in 2.04s
+[2026-07-29 07:58:06] [perf] concurrent version search (org.apache.tomcat.embed:tomcat-embed-core) completed in 1.22s
+[2026-07-29 07:58:06] [perf] concurrent version search (ch.qos.logback:logback-core) completed in 0.52s
+[2026-07-29 07:58:06] proactive check: resolving post-change dependency tree...
+[2026-07-29 07:58:16] proactive check: runtimeClasspath failed — exit code 1
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+A problem occurred configuring root project 'cwih-cnp-mgmt-rule-api'.
+> Could not resolve all artifacts for configuration 'clas
+[2026-07-29 07:58:29] proactive check: compileClasspath failed — exit code 1
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+A problem occurred configuring root project 'cwih-cnp-mgmt-rule-api'.
+> Could not resolve all artifacts for configuration 'clas
+[2026-07-29 07:58:29] proactive check: forced 1 artifact(s) just to make the dependency tree resolve: com.fasterxml.jackson.core:jackson-databind:2.21.5
+[2026-07-29 07:58:29] proactive check: could not resolve dependency tree even after forcing accessible replacements, skipping
+[2026-07-29 07:58:35] round 1: 1 new blocked packages
+[2026-07-29 07:58:35] com.fasterxml.jackson.core:jackson-databind:2.21.4 — listing from https://humana.jfrog.io/artifactory/ins-cp-mgmt-gradle-virtual, checking access via https://humana.jfrog.io/artifactory/plugins-release
+[2026-07-29 07:58:36] com.fasterxml.jackson.core:jackson-databind:2.21.4 — 229 versions available
+[2026-07-29 07:58:36] [perf] concurrent version search (com.fasterxml.jackson.core:jackson-databind) completed in 0.31s
+[2026-07-29 07:58:36] com.fasterxml.jackson.core:jackson-databind:2.21.4 — find_accessible_version -> '2.21.5'
+[2026-07-29 07:58:45] round 1 build still failed: warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/8.14.1/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+A problem occurred configuring root project 'cwih-cnp-mgmt-rule-api'.
+> Could not resolve all artifacts for configuration 'classpath'.
+   > Could not download jackson-databind-2.21.4.jar (com.fasterxml.jackson.core:jackson-databind:2.21.4)
+      > Could not get resource 'https://humana.jfrog.io/artifactory/cwih-cnp-mgmt-gradle-virtual/com/fasterxml/jackson/core/jackson-databind/2.21.4/jackson-databind-2.21.4.jar'.
+         > Could not GET 'https://humana.jfrog.io/artifactory/cwih-cnp-mgmt-gradle-virtual/com/fasterxml/jackson/core/jackson-databind/2.21.4/jackson-databind-2.21.4.jar'. Received status code 403 from server: 
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+> Get more help at https://help.gradle.org.
+
+BUILD FAILED in 7s
+[2026-07-29 07:58:45] round 2: 0 new blocked packages
+[2026-07-29 07:58:45] 403s cleared; returning partial-fix state for candidate rollback

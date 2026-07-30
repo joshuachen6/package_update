@@ -10,17 +10,10 @@
           "remediation_guided": true
         },
         {
-          "package": "io.netty:netty-handler",
+          "package": "ch.qos.logback:logback-core",
           "change_type": "gradle",
-          "old": "4.1.132.Final",
-          "new": "4.2.16.Final",
-          "remediation_guided": true
-        },
-        {
-          "package": "io.netty:netty-codec",
-          "change_type": "gradle",
-          "old": "4.1.132.Final",
-          "new": "4.2.16.Final",
+          "old": "1.5.21",
+          "new": "1.6.1",
           "remediation_guided": true
         },
         {
@@ -38,17 +31,24 @@
           "remediation_guided": true
         },
         {
-          "package": "ch.qos.logback:logback-core",
-          "change_type": "gradle",
-          "old": "1.5.21",
-          "new": "1.6.1",
-          "remediation_guided": true
-        },
-        {
           "package": "org.springframework:spring-framework.version",
           "change_type": "gradle",
           "old": "6.2.17",
           "new": "6.2.19",
+          "remediation_guided": true
+        },
+        {
+          "package": "io.netty:netty-handler",
+          "change_type": "gradle",
+          "old": "4.1.132.Final",
+          "new": "4.2.16.Final",
+          "remediation_guided": true
+        },
+        {
+          "package": "io.netty:netty-codec",
+          "change_type": "gradle",
+          "old": "4.1.132.Final",
+          "new": "4.2.16.Final",
           "remediation_guided": true
         },
         {
@@ -80,6 +80,20 @@
           "remediation_guided": true
         },
         {
+          "package": "io.netty:netty-handler-proxy",
+          "change_type": "gradle-force",
+          "old": "4.1.132.Final",
+          "new": "4.2.16.Final",
+          "remediation_guided": true
+        },
+        {
+          "package": "io.micrometer:micrometer-core",
+          "change_type": "gradle-force",
+          "old": "1.15.10",
+          "new": "1.17.0",
+          "remediation_guided": true
+        },
+        {
           "package": "at.yawk.lz4:lz4-java",
           "change_type": "gradle-force",
           "old": "1.10.1",
@@ -94,31 +108,10 @@
           "remediation_guided": true
         },
         {
-          "package": "io.netty:netty-handler-proxy",
-          "change_type": "gradle-force",
-          "old": "4.1.132.Final",
-          "new": "4.2.16.Final",
-          "remediation_guided": true
-        },
-        {
           "package": "io.netty:netty-transport-native-epoll",
           "change_type": "gradle-force",
           "old": "4.1.132.Final",
           "new": "4.2.16.Final",
-          "remediation_guided": true
-        },
-        {
-          "package": "io.micrometer:micrometer-core",
-          "change_type": "gradle-force",
-          "old": "1.15.10",
-          "new": "1.17.0",
-          "remediation_guided": true
-        },
-        {
-          "package": "org.springframework.kafka:spring-kafka",
-          "change_type": "gradle-force",
-          "old": "3.3.14",
-          "new": "3.3.16",
           "remediation_guided": true
         },
         {
@@ -129,24 +122,17 @@
           "remediation_guided": true
         },
         {
-          "package": "org.apache.neethi:neethi",
-          "change_type": "gradle-force",
-          "old": "3.2.1",
-          "new": "3.2.3",
-          "remediation_guided": true
-        },
-        {
-          "package": "org.springframework.data:spring-data-mongodb",
-          "change_type": "gradle-force",
-          "old": "4.5.10",
-          "new": "4.5.13",
-          "remediation_guided": true
-        },
-        {
           "package": "org.springframework.boot:spring-boot",
           "change_type": "gradle-force",
           "old": "3.5.13",
           "new": "3.5.16",
+          "remediation_guided": true
+        },
+        {
+          "package": "org.apache.neethi:neethi",
+          "change_type": "gradle-force",
+          "old": "3.2.1",
+          "new": "3.2.3",
           "remediation_guided": true
         },
         {
@@ -161,6 +147,20 @@
           "change_type": "gradle-force",
           "old": "2.5.2",
           "new": "2.5.3",
+          "remediation_guided": true
+        },
+        {
+          "package": "org.springframework.data:spring-data-mongodb",
+          "change_type": "gradle-force",
+          "old": "4.5.10",
+          "new": "4.5.13",
+          "remediation_guided": true
+        },
+        {
+          "package": "org.springframework.kafka:spring-kafka",
+          "change_type": "gradle-force",
+          "old": "3.3.14",
+          "new": "3.3.16",
           "remediation_guided": true
         },
         {
@@ -214,22 +214,13 @@
           "replacement": "implementation(group: 'io.netty', name: 'netty-codec-http2') {\n        version { strictly '4.2.16.Final' }\n    }"
         },
         {
-          "dependency": "io.netty:netty-handler",
+          "dependency": "ch.qos.logback:logback-core",
           "config": "implementation",
-          "old_version": "4.1.132.Final",
-          "new_version": "4.2.16.Final",
+          "old_version": "1.5.21",
+          "new_version": "1.6.1",
           "remediation_guided": "yes",
-          "original": "['netty-codec', 'netty-codec-http', 'netty-handler'].each {\n        implementation(group: 'io.netty', name: it) {\n            version { strictly '4.1.132.Final' }\n        }\n    }",
-          "replacement": "['netty-codec', 'netty-codec-http', 'netty-handler'].each {\n        implementation(group: 'io.netty', name: it) {\n            version { strictly '4.2.16.Final' }\n        }\n    }"
-        },
-        {
-          "dependency": "io.netty:netty-codec",
-          "config": "implementation",
-          "old_version": "4.1.132.Final",
-          "new_version": "4.2.16.Final",
-          "remediation_guided": "yes",
-          "original": "['netty-codec', 'netty-codec-http', 'netty-handler'].each {\n        implementation(group: 'io.netty', name: it) {\n            version { strictly '4.1.132.Final' }\n        }\n    }",
-          "replacement": "['netty-codec', 'netty-codec-http', 'netty-handler'].each {\n        implementation(group: 'io.netty', name: it) {\n            version { strictly '4.2.16.Final' }\n        }\n    }"
+          "original": "implementation(group: 'ch.qos.logback', name: 'logback-core') {\n        version {\n            strictly '1.5.21'\n        }\n    }",
+          "replacement": "implementation(group: 'ch.qos.logback', name: 'logback-core') {\n        version {\n            strictly '1.6.1'\n        }\n    }"
         },
         {
           "dependency": "io.netty:netty-codec-compression",
@@ -250,15 +241,6 @@
           "replacement": "implementation('com.fasterxml.jackson.core:jackson-databind') {\n        version {\n            strictly '2.22.1'\n        }\n    }"
         },
         {
-          "dependency": "ch.qos.logback:logback-core",
-          "config": "implementation",
-          "old_version": "1.5.21",
-          "new_version": "1.6.1",
-          "remediation_guided": "yes",
-          "original": "implementation(group: 'ch.qos.logback', name: 'logback-core') {\n        version {\n            strictly '1.5.21'\n        }\n    }",
-          "replacement": "implementation(group: 'ch.qos.logback', name: 'logback-core') {\n        version {\n            strictly '1.6.1'\n        }\n    }"
-        },
-        {
           "dependency": "org.springframework:spring-framework.version",
           "config": "ext",
           "old_version": "6.2.17",
@@ -266,6 +248,24 @@
           "remediation_guided": "transitive org.springframework:spring-core>=6.2.19",
           "original": "set('spring-framework.version', \"6.2.17\")",
           "replacement": "set('spring-framework.version', \"6.2.19\")"
+        },
+        {
+          "dependency": "io.netty:netty-handler",
+          "config": "implementation",
+          "old_version": "4.1.132.Final",
+          "new_version": "4.2.16.Final",
+          "remediation_guided": "yes",
+          "original": "['netty-codec', 'netty-codec-http', 'netty-handler'].each {\n        implementation(group: 'io.netty', name: it) {\n            version { strictly '4.1.132.Final' }\n        }\n    }",
+          "replacement": "['netty-codec', 'netty-codec-http', 'netty-handler'].each {\n        implementation(group: 'io.netty', name: it) {\n            version { strictly '4.2.16.Final' }\n        }\n    }"
+        },
+        {
+          "dependency": "io.netty:netty-codec",
+          "config": "implementation",
+          "old_version": "4.1.132.Final",
+          "new_version": "4.2.16.Final",
+          "remediation_guided": "yes",
+          "original": "['netty-codec', 'netty-codec-http', 'netty-handler'].each {\n        implementation(group: 'io.netty', name: it) {\n            version { strictly '4.1.132.Final' }\n        }\n    }",
+          "replacement": "['netty-codec', 'netty-codec-http', 'netty-handler'].each {\n        implementation(group: 'io.netty', name: it) {\n            version { strictly '4.2.16.Final' }\n        }\n    }"
         },
         {
           "dependency": "io.netty:netty-codec-http",
@@ -306,6 +306,18 @@
       ],
       "force_entries": [
         {
+          "dependency": "io.netty:netty-handler-proxy",
+          "old_version": "4.1.132.Final",
+          "new_version": "4.2.16.Final",
+          "minimum_required": "4.2.16.Final"
+        },
+        {
+          "dependency": "io.micrometer:micrometer-core",
+          "old_version": "1.15.10",
+          "new_version": "1.17.0",
+          "minimum_required": "1.17.0"
+        },
+        {
           "dependency": "at.yawk.lz4:lz4-java",
           "old_version": "1.10.1",
           "new_version": "1.11.1",
@@ -318,28 +330,10 @@
           "minimum_required": "4.2.16.Final"
         },
         {
-          "dependency": "io.netty:netty-handler-proxy",
-          "old_version": "4.1.132.Final",
-          "new_version": "4.2.16.Final",
-          "minimum_required": "4.2.16.Final"
-        },
-        {
           "dependency": "io.netty:netty-transport-native-epoll",
           "old_version": "4.1.132.Final",
           "new_version": "4.2.16.Final",
           "minimum_required": "4.2.16.Final"
-        },
-        {
-          "dependency": "io.micrometer:micrometer-core",
-          "old_version": "1.15.10",
-          "new_version": "1.17.0",
-          "minimum_required": "1.17.0"
-        },
-        {
-          "dependency": "org.springframework.kafka:spring-kafka",
-          "old_version": "3.3.14",
-          "new_version": "3.3.16",
-          "minimum_required": "3.3.16"
         },
         {
           "dependency": "org.springframework.data:spring-data-commons",
@@ -348,22 +342,16 @@
           "minimum_required": "3.5.13"
         },
         {
-          "dependency": "org.apache.neethi:neethi",
-          "old_version": "3.2.1",
-          "new_version": "3.2.3",
-          "minimum_required": "3.2.3"
-        },
-        {
-          "dependency": "org.springframework.data:spring-data-mongodb",
-          "old_version": "4.5.10",
-          "new_version": "4.5.13",
-          "minimum_required": "4.5.13"
-        },
-        {
           "dependency": "org.springframework.boot:spring-boot",
           "old_version": "3.5.13",
           "new_version": "3.5.16",
           "minimum_required": "3.5.16"
+        },
+        {
+          "dependency": "org.apache.neethi:neethi",
+          "old_version": "3.2.1",
+          "new_version": "3.2.3",
+          "minimum_required": "3.2.3"
         },
         {
           "dependency": "io.netty:netty-resolver-dns",
@@ -376,6 +364,18 @@
           "old_version": "2.5.2",
           "new_version": "2.5.3",
           "minimum_required": "2.5.3"
+        },
+        {
+          "dependency": "org.springframework.data:spring-data-mongodb",
+          "old_version": "4.5.10",
+          "new_version": "4.5.13",
+          "minimum_required": "4.5.13"
+        },
+        {
+          "dependency": "org.springframework.kafka:spring-kafka",
+          "old_version": "3.3.14",
+          "new_version": "3.3.16",
+          "minimum_required": "3.3.16"
         },
         {
           "dependency": "org.apache.cxf:cxf-core",
@@ -5429,25 +5429,9 @@
     "github_url": "https://github.com/Cloud-3-0-EMU/cwih-cnp-mgmt-consent-api.git",
     "checkout_dir": "/Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_cwih-cnp-mgmt-consent-api_default-branch/default-branch",
     "branch": null,
-    "input_cves": [
-      "CVE-2025-11226",
-      "CVE-2025-11839",
-      "CVE-2025-11840",
-      "CVE-2025-27789",
-      "CVE-2025-48924",
-      "CVE-2025-55163",
-      "CVE-2025-58057"
-    ],
+    "input_cves": null,
     "proj_dir": "/Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_cwih-cnp-mgmt-consent-api_default-branch/default-branch/cwih-cnp-mgmt-consent-api"
   },
   "github_url": "https://github.com/Cloud-3-0-EMU/cwih-cnp-mgmt-consent-api.git",
-  "input_cves": [
-    "CVE-2025-11226",
-    "CVE-2025-11839",
-    "CVE-2025-11840",
-    "CVE-2025-27789",
-    "CVE-2025-48924",
-    "CVE-2025-55163",
-    "CVE-2025-58057"
-  ]
+  "input_cves": []
 }

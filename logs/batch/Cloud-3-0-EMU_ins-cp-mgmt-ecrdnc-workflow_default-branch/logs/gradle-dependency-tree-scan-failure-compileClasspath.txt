@@ -14,4 +14,4 @@ A problem occurred configuring root project 'ecrdnc-workflow'.
 > Run with --scan to get full insights.
 > Get more help at https://help.gradle.org.
 
-BUILD FAILED in 21s
+BUILD FAILED in 3s

@@ -14,4 +14,4 @@ A problem occurred configuring root project 'ecrphoneattribute-workflow'.
 > Run with --scan to get full insights.
 > Get more help at https://help.gradle.org.
 
-BUILD FAILED in 10s
+BUILD FAILED in 6s

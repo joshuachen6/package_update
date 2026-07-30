@@ -3,65 +3,66 @@
 ## Summary
 |metric|value|
 |---|---|
-|Overall Status|🟡 Needs Review|
-|Generated at|2026-07-28T09:01:02|
+|Overall Status|🔴 Manual Update Required|
+|Generated at|2026-07-28T20:25:26|
 |GitHub URL|https://github.com/Cloud-3-0-EMU/ins-cp-mgmt-phoneattribute-workflow.git|
 |Project directory|/Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_ins-cp-mgmt-phoneattribute-workflow_default-branch/default-branch/ins-cp-mgmt-phoneattribute-workflow|
 |Dependency files|1|
-|Changed packages|20|
-|Skipped packages|0|
+|Changed packages|19|
+|Skipped packages|1|
 |Validation records|1|
-|Taskboard CVEs tracked|30|
+|Taskboard CVEs tracked|0|
 |Resolved dependency changes|82|
-|Verification classification|Partial - build passed but 1 CVE record(s) remain|
+|Verification classification|Error - secondary verification scan incomplete|
 |Test verification|passed|
-|Original CVEs remaining|1|
+|Original CVEs remaining|0|
 |JFrog vulnerabilities before|63|
-|JFrog vulnerabilities after|1|
+|JFrog vulnerabilities after|0|
 |JFrog audit before JSON|/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_ins-cp-mgmt-phoneattribute-workflow_default-branch/logs/jfrog-audit.json|
 |JFrog audit after JSON|/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_ins-cp-mgmt-phoneattribute-workflow_default-branch/logs/jfrog-audit-after.json|
 
 ## Remediation Outcome
 
-🟡 **REVIEW RECOMMENDED**
+🔴 **MANUAL UPDATE REQUIRED**
 
-The build passed, but some findings remain (unresolved CVE records and/or alternate versions selected during validation).
+One or more dependency updates could not be completed automatically.
 
 Review:
-- the post-update JFrog audit for remaining CVE records
-- build-validation-external-auto-fixes.csv (if present)
+- build-validation-manual-updates.csv
+- build-validation-auto-fixes.csv
 
 ## Dependency Files
 |file|ecosystem|changes|skipped|write_status|validation_status|validation_message|verification_status|test_status|
 |---|---|---|---|---|---|---|---|---|
-|build.gradle|gradle|20|0|Written|Passed||Partial - build passed but 1 CVE record(s) remain|passed|
+|build.gradle|gradle|19|1|Written|Passed||Error - secondary verification scan incomplete|passed|
 
 ## Applied / Planned Changes
 |file|ecosystem|package|type|old|new|status|remediation_guided|
 |---|---|---|---|---|---|---|---|
-|build.gradle|gradle|org.springframework:spring-context|gradle|6.2.0|6.2.19|Passed|True|
-|build.gradle|gradle|org.springframework:spring-expression|gradle|6.2.0|6.2.19|Passed|True|
 |build.gradle|gradle|org.springframework.kafka:spring-kafka|gradle|3.3.0|3.3.16|Passed|True|
-|build.gradle|gradle|org.springframework:spring-core|gradle|6.2.0|6.2.19|Passed|True|
 |build.gradle|gradle|org.springframework:spring-web|gradle|6.2.10|6.2.19|Passed|True|
+|build.gradle|gradle|org.springframework:spring-core|gradle|6.2.0|6.2.19|Passed|True|
 |build.gradle|gradle|org.apache.kafka:kafka-clients|gradle|3.9.1|3.9.2|Passed|True|
 |build.gradle|gradle|org.springframework:spring-webmvc|gradle|6.2.10|6.2.19|Passed|True|
+|build.gradle|gradle|org.springframework:spring-context|gradle|6.2.0|6.2.19|Passed|True|
+|build.gradle|gradle|org.springframework:spring-expression|gradle|6.2.0|6.2.19|Passed|True|
 |build.gradle|gradle|org.springframework:spring-beans|gradle|6.2.0|6.2.19|Passed|True|
+|build.gradle|gradle|org.springframework.boot:spring-boot-starter-actuator|gradle-force|3.3.12|3.5.16|Passed|True|
+|build.gradle|gradle|org.springframework.data:spring-data-commons|gradle-force|3.3.12|3.5.13|Passed|True|
 |build.gradle|gradle|io.micrometer:micrometer-core|gradle-force|1.13.14|1.17.0|Passed|True|
 |build.gradle|gradle|org.springframework.data:spring-data-mongodb|gradle-force|4.3.12|4.5.13|Passed|True|
-|build.gradle|gradle|org.springframework.boot:spring-boot-starter-actuator|gradle-force|3.3.12|3.5.16|Passed|True|
-|build.gradle|gradle|org.apache.tomcat.embed:tomcat-embed-core|gradle-force|10.1.41|10.1.57|Passed|True|
-|build.gradle|gradle|org.springframework.data:spring-data-commons|gradle-force|3.3.12|3.5.13|Passed|True|
-|build.gradle|gradle|org.apache.commons:commons-lang3|gradle-force|3.14.0|3.20.0|Passed|True|
-|build.gradle|gradle|org.springframework.boot:spring-boot|gradle-force|3.3.12|3.5.16|Passed|True|
 |build.gradle|gradle|org.springframework:spring-webflux|gradle-force|6.1.20|6.2.19|Passed|True|
 |build.gradle|gradle|org.lz4:lz4-java|gradle-force|1.8.0|1.8.0|Passed|True|
 |build.gradle|gradle|com.fasterxml.jackson.core:jackson-databind|gradle-force|2.17.3|2.22.1|Passed|True|
+|build.gradle|gradle|org.apache.commons:commons-lang3|gradle-force|3.14.0|3.20.0|Passed|True|
 |build.gradle|gradle|org.assertj:assertj-core|gradle-force|3.25.3|3.27.7|Passed|True|
+|build.gradle|gradle|org.springframework.boot:spring-boot|gradle-force|3.3.12|3.5.16|Passed|True|
 |build.gradle|gradle|org.apache.tomcat.embed:tomcat-embed-websocket|gradle-force|10.1.41|10.1.57|Passed|True|
 
 ## Skipped / Resolved / Could Not Update
-_No rows._
+|file|ecosystem|package|current|target|status|reason|detail|
+|---|---|---|---|---|---|---|---|
+|build.gradle|gradle|org.apache.tomcat.embed:tomcat-embed-core|10.1.41||Skipped|no fixed versions for current major and no accessible same-major update found||
 
 ## Build Validation
 |dependency|blocked_version|forced_version|status|reason|source|
@@ -71,8 +72,8 @@ _No rows._
 ## Before / After Dependency Trees
 |ecosystem|snapshot|path|exists|line_count|dependency_count|bytes|
 |---|---|---|---|---|---|---|
-|gradle|before|/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_ins-cp-mgmt-phoneattribute-workflow_default-branch/logs/gradle-dependency-tree-before.txt|True|800|693|50600|
-|gradle|after|/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_ins-cp-mgmt-phoneattribute-workflow_default-branch/logs/gradle-dependency-tree-after.txt|True|814|707|51134|
+|gradle|before|/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_ins-cp-mgmt-phoneattribute-workflow_default-branch/logs/gradle-dependency-tree-before.txt|True|800|693|50610|
+|gradle|after|/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_ins-cp-mgmt-phoneattribute-workflow_default-branch/logs/gradle-dependency-tree-after.txt|True|814|707|51135|
 |node|before|/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_ins-cp-mgmt-phoneattribute-workflow_default-branch/logs/npm-dependency-tree-before.json|False|0|0|0|
 |node|after|/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_ins-cp-mgmt-phoneattribute-workflow_default-branch/logs/npm-dependency-tree-after.json|False|0|0|0|
 
@@ -161,37 +162,3 @@ _No rows._
 |org.springframework:spring-webflux|6.1.20|6.2.19|changed|
 |org.springframework:spring-webmvc|6.2.10|6.2.19|changed|
 |org.yaml:snakeyaml|2.2|2.4|changed|
-
-## Taskboard CVEs
-|cve_id|status|
-|---|---|
-|CVE-2025-11082|Not found in dependency graph|
-|CVE-2025-11083|Not found in dependency graph|
-|CVE-2025-11226|Not found in dependency graph|
-|CVE-2025-1147|Not found in dependency graph|
-|CVE-2025-1148|Not found in dependency graph|
-|CVE-2025-11839|Not found in dependency graph|
-|CVE-2025-11840|Not found in dependency graph|
-|CVE-2025-22233|Verification incomplete|
-|CVE-2025-3198|Not found in dependency graph|
-|CVE-2025-41249|Verification incomplete|
-|CVE-2025-48924|Verification incomplete|
-|CVE-2025-48988|Verification incomplete|
-|CVE-2025-48989|Verification incomplete|
-|CVE-2025-49124|Verification incomplete|
-|CVE-2025-49125|Verification incomplete|
-|CVE-2025-5244|Not found in dependency graph|
-|CVE-2025-5245|Not found in dependency graph|
-|CVE-2025-52520|Verification incomplete|
-|CVE-2025-53057|Not found in dependency graph|
-|CVE-2025-53066|Not found in dependency graph|
-|CVE-2025-53506|Not found in dependency graph|
-|CVE-2025-55668|Verification incomplete|
-|CVE-2025-55752|Verification incomplete|
-|CVE-2025-55754|Verification incomplete|
-|CVE-2025-61795|Verification incomplete|
-|CVE-2025-6297|Not found in dependency graph|
-|CVE-2025-7545|Not found in dependency graph|
-|CVE-2025-8058|Not found in dependency graph|
-|CVE-2025-8225|Not found in dependency graph|
-|CVE-2025-9230|Not found in dependency graph|

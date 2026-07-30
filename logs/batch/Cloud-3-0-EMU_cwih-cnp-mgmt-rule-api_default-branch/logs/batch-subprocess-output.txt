@@ -43,17 +43,17 @@ Fetching Artifactory versions (12 workers): [------------------------------] 0/2
 Fetching Artifactory versions (12 workers): [###############---------------] 1/2 50%
 Fetching Artifactory versions (12 workers): [##############################] 2/2 100%
 
-Applying updates: [------------------------------] 0/4 0%  [ext-fix] [perf] concurrent version search (ch.qos.logback:logback-core) completed in 0.47s
-  [ext-fix] [perf] concurrent version search (org.springframework.boot:spring-boot) completed in 0.51s
+Applying updates: [------------------------------] 0/4 0%  [ext-fix] [perf] concurrent version search (org.springframework.boot:spring-boot) completed in 0.47s
   [ext-fix] [perf] transitive-parent search (org.springframework.boot:spring-boot) ran 0 gradle probe(s) in 0.00s (resolved=False)
 
-Applying updates: [#######-----------------------] 1/4 25%  [ext-fix] [perf] concurrent version search (org.apache.tomcat.embed:tomcat-embed-websocket) completed in 0.52s
+Applying updates: [#######-----------------------] 1/4 25%  [ext-fix] [perf] concurrent version search (org.apache.tomcat.embed:tomcat-embed-websocket) completed in 0.83s
   [ext-fix] [perf] transitive-parent search (org.apache.tomcat.embed:tomcat-embed-websocket) ran 0 gradle probe(s) in 0.00s (resolved=False)
 
-Applying updates: [###############---------------] 2/4 50%  [ext-fix] [perf] concurrent version search (ch.qos.logback:logback-core) completed in 1.32s
+Applying updates: [###############---------------] 2/4 50%  [ext-fix] [perf] concurrent version search (org.apache.tomcat.embed:tomcat-embed-core) completed in 0.89s
+  [ext-fix] [perf] concurrent version search (ch.qos.logback:logback-core) completed in 2.04s
+  [ext-fix] [perf] concurrent version search (org.apache.tomcat.embed:tomcat-embed-core) completed in 1.22s
 
-Applying updates: [######################--------] 3/4 75%  [ext-fix] [perf] concurrent version search (org.apache.tomcat.embed:tomcat-embed-core) completed in 2.12s
-  [ext-fix] [perf] concurrent version search (org.apache.tomcat.embed:tomcat-embed-core) completed in 0.26s
+Applying updates: [######################--------] 3/4 75%  [ext-fix] [perf] concurrent version search (ch.qos.logback:logback-core) completed in 0.52s
 
 Applying updates: [##############################] 4/4 100%
 
@@ -117,11 +117,11 @@ A problem occurred configuring root project 'cwih-cnp-mgmt-rule-api'.
 > Run with --scan to get full insights.
 > Get more help at https://help.gradle.org.
 
-BUILD FAILED in 6s
+BUILD FAILED in 5s
   [ext-fix] round 1: 1 new blocked packages
   [ext-fix] com.fasterxml.jackson.core:jackson-databind:2.21.4 — listing from https://humana.jfrog.io/artifactory/ins-cp-mgmt-gradle-virtual, checking access via https://humana.jfrog.io/artifactory/plugins-release
   [ext-fix] com.fasterxml.jackson.core:jackson-databind:2.21.4 — 229 versions available
-  [ext-fix] [perf] concurrent version search (com.fasterxml.jackson.core:jackson-databind) completed in 0.78s
+  [ext-fix] [perf] concurrent version search (com.fasterxml.jackson.core:jackson-databind) completed in 0.31s
   [ext-fix] com.fasterxml.jackson.core:jackson-databind:2.21.4 — find_accessible_version -> '2.21.5'
 Validating updated project: gradle build --no-daemon --init-script /var/folders/cg/2rmnrrps3g77gcd8ny14r1yr0000gp/T/pkg_update_gradle_logging.gradle
 To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.14.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
@@ -150,7 +150,7 @@ A problem occurred configuring root project 'cwih-cnp-mgmt-rule-api'.
 > Run with --scan to get full insights.
 > Get more help at https://help.gradle.org.
 
-BUILD FAILED in 2s
+BUILD FAILED in 7s
   [ext-fix] round 1 build still failed: warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
 
 For more on this, please refer to https://docs.gradle.org/8.14.1/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
@@ -171,7 +171,7 @@ A problem occurred configuring root project 'cwih-cnp-mgmt-rule-api'.
 > Run with --scan to get full insights.
 > Get more help at https://help.gradle.org.
 
-BUILD FAILED in 2s
+BUILD FAILED in 7s
   [ext-fix] round 2: 0 new blocked packages
   [ext-fix] 403s cleared; returning partial-fix state for candidate rollback
 Build validation failed; rollback isolation is disabled.

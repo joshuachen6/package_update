@@ -4,8 +4,8 @@
     "maven"
   ],
   "errors": [],
-  "vulnerability_count": 6,
-  "vulnerable_component_count": 6,
+  "vulnerability_count": 7,
+  "vulnerable_component_count": 7,
   "vulnerable_components": [
     {
       "component_id": "gav://at.yawk.lz4:lz4-java:1.10.2",
@@ -42,6 +42,15 @@
       "ecosystem": "maven",
       "package": "org.apache.httpcomponents.core5:httpcore5",
       "version": "5.3.6"
+    },
+    {
+      "component_id": "gav://org.apache.tomcat.embed:tomcat-embed-core:10.1.57",
+      "cves": [
+        "CVE-2026-66299"
+      ],
+      "ecosystem": "maven",
+      "package": "org.apache.tomcat.embed:tomcat-embed-core",
+      "version": "10.1.57"
     },
     {
       "component_id": "gav://org.eclipse.jgit:org.eclipse.jgit:6.6.1.202309021850-r",

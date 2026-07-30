@@ -100,7 +100,7 @@ Backup created: /Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_ins-cp-mg
 Updated package.json written to: /Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_ins-cp-mgmt-admin-ui_default-branch/default-branch/ins-cp-mgmt-admin-ui/package.json
 Validating updated project: npm install --no-audit --no-fund
 
-added 807 packages in 50s
+added 807 packages in 53s
 npm warn ERESOLVE overriding peer dependency
 npm warn While resolving: jest-config@29.7.0
 npm warn Found: @types/node@25.3.0
@@ -143,7 +143,7 @@ Validating updated project: npm run build
    ▲ Next.js 15.5.19
 
    Creating an optimized production build ...
- ✓ Compiled successfully in 17.7s
+ ✓ Compiled successfully in 12.8s
    Linting and checking validity of types ...
    Collecting page data ...
    Generating static pages (0/57) ...

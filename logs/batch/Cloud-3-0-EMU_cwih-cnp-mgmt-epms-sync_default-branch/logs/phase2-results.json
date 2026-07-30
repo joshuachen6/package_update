@@ -38,10 +38,10 @@
           "remediation_guided": true
         },
         {
-          "package": "io.netty:netty-codec-http2",
+          "package": "com.fasterxml.jackson.core:jackson-databind",
           "change_type": "gradle-force",
-          "old": "4.1.131.Final",
-          "new": "4.2.16.Final",
+          "old": "2.19.4",
+          "new": "2.22.1",
           "remediation_guided": true
         },
         {
@@ -59,6 +59,13 @@
           "remediation_guided": true
         },
         {
+          "package": "io.netty:netty-codec-http2",
+          "change_type": "gradle-force",
+          "old": "4.1.131.Final",
+          "new": "4.2.16.Final",
+          "remediation_guided": true
+        },
+        {
           "package": "org.springframework.kafka:spring-kafka",
           "change_type": "gradle-force",
           "old": "3.3.14",
@@ -66,30 +73,9 @@
           "remediation_guided": true
         },
         {
-          "package": "io.netty:netty-handler",
-          "change_type": "gradle-force",
-          "old": "4.1.131.Final",
-          "new": "4.2.16.Final",
-          "remediation_guided": true
-        },
-        {
-          "package": "com.fasterxml.jackson.core:jackson-databind",
-          "change_type": "gradle-force",
-          "old": "2.19.4",
-          "new": "2.22.1",
-          "remediation_guided": true
-        },
-        {
           "package": "io.netty:netty-handler-proxy",
           "change_type": "gradle-force",
           "old": "4.1.131.Final",
-          "new": "4.2.16.Final",
-          "remediation_guided": true
-        },
-        {
-          "package": "io.netty:netty-codec-classes-quic",
-          "change_type": "gradle-force",
-          "old": "4.2.9.Final",
           "new": "4.2.16.Final",
           "remediation_guided": true
         },
@@ -101,21 +87,7 @@
           "remediation_guided": true
         },
         {
-          "package": "io.netty:netty-resolver-dns",
-          "change_type": "gradle-force",
-          "old": "4.1.131.Final",
-          "new": "4.2.16.Final",
-          "remediation_guided": true
-        },
-        {
           "package": "io.netty:netty-codec-http",
-          "change_type": "gradle-force",
-          "old": "4.1.131.Final",
-          "new": "4.2.16.Final",
-          "remediation_guided": true
-        },
-        {
-          "package": "io.netty:netty-codec",
           "change_type": "gradle-force",
           "old": "4.1.131.Final",
           "new": "4.2.16.Final",
@@ -125,6 +97,13 @@
           "package": "io.netty:netty-codec-compression",
           "change_type": "gradle-force",
           "old": "4.2.9.Final",
+          "new": "4.2.16.Final",
+          "remediation_guided": true
+        },
+        {
+          "package": "io.netty:netty-handler",
+          "change_type": "gradle-force",
+          "old": "4.1.131.Final",
           "new": "4.2.16.Final",
           "remediation_guided": true
         },
@@ -139,6 +118,27 @@
           "package": "io.netty:netty-transport-native-epoll",
           "change_type": "gradle-force",
           "old": "4.1.131.Final",
+          "new": "4.2.16.Final",
+          "remediation_guided": true
+        },
+        {
+          "package": "io.netty:netty-resolver-dns",
+          "change_type": "gradle-force",
+          "old": "4.1.131.Final",
+          "new": "4.2.16.Final",
+          "remediation_guided": true
+        },
+        {
+          "package": "io.netty:netty-codec",
+          "change_type": "gradle-force",
+          "old": "4.1.131.Final",
+          "new": "4.2.16.Final",
+          "remediation_guided": true
+        },
+        {
+          "package": "io.netty:netty-codec-classes-quic",
+          "change_type": "gradle-force",
+          "old": "4.2.9.Final",
           "new": "4.2.16.Final",
           "remediation_guided": true
         },
@@ -221,10 +221,10 @@
           "minimum_required": "1.11.1"
         },
         {
-          "dependency": "io.netty:netty-codec-http2",
-          "old_version": "4.1.131.Final",
-          "new_version": "4.2.16.Final",
-          "minimum_required": "4.2.16.Final"
+          "dependency": "com.fasterxml.jackson.core:jackson-databind",
+          "old_version": "2.19.4",
+          "new_version": "2.22.1",
+          "minimum_required": "2.22.1"
         },
         {
           "dependency": "org.apache.tomcat.embed:tomcat-embed-websocket",
@@ -239,32 +239,20 @@
           "minimum_required": "3.5.16"
         },
         {
+          "dependency": "io.netty:netty-codec-http2",
+          "old_version": "4.1.131.Final",
+          "new_version": "4.2.16.Final",
+          "minimum_required": "4.2.16.Final"
+        },
+        {
           "dependency": "org.springframework.kafka:spring-kafka",
           "old_version": "3.3.14",
           "new_version": "3.3.16",
           "minimum_required": "3.3.16"
         },
         {
-          "dependency": "io.netty:netty-handler",
-          "old_version": "4.1.131.Final",
-          "new_version": "4.2.16.Final",
-          "minimum_required": "4.2.16.Final"
-        },
-        {
-          "dependency": "com.fasterxml.jackson.core:jackson-databind",
-          "old_version": "2.19.4",
-          "new_version": "2.22.1",
-          "minimum_required": "2.22.1"
-        },
-        {
           "dependency": "io.netty:netty-handler-proxy",
           "old_version": "4.1.131.Final",
-          "new_version": "4.2.16.Final",
-          "minimum_required": "4.2.16.Final"
-        },
-        {
-          "dependency": "io.netty:netty-codec-classes-quic",
-          "old_version": "4.2.9.Final",
           "new_version": "4.2.16.Final",
           "minimum_required": "4.2.16.Final"
         },
@@ -275,19 +263,7 @@
           "minimum_required": "4.2.16.Final"
         },
         {
-          "dependency": "io.netty:netty-resolver-dns",
-          "old_version": "4.1.131.Final",
-          "new_version": "4.2.16.Final",
-          "minimum_required": "4.2.16.Final"
-        },
-        {
           "dependency": "io.netty:netty-codec-http",
-          "old_version": "4.1.131.Final",
-          "new_version": "4.2.16.Final",
-          "minimum_required": "4.2.16.Final"
-        },
-        {
-          "dependency": "io.netty:netty-codec",
           "old_version": "4.1.131.Final",
           "new_version": "4.2.16.Final",
           "minimum_required": "4.2.16.Final"
@@ -295,6 +271,12 @@
         {
           "dependency": "io.netty:netty-codec-compression",
           "old_version": "4.2.9.Final",
+          "new_version": "4.2.16.Final",
+          "minimum_required": "4.2.16.Final"
+        },
+        {
+          "dependency": "io.netty:netty-handler",
+          "old_version": "4.1.131.Final",
           "new_version": "4.2.16.Final",
           "minimum_required": "4.2.16.Final"
         },
@@ -307,6 +289,24 @@
         {
           "dependency": "io.netty:netty-transport-native-epoll",
           "old_version": "4.1.131.Final",
+          "new_version": "4.2.16.Final",
+          "minimum_required": "4.2.16.Final"
+        },
+        {
+          "dependency": "io.netty:netty-resolver-dns",
+          "old_version": "4.1.131.Final",
+          "new_version": "4.2.16.Final",
+          "minimum_required": "4.2.16.Final"
+        },
+        {
+          "dependency": "io.netty:netty-codec",
+          "old_version": "4.1.131.Final",
+          "new_version": "4.2.16.Final",
+          "minimum_required": "4.2.16.Final"
+        },
+        {
+          "dependency": "io.netty:netty-codec-classes-quic",
+          "old_version": "4.2.9.Final",
           "new_version": "4.2.16.Final",
           "minimum_required": "4.2.16.Final"
         },
@@ -5281,7 +5281,7 @@
       "preaudit_gradle_tree_path": "/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_cwih-cnp-mgmt-epms-sync_default-branch/logs/preaudit-gradle/1/gradle-dependency-tree.txt",
       "write_status": "Written",
       "validation_status": "Passed",
-      "verification_status": "Success - build and tests passed; no CVEs remain",
+      "verification_status": "Partial - build passed but 1 CVE record(s) remain",
       "test_status": "passed"
     }
   ],
@@ -5310,17 +5310,9 @@
     "github_url": "https://github.com/Cloud-3-0-EMU/cwih-cnp-mgmt-epms-sync.git",
     "checkout_dir": "/Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_cwih-cnp-mgmt-epms-sync_default-branch/default-branch",
     "branch": null,
-    "input_cves": [
-      "CVE-2025-11226",
-      "CVE-2025-11839",
-      "CVE-2025-11840"
-    ],
+    "input_cves": null,
     "proj_dir": "/Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_cwih-cnp-mgmt-epms-sync_default-branch/default-branch/cwih-cnp-mgmt-epms-sync"
   },
   "github_url": "https://github.com/Cloud-3-0-EMU/cwih-cnp-mgmt-epms-sync.git",
-  "input_cves": [
-    "CVE-2025-11226",
-    "CVE-2025-11839",
-    "CVE-2025-11840"
-  ]
+  "input_cves": []
 }

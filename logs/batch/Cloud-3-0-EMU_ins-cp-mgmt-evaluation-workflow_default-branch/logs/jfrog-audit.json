@@ -1,11 +1,11 @@
 {
-  "component_count": 135,
+  "component_count": 138,
   "ecosystems": [
     "maven"
   ],
   "errors": [],
-  "vulnerability_count": 78,
-  "vulnerable_component_count": 25,
+  "vulnerability_count": 81,
+  "vulnerable_component_count": 27,
   "vulnerable_components": [
     {
       "component_id": "gav://com.fasterxml.jackson.core:jackson-databind:2.17.3",
@@ -247,6 +247,25 @@
       ],
       "ecosystem": "maven",
       "package": "org.springframework:spring-context",
+      "version": "6.2.3"
+    },
+    {
+      "component_id": "gav://org.springframework:spring-core:6.2.11",
+      "cves": [
+        "CVE-2026-41848"
+      ],
+      "ecosystem": "maven",
+      "package": "org.springframework:spring-core",
+      "version": "6.2.11"
+    },
+    {
+      "component_id": "gav://org.springframework:spring-expression:6.2.3",
+      "cves": [
+        "CVE-2026-41850",
+        "CVE-2026-41851"
+      ],
+      "ecosystem": "maven",
+      "package": "org.springframework:spring-expression",
       "version": "6.2.3"
     },
     {

@@ -15,15 +15,17 @@ runtimeClasspath - Runtime classpath of source set 'main'.
 +--- org.springframework.boot:spring-boot-starter-actuator:3.4.0
 |    +--- org.springframework.boot:spring-boot-starter:3.4.0 -> 3.3.12
 |    |    +--- org.springframework.boot:spring-boot:3.3.12
-|    |    |    +--- org.springframework:spring-core:6.1.20 -> 6.2.11 FAILED
+|    |    |    +--- org.springframework:spring-core:6.1.20 -> 6.2.11
+|    |    |    |    \--- org.springframework:spring-jcl:6.2.11 -> 6.2.0
 |    |    |    \--- org.springframework:spring-context:6.1.20 -> 6.2.3
 |    |    |         +--- org.springframework:spring-aop:6.2.3 -> 6.2.0
 |    |    |         |    +--- org.springframework:spring-beans:6.2.0 -> 6.2.3
-|    |    |         |    |    \--- org.springframework:spring-core:6.2.3 -> 6.2.11 FAILED
-|    |    |         |    \--- org.springframework:spring-core:6.2.0 -> 6.2.11 FAILED
+|    |    |         |    |    \--- org.springframework:spring-core:6.2.3 -> 6.2.11 (*)
+|    |    |         |    \--- org.springframework:spring-core:6.2.0 -> 6.2.11 (*)
 |    |    |         +--- org.springframework:spring-beans:6.2.3 (*)
-|    |    |         +--- org.springframework:spring-core:6.2.3 -> 6.2.11 FAILED
-|    |    |         +--- org.springframework:spring-expression:6.2.3 FAILED
+|    |    |         +--- org.springframework:spring-core:6.2.3 -> 6.2.11 (*)
+|    |    |         +--- org.springframework:spring-expression:6.2.3
+|    |    |         |    \--- org.springframework:spring-core:6.2.3 -> 6.2.11 (*)
 |    |    |         \--- io.micrometer:micrometer-observation:1.14.4 -> 1.13.14
 |    |    |              \--- io.micrometer:micrometer-commons:1.13.14
 |    |    +--- org.springframework.boot:spring-boot-autoconfigure:3.3.12
@@ -38,7 +40,7 @@ runtimeClasspath - Runtime classpath of source set 'main'.
 |    |    |    \--- org.slf4j:jul-to-slf4j:2.0.17
 |    |    |         \--- org.slf4j:slf4j-api:2.0.17
 |    |    +--- jakarta.annotation:jakarta.annotation-api:2.1.1
-|    |    +--- org.springframework:spring-core:6.1.20 -> 6.2.11 FAILED
+|    |    +--- org.springframework:spring-core:6.1.20 -> 6.2.11 (*)
 |    |    \--- org.yaml:snakeyaml:2.2
 |    +--- org.springframework.boot:spring-boot-actuator-autoconfigure:3.4.0 -> 3.3.12
 |    |    +--- com.fasterxml.jackson.core:jackson-databind:2.17.3
@@ -97,22 +99,22 @@ runtimeClasspath - Runtime classpath of source set 'main'.
 |    \--- org.springframework.data:spring-data-mongodb:4.4.0 -> 4.3.12
 |         +--- org.springframework:spring-tx:6.1.20 -> 6.2.0
 |         |    +--- org.springframework:spring-beans:6.2.0 -> 6.2.3 (*)
-|         |    \--- org.springframework:spring-core:6.2.0 -> 6.2.11 FAILED
+|         |    \--- org.springframework:spring-core:6.2.0 -> 6.2.11 (*)
 |         +--- org.springframework.data:spring-data-commons:3.3.12
 |         |    \--- org.slf4j:slf4j-api:2.0.2 -> 2.0.17
 |         +--- org.mongodb:mongodb-driver-core:5.0.1 (*)
 |         \--- org.slf4j:slf4j-api:2.0.2 -> 2.0.17
 +--- org.springframework:spring-beans:6.2.3 (*)
 +--- org.springframework:spring-context:6.2.3 (*)
-+--- org.springframework:spring-core:6.2.11 FAILED
-+--- org.springframework:spring-expression:6.2.3 FAILED
++--- org.springframework:spring-core:6.2.11 (*)
++--- org.springframework:spring-expression:6.2.3 (*)
 +--- org.springframework.boot:spring-boot-starter-web:3.4.0
 |    +--- org.springframework.boot:spring-boot-starter:3.4.0 -> 3.3.12 (*)
 |    +--- org.springframework.boot:spring-boot-starter-json:3.4.0 -> 3.3.12
 |    |    +--- org.springframework.boot:spring-boot-starter:3.3.12 (*)
 |    |    +--- org.springframework:spring-web:6.1.20 -> 6.2.10
 |    |    |    +--- org.springframework:spring-beans:6.2.10 -> 6.2.3 (*)
-|    |    |    +--- org.springframework:spring-core:6.2.10 -> 6.2.11 FAILED
+|    |    |    +--- org.springframework:spring-core:6.2.10 -> 6.2.11 (*)
 |    |    |    \--- io.micrometer:micrometer-observation:1.14.10 -> 1.13.14 (*)
 |    |    +--- com.fasterxml.jackson.core:jackson-databind:2.17.3 (*)
 |    |    +--- com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.17.3
@@ -132,8 +134,8 @@ runtimeClasspath - Runtime classpath of source set 'main'.
 |    +--- org.springframework:spring-aop:6.2.10 -> 6.2.0 (*)
 |    +--- org.springframework:spring-beans:6.2.10 -> 6.2.3 (*)
 |    +--- org.springframework:spring-context:6.2.10 -> 6.2.3 (*)
-|    +--- org.springframework:spring-core:6.2.10 -> 6.2.11 FAILED
-|    +--- org.springframework:spring-expression:6.2.10 -> 6.2.3 FAILED
+|    +--- org.springframework:spring-core:6.2.10 -> 6.2.11 (*)
+|    +--- org.springframework:spring-expression:6.2.10 -> 6.2.3 (*)
 |    \--- org.springframework:spring-web:6.2.10 (*)
 +--- org.springframework:spring-web:6.2.10 (*)
 +--- org.apache.tomcat.embed:tomcat-embed-core:10.1.47
@@ -146,7 +148,7 @@ runtimeClasspath - Runtime classpath of source set 'main'.
 |    +--- org.springframework:spring-context:6.2.2 -> 6.2.3 (*)
 |    +--- org.springframework:spring-messaging:6.2.2 -> 6.2.0
 |    |    +--- org.springframework:spring-beans:6.2.0 -> 6.2.3 (*)
-|    |    \--- org.springframework:spring-core:6.2.0 -> 6.2.11 FAILED
+|    |    \--- org.springframework:spring-core:6.2.0 -> 6.2.11 (*)
 |    +--- org.springframework:spring-tx:6.2.2 -> 6.2.0 (*)
 |    +--- org.springframework.retry:spring-retry:2.0.11 -> 2.0.12
 |    \--- io.micrometer:micrometer-observation:1.14.3 -> 1.13.14 (*)
@@ -267,7 +269,7 @@ runtimeClasspath - Runtime classpath of source set 'main'.
 |    +--- org.springframework:spring-web:6.1.20 -> 6.2.10 (*)
 |    \--- org.springframework:spring-webflux:6.1.20 -> 6.2.0
 |         +--- org.springframework:spring-beans:6.2.0 -> 6.2.3 (*)
-|         +--- org.springframework:spring-core:6.2.0 -> 6.2.11 FAILED
+|         +--- org.springframework:spring-core:6.2.0 -> 6.2.11 (*)
 |         +--- org.springframework:spring-web:6.2.0 -> 6.2.10 (*)
 |         \--- io.projectreactor:reactor-core:3.7.0 -> 3.6.17 (*)
 +--- io.projectreactor.netty:reactor-netty-http:1.2.8 (*)
@@ -299,7 +301,7 @@ You can use '--warning-mode all' to show the individual deprecation warnings and
 
 For more on this, please refer to https://docs.gradle.org/8.14.1/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
 
-BUILD SUCCESSFUL in 9s
+BUILD SUCCESSFUL in 4s
 1 actionable task: 1 executed
 
 To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.14.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
@@ -320,15 +322,17 @@ compileClasspath - Compile classpath for source set 'main'.
 +--- org.springframework.boot:spring-boot-starter-actuator:3.4.0
 |    +--- org.springframework.boot:spring-boot-starter:3.4.0 -> 3.3.12
 |    |    +--- org.springframework.boot:spring-boot:3.3.12
-|    |    |    +--- org.springframework:spring-core:6.1.20 -> 6.2.11 FAILED
+|    |    |    +--- org.springframework:spring-core:6.1.20 -> 6.2.11
+|    |    |    |    \--- org.springframework:spring-jcl:6.2.11 -> 6.2.0
 |    |    |    \--- org.springframework:spring-context:6.1.20 -> 6.2.3
 |    |    |         +--- org.springframework:spring-aop:6.2.3 -> 6.2.0
 |    |    |         |    +--- org.springframework:spring-beans:6.2.0 -> 6.2.3
-|    |    |         |    |    \--- org.springframework:spring-core:6.2.3 -> 6.2.11 FAILED
-|    |    |         |    \--- org.springframework:spring-core:6.2.0 -> 6.2.11 FAILED
+|    |    |         |    |    \--- org.springframework:spring-core:6.2.3 -> 6.2.11 (*)
+|    |    |         |    \--- org.springframework:spring-core:6.2.0 -> 6.2.11 (*)
 |    |    |         +--- org.springframework:spring-beans:6.2.3 (*)
-|    |    |         +--- org.springframework:spring-core:6.2.3 -> 6.2.11 FAILED
-|    |    |         +--- org.springframework:spring-expression:6.2.3 FAILED
+|    |    |         +--- org.springframework:spring-core:6.2.3 -> 6.2.11 (*)
+|    |    |         +--- org.springframework:spring-expression:6.2.3
+|    |    |         |    \--- org.springframework:spring-core:6.2.3 -> 6.2.11 (*)
 |    |    |         \--- io.micrometer:micrometer-observation:1.14.4 -> 1.13.14
 |    |    |              \--- io.micrometer:micrometer-commons:1.13.14
 |    |    +--- org.springframework.boot:spring-boot-autoconfigure:3.3.12
@@ -343,7 +347,7 @@ compileClasspath - Compile classpath for source set 'main'.
 |    |    |    \--- org.slf4j:jul-to-slf4j:2.0.17
 |    |    |         \--- org.slf4j:slf4j-api:2.0.17
 |    |    +--- jakarta.annotation:jakarta.annotation-api:2.1.1
-|    |    +--- org.springframework:spring-core:6.1.20 -> 6.2.11 FAILED
+|    |    +--- org.springframework:spring-core:6.1.20 -> 6.2.11 (*)
 |    |    \--- org.yaml:snakeyaml:2.2
 |    +--- org.springframework.boot:spring-boot-actuator-autoconfigure:3.4.0 -> 3.3.12
 |    |    +--- org.springframework.boot:spring-boot:3.3.12 (*)
@@ -381,22 +385,22 @@ compileClasspath - Compile classpath for source set 'main'.
 |    \--- org.springframework.data:spring-data-mongodb:4.4.0 -> 4.3.12
 |         +--- org.springframework:spring-tx:6.1.20 -> 6.2.0
 |         |    +--- org.springframework:spring-beans:6.2.0 -> 6.2.3 (*)
-|         |    \--- org.springframework:spring-core:6.2.0 -> 6.2.11 FAILED
+|         |    \--- org.springframework:spring-core:6.2.0 -> 6.2.11 (*)
 |         +--- org.springframework.data:spring-data-commons:3.3.12
 |         |    \--- org.slf4j:slf4j-api:2.0.2 -> 2.0.17
 |         +--- org.mongodb:mongodb-driver-core:5.0.1 (*)
 |         \--- org.slf4j:slf4j-api:2.0.2 -> 2.0.17
 +--- org.springframework:spring-beans:6.2.3 (*)
 +--- org.springframework:spring-context:6.2.3 (*)
-+--- org.springframework:spring-core:6.2.11 FAILED
-+--- org.springframework:spring-expression:6.2.3 FAILED
++--- org.springframework:spring-core:6.2.11 (*)
++--- org.springframework:spring-expression:6.2.3 (*)
 +--- org.springframework.boot:spring-boot-starter-web:3.4.0
 |    +--- org.springframework.boot:spring-boot-starter:3.4.0 -> 3.3.12 (*)
 |    +--- org.springframework.boot:spring-boot-starter-json:3.4.0 -> 3.3.12
 |    |    +--- org.springframework.boot:spring-boot-starter:3.3.12 (*)
 |    |    +--- org.springframework:spring-web:6.1.20 -> 6.2.10
 |    |    |    +--- org.springframework:spring-beans:6.2.10 -> 6.2.3 (*)
-|    |    |    +--- org.springframework:spring-core:6.2.10 -> 6.2.11 FAILED
+|    |    |    +--- org.springframework:spring-core:6.2.10 -> 6.2.11 (*)
 |    |    |    \--- io.micrometer:micrometer-observation:1.14.10 -> 1.13.14 (*)
 |    |    +--- com.fasterxml.jackson.core:jackson-databind:2.17.3
 |    |    |    +--- com.fasterxml.jackson.core:jackson-annotations:2.17.3
@@ -431,8 +435,8 @@ compileClasspath - Compile classpath for source set 'main'.
 |    +--- org.springframework:spring-aop:6.2.10 -> 6.2.0 (*)
 |    +--- org.springframework:spring-beans:6.2.10 -> 6.2.3 (*)
 |    +--- org.springframework:spring-context:6.2.10 -> 6.2.3 (*)
-|    +--- org.springframework:spring-core:6.2.10 -> 6.2.11 FAILED
-|    +--- org.springframework:spring-expression:6.2.10 -> 6.2.3 FAILED
+|    +--- org.springframework:spring-core:6.2.10 -> 6.2.11 (*)
+|    +--- org.springframework:spring-expression:6.2.10 -> 6.2.3 (*)
 |    \--- org.springframework:spring-web:6.2.10 (*)
 +--- org.springframework:spring-web:6.2.10 (*)
 +--- org.apache.tomcat.embed:tomcat-embed-core:10.1.47
@@ -445,7 +449,7 @@ compileClasspath - Compile classpath for source set 'main'.
 |    +--- org.springframework:spring-context:6.2.2 -> 6.2.3 (*)
 |    +--- org.springframework:spring-messaging:6.2.2 -> 6.2.0
 |    |    +--- org.springframework:spring-beans:6.2.0 -> 6.2.3 (*)
-|    |    \--- org.springframework:spring-core:6.2.0 -> 6.2.11 FAILED
+|    |    \--- org.springframework:spring-core:6.2.0 -> 6.2.11 (*)
 |    +--- org.springframework:spring-tx:6.2.2 -> 6.2.0 (*)
 |    +--- org.springframework.retry:spring-retry:2.0.11 -> 2.0.12
 |    \--- io.micrometer:micrometer-observation:1.14.3 -> 1.13.14 (*)
@@ -562,7 +566,7 @@ compileClasspath - Compile classpath for source set 'main'.
 |    +--- org.springframework:spring-web:6.1.20 -> 6.2.10 (*)
 |    \--- org.springframework:spring-webflux:6.1.20 -> 6.2.0
 |         +--- org.springframework:spring-beans:6.2.0 -> 6.2.3 (*)
-|         +--- org.springframework:spring-core:6.2.0 -> 6.2.11 FAILED
+|         +--- org.springframework:spring-core:6.2.0 -> 6.2.11 (*)
 |         +--- org.springframework:spring-web:6.2.0 -> 6.2.10 (*)
 |         \--- io.projectreactor:reactor-core:3.7.0 -> 3.6.17 (*)
 +--- io.projectreactor.netty:reactor-netty-http:1.2.8 (*)
@@ -594,7 +598,7 @@ You can use '--warning-mode all' to show the individual deprecation warnings and
 
 For more on this, please refer to https://docs.gradle.org/8.14.1/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
 
-BUILD SUCCESSFUL in 10s
+BUILD SUCCESSFUL in 4s
 1 actionable task: 1 executed
 
 To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.14.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
@@ -614,15 +618,17 @@ testRuntimeClasspath - Runtime classpath of source set 'test'.
 +--- org.springframework.boot:spring-boot-starter-actuator:3.4.0
 |    +--- org.springframework.boot:spring-boot-starter:3.4.0 -> 3.3.12
 |    |    +--- org.springframework.boot:spring-boot:3.3.12
-|    |    |    +--- org.springframework:spring-core:6.1.20 -> 6.2.11 FAILED
+|    |    |    +--- org.springframework:spring-core:6.1.20 -> 6.2.11
+|    |    |    |    \--- org.springframework:spring-jcl:6.2.11 -> 6.2.0
 |    |    |    \--- org.springframework:spring-context:6.1.20 -> 6.2.3
 |    |    |         +--- org.springframework:spring-aop:6.2.3 -> 6.2.0
 |    |    |         |    +--- org.springframework:spring-beans:6.2.0 -> 6.2.3
-|    |    |         |    |    \--- org.springframework:spring-core:6.2.3 -> 6.2.11 FAILED
-|    |    |         |    \--- org.springframework:spring-core:6.2.0 -> 6.2.11 FAILED
+|    |    |         |    |    \--- org.springframework:spring-core:6.2.3 -> 6.2.11 (*)
+|    |    |         |    \--- org.springframework:spring-core:6.2.0 -> 6.2.11 (*)
 |    |    |         +--- org.springframework:spring-beans:6.2.3 (*)
-|    |    |         +--- org.springframework:spring-core:6.2.3 -> 6.2.11 FAILED
-|    |    |         +--- org.springframework:spring-expression:6.2.3 FAILED
+|    |    |         +--- org.springframework:spring-core:6.2.3 -> 6.2.11 (*)
+|    |    |         +--- org.springframework:spring-expression:6.2.3
+|    |    |         |    \--- org.springframework:spring-core:6.2.3 -> 6.2.11 (*)
 |    |    |         \--- io.micrometer:micrometer-observation:1.14.4 -> 1.13.14
 |    |    |              \--- io.micrometer:micrometer-commons:1.13.14
 |    |    +--- org.springframework.boot:spring-boot-autoconfigure:3.3.12
@@ -637,7 +643,7 @@ testRuntimeClasspath - Runtime classpath of source set 'test'.
 |    |    |    \--- org.slf4j:jul-to-slf4j:2.0.17
 |    |    |         \--- org.slf4j:slf4j-api:2.0.17
 |    |    +--- jakarta.annotation:jakarta.annotation-api:2.1.1
-|    |    +--- org.springframework:spring-core:6.1.20 -> 6.2.11 FAILED
+|    |    +--- org.springframework:spring-core:6.1.20 -> 6.2.11 (*)
 |    |    \--- org.yaml:snakeyaml:2.2
 |    +--- org.springframework.boot:spring-boot-actuator-autoconfigure:3.4.0 -> 3.3.12
 |    |    +--- com.fasterxml.jackson.core:jackson-databind:2.17.3
@@ -696,22 +702,22 @@ testRuntimeClasspath - Runtime classpath of source set 'test'.
 |    \--- org.springframework.data:spring-data-mongodb:4.4.0 -> 4.3.12
 |         +--- org.springframework:spring-tx:6.1.20 -> 6.2.0
 |         |    +--- org.springframework:spring-beans:6.2.0 -> 6.2.3 (*)
-|         |    \--- org.springframework:spring-core:6.2.0 -> 6.2.11 FAILED
+|         |    \--- org.springframework:spring-core:6.2.0 -> 6.2.11 (*)
 |         +--- org.springframework.data:spring-data-commons:3.3.12
 |         |    \--- org.slf4j:slf4j-api:2.0.2 -> 2.0.17
 |         +--- org.mongodb:mongodb-driver-core:5.0.1 (*)
 |         \--- org.slf4j:slf4j-api:2.0.2 -> 2.0.17
 +--- org.springframework:spring-beans:6.2.3 (*)
 +--- org.springframework:spring-context:6.2.3 (*)
-+--- org.springframework:spring-core:6.2.11 FAILED
-+--- org.springframework:spring-expression:6.2.3 FAILED
++--- org.springframework:spring-core:6.2.11 (*)
++--- org.springframework:spring-expression:6.2.3 (*)
 +--- org.springframework.boot:spring-boot-starter-web:3.4.0
 |    +--- org.springframework.boot:spring-boot-starter:3.4.0 -> 3.3.12 (*)
 |    +--- org.springframework.boot:spring-boot-starter-json:3.4.0 -> 3.3.12
 |    |    +--- org.springframework.boot:spring-boot-starter:3.3.12 (*)
 |    |    +--- org.springframework:spring-web:6.1.20 -> 6.2.10
 |    |    |    +--- org.springframework:spring-beans:6.2.10 -> 6.2.3 (*)
-|    |    |    +--- org.springframework:spring-core:6.2.10 -> 6.2.11 FAILED
+|    |    |    +--- org.springframework:spring-core:6.2.10 -> 6.2.11 (*)
 |    |    |    \--- io.micrometer:micrometer-observation:1.14.10 -> 1.13.14 (*)
 |    |    +--- com.fasterxml.jackson.core:jackson-databind:2.17.3 (*)
 |    |    +--- com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.17.3
@@ -731,8 +737,8 @@ testRuntimeClasspath - Runtime classpath of source set 'test'.
 |    +--- org.springframework:spring-aop:6.2.10 -> 6.2.0 (*)
 |    +--- org.springframework:spring-beans:6.2.10 -> 6.2.3 (*)
 |    +--- org.springframework:spring-context:6.2.10 -> 6.2.3 (*)
-|    +--- org.springframework:spring-core:6.2.10 -> 6.2.11 FAILED
-|    +--- org.springframework:spring-expression:6.2.10 -> 6.2.3 FAILED
+|    +--- org.springframework:spring-core:6.2.10 -> 6.2.11 (*)
+|    +--- org.springframework:spring-expression:6.2.10 -> 6.2.3 (*)
 |    \--- org.springframework:spring-web:6.2.10 (*)
 +--- org.springframework:spring-web:6.2.10 (*)
 +--- org.apache.tomcat.embed:tomcat-embed-core:10.1.47
@@ -745,7 +751,7 @@ testRuntimeClasspath - Runtime classpath of source set 'test'.
 |    +--- org.springframework:spring-context:6.2.2 -> 6.2.3 (*)
 |    +--- org.springframework:spring-messaging:6.2.2 -> 6.2.0
 |    |    +--- org.springframework:spring-beans:6.2.0 -> 6.2.3 (*)
-|    |    \--- org.springframework:spring-core:6.2.0 -> 6.2.11 FAILED
+|    |    \--- org.springframework:spring-core:6.2.0 -> 6.2.11 (*)
 |    +--- org.springframework:spring-tx:6.2.2 -> 6.2.0 (*)
 |    +--- org.springframework.retry:spring-retry:2.0.11 -> 2.0.12
 |    \--- io.micrometer:micrometer-observation:1.14.3 -> 1.13.14 (*)
@@ -866,7 +872,7 @@ testRuntimeClasspath - Runtime classpath of source set 'test'.
 |    +--- org.springframework:spring-web:6.1.20 -> 6.2.10 (*)
 |    \--- org.springframework:spring-webflux:6.1.20 -> 6.2.0
 |         +--- org.springframework:spring-beans:6.2.0 -> 6.2.3 (*)
-|         +--- org.springframework:spring-core:6.2.0 -> 6.2.11 FAILED
+|         +--- org.springframework:spring-core:6.2.0 -> 6.2.11 (*)
 |         +--- org.springframework:spring-web:6.2.0 -> 6.2.10 (*)
 |         \--- io.projectreactor:reactor-core:3.7.0 -> 3.6.17 (*)
 +--- io.projectreactor.netty:reactor-netty-http:1.2.8 (*)
@@ -889,7 +895,7 @@ testRuntimeClasspath - Runtime classpath of source set 'test'.
 |    +--- org.springframework.boot:spring-boot-test:3.4.3 -> 3.3.12
 |    |    +--- org.springframework.boot:spring-boot:3.3.12 (*)
 |    |    \--- org.springframework:spring-test:6.1.20 -> 6.2.0
-|    |         \--- org.springframework:spring-core:6.2.0 -> 6.2.11 FAILED
+|    |         \--- org.springframework:spring-core:6.2.0 -> 6.2.11 (*)
 |    +--- org.springframework.boot:spring-boot-test-autoconfigure:3.4.3 -> 3.3.12
 |    |    +--- org.springframework.boot:spring-boot:3.3.12 (*)
 |    |    +--- org.springframework.boot:spring-boot-test:3.3.12 (*)
@@ -939,7 +945,7 @@ testRuntimeClasspath - Runtime classpath of source set 'test'.
 |    |    \--- org.junit.jupiter:junit-jupiter-api:5.10.1 -> 5.10.0 (*)
 |    +--- org.skyscreamer:jsonassert:1.5.3
 |    |    \--- com.vaadin.external.google:android-json:0.0.20131108.vaadin1
-|    +--- org.springframework:spring-core:6.2.3 -> 6.2.11 FAILED
+|    +--- org.springframework:spring-core:6.2.3 -> 6.2.11 (*)
 |    \--- org.springframework:spring-test:6.2.3 -> 6.2.0 (*)
 +--- org.xmlunit:xmlunit-core:2.10.0
 +--- org.mockito:mockito-core:5.1.1 (*)
@@ -960,7 +966,7 @@ You can use '--warning-mode all' to show the individual deprecation warnings and
 
 For more on this, please refer to https://docs.gradle.org/8.14.1/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
 
-BUILD SUCCESSFUL in 7s
+BUILD SUCCESSFUL in 5s
 1 actionable task: 1 executed
 
 To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.14.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
@@ -980,15 +986,17 @@ testCompileClasspath - Compile classpath for source set 'test'.
 +--- org.springframework.boot:spring-boot-starter-actuator:3.4.0
 |    +--- org.springframework.boot:spring-boot-starter:3.4.0 -> 3.3.12
 |    |    +--- org.springframework.boot:spring-boot:3.3.12
-|    |    |    +--- org.springframework:spring-core:6.1.20 -> 6.2.11 FAILED
+|    |    |    +--- org.springframework:spring-core:6.1.20 -> 6.2.11
+|    |    |    |    \--- org.springframework:spring-jcl:6.2.11 -> 6.2.0
 |    |    |    \--- org.springframework:spring-context:6.1.20 -> 6.2.3
 |    |    |         +--- org.springframework:spring-aop:6.2.3 -> 6.2.0
 |    |    |         |    +--- org.springframework:spring-beans:6.2.0 -> 6.2.3
-|    |    |         |    |    \--- org.springframework:spring-core:6.2.3 -> 6.2.11 FAILED
-|    |    |         |    \--- org.springframework:spring-core:6.2.0 -> 6.2.11 FAILED
+|    |    |         |    |    \--- org.springframework:spring-core:6.2.3 -> 6.2.11 (*)
+|    |    |         |    \--- org.springframework:spring-core:6.2.0 -> 6.2.11 (*)
 |    |    |         +--- org.springframework:spring-beans:6.2.3 (*)
-|    |    |         +--- org.springframework:spring-core:6.2.3 -> 6.2.11 FAILED
-|    |    |         +--- org.springframework:spring-expression:6.2.3 FAILED
+|    |    |         +--- org.springframework:spring-core:6.2.3 -> 6.2.11 (*)
+|    |    |         +--- org.springframework:spring-expression:6.2.3
+|    |    |         |    \--- org.springframework:spring-core:6.2.3 -> 6.2.11 (*)
 |    |    |         \--- io.micrometer:micrometer-observation:1.14.4 -> 1.13.14
 |    |    |              \--- io.micrometer:micrometer-commons:1.13.14
 |    |    +--- org.springframework.boot:spring-boot-autoconfigure:3.3.12
@@ -1003,7 +1011,7 @@ testCompileClasspath - Compile classpath for source set 'test'.
 |    |    |    \--- org.slf4j:jul-to-slf4j:2.0.17
 |    |    |         \--- org.slf4j:slf4j-api:2.0.17
 |    |    +--- jakarta.annotation:jakarta.annotation-api:2.1.1
-|    |    +--- org.springframework:spring-core:6.1.20 -> 6.2.11 FAILED
+|    |    +--- org.springframework:spring-core:6.1.20 -> 6.2.11 (*)
 |    |    \--- org.yaml:snakeyaml:2.2
 |    +--- org.springframework.boot:spring-boot-actuator-autoconfigure:3.4.0 -> 3.3.12
 |    |    +--- org.springframework.boot:spring-boot:3.3.12 (*)
@@ -1041,22 +1049,22 @@ testCompileClasspath - Compile classpath for source set 'test'.
 |    \--- org.springframework.data:spring-data-mongodb:4.4.0 -> 4.3.12
 |         +--- org.springframework:spring-tx:6.1.20 -> 6.2.0
 |         |    +--- org.springframework:spring-beans:6.2.0 -> 6.2.3 (*)
-|         |    \--- org.springframework:spring-core:6.2.0 -> 6.2.11 FAILED
+|         |    \--- org.springframework:spring-core:6.2.0 -> 6.2.11 (*)
 |         +--- org.springframework.data:spring-data-commons:3.3.12
 |         |    \--- org.slf4j:slf4j-api:2.0.2 -> 2.0.17
 |         +--- org.mongodb:mongodb-driver-core:5.0.1 (*)
 |         \--- org.slf4j:slf4j-api:2.0.2 -> 2.0.17
 +--- org.springframework:spring-beans:6.2.3 (*)
 +--- org.springframework:spring-context:6.2.3 (*)
-+--- org.springframework:spring-core:6.2.11 FAILED
-+--- org.springframework:spring-expression:6.2.3 FAILED
++--- org.springframework:spring-core:6.2.11 (*)
++--- org.springframework:spring-expression:6.2.3 (*)
 +--- org.springframework.boot:spring-boot-starter-web:3.4.0
 |    +--- org.springframework.boot:spring-boot-starter:3.4.0 -> 3.3.12 (*)
 |    +--- org.springframework.boot:spring-boot-starter-json:3.4.0 -> 3.3.12
 |    |    +--- org.springframework.boot:spring-boot-starter:3.3.12 (*)
 |    |    +--- org.springframework:spring-web:6.1.20 -> 6.2.10
 |    |    |    +--- org.springframework:spring-beans:6.2.10 -> 6.2.3 (*)
-|    |    |    +--- org.springframework:spring-core:6.2.10 -> 6.2.11 FAILED
+|    |    |    +--- org.springframework:spring-core:6.2.10 -> 6.2.11 (*)
 |    |    |    \--- io.micrometer:micrometer-observation:1.14.10 -> 1.13.14 (*)
 |    |    +--- com.fasterxml.jackson.core:jackson-databind:2.17.3
 |    |    |    +--- com.fasterxml.jackson.core:jackson-annotations:2.17.3
@@ -1091,8 +1099,8 @@ testCompileClasspath - Compile classpath for source set 'test'.
 |    +--- org.springframework:spring-aop:6.2.10 -> 6.2.0 (*)
 |    +--- org.springframework:spring-beans:6.2.10 -> 6.2.3 (*)
 |    +--- org.springframework:spring-context:6.2.10 -> 6.2.3 (*)
-|    +--- org.springframework:spring-core:6.2.10 -> 6.2.11 FAILED
-|    +--- org.springframework:spring-expression:6.2.10 -> 6.2.3 FAILED
+|    +--- org.springframework:spring-core:6.2.10 -> 6.2.11 (*)
+|    +--- org.springframework:spring-expression:6.2.10 -> 6.2.3 (*)
 |    \--- org.springframework:spring-web:6.2.10 (*)
 +--- org.springframework:spring-web:6.2.10 (*)
 +--- org.apache.tomcat.embed:tomcat-embed-core:10.1.47
@@ -1105,7 +1113,7 @@ testCompileClasspath - Compile classpath for source set 'test'.
 |    +--- org.springframework:spring-context:6.2.2 -> 6.2.3 (*)
 |    +--- org.springframework:spring-messaging:6.2.2 -> 6.2.0
 |    |    +--- org.springframework:spring-beans:6.2.0 -> 6.2.3 (*)
-|    |    \--- org.springframework:spring-core:6.2.0 -> 6.2.11 FAILED
+|    |    \--- org.springframework:spring-core:6.2.0 -> 6.2.11 (*)
 |    +--- org.springframework:spring-tx:6.2.2 -> 6.2.0 (*)
 |    +--- org.springframework.retry:spring-retry:2.0.11 -> 2.0.12
 |    \--- io.micrometer:micrometer-observation:1.14.3 -> 1.13.14 (*)
@@ -1222,7 +1230,7 @@ testCompileClasspath - Compile classpath for source set 'test'.
 |    +--- org.springframework:spring-web:6.1.20 -> 6.2.10 (*)
 |    \--- org.springframework:spring-webflux:6.1.20 -> 6.2.0
 |         +--- org.springframework:spring-beans:6.2.0 -> 6.2.3 (*)
-|         +--- org.springframework:spring-core:6.2.0 -> 6.2.11 FAILED
+|         +--- org.springframework:spring-core:6.2.0 -> 6.2.11 (*)
 |         +--- org.springframework:spring-web:6.2.0 -> 6.2.10 (*)
 |         \--- io.projectreactor:reactor-core:3.7.0 -> 3.6.17 (*)
 +--- io.projectreactor.netty:reactor-netty-http:1.2.8 (*)
@@ -1245,7 +1253,7 @@ testCompileClasspath - Compile classpath for source set 'test'.
 |    +--- org.springframework.boot:spring-boot-test:3.4.3 -> 3.3.12
 |    |    +--- org.springframework.boot:spring-boot:3.3.12 (*)
 |    |    \--- org.springframework:spring-test:6.1.20 -> 6.2.0
-|    |         \--- org.springframework:spring-core:6.2.0 -> 6.2.11 FAILED
+|    |         \--- org.springframework:spring-core:6.2.0 -> 6.2.11 (*)
 |    +--- org.springframework.boot:spring-boot-test-autoconfigure:3.4.3 -> 3.3.12
 |    |    +--- org.springframework.boot:spring-boot:3.3.12 (*)
 |    |    +--- org.springframework.boot:spring-boot-test:3.3.12 (*)
@@ -1285,7 +1293,7 @@ testCompileClasspath - Compile classpath for source set 'test'.
 |    |    \--- org.mockito:mockito-core:5.10.0 -> 5.1.1 (*)
 |    +--- org.skyscreamer:jsonassert:1.5.3
 |    |    \--- com.vaadin.external.google:android-json:0.0.20131108.vaadin1
-|    +--- org.springframework:spring-core:6.2.3 -> 6.2.11 FAILED
+|    +--- org.springframework:spring-core:6.2.3 -> 6.2.11 (*)
 |    \--- org.springframework:spring-test:6.2.3 -> 6.2.0 (*)
 +--- org.xmlunit:xmlunit-core:2.10.0
 +--- org.mockito:mockito-core:5.1.1 (*)
@@ -1305,5 +1313,5 @@ You can use '--warning-mode all' to show the individual deprecation warnings and
 
 For more on this, please refer to https://docs.gradle.org/8.14.1/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
 
-BUILD SUCCESSFUL in 7s
+BUILD SUCCESSFUL in 4s
 1 actionable task: 1 executed

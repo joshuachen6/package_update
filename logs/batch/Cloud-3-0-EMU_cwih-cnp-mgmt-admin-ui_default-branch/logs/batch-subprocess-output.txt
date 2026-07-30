@@ -105,7 +105,7 @@ Backup created: /Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_cwih-cnp-
 Updated package.json written to: /Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_cwih-cnp-mgmt-admin-ui_default-branch/default-branch/cwih-cnp-mgmt-admin-ui/package.json
 Validating updated project: npm install --no-audit --no-fund
 
-added 931 packages in 48s
+added 931 packages in 1m
 npm warn deprecated rimraf@2.7.1: Rimraf versions prior to v4 are no longer supported
 npm warn deprecated lodash.isequal@4.5.0: This package is deprecated. Use require('node:util').isDeepStrictEqual instead.
 npm warn deprecated @humanwhocodes/config-array@0.13.0: Use @eslint/config-array instead
@@ -215,7 +215,7 @@ Route (app)                                         Size  First Load JS
 + First Load JS shared by all                     104 kB
   ├ chunks/1255-b8cf77ab14370e57.js                46 kB
   ├ chunks/4bd1b696-100b9d70ed4e49c1.js          54.2 kB
-  └ other shared chunks (total)                  3.44 kB
+  └ other shared chunks (total)                  3.45 kB
 
 
 ƒ Middleware                                     91.1 kB
@@ -223,7 +223,7 @@ Route (app)                                         Size  First Load JS
 ○  (Static)   prerendered as static content
 ƒ  (Dynamic)  server-rendered on demand
 
- ⚠ Compiled with warnings in 10.5s
+ ⚠ Compiled with warnings in 12.6s
 
 ./node_modules/jose/dist/webapi/lib/deflate.js
 A Node.js API is used (CompressionStream at line: 10) which is not supported in the Edge Runtime.

@@ -4,7 +4,7 @@
     "maven"
   ],
   "errors": [],
-  "vulnerability_count": 28,
+  "vulnerability_count": 29,
   "vulnerable_component_count": 5,
   "vulnerable_components": [
     {
@@ -59,7 +59,8 @@
         "CVE-2026-55955",
         "CVE-2026-55956",
         "CVE-2026-59083",
-        "CVE-2026-59084"
+        "CVE-2026-59084",
+        "CVE-2026-66299"
       ],
       "ecosystem": "maven",
       "package": "org.apache.tomcat.embed:tomcat-embed-core",

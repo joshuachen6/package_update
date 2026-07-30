@@ -14,4 +14,4 @@ A problem occurred configuring root project 'cwih-cnp-mgmt-rule-api'.
 > Run with --scan to get full insights.
 > Get more help at https://help.gradle.org.
 
-BUILD FAILED in 3s
+BUILD FAILED in 9s

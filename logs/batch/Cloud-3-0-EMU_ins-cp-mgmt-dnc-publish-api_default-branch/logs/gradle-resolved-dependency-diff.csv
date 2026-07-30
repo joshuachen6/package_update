@@ -10,7 +10,9 @@ com.fasterxml.jackson:jackson-bom,2.21.1,2.21.5,changed
 com.fasterxml.woodstox:woodstox-core,7.1.0,7.2.0,changed
 com.fasterxml:classmate,1.7.0,1.7.3,changed
 com.github.luben:zstd-jni,1.5.6-6,1.5.6-10,changed
+commons-beanutils:commons-beanutils,1.9.4,1.11.0,changed
 commons-codec:commons-codec,1.16.1,1.18.0,changed
+commons-logging:commons-logging,1.2,1.3.5,changed
 io.lettuce:lettuce-core,6.3.2.RELEASE,6.6.0.RELEASE,changed
 io.micrometer:context-propagation,1.1.3,1.2.1,changed
 io.micrometer:micrometer-commons,1.13.14,1.17.0,changed

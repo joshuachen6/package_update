@@ -59,77 +59,108 @@ Fetching Artifactory versions (12 workers): [#########################-----] 10/
 Fetching Artifactory versions (12 workers): [###########################---] 11/12 91%
 Fetching Artifactory versions (12 workers): [##############################] 12/12 100%
 
-Applying updates: [------------------------------] 0/19 0%  [ext-fix] [perf] concurrent version search (org.apache.commons:commons-lang3) completed in 0.48s
-  [ext-fix] [perf] concurrent version search (io.micrometer:micrometer-core) completed in 0.48s
-  [ext-fix] [perf] transitive-parent search (io.micrometer:micrometer-core) ran 0 gradle probe(s) in 0.00s (resolved=False)
+Applying updates: [------------------------------] 0/19 0%
+Applying updates: [#-----------------------------] 1/19 5%  [ext-fix] [perf] concurrent version search (org.springframework.boot:spring-boot) completed in 1.16s
+  [ext-fix] [perf] concurrent version search (org.springframework.boot:spring-boot-starter-actuator) completed in 1.32s
 
-Applying updates: [#-----------------------------] 1/19 5%  [ext-fix] [perf] concurrent version search (org.springframework.data:spring-data-mongodb) completed in 0.52s
-  [ext-fix] [perf] transitive-parent search (org.springframework.data:spring-data-mongodb) ran 0 gradle probe(s) in 0.00s (resolved=False)
-
-Applying updates: [###---------------------------] 2/19 10%  [ext-fix] [perf] concurrent version search (org.springframework.boot:spring-boot) completed in 0.55s
-  [ext-fix] [perf] concurrent version search (org.apache.tomcat.embed:tomcat-embed-core) completed in 0.61s
-  [ext-fix] [perf] concurrent version search (org.springframework.boot:spring-boot-starter-actuator) completed in 0.61s
-
-Applying updates: [####--------------------------] 3/19 15%
-Applying updates: [######------------------------] 4/19 21%  [ext-fix] [perf] concurrent version search (org.springframework.data:spring-data-commons) completed in 0.97s
+Applying updates: [###---------------------------] 2/19 10%  [ext-fix] [perf] concurrent version search (org.springframework.kafka:spring-kafka) completed in 1.38s
+  [ext-fix] [perf] concurrent version search (org.springframework.data:spring-data-commons) completed in 1.42s
   [ext-fix] [perf] transitive-parent search (org.springframework.data:spring-data-commons) ran 0 gradle probe(s) in 0.00s (resolved=False)
 
-Applying updates: [#######-----------------------] 5/19 26%  [ext-fix] [perf] concurrent version search (org.springframework:spring-context) completed in 0.45s
-  [ext-fix] [perf] concurrent version search (org.springframework:spring-expression) completed in 0.49s
-  [ext-fix] [perf] concurrent version search (com.fasterxml.jackson.core:jackson-databind) completed in 1.18s
-  [ext-fix] [perf] concurrent version search (org.springframework:spring-context) completed in 0.20s
+Applying updates: [####--------------------------] 3/19 15%  [ext-fix] [perf] concurrent version search (com.fasterxml.jackson.core:jackson-databind) completed in 2.37s
+  [ext-fix] [perf] concurrent version search (org.springframework.kafka:spring-kafka) completed in 1.37s
 
-Applying updates: [#########---------------------] 6/19 31%  [ext-fix] [perf] concurrent version search (org.springframework:spring-expression) completed in 0.17s
+Applying updates: [######------------------------] 4/19 21%  [ext-fix] [perf] concurrent version search (org.assertj:assertj-core) completed in 2.86s  [ext-fix] [perf] concurrent version search (org.apache.commons:commons-lang3) completed in 2.86s
 
-Applying updates: [###########-------------------] 7/19 36%  [ext-fix] [perf] transitive-parent search (org.apache.commons:commons-lang3) ran 1 gradle probe(s) in 0.96s (resolved=False)
+  [ext-fix] [perf] concurrent version search (io.micrometer:micrometer-core) completed in 2.87s
+  [ext-fix] [perf] transitive-parent search (io.micrometer:micrometer-core) ran 0 gradle probe(s) in 0.00s (resolved=False)
 
-Applying updates: [############------------------] 8/19 42%  [ext-fix] [perf] transitive-parent search (org.springframework.boot:spring-boot) ran 1 gradle probe(s) in 0.89s (resolved=False)
+Applying updates: [#######-----------------------] 5/19 26%  [ext-fix] [perf] concurrent version search (org.springframework.data:spring-data-mongodb) completed in 3.13s
+  [ext-fix] [perf] transitive-parent search (org.springframework.data:spring-data-mongodb) ran 0 gradle probe(s) in 0.00s (resolved=False)
 
-Applying updates: [##############----------------] 9/19 47%  [ext-fix] [perf] concurrent version search (org.assertj:assertj-core) completed in 1.45s
-  [ext-fix] [perf] concurrent version search (org.springframework:spring-web) completed in 0.51s
-  [ext-fix] [perf] concurrent version search (org.springframework.kafka:spring-kafka) completed in 1.25s
-  [ext-fix] [perf] concurrent version search (org.springframework:spring-core) completed in 1.18s
-  [ext-fix] [perf] concurrent version search (org.springframework.kafka:spring-kafka) completed in 0.21s
+Applying updates: [#########---------------------] 6/19 31%  [ext-fix] [perf] concurrent version search (org.apache.tomcat.embed:tomcat-embed-websocket) completed in 4.09s
+  [ext-fix] [perf] concurrent version search (org.apache.kafka:kafka-clients) completed in 4.09s
+  [ext-fix] [perf] concurrent version search (org.springframework:spring-context) completed in 7.16s
+  [ext-fix] [perf] concurrent version search (org.springframework:spring-webflux) completed in 20.33s
 
-Applying updates: [###############---------------] 10/19 52%  [ext-fix] [perf] concurrent version search (org.springframework:spring-core) completed in 0.20s
+Applying updates: [###########-------------------] 7/19 36%  [ext-fix] [perf] concurrent version search (org.springframework:spring-web) completed in 20.64s
+  [ext-fix] [perf] concurrent version search (org.springframework:spring-core) completed in 22.27s
+  [ext-fix] [perf] concurrent version search (org.springframework:spring-web) completed in 0.65s
 
-Applying updates: [#################-------------] 11/19 57%  [ext-fix] [perf] concurrent version search (org.springframework:spring-web) completed in 0.67s
+Applying updates: [############------------------] 8/19 42%  [ext-fix] [perf] concurrent version search (org.springframework:spring-webmvc) completed in 0.79s
+  [ext-fix] [perf] concurrent version search (org.springframework:spring-core) completed in 0.60s
 
-Applying updates: [##################------------] 12/19 63%  [ext-fix] [perf] concurrent version search (org.springframework:spring-webflux) completed in 0.99s
+Applying updates: [##############----------------] 9/19 47%  [ext-fix] [perf] concurrent version search (org.apache.kafka:kafka-clients) completed in 20.24s
 
-Applying updates: [####################----------] 13/19 68%  [ext-fix] [perf] concurrent version search (org.apache.kafka:kafka-clients) completed in 2.23s
-  [ext-fix] [perf] concurrent version search (org.lz4:lz4-java) completed in 2.27s
+Applying updates: [###############---------------] 10/19 52%  [ext-fix] [perf] concurrent version search (org.springframework:spring-webmvc) completed in 0.89s
+
+Applying updates: [#################-------------] 11/19 57%  [ext-fix] [perf] concurrent version search (org.lz4:lz4-java) completed in 25.48s
   [ext-fix] [perf] transitive-parent search (org.lz4:lz4-java) ran 0 gradle probe(s) in 0.00s (resolved=False)
 
-Applying updates: [######################--------] 14/19 73%  [ext-fix] [perf] concurrent version search (org.apache.kafka:kafka-clients) completed in 0.22s
+Applying updates: [##################------------] 12/19 63%  [ext-fix] [perf] concurrent version search (org.springframework:spring-context) completed in 20.35s
 
-Applying updates: [#######################-------] 15/19 78%  [ext-fix] [perf] concurrent version search (org.springframework:spring-webmvc) completed in 1.19s
-  [ext-fix] [perf] concurrent version search (org.apache.tomcat.embed:tomcat-embed-websocket) completed in 2.65s
-  [ext-fix] [perf] concurrent version search (org.springframework:spring-webmvc) completed in 1.29s
+Applying updates: [####################----------] 13/19 68%  [ext-fix] [perf] concurrent version search (org.springframework:spring-expression) completed in 27.34s
+  [ext-fix] [perf] concurrent version search (org.springframework:spring-expression) completed in 0.20s
 
-Applying updates: [#########################-----] 16/19 84%  [ext-fix] [perf] transitive-parent search (com.fasterxml.jackson.core:jackson-databind) ran 1 gradle probe(s) in 12.15s (resolved=False)
+Applying updates: [######################--------] 14/19 73%  [ext-fix] [perf] transitive-parent search (com.fasterxml.jackson.core:jackson-databind) ran 1 gradle probe(s) in 34.92s (resolved=False)
 
-Applying updates: [##########################----] 17/19 89%  [ext-fix] [perf] transitive-parent search (org.assertj:assertj-core) ran 1 gradle probe(s) in 12.42s (resolved=False)
+Applying updates: [#######################-------] 15/19 78%  [ext-fix] [perf] transitive-parent search (org.apache.commons:commons-lang3) ran 1 gradle probe(s) in 39.12s (resolved=False)
 
-Applying updates: [############################--] 18/19 94%  [ext-fix] [perf] transitive-parent search (org.apache.tomcat.embed:tomcat-embed-websocket) ran 1 gradle probe(s) in 19.81s (resolved=False)
+Applying updates: [#########################-----] 16/19 84%  [ext-fix] [perf] transitive-parent search (org.assertj:assertj-core) ran 1 gradle probe(s) in 41.67s (resolved=False)
+
+Applying updates: [##########################----] 17/19 89%  [ext-fix] [perf] transitive-parent search (org.springframework.boot:spring-boot) ran 1 gradle probe(s) in 44.37s (resolved=False)
+
+Applying updates: [############################--] 18/19 94%  [ext-fix] [perf] transitive-parent search (org.apache.tomcat.embed:tomcat-embed-websocket) ran 1 gradle probe(s) in 42.26s (resolved=False)
 
 Applying updates: [##############################] 19/19 100%
 
-Gradle counts: deps=16, updated=8, forced=12, skipped=0
-Changes: gradle_direct=8, gradle_force=12, skipped=0
+Gradle counts: deps=16, updated=8, forced=11, skipped=1
+Changes: gradle_direct=8, gradle_force=11, skipped=1
 Phase2 cache generated → /Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_ins-cp-mgmt-phoneattribute-workflow_default-branch/logs/phase2-results.json
 Writing /Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_ins-cp-mgmt-phoneattribute-workflow_default-branch/default-branch/ins-cp-mgmt-phoneattribute-workflow/build.gradle in place...
 Backup: /Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_ins-cp-mgmt-phoneattribute-workflow_default-branch/default-branch/ins-cp-mgmt-phoneattribute-workflow/build.gradle.bak
 Updated in place: /Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_ins-cp-mgmt-phoneattribute-workflow_default-branch/default-branch/ins-cp-mgmt-phoneattribute-workflow/build.gradle
   [ext-fix] proactive check: resolving post-change dependency tree...
+  Gradle failed — no 403-blocked packages detected, cannot retry
+  [ext-fix] proactive check: runtimeClasspath failed — exit code 1
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+A problem occurred configuring root project 'ins-cp-mgmt-phoneattribute-workflow'.
+> Could not resolve all artifacts for config
   Gradle failed — 1 403-blocked package(s) detected, entering retry loop
   [retry round 1/10] 1 new blocked package(s)…
     com.fasterxml.jackson.core:jackson-databind: 2.21.4 ↑ 2.21.5 (forced for tree)
   [retry round 1] retrying gradle with 1 forced version(s)…
   [retry round 1] gradle succeeded — dependency tree resolved
   [ext-fix] proactive check: forced 1 artifact(s) just to make the dependency tree resolve: com.fasterxml.jackson.core:jackson-databind:2.21.5
-  [ext-fix] proactive check: 73 resolved artifacts — checking accessibility...
-  [ext-fix] proactive check: all artifacts accessible — no pre-flight forces needed
+  [ext-fix] proactive check: 70 resolved artifacts — checking accessibility...
+  [ext-fix] proactive check: 8 blocked artifact(s) — finding replacements...
+  [ext-fix] [perf] concurrent version search (org.springframework.boot:spring-boot-starter-actuator) completed in 0.00s
+  [ext-fix] [perf] concurrent version search (org.springframework.boot:spring-boot) completed in 0.00s
+  [ext-fix] proactive check: metadata for org.springframework.boot:spring-boot-starter-actuator returned 290 version(s) in 0.00s
+  [ext-fix] proactive check: replacement search for org.springframework.boot:spring-boot-starter-actuator:3.5.16 completed in 0.01s -> '3.5.16'
+  [ext-fix] [perf] concurrent version search (org.springframework:spring-context) completed in 0.00s
+  [ext-fix] [perf] concurrent version search (org.springframework:spring-core) completed in 0.00s
+  [ext-fix] [perf] concurrent version search (org.springframework.boot:spring-boot-starter) completed in 0.71s
+  [ext-fix] [perf] concurrent version search (org.springframework:spring-aop) completed in 0.92s
+  [ext-fix] [perf] concurrent version search (org.springframework:spring-jcl) completed in 1.39s
+  [ext-fix] proactive check: metadata for org.springframework:spring-jcl returned 174 version(s) in 1.18s
+  [ext-fix] proactive check: replacement search for org.springframework:spring-jcl:6.2.19 completed in 1.39s -> '6.2.19'
+  [ext-fix] proactive check: metadata for org.springframework.boot:spring-boot-starter returned 290 version(s) in 0.90s
+  [ext-fix] proactive check: replacement search for org.springframework.boot:spring-boot-starter:3.5.16 completed in 0.71s -> '3.5.16'
+  [ext-fix] proactive check: metadata for org.springframework.boot:spring-boot returned 290 version(s) in 0.00s
+  [ext-fix] proactive check: replacement search for org.springframework.boot:spring-boot:3.5.16 completed in 0.01s -> '3.5.16'
+  [ext-fix] proactive check: metadata for org.springframework:spring-aop returned 333 version(s) in 0.91s
+  [ext-fix] proactive check: replacement search for org.springframework:spring-aop:6.2.19 completed in 0.92s -> '6.2.19'
+  [ext-fix] proactive check: metadata for org.springframework:spring-context returned 334 version(s) in 0.00s
+  [ext-fix] proactive check: replacement search for org.springframework:spring-context:6.2.19 completed in 0.00s -> '6.2.19'
+  [ext-fix] proactive check: metadata for org.springframework:spring-core returned 333 version(s) in 0.00s
+  [ext-fix] proactive check: replacement search for org.springframework:spring-core:6.2.19 completed in 0.00s -> '6.2.19'
+  [ext-fix] [perf] concurrent version search (org.projectlombok:lombok) completed in 1.75s
+  [ext-fix] proactive check: metadata for org.projectlombok:lombok returned 59 version(s) in 1.03s
+  [ext-fix] proactive check: replacement search for org.projectlombok:lombok:1.18.46 completed in 1.76s -> '1.18.46'
+  [ext-fix] proactive check: no accessible replacement found for any blocked artifact — manual review required
 Validating updated project: gradle build --no-daemon --init-script /var/folders/cg/2rmnrrps3g77gcd8ny14r1yr0000gp/T/pkg_update_gradle_logging.gradle
 To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.14.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
 Daemon will be stopped at the end of the build 
@@ -167,7 +198,7 @@ You can use '--warning-mode all' to show the individual deprecation warnings and
 
 For more on this, please refer to https://docs.gradle.org/8.14.1/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
 
-BUILD SUCCESSFUL in 48s
+BUILD SUCCESSFUL in 2m 38s
 15 actionable tasks: 15 executed
 Note: /Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_ins-cp-mgmt-phoneattribute-workflow_default-branch/default-branch/ins-cp-mgmt-phoneattribute-workflow/src/main/java/com/humana/domain/phone/attributes/service/avro/AvroDeserializer.java uses or overrides a deprecated API.
 Note: Recompile with -Xlint:deprecation for details.
@@ -176,8 +207,9 @@ Note: Recompile with -Xlint:unchecked for details.
 Note: Some input files use unchecked or unsafe operations.
 Note: Recompile with -Xlint:unchecked for details.
 Java HotSpot(TM) 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+  [ext-fix] build passed, but blocked artifact(s) remain unresolved: org.springframework.boot:spring-boot-starter-actuator:3.5.16, org.springframework:spring-jcl:6.2.19, org.springframework.boot:spring-boot-starter:3.5.16, org.springframework.boot:spring-boot:3.5.16, org.springframework:spring-aop:6.2.19, org.springframework:spring-context:6.2.19, org.springframework:spring-core:6.2.19, org.projectlombok:lombok:1.18.46
 
-Totals: 0 npm direct, 0 npm override(s), 8 Gradle direct, 12 Gradle force(s), 0 Python direct, 0 skipped
+Totals: 0 npm direct, 0 npm override(s), 8 Gradle direct, 11 Gradle force(s), 0 Python direct, 1 skipped
 Logs:   /Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_ins-cp-mgmt-phoneattribute-workflow_default-branch/logs
 Found 16 dependency declarations in /Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_ins-cp-mgmt-phoneattribute-workflow_default-branch/default-branch/ins-cp-mgmt-phoneattribute-workflow/build.gradle
   Detected 1 maven repo(s): https://humana.jfrog.io/artifactory/ins-cp-mgmt-gradle-virtual
@@ -203,10 +235,27 @@ Resolving Gradle dependency tree... timeout=180s
   Dependency tree -> /Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_ins-cp-mgmt-phoneattribute-workflow_default-branch/logs/gradle-dependency-tree.txt
   105 packages in dependency tree
 Running JFrog Xray API CVE scan for 105 resolved component(s)...
-JFrog Xray API CVE scan complete: 1 CVE record(s) across 1 vulnerable component(s).
+JFrog Xray API CVE scan complete: 0 CVE record(s) across 0 vulnerable component(s).
 JFrog audit log -> /Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_ins-cp-mgmt-phoneattribute-workflow_default-branch/logs/jfrog-audit-after.json
-Post-update verification: Partial - build passed but 1 CVE record(s) remain
+JFrog Xray API CVE scan completed with error(s):
+  Xray CVE lookup failed: <urlopen error [Errno 8] nodename nor servname provided, or not known>
+  Xray CVE lookup failed: <urlopen error [Errno 8] nodename nor servname provided, or not known>
+JFrog CVE audit attempt 1/3 did not complete successfully (Xray CVE lookup failed: <urlopen error [Errno 8] nodename nor servname provided, or not known>; Xray CVE lookup failed: <urlopen error [Errno 8] nodename nor servname provided, or not known>); retrying in 5s...
+Running JFrog Xray API CVE scan for 105 resolved component(s)...
+JFrog Xray API CVE scan complete: 0 CVE record(s) across 0 vulnerable component(s).
+JFrog audit log -> /Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_ins-cp-mgmt-phoneattribute-workflow_default-branch/logs/jfrog-audit-after.json
+JFrog Xray API CVE scan completed with error(s):
+  Xray CVE lookup failed: <urlopen error [Errno 8] nodename nor servname provided, or not known>
+  Xray CVE lookup failed: <urlopen error [Errno 8] nodename nor servname provided, or not known>
+JFrog CVE audit attempt 2/3 did not complete successfully (Xray CVE lookup failed: <urlopen error [Errno 8] nodename nor servname provided, or not known>; Xray CVE lookup failed: <urlopen error [Errno 8] nodename nor servname provided, or not known>); retrying in 5s...
+Running JFrog Xray API CVE scan for 105 resolved component(s)...
+JFrog Xray API CVE scan complete: 0 CVE record(s) across 0 vulnerable component(s).
+JFrog audit log -> /Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_ins-cp-mgmt-phoneattribute-workflow_default-branch/logs/jfrog-audit-after.json
+JFrog Xray API CVE scan completed with error(s):
+  Xray CVE lookup failed: <urlopen error [Errno 8] nodename nor servname provided, or not known>
+  Xray CVE lookup failed: <urlopen error [Errno 8] nodename nor servname provided, or not known>
+Post-update verification: Error - secondary verification scan incomplete
 Remediation evidence -> /Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_ins-cp-mgmt-phoneattribute-workflow_default-branch/logs/remediation-evidence.json
 Phase2 cache generated → /Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_ins-cp-mgmt-phoneattribute-workflow_default-branch/logs/phase2-results.json
 Report generated → /Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_ins-cp-mgmt-phoneattribute-workflow_default-branch/logs/task-completion-report.xlsx
-STATUS: Partial
+STATUS: Error

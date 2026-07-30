@@ -799,24 +799,6 @@
     "gradle-fetch-errors.csv": [],
     "gradle-force-overrides.csv": [
       {
-        "dependency": "io.netty:netty-codec-http",
-        "minimum_required": "4.2.16.Final",
-        "new_version": "4.2.16.Final",
-        "old_version": "4.1.130.Final"
-      },
-      {
-        "dependency": "io.netty:netty-resolver-dns",
-        "minimum_required": "4.2.16.Final",
-        "new_version": "4.2.16.Final",
-        "old_version": "4.1.130.Final"
-      },
-      {
-        "dependency": "io.micrometer:micrometer-core",
-        "minimum_required": "1.17.0",
-        "new_version": "1.17.0",
-        "old_version": "1.15.7"
-      },
-      {
         "dependency": "io.netty:netty-handler-proxy",
         "minimum_required": "4.2.16.Final",
         "new_version": "4.2.16.Final",
@@ -829,16 +811,22 @@
         "old_version": "4.1.130.Final"
       },
       {
-        "dependency": "io.netty:netty-codec-dns",
+        "dependency": "io.netty:netty-codec-http",
         "minimum_required": "4.2.16.Final",
         "new_version": "4.2.16.Final",
         "old_version": "4.1.130.Final"
       },
       {
-        "dependency": "org.springframework.boot:spring-boot",
-        "minimum_required": "3.5.16",
-        "new_version": "3.5.16",
-        "old_version": "3.5.9"
+        "dependency": "io.netty:netty-codec-compression",
+        "minimum_required": "4.2.16.Final",
+        "new_version": "4.2.16.Final",
+        "old_version": "4.2.5.Final"
+      },
+      {
+        "dependency": "io.netty:netty-resolver-dns",
+        "minimum_required": "4.2.16.Final",
+        "new_version": "4.2.16.Final",
+        "old_version": "4.1.130.Final"
       },
       {
         "dependency": "org.apache.neethi:neethi",
@@ -847,7 +835,13 @@
         "old_version": "3.2.1"
       },
       {
-        "dependency": "org.springframework.boot:spring-boot-starter-actuator",
+        "dependency": "io.micrometer:micrometer-core",
+        "minimum_required": "1.17.0",
+        "new_version": "1.17.0",
+        "old_version": "1.15.7"
+      },
+      {
+        "dependency": "org.springframework.boot:spring-boot",
         "minimum_required": "3.5.16",
         "new_version": "3.5.16",
         "old_version": "3.5.9"
@@ -857,18 +851,6 @@
         "minimum_required": "3.5.13",
         "new_version": "3.5.13",
         "old_version": "3.5.7"
-      },
-      {
-        "dependency": "io.netty:netty-codec-compression",
-        "minimum_required": "4.2.16.Final",
-        "new_version": "4.2.16.Final",
-        "old_version": "4.2.5.Final"
-      },
-      {
-        "dependency": "org.springframework.kafka:spring-kafka",
-        "minimum_required": "3.3.16",
-        "new_version": "3.3.16",
-        "old_version": "3.3.11"
       },
       {
         "dependency": "org.springframework.hateoas:spring-hateoas",
@@ -881,6 +863,24 @@
         "minimum_required": "4.5.13",
         "new_version": "4.5.13",
         "old_version": "4.5.7"
+      },
+      {
+        "dependency": "org.springframework.boot:spring-boot-starter-actuator",
+        "minimum_required": "3.5.16",
+        "new_version": "3.5.16",
+        "old_version": "3.5.9"
+      },
+      {
+        "dependency": "org.springframework.kafka:spring-kafka",
+        "minimum_required": "3.3.16",
+        "new_version": "3.3.16",
+        "old_version": "3.3.11"
+      },
+      {
+        "dependency": "io.netty:netty-codec-dns",
+        "minimum_required": "4.2.16.Final",
+        "new_version": "4.2.16.Final",
+        "old_version": "4.1.130.Final"
       },
       {
         "dependency": "org.apache.cxf:cxf-core",
@@ -917,9 +917,9 @@
     "gradle-version-changes.csv": [
       {
         "config": "implementation",
-        "dependency": "ch.qos.logback:logback-core",
-        "new_version": "1.6.1",
-        "old_version": "1.5.21",
+        "dependency": "io.netty:netty-codec-http2",
+        "new_version": "4.2.16.Final",
+        "old_version": "4.1.128.Final",
         "remediation_guided": "yes"
       },
       {
@@ -944,13 +944,6 @@
         "remediation_guided": "yes"
       },
       {
-        "config": "implementation",
-        "dependency": "org.apache.kafka:kafka-clients",
-        "new_version": "4.3.1",
-        "old_version": "4.1.1",
-        "remediation_guided": "yes"
-      },
-      {
         "config": "ext",
         "dependency": "org.springframework:spring-framework.version",
         "new_version": "6.2.19",
@@ -959,9 +952,16 @@
       },
       {
         "config": "implementation",
-        "dependency": "io.netty:netty-codec-http2",
-        "new_version": "4.2.16.Final",
-        "old_version": "4.1.128.Final",
+        "dependency": "org.apache.kafka:kafka-clients",
+        "new_version": "4.3.1",
+        "old_version": "4.1.1",
+        "remediation_guided": "yes"
+      },
+      {
+        "config": "implementation",
+        "dependency": "ch.qos.logback:logback-core",
+        "new_version": "1.6.1",
+        "old_version": "1.5.21",
         "remediation_guided": "yes"
       },
       {
@@ -1024,9 +1024,9 @@
       "selected_changes": [
         {
           "change_type": "gradle",
-          "new": "1.6.1",
-          "old": "1.5.21",
-          "package": "ch.qos.logback:logback-core",
+          "new": "4.2.16.Final",
+          "old": "4.1.128.Final",
+          "package": "io.netty:netty-codec-http2",
           "remediation_guided": true
         },
         {
@@ -1052,13 +1052,6 @@
         },
         {
           "change_type": "gradle",
-          "new": "4.3.1",
-          "old": "4.1.1",
-          "package": "org.apache.kafka:kafka-clients",
-          "remediation_guided": true
-        },
-        {
-          "change_type": "gradle",
           "new": "6.2.19",
           "old": "6.2.11",
           "package": "org.springframework:spring-framework.version",
@@ -1066,9 +1059,16 @@
         },
         {
           "change_type": "gradle",
-          "new": "4.2.16.Final",
-          "old": "4.1.128.Final",
-          "package": "io.netty:netty-codec-http2",
+          "new": "4.3.1",
+          "old": "4.1.1",
+          "package": "org.apache.kafka:kafka-clients",
+          "remediation_guided": true
+        },
+        {
+          "change_type": "gradle",
+          "new": "1.6.1",
+          "old": "1.5.21",
+          "package": "ch.qos.logback:logback-core",
           "remediation_guided": true
         },
         {
@@ -1096,27 +1096,6 @@
           "change_type": "gradle-force",
           "new": "4.2.16.Final",
           "old": "4.1.130.Final",
-          "package": "io.netty:netty-codec-http",
-          "remediation_guided": true
-        },
-        {
-          "change_type": "gradle-force",
-          "new": "4.2.16.Final",
-          "old": "4.1.130.Final",
-          "package": "io.netty:netty-resolver-dns",
-          "remediation_guided": true
-        },
-        {
-          "change_type": "gradle-force",
-          "new": "1.17.0",
-          "old": "1.15.7",
-          "package": "io.micrometer:micrometer-core",
-          "remediation_guided": true
-        },
-        {
-          "change_type": "gradle-force",
-          "new": "4.2.16.Final",
-          "old": "4.1.130.Final",
           "package": "io.netty:netty-handler-proxy",
           "remediation_guided": true
         },
@@ -1131,35 +1110,7 @@
           "change_type": "gradle-force",
           "new": "4.2.16.Final",
           "old": "4.1.130.Final",
-          "package": "io.netty:netty-codec-dns",
-          "remediation_guided": true
-        },
-        {
-          "change_type": "gradle-force",
-          "new": "3.5.16",
-          "old": "3.5.9",
-          "package": "org.springframework.boot:spring-boot",
-          "remediation_guided": true
-        },
-        {
-          "change_type": "gradle-force",
-          "new": "3.2.3",
-          "old": "3.2.1",
-          "package": "org.apache.neethi:neethi",
-          "remediation_guided": true
-        },
-        {
-          "change_type": "gradle-force",
-          "new": "3.5.16",
-          "old": "3.5.9",
-          "package": "org.springframework.boot:spring-boot-starter-actuator",
-          "remediation_guided": true
-        },
-        {
-          "change_type": "gradle-force",
-          "new": "3.5.13",
-          "old": "3.5.7",
-          "package": "org.springframework.data:spring-data-commons",
+          "package": "io.netty:netty-codec-http",
           "remediation_guided": true
         },
         {
@@ -1171,9 +1122,37 @@
         },
         {
           "change_type": "gradle-force",
-          "new": "3.3.16",
-          "old": "3.3.11",
-          "package": "org.springframework.kafka:spring-kafka",
+          "new": "4.2.16.Final",
+          "old": "4.1.130.Final",
+          "package": "io.netty:netty-resolver-dns",
+          "remediation_guided": true
+        },
+        {
+          "change_type": "gradle-force",
+          "new": "3.2.3",
+          "old": "3.2.1",
+          "package": "org.apache.neethi:neethi",
+          "remediation_guided": true
+        },
+        {
+          "change_type": "gradle-force",
+          "new": "1.17.0",
+          "old": "1.15.7",
+          "package": "io.micrometer:micrometer-core",
+          "remediation_guided": true
+        },
+        {
+          "change_type": "gradle-force",
+          "new": "3.5.16",
+          "old": "3.5.9",
+          "package": "org.springframework.boot:spring-boot",
+          "remediation_guided": true
+        },
+        {
+          "change_type": "gradle-force",
+          "new": "3.5.13",
+          "old": "3.5.7",
+          "package": "org.springframework.data:spring-data-commons",
           "remediation_guided": true
         },
         {
@@ -1188,6 +1167,27 @@
           "new": "4.5.13",
           "old": "4.5.7",
           "package": "org.springframework.data:spring-data-mongodb",
+          "remediation_guided": true
+        },
+        {
+          "change_type": "gradle-force",
+          "new": "3.5.16",
+          "old": "3.5.9",
+          "package": "org.springframework.boot:spring-boot-starter-actuator",
+          "remediation_guided": true
+        },
+        {
+          "change_type": "gradle-force",
+          "new": "3.3.16",
+          "old": "3.3.11",
+          "package": "org.springframework.kafka:spring-kafka",
+          "remediation_guided": true
+        },
+        {
+          "change_type": "gradle-force",
+          "new": "4.2.16.Final",
+          "old": "4.1.130.Final",
+          "package": "io.netty:netty-codec-dns",
           "remediation_guided": true
         },
         {
@@ -6582,7 +6582,7 @@
       "write_status": "Failed"
     }
   ],
-  "generated_at": "2026-07-28T09:04:34",
+  "generated_at": "2026-07-29T08:07:00",
   "next_actions": [
     {
       "action": "Review exhaustive-isolation failures and try alternative safe versions for the implicated packages instead of retaining the rollback.",

@@ -3,34 +3,38 @@
 ## Summary
 |metric|value|
 |---|---|
-|Overall Status|🟢 Success|
-|Generated at|2026-07-28T08:39:04|
+|Overall Status|🟡 Needs Review|
+|Generated at|2026-07-29T08:00:59|
 |GitHub URL|https://github.com/Cloud-3-0-EMU/cwih-cnp-mgmt-preference-workflow.git|
 |Project directory|/Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_cwih-cnp-mgmt-preference-workflow_default-branch/default-branch/cwih-cnp-mgmt-preference-workflow|
 |Dependency files|1|
 |Changed packages|26|
 |Skipped packages|0|
 |Validation records|1|
-|Taskboard CVEs tracked|4|
+|Taskboard CVEs tracked|0|
 |Resolved dependency changes|82|
-|Verification classification|Success - build and tests passed; no CVEs remain|
+|Verification classification|Partial - build passed but 1 CVE record(s) remain|
 |Test verification|passed|
 |Original CVEs remaining|0|
 |JFrog vulnerabilities before|77|
-|JFrog vulnerabilities after|0|
+|JFrog vulnerabilities after|1|
 |JFrog audit before JSON|/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_cwih-cnp-mgmt-preference-workflow_default-branch/logs/jfrog-audit.json|
 |JFrog audit after JSON|/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_cwih-cnp-mgmt-preference-workflow_default-branch/logs/jfrog-audit-after.json|
 
 ## Remediation Outcome
 
-🟢 **SUCCESS**
+🟡 **REVIEW RECOMMENDED**
 
-All remediation actions completed successfully.
+The build passed, but some findings remain (unresolved CVE records and/or alternate versions selected during validation).
+
+Review:
+- the post-update JFrog audit for remaining CVE records
+- build-validation-external-auto-fixes.csv (if present)
 
 ## Dependency Files
 |file|ecosystem|changes|skipped|write_status|validation_status|validation_message|verification_status|test_status|
 |---|---|---|---|---|---|---|---|---|
-|build.gradle|gradle|26|0|Written|Passed||Success - build and tests passed; no CVEs remain|passed|
+|build.gradle|gradle|26|0|Written|Passed||Partial - build passed but 1 CVE record(s) remain|passed|
 
 ## Applied / Planned Changes
 |file|ecosystem|package|type|old|new|status|remediation_guided|
@@ -44,19 +48,19 @@ All remediation actions completed successfully.
 |build.gradle|gradle|at.yawk.lz4:lz4-java|gradle-force|1.10.1|1.11.1|Passed|True|
 |build.gradle|gradle|io.micrometer:micrometer-core|gradle-force|1.15.10|1.17.0|Passed|True|
 |build.gradle|gradle|org.springframework.boot:spring-boot|gradle-force|3.5.13|3.5.16|Passed|True|
-|build.gradle|gradle|org.apache.tomcat.embed:tomcat-embed-websocket|gradle-force|10.1.53|10.1.57|Passed|True|
 |build.gradle|gradle|org.springframework.data:spring-data-commons|gradle-force|3.5.10|3.5.13|Passed|True|
+|build.gradle|gradle|org.apache.tomcat.embed:tomcat-embed-websocket|gradle-force|10.1.53|10.1.57|Passed|True|
 |build.gradle|gradle|org.springframework.kafka:spring-kafka|gradle-force|3.3.14|3.3.16|Passed|True|
 |build.gradle|gradle|org.springframework.data:spring-data-mongodb|gradle-force|4.5.10|4.5.13|Passed|True|
-|build.gradle|gradle|io.netty:netty-codec-dns|gradle-force|4.1.132.Final|4.2.16.Final|Passed|True|
-|build.gradle|gradle|io.netty:netty-transport-native-epoll|gradle-force|4.1.132.Final|4.2.16.Final|Passed|True|
-|build.gradle|gradle|io.netty:netty-codec-http|gradle-force|4.1.132.Final|4.2.16.Final|Passed|True|
-|build.gradle|gradle|io.netty:netty-codec-http2|gradle-force|4.1.132.Final|4.2.16.Final|Passed|True|
-|build.gradle|gradle|io.netty:netty-handler|gradle-force|4.1.132.Final|4.2.16.Final|Passed|True|
 |build.gradle|gradle|com.fasterxml.jackson.core:jackson-databind|gradle-force|2.21.2|2.22.1|Passed|True|
-|build.gradle|gradle|io.netty:netty-codec|gradle-force|4.1.132.Final|4.2.16.Final|Passed|True|
-|build.gradle|gradle|io.netty:netty-handler-proxy|gradle-force|4.1.132.Final|4.2.16.Final|Passed|True|
+|build.gradle|gradle|io.netty:netty-codec-http|gradle-force|4.1.132.Final|4.2.16.Final|Passed|True|
 |build.gradle|gradle|io.netty:netty-resolver-dns|gradle-force|4.1.132.Final|4.2.16.Final|Passed|True|
+|build.gradle|gradle|io.netty:netty-handler-proxy|gradle-force|4.1.132.Final|4.2.16.Final|Passed|True|
+|build.gradle|gradle|io.netty:netty-codec-dns|gradle-force|4.1.132.Final|4.2.16.Final|Passed|True|
+|build.gradle|gradle|io.netty:netty-codec-http2|gradle-force|4.1.132.Final|4.2.16.Final|Passed|True|
+|build.gradle|gradle|io.netty:netty-codec|gradle-force|4.1.132.Final|4.2.16.Final|Passed|True|
+|build.gradle|gradle|io.netty:netty-transport-native-epoll|gradle-force|4.1.132.Final|4.2.16.Final|Passed|True|
+|build.gradle|gradle|io.netty:netty-handler|gradle-force|4.1.132.Final|4.2.16.Final|Passed|True|
 |build.gradle|gradle|org.springframework:spring-core|gradle-force|6.2.17|6.2.19|Passed|True|
 |build.gradle|gradle|org.springframework:spring-expression|gradle-force|6.2.17|6.2.19|Passed|True|
 |build.gradle|gradle|org.springframework:spring-web|gradle-force|6.2.17|6.2.19|Passed|True|
@@ -74,7 +78,7 @@ _No rows._
 |ecosystem|snapshot|path|exists|line_count|dependency_count|bytes|
 |---|---|---|---|---|---|---|
 |gradle|before|/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_cwih-cnp-mgmt-preference-workflow_default-branch/logs/gradle-dependency-tree-before.txt|True|1297|1190|80265|
-|gradle|after|/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_cwih-cnp-mgmt-preference-workflow_default-branch/logs/gradle-dependency-tree-after.txt|True|1335|1228|83085|
+|gradle|after|/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_cwih-cnp-mgmt-preference-workflow_default-branch/logs/gradle-dependency-tree-after.txt|True|1335|1228|83087|
 |node|before|/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_cwih-cnp-mgmt-preference-workflow_default-branch/logs/npm-dependency-tree-before.json|False|0|0|0|
 |node|after|/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_cwih-cnp-mgmt-preference-workflow_default-branch/logs/npm-dependency-tree-after.json|False|0|0|0|
 
@@ -163,11 +167,3 @@ _No rows._
 |org.springframework:spring-web|6.2.17|6.2.19|changed|
 |org.springframework:spring-webflux|6.2.17|6.2.19|changed|
 |org.springframework:spring-webmvc|6.2.17|6.2.19|changed|
-
-## Taskboard CVEs
-|cve_id|status|
-|---|---|
-|CVE-2025-11226|Not found in dependency graph|
-|CVE-2025-11839|Not found in dependency graph|
-|CVE-2025-11840|Not found in dependency graph|
-|CVE-2025-27789|Not found in dependency graph|

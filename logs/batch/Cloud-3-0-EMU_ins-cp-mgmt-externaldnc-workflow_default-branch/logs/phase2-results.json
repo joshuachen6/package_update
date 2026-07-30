@@ -3,6 +3,13 @@
     {
       "display_changes": [
         {
+          "package": "org.apache.tomcat.embed:tomcat-embed-core",
+          "change_type": "gradle",
+          "old": "10.1.25",
+          "new": "10.1.57",
+          "remediation_guided": true
+        },
+        {
           "package": "org.apache.kafka:kafka-clients",
           "change_type": "gradle",
           "old": "4.0.0",
@@ -10,10 +17,10 @@
           "remediation_guided": true
         },
         {
-          "package": "org.apache.tomcat.embed:tomcat-embed-core",
+          "package": "org.springframework:spring-core",
           "change_type": "gradle",
-          "old": "10.1.25",
-          "new": "10.1.57",
+          "old": "6.2.0",
+          "new": "6.2.19",
           "remediation_guided": true
         },
         {
@@ -24,14 +31,21 @@
           "remediation_guided": true
         },
         {
-          "package": "org.springframework:spring-expression",
+          "package": "org.springframework:spring-context",
           "change_type": "gradle",
           "old": "6.2.0",
           "new": "6.2.19",
           "remediation_guided": true
         },
         {
-          "package": "org.springframework:spring-context",
+          "package": "org.springframework:spring-webmvc",
+          "change_type": "gradle",
+          "old": "6.2.10",
+          "new": "6.2.19",
+          "remediation_guided": true
+        },
+        {
+          "package": "org.springframework:spring-expression",
           "change_type": "gradle",
           "old": "6.2.0",
           "new": "6.2.19",
@@ -45,21 +59,7 @@
           "remediation_guided": true
         },
         {
-          "package": "org.springframework:spring-core",
-          "change_type": "gradle",
-          "old": "6.2.0",
-          "new": "6.2.19",
-          "remediation_guided": true
-        },
-        {
           "package": "org.springframework:spring-web",
-          "change_type": "gradle",
-          "old": "6.2.10",
-          "new": "6.2.19",
-          "remediation_guided": true
-        },
-        {
-          "package": "org.springframework:spring-webmvc",
           "change_type": "gradle",
           "old": "6.2.10",
           "new": "6.2.19",
@@ -80,13 +80,6 @@
           "remediation_guided": true
         },
         {
-          "package": "org.lz4:lz4-java",
-          "change_type": "gradle-force",
-          "old": "1.8.0",
-          "new": "1.8.0",
-          "remediation_guided": true
-        },
-        {
           "package": "io.micrometer:micrometer-core",
           "change_type": "gradle-force",
           "old": "1.13.14",
@@ -94,31 +87,10 @@
           "remediation_guided": true
         },
         {
-          "package": "org.springframework.data:spring-data-commons",
+          "package": "org.lz4:lz4-java",
           "change_type": "gradle-force",
-          "old": "3.3.12",
-          "new": "3.5.13",
-          "remediation_guided": true
-        },
-        {
-          "package": "org.apache.commons:commons-lang3",
-          "change_type": "gradle-force",
-          "old": "3.14.0",
-          "new": "3.20.0",
-          "remediation_guided": true
-        },
-        {
-          "package": "org.springframework.boot:spring-boot",
-          "change_type": "gradle-force",
-          "old": "3.3.12",
-          "new": "3.5.16",
-          "remediation_guided": true
-        },
-        {
-          "package": "org.apache.tomcat.embed:tomcat-embed-websocket",
-          "change_type": "gradle-force",
-          "old": "10.1.41",
-          "new": "10.1.57",
+          "old": "1.8.0",
+          "new": "1.8.0",
           "remediation_guided": true
         },
         {
@@ -129,10 +101,17 @@
           "remediation_guided": true
         },
         {
-          "package": "com.fasterxml.jackson.core:jackson-databind",
+          "package": "org.springframework.data:spring-data-commons",
           "change_type": "gradle-force",
-          "old": "2.17.3",
-          "new": "2.22.1",
+          "old": "3.3.12",
+          "new": "3.5.13",
+          "remediation_guided": true
+        },
+        {
+          "package": "org.springframework.boot:spring-boot",
+          "change_type": "gradle-force",
+          "old": "3.3.12",
+          "new": "3.5.16",
           "remediation_guided": true
         },
         {
@@ -141,6 +120,27 @@
           "old": "4.3.12",
           "new": "4.5.13",
           "remediation_guided": true
+        },
+        {
+          "package": "org.apache.commons:commons-lang3",
+          "change_type": "gradle-force",
+          "old": "3.14.0",
+          "new": "3.20.0",
+          "remediation_guided": true
+        },
+        {
+          "package": "com.fasterxml.jackson.core:jackson-databind",
+          "change_type": "gradle-force",
+          "old": "2.17.3",
+          "new": "2.22.1",
+          "remediation_guided": true
+        },
+        {
+          "package": "org.apache.tomcat.embed:tomcat-embed-websocket",
+          "change_type": "gradle-force",
+          "old": "10.1.41",
+          "new": "10.1.57",
+          "remediation_guided": true
         }
       ],
       "skipped_display": [],
@@ -148,15 +148,6 @@
       "tree_failed": false,
       "build_text": "buildscript {\n    repositories {\n        maven {\n            url 'https://humana.jfrog.io/artifactory/ins-cp-mgmt-gradle-virtual'\n            credentials {\n                username System.getenv('ARTIFACTORY_USERNAME')\n                password System.getenv('ARTIFACTORY_PASSWORD')\n            }\n        }\n\n    }\n    dependencies {\n        //Check for the latest version here: http://plugins.gradle.org/plugin/com.jfrog.artifactory\n        classpath \"org.jfrog.buildinfo:build-info-extractor-gradle:4+\"\n    }\n}\n\nplugins {\n    id 'java'\n    id 'org.springframework.boot' version '3.3.12'\n    id 'io.spring.dependency-management' version '1.1.7'\n    id 'application'\n    id 'jacoco'\n    id \"org.sonarqube\" version \"5.1.0.4882\"\n\n}\n\ngroup = 'com.humana.domain.externaldnc'\nversion = '0.0.1-SNAPSHOT'\n\njava {\n    toolchain {\n        languageVersion = JavaLanguageVersion.of(17)\n    }\n}\n\nconfigurations {\n    compileOnly {\n        extendsFrom annotationProcessor\n    }\n}\n\nallprojects {\n    apply plugin: \"com.jfrog.artifactory\"\n}\nartifactory {\n    contextUrl = \"${System.getenv('ARTIFACTORY_SOURCE')}\"   //The base Artifactory URL if not overridden by the publisher/resolver\n    publish {\n        repository {\n            repoKey = 'ins-cp-mgmt-gradle-local'\n            username = \"${System.getenv('ARTIFACTORY_USERNAME')}\"\n            password = \"${System.getenv('ARTIFACTORY_PASSWORD')}\"\n            maven = true\n        }\n    }\n    resolve {\n        repository {\n            repoKey = 'ins-cp-mgmt-gradle-virtual'\n            username = \"${System.getenv('ARTIFACTORY_USERNAME')}\"\n            password = \"${System.getenv('ARTIFACTORY_PASSWORD')}\"\n            maven = true\n        }\n    }\n}\nrepositories {\n    mavenLocal()\n    maven {\n        url 'https://humana.jfrog.io/artifactory/ins-cp-mgmt-gradle-virtual'\n        credentials {\n            username System.getenv('ARTIFACTORY_USERNAME')\n            password System.getenv('ARTIFACTORY_PASSWORD')\n        }\n    }\n}\n\next {\n    set('springCloudVersion', \"2023.0.4\")\n}\n\ndependencies {\n    implementation 'org.springframework.boot:spring-boot-starter-actuator'\n    implementation('org.springframework.boot:spring-boot-starter-data-mongodb:3.4.0') {\n        exclude group: 'org.springframework', module: 'spring-beans'\n        exclude group: 'org.springframework', module: 'spring-context'\n        exclude group: 'org.springframework', module: 'spring-core'\n        exclude group: 'org.springframework', module: 'spring-expression'\n    }\n    implementation 'org.springframework:spring-beans:6.2.0'\n    implementation 'org.springframework:spring-context:6.2.0'\n    implementation 'org.springframework:spring-core:6.2.0'\n    implementation 'org.springframework:spring-expression:6.2.0'\n\n\n    implementation('org.springframework.boot:spring-boot-starter-web:3.4.0')\n            {\n                exclude group: 'org.springframework', module: 'spring-webmvc'\n                exclude group: 'org.springframework', module: 'spring-web'\n                exclude group: 'org.apache.tomcat.embed', module: 'tomcat-embed-core'\n                //exclude group: 'com.fasterxml.jackson.core', module: 'jackson-core'\n            }\n    implementation('org.springframework:spring-webmvc:6.2.10')\n    implementation('org.springframework:spring-web:6.2.10')\n    implementation 'org.springframework.boot:spring-boot-starter-aop:3.4.0'\n    implementation('org.springframework.kafka:spring-kafka:3.3.0') {\n        exclude group: 'org.xerial.snappy', module: 'snappy-java'\n        exclude group: 'org.apache.kafka', module: 'kafka-clients'\n    }\n    implementation 'org.apache.kafka:kafka-clients:4.0.0'\n    implementation 'org.apache.tomcat.embed:tomcat-embed-core:10.1.25'\n    implementation('org.apache.avro:avro:1.12.0') {\n        //exclude group: 'com.fasterxml.jackson.core', module: 'jackson-core'\n    }\n    implementation 'org.springframework:spring-webflux:6.2.0'\n    //implementation 'io.projectreactor.netty:reactor-netty-http'\n    compileOnly 'org.projectlombok:lombok'\n    annotationProcessor 'org.projectlombok:lombok'\n    testImplementation('org.springframework.boot:spring-boot-starter-test:3.4.0') {\n        exclude group: 'org.xmlunit', module: 'xmlunit-core'\n    }\n    testImplementation 'org.xmlunit:xmlunit-core:2.10.0'\n    testImplementation 'org.mockito:mockito-core:5.1.1'\n    implementation 'org.xerial.snappy:snappy-java:1.1.10.7'\n    implementation 'org.springframework.boot:spring-boot-starter-validation:3.4.0'\n    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.13.4'\n\n//    implementation(group: 'io.netty', name: 'netty-handler') {\n//        version {\n//            strictly '4.1.118.Final'\n//        }\n//    }\n}\n\napplication {\n    mainClass = 'com.humana.domain.externalDnc.IngestionServiceApplication'\n}\nsonarqube {\n    properties {\n        property \"sonar.projectKey\", \"MACS.ConsentAndPreferences.ExternalDncWorkflow\"\n        property \"sonar.host.url\", \"http://analysis-devops.humana.com\"\n        property \"sonar.login\", System.getenv(\"SONARQUBE_TOKEN\")\n        property \"sonar.java.binaries\", \"${layout.buildDirectory.get()}/classes/java/main\"\n        property \"sonar.junit.reportsPath\", \"${layout.buildDirectory.get()}/test-results/test/\"\n        property \"sonar.jacoco.reportPaths\", \"${layout.buildDirectory.get()}/reports/jacoco/test/jacocoTestReport.xml\"\n        property 'sonar.coverage.exclusions',\n                \"**/com/humana/domain/externalDnc/IngestionServiceApplication.java,\" +\n                        \"**/com/humana/domain/externalDnc/config/**,\" +\n                        \"**/com/humana/domain/externalDnc/constants/**,\" +\n                        \"**/com/humana/domain/externalDnc/contract/**,\" +\n                        \"**/com/humana/domain/externalDnc/dto/**,\" +\n                        \"**/com/humana/domain/externalDnc/entity/**,\" +\n                        \"**/com/humana/domain/externalDnc/enums/**,\" +\n                        \"**/com/humana/domain/externalDnc/exceptions/**,\" +\n                        \"**/com/humana/domain/externalDnc/logging/**,\" +\n                        \"**/com/humana/domain/externalDnc/model/**,\" +\n                        \"**/com/humana/domain/externalDnc/repository/**,\" +\n                        \"**/com/humana/domain/externalDnc/service/avro/**,\" +\n                        \"**/com/humana/domain/externalDnc/util/**\"\n    }\n}\n\napply plugin: 'jacoco'\n\ntest {\n    useJUnitPlatform()\n\n    jacocoTestReport {\n        reports {\n            xml.required.set(true)\n            html.required.set(true)\n            xml.destination file(\"${layout.buildDirectory.get()}/reports/jacoco/test/jacocoTestReport.xml\")\n            html.destination file(\"${layout.buildDirectory.get()}/jacocoReport\")\n        }\n        finalizedBy jacocoTestCoverageVerification\n        afterEvaluate {\n            classDirectories.setFrom(files(classDirectories.files.collect {\n                fileTree(dir: it, exclude: [\n                        \"**/com/humana/domain/externalDnc/entity/**,\" +\n                                \"**/com/humana/domain/externalDnc/config/**,\" +\n                                \"**/com/humana/domain/externalDnc/constants/**,\" +\n                                \"**/com/humana/domain/externalDnc/contract/**,\" +\n                                \"**/com/humana/domain/externalDnc/dto/**,\" +\n                                \"**/com/humana/domain/externalDnc/entity/**,\" +\n                                \"**/com/humana/domain/externalDnc/enums/**,\" +\n                                \"**/com/humana/domain/externalDnc/exceptions/**,\" +\n                                \"**/com/humana/domain/externalDnc/logging/**,\" +\n                                \"**/com/humana/domain/externalDnc/model/**,\" +\n                                \"**/com/humana/domain/externalDnc/repository/**,\" +\n                                \"**/com/humana/domain/externalDnc/service/avro/**,\" +\n                                \"**/com/humana/domain/externalDnc/util/**\"\n                ])\n            }))\n        }\n    }\n    test.finalizedBy jacocoTestReport\n}\n\n\ntasks.named('test') {\n    useJUnitPlatform()\n}\n",
       "changes": [
-        {
-          "dependency": "org.apache.kafka:kafka-clients",
-          "config": "implementation",
-          "old_version": "4.0.0",
-          "new_version": "4.3.1",
-          "remediation_guided": "yes",
-          "original": "implementation 'org.apache.kafka:kafka-clients:4.0.0'",
-          "replacement": "implementation 'org.apache.kafka:kafka-clients:4.3.1'"
-        },
         {
           "dependency": "org.apache.tomcat.embed:tomcat-embed-core",
           "config": "implementation",
@@ -167,40 +158,13 @@
           "replacement": "implementation 'org.apache.tomcat.embed:tomcat-embed-core:10.1.57'"
         },
         {
-          "dependency": "org.springframework.kafka:spring-kafka",
+          "dependency": "org.apache.kafka:kafka-clients",
           "config": "implementation",
-          "old_version": "3.3.0",
-          "new_version": "3.3.16",
+          "old_version": "4.0.0",
+          "new_version": "4.3.1",
           "remediation_guided": "yes",
-          "original": "implementation('org.springframework.kafka:spring-kafka:3.3.0')",
-          "replacement": "implementation('org.springframework.kafka:spring-kafka:3.3.16')"
-        },
-        {
-          "dependency": "org.springframework:spring-expression",
-          "config": "implementation",
-          "old_version": "6.2.0",
-          "new_version": "6.2.19",
-          "remediation_guided": "yes",
-          "original": "implementation 'org.springframework:spring-expression:6.2.0'",
-          "replacement": "implementation 'org.springframework:spring-expression:6.2.19'"
-        },
-        {
-          "dependency": "org.springframework:spring-context",
-          "config": "implementation",
-          "old_version": "6.2.0",
-          "new_version": "6.2.19",
-          "remediation_guided": "yes",
-          "original": "implementation 'org.springframework:spring-context:6.2.0'",
-          "replacement": "implementation 'org.springframework:spring-context:6.2.19'"
-        },
-        {
-          "dependency": "org.springframework:spring-webflux",
-          "config": "implementation",
-          "old_version": "6.2.0",
-          "new_version": "6.2.19",
-          "remediation_guided": "yes",
-          "original": "implementation 'org.springframework:spring-webflux:6.2.0'",
-          "replacement": "implementation 'org.springframework:spring-webflux:6.2.19'"
+          "original": "implementation 'org.apache.kafka:kafka-clients:4.0.0'",
+          "replacement": "implementation 'org.apache.kafka:kafka-clients:4.3.1'"
         },
         {
           "dependency": "org.springframework:spring-core",
@@ -212,13 +176,22 @@
           "replacement": "implementation 'org.springframework:spring-core:6.2.19'"
         },
         {
-          "dependency": "org.springframework:spring-web",
+          "dependency": "org.springframework.kafka:spring-kafka",
           "config": "implementation",
-          "old_version": "6.2.10",
+          "old_version": "3.3.0",
+          "new_version": "3.3.16",
+          "remediation_guided": "yes",
+          "original": "implementation('org.springframework.kafka:spring-kafka:3.3.0')",
+          "replacement": "implementation('org.springframework.kafka:spring-kafka:3.3.16')"
+        },
+        {
+          "dependency": "org.springframework:spring-context",
+          "config": "implementation",
+          "old_version": "6.2.0",
           "new_version": "6.2.19",
           "remediation_guided": "yes",
-          "original": "implementation('org.springframework:spring-web:6.2.10')",
-          "replacement": "implementation('org.springframework:spring-web:6.2.19')"
+          "original": "implementation 'org.springframework:spring-context:6.2.0'",
+          "replacement": "implementation 'org.springframework:spring-context:6.2.19'"
         },
         {
           "dependency": "org.springframework:spring-webmvc",
@@ -228,6 +201,33 @@
           "remediation_guided": "yes",
           "original": "implementation('org.springframework:spring-webmvc:6.2.10')",
           "replacement": "implementation('org.springframework:spring-webmvc:6.2.19')"
+        },
+        {
+          "dependency": "org.springframework:spring-expression",
+          "config": "implementation",
+          "old_version": "6.2.0",
+          "new_version": "6.2.19",
+          "remediation_guided": "yes",
+          "original": "implementation 'org.springframework:spring-expression:6.2.0'",
+          "replacement": "implementation 'org.springframework:spring-expression:6.2.19'"
+        },
+        {
+          "dependency": "org.springframework:spring-webflux",
+          "config": "implementation",
+          "old_version": "6.2.0",
+          "new_version": "6.2.19",
+          "remediation_guided": "yes",
+          "original": "implementation 'org.springframework:spring-webflux:6.2.0'",
+          "replacement": "implementation 'org.springframework:spring-webflux:6.2.19'"
+        },
+        {
+          "dependency": "org.springframework:spring-web",
+          "config": "implementation",
+          "old_version": "6.2.10",
+          "new_version": "6.2.19",
+          "remediation_guided": "yes",
+          "original": "implementation('org.springframework:spring-web:6.2.10')",
+          "replacement": "implementation('org.springframework:spring-web:6.2.19')"
         },
         {
           "dependency": "org.springframework:spring-beans",
@@ -247,40 +247,16 @@
           "minimum_required": "3.5.16"
         },
         {
-          "dependency": "org.lz4:lz4-java",
-          "old_version": "1.8.0",
-          "new_version": "1.8.0",
-          "minimum_required": "1.8.0"
-        },
-        {
           "dependency": "io.micrometer:micrometer-core",
           "old_version": "1.13.14",
           "new_version": "1.17.0",
           "minimum_required": "1.17.0"
         },
         {
-          "dependency": "org.springframework.data:spring-data-commons",
-          "old_version": "3.3.12",
-          "new_version": "3.5.13",
-          "minimum_required": "3.5.13"
-        },
-        {
-          "dependency": "org.apache.commons:commons-lang3",
-          "old_version": "3.14.0",
-          "new_version": "3.20.0",
-          "minimum_required": "3.20.0"
-        },
-        {
-          "dependency": "org.springframework.boot:spring-boot",
-          "old_version": "3.3.12",
-          "new_version": "3.5.16",
-          "minimum_required": "3.5.16"
-        },
-        {
-          "dependency": "org.apache.tomcat.embed:tomcat-embed-websocket",
-          "old_version": "10.1.41",
-          "new_version": "10.1.57",
-          "minimum_required": "10.1.57"
+          "dependency": "org.lz4:lz4-java",
+          "old_version": "1.8.0",
+          "new_version": "1.8.0",
+          "minimum_required": "1.8.0"
         },
         {
           "dependency": "org.assertj:assertj-core",
@@ -289,16 +265,40 @@
           "minimum_required": "3.27.7"
         },
         {
-          "dependency": "com.fasterxml.jackson.core:jackson-databind",
-          "old_version": "2.17.3",
-          "new_version": "2.22.1",
-          "minimum_required": "2.22.1"
+          "dependency": "org.springframework.data:spring-data-commons",
+          "old_version": "3.3.12",
+          "new_version": "3.5.13",
+          "minimum_required": "3.5.13"
+        },
+        {
+          "dependency": "org.springframework.boot:spring-boot",
+          "old_version": "3.3.12",
+          "new_version": "3.5.16",
+          "minimum_required": "3.5.16"
         },
         {
           "dependency": "org.springframework.data:spring-data-mongodb",
           "old_version": "4.3.12",
           "new_version": "4.5.13",
           "minimum_required": "4.5.13"
+        },
+        {
+          "dependency": "org.apache.commons:commons-lang3",
+          "old_version": "3.14.0",
+          "new_version": "3.20.0",
+          "minimum_required": "3.20.0"
+        },
+        {
+          "dependency": "com.fasterxml.jackson.core:jackson-databind",
+          "old_version": "2.17.3",
+          "new_version": "2.22.1",
+          "minimum_required": "2.22.1"
+        },
+        {
+          "dependency": "org.apache.tomcat.embed:tomcat-embed-websocket",
+          "old_version": "10.1.41",
+          "new_version": "10.1.57",
+          "minimum_required": "10.1.57"
         }
       ],
       "skipped_raw": [],
@@ -5153,11 +5153,7 @@
         ]
       },
       "dm_type": "gradle",
-      "preaudit_gradle_tree_path": "/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_ins-cp-mgmt-externaldnc-workflow_default-branch/logs/preaudit-gradle/1/gradle-dependency-tree.txt",
-      "write_status": "Written",
-      "validation_status": "Passed",
-      "verification_status": "Partial - build passed but 1 CVE record(s) remain",
-      "test_status": "passed"
+      "preaudit_gradle_tree_path": "/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_ins-cp-mgmt-externaldnc-workflow_default-branch/logs/preaudit-gradle/1/gradle-dependency-tree.txt"
     }
   ],
   "cfg": {
@@ -5185,87 +5181,9 @@
     "github_url": "https://github.com/Cloud-3-0-EMU/ins-cp-mgmt-externaldnc-workflow.git",
     "checkout_dir": "/Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_ins-cp-mgmt-externaldnc-workflow_default-branch/default-branch",
     "branch": null,
-    "input_cves": [
-      "CVE-2024-50379",
-      "CVE-2024-52316",
-      "CVE-2024-54677",
-      "CVE-2024-56337",
-      "CVE-2025-11082",
-      "CVE-2025-11083",
-      "CVE-2025-11226",
-      "CVE-2025-1147",
-      "CVE-2025-1148",
-      "CVE-2025-11839",
-      "CVE-2025-11840",
-      "CVE-2025-22233",
-      "CVE-2025-24813",
-      "CVE-2025-31650",
-      "CVE-2025-31651",
-      "CVE-2025-3198",
-      "CVE-2025-41249",
-      "CVE-2025-46701",
-      "CVE-2025-48924",
-      "CVE-2025-48988",
-      "CVE-2025-48989",
-      "CVE-2025-49124",
-      "CVE-2025-49125",
-      "CVE-2025-5244",
-      "CVE-2025-5245",
-      "CVE-2025-52520",
-      "CVE-2025-53057",
-      "CVE-2025-53066",
-      "CVE-2025-53506",
-      "CVE-2025-55668",
-      "CVE-2025-55752",
-      "CVE-2025-55754",
-      "CVE-2025-61795",
-      "CVE-2025-6297",
-      "CVE-2025-7545",
-      "CVE-2025-8058",
-      "CVE-2025-8225",
-      "CVE-2025-9230"
-    ],
+    "input_cves": null,
     "proj_dir": "/Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_ins-cp-mgmt-externaldnc-workflow_default-branch/default-branch/ins-cp-mgmt-externaldnc-workflow"
   },
   "github_url": "https://github.com/Cloud-3-0-EMU/ins-cp-mgmt-externaldnc-workflow.git",
-  "input_cves": [
-    "CVE-2024-50379",
-    "CVE-2024-52316",
-    "CVE-2024-54677",
-    "CVE-2024-56337",
-    "CVE-2025-11082",
-    "CVE-2025-11083",
-    "CVE-2025-11226",
-    "CVE-2025-1147",
-    "CVE-2025-1148",
-    "CVE-2025-11839",
-    "CVE-2025-11840",
-    "CVE-2025-22233",
-    "CVE-2025-24813",
-    "CVE-2025-31650",
-    "CVE-2025-31651",
-    "CVE-2025-3198",
-    "CVE-2025-41249",
-    "CVE-2025-46701",
-    "CVE-2025-48924",
-    "CVE-2025-48988",
-    "CVE-2025-48989",
-    "CVE-2025-49124",
-    "CVE-2025-49125",
-    "CVE-2025-5244",
-    "CVE-2025-5245",
-    "CVE-2025-52520",
-    "CVE-2025-53057",
-    "CVE-2025-53066",
-    "CVE-2025-53506",
-    "CVE-2025-55668",
-    "CVE-2025-55752",
-    "CVE-2025-55754",
-    "CVE-2025-61795",
-    "CVE-2025-6297",
-    "CVE-2025-7545",
-    "CVE-2025-8058",
-    "CVE-2025-8225",
-    "CVE-2025-9230"
-  ]
+  "input_cves": []
 }

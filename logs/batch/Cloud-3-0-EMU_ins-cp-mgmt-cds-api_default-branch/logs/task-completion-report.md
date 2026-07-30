@@ -4,19 +4,19 @@
 |metric|value|
 |---|---|
 |Overall Status|🟡 Needs Review|
-|Generated at|2026-07-28T08:50:51|
+|Generated at|2026-07-29T08:04:47|
 |GitHub URL|https://github.com/Cloud-3-0-EMU/ins-cp-mgmt-cds-api.git|
 |Project directory|/Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_ins-cp-mgmt-cds-api_default-branch/default-branch/ins-cp-mgmt-cds-api|
 |Dependency files|1|
-|Changed packages|29|
+|Changed packages|30|
 |Skipped packages|1|
 |Validation records|1|
-|Taskboard CVEs tracked|18|
-|Resolved dependency changes|96|
+|Taskboard CVEs tracked|0|
+|Resolved dependency changes|98|
 |Verification classification|Partial - build passed but 3 CVE record(s) remain|
 |Test verification|passed|
 |Original CVEs remaining|3|
-|JFrog vulnerabilities before|68|
+|JFrog vulnerabilities before|69|
 |JFrog vulnerabilities after|3|
 |JFrog audit before JSON|/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_ins-cp-mgmt-cds-api_default-branch/logs/jfrog-audit.json|
 |JFrog audit after JSON|/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_ins-cp-mgmt-cds-api_default-branch/logs/jfrog-audit-after.json|
@@ -34,36 +34,37 @@ Review:
 ## Dependency Files
 |file|ecosystem|changes|skipped|write_status|validation_status|validation_message|verification_status|test_status|
 |---|---|---|---|---|---|---|---|---|
-|build.gradle|gradle|29|1|Written|Passed||Partial - build passed but 3 CVE record(s) remain|passed|
+|build.gradle|gradle|30|1|Written|Passed||Partial - build passed but 3 CVE record(s) remain|passed|
 
 ## Applied / Planned Changes
 |file|ecosystem|package|type|old|new|status|remediation_guided|
 |---|---|---|---|---|---|---|---|
-|build.gradle|gradle|io.netty:netty-handler|gradle|4.1.133.Final|4.2.16.Final|Passed|True|
+|build.gradle|gradle|io.netty:netty-codec-http|gradle|4.1.133.Final|4.2.16.Final|Passed|True|
 |build.gradle|gradle|com.fasterxml.jackson.core:jackson-databind|gradle|2.19.0|2.22.1|Passed|True|
 |build.gradle|gradle|io.netty:netty-codec-http2|gradle|4.1.133.Final|4.2.16.Final|Passed|True|
-|build.gradle|gradle|io.netty:netty-codec-http|gradle|4.1.133.Final|4.2.16.Final|Passed|True|
-|build.gradle|gradle|org.springframework.kafka:spring-kafka|gradle|3.3.5|3.3.16|Passed|True|
+|build.gradle|gradle|io.netty:netty-handler|gradle|4.1.133.Final|4.2.16.Final|Passed|True|
 |build.gradle|gradle|org.bouncycastle:bcprov-jdk18on|gradle|1.80|1.85|Passed|True|
 |build.gradle|gradle|org.springframework:spring-framework.version|gradle|6.2.9|6.2.19|Passed|True|
+|build.gradle|gradle|org.springframework.kafka:spring-kafka|gradle|3.3.5|3.3.16|Passed|True|
 |build.gradle|gradle|com.fasterxml.jackson.core:jackson-annotations|gradle|2.19.0|2.22|Passed|True|
 |build.gradle|gradle|io.netty:netty-codec|gradle|4.1.133.Final|4.2.16.Final|Passed|True|
-|build.gradle|gradle|io.netty:netty-handler-proxy|gradle-force|4.1.132.Final|4.2.16.Final|Passed|True|
+|build.gradle|gradle|io.netty:netty-codec-compression|gradle-force|4.2.5.Final|4.2.16.Final|Passed|True|
 |build.gradle|gradle|io.netty:netty-codec-dns|gradle-force|4.1.132.Final|4.2.16.Final|Passed|True|
-|build.gradle|gradle|io.netty:netty-resolver-dns|gradle-force|4.1.132.Final|4.2.16.Final|Passed|True|
 |build.gradle|gradle|io.netty:netty-transport-native-epoll|gradle-force|4.1.132.Final|4.2.16.Final|Passed|True|
 |build.gradle|gradle|io.micrometer:micrometer-core|gradle-force|1.15.10|1.17.0|Passed|True|
+|build.gradle|gradle|io.netty:netty-handler-proxy|gradle-force|4.1.132.Final|4.2.16.Final|Passed|True|
+|build.gradle|gradle|io.netty:netty-resolver-dns|gradle-force|4.1.132.Final|4.2.16.Final|Passed|True|
 |build.gradle|gradle|org.apache.neethi:neethi|gradle-force|3.2.1|3.2.3|Passed|True|
-|build.gradle|gradle|io.netty:netty-codec-compression|gradle-force|4.2.5.Final|4.2.16.Final|Passed|True|
 |build.gradle|gradle|org.springframework.boot:spring-boot|gradle-force|3.5.13|3.5.16|Passed|True|
-|build.gradle|gradle|org.springframework.data:spring-data-commons|gradle-force|3.5.10|3.5.13|Passed|True|
 |build.gradle|gradle|org.springframework.data:spring-data-mongodb|gradle-force|4.5.10|4.5.13|Passed|True|
 |build.gradle|gradle|org.springframework.hateoas:spring-hateoas|gradle-force|2.5.2|2.5.3|Passed|True|
-|build.gradle|gradle|org.apache.cxf:cxf-core|gradle-force|4.1.3|4.2.2|Passed|True|
-|build.gradle|gradle|at.yawk.lz4:lz4-java|gradle-force|1.10.1|1.11.1|Passed|True|
-|build.gradle|gradle|org.apache.httpcomponents.core5:httpcore5-h2|gradle-force|5.3.6|5.4.3|Passed|True|
-|build.gradle|gradle|org.codehaus.plexus:plexus-utils|gradle-force|3.6.0|3.6.1|Passed|True|
+|build.gradle|gradle|org.springframework.data:spring-data-commons|gradle-force|3.5.10|3.5.13|Passed|True|
+|build.gradle|gradle|commons-beanutils:commons-beanutils|gradle-force|1.9.4|1.11.0|Passed|True|
 |build.gradle|gradle|org.apache.httpcomponents.core5:httpcore5|gradle-force|5.3.6|5.4.3|Passed|True|
+|build.gradle|gradle|org.apache.httpcomponents.core5:httpcore5-h2|gradle-force|5.3.6|5.4.3|Passed|True|
+|build.gradle|gradle|at.yawk.lz4:lz4-java|gradle-force|1.10.1|1.11.1|Passed|True|
+|build.gradle|gradle|org.codehaus.plexus:plexus-utils|gradle-force|3.6.0|3.6.1|Passed|True|
+|build.gradle|gradle|org.apache.cxf:cxf-core|gradle-force|4.1.3|4.2.2|Passed|True|
 |build.gradle|gradle|org.springframework:spring-core|gradle-force|6.2.9|6.2.19|Passed|True|
 |build.gradle|gradle|org.springframework:spring-expression|gradle-force|6.2.9|6.2.19|Passed|True|
 |build.gradle|gradle|org.springframework:spring-web|gradle-force|6.2.9|6.2.19|Passed|True|
@@ -82,8 +83,8 @@ Review:
 ## Before / After Dependency Trees
 |ecosystem|snapshot|path|exists|line_count|dependency_count|bytes|
 |---|---|---|---|---|---|---|
-|gradle|before|/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_ins-cp-mgmt-cds-api_default-branch/logs/gradle-dependency-tree-before.txt|True|2455|2340|167138|
-|gradle|after|/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_ins-cp-mgmt-cds-api_default-branch/logs/gradle-dependency-tree-after.txt|True|2549|2434|171087|
+|gradle|before|/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_ins-cp-mgmt-cds-api_default-branch/logs/gradle-dependency-tree-before.txt|True|2455|2340|167140|
+|gradle|after|/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_ins-cp-mgmt-cds-api_default-branch/logs/gradle-dependency-tree-after.txt|True|2549|2434|171111|
 |node|before|/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_ins-cp-mgmt-cds-api_default-branch/logs/npm-dependency-tree-before.json|False|0|0|0|
 |node|after|/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_ins-cp-mgmt-cds-api_default-branch/logs/npm-dependency-tree-after.json|False|0|0|0|
 
@@ -97,6 +98,8 @@ Review:
 |com.fasterxml.jackson.module:jackson-module-parameter-names|2.21.2|2.21.4|changed|
 |com.fasterxml.jackson:jackson-bom|2.21.2|2.21.5|changed|
 |com.fasterxml.woodstox:woodstox-core|7.1.1|7.2.0|changed|
+|commons-beanutils:commons-beanutils|1.9.4|1.11.0|changed|
+|commons-logging:commons-logging|1.2|1.3.5|changed|
 |io.micrometer:context-propagation|1.1.4|1.2.1|changed|
 |io.micrometer:micrometer-commons|1.15.10|1.17.0|changed|
 |io.micrometer:micrometer-core|1.15.10|1.17.0|changed|
@@ -186,25 +189,3 @@ Review:
 |org.springframework:spring-tx|6.2.9|6.2.19|changed|
 |org.springframework:spring-web|6.2.9|6.2.19|changed|
 |org.springframework:spring-webflux|6.2.9|6.2.19|changed|
-
-## Taskboard CVEs
-|cve_id|status|
-|---|---|
-|CVE-2025-11082|Not found in dependency graph|
-|CVE-2025-11083|Not found in dependency graph|
-|CVE-2025-11226|Not found in dependency graph|
-|CVE-2025-1147|Not found in dependency graph|
-|CVE-2025-1148|Not found in dependency graph|
-|CVE-2025-11839|Not found in dependency graph|
-|CVE-2025-11840|Not found in dependency graph|
-|CVE-2025-27789|Not found in dependency graph|
-|CVE-2025-3198|Not found in dependency graph|
-|CVE-2025-41249|Verification incomplete|
-|CVE-2025-48913|Not found in dependency graph|
-|CVE-2025-5244|Not found in dependency graph|
-|CVE-2025-5245|Not found in dependency graph|
-|CVE-2025-53057|Not found in dependency graph|
-|CVE-2025-53066|Not found in dependency graph|
-|CVE-2025-7545|Not found in dependency graph|
-|CVE-2025-7962|Not found in dependency graph|
-|CVE-2025-8225|Not found in dependency graph|

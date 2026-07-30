@@ -4,14 +4,14 @@
 |metric|value|
 |---|---|
 |Overall Status|🟢 Success|
-|Generated at|2026-07-28T08:41:11|
+|Generated at|2026-07-29T07:45:50|
 |GitHub URL|https://github.com/Cloud-3-0-EMU/cwih-cnp-mgmt-consent-api.git|
 |Project directory|/Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_cwih-cnp-mgmt-consent-api_default-branch/default-branch/cwih-cnp-mgmt-consent-api|
 |Dependency files|1|
 |Changed packages|28|
 |Skipped packages|0|
 |Validation records|1|
-|Taskboard CVEs tracked|7|
+|Taskboard CVEs tracked|0|
 |Resolved dependency changes|92|
 |Verification classification|Success - build and tests passed; no CVEs remain|
 |Test verification|passed|
@@ -36,28 +36,28 @@ All remediation actions completed successfully.
 |file|ecosystem|package|type|old|new|status|remediation_guided|
 |---|---|---|---|---|---|---|---|
 |build.gradle|gradle|io.netty:netty-codec-http2|gradle|4.2.10.Final|4.2.16.Final|Passed|True|
-|build.gradle|gradle|io.netty:netty-handler|gradle|4.1.132.Final|4.2.16.Final|Passed|True|
-|build.gradle|gradle|io.netty:netty-codec|gradle|4.1.132.Final|4.2.16.Final|Passed|True|
+|build.gradle|gradle|ch.qos.logback:logback-core|gradle|1.5.21|1.6.1|Passed|True|
 |build.gradle|gradle|io.netty:netty-codec-compression|gradle|4.2.5.Final|4.2.16.Final|Passed|True|
 |build.gradle|gradle|com.fasterxml.jackson.core:jackson-databind|gradle|2.21.2|2.22.1|Passed|True|
-|build.gradle|gradle|ch.qos.logback:logback-core|gradle|1.5.21|1.6.1|Passed|True|
 |build.gradle|gradle|org.springframework:spring-framework.version|gradle|6.2.17|6.2.19|Passed|True|
+|build.gradle|gradle|io.netty:netty-handler|gradle|4.1.132.Final|4.2.16.Final|Passed|True|
+|build.gradle|gradle|io.netty:netty-codec|gradle|4.1.132.Final|4.2.16.Final|Passed|True|
 |build.gradle|gradle|io.netty:netty-codec-http|gradle|4.1.132.Final|4.2.16.Final|Passed|True|
 |build.gradle|gradle|com.fasterxml.jackson.core:jackson-core|gradle|2.21.2|2.22.1|Passed|True|
 |build.gradle|gradle|ch.qos.logback:logback-classic|gradle|1.5.21|1.6.1|Passed|True|
 |build.gradle|gradle|org.apache.cxf:cxf-rt-transports-http|gradle|4.1.3|4.2.2|Passed|True|
+|build.gradle|gradle|io.netty:netty-handler-proxy|gradle-force|4.1.132.Final|4.2.16.Final|Passed|True|
+|build.gradle|gradle|io.micrometer:micrometer-core|gradle-force|1.15.10|1.17.0|Passed|True|
 |build.gradle|gradle|at.yawk.lz4:lz4-java|gradle-force|1.10.1|1.11.1|Passed|True|
 |build.gradle|gradle|io.netty:netty-codec-dns|gradle-force|4.1.132.Final|4.2.16.Final|Passed|True|
-|build.gradle|gradle|io.netty:netty-handler-proxy|gradle-force|4.1.132.Final|4.2.16.Final|Passed|True|
 |build.gradle|gradle|io.netty:netty-transport-native-epoll|gradle-force|4.1.132.Final|4.2.16.Final|Passed|True|
-|build.gradle|gradle|io.micrometer:micrometer-core|gradle-force|1.15.10|1.17.0|Passed|True|
-|build.gradle|gradle|org.springframework.kafka:spring-kafka|gradle-force|3.3.14|3.3.16|Passed|True|
 |build.gradle|gradle|org.springframework.data:spring-data-commons|gradle-force|3.5.10|3.5.13|Passed|True|
-|build.gradle|gradle|org.apache.neethi:neethi|gradle-force|3.2.1|3.2.3|Passed|True|
-|build.gradle|gradle|org.springframework.data:spring-data-mongodb|gradle-force|4.5.10|4.5.13|Passed|True|
 |build.gradle|gradle|org.springframework.boot:spring-boot|gradle-force|3.5.13|3.5.16|Passed|True|
+|build.gradle|gradle|org.apache.neethi:neethi|gradle-force|3.2.1|3.2.3|Passed|True|
 |build.gradle|gradle|io.netty:netty-resolver-dns|gradle-force|4.1.132.Final|4.2.16.Final|Passed|True|
 |build.gradle|gradle|org.springframework.hateoas:spring-hateoas|gradle-force|2.5.2|2.5.3|Passed|True|
+|build.gradle|gradle|org.springframework.data:spring-data-mongodb|gradle-force|4.5.10|4.5.13|Passed|True|
+|build.gradle|gradle|org.springframework.kafka:spring-kafka|gradle-force|3.3.14|3.3.16|Passed|True|
 |build.gradle|gradle|org.apache.cxf:cxf-core|gradle-force|4.1.3|4.2.2|Passed|True|
 |build.gradle|gradle|org.springframework:spring-core|gradle-force|6.2.17|6.2.19|Passed|True|
 |build.gradle|gradle|org.springframework:spring-expression|gradle-force|6.2.17|6.2.19|Passed|True|
@@ -76,7 +76,7 @@ _No rows._
 |ecosystem|snapshot|path|exists|line_count|dependency_count|bytes|
 |---|---|---|---|---|---|---|
 |gradle|before|/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_cwih-cnp-mgmt-consent-api_default-branch/logs/gradle-dependency-tree-before.txt|True|2147|2032|143793|
-|gradle|after|/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_cwih-cnp-mgmt-consent-api_default-branch/logs/gradle-dependency-tree-after.txt|True|2227|2112|149211|
+|gradle|after|/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_cwih-cnp-mgmt-consent-api_default-branch/logs/gradle-dependency-tree-after.txt|True|2227|2112|149212|
 |node|before|/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_cwih-cnp-mgmt-consent-api_default-branch/logs/npm-dependency-tree-before.json|False|0|0|0|
 |node|after|/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_cwih-cnp-mgmt-consent-api_default-branch/logs/npm-dependency-tree-after.json|False|0|0|0|
 
@@ -175,14 +175,3 @@ _No rows._
 |org.springframework:spring-tx|6.2.17|6.2.19|changed|
 |org.springframework:spring-web|6.2.17|6.2.19|changed|
 |org.springframework:spring-webflux|6.2.17|6.2.19|changed|
-
-## Taskboard CVEs
-|cve_id|status|
-|---|---|
-|CVE-2025-11226|Not found in dependency graph|
-|CVE-2025-11839|Not found in dependency graph|
-|CVE-2025-11840|Not found in dependency graph|
-|CVE-2025-27789|Not found in dependency graph|
-|CVE-2025-48924|Not found in dependency graph|
-|CVE-2025-55163|Not found in dependency graph|
-|CVE-2025-58057|Not found in dependency graph|

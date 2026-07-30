@@ -66,65 +66,65 @@ Fetching Artifactory versions (12 workers): [#########################-----] 11/
 Fetching Artifactory versions (12 workers): [###########################---] 12/13 92%
 Fetching Artifactory versions (12 workers): [##############################] 13/13 100%
 
-Applying updates: [------------------------------] 0/21 0%  [ext-fix] [perf] concurrent version search (at.yawk.lz4:lz4-java) completed in 0.47s
-  [ext-fix] [perf] concurrent version search (io.netty:netty-handler) completed in 0.53s
-  [ext-fix] [perf] concurrent version search (io.netty:netty-codec-http2) completed in 0.54s
-  [ext-fix] [perf] concurrent version search (io.micrometer:micrometer-core) completed in 0.57s
+Applying updates: [------------------------------] 0/21 0%  [ext-fix] [perf] concurrent version search (io.netty:netty-codec-http) completed in 0.42s
+  [ext-fix] [perf] concurrent version search (io.netty:netty-codec-compression) completed in 0.47s
+  [ext-fix] [perf] concurrent version search (at.yawk.lz4:lz4-java) completed in 0.47s
+  [ext-fix] [perf] concurrent version search (io.netty:netty-handler-proxy) completed in 0.48s
+  [ext-fix] [perf] concurrent version search (ch.qos.logback:logback-core) completed in 0.51s
+  [ext-fix] [perf] concurrent version search (io.netty:netty-resolver-dns) completed in 0.54s
+  [ext-fix] [perf] concurrent version search (io.netty:netty-codec-http) completed in 0.19s
+
+Applying updates: [#-----------------------------] 1/21 4%  [ext-fix] [perf] concurrent version search (ch.qos.logback:logback-core) completed in 0.17s
+
+Applying updates: [##----------------------------] 2/21 9%  [ext-fix] [perf] concurrent version search (io.netty:netty-handler) completed in 1.02s
+  [ext-fix] [perf] concurrent version search (io.netty:netty-handler) completed in 0.18s
+
+Applying updates: [####--------------------------] 3/21 14%  [ext-fix] [perf] concurrent version search (io.netty:netty-codec-dns) completed in 1.22s
+  [ext-fix] [perf] concurrent version search (org.apache.tomcat.embed:tomcat-embed-websocket) completed in 0.53s
+  [ext-fix] [perf] concurrent version search (io.micrometer:micrometer-core) completed in 1.31s
   [ext-fix] [perf] transitive-parent search (io.micrometer:micrometer-core) ran 0 gradle probe(s) in 0.00s (resolved=False)
 
-Applying updates: [#-----------------------------] 1/21 4%  [ext-fix] [perf] concurrent version search (io.netty:netty-transport-native-epoll) completed in 0.59s
+Applying updates: [#####-------------------------] 4/21 19%  [ext-fix] [perf] concurrent version search (com.fasterxml.jackson.core:jackson-databind) completed in 1.32s
+  [ext-fix] [perf] concurrent version search (org.apache.tomcat.embed:tomcat-embed-websocket) completed in 0.16s
+
+Applying updates: [#######-----------------------] 5/21 23%  [ext-fix] [perf] concurrent version search (org.springframework.kafka:spring-kafka) completed in 0.54s
+  [ext-fix] [perf] concurrent version search (io.netty:netty-codec-http2) completed in 1.95s  [ext-fix] [perf] concurrent version search (org.apache.tomcat.embed:tomcat-embed-core) completed in 1.34s
+
+  [ext-fix] [perf] concurrent version search (org.springframework.kafka:spring-kafka) completed in 0.16s
+
+Applying updates: [########----------------------] 6/21 28%  [ext-fix] [perf] concurrent version search (io.netty:netty-transport-native-epoll) completed in 2.12s
   [ext-fix] [perf] concurrent version search (io.netty:netty-codec-http2) completed in 0.18s
 
-Applying updates: [##----------------------------] 2/21 9%  [ext-fix] [perf] concurrent version search (io.netty:netty-handler) completed in 0.32s
+Applying updates: [##########--------------------] 7/21 33%  [ext-fix] [perf] concurrent version search (org.apache.tomcat.embed:tomcat-embed-core) completed in 0.37s
 
-Applying updates: [####--------------------------] 3/21 14%  [ext-fix] [perf] concurrent version search (io.netty:netty-codec-compression) completed in 1.01s
-  [ext-fix] [perf] concurrent version search (io.netty:netty-resolver-dns) completed in 1.12s
-  [ext-fix] [perf] concurrent version search (io.netty:netty-codec-dns) completed in 1.19s
-  [ext-fix] [perf] concurrent version search (io.netty:netty-handler-proxy) completed in 1.21s
-  [ext-fix] [perf] concurrent version search (org.springframework.data:spring-data-commons) completed in 0.55s
-  [ext-fix] [perf] transitive-parent search (org.springframework.data:spring-data-commons) ran 0 gradle probe(s) in 0.00s (resolved=False)
-
-Applying updates: [#####-------------------------] 4/21 19%  [ext-fix] [perf] concurrent version search (io.netty:netty-codec-http) completed in 1.46s
-  [ext-fix] [perf] concurrent version search (ch.qos.logback:logback-core) completed in 1.57s
-  [ext-fix] [perf] concurrent version search (io.netty:netty-codec-http) completed in 0.18s
-
-Applying updates: [#######-----------------------] 5/21 23%  [ext-fix] [perf] concurrent version search (ch.qos.logback:logback-core) completed in 0.18s
-
-Applying updates: [########----------------------] 6/21 28%  [ext-fix] [perf] concurrent version search (org.apache.tomcat.embed:tomcat-embed-websocket) completed in 1.22s
-  [ext-fix] [perf] concurrent version search (org.apache.tomcat.embed:tomcat-embed-core) completed in 1.41s
-  [ext-fix] [perf] concurrent version search (org.springframework.kafka:spring-kafka) completed in 0.54s
-  [ext-fix] [perf] concurrent version search (org.apache.tomcat.embed:tomcat-embed-core) completed in 0.23s
-
-Applying updates: [##########--------------------] 7/21 33%  [ext-fix] [perf] concurrent version search (org.springframework:spring-core) completed in 0.53s
-
-Applying updates: [###########-------------------] 8/21 38%  [ext-fix] [perf] concurrent version search (org.apache.tomcat.embed:tomcat-embed-websocket) completed in 0.51s
-
-Applying updates: [############------------------] 9/21 42%  [ext-fix] [perf] concurrent version search (com.fasterxml.jackson.core:jackson-databind) completed in 2.47s
-  [ext-fix] [perf] concurrent version search (org.springframework.kafka:spring-kafka) completed in 0.27s
-
-Applying updates: [##############----------------] 10/21 47%  [ext-fix] [perf] concurrent version search (org.springframework.data:spring-data-mongodb) completed in 1.11s
+Applying updates: [###########-------------------] 8/21 38%  [ext-fix] [perf] concurrent version search (org.springframework.data:spring-data-mongodb) completed in 1.11s
   [ext-fix] [perf] transitive-parent search (org.springframework.data:spring-data-mongodb) ran 0 gradle probe(s) in 0.00s (resolved=False)
 
-Applying updates: [###############---------------] 11/21 52%  [ext-fix] [perf] concurrent version search (org.springframework:spring-expression) completed in 0.78s
+Applying updates: [############------------------] 9/21 42%  [ext-fix] [perf] concurrent version search (org.springframework:spring-expression) completed in 0.52s
 
-Applying updates: [#################-------------] 12/21 57%  [ext-fix] [perf] concurrent version search (org.springframework:spring-web) completed in 0.72s
+Applying updates: [##############----------------] 10/21 47%  [ext-fix] [perf] concurrent version search (org.springframework:spring-web) completed in 0.57s
 
-Applying updates: [##################------------] 13/21 61%  [ext-fix] [perf] concurrent version search (org.springframework:spring-webflux) completed in 0.57s
-  [ext-fix] [perf] concurrent version search (org.springframework:spring-webflux) completed in 0.24s
+Applying updates: [###############---------------] 11/21 52%  [ext-fix] [perf] concurrent version search (org.springframework:spring-webflux) completed in 0.51s
+  [ext-fix] [perf] concurrent version search (org.springframework.data:spring-data-commons) completed in 1.88s
+  [ext-fix] [perf] transitive-parent search (org.springframework.data:spring-data-commons) ran 0 gradle probe(s) in 0.00s (resolved=False)
 
-Applying updates: [####################----------] 14/21 66%  [ext-fix] [perf] transitive-parent search (io.netty:netty-transport-native-epoll) ran 1 gradle probe(s) in 19.65s (resolved=False)
+Applying updates: [#################-------------] 12/21 57%  [ext-fix] [perf] concurrent version search (org.springframework:spring-webflux) completed in 0.34s
 
-Applying updates: [#####################---------] 15/21 71%  [ext-fix] [perf] transitive-parent search (at.yawk.lz4:lz4-java) ran 1 gradle probe(s) in 22.29s (resolved=False)
+Applying updates: [##################------------] 13/21 61%  [ext-fix] [perf] concurrent version search (org.springframework:spring-core) completed in 1.67s
 
-Applying updates: [######################--------] 16/21 76%  [ext-fix] [perf] transitive-parent search (com.fasterxml.jackson.core:jackson-databind) ran 1 gradle probe(s) in 34.14s (resolved=False)
+Applying updates: [####################----------] 14/21 66%  [ext-fix] [perf] transitive-parent search (io.netty:netty-resolver-dns) ran 1 gradle probe(s) in 15.49s (resolved=False)
 
-Applying updates: [########################------] 17/21 80%  [ext-fix] [perf] transitive-parent search (io.netty:netty-codec-dns) ran 1 gradle probe(s) in 36.14s (resolved=False)
+Applying updates: [#####################---------] 15/21 71%  [ext-fix] [perf] transitive-parent search (com.fasterxml.jackson.core:jackson-databind) ran 1 gradle probe(s) in 15.77s (resolved=False)
 
-Applying updates: [#########################-----] 18/21 85%  [ext-fix] [perf] transitive-parent search (io.netty:netty-codec-compression) ran 1 gradle probe(s) in 37.35s (resolved=False)
+Applying updates: [######################--------] 16/21 76%  [ext-fix] [perf] transitive-parent search (io.netty:netty-handler-proxy) ran 1 gradle probe(s) in 21.53s (resolved=False)
 
-Applying updates: [###########################---] 19/21 90%  [ext-fix] [perf] transitive-parent search (io.netty:netty-handler-proxy) ran 1 gradle probe(s) in 40.27s (resolved=False)
+Applying updates: [########################------] 17/21 80%  [ext-fix] [perf] transitive-parent search (io.netty:netty-codec-compression) ran 1 gradle probe(s) in 23.13s (resolved=False)
 
-Applying updates: [############################--] 20/21 95%  [ext-fix] [perf] transitive-parent search (io.netty:netty-resolver-dns) ran 1 gradle probe(s) in 41.98s (resolved=False)
+Applying updates: [#########################-----] 18/21 85%  [ext-fix] [perf] transitive-parent search (io.netty:netty-codec-dns) ran 1 gradle probe(s) in 24.99s (resolved=False)
+
+Applying updates: [###########################---] 19/21 90%  [ext-fix] [perf] transitive-parent search (at.yawk.lz4:lz4-java) ran 1 gradle probe(s) in 26.88s (resolved=False)
+
+Applying updates: [############################--] 20/21 95%  [ext-fix] [perf] transitive-parent search (io.netty:netty-transport-native-epoll) ran 1 gradle probe(s) in 30.24s (resolved=False)
 
 Applying updates: [##############################] 21/21 100%
 
@@ -160,8 +160,8 @@ Daemon will be stopped at the end of the build
 
 > Task :processTestResources NO-SOURCE
 > Task :testClasses
-2026-07-28T09:15:15.283-04:00  INFO 67756 --- [IngestionService] [ionShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
-2026-07-28T09:15:15.292-04:00  INFO 67756 --- [IngestionService] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2026-07-29T07:50:44.715-04:00  INFO 62537 --- [IngestionService] [ionShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2026-07-29T07:50:44.723-04:00  INFO 62537 --- [IngestionService] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
 > Task :test
 > Task :check
 > Task :build
@@ -176,7 +176,7 @@ You can use '--warning-mode all' to show the individual deprecation warnings and
 
 For more on this, please refer to https://docs.gradle.org/8.14.1/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
 
-BUILD SUCCESSFUL in 1m 2s
+BUILD SUCCESSFUL in 34s
 15 actionable tasks: 15 executed
 Note: /Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_cwih-cnp-mgmt-externaldnc-workflow_default-branch/default-branch/cwih-cnp-mgmt-externaldnc-workflow/src/main/java/com/humana/domain/cds/service/avro/AvroDeserializer.java uses or overrides a deprecated API.
 Note: Recompile with -Xlint:deprecation for details.
@@ -218,10 +218,10 @@ Resolving Gradle dependency tree... timeout=180s
   Dependency tree -> /Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_cwih-cnp-mgmt-externaldnc-workflow_default-branch/logs/gradle-dependency-tree.txt
   126 packages in dependency tree
 Running JFrog Xray API CVE scan for 126 resolved component(s)...
-JFrog Xray API CVE scan complete: 0 CVE record(s) across 0 vulnerable component(s).
+JFrog Xray API CVE scan complete: 1 CVE record(s) across 1 vulnerable component(s).
 JFrog audit log -> /Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_cwih-cnp-mgmt-externaldnc-workflow_default-branch/logs/jfrog-audit-after.json
-Post-update verification: Success - build and tests passed; no CVEs remain
+Post-update verification: Partial - build passed but 1 CVE record(s) remain
 Remediation evidence -> /Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_cwih-cnp-mgmt-externaldnc-workflow_default-branch/logs/remediation-evidence.json
 Phase2 cache generated → /Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_cwih-cnp-mgmt-externaldnc-workflow_default-branch/logs/phase2-results.json
 Report generated → /Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_cwih-cnp-mgmt-externaldnc-workflow_default-branch/logs/task-completion-report.xlsx
-STATUS: Success
+STATUS: Partial

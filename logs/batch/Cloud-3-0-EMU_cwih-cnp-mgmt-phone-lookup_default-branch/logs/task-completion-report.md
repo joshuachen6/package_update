@@ -4,14 +4,14 @@
 |metric|value|
 |---|---|
 |Overall Status|🟡 Needs Review|
-|Generated at|2026-07-28T08:57:50|
+|Generated at|2026-07-29T07:55:02|
 |GitHub URL|https://github.com/Cloud-3-0-EMU/cwih-cnp-mgmt-phone-lookup.git|
 |Project directory|/Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_cwih-cnp-mgmt-phone-lookup_default-branch/default-branch/cwih-cnp-mgmt-phone-lookup|
 |Dependency files|1|
 |Changed packages|29|
 |Skipped packages|0|
 |Validation records|1|
-|Taskboard CVEs tracked|16|
+|Taskboard CVEs tracked|0|
 |Resolved dependency changes|127|
 |Verification classification|Partial - build passed but 1 CVE record(s) remain|
 |Test verification|passed|
@@ -39,31 +39,31 @@ Review:
 ## Applied / Planned Changes
 |file|ecosystem|package|type|old|new|status|remediation_guided|
 |---|---|---|---|---|---|---|---|
-|build.gradle|gradle|io.netty:netty-codec|gradle|4.1.125.Final|4.2.16.Final|Passed|True|
 |build.gradle|gradle|io.netty:netty-codec-http|gradle|4.1.131.Final|4.2.16.Final|Passed|True|
-|build.gradle|gradle|com.fasterxml.jackson.core:jackson-databind|gradle|2.19.2|2.22.1|Passed|True|
-|build.gradle|gradle|io.netty:netty-codec-http2|gradle|4.2.9.Final|4.2.16.Final|Passed|True|
-|build.gradle|gradle|org.springframework:spring-framework.version|gradle|6.2.11|6.2.19|Passed|True|
-|build.gradle|gradle|org.apache.kafka:kafka-clients|gradle|4.1.0|4.3.1|Passed|True|
-|build.gradle|gradle|io.netty:netty-handler|gradle|4.1.125.Final|4.2.16.Final|Passed|True|
+|build.gradle|gradle|io.netty:netty-codec|gradle|4.1.125.Final|4.2.16.Final|Passed|True|
 |build.gradle|gradle|ch.qos.logback:logback-core|gradle|1.5.19|1.6.1|Passed|True|
+|build.gradle|gradle|org.apache.kafka:kafka-clients|gradle|4.1.0|4.3.1|Passed|True|
+|build.gradle|gradle|io.netty:netty-codec-http2|gradle|4.2.9.Final|4.2.16.Final|Passed|True|
+|build.gradle|gradle|com.fasterxml.jackson.core:jackson-databind|gradle|2.19.2|2.22.1|Passed|True|
+|build.gradle|gradle|org.springframework:spring-framework.version|gradle|6.2.11|6.2.19|Passed|True|
+|build.gradle|gradle|io.netty:netty-handler|gradle|4.1.125.Final|4.2.16.Final|Passed|True|
 |build.gradle|gradle|org.bouncycastle:bcprov-jdk18on|gradle|1.81|1.85|Passed|True|
 |build.gradle|gradle|org.springframework.boot:spring-boot-starter-validation|gradle|3.4.5|3.5.16|Passed|True|
 |build.gradle|gradle|org.apache.cxf:cxf-rt-transports-http|gradle|4.1.3|4.2.2|Passed|True|
 |build.gradle|gradle|com.fasterxml.jackson.core:jackson-annotations|gradle|2.19.2|2.22|Passed|True|
 |build.gradle|gradle|ch.qos.logback:logback-classic|gradle|1.5.19|1.6.1|Passed|True|
-|build.gradle|gradle|io.netty:netty-handler-proxy|gradle-force|4.1.119.Final|4.2.16.Final|Passed|True|
-|build.gradle|gradle|org.apache.cxf:cxf-core|gradle-force|4.1.3|4.2.2|Passed|True|
-|build.gradle|gradle|io.netty:netty-codec-dns|gradle-force|4.1.119.Final|4.2.16.Final|Passed|True|
-|build.gradle|gradle|io.micrometer:micrometer-core|gradle-force|1.14.6|1.17.0|Passed|True|
 |build.gradle|gradle|io.netty:netty-resolver-dns|gradle-force|4.1.119.Final|4.2.16.Final|Passed|True|
 |build.gradle|gradle|org.apache.neethi:neethi|gradle-force|3.2.0|3.2.3|Passed|True|
+|build.gradle|gradle|io.netty:netty-handler-proxy|gradle-force|4.1.119.Final|4.2.16.Final|Passed|True|
+|build.gradle|gradle|io.netty:netty-codec-dns|gradle-force|4.1.119.Final|4.2.16.Final|Passed|True|
+|build.gradle|gradle|org.springframework.boot:spring-boot-devtools|gradle-force|3.4.5|3.5.16|Passed|True|
 |build.gradle|gradle|io.netty:netty-transport-native-epoll|gradle-force|4.1.119.Final|4.2.16.Final|Passed|True|
 |build.gradle|gradle|org.springframework.boot:spring-boot|gradle-force|3.4.5|3.5.16|Passed|True|
-|build.gradle|gradle|org.springframework.data:spring-data-commons|gradle-force|3.4.5|3.5.13|Passed|True|
+|build.gradle|gradle|io.micrometer:micrometer-core|gradle-force|1.14.6|1.17.0|Passed|True|
 |build.gradle|gradle|org.springframework.boot:spring-boot-starter-actuator|gradle-force|3.4.5|3.5.16|Passed|True|
+|build.gradle|gradle|org.springframework.data:spring-data-commons|gradle-force|3.4.5|3.5.13|Passed|True|
 |build.gradle|gradle|org.springframework.hateoas:spring-hateoas|gradle-force|2.4.1|2.5.3|Passed|True|
-|build.gradle|gradle|org.springframework.boot:spring-boot-devtools|gradle-force|3.4.5|3.5.16|Passed|True|
+|build.gradle|gradle|org.apache.cxf:cxf-core|gradle-force|4.1.3|4.2.2|Passed|True|
 |build.gradle|gradle|org.springframework:spring-core|gradle-force|6.2.11|6.2.19|Passed|True|
 |build.gradle|gradle|org.springframework:spring-expression|gradle-force|6.2.11|6.2.19|Passed|True|
 |build.gradle|gradle|org.springframework:spring-web|gradle-force|6.2.11|6.2.19|Passed|True|
@@ -215,23 +215,3 @@ _No rows._
 |org.webjars:webjars-locator-lite|1.0.1|1.1.3|changed|
 |org.xmlunit:xmlunit-core|2.10.0|2.10.4|changed|
 |redis.clients.authentication:redis-authx-core||0.1.1-beta2|added|
-
-## Taskboard CVEs
-|cve_id|status|
-|---|---|
-|CVE-2025-11082|Not found in dependency graph|
-|CVE-2025-11083|Not found in dependency graph|
-|CVE-2025-11226|Not found in dependency graph|
-|CVE-2025-1147|Not found in dependency graph|
-|CVE-2025-1148|Not found in dependency graph|
-|CVE-2025-11839|Not found in dependency graph|
-|CVE-2025-11840|Not found in dependency graph|
-|CVE-2025-3198|Not found in dependency graph|
-|CVE-2025-48913|Not found in dependency graph|
-|CVE-2025-5244|Not found in dependency graph|
-|CVE-2025-5245|Not found in dependency graph|
-|CVE-2025-53057|Not found in dependency graph|
-|CVE-2025-53066|Not found in dependency graph|
-|CVE-2025-7545|Not found in dependency graph|
-|CVE-2025-7962|Not found in dependency graph|
-|CVE-2025-8225|Not found in dependency graph|

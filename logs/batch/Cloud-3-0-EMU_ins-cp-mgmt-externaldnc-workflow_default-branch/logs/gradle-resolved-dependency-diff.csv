@@ -77,6 +77,6 @@ org.springframework:spring-messaging,6.1.20,6.2.19,changed
 org.springframework:spring-test,6.1.20,6.2.19,changed
 org.springframework:spring-tx,6.1.20,6.2.19,changed
 org.springframework:spring-web,6.2.10,6.2.19,changed
-org.springframework:spring-webflux,6.2.0,6.2.19,changed
+org.springframework:spring-webflux,6.2.0,6.2.18,changed
 org.springframework:spring-webmvc,6.2.10,6.2.19,changed
 org.yaml:snakeyaml,2.2,2.4,changed

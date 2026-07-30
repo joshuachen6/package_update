@@ -19,6 +19,7 @@ org.apache.httpcomponents.core5:httpcore5-h2,gradle-force,5.3.6,5.4.3,manual_upd
 org.apache.httpcomponents.core5:httpcore5,gradle-force,5.3.6,5.4.3,manual_update_required,build validation failed and failure isolation disabled
 org.apache.cxf:cxf-core,gradle-force,4.1.3,4.2.2,manual_update_required,build validation failed and failure isolation disabled
 io.micrometer:micrometer-core,gradle-force,1.15.11,1.17.0,manual_update_required,build validation failed and failure isolation disabled
+commons-beanutils:commons-beanutils,gradle-force,1.9.4,1.11.0,manual_update_required,build validation failed and failure isolation disabled
 at.yawk.lz4:lz4-java,gradle-force,1.10.1,1.11.1,manual_update_required,build validation failed and failure isolation disabled
 org.codehaus.plexus:plexus-utils,gradle,3.4.1,3.6.1,manual_update_required,build validation failed and failure isolation disabled
 com.fasterxml.jackson.core:jackson-databind,gradle,2.19.4,2.22.1,manual_update_required,build validation failed and failure isolation disabled

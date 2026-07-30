@@ -61,37 +61,37 @@ Fetching Artifactory versions (12 workers): [######################--------] 6/8
 Fetching Artifactory versions (12 workers): [##########################----] 7/8 87%
 Fetching Artifactory versions (12 workers): [##############################] 8/8 100%
 
-Applying updates: [------------------------------] 0/11 0%  [ext-fix] [perf] concurrent version search (org.springframework:spring-context) completed in 0.48s
-  [ext-fix] [perf] concurrent version search (org.springframework.boot:spring-boot-starter-actuator) completed in 0.53s
+Applying updates: [------------------------------] 0/11 0%  [ext-fix] [perf] concurrent version search (org.apache.kafka:kafka-clients) completed in 0.47s
+  [ext-fix] [perf] concurrent version search (org.apache.tomcat.embed:tomcat-embed-core) completed in 0.83s
+  [ext-fix] [perf] concurrent version search (org.springframework:spring-context) completed in 1.31s
+  [ext-fix] [perf] concurrent version search (io.netty:netty-codec) completed in 1.46s
+  [ext-fix] [perf] concurrent version search (org.springframework:spring-context) completed in 0.22s
 
-Applying updates: [##----------------------------] 1/11 9%  [ext-fix] [perf] concurrent version search (org.springframework:spring-context) completed in 0.21s
+Applying updates: [##----------------------------] 1/11 9%  [ext-fix] [perf] concurrent version search (org.assertj:assertj-core) completed in 1.57s
+  [ext-fix] [perf] concurrent version search (org.apache.commons:commons-lang3) completed in 1.85s
+  [ext-fix] [perf] concurrent version search (org.springframework:spring-webmvc) completed in 2.18s
+  [ext-fix] [perf] concurrent version search (org.apache.tomcat.embed:tomcat-embed-websocket) completed in 2.18s
+  [ext-fix] [perf] concurrent version search (org.apache.kafka:kafka-clients) completed in 1.73s
 
-Applying updates: [#####-------------------------] 2/11 18%  [ext-fix] [perf] concurrent version search (org.apache.commons:commons-lang3) completed in 0.80s
-  [ext-fix] [perf] concurrent version search (org.apache.kafka:kafka-clients) completed in 0.81s
-  [ext-fix] [perf] concurrent version search (io.micrometer:micrometer-core) completed in 0.91s
+Applying updates: [#####-------------------------] 2/11 18%  [ext-fix] [perf] concurrent version search (io.micrometer:micrometer-core) completed in 2.47s
   [ext-fix] [perf] transitive-parent search (io.micrometer:micrometer-core) ran 0 gradle probe(s) in 0.00s (resolved=False)
 
-Applying updates: [########----------------------] 3/11 27%  [ext-fix] [perf] concurrent version search (org.springframework:spring-webmvc) completed in 0.91s
-  [ext-fix] [perf] concurrent version search (org.apache.tomcat.embed:tomcat-embed-websocket) completed in 0.99s
-  [ext-fix] [perf] concurrent version search (org.apache.kafka:kafka-clients) completed in 0.23s
+Applying updates: [########----------------------] 3/11 27%  [ext-fix] [perf] concurrent version search (org.springframework.boot:spring-boot-starter-actuator) completed in 2.61s
 
-Applying updates: [##########--------------------] 4/11 36%  [ext-fix] [perf] concurrent version search (io.netty:netty-codec) completed in 1.09s
-  [ext-fix] [perf] concurrent version search (org.springframework:spring-webmvc) completed in 0.29s
+Applying updates: [##########--------------------] 4/11 36%  [ext-fix] [perf] concurrent version search (org.springframework:spring-webmvc) completed in 0.98s
 
-Applying updates: [#############-----------------] 5/11 45%  [ext-fix] [perf] concurrent version search (org.assertj:assertj-core) completed in 1.22s
-  [ext-fix] [perf] concurrent version search (org.apache.tomcat.embed:tomcat-embed-core) completed in 2.03s
-  [ext-fix] [perf] concurrent version search (org.lz4:lz4-java) completed in 3.00s
+Applying updates: [#############-----------------] 5/11 45%  [ext-fix] [perf] concurrent version search (org.lz4:lz4-java) completed in 6.06s
   [ext-fix] [perf] transitive-parent search (org.lz4:lz4-java) ran 0 gradle probe(s) in 0.00s (resolved=False)
 
-Applying updates: [################--------------] 6/11 54%  [ext-fix] [perf] transitive-parent search (org.apache.commons:commons-lang3) ran 1 gradle probe(s) in 24.37s (resolved=False)
+Applying updates: [################--------------] 6/11 54%  [ext-fix] [perf] transitive-parent search (org.apache.tomcat.embed:tomcat-embed-core) ran 1 gradle probe(s) in 15.05s (resolved=False)
 
-Applying updates: [###################-----------] 7/11 63%  [ext-fix] [perf] transitive-parent search (org.apache.tomcat.embed:tomcat-embed-websocket) ran 1 gradle probe(s) in 26.09s (resolved=False)
+Applying updates: [###################-----------] 7/11 63%  [ext-fix] [perf] transitive-parent search (org.assertj:assertj-core) ran 1 gradle probe(s) in 17.86s (resolved=False)
 
-Applying updates: [#####################---------] 8/11 72%  [ext-fix] [perf] transitive-parent search (org.assertj:assertj-core) ran 1 gradle probe(s) in 30.54s (resolved=False)
+Applying updates: [#####################---------] 8/11 72%  [ext-fix] [perf] transitive-parent search (io.netty:netty-codec) ran 1 gradle probe(s) in 19.41s (resolved=False)
 
-Applying updates: [########################------] 9/11 81%  [ext-fix] [perf] transitive-parent search (io.netty:netty-codec) ran 1 gradle probe(s) in 31.63s (resolved=False)
+Applying updates: [########################------] 9/11 81%  [ext-fix] [perf] transitive-parent search (org.apache.tomcat.embed:tomcat-embed-websocket) ran 1 gradle probe(s) in 19.06s (resolved=False)
 
-Applying updates: [###########################---] 10/11 90%  [ext-fix] [perf] transitive-parent search (org.apache.tomcat.embed:tomcat-embed-core) ran 1 gradle probe(s) in 34.30s (resolved=False)
+Applying updates: [###########################---] 10/11 90%  [ext-fix] [perf] transitive-parent search (org.apache.commons:commons-lang3) ran 1 gradle probe(s) in 24.40s (resolved=False)
 
 Applying updates: [##############################] 11/11 100%
 
@@ -155,11 +155,11 @@ A problem occurred configuring root project 'ecrphoneattribute-workflow'.
 > Run with --scan to get full insights.
 > Get more help at https://help.gradle.org.
 
-BUILD FAILED in 14s
+BUILD FAILED in 3s
   [ext-fix] round 1: 1 new blocked packages
   [ext-fix] com.fasterxml.jackson.core:jackson-databind:2.21.4 — listing from https://humana.jfrog.io/artifactory/ins-cp-mgmt-gradle-virtual, checking access via https://humana.jfrog.io/artifactory/plugins-release
   [ext-fix] com.fasterxml.jackson.core:jackson-databind:2.21.4 — 229 versions available
-  [ext-fix] [perf] concurrent version search (com.fasterxml.jackson.core:jackson-databind) completed in 0.37s
+  [ext-fix] [perf] concurrent version search (com.fasterxml.jackson.core:jackson-databind) completed in 0.32s
   [ext-fix] com.fasterxml.jackson.core:jackson-databind:2.21.4 — find_accessible_version -> '2.21.5'
 Validating updated project: gradle build --no-daemon --init-script /var/folders/cg/2rmnrrps3g77gcd8ny14r1yr0000gp/T/pkg_update_gradle_logging.gradle
 To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.14.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
@@ -188,8 +188,8 @@ A problem occurred configuring root project 'ecrphoneattribute-workflow'.
 > Run with --scan to get full insights.
 > Get more help at https://help.gradle.org.
 
-BUILD FAILED in 13s
-  [ext-fix] round 1 build still failed: arning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+BUILD FAILED in 4s
+  [ext-fix] round 1 build still failed: warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
 
 For more on this, please refer to https://docs.gradle.org/8.14.1/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
 
@@ -209,7 +209,7 @@ A problem occurred configuring root project 'ecrphoneattribute-workflow'.
 > Run with --scan to get full insights.
 > Get more help at https://help.gradle.org.
 
-BUILD FAILED in 13s
+BUILD FAILED in 4s
   [ext-fix] round 2: 0 new blocked packages
   [ext-fix] 403s cleared; returning partial-fix state for candidate rollback
 Build validation failed; rollback isolation is disabled.

@@ -31,17 +31,17 @@
           "remediation_guided": true
         },
         {
-          "package": "org.springframework.boot:spring-boot-starter-actuator",
-          "change_type": "gradle-force",
-          "old": "3.3.12",
-          "new": "3.5.16",
-          "remediation_guided": true
-        },
-        {
           "package": "io.micrometer:micrometer-core",
           "change_type": "gradle-force",
           "old": "1.13.14",
           "new": "1.17.0",
+          "remediation_guided": true
+        },
+        {
+          "package": "org.springframework.boot:spring-boot-starter-actuator",
+          "change_type": "gradle-force",
+          "old": "3.3.12",
+          "new": "3.5.16",
           "remediation_guided": true
         },
         {
@@ -52,14 +52,7 @@
           "remediation_guided": true
         },
         {
-          "package": "org.apache.commons:commons-lang3",
-          "change_type": "gradle-force",
-          "old": "3.14.0",
-          "new": "3.20.0",
-          "remediation_guided": true
-        },
-        {
-          "package": "org.apache.tomcat.embed:tomcat-embed-websocket",
+          "package": "org.apache.tomcat.embed:tomcat-embed-core",
           "change_type": "gradle-force",
           "old": "10.1.41",
           "new": "10.1.57",
@@ -80,10 +73,17 @@
           "remediation_guided": true
         },
         {
-          "package": "org.apache.tomcat.embed:tomcat-embed-core",
+          "package": "org.apache.tomcat.embed:tomcat-embed-websocket",
           "change_type": "gradle-force",
           "old": "10.1.41",
           "new": "10.1.57",
+          "remediation_guided": true
+        },
+        {
+          "package": "org.apache.commons:commons-lang3",
+          "change_type": "gradle-force",
+          "old": "3.14.0",
+          "new": "3.20.0",
           "remediation_guided": true
         }
       ],
@@ -131,16 +131,16 @@
       ],
       "force_entries": [
         {
-          "dependency": "org.springframework.boot:spring-boot-starter-actuator",
-          "old_version": "3.3.12",
-          "new_version": "3.5.16",
-          "minimum_required": "3.5.16"
-        },
-        {
           "dependency": "io.micrometer:micrometer-core",
           "old_version": "1.13.14",
           "new_version": "1.17.0",
           "minimum_required": "1.17.0"
+        },
+        {
+          "dependency": "org.springframework.boot:spring-boot-starter-actuator",
+          "old_version": "3.3.12",
+          "new_version": "3.5.16",
+          "minimum_required": "3.5.16"
         },
         {
           "dependency": "org.lz4:lz4-java",
@@ -149,13 +149,7 @@
           "minimum_required": "1.8.0"
         },
         {
-          "dependency": "org.apache.commons:commons-lang3",
-          "old_version": "3.14.0",
-          "new_version": "3.20.0",
-          "minimum_required": "3.20.0"
-        },
-        {
-          "dependency": "org.apache.tomcat.embed:tomcat-embed-websocket",
+          "dependency": "org.apache.tomcat.embed:tomcat-embed-core",
           "old_version": "10.1.41",
           "new_version": "10.1.57",
           "minimum_required": "10.1.57"
@@ -173,10 +167,16 @@
           "minimum_required": "4.2.16.Final"
         },
         {
-          "dependency": "org.apache.tomcat.embed:tomcat-embed-core",
+          "dependency": "org.apache.tomcat.embed:tomcat-embed-websocket",
           "old_version": "10.1.41",
           "new_version": "10.1.57",
           "minimum_required": "10.1.57"
+        },
+        {
+          "dependency": "org.apache.commons:commons-lang3",
+          "old_version": "3.14.0",
+          "new_version": "3.20.0",
+          "minimum_required": "3.20.0"
         }
       ],
       "skipped_raw": [],
@@ -2805,73 +2805,9 @@
     "github_url": "https://github.com/Cloud-3-0-EMU/ins-cp-mgmt-ecrphoneattribute-workflow.git",
     "checkout_dir": "/Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_ins-cp-mgmt-ecrphoneattribute-workflow_default-branch/default-branch",
     "branch": null,
-    "input_cves": [
-      "CVE-2025-11082",
-      "CVE-2025-11083",
-      "CVE-2025-11226",
-      "CVE-2025-1147",
-      "CVE-2025-1148",
-      "CVE-2025-11839",
-      "CVE-2025-11840",
-      "CVE-2025-22233",
-      "CVE-2025-3198",
-      "CVE-2025-41249",
-      "CVE-2025-48924",
-      "CVE-2025-48988",
-      "CVE-2025-48989",
-      "CVE-2025-49124",
-      "CVE-2025-49125",
-      "CVE-2025-5244",
-      "CVE-2025-5245",
-      "CVE-2025-52520",
-      "CVE-2025-53057",
-      "CVE-2025-53066",
-      "CVE-2025-53506",
-      "CVE-2025-55668",
-      "CVE-2025-55752",
-      "CVE-2025-55754",
-      "CVE-2025-58057",
-      "CVE-2025-61795",
-      "CVE-2025-6297",
-      "CVE-2025-7545",
-      "CVE-2025-8058",
-      "CVE-2025-8225",
-      "CVE-2025-9230"
-    ],
+    "input_cves": null,
     "proj_dir": "/Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_ins-cp-mgmt-ecrphoneattribute-workflow_default-branch/default-branch/ins-cp-mgmt-ecrphoneattribute-workflow"
   },
   "github_url": "https://github.com/Cloud-3-0-EMU/ins-cp-mgmt-ecrphoneattribute-workflow.git",
-  "input_cves": [
-    "CVE-2025-11082",
-    "CVE-2025-11083",
-    "CVE-2025-11226",
-    "CVE-2025-1147",
-    "CVE-2025-1148",
-    "CVE-2025-11839",
-    "CVE-2025-11840",
-    "CVE-2025-22233",
-    "CVE-2025-3198",
-    "CVE-2025-41249",
-    "CVE-2025-48924",
-    "CVE-2025-48988",
-    "CVE-2025-48989",
-    "CVE-2025-49124",
-    "CVE-2025-49125",
-    "CVE-2025-5244",
-    "CVE-2025-5245",
-    "CVE-2025-52520",
-    "CVE-2025-53057",
-    "CVE-2025-53066",
-    "CVE-2025-53506",
-    "CVE-2025-55668",
-    "CVE-2025-55752",
-    "CVE-2025-55754",
-    "CVE-2025-58057",
-    "CVE-2025-61795",
-    "CVE-2025-6297",
-    "CVE-2025-7545",
-    "CVE-2025-8058",
-    "CVE-2025-8225",
-    "CVE-2025-9230"
-  ]
+  "input_cves": []
 }

@@ -4,14 +4,14 @@
 |metric|value|
 |---|---|
 |Overall Status|🟡 Needs Review|
-|Generated at|2026-07-28T09:23:44|
+|Generated at|2026-07-29T08:02:17|
 |GitHub URL|https://github.com/Cloud-3-0-EMU/ins-cp-mgmt-admin-ui.git|
 |Project directory|/Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_ins-cp-mgmt-admin-ui_default-branch/default-branch/ins-cp-mgmt-admin-ui|
 |Dependency files|1|
 |Changed packages|11|
 |Skipped packages|1|
 |Validation records|0|
-|Taskboard CVEs tracked|13|
+|Taskboard CVEs tracked|0|
 |Resolved dependency changes|0|
 |Verification classification|Partial - build passed but 15 CVE record(s) remain|
 |Test verification|passed|
@@ -69,20 +69,3 @@ _No rows._
 
 ## Resolved Dependency Changes
 _No rows._
-
-## Taskboard CVEs
-|cve_id|status|
-|---|---|
-|CVE-2025-27789|Not found in dependency graph|
-|CVE-2025-30218|Not found in dependency graph|
-|CVE-2025-4802|Not found in dependency graph|
-|CVE-2025-48068|Not found in dependency graph|
-|CVE-2025-55173|Not found in dependency graph|
-|CVE-2025-57752|Not found in dependency graph|
-|CVE-2025-57822|Not found in dependency graph|
-|CVE-2025-58754|Not found in dependency graph|
-|CVE-2025-64118|Not found in dependency graph|
-|CVE-2025-64718|Not found in dependency graph|
-|CVE-2025-64756|Not found in dependency graph|
-|CVE-2025-8058|Not found in dependency graph|
-|GHSA-5jpx-9hw9-2fx4|Not found in dependency graph|

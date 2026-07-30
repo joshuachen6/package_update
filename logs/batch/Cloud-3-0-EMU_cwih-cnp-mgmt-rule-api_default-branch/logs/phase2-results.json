@@ -3,17 +3,17 @@
     {
       "display_changes": [
         {
-          "package": "ch.qos.logback:logback-core",
-          "change_type": "gradle",
-          "old": "1.5.25",
-          "new": "1.6.1",
-          "remediation_guided": true
-        },
-        {
           "package": "org.apache.tomcat.embed:tomcat-embed-core",
           "change_type": "gradle",
           "old": "11.0.18",
           "new": "11.0.24",
+          "remediation_guided": true
+        },
+        {
+          "package": "ch.qos.logback:logback-core",
+          "change_type": "gradle",
+          "old": "1.5.25",
+          "new": "1.6.1",
           "remediation_guided": true
         },
         {
@@ -44,15 +44,6 @@
       "build_text": "plugins {\n    id 'java'\n    id 'org.springframework.boot' version '3.5.12'\n    id 'io.spring.dependency-management' version '1.1.7'\n    id 'application'\n    id 'jacoco'\n    id \"org.sonarqube\" version \"6.3.1.5724\"\n\n}\n\ngroup = 'com.cwih.cnp'\nversion = '0.0.1-SNAPSHOT'\n\njava {\n    toolchain {\n        languageVersion = JavaLanguageVersion.of(17)\n    }\n}\n\nconfigurations {\n    compileOnly {\n        extendsFrom annotationProcessor\n    }\n}\n\nrepositories {\n    mavenLocal()\n    maven {\n        url 'https://humana.jfrog.io/artifactory/plugins-release'\n        credentials {\n            username System.getenv('ARTIFACTORY_USERNAME')\n            password System.getenv('ARTIFACTORY_PASSWORD')\n        }\n\n    }\n\n}\n\next {\n    set('springCloudVersion', \"2025.0.0\")\n    set('spring-framework.version', \"6.2.17\")\n}\n\ndependencies {\n\n    implementation 'org.springframework.boot:spring-boot-starter-web'\n    implementation 'org.springframework.boot:spring-boot-starter-aop'\n    implementation 'org.apache.poi:poi-scratchpad:5.2.2'\n    implementation 'commons-io:commons-io:2.15.1'\n    compileOnly 'org.projectlombok:lombok'\n    annotationProcessor 'org.projectlombok:lombok'\n    testImplementation 'org.springframework.boot:spring-boot-starter-test'\n    implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.13'\n    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'\n    testImplementation 'org.mockito:mockito-core:5.19.0'\n    implementation 'org.apache.poi:poi-ooxml:5.4.0'\n    implementation 'org.springframework.boot:spring-boot-starter-validation'\n    implementation \"ch.qos.logback:logback-core:1.5.25\"//Vit Fix CVE-2025-11226\n    implementation \"ch.qos.logback:logback-classic:1.5.25\"//Vit Fix CVE-2025-11226\n    implementation('org.kie:kie-spring:7.74.1.Final') {\n        exclude group: 'com.google.protobuf', module: 'protobuf-java'\n        exclude group: 'org.apache.commons', module: 'commons-compress'\n        exclude group: 'com.thoughtworks.xstream', module: 'xstream'\n    }\n    implementation(group: 'org.apache.commons', name: 'commons-lang3') {\n        version {\n            strictly '3.18.0'\n        }\n    }\n    implementation(group: 'org.apache.tomcat.embed', name: 'tomcat-embed-core') {\n        version {\n            strictly '11.0.18'\n        }\n    }\n\n}\n\napplication {\n    mainClass = 'com.cwih.cnp.DroolsServiceApplication'\n}\n\nsonarqube {\n    properties {\n        property \"sonar.projectKey\", \"IntegratedHealth.ConsentAndPreferences.rule-api\"\n        property \"sonar.host.url\", \"http://analysis-devops.humana.com\"\n        property \"sonar.login\", System.getenv(\"SONARQUBE_TOKEN\")\n        property \"sonar.java.binaries\", \"${layout.buildDirectory.get()}/classes/java/main\"\n        property \"sonar.junit.reportsPath\", \"${layout.buildDirectory.get()}/test-results/test/\"\n        property \"sonar.jacoco.reportPaths\", \"${layout.buildDirectory.get()}/reports/jacoco/test/jacocoTestReport.xml\"\n        property 'sonar.coverage.exclusions',\n                \"**/com/cwih/cnp/DroolsServiceApplication.java,\" +\n                        \"**/com/cwih/cnp/constants/**,\" +\n                        \"**/com/cwih/cnp/dto/**,\" +\n                        \"**/com/cwih/cnp/entity/**,\" +\n                        \"**/com/cwih/cnp/exceptions/**,\" +\n                        \"**/com/cwih/cnp/logging/**,\"\n    }\n}\n\napply plugin: 'jacoco'\n\ntest {\n    useJUnitPlatform()\n\n    jacocoTestReport {\n        reports {\n            xml.required.set(true)\n            html.required.set(true)\n            xml.destination file(\"${layout.buildDirectory.get()}/reports/jacoco/test/jacocoTestReport.xml\")\n            html.destination file(\"${layout.buildDirectory.get()}/jacocoReport\")\n        }\n        finalizedBy jacocoTestCoverageVerification\n        afterEvaluate {\n            classDirectories.setFrom(files(classDirectories.files.collect {\n                fileTree(dir: it, exclude: [\n                        \"**/com/cwih/cnp/DroolsServiceApplication.java,\" +\n                                \"**/com/cwih/cnp/constants/**,\" +\n                                \"**/com/cwih/cnp/dto/**,\" +\n                                \"**/com/cwih/cnp/entity/**,\" +\n                                \"**/com/cwih/cnp/exceptions/**,\" +\n                                \"**/com/cwih/cnp/logging/**,\"\n                ])\n            }))\n        }\n    }\n    test.finalizedBy jacocoTestReport\n}\n\n\ntasks.named('test') {\n    useJUnitPlatform()\n}\n\ntasks.sonarqube.dependsOn = []\n",
       "changes": [
         {
-          "dependency": "ch.qos.logback:logback-core",
-          "config": "implementation",
-          "old_version": "1.5.25",
-          "new_version": "1.6.1",
-          "remediation_guided": "yes",
-          "original": "implementation \"ch.qos.logback:logback-core:1.5.25\"",
-          "replacement": "implementation \"ch.qos.logback:logback-core:1.6.1\""
-        },
-        {
           "dependency": "org.apache.tomcat.embed:tomcat-embed-core",
           "config": "implementation",
           "old_version": "11.0.18",
@@ -60,6 +51,15 @@
           "remediation_guided": "yes",
           "original": "implementation(group: 'org.apache.tomcat.embed', name: 'tomcat-embed-core') {\n        version {\n            strictly '11.0.18'\n        }\n    }",
           "replacement": "implementation(group: 'org.apache.tomcat.embed', name: 'tomcat-embed-core') {\n        version {\n            strictly '11.0.24'\n        }\n    }"
+        },
+        {
+          "dependency": "ch.qos.logback:logback-core",
+          "config": "implementation",
+          "old_version": "1.5.25",
+          "new_version": "1.6.1",
+          "remediation_guided": "yes",
+          "original": "implementation \"ch.qos.logback:logback-core:1.5.25\"",
+          "replacement": "implementation \"ch.qos.logback:logback-core:1.6.1\""
         },
         {
           "dependency": "ch.qos.logback:logback-classic",
@@ -1485,21 +1485,9 @@
     "github_url": "https://github.com/Cloud-3-0-EMU/cwih-cnp-mgmt-rule-api.git",
     "checkout_dir": "/Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_cwih-cnp-mgmt-rule-api_default-branch/default-branch",
     "branch": null,
-    "input_cves": [
-      "CVE-2022-26336",
-      "CVE-2025-11226",
-      "CVE-2025-11839",
-      "CVE-2025-11840",
-      "CVE-2025-31672"
-    ],
+    "input_cves": null,
     "proj_dir": "/Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_cwih-cnp-mgmt-rule-api_default-branch/default-branch/cwih-cnp-mgmt-rule-api"
   },
   "github_url": "https://github.com/Cloud-3-0-EMU/cwih-cnp-mgmt-rule-api.git",
-  "input_cves": [
-    "CVE-2022-26336",
-    "CVE-2025-11226",
-    "CVE-2025-11839",
-    "CVE-2025-11840",
-    "CVE-2025-31672"
-  ]
+  "input_cves": []
 }

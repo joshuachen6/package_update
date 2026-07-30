@@ -27,6 +27,7 @@ io.netty:netty-codec-dns,gradle-force,4.1.127.Final,4.2.16.Final,manual_update_r
 io.netty:netty-codec-compression,gradle-force,4.2.5.Final,4.2.16.Final,manual_update_required,build validation failed and failure isolation disabled
 io.netty:netty-codec,gradle-force,4.1.127.Final,4.2.16.Final,manual_update_required,build validation failed and failure isolation disabled
 io.micrometer:micrometer-core,gradle-force,1.15.10,1.17.0,manual_update_required,build validation failed and failure isolation disabled
+commons-beanutils:commons-beanutils,gradle-force,1.9.4,1.11.0,manual_update_required,build validation failed and failure isolation disabled
 ch.qos.logback:logback-core,gradle-force,1.5.25,1.6.1,manual_update_required,build validation failed and failure isolation disabled
 org.apache.tomcat.embed:tomcat-embed-core,gradle,11.0.18,11.0.24,manual_update_required,build validation failed and failure isolation disabled
 org.apache.kafka:kafka-clients,gradle,4.0.0,4.3.1,manual_update_required,build validation failed and failure isolation disabled

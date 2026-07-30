@@ -4,14 +4,14 @@
 |metric|value|
 |---|---|
 |Overall Status|🔴 Manual Update Required|
-|Generated at|2026-07-28T09:00:32|
+|Generated at|2026-07-29T08:07:41|
 |GitHub URL|https://github.com/Cloud-3-0-EMU/ins-cp-mgmt-consent-publish-api.git|
 |Project directory|/Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_ins-cp-mgmt-consent-publish-api_default-branch/default-branch/ins-cp-mgmt-consent-publish-api|
 |Dependency files|1|
 |Changed packages|29|
 |Skipped packages|0|
 |Validation records|30|
-|Taskboard CVEs tracked|12|
+|Taskboard CVEs tracked|0|
 |Resolved dependency changes|123|
 |Verification classification|Failed - dependency updates could not be validated; manual review required|
 |Test verification|not_run|
@@ -39,29 +39,29 @@ Review:
 ## Applied / Planned Changes
 |file|ecosystem|package|type|old|new|status|remediation_guided|
 |---|---|---|---|---|---|---|---|
-|build.gradle|gradle|io.netty:netty-codec-http2|gradle|4.1.128.Final|4.2.16.Final|Failed|True|
 |build.gradle|gradle|com.fasterxml.jackson.core:jackson-databind|gradle|2.20.1|2.22.1|Failed|True|
-|build.gradle|gradle|io.netty:netty-codec|gradle|4.1.128.Final|4.2.16.Final|Failed|True|
 |build.gradle|gradle|io.netty:netty-handler|gradle|4.1.128.Final|4.2.16.Final|Failed|True|
+|build.gradle|gradle|io.netty:netty-codec-http2|gradle|4.1.128.Final|4.2.16.Final|Failed|True|
+|build.gradle|gradle|io.netty:netty-codec|gradle|4.1.128.Final|4.2.16.Final|Failed|True|
 |build.gradle|gradle|ch.qos.logback:logback-core|gradle|1.5.21|1.6.1|Failed|True|
-|build.gradle|gradle|org.apache.kafka:kafka-clients|gradle|4.1.1|4.3.1|Failed|True|
 |build.gradle|gradle|org.springframework:spring-framework.version|gradle|6.2.11|6.2.19|Failed|True|
+|build.gradle|gradle|org.apache.kafka:kafka-clients|gradle|4.1.1|4.3.1|Failed|True|
 |build.gradle|gradle|org.apache.cxf:cxf-rt-transports-http|gradle|4.1.3|4.2.2|Failed|True|
 |build.gradle|gradle|com.fasterxml.jackson.core:jackson-core|gradle|2.20.1|2.22.1|Failed|True|
 |build.gradle|gradle|ch.qos.logback:logback-classic|gradle|1.5.21|1.6.1|Failed|True|
-|build.gradle|gradle|io.netty:netty-codec-http|gradle-force|4.1.130.Final|4.2.16.Final|Failed|True|
-|build.gradle|gradle|io.netty:netty-codec-compression|gradle-force|4.2.5.Final|4.2.16.Final|Failed|True|
-|build.gradle|gradle|io.netty:netty-transport-native-epoll|gradle-force|4.1.130.Final|4.2.16.Final|Failed|True|
-|build.gradle|gradle|io.netty:netty-codec-dns|gradle-force|4.1.130.Final|4.2.16.Final|Failed|True|
-|build.gradle|gradle|io.netty:netty-handler-proxy|gradle-force|4.1.130.Final|4.2.16.Final|Failed|True|
-|build.gradle|gradle|org.apache.neethi:neethi|gradle-force|3.2.1|3.2.3|Failed|True|
-|build.gradle|gradle|org.springframework.boot:spring-boot|gradle-force|3.5.9|3.5.16|Failed|True|
-|build.gradle|gradle|io.netty:netty-resolver-dns|gradle-force|4.1.130.Final|4.2.16.Final|Failed|True|
-|build.gradle|gradle|org.springframework.boot:spring-boot-starter-actuator|gradle-force|3.5.9|3.5.16|Failed|True|
-|build.gradle|gradle|org.springframework.data:spring-data-mongodb|gradle-force|4.5.7|4.5.13|Failed|True|
-|build.gradle|gradle|org.springframework.hateoas:spring-hateoas|gradle-force|2.5.1|2.5.3|Failed|True|
-|build.gradle|gradle|org.springframework.data:spring-data-commons|gradle-force|3.5.7|3.5.13|Failed|True|
 |build.gradle|gradle|io.micrometer:micrometer-core|gradle-force|1.15.7|1.17.0|Failed|True|
+|build.gradle|gradle|io.netty:netty-transport-native-epoll|gradle-force|4.1.130.Final|4.2.16.Final|Failed|True|
+|build.gradle|gradle|io.netty:netty-codec-http|gradle-force|4.1.130.Final|4.2.16.Final|Failed|True|
+|build.gradle|gradle|io.netty:netty-handler-proxy|gradle-force|4.1.130.Final|4.2.16.Final|Failed|True|
+|build.gradle|gradle|io.netty:netty-codec-compression|gradle-force|4.2.5.Final|4.2.16.Final|Failed|True|
+|build.gradle|gradle|org.springframework.data:spring-data-mongodb|gradle-force|4.5.7|4.5.13|Failed|True|
+|build.gradle|gradle|org.springframework.data:spring-data-commons|gradle-force|3.5.7|3.5.13|Failed|True|
+|build.gradle|gradle|io.netty:netty-resolver-dns|gradle-force|4.1.130.Final|4.2.16.Final|Failed|True|
+|build.gradle|gradle|io.netty:netty-codec-dns|gradle-force|4.1.130.Final|4.2.16.Final|Failed|True|
+|build.gradle|gradle|org.springframework.boot:spring-boot|gradle-force|3.5.9|3.5.16|Failed|True|
+|build.gradle|gradle|org.springframework.boot:spring-boot-starter-actuator|gradle-force|3.5.9|3.5.16|Failed|True|
+|build.gradle|gradle|org.apache.neethi:neethi|gradle-force|3.2.1|3.2.3|Failed|True|
+|build.gradle|gradle|org.springframework.hateoas:spring-hateoas|gradle-force|2.5.1|2.5.3|Failed|True|
 |build.gradle|gradle|org.springframework.kafka:spring-kafka|gradle-force|3.3.11|3.3.16|Failed|True|
 |build.gradle|gradle|org.apache.cxf:cxf-core|gradle-force|4.1.3|4.2.2|Failed|True|
 |build.gradle|gradle|org.springframework:spring-core|gradle-force|6.2.11|6.2.19|Failed|True|
@@ -110,7 +110,7 @@ _No rows._
 |ecosystem|snapshot|path|exists|line_count|dependency_count|bytes|
 |---|---|---|---|---|---|---|
 |gradle|before|/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_ins-cp-mgmt-consent-publish-api_default-branch/logs/gradle-dependency-tree-before.txt|True|2115|2000|143464|
-|gradle|after|/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_ins-cp-mgmt-consent-publish-api_default-branch/logs/gradle-dependency-tree-after.txt|True|653|627|44271|
+|gradle|after|/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_ins-cp-mgmt-consent-publish-api_default-branch/logs/gradle-dependency-tree-after.txt|True|653|627|44272|
 |node|before|/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_ins-cp-mgmt-consent-publish-api_default-branch/logs/npm-dependency-tree-before.json|False|0|0|0|
 |node|after|/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_ins-cp-mgmt-consent-publish-api_default-branch/logs/npm-dependency-tree-after.json|False|0|0|0|
 
@@ -240,19 +240,3 @@ _No rows._
 |org.springframework:spring-webflux|6.2.11|6.2.19|changed|
 |org.webjars:webjars-locator-lite|1.1.2|1.1.3|changed|
 |org.xmlunit:xmlunit-core|2.10.4||removed|
-
-## Taskboard CVEs
-|cve_id|status|
-|---|---|
-|CVE-2025-11226|Not found in dependency graph|
-|CVE-2025-11839|Not found in dependency graph|
-|CVE-2025-11840|Not found in dependency graph|
-|CVE-2025-22227|Not found in dependency graph|
-|CVE-2025-22233|Not found in dependency graph|
-|CVE-2025-41234|Not found in dependency graph|
-|CVE-2025-41249|Not found in dependency graph|
-|CVE-2025-48924|Not found in dependency graph|
-|CVE-2025-55163|Not found in dependency graph|
-|CVE-2025-58056|Not found in dependency graph|
-|CVE-2025-58057|Not found in dependency graph|
-|CVE-2025-7962|Not found in dependency graph|

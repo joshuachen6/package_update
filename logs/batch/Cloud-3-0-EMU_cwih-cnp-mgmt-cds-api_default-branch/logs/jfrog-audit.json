@@ -4,8 +4,8 @@
     "maven"
   ],
   "errors": [],
-  "vulnerability_count": 79,
-  "vulnerable_component_count": 31,
+  "vulnerability_count": 80,
+  "vulnerable_component_count": 32,
   "vulnerable_components": [
     {
       "component_id": "gav://ch.qos.logback:logback-core:1.5.25",
@@ -38,6 +38,15 @@
       "ecosystem": "maven",
       "package": "com.github.jknack:handlebars",
       "version": "4.4.0"
+    },
+    {
+      "component_id": "gav://commons-beanutils:commons-beanutils:1.9.4",
+      "cves": [
+        "CVE-2025-48734"
+      ],
+      "ecosystem": "maven",
+      "package": "commons-beanutils:commons-beanutils",
+      "version": "1.9.4"
     },
     {
       "component_id": "gav://io.micrometer:micrometer-core:1.15.10",

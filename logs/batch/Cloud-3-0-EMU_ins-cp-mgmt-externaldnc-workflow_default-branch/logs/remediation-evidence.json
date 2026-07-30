@@ -9,6 +9,15 @@
         "ecosystem": "maven",
         "package": "at.yawk.lz4:lz4-java",
         "version": "1.10.2"
+      },
+      {
+        "component_id": "gav://org.springframework:spring-webflux:6.2.18",
+        "cves": [
+          "CVE-2026-41842"
+        ],
+        "ecosystem": "maven",
+        "package": "org.springframework:spring-webflux",
+        "version": "6.2.18"
       }
     ],
     "json_path": "/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_ins-cp-mgmt-externaldnc-workflow_default-branch/logs/jfrog-audit-after.json"
@@ -236,7 +245,7 @@
     ],
     "json_path": "/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_ins-cp-mgmt-externaldnc-workflow_default-branch/logs/jfrog-audit.json"
   },
-  "classification": "Partial - build passed but 1 CVE record(s) remain",
+  "classification": "Partial - build passed but 2 CVE record(s) remain",
   "diagnostic_csvs": {
     "build-validation-external-auto-fixes.csv": [
       {
@@ -256,28 +265,10 @@
         "old_version": "3.3.12"
       },
       {
-        "dependency": "org.lz4:lz4-java",
-        "minimum_required": "1.8.0",
-        "new_version": "1.8.0",
-        "old_version": "1.8.0"
-      },
-      {
         "dependency": "io.micrometer:micrometer-core",
         "minimum_required": "1.17.0",
         "new_version": "1.17.0",
         "old_version": "1.13.14"
-      },
-      {
-        "dependency": "org.springframework.data:spring-data-commons",
-        "minimum_required": "3.5.13",
-        "new_version": "3.5.13",
-        "old_version": "3.3.12"
-      },
-      {
-        "dependency": "org.apache.commons:commons-lang3",
-        "minimum_required": "3.20.0",
-        "new_version": "3.20.0",
-        "old_version": "3.14.0"
       },
       {
         "dependency": "org.springframework.boot:spring-boot",
@@ -286,37 +277,55 @@
         "old_version": "3.3.12"
       },
       {
-        "dependency": "org.apache.tomcat.embed:tomcat-embed-websocket",
-        "minimum_required": "10.1.57",
-        "new_version": "10.1.57",
-        "old_version": "10.1.41"
-      },
-      {
-        "dependency": "org.assertj:assertj-core",
-        "minimum_required": "3.27.7",
-        "new_version": "3.27.7",
-        "old_version": "3.25.3"
-      },
-      {
         "dependency": "com.fasterxml.jackson.core:jackson-databind",
         "minimum_required": "2.22.1",
         "new_version": "2.22.1",
         "old_version": "2.17.3"
       },
       {
+        "dependency": "org.apache.commons:commons-lang3",
+        "minimum_required": "3.20.0",
+        "new_version": "3.20.0",
+        "old_version": "3.14.0"
+      },
+      {
+        "dependency": "org.apache.tomcat.embed:tomcat-embed-websocket",
+        "minimum_required": "10.1.57",
+        "new_version": "10.1.57",
+        "old_version": "10.1.41"
+      },
+      {
         "dependency": "org.springframework.data:spring-data-mongodb",
         "minimum_required": "4.5.13",
         "new_version": "4.5.13",
         "old_version": "4.3.12"
+      },
+      {
+        "dependency": "org.lz4:lz4-java",
+        "minimum_required": "1.8.0",
+        "new_version": "1.8.0",
+        "old_version": "1.8.0"
+      },
+      {
+        "dependency": "org.springframework.data:spring-data-commons",
+        "minimum_required": "3.5.13",
+        "new_version": "3.5.13",
+        "old_version": "3.3.12"
+      },
+      {
+        "dependency": "org.assertj:assertj-core",
+        "minimum_required": "3.27.7",
+        "new_version": "3.27.7",
+        "old_version": "3.25.3"
       }
     ],
     "gradle-skipped.csv": [],
     "gradle-version-changes.csv": [
       {
         "config": "implementation",
-        "dependency": "org.apache.kafka:kafka-clients",
-        "new_version": "4.3.1",
-        "old_version": "4.0.0",
+        "dependency": "org.springframework.kafka:spring-kafka",
+        "new_version": "3.3.16",
+        "old_version": "3.3.0",
         "remediation_guided": "yes"
       },
       {
@@ -328,14 +337,14 @@
       },
       {
         "config": "implementation",
-        "dependency": "org.springframework.kafka:spring-kafka",
-        "new_version": "3.3.16",
-        "old_version": "3.3.0",
+        "dependency": "org.apache.kafka:kafka-clients",
+        "new_version": "4.3.1",
+        "old_version": "4.0.0",
         "remediation_guided": "yes"
       },
       {
         "config": "implementation",
-        "dependency": "org.springframework:spring-expression",
+        "dependency": "org.springframework:spring-core",
         "new_version": "6.2.19",
         "old_version": "6.2.0",
         "remediation_guided": "yes"
@@ -349,16 +358,9 @@
       },
       {
         "config": "implementation",
-        "dependency": "org.springframework:spring-webflux",
+        "dependency": "org.springframework:spring-webmvc",
         "new_version": "6.2.19",
-        "old_version": "6.2.0",
-        "remediation_guided": "yes"
-      },
-      {
-        "config": "implementation",
-        "dependency": "org.springframework:spring-core",
-        "new_version": "6.2.19",
-        "old_version": "6.2.0",
+        "old_version": "6.2.10",
         "remediation_guided": "yes"
       },
       {
@@ -370,9 +372,16 @@
       },
       {
         "config": "implementation",
-        "dependency": "org.springframework:spring-webmvc",
+        "dependency": "org.springframework:spring-expression",
         "new_version": "6.2.19",
-        "old_version": "6.2.10",
+        "old_version": "6.2.0",
+        "remediation_guided": "yes"
+      },
+      {
+        "config": "implementation",
+        "dependency": "org.springframework:spring-webflux",
+        "new_version": "6.2.18",
+        "old_version": "6.2.0",
         "remediation_guided": "yes"
       },
       {
@@ -415,9 +424,9 @@
       "selected_changes": [
         {
           "change_type": "gradle",
-          "new": "4.3.1",
-          "old": "4.0.0",
-          "package": "org.apache.kafka:kafka-clients",
+          "new": "3.3.16",
+          "old": "3.3.0",
+          "package": "org.springframework.kafka:spring-kafka",
           "remediation_guided": true
         },
         {
@@ -429,30 +438,9 @@
         },
         {
           "change_type": "gradle",
-          "new": "3.3.16",
-          "old": "3.3.0",
-          "package": "org.springframework.kafka:spring-kafka",
-          "remediation_guided": true
-        },
-        {
-          "change_type": "gradle",
-          "new": "6.2.19",
-          "old": "6.2.0",
-          "package": "org.springframework:spring-expression",
-          "remediation_guided": true
-        },
-        {
-          "change_type": "gradle",
-          "new": "6.2.19",
-          "old": "6.2.0",
-          "package": "org.springframework:spring-context",
-          "remediation_guided": true
-        },
-        {
-          "change_type": "gradle",
-          "new": "6.2.19",
-          "old": "6.2.0",
-          "package": "org.springframework:spring-webflux",
+          "new": "4.3.1",
+          "old": "4.0.0",
+          "package": "org.apache.kafka:kafka-clients",
           "remediation_guided": true
         },
         {
@@ -465,8 +453,8 @@
         {
           "change_type": "gradle",
           "new": "6.2.19",
-          "old": "6.2.10",
-          "package": "org.springframework:spring-web",
+          "old": "6.2.0",
+          "package": "org.springframework:spring-context",
           "remediation_guided": true
         },
         {
@@ -474,6 +462,27 @@
           "new": "6.2.19",
           "old": "6.2.10",
           "package": "org.springframework:spring-webmvc",
+          "remediation_guided": true
+        },
+        {
+          "change_type": "gradle",
+          "new": "6.2.19",
+          "old": "6.2.10",
+          "package": "org.springframework:spring-web",
+          "remediation_guided": true
+        },
+        {
+          "change_type": "gradle",
+          "new": "6.2.19",
+          "old": "6.2.0",
+          "package": "org.springframework:spring-expression",
+          "remediation_guided": true
+        },
+        {
+          "change_type": "gradle",
+          "new": "6.2.18",
+          "old": "6.2.0",
+          "package": "org.springframework:spring-webflux",
           "remediation_guided": true
         },
         {
@@ -492,30 +501,9 @@
         },
         {
           "change_type": "gradle-force",
-          "new": "1.8.0",
-          "old": "1.8.0",
-          "package": "org.lz4:lz4-java",
-          "remediation_guided": true
-        },
-        {
-          "change_type": "gradle-force",
           "new": "1.17.0",
           "old": "1.13.14",
           "package": "io.micrometer:micrometer-core",
-          "remediation_guided": true
-        },
-        {
-          "change_type": "gradle-force",
-          "new": "3.5.13",
-          "old": "3.3.12",
-          "package": "org.springframework.data:spring-data-commons",
-          "remediation_guided": true
-        },
-        {
-          "change_type": "gradle-force",
-          "new": "3.20.0",
-          "old": "3.14.0",
-          "package": "org.apache.commons:commons-lang3",
           "remediation_guided": true
         },
         {
@@ -527,23 +515,23 @@
         },
         {
           "change_type": "gradle-force",
-          "new": "10.1.57",
-          "old": "10.1.41",
-          "package": "org.apache.tomcat.embed:tomcat-embed-websocket",
-          "remediation_guided": true
-        },
-        {
-          "change_type": "gradle-force",
-          "new": "3.27.7",
-          "old": "3.25.3",
-          "package": "org.assertj:assertj-core",
-          "remediation_guided": true
-        },
-        {
-          "change_type": "gradle-force",
           "new": "2.22.1",
           "old": "2.17.3",
           "package": "com.fasterxml.jackson.core:jackson-databind",
+          "remediation_guided": true
+        },
+        {
+          "change_type": "gradle-force",
+          "new": "3.20.0",
+          "old": "3.14.0",
+          "package": "org.apache.commons:commons-lang3",
+          "remediation_guided": true
+        },
+        {
+          "change_type": "gradle-force",
+          "new": "10.1.57",
+          "old": "10.1.41",
+          "package": "org.apache.tomcat.embed:tomcat-embed-websocket",
           "remediation_guided": true
         },
         {
@@ -552,13 +540,34 @@
           "old": "4.3.12",
           "package": "org.springframework.data:spring-data-mongodb",
           "remediation_guided": true
+        },
+        {
+          "change_type": "gradle-force",
+          "new": "1.8.0",
+          "old": "1.8.0",
+          "package": "org.lz4:lz4-java",
+          "remediation_guided": true
+        },
+        {
+          "change_type": "gradle-force",
+          "new": "3.5.13",
+          "old": "3.3.12",
+          "package": "org.springframework.data:spring-data-commons",
+          "remediation_guided": true
+        },
+        {
+          "change_type": "gradle-force",
+          "new": "3.27.7",
+          "old": "3.25.3",
+          "package": "org.assertj:assertj-core",
+          "remediation_guided": true
         }
       ],
       "skipped": [],
       "test_status": "passed",
       "validation_message": "",
       "validation_status": "Passed",
-      "verification_status": "Partial - build passed but 1 CVE record(s) remain",
+      "verification_status": "Partial - build passed but 2 CVE record(s) remain",
       "version_inventory": {
         "com.fasterxml.jackson.core:jackson-databind": [
           "2.0.0-RC1",
@@ -5410,12 +5419,12 @@
       "write_status": "Written"
     }
   ],
-  "generated_at": "2026-07-28T08:54:46",
+  "generated_at": "2026-07-28T20:18:15",
   "next_actions": [
     {
-      "action": "No additional remediation action identified.",
-      "category": "complete",
-      "priority": "none"
+      "action": "Try coordinated platform/BOM upgrades for: spring.",
+      "category": "platform_or_bom",
+      "priority": "high"
     }
   ],
   "original_cves": [
@@ -5484,17 +5493,18 @@
   "outcome": "Partial",
   "refresh_errors": [],
   "remaining_original_cves": [
+    "CVE-2026-41842",
     "CVE-2026-59949"
   ],
   "remediation_budget_seconds": 300,
   "security_status": "still_vulnerable",
   "summary": {
     "candidate_versions_considered": 4808,
-    "component_cve_pairs_new": 1,
+    "component_cve_pairs_new": 2,
     "component_cve_pairs_remaining": 0,
     "component_cve_pairs_removed": 66,
     "dependency_files": 1,
-    "vulnerability_records_after": 1,
+    "vulnerability_records_after": 2,
     "vulnerability_records_before": 66
   },
   "test_status": "passed",
@@ -5513,7 +5523,7 @@
         ],
         "ecosystem": "gradle",
         "label": "Gradle tests",
-        "output": "To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.14.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.\nDaemon will be stopped at the end of the build \n\n> Task :compileJava\n\n> Task :processResources\n> Task :classes\n\n> Task :compileTestJava\n\n> Task :processTestResources NO-SOURCE\n> Task :testClasses\n> Task :test\n> Task :jacocoTestReport\n> Task :jacocoTestCoverageVerification\n\n[Incubating] Problems report is available at: file:///Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_ins-cp-mgmt-externaldnc-workflow_default-branch/default-branch/ins-cp-mgmt-externaldnc-workflow/build/reports/problems/problems-report.html\n\nDeprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.\n\nYou can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.\n\nFor more on this, please refer to https://docs.gradle.org/8.14.1/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.\n\nBUILD SUCCESSFUL in 50s\n6 actionable tasks: 6 executed\n\nNote: /Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_ins-cp-mgmt-externaldnc-workflow_default-branch/default-branch/ins-cp-mgmt-externaldnc-workflow/src/main/java/com/humana/domain/externalDnc/service/avro/AvroDeserializer.java uses or overrides a deprecated API.\nNote: Recompile with -Xlint:deprecation for details.\nNote: Some input files use unchecked or unsafe operations.\nNote: Recompile with -Xlint:unchecked for details.\nNote: Some input files use unchecked or unsafe operations.\nNote: Recompile with -Xlint:unchecked for details.\nJava HotSpot(TM) 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended\n",
+        "output": "To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.14.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.\nDaemon will be stopped at the end of the build \n\n> Task :compileJava\n\n> Task :processResources\n> Task :classes\n\n> Task :compileTestJava\n\n> Task :processTestResources NO-SOURCE\n> Task :testClasses\n> Task :test\n> Task :jacocoTestReport\n> Task :jacocoTestCoverageVerification\n\n[Incubating] Problems report is available at: file:///Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_ins-cp-mgmt-externaldnc-workflow_default-branch/default-branch/ins-cp-mgmt-externaldnc-workflow/build/reports/problems/problems-report.html\n\nDeprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.\n\nYou can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.\n\nFor more on this, please refer to https://docs.gradle.org/8.14.1/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.\n\nBUILD SUCCESSFUL in 1m 58s\n6 actionable tasks: 6 executed\n\nNote: /Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_ins-cp-mgmt-externaldnc-workflow_default-branch/default-branch/ins-cp-mgmt-externaldnc-workflow/src/main/java/com/humana/domain/externalDnc/service/avro/AvroDeserializer.java uses or overrides a deprecated API.\nNote: Recompile with -Xlint:deprecation for details.\nNote: Some input files use unchecked or unsafe operations.\nNote: Recompile with -Xlint:unchecked for details.\nNote: Some input files use unchecked or unsafe operations.\nNote: Recompile with -Xlint:unchecked for details.\nJava HotSpot(TM) 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended\n",
         "project_dir": "/Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_ins-cp-mgmt-externaldnc-workflow_default-branch/default-branch/ins-cp-mgmt-externaldnc-workflow",
         "reason": "",
         "returncode": 0,
