@@ -284,10 +284,9 @@
       "pom_file": "/Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_cwih-patient-mdm-master-api_default-branch/default-branch/cwih-patient-mdm-master-api/pom.xml",
       "fetch_errors": [],
       "dm_type": "maven",
-      "write_status": "Failed",
-      "validation_status": "Failed",
-      "validation_message": "Build validation failed. Failure isolation disabled.",
-      "verification_status": "Error - secondary verification scan incomplete",
+      "write_status": "Written",
+      "validation_status": "Passed",
+      "verification_status": "Partial - build passed but 44 CVE record(s) remain",
       "test_status": "not_run"
     }
   ],

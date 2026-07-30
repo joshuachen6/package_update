@@ -1,14 +1,186 @@
 {
-  "component_count": 0,
+  "component_count": 121,
   "ecosystems": [
     "maven",
     "npm",
     "pypi"
   ],
   "errors": [],
-  "skipped_reason": "No resolved dependency components found. Generate package-lock.json, gradle-dependency-tree.txt, Python requirements files, or pyproject.toml before running the CVE scan.",
-  "vulnerability_count": 0,
-  "vulnerable_component_count": 0,
-  "vulnerable_components": [],
+  "vulnerability_count": 44,
+  "vulnerable_component_count": 16,
+  "vulnerable_components": [
+    {
+      "component_id": "gav://ch.qos.logback:logback-core:1.5.26",
+      "cves": [
+        "CVE-2026-10532",
+        "CVE-2026-9828"
+      ],
+      "ecosystem": "maven",
+      "package": "ch.qos.logback:logback-core",
+      "version": "1.5.26"
+    },
+    {
+      "component_id": "gav://com.fasterxml.jackson.core:jackson-databind:2.21.2",
+      "cves": [
+        "CVE-2026-54512",
+        "CVE-2026-54513",
+        "CVE-2026-54514",
+        "CVE-2026-54515",
+        "CVE-2026-54516",
+        "CVE-2026-54517",
+        "CVE-2026-54518",
+        "CVE-2026-59888",
+        "CVE-2026-59889"
+      ],
+      "ecosystem": "maven",
+      "package": "com.fasterxml.jackson.core:jackson-databind",
+      "version": "2.21.2"
+    },
+    {
+      "component_id": "gav://io.micrometer:micrometer-core:1.15.11",
+      "cves": [
+        "CVE-2026-40983",
+        "CVE-2026-40984"
+      ],
+      "ecosystem": "maven",
+      "package": "io.micrometer:micrometer-core",
+      "version": "1.15.11"
+    },
+    {
+      "component_id": "gav://org.apache.httpcomponents.core5:httpcore5-h2:5.4",
+      "cves": [
+        "CVE-2026-54428"
+      ],
+      "ecosystem": "maven",
+      "package": "org.apache.httpcomponents.core5:httpcore5-h2",
+      "version": "5.4"
+    },
+    {
+      "component_id": "gav://org.apache.httpcomponents.core5:httpcore5:5.4",
+      "cves": [
+        "CVE-2026-54399"
+      ],
+      "ecosystem": "maven",
+      "package": "org.apache.httpcomponents.core5:httpcore5",
+      "version": "5.4"
+    },
+    {
+      "component_id": "gav://org.apache.tomcat.embed:tomcat-embed-core:11.0.20",
+      "cves": [
+        "CVE-2026-34483",
+        "CVE-2026-41284",
+        "CVE-2026-41293",
+        "CVE-2026-43512",
+        "CVE-2026-43513",
+        "CVE-2026-43514",
+        "CVE-2026-43515",
+        "CVE-2026-50229",
+        "CVE-2026-53404",
+        "CVE-2026-53434",
+        "CVE-2026-55276",
+        "CVE-2026-55955",
+        "CVE-2026-55956",
+        "CVE-2026-59083",
+        "CVE-2026-59084"
+      ],
+      "ecosystem": "maven",
+      "package": "org.apache.tomcat.embed:tomcat-embed-core",
+      "version": "11.0.20"
+    },
+    {
+      "component_id": "gav://org.apache.tomcat.embed:tomcat-embed-websocket:10.1.53",
+      "cves": [
+        "CVE-2026-42498"
+      ],
+      "ecosystem": "maven",
+      "package": "org.apache.tomcat.embed:tomcat-embed-websocket",
+      "version": "10.1.53"
+    },
+    {
+      "component_id": "gav://org.bouncycastle:bcprov-jdk18on:1.80",
+      "cves": [
+        "CVE-2025-14813",
+        "CVE-2026-0636",
+        "CVE-2026-5598"
+      ],
+      "ecosystem": "maven",
+      "package": "org.bouncycastle:bcprov-jdk18on",
+      "version": "1.80"
+    },
+    {
+      "component_id": "gav://org.springframework.boot:spring-boot-devtools:3.5.13",
+      "cves": [
+        "CVE-2026-40972"
+      ],
+      "ecosystem": "maven",
+      "package": "org.springframework.boot:spring-boot-devtools",
+      "version": "3.5.13"
+    },
+    {
+      "component_id": "gav://org.springframework.boot:spring-boot:3.5.13",
+      "cves": [
+        "CVE-2026-40973"
+      ],
+      "ecosystem": "maven",
+      "package": "org.springframework.boot:spring-boot",
+      "version": "3.5.13"
+    },
+    {
+      "component_id": "gav://org.springframework.data:spring-data-commons:3.5.11",
+      "cves": [
+        "CVE-2026-41695",
+        "CVE-2026-41716"
+      ],
+      "ecosystem": "maven",
+      "package": "org.springframework.data:spring-data-commons",
+      "version": "3.5.11"
+    },
+    {
+      "component_id": "gav://org.springframework.data:spring-data-mongodb:4.5.11",
+      "cves": [
+        "CVE-2026-41717"
+      ],
+      "ecosystem": "maven",
+      "package": "org.springframework.data:spring-data-mongodb",
+      "version": "4.5.11"
+    },
+    {
+      "component_id": "gav://org.springframework:spring-core:6.2.12",
+      "cves": [
+        "CVE-2026-41848"
+      ],
+      "ecosystem": "maven",
+      "package": "org.springframework:spring-core",
+      "version": "6.2.12"
+    },
+    {
+      "component_id": "gav://org.springframework:spring-expression:6.2.18",
+      "cves": [
+        "CVE-2026-41850",
+        "CVE-2026-41851"
+      ],
+      "ecosystem": "maven",
+      "package": "org.springframework:spring-expression",
+      "version": "6.2.18"
+    },
+    {
+      "component_id": "gav://org.springframework:spring-web:6.2.10",
+      "cves": [
+        "CVE-2026-41845"
+      ],
+      "ecosystem": "maven",
+      "package": "org.springframework:spring-web",
+      "version": "6.2.10"
+    },
+    {
+      "component_id": "gav://org.springframework:spring-webmvc:6.2.18",
+      "cves": [
+        "CVE-2026-41842"
+      ],
+      "ecosystem": "maven",
+      "package": "org.springframework:spring-webmvc",
+      "version": "6.2.18"
+    }
+  ],
   "xray_host": "https://humana.jfrog.io"
 }

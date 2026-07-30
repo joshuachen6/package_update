@@ -1036,3 +1036,36 @@ CVEs resolved (50):
   CVE-2026-59889 — https://github.com/Cloud-3-0-EMU/cwih-patient-mdm-master-api.git
   CVE-2026-9828 — https://github.com/Cloud-3-0-EMU/cwih-patient-mdm-master-api.git
 
+=== Batch summary: 2026-07-30T13:25:59 ===
+Batch remediation complete
+
+Repos processed: 1
+  Successful: 0
+  Partial: 1
+  Failed: 0
+  Other (error/aborted): 0
+
+Full remediation rate: 0.0%
+Useful remediation rate (full + partial): 100.0%
+
+Unique CVEs cleared: 6
+Total CVEs cleared (counts duplicates across repos): 6
+
+Vulnerable packages before: 16
+Vulnerable packages after: 16
+Instances cleared: 0
+Clearance rate: 0.0%
+
+Average repo fix time: 1:16
+
+Per-repo:
+  [Partial] https://github.com/Cloud-3-0-EMU/cwih-patient-mdm-master-api.git — 1:16
+
+CVEs resolved (6):
+  CVE-2026-22741 — https://github.com/Cloud-3-0-EMU/cwih-patient-mdm-master-api.git
+  CVE-2026-22745 — https://github.com/Cloud-3-0-EMU/cwih-patient-mdm-master-api.git
+  CVE-2026-24880 — https://github.com/Cloud-3-0-EMU/cwih-patient-mdm-master-api.git
+  CVE-2026-25854 — https://github.com/Cloud-3-0-EMU/cwih-patient-mdm-master-api.git
+  CVE-2026-29129 — https://github.com/Cloud-3-0-EMU/cwih-patient-mdm-master-api.git
+  CVE-2026-32990 — https://github.com/Cloud-3-0-EMU/cwih-patient-mdm-master-api.git
+
