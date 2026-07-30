@@ -69,8 +69,8 @@ Fix JFrog CVEs
 Fixing 16 JFrog package(s) in Maven     >  pom.xml
 Skipping JFrog package(s) not present in this pom.xml or its resolved dependency tree: io.micrometer:micrometer-core, org.apache.httpcomponents.core5:httpcore5, org.apache.httpcomponents.core5:httpcore5-h2, org.apache.tomcat.embed:tomcat-embed-websocket, org.springframework.boot:spring-boot, org.springframework.data:spring-data-commons, org.springframework.data:spring-data-mongodb, org.springframework:spring-expression
 
-Maven counts: deps=43, updated=7, dm_overrides=1, skipped=0
-Changes: maven_direct=5, maven_managed=3, skipped=0
+Maven counts: deps=43, updated=7, dm_overrides=0, skipped=1
+Changes: maven_direct=5, maven_managed=2, skipped=1
 Phase2 cache generated → /Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_cwih-patient-mdm-master-api_default-branch/logs/phase2-results.json
 Writing /Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_cwih-patient-mdm-master-api_default-branch/default-branch/cwih-patient-mdm-master-api/pom.xml in place...
 Validating updated project: mvn test-compile -f /Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_cwih-patient-mdm-master-api_default-branch/default-branch/cwih-patient-mdm-master-api/pom.xml --no-transfer-progress -B
@@ -152,7 +152,7 @@ Validating updated project: mvn test-compile -f /Users/jchen18/.package_update_g
 Build validation failed; rollback isolation is disabled.
 Write/validation failed: Build validation failed. Failure isolation disabled.
 
-Totals: 0 npm direct, 0 npm override(s), 0 Gradle direct, 0 Gradle force(s), 5 Maven direct, 3 Maven managed, 0 Python direct, 0 skipped
+Totals: 0 npm direct, 0 npm override(s), 0 Gradle direct, 0 Gradle force(s), 5 Maven direct, 2 Maven managed, 0 Python direct, 1 skipped
 Logs:   /Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_cwih-patient-mdm-master-api_default-branch/logs
 JFrog API CVE scan skipped: no resolved dependency components found.
 JFrog audit log -> /Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_cwih-patient-mdm-master-api_default-branch/logs/jfrog-audit-after.json

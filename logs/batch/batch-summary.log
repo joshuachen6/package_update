@@ -882,3 +882,80 @@ CVEs resolved (50):
   CVE-2026-59889 — https://github.com/Cloud-3-0-EMU/cwih-patient-mdm-master-api.git
   CVE-2026-9828 — https://github.com/Cloud-3-0-EMU/cwih-patient-mdm-master-api.git
 
+=== Batch summary: 2026-07-30T12:28:57 ===
+Batch remediation complete
+
+Repos processed: 1
+  Successful: 0
+  Partial: 0
+  Failed: 1
+  Other (error/aborted): 0
+
+Full remediation rate: 0.0%
+Useful remediation rate (full + partial): 0.0%
+
+Unique CVEs cleared: 50
+Total CVEs cleared (counts duplicates across repos): 50
+
+Vulnerable packages before: 16
+Vulnerable packages after: 0
+Instances cleared: 16
+Clearance rate: 100.0%
+
+Average repo fix time: 0:29
+
+Per-repo:
+  [Failed] https://github.com/Cloud-3-0-EMU/cwih-patient-mdm-master-api.git — 0:29
+
+CVEs resolved (50):
+  CVE-2025-14813 — https://github.com/Cloud-3-0-EMU/cwih-patient-mdm-master-api.git
+  CVE-2026-0636 — https://github.com/Cloud-3-0-EMU/cwih-patient-mdm-master-api.git
+  CVE-2026-10532 — https://github.com/Cloud-3-0-EMU/cwih-patient-mdm-master-api.git
+  CVE-2026-22741 — https://github.com/Cloud-3-0-EMU/cwih-patient-mdm-master-api.git
+  CVE-2026-22745 — https://github.com/Cloud-3-0-EMU/cwih-patient-mdm-master-api.git
+  CVE-2026-24880 — https://github.com/Cloud-3-0-EMU/cwih-patient-mdm-master-api.git
+  CVE-2026-25854 — https://github.com/Cloud-3-0-EMU/cwih-patient-mdm-master-api.git
+  CVE-2026-29129 — https://github.com/Cloud-3-0-EMU/cwih-patient-mdm-master-api.git
+  CVE-2026-32990 — https://github.com/Cloud-3-0-EMU/cwih-patient-mdm-master-api.git
+  CVE-2026-34483 — https://github.com/Cloud-3-0-EMU/cwih-patient-mdm-master-api.git
+  CVE-2026-40972 — https://github.com/Cloud-3-0-EMU/cwih-patient-mdm-master-api.git
+  CVE-2026-40973 — https://github.com/Cloud-3-0-EMU/cwih-patient-mdm-master-api.git
+  CVE-2026-40983 — https://github.com/Cloud-3-0-EMU/cwih-patient-mdm-master-api.git
+  CVE-2026-40984 — https://github.com/Cloud-3-0-EMU/cwih-patient-mdm-master-api.git
+  CVE-2026-41284 — https://github.com/Cloud-3-0-EMU/cwih-patient-mdm-master-api.git
+  CVE-2026-41293 — https://github.com/Cloud-3-0-EMU/cwih-patient-mdm-master-api.git
+  CVE-2026-41695 — https://github.com/Cloud-3-0-EMU/cwih-patient-mdm-master-api.git
+  CVE-2026-41716 — https://github.com/Cloud-3-0-EMU/cwih-patient-mdm-master-api.git
+  CVE-2026-41717 — https://github.com/Cloud-3-0-EMU/cwih-patient-mdm-master-api.git
+  CVE-2026-41842 — https://github.com/Cloud-3-0-EMU/cwih-patient-mdm-master-api.git
+  CVE-2026-41845 — https://github.com/Cloud-3-0-EMU/cwih-patient-mdm-master-api.git
+  CVE-2026-41848 — https://github.com/Cloud-3-0-EMU/cwih-patient-mdm-master-api.git
+  CVE-2026-41850 — https://github.com/Cloud-3-0-EMU/cwih-patient-mdm-master-api.git
+  CVE-2026-41851 — https://github.com/Cloud-3-0-EMU/cwih-patient-mdm-master-api.git
+  CVE-2026-42498 — https://github.com/Cloud-3-0-EMU/cwih-patient-mdm-master-api.git
+  CVE-2026-43512 — https://github.com/Cloud-3-0-EMU/cwih-patient-mdm-master-api.git
+  CVE-2026-43513 — https://github.com/Cloud-3-0-EMU/cwih-patient-mdm-master-api.git
+  CVE-2026-43514 — https://github.com/Cloud-3-0-EMU/cwih-patient-mdm-master-api.git
+  CVE-2026-43515 — https://github.com/Cloud-3-0-EMU/cwih-patient-mdm-master-api.git
+  CVE-2026-50229 — https://github.com/Cloud-3-0-EMU/cwih-patient-mdm-master-api.git
+  CVE-2026-53404 — https://github.com/Cloud-3-0-EMU/cwih-patient-mdm-master-api.git
+  CVE-2026-53434 — https://github.com/Cloud-3-0-EMU/cwih-patient-mdm-master-api.git
+  CVE-2026-54399 — https://github.com/Cloud-3-0-EMU/cwih-patient-mdm-master-api.git
+  CVE-2026-54428 — https://github.com/Cloud-3-0-EMU/cwih-patient-mdm-master-api.git
+  CVE-2026-54512 — https://github.com/Cloud-3-0-EMU/cwih-patient-mdm-master-api.git
+  CVE-2026-54513 — https://github.com/Cloud-3-0-EMU/cwih-patient-mdm-master-api.git
+  CVE-2026-54514 — https://github.com/Cloud-3-0-EMU/cwih-patient-mdm-master-api.git
+  CVE-2026-54515 — https://github.com/Cloud-3-0-EMU/cwih-patient-mdm-master-api.git
+  CVE-2026-54516 — https://github.com/Cloud-3-0-EMU/cwih-patient-mdm-master-api.git
+  CVE-2026-54517 — https://github.com/Cloud-3-0-EMU/cwih-patient-mdm-master-api.git
+  CVE-2026-54518 — https://github.com/Cloud-3-0-EMU/cwih-patient-mdm-master-api.git
+  CVE-2026-55276 — https://github.com/Cloud-3-0-EMU/cwih-patient-mdm-master-api.git
+  CVE-2026-55955 — https://github.com/Cloud-3-0-EMU/cwih-patient-mdm-master-api.git
+  CVE-2026-55956 — https://github.com/Cloud-3-0-EMU/cwih-patient-mdm-master-api.git
+  CVE-2026-5598 — https://github.com/Cloud-3-0-EMU/cwih-patient-mdm-master-api.git
+  CVE-2026-59083 — https://github.com/Cloud-3-0-EMU/cwih-patient-mdm-master-api.git
+  CVE-2026-59084 — https://github.com/Cloud-3-0-EMU/cwih-patient-mdm-master-api.git
+  CVE-2026-59888 — https://github.com/Cloud-3-0-EMU/cwih-patient-mdm-master-api.git
+  CVE-2026-59889 — https://github.com/Cloud-3-0-EMU/cwih-patient-mdm-master-api.git
+  CVE-2026-9828 — https://github.com/Cloud-3-0-EMU/cwih-patient-mdm-master-api.git
+
