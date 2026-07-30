@@ -47,7 +47,7 @@ class MavenPomParser:
 
     def resolve_tree(self, file_path: str, parsed: Any, cfg: Any, log_dir: str) -> MavenPomTree:
         from parsers.gradle import parallel_fetch_versions
-        from parsers.pom import get_maven_cmd, parse_maven_dep_tree, run_maven_dependency_tree
+        from parsers.pom import _extract_repo_ids, get_maven_cmd, parse_maven_dep_tree, run_maven_dependency_tree
 
         art_src = (getattr(cfg, 'artifactory_source', '') or '').rstrip('/')
         if not art_src:
@@ -72,10 +72,15 @@ class MavenPomParser:
         timeout = max(getattr(cfg, 'maven_timeout', 150), 180)
         print(f'Resolving Maven dependency tree... timeout={timeout}s')
 
+        repo_ids = _extract_repo_ids(parsed.pom_text)
+        if repo_ids:
+            print(f'  Found repository IDs in pom.xml: {", ".join(repo_ids)}')
+
         tree_output, tree_err, verbose_log = run_maven_dependency_tree(
             project_dir, file_path, maven_cmd, timeout,
             base_url=base_url,
             auth=auth,
+            extra_server_ids=repo_ids,
         )
 
         installed: dict = {}

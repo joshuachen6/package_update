@@ -176,21 +176,74 @@ def parse_pom_text(pom_text: str, file_path: str = '') -> PomParsed:
     )
 
 
-def _write_temp_settings(base_url: str, auth: tuple[str, str]) -> str:
+def _extract_repo_ids(pom_text: str) -> list[str]:
+    """Return all <repository><id> values declared in the pom.xml.
+
+    These are used to create matching <server> entries in the generated
+    settings.xml so Maven can authenticate against each repo directly,
+    not just through the mirror.  Parent POM imports (which live in the
+    local .m2 cache and reference their own repo IDs) are intentionally
+    not parsed here — the mirror + broad server coverage handles those.
+    """
+    ids: list[str] = []
+    # Match inside <repositories> and <pluginRepositories> sections
+    _REPO_SECTIONS_RE = re.compile(
+        r'<(?:plugin)?[Rr]epositories>([\s\S]*?)</(?:plugin)?[Rr]epositories>',
+        re.DOTALL,
+    )
+    _REPO_ID_RE = re.compile(r'<id\b[^>]*>\s*([^\s<]+)\s*</id>')
+    for section_m in _REPO_SECTIONS_RE.finditer(pom_text):
+        for id_m in _REPO_ID_RE.finditer(section_m.group(1)):
+            repo_id = id_m.group(1).strip()
+            if repo_id and repo_id not in ids:
+                ids.append(repo_id)
+    return ids
+
+
+def _write_temp_settings(
+    base_url: str,
+    auth: tuple[str, str],
+    extra_server_ids: list[str] | None = None,
+) -> str:
     """Write a temporary Maven settings.xml that routes all repositories through
     Artifactory with the provided credentials.
 
-    The mirror uses mirrorOf=* so every repository reference in the pom.xml
-    (including Maven Central) resolves through the Artifactory proxy — exactly
-    the same behaviour as the Gradle pipeline which hard-routes all HTTP fetches
-    through the configured Artifactory base URL.
+    Two complementary mechanisms are used so that credentials reach Maven
+    regardless of whether the request goes through the mirror or directly to
+    a repository by its original ID (which happens for parent POMs already
+    cached in ~/.m2 that embed their own <repositories> blocks):
+
+      1. mirrorOf=* mirror — redirects every remote repo to base_url and
+         authenticates via the 'artifactory-proxy' server entry.
+      2. Per-ID server entries — one entry for each repo ID found in the
+         pom.xml (e.g. 'confluent', 'spring-milestones') so Maven can
+         authenticate against those repos even if the mirror lookup doesn't
+         intercept the request.
 
     Returns the file path. Caller must delete it when done.
     """
     username, password = auth
-    # Escape XML special chars in credentials
+
     def _esc(s: str) -> str:
-        return s.replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;').replace('"', '&quot;')
+        return (
+            s.replace('&', '&amp;')
+             .replace('<', '&lt;')
+             .replace('>', '&gt;')
+             .replace('"', '&quot;')
+        )
+
+    u, p = _esc(username), _esc(password)
+
+    # Build per-repo server entries (mirror entry is always first)
+    all_ids = ['artifactory-proxy'] + [i for i in (extra_server_ids or []) if i != 'artifactory-proxy']
+    server_blocks = '\n'.join(
+        f'    <server>\n'
+        f'      <id>{sid}</id>\n'
+        f'      <username>{u}</username>\n'
+        f'      <password>{p}</password>\n'
+        f'    </server>'
+        for sid in all_ids
+    )
 
     content = textwrap.dedent(f"""\
         <?xml version="1.0" encoding="UTF-8"?>
@@ -206,14 +259,11 @@ def _write_temp_settings(base_url: str, auth: tuple[str, str]) -> str:
             </mirror>
           </mirrors>
           <servers>
-            <server>
-              <id>artifactory-proxy</id>
-              <username>{_esc(username)}</username>
-              <password>{_esc(password)}</password>
-            </server>
+        {server_blocks}
           </servers>
         </settings>
     """)
+
     fd, path = tempfile.mkstemp(suffix='.xml', prefix='pkg_update_mvn_settings_')
     try:
         with os.fdopen(fd, 'w', encoding='utf-8') as fh:
@@ -281,6 +331,7 @@ def run_maven_dependency_tree(
     timeout: int,
     base_url: str | None = None,
     auth: tuple[str, str] | None = None,
+    extra_server_ids: list[str] | None = None,
 ) -> tuple[str | None, str | None, str]:
     """Run mvn dependency:tree with fallback variants.
 
@@ -297,7 +348,7 @@ def run_maven_dependency_tree(
     settings_path: str | None = None
     try:
         if base_url and auth:
-            settings_path = _write_temp_settings(base_url, auth)
+            settings_path = _write_temp_settings(base_url, auth, extra_server_ids)
 
         sf = ['-s', settings_path] if settings_path else []
 
