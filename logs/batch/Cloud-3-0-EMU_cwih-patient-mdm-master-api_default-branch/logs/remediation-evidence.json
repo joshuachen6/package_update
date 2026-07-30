@@ -188,7 +188,72 @@
   },
   "classification": "Error - secondary verification scan incomplete",
   "diagnostic_csvs": {
-    "build-validation-manual-updates.csv": []
+    "build-validation-manual-updates.csv": [
+      {
+        "change_type": "maven-managed",
+        "new": "1.0-rc1",
+        "old": "6.2.11",
+        "package": "org.springframework:spring-core",
+        "reason": "build validation failed and failure isolation disabled",
+        "status": "manual_update_required"
+      },
+      {
+        "change_type": "maven",
+        "new": "1.0-rc1",
+        "old": "6.2.17",
+        "package": "org.springframework:spring-webmvc",
+        "reason": "build validation failed and failure isolation disabled",
+        "status": "manual_update_required"
+      },
+      {
+        "change_type": "maven",
+        "new": "1.0-rc1",
+        "old": "6.2.9",
+        "package": "org.springframework:spring-web",
+        "reason": "build validation failed and failure isolation disabled",
+        "status": "manual_update_required"
+      },
+      {
+        "change_type": "maven-managed",
+        "new": "1.3.0.RELEASE",
+        "old": "",
+        "package": "org.springframework.boot:spring-boot-devtools",
+        "reason": "build validation failed and failure isolation disabled",
+        "status": "manual_update_required"
+      },
+      {
+        "change_type": "maven-managed",
+        "new": "0.2.5",
+        "old": "1.5.25",
+        "package": "ch.qos.logback:logback-core",
+        "reason": "build validation failed and failure isolation disabled",
+        "status": "manual_update_required"
+      },
+      {
+        "change_type": "maven",
+        "new": "1.71.1",
+        "old": "1.79",
+        "package": "org.bouncycastle:bcprov-jdk18on",
+        "reason": "build validation failed and failure isolation disabled",
+        "status": "manual_update_required"
+      },
+      {
+        "change_type": "maven",
+        "new": "7.0.0",
+        "old": "11.0.18",
+        "package": "org.apache.tomcat.embed:tomcat-embed-core",
+        "reason": "build validation failed and failure isolation disabled",
+        "status": "manual_update_required"
+      },
+      {
+        "change_type": "maven",
+        "new": "2.0.0-RC1",
+        "old": "2.21.1",
+        "package": "com.fasterxml.jackson.core:jackson-databind",
+        "reason": "build validation failed and failure isolation disabled",
+        "status": "manual_update_required"
+      }
+    ]
   },
   "failure_isolation_enabled": false,
   "files": [
@@ -201,128 +266,77 @@
       "selected_changes": [
         {
           "change_type": "maven-managed",
-          "new": "1.5.26",
+          "new": "0.2.5",
           "old": "1.5.25",
           "package": "ch.qos.logback:logback-core",
           "remediation_guided": true
         },
         {
           "change_type": "maven",
-          "new": "2.21.2",
+          "new": "2.0.0-RC1",
           "old": "2.21.1",
           "package": "com.fasterxml.jackson.core:jackson-databind",
           "remediation_guided": true
         },
         {
           "change_type": "maven",
-          "new": "11.0.20",
+          "new": "7.0.0",
           "old": "11.0.18",
           "package": "org.apache.tomcat.embed:tomcat-embed-core",
           "remediation_guided": true
         },
         {
           "change_type": "maven",
-          "new": "1.80",
+          "new": "1.71.1",
           "old": "1.79",
           "package": "org.bouncycastle:bcprov-jdk18on",
           "remediation_guided": true
         },
         {
           "change_type": "maven-managed",
-          "new": "6.2.12",
+          "new": "1.0-rc1",
           "old": "6.2.11",
           "package": "org.springframework:spring-core",
           "remediation_guided": true
         },
         {
           "change_type": "maven",
-          "new": "6.2.10",
+          "new": "1.0-rc1",
           "old": "6.2.9",
           "package": "org.springframework:spring-web",
           "remediation_guided": true
         },
         {
           "change_type": "maven",
-          "new": "6.2.18",
+          "new": "1.0-rc1",
           "old": "6.2.17",
           "package": "org.springframework:spring-webmvc",
           "remediation_guided": true
         },
         {
           "change_type": "maven-managed",
-          "new": "1.15.11",
-          "old": "1.15.10",
-          "package": "io.micrometer:micrometer-core",
-          "remediation_guided": true
-        },
-        {
-          "change_type": "maven-managed",
-          "new": "5.4",
-          "old": "5.3.6",
-          "package": "org.apache.httpcomponents.core5:httpcore5",
-          "remediation_guided": true
-        },
-        {
-          "change_type": "maven-managed",
-          "new": "5.4",
-          "old": "5.3.6",
-          "package": "org.apache.httpcomponents.core5:httpcore5-h2",
-          "remediation_guided": true
-        },
-        {
-          "change_type": "maven-managed",
-          "new": "10.1.53",
-          "old": "10.1.52",
-          "package": "org.apache.tomcat.embed:tomcat-embed-websocket",
-          "remediation_guided": true
-        },
-        {
-          "change_type": "maven-managed",
-          "new": "3.5.13",
-          "old": "3.5.12",
-          "package": "org.springframework.boot:spring-boot",
-          "remediation_guided": true
-        },
-        {
-          "change_type": "maven-managed",
-          "new": "3.5.13",
-          "old": "3.5.12",
+          "new": "1.3.0.RELEASE",
+          "old": "",
           "package": "org.springframework.boot:spring-boot-devtools",
-          "remediation_guided": true
-        },
-        {
-          "change_type": "maven-managed",
-          "new": "3.5.11",
-          "old": "3.5.10",
-          "package": "org.springframework.data:spring-data-commons",
-          "remediation_guided": true
-        },
-        {
-          "change_type": "maven-managed",
-          "new": "4.5.11",
-          "old": "4.5.10",
-          "package": "org.springframework.data:spring-data-mongodb",
-          "remediation_guided": true
-        },
-        {
-          "change_type": "maven-managed",
-          "new": "6.2.18",
-          "old": "6.2.17",
-          "package": "org.springframework:spring-expression",
           "remediation_guided": true
         }
       ],
       "skipped": [],
       "test_status": "not_run",
-      "validation_message": "dict contains fields not in fieldnames: 'version_span', 'property_span'",
+      "validation_message": "Build validation failed. Failure isolation disabled.",
       "validation_status": "Failed",
       "verification_status": "Error - secondary verification scan incomplete",
       "version_inventory": {},
       "write_status": "Failed"
     }
   ],
-  "generated_at": "2026-07-30T12:13:35",
+  "generated_at": "2026-07-30T12:21:42",
   "next_actions": [
+    {
+      "action": "Review exhaustive-isolation failures and try alternative safe versions for the implicated packages instead of retaining the rollback.",
+      "category": "build_compatibility",
+      "priority": "high"
+    },
     {
       "action": "Regenerate the resolved dependency graph and rerun the secondary JFrog scan.",
       "category": "verification",

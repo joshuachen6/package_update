@@ -1,4 +1,4 @@
-[phase2] replay=None log_dir=/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_cwih-patient-mdm-master-api_default-branch cache=/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_cwih-patient-mdm-master-api_default-branch/logs/phase2-results.json exists=False
+[phase2] replay=None log_dir=/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_cwih-patient-mdm-master-api_default-branch cache=/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_cwih-patient-mdm-master-api_default-branch/logs/phase2-results.json exists=True
 [phase2] FALLBACK FULL RUN /Users/jchen18/Documents/package_update/.venv/bin/python3 -u /Users/jchen18/Documents/package_update/quick_update.py --github-url https://github.com/Cloud-3-0-EMU/cwih-patient-mdm-master-api.git --checkout-dir /Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_cwih-patient-mdm-master-api_default-branch/default-branch --log-dir /Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_cwih-patient-mdm-master-api_default-branch
 Cloning https://github.com/Cloud-3-0-EMU/cwih-patient-mdm-master-api.git...
 Cloning https://github.com/Cloud-3-0-EMU/cwih-patient-mdm-master-api.git -> /Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_cwih-patient-mdm-master-api_default-branch/default-branch/cwih-patient-mdm-master-api
@@ -50,8 +50,10 @@ Fetching Artifactory versions (12 workers): [############################--] 37/
 Fetching Artifactory versions (12 workers): [#############################-] 38/39 97%
 Fetching Artifactory versions (12 workers): [##############################] 39/39 100%
 Resolving Maven dependency tree... timeout=300s
-  Dependency tree -> /Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_cwih-patient-mdm-master-api_default-branch/logs/preaudit-maven/1/maven-dependency-tree.txt
-  121 packages in dependency tree
+  Found repository IDs in pom.xml: confluent
+  WARNING: mvn dependency:tree failed — see /Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_cwih-patient-mdm-master-api_default-branch/logs/preaudit-maven/1/maven-dependency-tree-error.txt
+  exit code 1
+  WARNING: no dependency tree output — transitive analysis skipped
 
 ------------------------------------------------------------
 JFrog CVE audit
@@ -65,19 +67,10 @@ Fix JFrog CVEs
 ------------------------------------------------------------
 
 Fixing 16 JFrog package(s) in Maven     >  pom.xml
+Skipping JFrog package(s) not present in this pom.xml or its resolved dependency tree: io.micrometer:micrometer-core, org.apache.httpcomponents.core5:httpcore5, org.apache.httpcomponents.core5:httpcore5-h2, org.apache.tomcat.embed:tomcat-embed-websocket, org.springframework.boot:spring-boot, org.springframework.data:spring-data-commons, org.springframework.data:spring-data-mongodb, org.springframework:spring-expression
 
-Fetching Artifactory versions (12 workers): [------------------------------] 0/8 0%
-Fetching Artifactory versions (12 workers): [###---------------------------] 1/8 12%
-Fetching Artifactory versions (12 workers): [#######-----------------------] 2/8 25%
-Fetching Artifactory versions (12 workers): [###########-------------------] 3/8 37%
-Fetching Artifactory versions (12 workers): [###############---------------] 4/8 50%
-Fetching Artifactory versions (12 workers): [##################------------] 5/8 62%
-Fetching Artifactory versions (12 workers): [######################--------] 6/8 75%
-Fetching Artifactory versions (12 workers): [##########################----] 7/8 87%
-Fetching Artifactory versions (12 workers): [##############################] 8/8 100%
-
-Maven counts: deps=43, updated=7, dm_overrides=9, skipped=0
-Changes: maven_direct=5, maven_managed=11, skipped=0
+Maven counts: deps=43, updated=7, dm_overrides=1, skipped=0
+Changes: maven_direct=5, maven_managed=3, skipped=0
 Phase2 cache generated → /Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_cwih-patient-mdm-master-api_default-branch/logs/phase2-results.json
 Writing /Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_cwih-patient-mdm-master-api_default-branch/default-branch/cwih-patient-mdm-master-api/pom.xml in place...
 Validating updated project: mvn test-compile -f /Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_cwih-patient-mdm-master-api_default-branch/default-branch/cwih-patient-mdm-master-api/pom.xml --no-transfer-progress -B
@@ -156,9 +149,10 @@ Validating updated project: mvn test-compile -f /Users/jchen18/.package_update_g
 [ERROR] For more information about the errors and possible solutions, please read the following articles:
 [ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/ProjectBuildingException
 [ERROR] [Help 2] http://cwiki.apache.org/confluence/display/MAVEN/UnresolvableModelException
-Write/validation failed: dict contains fields not in fieldnames: 'version_span', 'property_span'
+Build validation failed; rollback isolation is disabled.
+Write/validation failed: Build validation failed. Failure isolation disabled.
 
-Totals: 0 npm direct, 0 npm override(s), 0 Gradle direct, 0 Gradle force(s), 5 Maven direct, 11 Maven managed, 0 Python direct, 0 skipped
+Totals: 0 npm direct, 0 npm override(s), 0 Gradle direct, 0 Gradle force(s), 5 Maven direct, 3 Maven managed, 0 Python direct, 0 skipped
 Logs:   /Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_cwih-patient-mdm-master-api_default-branch/logs
 JFrog API CVE scan skipped: no resolved dependency components found.
 JFrog audit log -> /Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_cwih-patient-mdm-master-api_default-branch/logs/jfrog-audit-after.json
