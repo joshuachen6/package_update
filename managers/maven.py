@@ -10,6 +10,7 @@ Reuses:
 from __future__ import annotations
 
 import os
+import re
 from dataclasses import dataclass, field
 from pathlib import Path
 from types import SimpleNamespace
@@ -19,6 +20,20 @@ from managers import EcosystemUpdateResult
 
 if TYPE_CHECKING:
     from managers import WritePlan
+
+
+# Prerelease qualifier pattern — these suffixes mark unstable builds.
+# Versions matching this are excluded from the candidate pool so we never
+# "downgrade" to an RC / alpha / beta even if it has a higher numeric key.
+_PRERELEASE_RE = re.compile(
+    r'(?i)[.\-_](?:alpha|beta|rc\d*|snapshot|m\d+|milestone|cr\d*)'
+    r'(?:[.\-_]?\d*)?(?:[.\-_]|$)'
+)
+
+
+def _is_stable(mv) -> bool:
+    """Return True if the version has no known prerelease qualifier."""
+    return not _PRERELEASE_RE.search(mv.raw)
 
 
 @dataclass
@@ -241,15 +256,33 @@ class MavenPomOutput:
                 continue
 
             current_mv = tree.installed.get(ga_key)
-            current_ver_str = str(current_mv) if current_mv else ''
+            if current_mv is None:
+                # Tree failed or package absent from tree — fall back to the
+                # pom-declared version so we can compute a meaningful baseline.
+                dep_list_for_bl = dep_by_key.get(ga_key, [])
+                pom_ver = next((d.version for d in dep_list_for_bl if d.version), None)
+                if pom_ver:
+                    current_mv = MavenVersion.parse(pom_ver)
+
+            if current_mv is None:
+                # No baseline available (purely transitive dep + tree failed).
+                # Cannot determine what's "forward" — skip to avoid a random pick.
+                skipped.append({
+                    'dependency': ga_key,
+                    'reason': 'dependency tree failed and no version declared in pom.xml — cannot determine current version',
+                    'current': '',
+                    'target': '',
+                })
+                continue
+
+            current_ver_str = str(current_mv)
+
+            # Only consider stable (non-prerelease) versions as candidates.
+            stable_versions = [v for v in all_versions if _is_stable(v)]
 
             # Build candidate lists: same-major above current (forward), higher-major (backward)
-            if current_mv:
-                forward_mvs = sorted([v for v in all_versions if v.major == current_mv.major and v > current_mv])
-                backward_mvs = sorted([v for v in all_versions if v.major > current_mv.major])
-            else:
-                forward_mvs = sorted(all_versions)
-                backward_mvs = []
+            forward_mvs = sorted([v for v in stable_versions if v.major == current_mv.major and v > current_mv])
+            backward_mvs = sorted([v for v in stable_versions if v.major > current_mv.major])
 
             forward = [str(v) for v in forward_mvs[:10]]
             backward = [str(v) for v in backward_mvs[:5]]
