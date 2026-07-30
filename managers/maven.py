@@ -72,14 +72,18 @@ class MavenPomParser:
         timeout = max(getattr(cfg, 'maven_timeout', 150), 180)
         print(f'Resolving Maven dependency tree... timeout={timeout}s')
 
-        tree_output, tree_err = run_maven_dependency_tree(project_dir, file_path, maven_cmd, timeout)
+        tree_output, tree_err, verbose_log = run_maven_dependency_tree(
+            project_dir, file_path, maven_cmd, timeout
+        )
 
         installed: dict = {}
         parents_of: dict = {}
 
         if tree_err:
             err_log = os.path.join(log_dir, 'maven-dependency-tree-error.txt')
-            Path(err_log).write_text(tree_err, encoding='utf-8')
+            # Write the verbose log (includes -e run output) so the user can
+            # see the full Maven error — not just the exit code.
+            Path(err_log).write_text(verbose_log or tree_err, encoding='utf-8')
             if not tree_output:
                 first_lines = '\n'.join(tree_err.splitlines()[:6])
                 print(f'  WARNING: mvn dependency:tree failed — see {err_log}')
