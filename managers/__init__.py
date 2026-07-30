@@ -71,12 +71,14 @@ def _ensure_specs() -> None:
     if _MANAGER_SPECS:
         return
     from managers.gradle import GradleManager
+    from managers.maven import MavenPomManager
     from managers.npm import NpmManager
     from managers.python import PythonManager
 
     _MANAGER_SPECS.update({
         "node": NpmManager(),
         "gradle": GradleManager(),
+        "maven": MavenPomManager(),
         "python": PythonManager(),
     })
 

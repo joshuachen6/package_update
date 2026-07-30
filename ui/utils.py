@@ -65,6 +65,8 @@ def scan_for_dep_managers(root_dir: str) -> list:
                 found.append({"type": "node", "label": f"Node/npm  >  {rel}", "file_path": str(path)})
             elif filename == "build.gradle":
                 found.append({"type": "gradle", "label": f"Gradle    >  {rel}", "file_path": str(path)})
+            elif filename == "pom.xml":
+                found.append({"type": "maven", "label": f"Maven     >  {rel}", "file_path": str(path)})
             elif is_supported_python_dependency_file(path):
                 found.append({"type": "python", "label": f"Python    >  {rel}", "file_path": str(path)})
     return found

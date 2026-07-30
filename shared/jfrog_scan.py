@@ -13,6 +13,10 @@ _GRADLE_DEP_RE = re.compile(
     r"([A-Za-z0-9_.-]+):([A-Za-z0-9_.-]+)(?::([A-Za-z0-9_.+-]+))?(?:\s+->\s+([A-Za-z0-9_.+-]+))?"
 )
 _PYTHON_TREE_DEP_RE = re.compile(r"\+--\s+([A-Za-z0-9_.-]+)==([A-Za-z0-9_.+-]+)")
+# Maven dependency:tree line: group:artifact:type:version[:scope]
+_MAVEN_TREE_LINE_RE = re.compile(
+    r"([A-Za-z0-9_.-]+):([A-Za-z0-9_.-]+):[A-Za-z0-9_.-]+:([A-Za-z0-9_.+\-]+)(?::[A-Za-z0-9_.-]+)?"
+)
 def _strip_jfrog_service_path(host):
     for suffix in ("/artifactory", "/xray"):
         if host.endswith(suffix):
@@ -141,6 +145,37 @@ def _python_dependency_paths(project_dir, dependency_paths=None):
     ]
 
 
+def _collect_maven_pom_components(log_dir, tree_paths=None):
+    """Collect Maven components from mvn dependency:tree output files."""
+    components = []
+    if tree_paths is None:
+        tree_paths = [Path(log_dir) / "maven-dependency-tree.txt"]
+    else:
+        tree_paths = [Path(p) for p in tree_paths]
+    for tree_path in tree_paths:
+        if _is_skipped_path(tree_path) or not tree_path.is_file():
+            continue
+        try:
+            text = tree_path.read_text(encoding="utf-8", errors="replace")
+        except Exception:
+            continue
+        for line in text.splitlines():
+            content = line.strip()
+            if content.startswith("[INFO]"):
+                content = content[6:].lstrip()
+            if "+- " not in content and "\\- " not in content:
+                continue
+            if "(omitted" in content:
+                continue
+            match = _MAVEN_TREE_LINE_RE.search(content)
+            if not match:
+                continue
+            group, artifact, version = match.group(1), match.group(2), match.group(3)
+            if group and artifact and version:
+                components.append(ComponentVersion("maven", f"{group}:{artifact}", version))
+    return components
+
+
 def _collect_python_components(project_dir, requirement_paths=None):
     components = []
     try:
@@ -205,6 +240,7 @@ def run_jfrog_audit(
     npm_package_dirs=None,
     npm_lock_paths=None,
     gradle_tree_paths=None,
+    maven_tree_paths=None,
     python_requirement_paths=None,
     python_tree_paths=None,
     output_name="jfrog-audit.json",
@@ -218,6 +254,7 @@ def run_jfrog_audit(
         components.extend(_collect_npm_components(project_dir, npm_package_dirs, npm_lock_paths))
     if "maven" in enabled_ecosystems:
         components.extend(_collect_gradle_components(log_dir, gradle_tree_paths))
+        components.extend(_collect_maven_pom_components(log_dir, maven_tree_paths))
     if "pypi" in enabled_ecosystems:
         tree_comps = _collect_python_tree_components(log_dir, python_tree_paths)
         if tree_comps:

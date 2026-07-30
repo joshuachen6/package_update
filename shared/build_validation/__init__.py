@@ -64,6 +64,12 @@ from .node import (
     validate_node_project,
     validate_node_project_or_rollback,
 )
+from .maven import (
+    _maven_candidates,
+    _revert_maven_dep,
+    validate_maven_project,
+    validate_maven_project_or_rollback,
+)
 from .python import (
     _python_candidates,
     _revert_python_dep,
@@ -75,6 +81,10 @@ __all__ = [
     "BuildValidationError",
     "BuildValidationManualUpdatesError",
     "MavenVersion",
+    "_maven_candidates",
+    "_revert_maven_dep",
+    "validate_maven_project",
+    "validate_maven_project_or_rollback",
     "_artifactory_auth_from_env",
     "_candidate_rank",
     "_clear_stale_manual_updates_csv",

@@ -41,9 +41,12 @@ class QuickUpdateConfig:
     artifactory_repo: str = "ins-cp-mgmt-gradle-virtual"
     artifactory_username: str = ""
     artifactory_password: str = ""
+    maven_cmd: str = "mvn"
+    maven_timeout: int = 300
     package_jsons: list[str] | None = None
     build_files: list[str] | None = None
     python_files: list[str] | None = None
+    pom_files: list[str] | None = None
     github_url: str | None = None
     checkout_dir: str | None = None
     branch: str | None = None
@@ -238,6 +241,49 @@ def _pre_resolve_gradle_managers(
     return cache, tree_paths, tree_by_file
 
 
+def _pre_resolve_maven_managers(
+    cfg: QuickUpdateConfig,
+    managers: list[dict],
+    log_dir: str,
+) -> tuple[dict[str, tuple[object, object]], list[str]]:
+    """Resolve Maven POM dependency trees before the Xray audit.
+
+    Returns (cache, tree_paths) where cache maps file_path -> (parsed, tree)
+    and tree_paths is the list of written maven-dependency-tree.txt paths.
+    """
+    from managers import get_manager_spec
+
+    cache: dict[str, tuple[object, object]] = {}
+    tree_paths: list[str] = []
+    maven_index = 0
+
+    for manager in managers:
+        if manager.get("type") != "maven":
+            continue
+
+        maven_index += 1
+        spec = get_manager_spec("maven")
+        file_path = manager["file_path"]
+        preaudit_log_dir = os.path.join(
+            log_dir,
+            "preaudit-maven",
+            str(maven_index),
+        )
+        os.makedirs(preaudit_log_dir, exist_ok=True)
+
+        print()
+        print(f"Pre-resolving Maven dependencies for {manager['label']}...")
+        parsed = spec.parser.parse(file_path)
+        tree = spec.parser.resolve_tree(file_path, parsed, cfg, preaudit_log_dir)
+        cache[file_path] = (parsed, tree)
+
+        tree_path = os.path.join(preaudit_log_dir, "maven-dependency-tree.txt")
+        if os.path.isfile(tree_path):
+            tree_paths.append(tree_path)
+
+    return cache, tree_paths
+
+
 def _enabled_ecosystems(managers: list[dict]) -> set:
     from managers import get_manager_spec
 
@@ -248,6 +294,8 @@ def _format_totals(totals: dict[str, int]) -> str:
         "npm_override": "npm override(s)",
         "gradle_direct": "Gradle direct",
         "gradle_force": "Gradle force(s)",
+        "maven_direct": "Maven direct",
+        "maven_managed": "Maven managed",
         "python_direct": "Python direct",
         "skipped": "skipped",
     }
@@ -298,6 +346,12 @@ def run_quick_update(cfg: QuickUpdateConfig) -> dict:
         log_dir,
     )
 
+    prefetched_maven, maven_tree_paths = _pre_resolve_maven_managers(
+        cfg,
+        managers,
+        log_dir,
+    )
+
     print()
     print("-" * 60)
     print("JFrog CVE audit")
@@ -325,6 +379,7 @@ def run_quick_update(cfg: QuickUpdateConfig) -> dict:
         auth=auth,
         ecosystems=_enabled_ecosystems(managers),
         gradle_tree_paths=gradle_tree_paths,
+        maven_tree_paths=maven_tree_paths,
     )
 
     from shared.jfrog_scan import audit_scan_usable
@@ -371,12 +426,16 @@ def run_quick_update(cfg: QuickUpdateConfig) -> dict:
         if vulnerable_packages:
             print()
             print(f"Fixing {len(vulnerable_packages)} JFrog package(s) in {manager['label']}")
+            prefetched = (
+                prefetched_gradle.get(manager["file_path"])
+                or prefetched_maven.get(manager["file_path"])
+            )
             result = _analyze_file(
                 cfg,
                 manager,
                 log_dir,
                 vulnerable_packages,
-                prefetched_gradle.get(manager["file_path"]),
+                prefetched,
             )
             if manager["type"] == "gradle":
                 result["preaudit_gradle_tree_path"] = gradle_tree_by_file.get(
@@ -483,13 +542,17 @@ def run_quick_update(cfg: QuickUpdateConfig) -> dict:
         else:
             print()
             print(f"No JFrog CVEs for {manager['label']} — baseline analysis")
+            prefetched_baseline = (
+                prefetched_gradle.get(manager["file_path"])
+                or prefetched_maven.get(manager["file_path"])
+            )
             initial_results.append(
                 _analyze_file(
                     cfg,
                     manager,
                     log_dir,
                     set(),
-                    prefetched_gradle.get(manager["file_path"]),
+                    prefetched_baseline,
                 )
             )
             _snapshot_before(manager)
@@ -700,6 +763,8 @@ def _add_cli_args(parser: argparse.ArgumentParser) -> None:
     parser.add_argument("--npm-timeout", type=int, default=90, help="npm timeout seconds")
     parser.add_argument("--npm-registry", default=None, help="Optional npm registry URL")
     parser.add_argument("--gradle-timeout", type=int, default=150, help="Gradle timeout seconds")
+    parser.add_argument("--maven-cmd", default="mvn", help="Maven command path/name. Default: mvn")
+    parser.add_argument("--maven-timeout", type=int, default=300, help="Maven timeout seconds")
     parser.add_argument("--python-cmd", default="python3", help="Python command path/name. Default: python3")
     parser.add_argument("--pip-timeout", type=int, default=90, help="pip/Python timeout seconds")
     parser.add_argument("--pip-index-url", default=None, help="Optional Python package index URL")
@@ -765,6 +830,8 @@ def _config_from_args(args: argparse.Namespace) -> QuickUpdateConfig:
         npm_timeout=args.npm_timeout,
         npm_registry=args.npm_registry,
         gradle_timeout=args.gradle_timeout,
+        maven_cmd=args.maven_cmd,
+        maven_timeout=args.maven_timeout,
         python_cmd=args.python_cmd,
         pip_timeout=args.pip_timeout,
         pip_index_url=args.pip_index_url,
@@ -779,6 +846,7 @@ def _config_from_args(args: argparse.Namespace) -> QuickUpdateConfig:
         package_jsons=args.package_jsons,
         build_files=args.build_files,
         python_files=args.python_files,
+        pom_files=args.pom_files,
         github_url=args.github_url,
         checkout_dir=args.checkout_dir,
         branch=args.branch,
