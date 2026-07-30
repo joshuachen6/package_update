@@ -1,0 +1,2 @@
+dependency,blocked_version,forced_version,status,reason
+com.fasterxml.jackson.core:jackson-databind,2.21.2,2.21.5,auto_forced_blocked_gradle_artifact,project build passed after replacing a blocked Gradle artifact with a non-vulnerable accessible fallback

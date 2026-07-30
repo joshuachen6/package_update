@@ -1,0 +1,7 @@
+dependency,old_version,new_version,minimum_required
+at.yawk.lz4:lz4-java,1.10.1,1.11.1,1.11.1
+ch.qos.logback:logback-core,1.5.32,1.6.1,1.6.1
+io.netty:netty-handler-proxy,4.1.132.Final,4.2.16.Final,4.2.16.Final
+io.netty:netty-codec-compression,4.2.15.Final,4.2.16.Final,4.2.16.Final
+org.apache.httpcomponents.core5:httpcore5,,5.4.3,5.4.3
+org.apache.httpcomponents.core5:httpcore5-h2,,5.4.3,5.4.3

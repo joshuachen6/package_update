@@ -1,0 +1,305 @@
+buildscript {
+    configurations.all {
+        resolutionStrategy {
+            // package-update: managed buildscript force block (safe to regenerate)
+            force 'org.apache.neethi:neethi:3.2.3'
+            force 'at.yawk.lz4:lz4-java:1.11.1'
+            force 'org.apache.cxf:cxf-core:4.2.2'
+        }
+    }
+
+    repositories {
+        mavenLocal()
+        maven {
+            url = "${ARTIFACTORY_SOURCE}"
+            credentials {
+                username System.getenv('ARTIFACTORY_USERNAME')
+                password System.getenv('ARTIFACTORY_PASSWORD')
+            }
+        }
+    }
+    configurations.all {
+        resolutionStrategy {
+            force 'com.fasterxml.jackson.core:jackson-core:2.22.1'
+        }
+    }
+}
+
+plugins {
+    id 'org.springframework.boot' version '3.5.15'
+    id 'io.spring.dependency-management' version '1.1.7'
+    id 'java'
+    id 'maven-publish'
+    id 'jacoco'
+    id "org.sonarqube" version "4.2.0.3129"
+}
+configurations.all {
+    resolutionStrategy {
+        // package-update: managed force block (safe to regenerate)
+        force 'org.apache.neethi:neethi:3.2.3'
+        force 'at.yawk.lz4:lz4-java:1.11.1'
+        force 'org.apache.cxf:cxf-core:4.2.2'
+    }
+}
+
+
+group = 'com.humana.domain'
+version = '1.0.0.887'
+sourceCompatibility = '17'
+
+repositories {
+    mavenLocal()
+    maven {
+        url = "${ARTIFACTORY_SOURCE}"
+        credentials {
+            username System.getenv('ARTIFACTORY_USERNAME')
+            password System.getenv('ARTIFACTORY_PASSWORD')
+        }
+    }
+}
+ext {
+    set('springCloudVersion', "2025.0.0")
+    set('spring-security.version', "6.5.1")
+    set('netty.version', "4.2.16.Final")
+    set('spring-framework.version', "6.2.19")
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-webflux'
+
+    // micrometer for sluth migration
+    implementation 'io.micrometer:micrometer-tracing-bridge-brave'
+    implementation 'io.micrometer:micrometer-registry-prometheus'
+
+    implementation 'org.springdoc:springdoc-openapi-starter-webflux-ui:2.8.8'
+    implementation 'org.webjars:webjars-locator-core:0.59'
+
+
+    implementation 'com.google.code.findbugs:jsr305:3.0.2'
+    implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.21.1'
+    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.21.1'
+    implementation 'org.openapitools:jackson-databind-nullable:0.2.6'
+    implementation 'org.springframework.boot:spring-boot-starter-validation:3.5.6'
+    implementation 'org.springframework.boot:spring-boot-starter-data-mongodb:3.5.0'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'io.swagger.core.v3:swagger-annotations:2.2.32'
+    implementation 'jakarta.validation:jakarta.validation-api:3.1.1'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'io.projectreactor:reactor-test'
+    implementation 'com.humana.domain:member-preference-model-v10:1.0.0.887'
+    implementation 'com.humana.domain:member-preference-api-v10:1.0.0.887'
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    implementation 'org.eclipse.angus:angus-mail:2.0.4'
+    implementation 'com.humana.eai:eai-chassis-rest:2.8.4'
+
+    implementation 'io.projectreactor.netty:reactor-netty:1.2.10'
+    implementation 'io.projectreactor.netty:reactor-netty-core:1.2.10'
+    implementation 'io.projectreactor.netty:reactor-netty-http:1.2.10'
+    implementation 'io.netty:netty-codec-http2:4.2.16.Final'
+    implementation 'io.netty:netty-codec-http:4.2.16.Final'
+    //********************** Resilience ***************************
+    implementation 'org.springframework.cloud:spring-cloud-starter-circuitbreaker-reactor-resilience4j'
+    implementation 'org.springframework.boot:spring-boot-starter-aop'
+
+
+    //**************** Container Security Vulnerability Fixes *********************
+    implementation 'org.springframework.cloud:spring-cloud-contract-shade:4.3.1'
+
+    implementation(group: 'org.yaml', name: 'snakeyaml') {
+        version {
+            strictly '2.4'
+        }
+    }
+
+    implementation('com.fasterxml.jackson.core:jackson-databind') {
+        version {
+            strictly '2.22.1'
+        }
+    }
+    implementation('com.fasterxml.jackson.core:jackson-annotations') {
+        version {
+            strictly '2.22'
+        }
+    }
+    implementation('com.fasterxml.jackson.core:jackson-core') {
+        version {
+            strictly '2.22.1'
+        }
+    }
+
+    implementation(group: 'org.apache.commons', name: 'commons-lang3') {
+        version {
+            strictly '3.19.0'
+        }
+    }
+
+    implementation(group: 'org.apache.commons', name: 'commons-collections4') {
+        version {
+            strictly '4.5.0'
+        }
+    }
+
+    implementation(group: 'ch.qos.logback', name: 'logback-classic') {
+        version {
+            strictly '1.6.1'
+        }
+    }
+
+    implementation(group: 'ch.qos.logback', name: 'logback-core') {
+        version {
+            strictly '1.6.1'
+        }
+    }
+
+    implementation(group: 'io.netty', name: 'netty-codec') {
+        version {
+            strictly '4.2.16.Final'
+        }
+    }
+
+    implementation(group: 'io.netty', name: 'netty-codec-http2') {
+        version {
+            strictly '4.2.16.Final'
+        }
+    }
+
+    implementation(group: 'io.netty', name: 'netty-handler') {
+        version {
+            strictly '4.2.16.Final'
+        }
+    }
+
+    implementation(group: 'com.github.jknack', name: 'handlebars') {
+        version {
+            strictly '4.4.0'
+        }
+    }
+
+    implementation(group: 'com.jayway.jsonpath', name: 'json-path') {
+        version {
+            strictly '2.9.0'
+        }
+    }
+
+    implementation(group: 'org.bouncycastle', name: 'bcprov-jdk18on') {
+        version {
+            strictly '1.84'
+        }
+    }
+
+    implementation(group: 'com.google.protobuf', name: 'protobuf-java') {
+        version {
+            strictly "[4.31.1]"
+        }
+    }
+    implementation(group: 'com.launchdarkly', name: 'launchdarkly-java-server-sdk') {
+        version {
+            strictly '7.5.0'
+        }
+    }
+    implementation(group: 'org.apache.cxf', name: 'cxf-rt-transports-http') {
+        version {
+            strictly '4.2.2'
+        }
+    }
+
+    implementation 'org.apache.kafka:kafka-clients:4.2.0'
+    implementation 'org.apache.avro:avro:1.12.0'
+    implementation 'org.springframework.kafka:spring-kafka'
+
+    implementation(group: 'org.apache.kafka', name: 'kafka-metadata') {
+        version {
+            strictly '4.2.0'
+        }
+    }
+
+    testImplementation 'org.junit.platform:junit-platform-launcher'
+
+    testImplementation('com.google.guava:guava') {
+        version {
+            strictly '33.5.0-jre'
+        }
+    }
+}
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+    }
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
+
+sonarqube {
+    properties {
+        property "sonar.projectKey", "IntegratedHealth.ConsentAndPreferences.epms-cpms-preference-sync-api"
+        property "sonar.host.url", "http://analysis-devops.humana.com"
+        property "sonar.login", System.getenv("SONARQUBE_TOKEN")
+        property "sonar.java.binaries", "${layout.buildDirectory.get()}/classes/java/main"
+        property "sonar.junit.reportsPath", "${layout.buildDirectory.get()}/test-results/test/"
+        property "sonar.jacoco.reportPaths", "${layout.buildDirectory.get()}/reports/jacoco/test/jacocoTestReport.xml"
+        property 'sonar.coverage.exclusions',
+                "**/com/humana/domain/member/preference/App.java," +
+                        "**/com/humana/domain/member/preference/config/**," +
+                        "**/com/humana/domain/member/preference/constants/**," +
+                        "**/com/humana/domain/member/preference/contract/**," +
+                        "**/com/humana/domain/member/preference/dto/**," +
+                        "**/com/humana/domain/member/preference/entity/**," +
+                        "**/com/humana/domain/member/preference/kafka/avro/**," +
+                        "**/com/humana/domain/member/preference/repository/**," +
+                        "**/com/humana/domain/member/preference/exceptions/**," +
+                        "**/com/humana/domain/member/preference/controller/v20/DomainPreferenceInterfaceV10.java," +
+                        "**/com/humana/domain/member/preference/controller/v20/ClearConsumerLagController.java," +
+                        "**/com/humana/domain/member/preference/service/v20/ClearConsumerLagService.java," +
+                        "**/com/humana/domain/member/preference/util/VaultPropertySourceFactory.java," +
+                        "**/com/humana/domain/member/preference/util/GenericYamlResolver.java," +
+                        "**/com/humana/domain/member/preference/util/PreferenceMixins.java"
+
+    }
+}
+
+apply plugin: 'jacoco'
+test {
+    useJUnitPlatform()
+
+    jacocoTestReport {
+        reports {
+            xml.required.set(true)
+            html.required.set(true)
+            xml.destination file("${layout.buildDirectory.get()}/reports/jacoco/test/jacocoTestReport.xml")
+            html.destination file("${layout.buildDirectory.get()}/jacocoReport")
+        }
+        finalizedBy jacocoTestCoverageVerification
+        afterEvaluate {
+            classDirectories.setFrom(files(classDirectories.files.collect {
+                fileTree(dir: it, exclude: [
+                        "**/com/humana/domain/member/preference/client/**," +
+                                "**/com/humana/domain/member/preference/config/**," +
+                                "**/com/humana/domain/member/preference/constants/**," +
+                                "**/com/humana/domain/member/preference/contract/**," +
+                                "**/com/humana/domain/member/preference/dto/**," +
+                                "**/com/humana/domain/member/preference/entity/**," +
+                                "**/com/humana/domain/member/preference/kafka/avro/**," +
+                                "**/com/humana/domain/member/preference/repository/**," +
+                                "**/com/humana/domain/member/preference/exceptions/**," +
+                                "**/com/humana/domain/member/preference/controller/v20/DomainPreferenceInterfaceV10.java," +
+                                "**/com/humana/domain/member/preference/controller/v20/ClearConsumerLagController.java," +
+                                "**/com/humana/domain/member/preference/service/v20/ClearConsumerLagService.java," +
+                                "**/com/humana/domain/member/preference/util/VaultPropertySourceFactory.java," +
+                                "**/com/humana/domain/member/preference/util/GenericYamlResolver.java," +
+                                "**/com/humana/domain/member/preference/util/PreferenceMixins.java"
+                ])
+            }))
+        }
+    }
+    test.finalizedBy jacocoTestReport
+}
+
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
+
+tasks.sonarqube.dependsOn = []

@@ -1,0 +1,327 @@
+{
+  "file_results": [
+    {
+      "display_changes": [
+        {
+          "package": "ch.qos.logback:logback-core",
+          "change_type": "maven-managed",
+          "old": "1.5.25",
+          "new": "1.5.26",
+          "remediation_guided": true
+        },
+        {
+          "package": "com.fasterxml.jackson.core:jackson-databind",
+          "change_type": "maven",
+          "old": "2.21.1",
+          "new": "2.21.2",
+          "remediation_guided": true
+        },
+        {
+          "package": "org.apache.tomcat.embed:tomcat-embed-core",
+          "change_type": "maven",
+          "old": "11.0.18",
+          "new": "11.0.20",
+          "remediation_guided": true
+        },
+        {
+          "package": "org.bouncycastle:bcprov-jdk18on",
+          "change_type": "maven",
+          "old": "1.79",
+          "new": "1.80",
+          "remediation_guided": true
+        },
+        {
+          "package": "org.springframework:spring-core",
+          "change_type": "maven-managed",
+          "old": "6.2.11",
+          "new": "6.2.12",
+          "remediation_guided": true
+        },
+        {
+          "package": "org.springframework:spring-web",
+          "change_type": "maven",
+          "old": "6.2.9",
+          "new": "6.2.10",
+          "remediation_guided": true
+        },
+        {
+          "package": "org.springframework:spring-webmvc",
+          "change_type": "maven",
+          "old": "6.2.17",
+          "new": "6.2.18",
+          "remediation_guided": true
+        },
+        {
+          "package": "io.micrometer:micrometer-core",
+          "change_type": "maven-managed",
+          "old": "1.15.10",
+          "new": "1.15.11",
+          "remediation_guided": true
+        },
+        {
+          "package": "org.apache.httpcomponents.core5:httpcore5",
+          "change_type": "maven-managed",
+          "old": "5.3.6",
+          "new": "5.4",
+          "remediation_guided": true
+        },
+        {
+          "package": "org.apache.httpcomponents.core5:httpcore5-h2",
+          "change_type": "maven-managed",
+          "old": "5.3.6",
+          "new": "5.4",
+          "remediation_guided": true
+        },
+        {
+          "package": "org.apache.tomcat.embed:tomcat-embed-websocket",
+          "change_type": "maven-managed",
+          "old": "10.1.52",
+          "new": "10.1.53",
+          "remediation_guided": true
+        },
+        {
+          "package": "org.springframework.boot:spring-boot",
+          "change_type": "maven-managed",
+          "old": "3.5.12",
+          "new": "3.5.13",
+          "remediation_guided": true
+        },
+        {
+          "package": "org.springframework.boot:spring-boot-devtools",
+          "change_type": "maven-managed",
+          "old": "3.5.12",
+          "new": "3.5.13",
+          "remediation_guided": true
+        },
+        {
+          "package": "org.springframework.data:spring-data-commons",
+          "change_type": "maven-managed",
+          "old": "3.5.10",
+          "new": "3.5.11",
+          "remediation_guided": true
+        },
+        {
+          "package": "org.springframework.data:spring-data-mongodb",
+          "change_type": "maven-managed",
+          "old": "4.5.10",
+          "new": "4.5.11",
+          "remediation_guided": true
+        },
+        {
+          "package": "org.springframework:spring-expression",
+          "change_type": "maven-managed",
+          "old": "6.2.17",
+          "new": "6.2.18",
+          "remediation_guided": true
+        }
+      ],
+      "skipped_display": [],
+      "file_path": "/Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_cwih-patient-mdm-master-api_default-branch/default-branch/cwih-patient-mdm-master-api/pom.xml",
+      "tree_failed": false,
+      "pom_text": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project xmlns=\"http://maven.apache.org/POM/4.0.0\"\n         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n         xsi:schemaLocation=\"http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd\">\n    <modelVersion>4.0.0</modelVersion>\n    <parent>\n        <groupId>org.springframework.boot</groupId>\n        <artifactId>spring-boot-starter-parent</artifactId>\n        <version>3.5.12</version>\n        <relativePath/>\n    </parent>\n    <groupId>com.crosswalk.master</groupId>\n    <artifactId>crosswalk-master</artifactId>\n    <version>0.0.1-SNAPSHOT</version>\n    <name>PatientMasterApplication</name>\n    <description>Demo project for Patient Master Application</description>\n    <properties>\n        <java.version>17</java.version>\n        <spring-cloud.version>2025.0.0</spring-cloud.version>\n        <sonar.coverage.jacoco.xmlReportPaths>${project.basedir}/target/site/jacoco/jacoco.xml\n        </sonar.coverage.jacoco.xmlReportPaths>\n    </properties>\n\n    <dependencies>\n        <dependency>\n            <groupId>org.springframework.boot</groupId>\n            <artifactId>spring-boot-starter-web</artifactId>\n            <exclusions>\n                <exclusion>\n                    <artifactId>tomcat-embed-el</artifactId>\n                    <groupId>org.apache.tomcat.embed</groupId>\n                </exclusion>\n                <exclusion>\n                    <artifactId>tomcat-embed-core</artifactId>\n                    <groupId>org.apache.tomcat.embed</groupId>\n                </exclusion>\n                <exclusion>\n                    <artifactId>tomcat-embed-websocket</artifactId>\n                    <groupId>org.apache.tomcat.embed</groupId>\n                </exclusion>\n                <exclusion>\n                    <groupId>org.springframework</groupId>\n                    <artifactId>spring-webmvc</artifactId>\n                </exclusion>\n\n                <exclusion>\n                    <groupId>org.springframework</groupId>\n                    <artifactId>spring-web</artifactId>\n                </exclusion>\n                <exclusion>\n                    <groupId>org.springframework</groupId>\n                    <artifactId>spring-webflux</artifactId>\n                </exclusion>\n                <exclusion>\n                    <groupId>org.springframework</groupId>\n                    <artifactId>spring-context</artifactId>\n                </exclusion>\n                <exclusion>\n                    <groupId>org.springframework</groupId>\n                    <artifactId>spring-core</artifactId>\n                </exclusion>\n                <exclusion>\n                    <groupId>logback-core</groupId>\n                    <artifactId>ch.qos.logback</artifactId>\n                </exclusion>\n                <exclusion>\n                    <groupId>logback-classic</groupId>\n                    <artifactId>ch.qos.logback</artifactId>\n                </exclusion>\n                <exclusion>\n                    <groupId>com.fasterxml.jackson.core</groupId>\n                    <artifactId>jackson-databind</artifactId>\n                </exclusion>\n            </exclusions>\n        </dependency>\n\n        <dependency>\n            <groupId>org.springframework.boot</groupId>\n            <artifactId>spring-boot-starter-tomcat</artifactId>\n            <version>3.3.2</version>\n        </dependency>\n\n        <dependency>\n            <groupId>org.springframework.boot</groupId>\n            <artifactId>spring-boot-starter-actuator</artifactId>\n        </dependency>\n\n        <dependency>\n            <groupId>org.springframework</groupId>\n            <artifactId>spring-webmvc</artifactId>\n            <version>6.2.17</version>\n            <exclusions>\n                <exclusion>\n                    <groupId>org.springframework</groupId>\n                    <artifactId>spring-web</artifactId>\n                </exclusion>\n            </exclusions>\n        </dependency>\n\n        <dependency>\n            <groupId>org.springframework</groupId>\n            <artifactId>spring-web</artifactId>\n            <version>6.2.9</version>\n        </dependency>\n\n\n        <dependency>\n            <groupId>org.springframework.boot</groupId>\n            <artifactId>spring-boot-starter-test</artifactId>\n            <scope>test</scope>\n            <exclusions>\n                <exclusion>\n                    <groupId>org.xmlunit</groupId>\n                    <artifactId>xmlunit-core</artifactId>\n                </exclusion>\n                <exclusion>\n                    <artifactId>assertj-core</artifactId>\n                    <groupId>org.assertj</groupId>\n                </exclusion>\n            </exclusions>\n        </dependency>\n\n        <dependency>\n            <groupId>com.opencsv</groupId>\n            <artifactId>opencsv</artifactId>\n            <version>5.8</version>\n            <exclusions>\n                <exclusion>\n                    <artifactId>commons-collections</artifactId>\n                    <groupId>commons-collections</groupId>\n                </exclusion>\n                <exclusion>\n                    <artifactId>commons-beanutils</artifactId>\n                    <groupId>commons-beanutils</groupId>\n                </exclusion>\n                <exclusion>\n                    <groupId>org.apache.commons</groupId>\n                    <artifactId>commons-lang3</artifactId>\n                </exclusion>\n            </exclusions>\n        </dependency>\n        <dependency>\n            <groupId>org.xmlunit</groupId>\n            <artifactId>xmlunit-core</artifactId>\n            <version>2.10.0</version>\n            <scope>test</scope>\n        </dependency>\n\n\n        <dependency>\n            <groupId>io.awspring.cloud</groupId>\n            <artifactId>spring-cloud-aws-starter</artifactId>\n            <version>3.2.0-M1</version>\n            <exclusions>\n                <exclusion>\n                    <groupId>com.fasterxml.jackson.core</groupId>\n                    <artifactId>jackson-core</artifactId>\n                </exclusion>\n            </exclusions>\n        </dependency>\n\n        <dependency>\n            <groupId>org.apache.commons</groupId>\n            <artifactId>commons-lang3</artifactId>\n            <version>3.18.0</version>\n        </dependency>\n\n        <dependency>\n            <groupId>com.google.code.gson</groupId>\n            <artifactId>gson</artifactId>\n            <version>2.11.0</version>\n        </dependency>\n\n\n        <dependency>\n            <groupId>org.projectlombok</groupId>\n            <artifactId>lombok</artifactId>\n            <optional>true</optional>\n        </dependency>\n\n        <dependency>\n            <groupId>org.springframework.boot</groupId>\n            <artifactId>spring-boot-starter-data-mongodb</artifactId>\n        </dependency>\n\n        <dependency>\n            <groupId>org.springframework.boot</groupId>\n            <artifactId>spring-boot-devtools</artifactId>\n            <scope>runtime</scope>\n            <optional>true</optional>\n        </dependency>\n\n        <dependency>\n            <groupId>org.springframework.cloud</groupId>\n            <artifactId>spring-cloud-starter-bootstrap</artifactId>\n            <exclusions>\n                <exclusion>\n                    <groupId>org.springframework.security</groupId>\n                    <artifactId>spring-security-crypto</artifactId>\n                </exclusion>\n                <exclusion>\n                    <groupId>org.bouncycastle</groupId>\n                    <artifactId>bcprov-jdk18on</artifactId>\n                </exclusion>\n            </exclusions>\n        </dependency>\n        <dependency>\n            <groupId>org.bouncycastle</groupId>\n            <artifactId>bcprov-jdk18on</artifactId>\n            <version>1.79</version>\n        </dependency>\n        <dependency>\n            <groupId>org.springframework.cloud</groupId>\n            <artifactId>spring-cloud-starter-vault-config</artifactId>\n            <version>4.1.3</version>\n            <exclusions>\n                <exclusion>\n                    <groupId>org.springframework.security</groupId>\n                    <artifactId>spring-security-crypto</artifactId>\n                </exclusion>\n                <exclusion>\n                    <groupId>org.springframework</groupId>\n                    <artifactId>spring-web</artifactId>\n                </exclusion>\n            </exclusions>\n        </dependency>\n\n        <dependency>\n            <groupId>org.springframework.security</groupId>\n            <artifactId>spring-security-crypto</artifactId>\n            <version>6.3.9</version>\n        </dependency>\n\n        <dependency>\n            <groupId>org.apache.tomcat.embed</groupId>\n            <artifactId>tomcat-embed-core</artifactId>\n            <version>11.0.18</version>\n        </dependency>\n        <dependency>\n            <groupId>org.apache.tomcat.embed</groupId>\n            <artifactId>tomcat-embed-el</artifactId>\n            <version>11.0.12</version>\n        </dependency>\n        <dependency>\n            <groupId>net.minidev</groupId>\n            <artifactId>json-smart</artifactId>\n            <version>2.4.10</version>\n        </dependency>\n        <dependency>\n            <groupId>com.fasterxml.jackson.core</groupId>\n            <artifactId>jackson-databind</artifactId>\n            <version>2.21.1</version>\n        </dependency>\n        <dependency>\n            <groupId>com.fasterxml.jackson.core</groupId>\n            <artifactId>jackson-annotations</artifactId>\n            <version>2.21</version>\n        </dependency>\n        <dependency>\n            <groupId>com.fasterxml.jackson.core</groupId>\n            <artifactId>jackson-core</artifactId>\n            <version>2.21.1</version>\n        </dependency>\n        <dependency>\n            <groupId>org.springframework</groupId>\n            <artifactId>spring-core</artifactId>\n        </dependency>\n        <dependency>\n            <groupId>org.springframework</groupId>\n            <artifactId>spring-context</artifactId>\n        </dependency>\n    </dependencies>\n    <dependencyManagement>\n        <dependencies>\n            <dependency>\n                <groupId>org.springframework.cloud</groupId>\n                <artifactId>spring-cloud-dependencies</artifactId>\n                <version>${spring-cloud.version}</version>\n                <type>pom</type>\n                <scope>import</scope>\n            </dependency>\n            <dependency>\n                <groupId>org.springframework</groupId>\n                <artifactId>spring-core</artifactId>\n                <version>6.2.11</version>\n            </dependency>\n            <dependency>\n                <groupId>org.springframework</groupId>\n                <artifactId>spring-context</artifactId>\n                <version>6.2.7</version>\n            </dependency>\n            <dependency>\n                <groupId>ch.qos.logback</groupId>\n                <artifactId>logback-core</artifactId>\n                <version>1.5.25</version>\n            </dependency>\n            <dependency>\n                <groupId>ch.qos.logback</groupId>\n                <artifactId>logback-classic</artifactId>\n                <version>1.5.25</version>\n                <scope>compile</scope>\n            </dependency>\n        </dependencies>\n    </dependencyManagement>\n\n\n    <build>\n        <plugins>\n            <plugin>\n                <groupId>org.springframework.boot</groupId>\n                <artifactId>spring-boot-maven-plugin</artifactId>\n                <dependencies>\n                    <dependency>\n                        <groupId>org.apache.commons</groupId>\n                        <artifactId>commons-lang3</artifactId>\n                        <version>3.18.0</version>\n                    </dependency>\n                    <dependency>\n                        <groupId>com.fasterxml.jackson.core</groupId>\n                        <artifactId>jackson-core</artifactId>\n                        <version>2.21.1</version>\n                    </dependency>\n                </dependencies>\n            </plugin>\n            <plugin>\n                <groupId>org.apache.maven.plugins</groupId>\n                <artifactId>maven-compiler-plugin</artifactId>\n                <version>3.8.1</version>\n                <configuration>\n                    <source>11</source>\n                    <target>11</target>\n                </configuration>\n            </plugin>\n            <plugin>\n                <groupId>org.apache.maven.plugins</groupId>\n                <artifactId>maven-jar-plugin</artifactId>\n                <version>3.2.0</version>\n                <configuration>\n                    <archive>\n                        <manifest>\n                            <mainClass>com.crosswalk.master.PatientMasterApplication</mainClass>\n                        </manifest>\n                    </archive>\n                </configuration>\n            </plugin>\n            <plugin>\n                <groupId>org.sonarsource.scanner.maven</groupId>\n                <artifactId>sonar-maven-plugin</artifactId>\n                <version>3.11.0.3922</version>\n                <dependencies>\n                    <dependency>\n                        <groupId>org.sonatype.plexus</groupId>\n                        <artifactId>plexus-cipher</artifactId>\n                        <version>1.7</version>\n                    </dependency>\n                </dependencies>\n            </plugin>\n            <plugin>\n                <groupId>org.jacoco</groupId>\n                <artifactId>jacoco-maven-plugin</artifactId>\n                <version>0.8.9</version>\n                <executions>\n                    <execution>\n                        <id>prepare-unit-tests</id>\n                        <phase>initialize</phase>\n                        <goals>\n                            <goal>prepare-agent</goal>\n                        </goals>\n                    </execution>\n                    <execution>\n                        <id>report</id>\n                        <phase>prepare-package</phase>\n                        <goals>\n                            <goal>report</goal>\n                        </goals>\n                    </execution>\n                </executions>\n                <dependencies>\n                    <dependency>\n                        <groupId>xerces</groupId>\n                        <artifactId>xercesImpl</artifactId>\n                        <version>2.12.2</version>\n                    </dependency>\n                    <dependency>\n                        <groupId>commons-collections</groupId>\n                        <artifactId>commons-collections</artifactId>\n                        <version>3.2.2</version>\n                    </dependency>\n                    <dependency>\n                        <groupId>commons-beanutils</groupId>\n                        <artifactId>commons-beanutils</artifactId>\n                        <version>1.9.4</version>\n                    </dependency>\n                    <dependency>\n                        <groupId>org.apache.maven.reporting</groupId>\n                        <artifactId>maven-reporting-impl</artifactId>\n                        <version>3.2.0</version>\n                        <exclusions>\n                            <exclusion>\n                                <groupId>commons-httpclient</groupId>\n                                <artifactId>commons-httpclient</artifactId>\n                            </exclusion>\n                            <exclusion>\n                                <groupId>org.apache.velocity</groupId>\n                                <artifactId>velocity</artifactId>\n                            </exclusion>\n                            <exclusion>\n                                <groupId>asm</groupId>\n                                <artifactId>asm</artifactId>\n                            </exclusion>\n                            <exclusion>\n                                <groupId>org.apache.velocity</groupId>\n                                <artifactId>velocity-tools</artifactId>\n                            </exclusion>\n                        </exclusions>\n                    </dependency>\n\n                    <dependency>\n                        <groupId>org.codehaus.plexus</groupId>\n                        <artifactId>plexus-utils</artifactId>\n                        <version>4.0.1</version>\n                    </dependency>\n                    <dependency>\n                        <groupId>commons-io</groupId>\n                        <artifactId>commons-io</artifactId>\n                        <version>2.16.1</version>\n                    </dependency>\n                    <dependency>\n                        <groupId>commons-codec</groupId>\n                        <artifactId>commons-codec</artifactId>\n                        <version>1.17.0</version>\n                    </dependency>\n                    <dependency>\n                        <groupId>commons-cli</groupId>\n                        <artifactId>commons-cli</artifactId>\n                        <version>1.7.0</version>\n                    </dependency>\n                    <dependency>\n                        <groupId>org.apache.maven.shared</groupId>\n                        <artifactId>maven-shared-utils</artifactId>\n                        <version>3.4.2</version>\n                    </dependency>\n                </dependencies>\n            </plugin>\n            <plugin>\n                <groupId>org.apache.maven.plugins</groupId>\n                <artifactId>maven-surefire-plugin</artifactId>\n                <version>3.5.5</version>\n            </plugin>\n        </plugins>\n    </build>\n\n    <repositories>\n        <repository>\n            <id>confluent</id>\n            <url>https://humana.jfrog.io/artifactory/confluent-maven-remote</url>\n        </repository>\n    </repositories>\n\n</project>\n",
+      "updated_text": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project xmlns=\"http://maven.apache.org/POM/4.0.0\"\n         xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n         xsi:schemaLocation=\"http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd\">\n    <modelVersion>4.0.0</modelVersion>\n    <parent>\n        <groupId>org.springframework.boot</groupId>\n        <artifactId>spring-boot-starter-parent</artifactId>\n        <version>3.5.12</version>\n        <relativePath/>\n    </parent>\n    <groupId>com.crosswalk.master</groupId>\n    <artifactId>crosswalk-master</artifactId>\n    <version>0.0.1-SNAPSHOT</version>\n    <name>PatientMasterApplication</name>\n    <description>Demo project for Patient Master Application</description>\n    <properties>\n        <java.version>17</java.version>\n        <spring-cloud.version>2025.0.0</spring-cloud.version>\n        <sonar.coverage.jacoco.xmlReportPaths>${project.basedir}/target/site/jacoco/jacoco.xml\n        </sonar.coverage.jacoco.xmlReportPaths>\n    </properties>\n\n    <dependencies>\n        <dependency>\n            <groupId>org.springframework.boot</groupId>\n            <artifactId>spring-boot-starter-web</artifactId>\n            <exclusions>\n                <exclusion>\n                    <artifactId>tomcat-embed-el</artifactId>\n                    <groupId>org.apache.tomcat.embed</groupId>\n                </exclusion>\n                <exclusion>\n                    <artifactId>tomcat-embed-core</artifactId>\n                    <groupId>org.apache.tomcat.embed</groupId>\n                </exclusion>\n                <exclusion>\n                    <artifactId>tomcat-embed-websocket</artifactId>\n                    <groupId>org.apache.tomcat.embed</groupId>\n                </exclusion>\n                <exclusion>\n                    <groupId>org.springframework</groupId>\n                    <artifactId>spring-webmvc</artifactId>\n                </exclusion>\n\n                <exclusion>\n                    <groupId>org.springframework</groupId>\n                    <artifactId>spring-web</artifactId>\n                </exclusion>\n                <exclusion>\n                    <groupId>org.springframework</groupId>\n                    <artifactId>spring-webflux</artifactId>\n                </exclusion>\n                <exclusion>\n                    <groupId>org.springframework</groupId>\n                    <artifactId>spring-context</artifactId>\n                </exclusion>\n                <exclusion>\n                    <groupId>org.springframework</groupId>\n                    <artifactId>spring-core</artifactId>\n                </exclusion>\n                <exclusion>\n                    <groupId>logback-core</groupId>\n                    <artifactId>ch.qos.logback</artifactId>\n                </exclusion>\n                <exclusion>\n                    <groupId>logback-classic</groupId>\n                    <artifactId>ch.qos.logback</artifactId>\n                </exclusion>\n                <exclusion>\n                    <groupId>com.fasterxml.jackson.core</groupId>\n                    <artifactId>jackson-databind</artifactId>\n                </exclusion>\n            </exclusions>\n        </dependency>\n\n        <dependency>\n            <groupId>org.springframework.boot</groupId>\n            <artifactId>spring-boot-starter-tomcat</artifactId>\n            <version>3.3.2</version>\n        </dependency>\n\n        <dependency>\n            <groupId>org.springframework.boot</groupId>\n            <artifactId>spring-boot-starter-actuator</artifactId>\n        </dependency>\n\n        <dependency>\n            <groupId>org.springframework</groupId>\n            <artifactId>spring-webmvc</artifactId>\n            <version>6.2.18</version>\n            <exclusions>\n                <exclusion>\n                    <groupId>org.springframework</groupId>\n                    <artifactId>spring-web</artifactId>\n                </exclusion>\n            </exclusions>\n        </dependency>\n\n        <dependency>\n            <groupId>org.springframework</groupId>\n            <artifactId>spring-web</artifactId>\n            <version>6.2.10</version>\n        </dependency>\n\n\n        <dependency>\n            <groupId>org.springframework.boot</groupId>\n            <artifactId>spring-boot-starter-test</artifactId>\n            <scope>test</scope>\n            <exclusions>\n                <exclusion>\n                    <groupId>org.xmlunit</groupId>\n                    <artifactId>xmlunit-core</artifactId>\n                </exclusion>\n                <exclusion>\n                    <artifactId>assertj-core</artifactId>\n                    <groupId>org.assertj</groupId>\n                </exclusion>\n            </exclusions>\n        </dependency>\n\n        <dependency>\n            <groupId>com.opencsv</groupId>\n            <artifactId>opencsv</artifactId>\n            <version>5.8</version>\n            <exclusions>\n                <exclusion>\n                    <artifactId>commons-collections</artifactId>\n                    <groupId>commons-collections</groupId>\n                </exclusion>\n                <exclusion>\n                    <artifactId>commons-beanutils</artifactId>\n                    <groupId>commons-beanutils</groupId>\n                </exclusion>\n                <exclusion>\n                    <groupId>org.apache.commons</groupId>\n                    <artifactId>commons-lang3</artifactId>\n                </exclusion>\n            </exclusions>\n        </dependency>\n        <dependency>\n            <groupId>org.xmlunit</groupId>\n            <artifactId>xmlunit-core</artifactId>\n            <version>2.10.0</version>\n            <scope>test</scope>\n        </dependency>\n\n\n        <dependency>\n            <groupId>io.awspring.cloud</groupId>\n            <artifactId>spring-cloud-aws-starter</artifactId>\n            <version>3.2.0-M1</version>\n            <exclusions>\n                <exclusion>\n                    <groupId>com.fasterxml.jackson.core</groupId>\n                    <artifactId>jackson-core</artifactId>\n                </exclusion>\n            </exclusions>\n        </dependency>\n\n        <dependency>\n            <groupId>org.apache.commons</groupId>\n            <artifactId>commons-lang3</artifactId>\n            <version>3.18.0</version>\n        </dependency>\n\n        <dependency>\n            <groupId>com.google.code.gson</groupId>\n            <artifactId>gson</artifactId>\n            <version>2.11.0</version>\n        </dependency>\n\n\n        <dependency>\n            <groupId>org.projectlombok</groupId>\n            <artifactId>lombok</artifactId>\n            <optional>true</optional>\n        </dependency>\n\n        <dependency>\n            <groupId>org.springframework.boot</groupId>\n            <artifactId>spring-boot-starter-data-mongodb</artifactId>\n        </dependency>\n\n        <dependency>\n            <groupId>org.springframework.boot</groupId>\n            <artifactId>spring-boot-devtools</artifactId>\n            <scope>runtime</scope>\n            <optional>true</optional>\n        </dependency>\n\n        <dependency>\n            <groupId>org.springframework.cloud</groupId>\n            <artifactId>spring-cloud-starter-bootstrap</artifactId>\n            <exclusions>\n                <exclusion>\n                    <groupId>org.springframework.security</groupId>\n                    <artifactId>spring-security-crypto</artifactId>\n                </exclusion>\n                <exclusion>\n                    <groupId>org.bouncycastle</groupId>\n                    <artifactId>bcprov-jdk18on</artifactId>\n                </exclusion>\n            </exclusions>\n        </dependency>\n        <dependency>\n            <groupId>org.bouncycastle</groupId>\n            <artifactId>bcprov-jdk18on</artifactId>\n            <version>1.80</version>\n        </dependency>\n        <dependency>\n            <groupId>org.springframework.cloud</groupId>\n            <artifactId>spring-cloud-starter-vault-config</artifactId>\n            <version>4.1.3</version>\n            <exclusions>\n                <exclusion>\n                    <groupId>org.springframework.security</groupId>\n                    <artifactId>spring-security-crypto</artifactId>\n                </exclusion>\n                <exclusion>\n                    <groupId>org.springframework</groupId>\n                    <artifactId>spring-web</artifactId>\n                </exclusion>\n            </exclusions>\n        </dependency>\n\n        <dependency>\n            <groupId>org.springframework.security</groupId>\n            <artifactId>spring-security-crypto</artifactId>\n            <version>6.3.9</version>\n        </dependency>\n\n        <dependency>\n            <groupId>org.apache.tomcat.embed</groupId>\n            <artifactId>tomcat-embed-core</artifactId>\n            <version>11.0.20</version>\n        </dependency>\n        <dependency>\n            <groupId>org.apache.tomcat.embed</groupId>\n            <artifactId>tomcat-embed-el</artifactId>\n            <version>11.0.12</version>\n        </dependency>\n        <dependency>\n            <groupId>net.minidev</groupId>\n            <artifactId>json-smart</artifactId>\n            <version>2.4.10</version>\n        </dependency>\n        <dependency>\n            <groupId>com.fasterxml.jackson.core</groupId>\n            <artifactId>jackson-databind</artifactId>\n            <version>2.21.2</version>\n        </dependency>\n        <dependency>\n            <groupId>com.fasterxml.jackson.core</groupId>\n            <artifactId>jackson-annotations</artifactId>\n            <version>2.21</version>\n        </dependency>\n        <dependency>\n            <groupId>com.fasterxml.jackson.core</groupId>\n            <artifactId>jackson-core</artifactId>\n            <version>2.21.1</version>\n        </dependency>\n        <dependency>\n            <groupId>org.springframework</groupId>\n            <artifactId>spring-core</artifactId>\n        </dependency>\n        <dependency>\n            <groupId>org.springframework</groupId>\n            <artifactId>spring-context</artifactId>\n        </dependency>\n    </dependencies>\n    <dependencyManagement>\n        <dependencies>\n            <dependency>\n                <groupId>org.springframework.cloud</groupId>\n                <artifactId>spring-cloud-dependencies</artifactId>\n                <version>${spring-cloud.version}</version>\n                <type>pom</type>\n                <scope>import</scope>\n            </dependency>\n            <dependency>\n                <groupId>org.springframework</groupId>\n                <artifactId>spring-core</artifactId>\n                <version>6.2.12</version>\n            </dependency>\n            <dependency>\n                <groupId>org.springframework</groupId>\n                <artifactId>spring-context</artifactId>\n                <version>6.2.7</version>\n            </dependency>\n            <dependency>\n                <groupId>ch.qos.logback</groupId>\n                <artifactId>logback-core</artifactId>\n                <version>1.5.26</version>\n            </dependency>\n            <dependency>\n                <groupId>ch.qos.logback</groupId>\n                <artifactId>logback-classic</artifactId>\n                <version>1.5.25</version>\n                <scope>compile</scope>\n            </dependency>\n                    <dependency>\n                <groupId>io.micrometer</groupId>\n                <artifactId>micrometer-core</artifactId>\n                <version>1.15.11</version>\n            </dependency>\n            <dependency>\n                <groupId>org.apache.httpcomponents.core5</groupId>\n                <artifactId>httpcore5</artifactId>\n                <version>5.4</version>\n            </dependency>\n            <dependency>\n                <groupId>org.apache.httpcomponents.core5</groupId>\n                <artifactId>httpcore5-h2</artifactId>\n                <version>5.4</version>\n            </dependency>\n            <dependency>\n                <groupId>org.apache.tomcat.embed</groupId>\n                <artifactId>tomcat-embed-websocket</artifactId>\n                <version>10.1.53</version>\n            </dependency>\n            <dependency>\n                <groupId>org.springframework.boot</groupId>\n                <artifactId>spring-boot</artifactId>\n                <version>3.5.13</version>\n            </dependency>\n            <dependency>\n                <groupId>org.springframework.boot</groupId>\n                <artifactId>spring-boot-devtools</artifactId>\n                <version>3.5.13</version>\n            </dependency>\n            <dependency>\n                <groupId>org.springframework.data</groupId>\n                <artifactId>spring-data-commons</artifactId>\n                <version>3.5.11</version>\n            </dependency>\n            <dependency>\n                <groupId>org.springframework.data</groupId>\n                <artifactId>spring-data-mongodb</artifactId>\n                <version>4.5.11</version>\n            </dependency>\n            <dependency>\n                <groupId>org.springframework</groupId>\n                <artifactId>spring-expression</artifactId>\n                <version>6.2.18</version>\n            </dependency>\n</dependencies>\n    </dependencyManagement>\n\n\n    <build>\n        <plugins>\n            <plugin>\n                <groupId>org.springframework.boot</groupId>\n                <artifactId>spring-boot-maven-plugin</artifactId>\n                <dependencies>\n                    <dependency>\n                        <groupId>org.apache.commons</groupId>\n                        <artifactId>commons-lang3</artifactId>\n                        <version>3.18.0</version>\n                    </dependency>\n                    <dependency>\n                        <groupId>com.fasterxml.jackson.core</groupId>\n                        <artifactId>jackson-core</artifactId>\n                        <version>2.21.1</version>\n                    </dependency>\n                </dependencies>\n            </plugin>\n            <plugin>\n                <groupId>org.apache.maven.plugins</groupId>\n                <artifactId>maven-compiler-plugin</artifactId>\n                <version>3.8.1</version>\n                <configuration>\n                    <source>11</source>\n                    <target>11</target>\n                </configuration>\n            </plugin>\n            <plugin>\n                <groupId>org.apache.maven.plugins</groupId>\n                <artifactId>maven-jar-plugin</artifactId>\n                <version>3.2.0</version>\n                <configuration>\n                    <archive>\n                        <manifest>\n                            <mainClass>com.crosswalk.master.PatientMasterApplication</mainClass>\n                        </manifest>\n                    </archive>\n                </configuration>\n            </plugin>\n            <plugin>\n                <groupId>org.sonarsource.scanner.maven</groupId>\n                <artifactId>sonar-maven-plugin</artifactId>\n                <version>3.11.0.3922</version>\n                <dependencies>\n                    <dependency>\n                        <groupId>org.sonatype.plexus</groupId>\n                        <artifactId>plexus-cipher</artifactId>\n                        <version>1.7</version>\n                    </dependency>\n                </dependencies>\n            </plugin>\n            <plugin>\n                <groupId>org.jacoco</groupId>\n                <artifactId>jacoco-maven-plugin</artifactId>\n                <version>0.8.9</version>\n                <executions>\n                    <execution>\n                        <id>prepare-unit-tests</id>\n                        <phase>initialize</phase>\n                        <goals>\n                            <goal>prepare-agent</goal>\n                        </goals>\n                    </execution>\n                    <execution>\n                        <id>report</id>\n                        <phase>prepare-package</phase>\n                        <goals>\n                            <goal>report</goal>\n                        </goals>\n                    </execution>\n                </executions>\n                <dependencies>\n                    <dependency>\n                        <groupId>xerces</groupId>\n                        <artifactId>xercesImpl</artifactId>\n                        <version>2.12.2</version>\n                    </dependency>\n                    <dependency>\n                        <groupId>commons-collections</groupId>\n                        <artifactId>commons-collections</artifactId>\n                        <version>3.2.2</version>\n                    </dependency>\n                    <dependency>\n                        <groupId>commons-beanutils</groupId>\n                        <artifactId>commons-beanutils</artifactId>\n                        <version>1.9.4</version>\n                    </dependency>\n                    <dependency>\n                        <groupId>org.apache.maven.reporting</groupId>\n                        <artifactId>maven-reporting-impl</artifactId>\n                        <version>3.2.0</version>\n                        <exclusions>\n                            <exclusion>\n                                <groupId>commons-httpclient</groupId>\n                                <artifactId>commons-httpclient</artifactId>\n                            </exclusion>\n                            <exclusion>\n                                <groupId>org.apache.velocity</groupId>\n                                <artifactId>velocity</artifactId>\n                            </exclusion>\n                            <exclusion>\n                                <groupId>asm</groupId>\n                                <artifactId>asm</artifactId>\n                            </exclusion>\n                            <exclusion>\n                                <groupId>org.apache.velocity</groupId>\n                                <artifactId>velocity-tools</artifactId>\n                            </exclusion>\n                        </exclusions>\n                    </dependency>\n\n                    <dependency>\n                        <groupId>org.codehaus.plexus</groupId>\n                        <artifactId>plexus-utils</artifactId>\n                        <version>4.0.1</version>\n                    </dependency>\n                    <dependency>\n                        <groupId>commons-io</groupId>\n                        <artifactId>commons-io</artifactId>\n                        <version>2.16.1</version>\n                    </dependency>\n                    <dependency>\n                        <groupId>commons-codec</groupId>\n                        <artifactId>commons-codec</artifactId>\n                        <version>1.17.0</version>\n                    </dependency>\n                    <dependency>\n                        <groupId>commons-cli</groupId>\n                        <artifactId>commons-cli</artifactId>\n                        <version>1.7.0</version>\n                    </dependency>\n                    <dependency>\n                        <groupId>org.apache.maven.shared</groupId>\n                        <artifactId>maven-shared-utils</artifactId>\n                        <version>3.4.2</version>\n                    </dependency>\n                </dependencies>\n            </plugin>\n            <plugin>\n                <groupId>org.apache.maven.plugins</groupId>\n                <artifactId>maven-surefire-plugin</artifactId>\n                <version>3.5.5</version>\n            </plugin>\n        </plugins>\n    </build>\n\n    <repositories>\n        <repository>\n            <id>confluent</id>\n            <url>https://humana.jfrog.io/artifactory/confluent-maven-remote</url>\n        </repository>\n    </repositories>\n\n</project>\n",
+      "changes": [
+        {
+          "dependency": "ch.qos.logback:logback-core",
+          "old_version": "1.5.25",
+          "new_version": "1.5.26",
+          "change_type": "maven-managed",
+          "version_span": [
+            11005,
+            11011
+          ],
+          "property_span": null,
+          "property_key": null
+        },
+        {
+          "dependency": "com.fasterxml.jackson.core:jackson-databind",
+          "old_version": "2.21.1",
+          "new_version": "2.21.2",
+          "change_type": "maven",
+          "version_span": [
+            9357,
+            9363
+          ],
+          "property_span": null,
+          "property_key": null
+        },
+        {
+          "dependency": "org.apache.tomcat.embed:tomcat-embed-core",
+          "old_version": "11.0.18",
+          "new_version": "11.0.20",
+          "change_type": "maven",
+          "version_span": [
+            8801,
+            8808
+          ],
+          "property_span": null,
+          "property_key": null
+        },
+        {
+          "dependency": "org.bouncycastle:bcprov-jdk18on",
+          "old_version": "1.79",
+          "new_version": "1.80",
+          "change_type": "maven",
+          "version_span": [
+            7786,
+            7790
+          ],
+          "property_span": null,
+          "property_key": null
+        },
+        {
+          "dependency": "org.springframework:spring-core",
+          "old_version": "6.2.11",
+          "new_version": "6.2.12",
+          "change_type": "maven-managed",
+          "version_span": [
+            10605,
+            10611
+          ],
+          "property_span": null,
+          "property_key": null
+        },
+        {
+          "dependency": "org.springframework:spring-web",
+          "old_version": "6.2.9",
+          "new_version": "6.2.10",
+          "change_type": "maven",
+          "version_span": [
+            4122,
+            4127
+          ],
+          "property_span": null,
+          "property_key": null
+        },
+        {
+          "dependency": "org.springframework:spring-webmvc",
+          "old_version": "6.2.17",
+          "new_version": "6.2.18",
+          "change_type": "maven",
+          "version_span": [
+            3718,
+            3724
+          ],
+          "property_span": null,
+          "property_key": null
+        }
+      ],
+      "dm_overrides": [
+        {
+          "dependency": "io.micrometer:micrometer-core",
+          "old_version": "1.15.10",
+          "new_version": "1.15.11",
+          "change_type": "maven-managed",
+          "version_span": null,
+          "property_span": null
+        },
+        {
+          "dependency": "org.apache.httpcomponents.core5:httpcore5",
+          "old_version": "5.3.6",
+          "new_version": "5.4",
+          "change_type": "maven-managed",
+          "version_span": null,
+          "property_span": null
+        },
+        {
+          "dependency": "org.apache.httpcomponents.core5:httpcore5-h2",
+          "old_version": "5.3.6",
+          "new_version": "5.4",
+          "change_type": "maven-managed",
+          "version_span": null,
+          "property_span": null
+        },
+        {
+          "dependency": "org.apache.tomcat.embed:tomcat-embed-websocket",
+          "old_version": "10.1.52",
+          "new_version": "10.1.53",
+          "change_type": "maven-managed",
+          "version_span": null,
+          "property_span": null
+        },
+        {
+          "dependency": "org.springframework.boot:spring-boot",
+          "old_version": "3.5.12",
+          "new_version": "3.5.13",
+          "change_type": "maven-managed",
+          "version_span": null,
+          "property_span": null
+        },
+        {
+          "dependency": "org.springframework.boot:spring-boot-devtools",
+          "old_version": "3.5.12",
+          "new_version": "3.5.13",
+          "change_type": "maven-managed",
+          "version_span": null,
+          "property_span": null
+        },
+        {
+          "dependency": "org.springframework.data:spring-data-commons",
+          "old_version": "3.5.10",
+          "new_version": "3.5.11",
+          "change_type": "maven-managed",
+          "version_span": null,
+          "property_span": null
+        },
+        {
+          "dependency": "org.springframework.data:spring-data-mongodb",
+          "old_version": "4.5.10",
+          "new_version": "4.5.11",
+          "change_type": "maven-managed",
+          "version_span": null,
+          "property_span": null
+        },
+        {
+          "dependency": "org.springframework:spring-expression",
+          "old_version": "6.2.17",
+          "new_version": "6.2.18",
+          "change_type": "maven-managed",
+          "version_span": null,
+          "property_span": null
+        }
+      ],
+      "skipped_raw": [],
+      "pom_file": "/Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_cwih-patient-mdm-master-api_default-branch/default-branch/cwih-patient-mdm-master-api/pom.xml",
+      "fetch_errors": [],
+      "dm_type": "maven",
+      "write_status": "Failed",
+      "validation_status": "Failed",
+      "validation_message": "dict contains fields not in fieldnames: 'version_span', 'property_span'",
+      "verification_status": "Error - secondary verification scan incomplete",
+      "test_status": "not_run"
+    }
+  ],
+  "cfg": {
+    "project_dir": "/Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_cwih-patient-mdm-master-api_default-branch/default-branch/cwih-patient-mdm-master-api",
+    "log_dir": "/Users/jchen18/Documents/package_update/logs/batch/Cloud-3-0-EMU_cwih-patient-mdm-master-api_default-branch/logs",
+    "workers": 12,
+    "npm_cmd": "npm",
+    "npm_timeout": 90,
+    "npm_registry": null,
+    "gradle_timeout": 150,
+    "python_cmd": "python3",
+    "pip_timeout": 90,
+    "pip_index_url": null,
+    "skip_block_check": false,
+    "skip_build_validation": false,
+    "enable_failure_isolation": false,
+    "capture_build_logs": false,
+    "artifactory_source": "https://humana.jfrog.io/artifactory",
+    "artifactory_repo": "ins-cp-mgmt-gradle-virtual",
+    "artifactory_username": "jchen18@humana.com",
+    "artifactory_password": "cmVmdGtuOjAxOjE4MTM4NjIyMjc6bGtMdlFjZ084R2ZZZmFkWktiaTNjTERtTDds",
+    "maven_cmd": "mvn",
+    "maven_timeout": 300,
+    "package_jsons": [],
+    "build_files": [],
+    "python_files": [],
+    "pom_files": [],
+    "github_url": "https://github.com/Cloud-3-0-EMU/cwih-patient-mdm-master-api.git",
+    "checkout_dir": "/Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_cwih-patient-mdm-master-api_default-branch/default-branch",
+    "branch": null,
+    "input_cves": null,
+    "proj_dir": "/Users/jchen18/.package_update_gui/repos/Cloud-3-0-EMU_cwih-patient-mdm-master-api_default-branch/default-branch/cwih-patient-mdm-master-api"
+  },
+  "github_url": "https://github.com/Cloud-3-0-EMU/cwih-patient-mdm-master-api.git",
+  "input_cves": []
+}

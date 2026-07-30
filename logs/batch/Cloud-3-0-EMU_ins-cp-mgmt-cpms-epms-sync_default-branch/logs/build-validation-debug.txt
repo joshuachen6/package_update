@@ -1,0 +1,24 @@
+[2026-07-29 08:09:22] [perf] concurrent version search (org.apache.tomcat.embed:tomcat-embed-websocket) completed in 0.89s
+[2026-07-29 08:09:22] [perf] concurrent version search (io.netty:netty-codec-http2) completed in 0.95s
+[2026-07-29 08:09:23] [perf] concurrent version search (io.netty:netty-codec-compression) completed in 1.31s
+[2026-07-29 08:09:23] [perf] concurrent version search (io.netty:netty-codec-http2) completed in 0.38s
+[2026-07-29 08:09:23] [perf] concurrent version search (at.yawk.lz4:lz4-java) completed in 1.35s
+[2026-07-29 08:09:23] [perf] transitive-parent search (at.yawk.lz4:lz4-java) ran 0 gradle probe(s) in 0.00s (resolved=False)
+[2026-07-29 08:09:23] [perf] concurrent version search (org.apache.tomcat.embed:tomcat-embed-websocket) completed in 0.74s
+[2026-07-29 08:09:23] [perf] concurrent version search (io.netty:netty-handler-proxy) completed in 1.69s
+[2026-07-29 08:09:23] [perf] concurrent version search (io.netty:netty-codec-http) completed in 1.84s
+[2026-07-29 08:09:23] [perf] concurrent version search (ch.qos.logback:logback-core) completed in 2.22s
+[2026-07-29 08:09:23] [perf] transitive-parent search (ch.qos.logback:logback-core) ran 0 gradle probe(s) in 0.00s (resolved=False)
+[2026-07-29 08:09:24] [perf] concurrent version search (org.apache.tomcat.embed:tomcat-embed-core) completed in 2.51s
+[2026-07-29 08:09:24] [perf] concurrent version search (org.apache.tomcat.embed:tomcat-embed-core) completed in 0.25s
+[2026-07-29 08:09:24] [perf] concurrent version search (io.netty:netty-codec-http) completed in 1.10s
+[2026-07-29 08:09:31] [perf] transitive-parent search (io.netty:netty-handler-proxy) ran 1 gradle probe(s) in 7.76s (resolved=False)
+[2026-07-29 08:09:32] [perf] transitive-parent search (io.netty:netty-codec-compression) ran 1 gradle probe(s) in 9.89s (resolved=False)
+[2026-07-29 08:09:32] proactive check: resolving post-change dependency tree...
+[2026-07-29 08:09:47] proactive check: 104 resolved artifacts — checking accessibility...
+[2026-07-29 08:10:00] proactive check: all artifacts accessible — no pre-flight forces needed
+[2026-07-29 08:10:27] round 1: 1 new blocked packages
+[2026-07-29 08:10:27] com.fasterxml.jackson.core:jackson-databind:2.21.2 — listing from https://humana.jfrog.io/artifactory/ins-cp-mgmt-gradle-virtual, checking access via https://humana.jfrog.io/artifactory/plugins-release
+[2026-07-29 08:10:29] com.fasterxml.jackson.core:jackson-databind:2.21.2 — 229 versions available
+[2026-07-29 08:10:30] [perf] concurrent version search (com.fasterxml.jackson.core:jackson-databind) completed in 1.61s
+[2026-07-29 08:10:30] com.fasterxml.jackson.core:jackson-databind:2.21.2 — find_accessible_version -> '2.21.5'

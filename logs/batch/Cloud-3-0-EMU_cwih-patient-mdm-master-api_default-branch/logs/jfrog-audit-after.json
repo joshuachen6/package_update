@@ -1,0 +1,14 @@
+{
+  "component_count": 0,
+  "ecosystems": [
+    "maven",
+    "npm",
+    "pypi"
+  ],
+  "errors": [],
+  "skipped_reason": "No resolved dependency components found. Generate package-lock.json, gradle-dependency-tree.txt, Python requirements files, or pyproject.toml before running the CVE scan.",
+  "vulnerability_count": 0,
+  "vulnerable_component_count": 0,
+  "vulnerable_components": [],
+  "xray_host": "https://humana.jfrog.io"
+}

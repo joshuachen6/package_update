@@ -1,0 +1,21 @@
+{
+  "component_count": 137,
+  "ecosystems": [
+    "maven"
+  ],
+  "errors": [],
+  "vulnerability_count": 1,
+  "vulnerable_component_count": 1,
+  "vulnerable_components": [
+    {
+      "component_id": "gav://org.apache.tomcat.embed:tomcat-embed-core:11.0.24",
+      "cves": [
+        "CVE-2026-66299"
+      ],
+      "ecosystem": "maven",
+      "package": "org.apache.tomcat.embed:tomcat-embed-core",
+      "version": "11.0.24"
+    }
+  ],
+  "xray_host": "https://humana.jfrog.io"
+}
